@@ -3,31 +3,72 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    color: rgb(var(--foreground-rgb));
+    background: white;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+.bg-apricot-sunset {
+    background-color: #ffc5ab;
+}
+.border-apricot-sunset {
+    border-color: #ffc5ab;
+}
+.text-apricot-sunset-accent {
+    color: rgb(147, 54, 26);
+}
+
+.bg-vanilla-punch {
+    background-color: #fcf2d6;
+}
+.border-vanilla-punch {
+    border-color: #fcf2d6;
+}
+.text-vanilla-punch-accent {
+    color: rgb(73, 65, 43);
+}
+
+.bg-olive-note {
+    background-color: #c5c6a2;
+}
+.bg-olive-note-hover:hover {
+    background-color: #c5c6a2;
+}
+.border-olive-note {
+    border-color: #c5c6a2;
+}
+.text-olive-note-accent {
+    color: rgb(54, 51, 28);
+}
+
+.bg-storm-cloud {
+    background-color: #a2a3a8;
+}
+.border-storm-cloud {
+    border-color: #a2a3a8;
+}
+.text-storm-cloud {
+    color: #a2a3a8;
+}
+.text-storm-cloud-accent {
+    color: rgb(22, 24, 36);
 }
