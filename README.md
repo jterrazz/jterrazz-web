@@ -2,6 +2,12 @@
 
 > A personal portfolio website showcasing my development projects, photography, and articles. Discover my work in web development, explore my collection of photographs, and read my latest articles all in one place.
 
+## Features
+
+-   **Projects**: Showcase of my development projects with links to the live site and GitHub repository.
+-   **Photography**: Collection of my photographs with a lightbox gallery for viewing.
+-   **Articles**: Blog posts on web development, photography, and other topics.
+
 ## Getting Started
 
 First, run the development server:
@@ -26,8 +32,8 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
