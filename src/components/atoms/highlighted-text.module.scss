@@ -1,0 +1,71 @@
+//$highlight-color-hover: rgba(154, 95, 250, 0.5);
+//$highlight-color: rgb(221, 202, 252);
+
+// Same in green light like the grass on a sunset
+//$highlight-color-hover: rgba(0, 191, 255, 0.5);
+//$highlight-color: rgb(135, 206, 250);
+
+$highlight-color-hover: rgba(191, 200, 201, 0.8);
+$highlight-color: rgb(191, 200, 201);
+
+.highlight-text {
+    position: relative;
+    background: linear-gradient(transparent 30%, rgba($highlight-color, 0.5) 70%, transparent 100%);
+    //background: linear-gradient(transparent 30%, rgba(197, 198, 162, 0.5) 70%, transparent 100%);
+    display: inline-block;
+    line-height: 1.5;
+    border-radius: 8px; /* Adding a subtle curve */
+    transition: transform 0.3s ease;
+
+    &::before,
+    &::after {
+        transition:
+            transform 0.3s ease,
+            background 0.3s ease; // Smooth animation for transform and background
+    }
+
+    &:hover {
+        background: linear-gradient(
+            transparent 30%,
+            lighten($highlight-color-hover, 10%) 70%,
+            transparent 100%
+        ); // Lighten the color on hover
+        &::before {
+            transform: scale(1.12) skewY(-3deg) rotate(2deg); // Slightly scale up the highlight
+            background: lighten($highlight-color-hover, 10%); // Lighten the color on hover
+        }
+
+        &::after {
+            transform: scale(1.12) skewY(-2deg) rotate(2deg); // Slightly scale up the highlight
+            background: lighten($highlight-color-hover, 20%); // Lighten the color on hover
+        }
+    }
+}
+
+.highlight-text::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    right: -7px;
+    bottom: 0;
+    height: 100%;
+    background: rgba($highlight-color, 0.5);
+    z-index: -1;
+    transform: skewY(-3deg);
+    border-radius: 8px 50% 50% 8px; /* Curved border */
+    filter: blur(1px); /* Slight blur to soften edges */
+}
+
+.highlight-text::after {
+    content: '';
+    position: absolute;
+    left: -3px;
+    right: -3px;
+    bottom: 0;
+    height: 50%;
+    background: rgba($highlight-color, 0.3);
+    z-index: -1;
+    transform: skewY(3deg);
+    border-radius: 50% 8px 8px 50%; /* Curved border */
+    filter: blur(1px); /* Slight blur to soften edges */
+}

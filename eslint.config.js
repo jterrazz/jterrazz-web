@@ -1,4 +1,10 @@
 import { eslintNodeConfig } from '@jterrazz/package-typescript-quality';
 import { jestEslint } from '@jterrazz/package-typescript-test';
 
-export default [...eslintNodeConfig, ...jestEslint];
+export default [
+    ...eslintNodeConfig,
+    ...jestEslint,
+    {
+        ignores: ['.next/*', '.node_modules/*'],
+    },
+];

@@ -1,0 +1,83 @@
+@keyframes opacity-animation {
+    0% {
+        opacity: 0;
+    }
+}
+
+@keyframes pulse-animation {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.8;
+    }
+    70% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(3);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+}
+
+.pulse:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: red;
+    border-radius: 100%;
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(3);
+    animation: pulse-animation 3s infinite;
+}
+.green.pulse:before {
+    background: #c5c6a2;
+}
+.orange.pulse:before {
+    background: #ffdd40;
+}
+.red.pulse:before {
+    background: #e60000;
+}
+.black.pulse:before {
+    background: #000000;
+}
+.blue.pulse:before {
+    background: #b0c4de;
+}
+.gray.pulse:before {
+    background: #d3d3d3;
+}
+
+.pulse {
+    position: relative;
+    display: inline-block;
+    vertical-align: 1px;
+    width: 8px;
+    height: 8px;
+    background: #ffdd40;
+    color: transparent;
+    border-radius: 100%;
+    flex: 0 0 auto;
+    animation: opacity-animation 1s linear;
+    &.red {
+        background: #e60000;
+    }
+    &.orange {
+        background: #ffdd40;
+    }
+    &.green {
+        background: #c5c6a2;
+    }
+    &.black {
+        background: #000000;
+    }
+    &.blue {
+        background: #b0c4de;
+    }
+    &.gray {
+        background: #d3d3d3;
+    }
+}

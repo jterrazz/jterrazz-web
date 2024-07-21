@@ -1,30 +1,46 @@
 {
-  "name": "jterrazz-web",
-  "description": "A personal portfolio website showcasing my development projects, photography, and articles. Discover my work in web development, explore my collection of photographs, and read my latest articles all in one place.",
-  "version": "0.1.0",
-  "author": "Jean-Baptiste Terrazzoni <jterrazzoni@gmail.com>",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint-type": "tsc --noEmit",
-    "lint-code": "eslint .",
-    "lint-style": "prettier .",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "next": "14.2.3",
-    "react": "^18",
-    "react-dom": "^18"
-  },
-  "devDependencies": {
-    "@jterrazz/package-typescript": "^1.7.0",
-    "@jterrazz/package-typescript-quality": "^1.3.0",
-    "@jterrazz/package-typescript-test": "^1.2.1",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1"
-  }
+    "name": "jterrazz-web",
+    "description": "A personal portfolio website showcasing my development projects, photography, and articles.",
+    "version": "1.0.0",
+    "author": "Jean-Baptiste Terrazzoni <jterrazzoni@gmail.com>",
+    "type": "module",
+    "engines": {
+        "node": "20.x.x"
+    },
+    "scripts": {
+        "build": "next build",
+        "start": "next start",
+        "dev": "next dev",
+        "test": "jest",
+        "lint": "npm run lint:type && npm run lint:code && npm run lint:style",
+        "lint:type": "tsc --noEmit",
+        "lint:code": "eslint .",
+        "lint:style": "prettier . --check",
+        "clean": "rm -rf .next && rm -rf node_modules"
+    },
+    "dependencies": {
+        "@vercel/analytics": "^1.3.1",
+        "@vercel/speed-insights": "^1.0.12",
+        "autoprefixer": "^10.4.20",
+        "clsx": "^2.1.1",
+        "framer-motion": "^11.3.4",
+        "markdown-to-jsx": "^7.4.7",
+        "next": "14.2.3",
+        "react": "^18",
+        "react-dom": "^18",
+        "react-feather": "^2.0.10",
+        "react-image-grid-gallery": "^2.1.4",
+        "tailwind-merge": "^2.4.0"
+    },
+    "devDependencies": {
+        "@jterrazz/package-typescript": "^1.7.0",
+        "@jterrazz/package-typescript-quality": "^1.4.0",
+        "@jterrazz/package-typescript-test": "^1.2.1",
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "postcss": "^8",
+        "sass": "^1.77.6",
+        "tailwindcss": "^3.4.1"
+    }
 }

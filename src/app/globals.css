@@ -3,31 +3,118 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/*@media (prefers-color-scheme: dark) {*/
+/*    :root {*/
+/*        --foreground-rgb: 12, 12, 12;*/
+/*        --background-start-rgb: 0, 0, 0;*/
+/*        --background-end-rgb: 0, 0, 0;*/
+/*    }*/
+/*}*/
+
+/* TODO Move */
+.blue-grey {
+    background: #b0c4de;
+}
+
+/* TODO Post.css should handle this */
+.backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(4px); /* Fallback for older Safari versions */
+    backdrop-filter: blur(4px);
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--foreground-rgb));
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+.bg {
+    background: rgb(var(--foreground-rgb));
+}
+
+/*Move to schema*/
+
+.bg-black-and-white {
+    background-color: rgb(248, 248, 248);
+}
+.border-black-and-white {
+    border-color: rgb(235, 235, 235);
+}
+.bg-black-and-white-hover:hover {
+    background-color: rgb(242, 242, 242);
+}
+.border-black-and-white-accent {
+    border-color: rgb(220, 220, 220);
+}
+
+.bg-apricot-sunset {
+    background-color: #ffc5ab;
+}
+.text-apricot-sunset {
+    color: #ffc5ab;
+}
+.border-apricot-sunset {
+    border-color: #ffc5ab;
+}
+.text-apricot-sunset-accent {
+    color: rgb(147, 54, 26);
+}
+
+.bg-vanilla-punch {
+    background-color: #fcf2d6;
+}
+.border-vanilla-punch {
+    border-color: #fcf2d6;
+}
+.text-vanilla-punch-accent {
+    color: rgb(73, 65, 43);
+}
+
+.bg-olive-note {
+    background-color: #c5c6a2;
+}
+.text-olive-note {
+    color: #c5c6a2;
+}
+.bg-olive-note-hover:hover {
+    background-color: #c5c6a2;
+}
+.border-olive-note {
+    border-color: #c5c6a2;
+}
+.text-olive-note-accent {
+    color: rgb(54, 51, 28);
+}
+
+.bg-storm-cloud {
+    background-color: #a2a3a8;
+}
+.bg-storm-cloud-hover:hover {
+    background-color: #a2a3a8;
+    opacity: 0.92;
+}
+.border-storm-cloud {
+    border-color: #a2a3a8;
+}
+.text-storm-cloud {
+    color: #a2a3a8;
+}
+.text-storm-cloud-accent {
+    color: rgb(22, 24, 36);
+}
+.text-storm-cloud-accent-hover:hover {
+    color: rgb(22, 24, 36);
+}
+.bg-storm-cloud-accent {
+    background-color: rgb(22, 24, 36);
 }
