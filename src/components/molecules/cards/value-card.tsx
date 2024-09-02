@@ -11,13 +11,12 @@ export type ValueCardProps = {
 };
 
 export const ValueCard: React.FC<ValueCardProps> = ({ value, className }) => {
-    const generatedClassName = mergeClassName('flex-1', className);
+    const generatedClassName = mergeClassName('flex-1 p-4 flex flex-col items-center', className);
 
     return (
         <div key={value.title} className={generatedClassName}>
-            <h5 className="font-semibold text-storm-cloud-accent text-center">{value.title}</h5>
-            <div className="h-0.5 bg-storm-cloud-accent mt-1" />
-            <div className="text-xs text-storm-cloud mt-2 text-center">{value.description}</div>
+            <h5 className="font-extrabold text-gray-100 text-center mb-2">{value.title}</h5>
+            <div className="text-xs text-center font-bold text-gray-200">{value.description}</div>
         </div>
     );
 };

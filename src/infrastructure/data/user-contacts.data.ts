@@ -21,4 +21,8 @@ export const userContactsData: Record<UserContactType, UserContact> = {
         name: 'Pexels',
         url: new URL('https://www.pexels.com/@jterrazz'),
     },
+    [UserContactType.Medium]: {
+        name: 'Medium',
+        url: new URL('https://medium.com/@jterrazz'),
+    },
 };

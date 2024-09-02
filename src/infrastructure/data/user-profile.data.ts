@@ -7,13 +7,11 @@ export const userProfileData: UserProfile = {
         'Full-Stack Developer at Bridge by Bankin’ | Exploring the Intersection of Decentralization and FinTech with Open.MT',
     values: [
         {
-            description:
-                'Less is more. I believe in the power of simplicity and how it can be leveraged to create more meaningful experiences.',
+            description: 'Simplicity enhances meaningful experiences.',
             title: 'Minimalism',
         },
         // {
-        //     description:
-        //         'I believe that technology should be used to empower individuals and give them more control over their lives.',
+        //     description: 'Technology empowers individuals.',
         //     title: 'Powerful Technology',
         // },
     ],

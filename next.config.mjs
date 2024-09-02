@@ -21,6 +21,11 @@ const nextConfig = {
 
             // Legacy articles redirects
             {
+                destination: '/articles/7',
+                permanent: true,
+                source: '/learn-to-build-a-simple-yet-powerful-web-server-with-typescript-and-koa',
+            },
+            {
                 destination: '/articles/6',
                 permanent: true,
                 source: '/expert-systems-how-to-implement-a-backward-chaining-resolver-in-python',

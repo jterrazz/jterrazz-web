@@ -4,10 +4,9 @@ import { DotPulseColor } from '../../atoms/status/dot-pulse.js';
 
 export const projectComponentStatusToDoPulseState = (status: ProjectStatus): DotPulseColor => {
     switch (status) {
-        case ProjectStatus.Active:
         case ProjectStatus.Alive:
             return DotPulseColor.Green;
-        case ProjectStatus.Building:
+        case ProjectStatus.InProgress:
         case ProjectStatus.Concept:
             return DotPulseColor.Blue;
         case ProjectStatus.Archived:
@@ -19,9 +18,7 @@ export const projectComponentStatusToDoPulseState = (status: ProjectStatus): Dot
 
 export const projectStatusToDescription = (status: ProjectStatus): string => {
     switch (status) {
-        case ProjectStatus.Active:
-            return 'The project is currently active and available.';
-        case ProjectStatus.Building:
+        case ProjectStatus.InProgress:
             return 'The project is currently being build and will release soon.';
         case ProjectStatus.Concept:
             return 'The project is currently in concept and will be build soon.';

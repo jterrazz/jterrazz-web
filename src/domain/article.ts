@@ -9,7 +9,9 @@ export type Article = {
     contentInMarkdown: string;
     metadata: {
         title: string;
-        date: string;
+        description: string;
+        dateModified: string;
+        datePublished: string;
         category: ArticleCategory;
     };
     published: boolean;

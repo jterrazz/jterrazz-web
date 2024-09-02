@@ -37,7 +37,7 @@ const ProjectHeader: React.FC<TableRowProjectHeaderProps> = ({ project }) => {
 };
 
 export const TableRowProject: React.FC<TableRowProjectHeaderProps> = ({ project, className }) => {
-    const generatedClassName = mergeClassName('flex flex-col py-4', className);
+    const generatedClassName = mergeClassName('flex flex-col my-3', className);
 
     return (
         <li key={project.name} className={generatedClassName}>
@@ -46,9 +46,9 @@ export const TableRowProject: React.FC<TableRowProjectHeaderProps> = ({ project,
             <p className="text-xs text-storm-cloud mt-2 italic">{project.description}</p>
 
             {project.components.length > 0 && (
-                <div className="mt-2">
+                <div className="mt-3">
                     {project.components
-                        ?.filter((component) => component.status !== 'archived')
+                        ?.filter((component) => component.status !== 'archived') // TODO Move to view model
                         .map((component) => (
                             <TableRowProjectComponent key={component.name} component={component} />
                         ))}

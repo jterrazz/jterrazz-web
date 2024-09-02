@@ -37,7 +37,7 @@ export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
                             key={technology}
                             className="mr-2"
                             value={technology}
-                            color={BadgeColor.White}
+                            color={BadgeColor.Gray}
                             size={DotPulseSize.Small}
                             filled={false}
                         />
@@ -55,7 +55,7 @@ export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
                                     key={architecture}
                                     className="mr-2"
                                     value={architecture}
-                                    color={BadgeColor.White}
+                                    color={BadgeColor.Gray}
                                     size={DotPulseSize.Small}
                                     filled={false}
                                 />
@@ -65,13 +65,22 @@ export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
                 )}
             </div>
 
-            <a href={component.sourceUrl.toString()} target="_blank" className="text-sm">
-                <div className="flex justify-between border-t border-black-and-white px-4 py-3 text-storm-cloud bg-black-and-white bg-black-and-white-hover cursor-pointer">
-                    <p className="text-sm">{projectStatusToDescription(component.status)}</p>
-
-                    <span>Check it out</span>
-                </div>
-            </a>
+            <div className="flex flex-col">
+                {component.articleUrl && (
+                    <a href={component.articleUrl.toString()} target="_blank" className="text-sm">
+                        <div className="flex justify-between border-t border-black-and-white px-4 py-3 text-storm-cloud bg-black-and-white bg-black-and-white-hover cursor-pointer">
+                            <p className="text-sm">Read the article</p>
+                            <span>Learn more</span>
+                        </div>
+                    </a>
+                )}
+                <a href={component.sourceUrl.toString()} target="_blank" className="text-sm">
+                    <div className="flex justify-between border-t border-black-and-white px-4 py-3 text-storm-cloud bg-black-and-white bg-black-and-white-hover cursor-pointer">
+                        <p className="text-sm">{projectStatusToDescription(component.status)}</p>
+                        <span>Open source</span>
+                    </div>
+                </a>
+            </div>
         </div>
     );
 };

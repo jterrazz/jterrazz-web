@@ -17,7 +17,9 @@ export class ArticleInMemoryRepository implements ArticleRepository {
         const articles = await this.getMarkdownArticles();
 
         return articles.sort(
-            (a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime(),
+            (a, b) =>
+                new Date(b.metadata.dateModified).getTime() -
+                new Date(a.metadata.dateModified).getTime(),
         );
     }
 

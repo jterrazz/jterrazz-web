@@ -4,6 +4,7 @@ export enum UserContactType {
     LinkedIn = 'LinkedIn',
     Pexels = 'Pexels',
     X = 'X',
+    Medium = 'Medium',
 }
 
 export type UserContact = {
@@ -15,8 +16,8 @@ export type UserExperience = {
     timeframe: string;
     year: string;
     title: string;
-    description: string;
-    type: 'Hackathon' | 'Job' | 'Internship';
+    description?: string;
+    type: 'Hackathon' | 'Job' | 'Internship' | 'School';
     location: string;
     projectUrl?: string;
     organization: string;

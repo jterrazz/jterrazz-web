@@ -4,18 +4,17 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
-import { UserExperience, UserValue } from '../../domain/user.js';
+import { UserContactType, UserExperience, UserValue } from '../../domain/user.js';
 
 import { mergeClassName } from '../../lib/utils.js';
 
-import { HighlightedText } from '../atoms/highlighted-text.jsx';
 import { HeadingSection } from '../atoms/typography/heading-section.js';
-import { ValueCard } from '../molecules/cards/value-card.js';
 import { Highlight } from '../molecules/typography/highlight.js';
-import { HorizontalContainer } from '../organisms/horizontal-container.js';
 import { MainContainer } from '../organisms/main-container.jsx';
 import { Timeline } from '../organisms/timeline-of-experiences/timeline.js';
 import { TimelineExperience } from '../organisms/timeline-of-experiences/timeline-experience.js';
+import { ValueCard } from '../molecules/cards/value-card.jsx';
+import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
 
 type HelloWorldTemplateProps = {
     experiences: UserExperience[];
@@ -23,34 +22,34 @@ type HelloWorldTemplateProps = {
     description: string;
 };
 
-export default function ParallaxImage({ className }: { className?: string }) {
+const ParallaxImage: React.FC<{ className?: string }> = ({ className }) => {
     const { scrollYProgress } = useScroll();
-    const y = useTransform(scrollYProgress, [0, 1], [-10, -63]);
+    const yPercentage = useTransform(scrollYProgress, [0, 1], [0, -15]);
     const generatedClassName = mergeClassName(
-        'flex justify-center items-center rounded-3xl overflow-hidden bg-black mb-12',
+        'relative rounded-3xl overflow-hidden bg-black w-full',
         className,
     );
 
     return (
-        <div className={generatedClassName} style={{ height: '390px' }}>
+        <div className={generatedClassName} style={{ aspectRatio: '16 / 9' }}>
             <motion.div
                 style={{
                     height: '115%',
                     width: '100%',
-                    y,
+                    y: useTransform(yPercentage, (value) => `${value}%`),
                 }}
-                className="relative"
+                className="absolute inset-0"
             >
                 <Image
-                    src="/assets/computer.jpg"
-                    alt="Florence landscape"
+                    src="/assets/image-computer-table.webp"
+                    alt="Computer workspace"
                     layout="fill"
                     objectFit="cover"
                 />
             </motion.div>
         </div>
     );
-}
+};
 
 export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
     experiences,
@@ -58,60 +57,43 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
     description,
 }) => {
     const { scrollYProgress } = useScroll();
-
-    // Create a transform based on scroll position
     const y = useTransform(scrollYProgress, [0, 1], [0, -65]);
-
-    const FloatingContainer = ({
-        children,
-        className,
-    }: {
-        children: React.ReactNode;
-        className?: string;
-    }) => {
-        const generatedClassName = mergeClassName(
-            'border border-black-and-white bg-white/90 backdrop-blur-sm p-12 py-6 rounded-3xl z-2',
-            className,
-        );
-        return (
-            <motion.div style={{ y }} className={generatedClassName}>
-                {children}
-            </motion.div>
-        );
-    };
-
-    // Map the scroll position to a rotation value
     const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
-    const scale = useTransform(scrollYProgress, [0, 1], [1, 1.3]); // Adjust scale range as needed
+    const scale = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
+    const button = {
+        text: 'Check my articles',
+        href: '/articles',
+    };
 
     return (
         <MainContainer>
-            <Highlight title="Hello, World!" description={description} />
-            <button>Check my apps</button>
-            <FloatingContainer className="mt-6 mb-20 w-6/12 justify-self-center self-center z-10">
-                <HorizontalContainer>
-                    {values.map((value) => (
-                        <ValueCard value={value} />
-                    ))}
-                </HorizontalContainer>
-            </FloatingContainer>
-            <ParallaxImage className="z-1 rounded-3xl mb-20 -mt-72" />
-            <div className="flex flex-col items-center mb-6">
+            <Highlight title="Hello, World!" description={description} button={button} />
+            <div className="relative mt-2 mb-12 md:mb-20">
+                <ParallaxImage className="z-0" />
+                <motion.div
+                    className="absolute inset-0 z-10 flex items-center justify-center p-6"
+                    style={{ y }}
+                >
+                    <div className="flex bg-white/5 border border-white/5 backdrop-blur-sm rounded-xl opacity-90">
+                        {values.map((value, index) => (
+                            <ValueCard key={index} value={value} />
+                        ))}
+                    </div>
+                </motion.div>
+            </div>
+            <div className="flex flex-col items-center">
                 <motion.div style={{ rotate, scale }}>
                     <Image
-                        src="/assets/clock.png"
-                        alt=""
-                        width="42"
-                        height="42"
+                        src="/assets/icon-clock.png"
+                        alt="Clock icon"
+                        width={42}
+                        height={42}
                         className="object-center"
                     />
                 </motion.div>
-
-                <HeadingSection className="mt-3">
-                    <HighlightedText>Timeline</HighlightedText>
-                </HeadingSection>
+                <HeadingSection className="mt-3">Timeline</HeadingSection>
             </div>
-            <Timeline>
+            <Timeline className="mt-2 md:mt-12">
                 {experiences.map((experience) => (
                     <TimelineExperience key={experience.title} experience={experience} />
                 ))}

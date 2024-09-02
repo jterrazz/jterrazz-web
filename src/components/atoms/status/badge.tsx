@@ -6,7 +6,7 @@ export enum BadgeColor {
     Green,
     Yellow,
     Orange,
-    White,
+    Gray,
     Blue,
 }
 
@@ -36,6 +36,7 @@ export const Badge: React.FC<StatusBadgeProps> = ({
         case BadgeColor.Green:
             generatedClassName = mergeClassName(
                 generatedClassName,
+                'font-medium',
                 filled ? ' bg-olive-note text-olive-note-accent' : ' text-olive-note',
             );
             break;
@@ -48,7 +49,7 @@ export const Badge: React.FC<StatusBadgeProps> = ({
         case BadgeColor.Blue:
             generatedClassName = mergeClassName(
                 generatedClassName,
-                'blue-grey text-vanilla-punch-accent',
+                'blue-grey blue-grey-accent font-medium',
             );
             break;
         case BadgeColor.Orange:
@@ -57,13 +58,13 @@ export const Badge: React.FC<StatusBadgeProps> = ({
                 'bg-apricot-sunset text-apricot-sunset-accent',
             );
             break;
-        case BadgeColor.White:
+        case BadgeColor.Gray:
         default:
             generatedClassName = mergeClassName(
                 generatedClassName,
                 filled
-                    ? ' bg-storm-cloud text-white'
-                    : ' text-storm-cloud-accent border-storm-cloud-accent border bg-white',
+                    ? ' bg-storm-cloud text-storm-cloud-accent font-medium'
+                    : ' text-storm-cloud-accent border-storm-cloud-accent border font-medium',
             );
             break;
     }
@@ -78,9 +79,5 @@ export const Badge: React.FC<StatusBadgeProps> = ({
             break;
     }
 
-    return (
-        <li>
-            <span className={generatedClassName}>{value}</span>
-        </li>
-    );
+    return <span className={generatedClassName}>{value}</span>;
 };

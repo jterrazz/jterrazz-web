@@ -168,11 +168,11 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             animate={{ opacity: 1, x: 0 }}
                             transition={{
                                 duration: 0.3,
-                                ease: "easeOut"
+                                ease: 'easeOut',
                             }}
                             whileHover={{
                                 scale: 1.05,
-                                transition: { duration: 0.2 }
+                                transition: { duration: 0.2 },
                             }}
                         >
                             <Image

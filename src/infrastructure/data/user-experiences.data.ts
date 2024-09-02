@@ -3,7 +3,8 @@ import { UserExperience } from '../../domain/user.js';
 export const userExperiencesData: UserExperience[] = [
     {
         description:
-            'At Bankin, I develop and manage bank services like data acquisition, user authentication, token management, and payments, emphasizing security and user privacy. I gained expertise in Node.js and TypeScript, project management, and collaboration with product and customer teams. I also modernized legacy systems with TDD, linting, integration tests, and Docker, enhancing my skills in secure development and cutting-edge practices.',
+            'Innovated core banking services with a strong focus on security and user privacy. ' +
+            'Mastered Node.js & TypeScript, and led legacy system modernization with TDD, Docker, and integration tests.',
         location: 'France',
         organization: 'Bankin / BridgeApi',
         organizationUrl: 'https://bankin.com/',
@@ -14,7 +15,8 @@ export const userExperiencesData: UserExperience[] = [
     },
     {
         description:
-            'At a 36-hour hackathon in Waterloo, we built Defidy, a synthetic asset for investing in protocol performance. We used Chainlink oracles for data and smart contracts for pricing, deploying it on 0x relayer for investor accessibility. This enhanced my skills in DeFi, smart contracts, and blockchain integration.',
+            'Built a synthetic asset platform leveraging Chainlink oracles and smart contracts for real-time pricing. ' +
+            'Enhanced my skills in blockchain integration and decentralized finance (DeFi).',
         location: 'Waterloo, Ontario, Canada',
         organization: 'ETHWaterloo',
         organizationUrl: 'https://ethwaterloo.com/',
@@ -26,7 +28,8 @@ export const userExperiencesData: UserExperience[] = [
     },
     {
         description:
-            'At a 36-hour Paris hackathon, I co-developed Collective, a blockchain crowdfunding platform using CVT tokens for project funding. This experience strengthened my skills in blockchain, smart contracts, and decentralized application development.',
+            'Co-created a blockchain-based crowdfunding platform using CVT tokens. ' +
+            'Strengthened my expertise in smart contracts and decentralized applications.',
         location: 'Paris, France',
         organization: 'ETHParis',
         organizationUrl: 'https://ethparis.com/',
@@ -38,7 +41,8 @@ export const userExperiencesData: UserExperience[] = [
     },
     {
         description:
-            'At Dalia, I enhanced APIs, refactored a NuxtJS site, and improved SEO, sharpening my backend and full-stack development skills. Integrating tools like Stripe and Google Analytics deepened my expertise in third-party integrations. Building a B2B product with a customizable API and JWT authentication honed my abilities in secure, scalable development and automation.',
+            'Refined APIs and optimized a NuxtJS site, boosting SEO and third-party integrations like Stripe. ' +
+            'Developed a customizable B2B product, focusing on secure and scalable development.',
         location: 'Paris, France',
         organization: 'Dalia Solutions',
         organizationUrl: 'https://www.linkedin.com/company/dalia-solutions/',
@@ -48,8 +52,17 @@ export const userExperiencesData: UserExperience[] = [
         year: '2018',
     },
     {
+        location: 'Paris, France',
+        organization: '42',
+        organizationUrl: 'https://www.42.fr/',
+        timeframe: 'Mars 2017 - Mar 2020',
+        title: '42 Paris School',
+        type: 'School',
+        year: '2017',
+    },
+    {
         description:
-            'At a chartered accounting firm, I deepened my expertise in accounting principles while also gaining experience in legal and social missions. This well-rounded exposure has prepared me for diverse opportunities in the field.',
+            'Deepened my understanding of accounting principles, with hands-on experience in legal and social missions.',
         location: 'Ajaccio, France',
         organization: "Cabinet d'expertise comptable Mazzoni",
         organizationUrl: 'https://fr.kompass.com/c/m-francois-mazzoni/fr0599365/',
@@ -57,5 +70,14 @@ export const userExperiencesData: UserExperience[] = [
         title: 'Chartered accountant',
         type: 'Internship',
         year: '2016',
+    },
+    {
+        location: 'Aix en Provence, France',
+        organization: 'Aix Marseille University',
+        organizationUrl: 'https://www.univ-amu.fr/',
+        timeframe: 'Septembre 2013 - Juin 2016',
+        title: 'Bachelor of Economics',
+        type: 'School',
+        year: '2013',
     },
 ];
