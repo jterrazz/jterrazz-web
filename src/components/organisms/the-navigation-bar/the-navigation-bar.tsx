@@ -106,7 +106,7 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ pages, className, onLin
                         <div
                             key={index}
                             data-id={page.name}
-                            className="w-full md:w-auto mb-2 md:mb-0"
+                            className="w-full md:w-auto mb-2 md:mb-0 md:mx-1"
                         >
                             {newTab ? (
                                 <button
@@ -163,13 +163,26 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
             <div className="flex items-center justify-between w-full">
                 <div className="flex items-center">
                     <Link href="/" onClick={closeMenu}>
-                        <Image
-                            src="/assets/navbar-logo.png"
-                            alt="Jterrazz"
-                            width={36}
-                            height={36}
-                            className="mr-2"
-                        />
+                        <motion.div
+                            initial={{ opacity: 0, x: -5 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{
+                                duration: 0.3,
+                                ease: "easeOut"
+                            }}
+                            whileHover={{
+                                scale: 1.05,
+                                transition: { duration: 0.2 }
+                            }}
+                        >
+                            <Image
+                                src="/assets/navbar-logo.png"
+                                alt="Jterrazz"
+                                width={36}
+                                height={36}
+                                className="mr-3"
+                            />
+                        </motion.div>
                     </Link>
                     <div className="hidden md:block">
                         <NavigationTabs pages={pages} onLinkClick={closeMenu} />
