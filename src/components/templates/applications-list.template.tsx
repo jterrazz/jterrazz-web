@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 import { Feature } from '../../domain/feature.js';
