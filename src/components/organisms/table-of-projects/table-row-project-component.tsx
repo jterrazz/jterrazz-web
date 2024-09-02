@@ -7,6 +7,7 @@ import { DotPulse } from '../../atoms/status/dot-pulse.js';
 
 import { projectComponentStatusToDoPulseState } from './table-row-project-component-view-model.js';
 import { TableRowProjectDetails } from './table-row-project-details.js';
+import { AlignLeft, Type } from 'react-feather';
 
 type TableRowProjectComponentProps = {
     component: ProjectComponent;
@@ -27,6 +28,7 @@ export const TableRowProjectComponent: React.FC<TableRowProjectComponentProps> =
             >
                 <DotPulse color={projectComponentStatusToDoPulseState(component.status)} />
                 <h4 className="text-sm ml-3">{component.name}</h4>
+                {component.articleUrl && <AlignLeft size={16} className="ml-2" />}
             </div>
 
             <AnimatePresence>

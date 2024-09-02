@@ -7,6 +7,8 @@ import { Photograph } from '../../domain/photograph.js';
 
 import { Highlight } from '../molecules/typography/highlight.js';
 import { MainContainer } from '../organisms/main-container.jsx';
+import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
+import { UserContactType } from '../../domain/user.js';
 
 export type PhotographsGridTemplateProps = {
     highlightTitle: string;
@@ -24,10 +26,14 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
         src: photograph.contentUrl,
         title: photograph.metadata.description,
     }));
+    const button = {
+        text: 'Follow me on Pexels',
+        href: new UserInMemoryRepository().getContact(UserContactType.Pexels).url.toString(),
+    };
 
     return (
         <MainContainer size="full">
-            <Highlight title={highlightTitle} description={highlightDescription} />
+            <Highlight title={highlightTitle} description={highlightDescription} button={button} />
             <ImageGallery imagesInfoArray={images} columnCount={3} gapSize={20} />
         </MainContainer>
     );

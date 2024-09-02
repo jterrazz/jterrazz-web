@@ -3,21 +3,42 @@ import { MetadataRoute } from 'next';
 export default function manifest(): MetadataRoute.Manifest {
     return {
         background_color: '#FFFFFF',
-        description: 'Portfolio of my life',
+        description:
+            "Discover game-changing apps and coding insights at jterrazz.com! Join a dev's journey crafting useful apps, from self-improvement tools to innovative tech solutions. Level up your skills and find your next big idea! 🚀💻",
         display: 'standalone',
         icons: [
-            // {
-            //     sizes: '192x192',
-            //     src: '/images/icon-192.png',
-            //     type: 'image/png',
-            // },
-            // {
-            //     sizes: '512x512',
-            //     src: '/images/icon-512.png',
-            //     type: 'image/png',
-            // },
+            {
+                sizes: '36x36',
+                src: '/favicon/android-icon-36x36.png',
+                type: 'image/png',
+            },
+            {
+                sizes: '48x48',
+                src: '/favicon/android-icon-48x48.png',
+                type: 'image/png',
+            },
+            {
+                sizes: '72x72',
+                src: '/favicon/android-icon-72x72.png',
+                type: 'image/png',
+            },
+            {
+                sizes: '96x96',
+                src: '/favicon/android-icon-96x96.png',
+                type: 'image/png',
+            },
+            {
+                sizes: '144x144',
+                src: '/favicon/android-icon-144x144.png',
+                type: 'image/png',
+            },
+            {
+                sizes: '192x192',
+                src: '/favicon/android-icon-192x192.png',
+                type: 'image/png',
+            },
         ],
-        name: 'Jterrazz',
+        name: 'Jean-Baptiste Terrazzoni: App Development, Self-Improvement & Tech Insights',
         short_name: 'Jterrazz',
         start_url: '/',
         theme_color: '#FFFFFF',

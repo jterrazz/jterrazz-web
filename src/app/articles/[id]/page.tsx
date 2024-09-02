@@ -7,11 +7,6 @@ import { FeatureInMemoryRepository } from '../../../infrastructure/repositories/
 
 import { ArticleTemplate } from '../../../components/templates/article.template.js';
 
-// export const metadata: Metadata = {
-//     description: 'The best of my development projects, showcasing my skills and experience.',
-//     title: 'Article - Jterrazz',
-// };
-
 export async function generateStaticParams() {
     const articlesRepository = new ArticleInMemoryRepository();
     const articles = await articlesRepository.getArticles();
@@ -32,6 +27,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 
     return {
         title: article?.metadata.title + ' ~ Jterrazz',
+        description: article?.metadata.description,
     };
 }
 
@@ -40,11 +36,21 @@ export default async function ArticlePage({ params: { id } }: ArticlePageProps) 
     const articlesRepository = new ArticleInMemoryRepository();
 
     const article = await articlesRepository.getArticleByIndex(id);
+    const articles = await articlesRepository.getArticles();
     const features = [featureRepository.getFeatureById(FeaturedId.Source)];
 
     if (!article) {
         return notFound();
     }
 
-    return <ArticleTemplate features={features} contentInMarkdown={article.contentInMarkdown} />;
+    return (
+        <ArticleTemplate
+            features={features}
+            articles={articles.filter((a) => a.index !== article.index)}
+            contentInMarkdown={article.contentInMarkdown}
+            dateModified={article.metadata.dateModified}
+            datePublished={article.metadata.datePublished}
+            title={article.metadata.title}
+        />
+    );
 }

@@ -1,9 +1,8 @@
 export enum ProjectStatus {
-    Active = 'active', // TODO Deprecated
     Alive = 'alive',
-    Completed = 'completed',
-    Building = 'building',
+    InProgress = 'in progress',
     Concept = 'concept',
+    Completed = 'completed',
     Archived = 'archived',
 }
 

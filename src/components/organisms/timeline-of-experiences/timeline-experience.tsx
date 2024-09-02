@@ -61,13 +61,17 @@ export const TimelineExperience: React.FC<TimelineEventProps> = ({
                         )}
                     </div>
 
-                    <p className="text-sm text-storm-cloud">{experience.description}</p>
+                    {experience.type !== 'School' && (
+                        <>
+                            <p className="text-sm text-storm-cloud">{experience.description}</p>
 
-                    <div className="flex items-center space-x-3">
-                        <p className="text-xs text-storm-cloud">{experience.location}</p>
-                        <Circle size={4} color="gray" fill="gray" />
-                        <p className="text-xs text-storm-cloud">{experience.timeframe}</p>
-                    </div>
+                            <div className="flex items-center space-x-3">
+                                <p className="text-xs text-storm-cloud">{experience.location}</p>
+                                <Circle size={4} color="gray" fill="gray" />
+                                <p className="text-xs text-storm-cloud">{experience.timeframe}</p>
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

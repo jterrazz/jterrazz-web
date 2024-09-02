@@ -16,9 +16,12 @@
 /*    }*/
 /*}*/
 
-/* TODO Move */
+/* TODO Move and rename */
 .blue-grey {
     background: #b0c4de;
+}
+.blue-grey-accent {
+    color: #667e9b;
 }
 
 /* TODO Post.css should handle this */
@@ -93,7 +96,7 @@ body {
     border-color: #c5c6a2;
 }
 .text-olive-note-accent {
-    color: rgb(54, 51, 28);
+    color: #858d55;
 }
 
 .bg-storm-cloud {

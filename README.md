@@ -1,120 +1,117 @@
 # Jterrazz Web
 
-> A personal portfolio website showcasing my development projects, photography, and articles. Discover my work in web development, explore my collection of photographs, and read my latest articles all in one place.
+A personal portfolio website showcasing development projects, photography, and articles by Jean-Baptiste Terrazzoni.
 
-## Features
+![Node.js Version](https://img.shields.io/badge/node-20.x.x-brightgreen)
+![Next.js Version](https://img.shields.io/badge/next.js-14.2.3-blue)
+![React Version](https://img.shields.io/badge/react-18-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 
--   **Projects**: Showcase of my development projects with links to the live site and GitHub repository.
--   **Photography**: Collection of my photographs with a lightbox gallery for viewing.
--   **Articles**: Blog posts on web development, photography, and other topics.
+## 🌟 Features
 
-## Getting Started
+- **Projects Showcase**: Highlight development projects with links to live sites and GitHub repositories.
+- **Photography Gallery**: Display a collection of photographs with a lightbox gallery for immersive viewing.
+- **Articles**: Blog posts on web development, photography, and various other topics.
+- **Responsive Design**: Fully responsive layout using Tailwind CSS for optimal viewing on all devices.
+- **Performance Optimized**: Utilizes Next.js 14 App Router for efficient rendering and routing.
+- **Analytics**: Integrated with Vercel Analytics and Speed Insights for performance monitoring.
 
-First, run the development server:
+## 🚀 Quick Start
 
-```bash
+### Prerequisites
+
+- Node.js 20.x.x
+- Docker (optional, for containerized development)
+
+### Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/jterrazz/jterrazz-web.git
+   cd jterrazz-web
+   ```
+
+2. Install dependencies:
+   ```
+   npm install
+   ```
+
+### Development
+
+Run the development server:
+
+```sh
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000` to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠 Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `npm run build`: Build the production application
+- `npm run start`: Start the production server
+- `npm run dev`: Start the development server
+- `npm run test`: Run tests
+- `npm run lint`: Run linting checks (type, code, and style)
+- `npm run clean`: Clean build artifacts and node_modules
 
-## Learn More
+## 🐳 Docker
 
-To learn more about Next.js, take a look at the following resources:
+This project supports Docker for consistent development environments:
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `make build`: Build the Docker image
+- `make start`: Run the container
+- `make dev`: Start the development server in a container
+- `make test`: Run tests in a container
+- `make lint`: Run linting in a container
+- `make clean`: Remove the Docker image and clean the project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🧪 Testing
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-# Daily Rise - Daily Rise API
-
-Welcome to the Daily Rise API! Our API powers the marketplace that enables customers to discover and transact with their communities.
-
-## About Daily Rise
-
-[Open.MT](https://open.mt) is a marketplace that enable seamless interactions between customers and their communities. We are dedicated to providing a platform that empowers merchants of all backgrounds, from big brands to small businesses and artisans. Our vision is to revolutionize the world of online commerce by leveraging the potential of decentralization and open technologies.
-
-To learn more about our mission, latest updates, and exciting stories from entrepreneurs, visit [our blog](https://blog.open.mt/).
-
-## Get Started 🍋
-
-### Quick Start with Docker
-
-Getting started with our API is simple! We use **docker** to manage the application and its dependencies. If you haven't installed Docker yet, you can follow the [official documentation](https://docs.docker.com/get-docker/) to set it up.
-
-To launch the project, use the following command:
-
-```sh
-# Start the project
-make start
-```
-
-With this quick setup, you'll be ready to explore the power of our Open Market API and build seamless experiences for customers. Happy coding!
-To help you **develop**, we provide a few scripts to run the project with hot reload, and run tests.
-
-```sh
-# Develop the project with hot reload
-make start-dev
-
-# Run tests
-make test
-```
-
-### Quick start with Node.js
-
-If you want to run the project locally, you will need to install the following dependencies:
-
--   [Node.js](https://nodejs.org/en/download/)
-
-Since this project requires external services (database, etc), you will need to run them manually.
-
-```sh
-make start-infra
-```
-
-#### Start the project
-
-```sh
-# Install dependencies
-npm install
-
-# Start the project
-npm run start
-
-# Develop the project with hot reload
-npm run start:dev
-```
-
-#### Run tests
+Run tests using:
 
 ```sh
 npm run test
 ```
 
-## Code quality 🏗
+## 📐 Code Quality
 
-### Tests
+Maintain code quality with:
 
-The **`jest` framework** is used to run both **integration** (`/tests/e2e/*.test.ts`) and **unit** tests (`__tests__/*.test.ts`).
-The tests are run on **Github Actions** on each push.
+```sh
+npm run lint
+```
 
-### Linting
 
-The **`eslint` framework** is used to lint the code. The rules are defined in the `.eslintrc` file.
+This runs TypeScript type checking, ESLint, and Prettier.
+
+## 🏗 Project Structure
+
+- `src/`: Source code
+- `__tests__/`: Test files
+- `public/`: Static assets
+
+## 📚 Dive into My Articles
+
+Hey there, app enthusiasts! 👋 Ready to dive into the world of game-changing apps? At [jterrazz.com](https://jterrazz.com), I'm all about crafting useful applications and sharing the journey! Discover coding insights, self-improvement hacks, and sneak peeks of my latest projects (psst... my next app is all about leveling up in life! 🚀). Come along for the ride - you might just find the spark for your next big idea! 💡💻
+
+## 👤 Author
+
+**Jean-Baptiste Terrazzoni**
+
+- Website: [jterrazz.com](https://jterrazz.com)
+- Email: jterrazzoni@gmail.com
+- GitHub: [@jterrazz](https://github.com/jterrazz)
+- Medium: [@jterrazz](https://medium.com/@jterrazz)
+- Devpost: [@jterrazz](https://devpost.com/jterrazz)
+- LinkedIn: [@jterrazz](https://www.linkedin.com/in/jterrazz/)
+- X: [@j_terrazz](https://x.com/j_terrazz)
+- Pexels: [@jterrazz](https://www.pexels.com/@jterrazz)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/jterrazz/jterrazz-web/issues).
+
+## 🌟 Show your support
+
+Give a ⭐️ if you like this project!

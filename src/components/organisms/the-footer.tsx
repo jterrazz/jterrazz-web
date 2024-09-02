@@ -23,13 +23,13 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         {
             description: 'Web',
             href: 'https://jterrazz.com',
-            imageSrc: '/assets/applications/jterrazz.png',
+            imageSrc: '/assets/icon-app-jterrazz.png',
             title: 'Jterrazz',
         },
         {
             description: 'Mobile',
             href: 'https://capitaine.io',
-            imageSrc: '/assets/applications/capitaine.svg',
+            imageSrc: '/assets/icon-app-capitaine.svg',
             title: 'Capitaine',
         },
     ];
@@ -48,7 +48,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         <div className="flex items-center">
             <div className="rounded-2xl border border-black-and-white bg-white overflow-hidden">
                 <Link href={href} className="text-sm">
-                    <Image src={imageSrc} alt="Jterrazz.com" width="76" height="76" />
+                    <Image src={imageSrc} alt="Jterrazz.com" width="76" height="76" loading="lazy" />
                 </Link>
             </div>
             <div className="ml-3">
@@ -72,7 +72,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         offset: ['start end', 'end start'],
         target: ref,
     });
-    const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
+    const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
     const FloatingContainer = ({
         children,
@@ -100,7 +100,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
 
     return (
         <footer className={generatedClassName} ref={ref}>
-            <div className="flex flex-col items-center -mb-80">
+            <div className="flex flex-col items-center -mb-40 md:-mb-72">
                 <FloatingContainer className="flex flex-col items-center">
                     <p className="font-extrabold tracking-wide">Jean-Baptiste Terrazzoni</p>
                     <p className="text-sm mt-2 tracking-wide">
@@ -123,19 +123,31 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                         </a>
                     </div>
                 </FloatingContainer>
-                <FloatingContainer className="flex space-x-12 mt-6">
-                    {applications.map((application, index) => (
-                        <Application key={index} {...application} />
-                    ))}
-                </FloatingContainer>
+                <div className="mt-6 w-full">
+                    <FloatingContainer className="hidden md:flex md:space-x-12">
+                        {applications.map((application, index) => (
+                            <Application key={index} {...application} />
+                        ))}
+                    </FloatingContainer>
+                </div>
             </div>
 
-            <img
-                src="/assets/footer-photograph.jpg"
+            <Image
+                src="/assets/image-florence.webp"
                 alt="Florence landscape"
                 className="z-1 rounded-3xl"
-                style={{ width: 1200 }}
+                width={1200}
+                height={800}
+                loading="lazy"
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
             />
+
+            <div className="flex flex-col space-y-6 md:hidden mt-12">
+                {applications.map((application, index) => (
+                    <Application {...application} />
+                ))}
+            </div>
 
             <p className="text-sm mt-12 text-storm-cloud">© 2024. All rights reserved.</p>
         </footer>
