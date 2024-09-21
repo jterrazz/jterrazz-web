@@ -20,12 +20,12 @@ const ProjectHeader: React.FC<TableRowProjectHeaderProps> = ({ project }) => {
         <div className="flex flex-row items-center">
             <h2 className="font-medium">
                 {project.name}{' '}
-                <span className="text-storm-cloud">
+                <span className="color--storm-cloud">
                     {project.createdAt ? '~ ' + project.createdAt?.getFullYear() : ''}
                 </span>
             </h2>
 
-            <div className="border-black-and-white border-t flex-1 w-full mx-5"></div>
+            <div className="border-color--simple border-t flex-1 w-full mx-5"></div>
 
             <Badge
                 className="ml-2"
@@ -43,7 +43,7 @@ export const TableRowProject: React.FC<TableRowProjectHeaderProps> = ({ project,
         <li key={project.name} className={generatedClassName}>
             <ProjectHeader project={project} />
 
-            <p className="text-xs text-storm-cloud mt-2 italic">{project.description}</p>
+            <p className="text-xs color--storm-cloud mt-2 italic">{project.description}</p>
 
             {project.components.length > 0 && (
                 <div className="mt-3">

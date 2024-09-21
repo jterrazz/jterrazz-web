@@ -14,10 +14,13 @@ type ArticleTemplateProps = {
     articles: Article[];
 };
 import Script from 'next/script';
+
 import { Article } from '../../domain/article.js';
-import { ArticleRow } from './articles-list.template.jsx';
-import { HeadingSection } from '../atoms/typography/heading-section.jsx';
+
 import { HighlightedText } from '../atoms/highlighted-text.jsx';
+import { HeadingSection } from '../atoms/typography/heading-section.jsx';
+
+import { ArticleRow } from './articles-list.template.jsx';
 
 // TODO Move to viewmodel
 export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
@@ -42,10 +45,10 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                 {JSON.stringify(jsonLd)}
             </Script>
             <ArticleInMarkdown contentInMarkdown={contentInMarkdown} className="mb-6" />
-            <p className="text-center text-storm-cloud text-sm mt-4 italic">
+            <p className="text-center color--storm-cloud text-sm mt-4 italic">
                 Last updated on {new Date(dateModified).toLocaleDateString()}
             </p>
-            <p className="text-center text-storm-cloud text-sm mt-2 italic">
+            <p className="text-center color--storm-cloud text-sm mt-2 italic">
                 Published on {new Date(datePublished).toLocaleDateString()}
             </p>
             <HeadingSection className="mt-6 md:mt-12 flex flex-col items-center">

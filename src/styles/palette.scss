@@ -1,0 +1,105 @@
+/* Define color variables */
+$black-and-white: rgb(248, 248, 248);
+$black-and-white-border: rgb(235, 235, 235);
+$black-and-white-hover: rgb(242, 242, 242);
+$black-and-white-accent: rgb(220, 220, 220);
+
+$apricot-sunset: #ffc5ab;
+$apricot-sunset-accent: rgb(147, 54, 26);
+
+$vanilla-punch: #fcf2d6;
+$vanilla-punch-accent: rgb(73, 65, 43);
+
+$olive-note: #c5c6a2;
+$olive-note-accent: #858d55;
+
+$storm-cloud: #a2a3a8;
+$storm-cloud-accent: rgb(22, 24, 36);
+
+$slate-grey: #b0c4de;
+$slate-grey-accent: #667e9b;
+
+/* Black and White */
+.background-color--simple {
+    background-color: $black-and-white;
+}
+.border-color--simple {
+    border-color: $black-and-white-border;
+}
+.border-color-accent--simple {
+    border-color: $black-and-white-accent;
+}
+.border-color-hover--simple:hover {
+    background-color: $black-and-white-hover;
+}
+
+/* Apricot Sunset */
+.background-color--apricot-sunset {
+    background-color: $apricot-sunset;
+}
+.border-color--apricot-sunset {
+    border-color: $apricot-sunset;
+}
+.color--apricot-sunset {
+    color: $apricot-sunset;
+}
+.color-accent--apricot-sunset {
+    color: $apricot-sunset-accent;
+}
+
+/* Vanilla Punch */
+.background-color--vanilla-punch {
+    background-color: $vanilla-punch;
+}
+.border-color--vanilla-punch {
+    border-color: $vanilla-punch;
+}
+.color-accent--vanilla-punch {
+    color: $vanilla-punch-accent;
+}
+
+/* Olive Note */
+.background-color--olive-note {
+    background-color: $olive-note;
+}
+.background-color-hover--olive-note:hover {
+    background-color: $olive-note;
+}
+.border-color--olive-note {
+    border-color: $olive-note;
+}
+.color--olive-note {
+    color: $olive-note;
+}
+.color-accent--olive-note {
+    color: $olive-note-accent;
+}
+
+/* Storm Cloud */
+.background-color--storm-cloud {
+    background-color: $storm-cloud;
+}
+.background-color-hover--storm-cloud:hover {
+    background-color: $storm-cloud;
+    opacity: 0.92;
+}
+.border-color--storm-cloud {
+    border-color: $storm-cloud;
+}
+//.color--storm-cloud {
+//    color: $storm-cloud;
+//}
+.color--storm-cloud {
+    color: $storm-cloud-accent;
+}
+.color-hover--storm-cloud:hover {
+    color: $storm-cloud-accent;
+}
+
+/* Slate Grey */
+.background-color--slate-grey {
+    background-color: $slate-grey;
+}
+.color--slate-grey {
+    color: $slate-grey-accent;
+}

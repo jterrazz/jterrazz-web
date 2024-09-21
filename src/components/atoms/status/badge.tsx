@@ -37,7 +37,7 @@ export const Badge: React.FC<StatusBadgeProps> = ({
             generatedClassName = mergeClassName(
                 generatedClassName,
                 'font-medium',
-                filled ? ' bg-olive-note text-olive-note-accent' : ' text-olive-note',
+                filled ? ' bg-olive-note color--olive-note-accent' : ' color--olive-note',
             );
             break;
         case BadgeColor.Yellow:

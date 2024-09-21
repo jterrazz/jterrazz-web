@@ -46,9 +46,15 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         description: string;
     }) => (
         <div className="flex items-center">
-            <div className="rounded-2xl border border-black-and-white bg-white overflow-hidden">
+            <div className="rounded-2xl border border-color--simple bg-white overflow-hidden">
                 <Link href={href} className="text-sm">
-                    <Image src={imageSrc} alt="Jterrazz.com" width="76" height="76" loading="lazy" />
+                    <Image
+                        src={imageSrc}
+                        alt="Jterrazz.com"
+                        width="76"
+                        height="76"
+                        loading="lazy"
+                    />
                 </Link>
             </div>
             <div className="ml-3">
@@ -149,7 +155,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                 ))}
             </div>
 
-            <p className="text-sm mt-12 text-storm-cloud">© 2024. All rights reserved.</p>
+            <p className="text-sm mt-12 color--storm-cloud">© 2024. All rights reserved.</p>
         </footer>
     );
 };

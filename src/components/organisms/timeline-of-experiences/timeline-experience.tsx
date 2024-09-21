@@ -30,7 +30,7 @@ export const TimelineExperience: React.FC<TimelineEventProps> = ({
                 </h3>
             </div>
             <div className="flex items-stretch">
-                <div className="border-storm-cloud border-l" style={{ marginLeft: 3 }} />
+                <div className="border-color--storm-cloud border-l" style={{ marginLeft: 3 }} />
                 <div
                     className="ml-4 flex flex-col items-start pt-2 pb-4 space-y-4"
                     style={{ paddingLeft: 3 }}
@@ -63,12 +63,12 @@ export const TimelineExperience: React.FC<TimelineEventProps> = ({
 
                     {experience.type !== 'School' && (
                         <>
-                            <p className="text-sm text-storm-cloud">{experience.description}</p>
+                            <p className="text-sm color--storm-cloud">{experience.description}</p>
 
                             <div className="flex items-center space-x-3">
-                                <p className="text-xs text-storm-cloud">{experience.location}</p>
+                                <p className="text-xs color--storm-cloud">{experience.location}</p>
                                 <Circle size={4} color="gray" fill="gray" />
-                                <p className="text-xs text-storm-cloud">{experience.timeframe}</p>
+                                <p className="text-xs color--storm-cloud">{experience.timeframe}</p>
                             </div>
                         </>
                     )}

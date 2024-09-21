@@ -1,4 +1,5 @@
 import React from 'react';
+import { AlignLeft } from 'react-feather';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { ProjectComponent } from '../../../domain/project.js';
@@ -7,7 +8,6 @@ import { DotPulse } from '../../atoms/status/dot-pulse.js';
 
 import { projectComponentStatusToDoPulseState } from './table-row-project-component-view-model.js';
 import { TableRowProjectDetails } from './table-row-project-details.js';
-import { AlignLeft, Type } from 'react-feather';
 
 type TableRowProjectComponentProps = {
     component: ProjectComponent;
@@ -23,7 +23,7 @@ export const TableRowProjectComponent: React.FC<TableRowProjectComponentProps> =
     return (
         <div key={component.name} className={className}>
             <div
-                className="flex items-center py-1 px-0 cursor-pointer text-storm-cloud text-storm-cloud-accent-hover"
+                className="flex items-center py-1 px-0 cursor-pointer color--storm-cloud color-hover--storm-cloud"
                 onClick={() => setProjectDetailIsVisible(!projectDetailIsVisible)}
             >
                 <DotPulse color={projectComponentStatusToDoPulseState(component.status)} />

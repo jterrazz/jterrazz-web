@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'palette';
+
+:root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        //--foreground-rgb: 12, 12, 12;
+        //--background-start-rgb: 0, 0, 0;
+        //--background-end-rgb: 0, 0, 0;
+    }
+}
+
+/* TODO Post.css should handle this */
+.backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(4px); /* Fallback for older Safari versions */
+    backdrop-filter: blur(4px);
+}
+
+body {
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--foreground-rgb));
+}

@@ -12,7 +12,7 @@ import { mergeClassName } from '../lib/utils.js';
 import { TheFooter } from '../components/organisms/the-footer.js';
 import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the-navigation-bar.js';
 
-import './globals.css';
+import '../styles/globals.scss';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -132,7 +132,7 @@ export default function RootLayout({
     ];
 
     const generatedClassName = mergeClassName(
-        'min-h-screen flex flex-col text-storm-cloud-accent',
+        'min-h-screen flex flex-col color--storm-cloud',
         inter.className,
     );
 

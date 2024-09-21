@@ -25,7 +25,7 @@ export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
 
     return (
         <div className={generalClassName}>
-            <div className="px-4 py-4 pb-5 bg-black-and-white">
+            <div className="px-4 py-4 pb-5 background-color--simple">
                 <p className="text-sm">{component.description}</p>
 
                 <HeadingSubSection className="mt-6" size="small">
@@ -68,14 +68,14 @@ export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
             <div className="flex flex-col">
                 {component.articleUrl && (
                     <a href={component.articleUrl.toString()} target="_blank" className="text-sm">
-                        <div className="flex justify-between border-t border-black-and-white px-4 py-3 text-storm-cloud bg-black-and-white bg-black-and-white-hover cursor-pointer">
+                        <div className="flex justify-between border-t border-color--simple px-4 py-3 color--storm-cloud background-color--simple border-color-hover--simple cursor-pointer">
                             <p className="text-sm">Read the article</p>
                             <span>Learn more</span>
                         </div>
                     </a>
                 )}
                 <a href={component.sourceUrl.toString()} target="_blank" className="text-sm">
-                    <div className="flex justify-between border-t border-black-and-white px-4 py-3 text-storm-cloud bg-black-and-white bg-black-and-white-hover cursor-pointer">
+                    <div className="flex justify-between border-t border-color--simple px-4 py-3 color--storm-cloud background-color--simple border-color-hover--simple cursor-pointer">
                         <p className="text-sm">{projectStatusToDescription(component.status)}</p>
                         <span>Open source</span>
                     </div>
