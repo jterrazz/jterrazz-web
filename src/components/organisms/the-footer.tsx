@@ -23,13 +23,13 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         {
             description: 'Web',
             href: 'https://jterrazz.com',
-            imageSrc: '/assets/icon-app-jterrazz.png',
+            imageSrc: '/assets/appicon-jterrazz.png',
             title: 'Jterrazz',
         },
         {
             description: 'Mobile',
             href: 'https://capitaine.io',
-            imageSrc: '/assets/icon-app-capitaine.svg',
+            imageSrc: '/assets/appicon-capitaine.png',
             title: 'Capitaine',
         },
     ];
@@ -48,7 +48,13 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         <div className="flex items-center">
             <div className="rounded-2xl border border-black-and-white bg-white overflow-hidden">
                 <Link href={href} className="text-sm">
-                    <Image src={imageSrc} alt="Jterrazz.com" width="76" height="76" loading="lazy" />
+                    <Image
+                        src={imageSrc}
+                        alt="Jterrazz.com"
+                        width="76"
+                        height="76"
+                        loading="lazy"
+                    />
                 </Link>
             </div>
             <div className="ml-3">

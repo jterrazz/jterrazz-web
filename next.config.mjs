@@ -18,6 +18,11 @@ const nextConfig = {
                 permanent: false,
                 source: '/link/hackathons',
             },
+            {
+                destination: 'https://gravatar.com/noisilywerewolffa1df1a9cc',
+                permanent: false,
+                source: '/contact',
+            },
 
             // Legacy articles redirects
             {
