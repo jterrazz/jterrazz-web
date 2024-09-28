@@ -2,6 +2,7 @@ import React from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { Inter } from 'next/font/google';
 
 import { UserContactType } from '../domain/user.js';
@@ -134,12 +135,17 @@ export default function RootLayout({
         inter.className,
     );
 
+    const PostHogPageView = dynamic(() => import('./posthog-page-view.jsx'), {
+        ssr: false,
+    });
+
     return (
         <html lang="en">
             <SpeedInsights sampleRate={1} />
             <Analytics />
             <CSPostHogProvider>
                 <body className={generatedClassName}>
+                    <PostHogPageView />
                     <TheNavigationBar pages={pages} contacts={contacts} />
                     <div className="flex-1 flex flex-col">{children}</div>
                     <TheFooter />
