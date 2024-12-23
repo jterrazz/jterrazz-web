@@ -1,5 +1,6 @@
 import React from 'react';
 import Markdown from 'markdown-to-jsx';
+import { Highlight, themes } from 'prism-react-renderer';
 
 import { mergeClassName } from '../../lib/utils.js';
 
@@ -9,6 +10,29 @@ import { HeadingSection } from '../atoms/typography/heading-section.jsx';
 type ArticleInMarkdownProps = {
     className?: string;
     contentInMarkdown: string;
+};
+
+const CodeBlock = ({ children, language }: { children: string; language: string }) => {
+    const code = children.replace(/^[a-z]+\n/, '');
+
+    return (
+        <Highlight theme={themes.oneLight} code={code.trim()} language={language}>
+            {({ style, tokens, getLineProps, getTokenProps }) => (
+                <pre
+                    className="p-4 rounded-lg my-6 overflow-x-auto text-sm whitespace-pre-wrap -mx-4"
+                    style={style}
+                >
+                    {tokens.map((line, i) => (
+                        <div key={i} {...getLineProps({ line })}>
+                            {line.map((token, key) => (
+                                <span key={key} {...getTokenProps({ token })} />
+                            ))}
+                        </div>
+                    ))}
+                </pre>
+            )}
+        </Highlight>
+    );
 };
 
 export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
@@ -35,13 +59,23 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                             },
                         },
                         code: {
-                            props: {
-                                className: 'bg-gray-100 px-1 py-0.5 rounded text-sm font-mono',
+                            component: ({ children, className }) => {
+                                // If it's an inline code block (not wrapped in pre)
+                                if (className?.includes('inline')) {
+                                    return (
+                                        <code className="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono">
+                                            {children}
+                                        </code>
+                                    );
+                                }
+
+                                // Otherwise, just render the children to be handled by pre
+                                return children;
                             },
                         },
                         em: {
                             props: {
-                                className: 'text-gray-500 italic -mt-4 text-center',
+                                className: 'text-gray-500 italic -mt-4',
                             },
                         },
                         h1: {
@@ -104,9 +138,15 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                             },
                         },
                         pre: {
-                            props: {
-                                className:
-                                    'bg-gray-100 p-4 rounded-lg my-6 overflow-x-auto font-mono text-sm',
+                            component: ({ children }) => {
+                                const language =
+                                    children?.props?.className?.split('-')[1] || 'typescript';
+
+                                return (
+                                    <CodeBlock language={language}>
+                                        {children.props.children}
+                                    </CodeBlock>
+                                );
                             },
                         },
                         ul: {

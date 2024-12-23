@@ -54,20 +54,14 @@ This form directly implies that for any programming language powerful enough to 
 Now that we understand the theoretical foundation, let's create our first quine. Here are the requirements, explained:
 
 1. Print the source code without opening the file.
-
-		- This ensures true self-replication without external dependencies.
-
+	- This ensures true self-replication without external dependencies.
 2. Include at least two comments.
-
-		- Comments demonstrate that even non-executable parts of the code can be replicated.
-
+	- Comments demonstrate that even non-executable parts of the code can be replicated.
 3. Use at least two functions.
-
-		- This shows that quines can work with more complex program structures.
-
+	- This shows that quines can work with more complex program structures.
 4. Ensure that `diff <(./quine) quine.c` returns nothing (indicating perfect replication).
-		- This Unix command compares the output of running the quine with its source file.
-		- If they're identical, `diff` will produce no output, confirming successful self-replication.
+	- This Unix command compares the output of running the quine with its source file.
+	- If they're identical, `diff` will produce no output, confirming successful self-replication.
 
 ### A C Solution
 

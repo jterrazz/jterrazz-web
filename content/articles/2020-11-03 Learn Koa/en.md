@@ -36,9 +36,9 @@ First things first, let's lay the groundwork for our project. Make sure you have
 2. **Install Necessary Packages**:
 	 Once `npm init` is complete, it's time to bring in the reinforcements. We'll install our core packages along with their TypeScript type definitions:
 
-		![npm install command](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*43_uWaV4iNcrkmneVmUBjw.png)
+![npm install command](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*43_uWaV4iNcrkmneVmUBjw.png)
 
-		The `@types/package` versions are like translators for TypeScript, providing type definitions that enable strong type-checking for each package.
+The `@types/package` versions are like translators for TypeScript, providing type definitions that enable strong type-checking for each package.
 
 ## Bridging TypeScript and Node.js
 

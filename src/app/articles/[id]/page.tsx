@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { FeaturedId } from '../../../infrastructure/repositories/data/features.data.js';
 import { ArticleInMemoryRepository } from '../../../infrastructure/repositories/article-in-memory.repository.js';
+import { FeaturedId } from '../../../infrastructure/repositories/data/features.data.js';
 import { FeatureInMemoryRepository } from '../../../infrastructure/repositories/feature-in-memory.repository.js';
 
 import { ArticleTemplate } from '../../../components/templates/article.template.js';
