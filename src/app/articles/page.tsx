@@ -1,8 +1,10 @@
 import { Metadata } from 'next';
 
 import { ArticleInMemoryRepository } from '../../infrastructure/repositories/article-in-memory.repository.js';
+import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
 
 import { ArticlesListTemplate } from '../../components/templates/articles-list.template.js';
+import { ArticlesListViewModelImpl } from '../../components/templates/articles-list.template.view-model.js';
 
 export const metadata: Metadata = {
     description: 'A collection of articles on coding, product concepts, and more.',
@@ -11,17 +13,20 @@ export const metadata: Metadata = {
 
 export default async function ArticlesPage() {
     const articlesRepository = new ArticleInMemoryRepository();
+    const userRepository = new UserInMemoryRepository();
     const articles = await articlesRepository.getArticles();
 
+    // TODO: Move to template directly
     const highlightTitle = 'Articles';
     const highlightDescription =
         'Dive into my articles. From coding and new product concepts, explore new things.';
 
-    return (
-        <ArticlesListTemplate
-            articles={articles}
-            highlightTitle={highlightTitle}
-            highlightDescription={highlightDescription}
-        />
+    const viewModel = new ArticlesListViewModelImpl(
+        articles,
+        highlightTitle,
+        highlightDescription,
+        userRepository,
     );
+
+    return <ArticlesListTemplate viewModel={viewModel.getViewModel()} />;
 }

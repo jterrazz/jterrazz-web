@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     const article = await articlesRepository.getArticleByIndex(id);
 
     return {
-        title: article?.metadata.title + ' ~ Jterrazz',
         description: article?.metadata.description,
+        title: article?.metadata.title + ' ~ Jterrazz',
     };
 }
 

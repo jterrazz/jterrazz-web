@@ -14,10 +14,12 @@ type ArticleTemplateProps = {
     articles: Article[];
 };
 import Script from 'next/script';
+
 import { Article } from '../../domain/article.js';
-import { ArticleRow } from './articles-list.template.jsx';
-import { HeadingSection } from '../atoms/typography/heading-section.jsx';
+
 import { HighlightedText } from '../atoms/highlighted-text.jsx';
+import { HeadingSection } from '../atoms/typography/heading-section.jsx';
+
 
 // TODO Move to viewmodel
 export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
@@ -51,7 +53,7 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
             <HeadingSection className="mt-6 md:mt-12 flex flex-col items-center">
                 <HighlightedText className="pr-2">Featured Posts</HighlightedText>
             </HeadingSection>
-            {filteredArticles
+            {/* {filteredArticles
                 .sort(
                     (a, b) =>
                         new Date(b.metadata.datePublished).getTime() -
@@ -59,7 +61,7 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                 )
                 .map((article) => (
                     <ArticleRow key={article.index} article={article} />
-                ))}
+                ))} */}
         </MainContainer>
     );
 };
