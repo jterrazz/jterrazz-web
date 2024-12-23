@@ -21,6 +21,7 @@ import { CSPostHogProvider } from './providers.jsx';
 
 const inter = Inter({ subsets: ['latin'] });
 
+const APPLE_TOUCH_ICON = 'apple-touch-icon';
 export const metadata: Metadata = {
     description:
         "Discover game-changing apps and coding insights at jterrazz.com! Join a dev's journey crafting useful apps, from self-improvement tools to innovative tech solutions. Level up your skills and find your next big idea! 🚀💻'",
@@ -49,51 +50,51 @@ export const metadata: Metadata = {
             url: '/favicon/favicon-16x16.png?v=5',
         },
         {
-            rel: 'apple-touch-icon',
+            rel: APPLE_TOUCH_ICON,
             url: '/favicon/apple-touch-icon.png?v=5',
         },
         {
-            rel: 'apple-touch-icon',
+            rel: APPLE_TOUCH_ICON,
             sizes: '57x57',
             url: '/favicon/apple-touch-icon-57x57.png?v=5',
         },
         {
-            rel: 'apple-touch-icon',
+            rel: APPLE_TOUCH_ICON,
             sizes: '60x60',
             url: '/favicon/apple-touch-icon-60x60.png?v=5',
         },
         {
-            rel: 'apple-touch-icon',
+            rel: APPLE_TOUCH_ICON,
             sizes: '72x72',
             url: '/favicon/apple-touch-icon-72x72.png?v=5',
         },
         {
-            rel: 'apple-touch-icon',
+            rel: APPLE_TOUCH_ICON,
             sizes: '76x76',
             url: '/favicon/apple-touch-icon-76x76.png?v=5',
         },
         {
-            rel: 'apple-touch-icon',
+            rel: APPLE_TOUCH_ICON,
             sizes: '114x114',
             url: '/favicon/apple-touch-icon-114x114.png?v=5',
         },
         {
-            rel: 'apple-touch-icon',
+            rel: APPLE_TOUCH_ICON,
             sizes: '120x120',
             url: '/favicon/apple-touch-icon-120x120.png?v=5',
         },
         {
-            rel: 'apple-touch-icon',
+            rel: APPLE_TOUCH_ICON,
             sizes: '144x144',
             url: '/favicon/apple-touch-icon-144x144.png?v=5',
         },
         {
-            rel: 'apple-touch-icon',
+            rel: APPLE_TOUCH_ICON,
             sizes: '152x152',
             url: '/favicon/apple-touch-icon-152x152.png?v=5',
         },
         {
-            rel: 'apple-touch-icon',
+            rel: APPLE_TOUCH_ICON,
             sizes: '180x180',
             url: '/favicon/apple-touch-icon-180x180.png?v=5',
         },

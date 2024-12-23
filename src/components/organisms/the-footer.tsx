@@ -150,7 +150,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
             />
 
             <div className="flex flex-col space-y-6 md:hidden mt-12">
-                {applications.map((application, index) => (
+                {applications.map((application, _index) => (
                     <Application {...application} />
                 ))}
             </div>

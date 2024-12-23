@@ -1,18 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
+import { Menu, X } from 'react-feather';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'react-feather';
-import { motion, AnimatePresence } from 'framer-motion';
 
 import { UserContact } from '../../../domain/user.js';
 
 import { mergeClassName } from '../../../lib/utils.js';
 
-import { NavigationPage } from './navigation-page.js';
 import AnimatedBackground from '../../molecules/cards/animated-backgrounds.jsx';
+
+import { NavigationPage } from './navigation-page.js';
 
 export type NavigationTabItemProps = {
     className?: string;
@@ -228,30 +229,30 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                         className="w-full md:hidden overflow-hidden"
                     >
                         <motion.div
-                            initial={{ y: -20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: -20, opacity: 0 }}
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
                             transition={{ delay: 0.1, duration: 0.3 }}
                             className="border-t border-gray-200 dark:border-gray-700 mt-4 pt-4"
                         >
                             <NavigationTabs pages={pages} onLinkClick={closeMenu} />
                         </motion.div>
                         <motion.div
-                            initial={{ y: -20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: -20, opacity: 0 }}
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
                             transition={{ delay: 0.2, duration: 0.3 }}
                             className="border-t border-gray-200 dark:border-gray-700 mt-4 pt-4"
                         >
                             <div className="flex flex-wrap mt-2">
-                                {contacts.map((contact, index) => (
+                                {contacts.map((contact, _index) => (
                                     <NavigationTabItem
                                         key={contact.name}
                                         value={contact.name}

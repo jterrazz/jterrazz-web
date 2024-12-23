@@ -1,9 +1,10 @@
 import React from 'react';
 import Markdown from 'markdown-to-jsx';
-import Image from 'next/image';
+
+import { mergeClassName } from '../../lib/utils.js';
+
 import { HeadingMain } from '../atoms/typography/heading-main.jsx';
 import { HeadingSection } from '../atoms/typography/heading-section.jsx';
-import { mergeClassName } from '../../lib/utils.js';
 
 type ArticleInMarkdownProps = {
     className?: string;
@@ -73,7 +74,7 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                                     alt={alt}
                                     width={1200}
                                     height={800}
-                                    style={{ width: '100%', height: 'auto' }}
+                                    style={{ height: 'auto', width: '100%' }}
                                     loading="lazy"
                                     {...props}
                                 />
@@ -85,6 +86,11 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                         li: {
                             props: {
                                 className: 'mb-2 ml-6',
+                            },
+                        },
+                        ol: {
+                            props: {
+                                className: 'list-decimal mb-4 pl-5',
                             },
                         },
                         p: {
@@ -101,11 +107,6 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                         ul: {
                             props: {
                                 className: 'list-disc mb-4 pl-5',
-                            },
-                        },
-                        ol: {
-                            props: {
-                                className: 'list-decimal mb-4 pl-5',
                             },
                         },
                     },

@@ -1,5 +1,6 @@
 import { UserExperience } from '../../domain/user.js';
 
+const PARIS = 'Paris, France';
 export const userExperiencesData: UserExperience[] = [
     {
         description:
@@ -30,7 +31,7 @@ export const userExperiencesData: UserExperience[] = [
         description:
             'Co-created a blockchain-based crowdfunding platform using CVT tokens. ' +
             'Strengthened my expertise in smart contracts and decentralized applications.',
-        location: 'Paris, France',
+        location: PARIS,
         organization: 'ETHParis',
         organizationUrl: 'https://ethparis.com/',
         projectUrl: 'https://devpost.com/software/ethparis',
@@ -43,7 +44,7 @@ export const userExperiencesData: UserExperience[] = [
         description:
             'Refined APIs and optimized a NuxtJS site, boosting SEO and third-party integrations like Stripe. ' +
             'Developed a customizable B2B product, focusing on secure and scalable development.',
-        location: 'Paris, France',
+        location: PARIS,
         organization: 'Dalia Solutions',
         organizationUrl: 'https://www.linkedin.com/company/dalia-solutions/',
         timeframe: 'Aug 2018 - Jan 2019',
@@ -52,7 +53,7 @@ export const userExperiencesData: UserExperience[] = [
         year: '2018',
     },
     {
-        location: 'Paris, France',
+        location: PARIS,
         organization: '42',
         organizationUrl: 'https://www.42.fr/',
         timeframe: 'Mars 2017 - Mar 2020',

@@ -20,7 +20,6 @@ import { Article } from '../../domain/article.js';
 import { HighlightedText } from '../atoms/highlighted-text.jsx';
 import { HeadingSection } from '../atoms/typography/heading-section.jsx';
 
-
 // TODO Move to viewmodel
 export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     contentInMarkdown,
@@ -29,7 +28,7 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     datePublished,
     articles,
 }) => {
-    const filteredArticles = articles.filter((article) => article.published).slice(0, 5);
+    const _filteredArticles = articles.filter((article) => article.published).slice(0, 5);
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',

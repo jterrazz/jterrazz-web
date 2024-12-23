@@ -4,11 +4,12 @@ import React from 'react';
 import { ImageGallery } from 'react-image-grid-gallery';
 
 import { Photograph } from '../../domain/photograph.js';
+import { UserContactType } from '../../domain/user.js';
+
+import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
 
 import { Highlight } from '../molecules/typography/highlight.js';
 import { MainContainer } from '../organisms/main-container.jsx';
-import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
-import { UserContactType } from '../../domain/user.js';
 
 export type PhotographsGridTemplateProps = {
     highlightTitle: string;
@@ -27,8 +28,8 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
         title: photograph.metadata.description,
     }));
     const button = {
-        text: 'Follow me on Pexels',
         href: new UserInMemoryRepository().getContact(UserContactType.Pexels).url.toString(),
+        text: 'Follow me on Pexels',
     };
 
     return (

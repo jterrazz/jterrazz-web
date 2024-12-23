@@ -4,17 +4,16 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
-import { UserContactType, UserExperience, UserValue } from '../../domain/user.js';
+import { UserExperience, UserValue } from '../../domain/user.js';
 
 import { mergeClassName } from '../../lib/utils.js';
 
 import { HeadingSection } from '../atoms/typography/heading-section.js';
+import { ValueCard } from '../molecules/cards/value-card.jsx';
 import { Highlight } from '../molecules/typography/highlight.js';
 import { MainContainer } from '../organisms/main-container.jsx';
 import { Timeline } from '../organisms/timeline-of-experiences/timeline.js';
 import { TimelineExperience } from '../organisms/timeline-of-experiences/timeline-experience.js';
-import { ValueCard } from '../molecules/cards/value-card.jsx';
-import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
 
 type HelloWorldTemplateProps = {
     experiences: UserExperience[];
@@ -61,8 +60,8 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
     const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
     const scale = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
     const button = {
-        text: 'Check my articles',
         href: '/articles',
+        text: 'Check my articles',
     };
 
     return (

@@ -9,32 +9,33 @@ A personal portfolio website showcasing development projects, photography, and a
 
 ## 🌟 Features
 
-- **Projects Showcase**: Highlight development projects with links to live sites and GitHub repositories.
-- **Photography Gallery**: Display a collection of photographs with a lightbox gallery for immersive viewing.
-- **Articles**: Blog posts on web development, photography, and various other topics.
-- **Responsive Design**: Fully responsive layout using Tailwind CSS for optimal viewing on all devices.
-- **Performance Optimized**: Utilizes Next.js 14 App Router for efficient rendering and routing.
-- **Analytics**: Integrated with Vercel Analytics and Speed Insights for performance monitoring.
+-   **Projects Showcase**: Highlight development projects with links to live sites and GitHub repositories.
+-   **Photography Gallery**: Display a collection of photographs with a lightbox gallery for immersive viewing.
+-   **Articles**: Blog posts on web development, photography, and various other topics.
+-   **Responsive Design**: Fully responsive layout using Tailwind CSS for optimal viewing on all devices.
+-   **Performance Optimized**: Utilizes Next.js 14 App Router for efficient rendering and routing.
+-   **Analytics**: Integrated with Vercel Analytics and Speed Insights for performance monitoring.
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js 20.x.x
-- Docker (optional, for containerized development)
+-   Node.js 20.x.x
+-   Docker (optional, for containerized development)
 
 ### Installation
 
 1. Clone the repository:
-   ```
-   git clone https://github.com/jterrazz/jterrazz-web.git
-   cd jterrazz-web
-   ```
+
+    ```
+    git clone https://github.com/jterrazz/jterrazz-web.git
+    cd jterrazz-web
+    ```
 
 2. Install dependencies:
-   ```
-   npm install
-   ```
+    ```
+    npm install
+    ```
 
 ### Development
 
@@ -48,23 +49,23 @@ Visit `http://localhost:3000` to view the site.
 
 ## 🛠 Scripts
 
-- `npm run build`: Build the production application
-- `npm run start`: Start the production server
-- `npm run dev`: Start the development server
-- `npm run test`: Run tests
-- `npm run lint`: Run linting checks (type, code, and style)
-- `npm run clean`: Clean build artifacts and node_modules
+-   `npm run build`: Build the production application
+-   `npm run start`: Start the production server
+-   `npm run dev`: Start the development server
+-   `npm run test`: Run tests
+-   `npm run lint`: Run linting checks (type, code, and style)
+-   `npm run clean`: Clean build artifacts and node_modules
 
 ## 🐳 Docker
 
 This project supports Docker for consistent development environments:
 
-- `make build`: Build the Docker image
-- `make start`: Run the container
-- `make dev`: Start the development server in a container
-- `make test`: Run tests in a container
-- `make lint`: Run linting in a container
-- `make clean`: Remove the Docker image and clean the project
+-   `make build`: Build the Docker image
+-   `make start`: Run the container
+-   `make dev`: Start the development server in a container
+-   `make test`: Run tests in a container
+-   `make lint`: Run linting in a container
+-   `make clean`: Remove the Docker image and clean the project
 
 ## 🧪 Testing
 
@@ -82,14 +83,13 @@ Maintain code quality with:
 npm run lint
 ```
 
-
 This runs TypeScript type checking, ESLint, and Prettier.
 
 ## 🏗 Project Structure
 
-- `src/`: Source code
-- `__tests__/`: Test files
-- `public/`: Static assets
+-   `src/`: Source code
+-   `__tests__/`: Test files
+-   `public/`: Static assets
 
 ## 📚 Dive into My Articles
 
@@ -99,14 +99,14 @@ Hey there, app enthusiasts! 👋 Ready to dive into the world of game-changing a
 
 **Jean-Baptiste Terrazzoni**
 
-- Website: [jterrazz.com](https://jterrazz.com)
-- Email: jterrazzoni@gmail.com
-- GitHub: [@jterrazz](https://github.com/jterrazz)
-- Medium: [@jterrazz](https://medium.com/@jterrazz)
-- Devpost: [@jterrazz](https://devpost.com/jterrazz)
-- LinkedIn: [@jterrazz](https://www.linkedin.com/in/jterrazz/)
-- X: [@j_terrazz](https://x.com/j_terrazz)
-- Pexels: [@jterrazz](https://www.pexels.com/@jterrazz)
+-   Website: [jterrazz.com](https://jterrazz.com)
+-   Email: jterrazzoni@gmail.com
+-   GitHub: [@jterrazz](https://github.com/jterrazz)
+-   Medium: [@jterrazz](https://medium.com/@jterrazz)
+-   Devpost: [@jterrazz](https://devpost.com/jterrazz)
+-   LinkedIn: [@jterrazz](https://www.linkedin.com/in/jterrazz/)
+-   X: [@j_terrazz](https://x.com/j_terrazz)
+-   Pexels: [@jterrazz](https://www.pexels.com/@jterrazz)
 
 ## 🤝 Contributing
 

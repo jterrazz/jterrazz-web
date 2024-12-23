@@ -2,6 +2,9 @@ import React from 'react';
 
 import { Feature } from '../../domain/feature.js';
 import { Project } from '../../domain/project.js';
+import { UserContactType } from '../../domain/user.js';
+
+import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
 
 import { HighlightedText } from '../atoms/highlighted-text.jsx';
 import { HeadingSection } from '../atoms/typography/heading-section.js';
@@ -9,8 +12,6 @@ import { Highlight } from '../molecules/typography/highlight.js';
 import { MainContainer } from '../organisms/main-container.jsx';
 import { Table } from '../organisms/table-of-projects/table.js';
 import { TableRowProject } from '../organisms/table-of-projects/table-row-project.js';
-import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
-import { UserContactType } from '../../domain/user.js';
 
 type ApplicationsListTemplateProps = {
     highlightTitle: string;
@@ -25,8 +26,8 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
     projects,
 }) => {
     const button = {
-        text: 'Follow me on GitHub',
         href: new UserInMemoryRepository().getContact(UserContactType.GitHub).url.toString(),
+        text: 'Follow me on GitHub',
     };
 
     return (

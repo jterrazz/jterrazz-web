@@ -1,9 +1,9 @@
 import React from 'react';
+import Link from 'next/link.js';
 
 import { mergeClassName } from '../../../lib/utils.js';
 
 import { HeadingMain } from '../../atoms/typography/heading-main.js';
-import Link from 'next/link.js';
 
 export type HighlightProps = {
     title: string;

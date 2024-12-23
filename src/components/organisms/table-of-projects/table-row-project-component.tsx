@@ -1,4 +1,5 @@
 import React from 'react';
+import { AlignLeft } from 'react-feather';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { ProjectComponent } from '../../../domain/project.js';
@@ -7,7 +8,6 @@ import { DotPulse } from '../../atoms/status/dot-pulse.js';
 
 import { projectComponentStatusToDoPulseState } from './table-row-project-component-view-model.js';
 import { TableRowProjectDetails } from './table-row-project-details.js';
-import { AlignLeft, Type } from 'react-feather';
 
 type TableRowProjectComponentProps = {
     component: ProjectComponent;
