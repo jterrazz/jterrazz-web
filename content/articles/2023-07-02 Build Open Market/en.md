@@ -1,4 +1,4 @@
-![[assets/thumbnail.jpg]]
+![](assets/thumbnail.jpg)
 
 # Experience the Future of Shopping with Open.MT's Open-Source Technologies
 

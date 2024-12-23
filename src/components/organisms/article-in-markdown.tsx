@@ -41,7 +41,7 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                         },
                         em: {
                             props: {
-                                className: 'text-gray-500 italic text-sm -mt-4 block text-center',
+                                className: 'text-gray-500 italic -mt-4 text-center',
                             },
                         },
                         h1: {
@@ -65,6 +65,11 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                         h4: {
                             props: {
                                 className: 'text-xl font-semibold mb-2 mt-6',
+                            },
+                        },
+                        hr: {
+                            props: {
+                                className: 'my-8',
                             },
                         },
                         img: {

@@ -6,9 +6,9 @@ import {
     UserRepository,
 } from '../../domain/user.js';
 
-import { userContactsData } from '../data/user-contacts.data.js';
-import { userExperiencesData } from '../data/user-experiences.data.js';
-import { userProfileData } from '../data/user-profile.data.js';
+import { userContactsData } from './data/user-contacts.data.js';
+import { userExperiencesData } from './data/user-experiences.data.js';
+import { userProfileData } from './data/user-profile.data.js';
 
 export class UserInMemoryRepository implements UserRepository {
     private readonly userProfileData: UserProfile;

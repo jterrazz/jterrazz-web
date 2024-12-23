@@ -4,7 +4,7 @@ import {
     ProjectCategory,
     ProjectStatus,
     ProjectTechnology,
-} from '../../domain/project.js';
+} from '../../../domain/project.js';
 
 const REPOSITORY_BASE_URL = 'https://github.com/jterrazz/';
 

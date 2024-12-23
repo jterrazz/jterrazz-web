@@ -1,4 +1,4 @@
-import { UserContact, UserContactType } from '../../domain/user.js';
+import { UserContact, UserContactType } from '../../../domain/user.js';
 
 export const userContactsData: Record<UserContactType, UserContact> = {
     [UserContactType.Email]: {

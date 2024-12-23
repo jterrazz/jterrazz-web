@@ -1,4 +1,4 @@
-![[assets/thumbnail.jpg]]
+![](assets/thumbnail.jpg)
 
 # Mastering Hash Functions in C: Unraveling the Mysteries of SHA-256 and MD5
 

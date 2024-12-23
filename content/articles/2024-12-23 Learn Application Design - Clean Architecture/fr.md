@@ -1,4 +1,4 @@
-![[assets/thumbnail.jpg]]
+![](assets/thumbnail.jpg)
 
 # La Clean Architecture - Chapitre 4
 
@@ -31,7 +31,7 @@ Mettre en œuvre la Clean Architecture demande une structuration méthodique de 
 
 Chaque couche est indépendante et les dépendances sont strictement orientées vers le métier.
 
-![[assets/clean-architecture.jpg]]
+![](assets/clean-architecture.jpg)
 
 ---
 

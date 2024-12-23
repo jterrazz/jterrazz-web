@@ -47,7 +47,7 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
             )
             .map((article) => ({
                 category: article.metadata.category,
-                index: String(article.index),
+                index: String(article.publicIndex),
                 isCodeCategory: article.metadata.category === 'code',
                 title: article.metadata.title,
             }));

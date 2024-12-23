@@ -1,4 +1,4 @@
-![[assets/thumbnail.jpg]]
+![](assets/thumbnail.jpg)
 
 # Le Design Applicatif: L'Art De Construire Des Logiciels Durables Et Évolutifs - Introduction
 
@@ -42,7 +42,7 @@ En d'autres termes, le design applicatif, c'est l'art de prendre des **décision
 
 Son objectif principal est de créer des applications **maintenables**, c'est-à-dire faciles à comprendre, à corriger et à améliorer, et **évolutives**, capables de s'adapter à de nouvelles exigences et technologies.
 
-![[assets/application-complexity.jpg]]
+![](assets/application-complexity.jpg)
 
 ---
 
@@ -59,7 +59,7 @@ Un logiciel n'est jamais simple à concevoir. L'une des premières étapes pour 
 3. **Complexité Accidentelle**
 	 Enfin, il y a la complexité créée involontairement par de mauvaises décisions de conception ou des choix techniques inappropriés. Par exemple, un code spaghetti difficile à lire, une surutilisation de frameworks, ou une documentation inexistante. Contrairement à la complexité essentielle, celle-ci peut et doit être réduite.
 
-![[assets/complexity-levels.png]]
+![](assets/complexity-levels.jpg)
 
 Un bon design applicatif consiste donc à minimiser la complexité accidentelle, à gérer la complexité technique, tout en s'attaquant de front à la complexité essentielle.
 

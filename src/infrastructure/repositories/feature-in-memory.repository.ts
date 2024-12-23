@@ -1,6 +1,6 @@
 import { Feature, FeatureRepository } from '../../domain/feature.js';
 
-import { FeaturedId, featuresData } from '../data/features.data.js';
+import { FeaturedId, featuresData } from './data/features.data.js';
 
 export class FeatureInMemoryRepository implements FeatureRepository {
     private readonly featuresData: Feature[];

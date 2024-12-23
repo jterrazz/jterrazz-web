@@ -1,4 +1,4 @@
-![[assets/thumbnail.jpg]]
+![](assets/thumbnail.jpg)
 
 # Dive into Assembly: Crafting Your First Functions (Intel x86–64 syntax)
 

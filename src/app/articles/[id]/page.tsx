@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { FeaturedId } from '../../../infrastructure/data/features.data.js';
+import { FeaturedId } from '../../../infrastructure/repositories/data/features.data.js';
 import { ArticleInMemoryRepository } from '../../../infrastructure/repositories/article-in-memory.repository.js';
 import { FeatureInMemoryRepository } from '../../../infrastructure/repositories/feature-in-memory.repository.js';
 
@@ -12,7 +12,7 @@ export async function generateStaticParams() {
     const articles = await articlesRepository.getArticles();
 
     return articles.map((article) => {
-        return { id: String(article.index) };
+        return { id: String(article.publicIndex) };
     });
 }
 
@@ -46,7 +46,7 @@ export default async function ArticlePage({ params: { id } }: ArticlePageProps) 
     return (
         <ArticleTemplate
             features={features}
-            articles={articles.filter((a) => a.index !== article.index)}
+            articles={articles.filter((a) => a.publicIndex !== article.publicIndex)}
             contentInMarkdown={article.contentInMarkdown}
             dateModified={article.metadata.dateModified}
             datePublished={article.metadata.datePublished}

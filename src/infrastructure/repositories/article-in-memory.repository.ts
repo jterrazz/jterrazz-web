@@ -1,6 +1,6 @@
 import { Article, ArticleRepository } from '../../domain/article.js';
 
-import { readMarkdownArticles } from '../data/articles.data.js';
+import { readMarkdownArticles } from './data/articles.data.js';
 
 export class ArticleInMemoryRepository implements ArticleRepository {
     private markdownArticles: Article[] | undefined;
@@ -26,6 +26,6 @@ export class ArticleInMemoryRepository implements ArticleRepository {
     async getArticleByIndex(index: string) {
         const articles = await this.getMarkdownArticles();
 
-        return articles.find((article) => String(article.index) === index);
+        return articles.find((article) => String(article.publicIndex) === index);
     }
 }

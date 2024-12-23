@@ -1,6 +1,6 @@
 import { Project, ProjectRepository } from '../../domain/project.js';
 
-import { projectsData } from '../data/projects.data.js';
+import { projectsData } from './data/projects.data.js';
 
 export class ProjectInMemoryRepository implements ProjectRepository {
     private readonly projectsData: Project[];

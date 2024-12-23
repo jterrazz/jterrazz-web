@@ -1,4 +1,4 @@
-![[assets/thumbnail.jpg]]
+![](assets/thumbnail.jpg)
 
 # Demystifying Expert Systems: Implementing a Backward Chaining Resolver in Python
 

@@ -4,7 +4,7 @@ import { ApplicationsListTemplate } from '../../components/templates/application
 
 import { Project } from '../../domain/project.js';
 
-import { FeaturedId } from '../../infrastructure/data/features.data.js';
+import { FeaturedId } from '../../infrastructure/repositories/data/features.data.js';
 import { FeatureInMemoryRepository } from '../../infrastructure/repositories/feature-in-memory.repository.js';
 import { ProjectInMemoryRepository } from '../../infrastructure/repositories/project-in-memory.repository.js';
 

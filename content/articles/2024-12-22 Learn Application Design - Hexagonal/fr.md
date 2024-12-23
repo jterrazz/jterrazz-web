@@ -1,4 +1,4 @@
-![[assets/thumbnail.jpg]]
+![](assets/thumbnail.jpg)
 
 # Comprendre Les Architectures Métier Et Technique - Chapitre 2
 
@@ -95,7 +95,7 @@ L'**architecture hexagonale** (ou architecture Ports & Adapters), introduite par
 
 >ℹ️ Le terme **"architecture hexagonale"** vient de la représentation visuelle en forme d'hexagone que **Alistair Cockburn** a choisie pour illustrer son concept. Cette forme n'a pas de signification technique stricte.
 
-![[assets/hexagonal-architecture.jpg]]
+![](assets/hexagonal-architecture.jpg)
 
 L'hexagone met en avant l'idée que:
 
