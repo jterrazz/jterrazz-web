@@ -1,0 +1,15 @@
+FROM node:20-alpine
+
+WORKDIR /home
+
+RUN apk add --no-cache --upgrade make bash
+
+# Step 1: Install All Dependencies (including dev dependencies)
+COPY package*.json ./
+RUN npm ci
+
+# Step 2: Copy source files and config files
+COPY . .
+
+# Step 3: Start development server
+CMD ["npm", "run", "dev"]
