@@ -176,6 +176,7 @@ export const readMarkdownArticles = async (): Promise<Article[]> => {
                 );
             }
 
+            // TODO Move to repository
             return {
                 ...articleConfig,
                 contentInMarkdown: contentInMarkdown.replace(

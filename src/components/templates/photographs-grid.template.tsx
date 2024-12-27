@@ -29,7 +29,7 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
     }));
     const button = {
         href: new UserInMemoryRepository().getContact(UserContactType.Pexels).url.toString(),
-        text: 'Follow me on Pexels',
+        text: 'Check my photographs on Pexels',
     };
 
     return (

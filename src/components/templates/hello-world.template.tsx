@@ -8,17 +8,21 @@ import { UserExperience, UserValue } from '../../domain/user.js';
 
 import { mergeClassName } from '../../lib/utils.js';
 
+import { HighlightedText } from '../atoms/highlighted-text.jsx';
 import { HeadingSection } from '../atoms/typography/heading-section.js';
-import { ValueCard } from '../molecules/cards/value-card.jsx';
 import { Highlight } from '../molecules/typography/highlight.js';
 import { MainContainer } from '../organisms/main-container.jsx';
 import { Timeline } from '../organisms/timeline-of-experiences/timeline.js';
 import { TimelineExperience } from '../organisms/timeline-of-experiences/timeline-experience.js';
 
+import { ArticlePreview } from './articles-list.template.jsx';
+import { ArticlesListViewModel } from './articles-list.template.view-model.js';
+
 type HelloWorldTemplateProps = {
     experiences: UserExperience[];
     values: UserValue[];
     description: string;
+    articles: ArticlesListViewModel;
 };
 
 const ParallaxImage: React.FC<{ className?: string }> = ({ className }) => {
@@ -54,20 +58,23 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
     experiences,
     values,
     description,
+    articles,
 }) => {
     const { scrollYProgress } = useScroll();
     const y = useTransform(scrollYProgress, [0, 1], [0, -65]);
     const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
     const scale = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
-    const button = {
-        href: '/articles',
-        text: 'Check my articles',
-    };
+    // const button = {
+    //     href: '/articles',
+    //     text: 'Check my articles',
+    // };
+
+    const latestArticles = articles.articles.slice(0, 2);
 
     return (
         <MainContainer>
-            <Highlight title="Hello, World!" description={description} button={button} />
-            <div className="relative mt-2 mb-12 md:mb-20">
+            <Highlight title="Hello, World!" description={description} />
+            {/* <div className="relative mt-2 mb-12 md:mb-20">
                 <ParallaxImage className="z-0" />
                 <motion.div
                     className="absolute inset-0 z-10 flex items-center justify-center p-6"
@@ -79,7 +86,17 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                         ))}
                     </div>
                 </motion.div>
+            </div> */}
+
+            <HeadingSection>
+                <HighlightedText className="pr-2">Latest articles</HighlightedText>
+            </HeadingSection>
+            <div className="mb-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                {latestArticles.map((article) => (
+                    <ArticlePreview key={article.index} article={article} />
+                ))}
             </div>
+
             <div className="flex flex-col items-center">
                 <motion.div style={{ rotate, scale }}>
                     <Image

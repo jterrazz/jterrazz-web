@@ -79,5 +79,5 @@ export const Badge: React.FC<StatusBadgeProps> = ({
             break;
     }
 
-    return <span className={generatedClassName}>{value}</span>;
+    return <div className={generatedClassName}>{value}</div>;
 };

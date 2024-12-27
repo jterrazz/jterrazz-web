@@ -9,7 +9,7 @@ export type HighlightProps = {
     title: string;
     description: string;
     className?: string;
-    button: {
+    button?: {
         text: string;
         href: string;
     };
@@ -22,11 +22,16 @@ export const Highlight: React.FC<HighlightProps> = ({ title, className, descript
         <div className={generatedClassName}>
             <HeadingMain>{title}</HeadingMain>
             <p className="mt-6 font-medium">{description}</p>
-            <Link href={button.href} target={button.href.startsWith('/') ? undefined : '_blank'}>
-                <button className="mt-6 font-medium underline">
-                    {button.text} {'>'}
-                </button>
-            </Link>
+            {button && (
+                <Link
+                    href={button.href}
+                    target={button.href.startsWith('/') ? undefined : '_blank'}
+                >
+                    <button className="mt-6 font-medium underline">
+                        {button.text} {'>'}
+                    </button>
+                </Link>
+            )}
         </div>
     );
 };

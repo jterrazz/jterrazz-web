@@ -13,7 +13,7 @@ Dans cet article, nous allons explorer ce qu'est réellement le design applicati
 **Navigation 📚**
 
 1. **Introduction: Le Design Applicatif, L'Art De Construire Des Logiciels Durables Et Évolutifs**
-	 *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
+*Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
 
 2. **Chapitre 1: Le concept de dépendances**
 	 *Explorer les relations entre composants, l'importance des dépendances, et les principes comme SOLID.*
