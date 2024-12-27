@@ -177,7 +177,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             }}
                         >
                             <Image
-                                src="/assets/navbar-logo.png"
+                                src="/assets/appicon-jterrazz.png"
                                 alt="Jterrazz"
                                 width={36}
                                 height={36}
