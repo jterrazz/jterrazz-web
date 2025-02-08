@@ -19,6 +19,7 @@ interface Article {
     title: string;
     description: string;
     imageUrl: string;
+    id: string;
 }
 
 type HelloWorldTemplateProps = {

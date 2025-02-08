@@ -21,6 +21,7 @@ export default async function HomePage() {
             experiences={userExperiences}
             topArticles={topArticles.map((article) => ({
                 description: article.metadata.description,
+                id: article.publicIndex.toString(),
                 imageUrl: article.imageUrl ?? '/assets/image-computer-table.webp',
                 title: article.metadata.title,
             }))}

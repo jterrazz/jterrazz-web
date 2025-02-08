@@ -9,6 +9,7 @@ interface ArticlePreviewProps {
     imageUrl: string;
     position: number;
     total: number;
+    id: string;
 }
 
 export const ArticlePreviewCard = ({
@@ -17,6 +18,7 @@ export const ArticlePreviewCard = ({
     imageUrl,
     position,
     total,
+    id,
 }: ArticlePreviewProps) => {
     // For 6 cards (0,1,2,3,4,5), centers are at positions 2 and 3
     const centerLeft = Math.floor((total - 1) / 2);
@@ -33,7 +35,7 @@ export const ArticlePreviewCard = ({
     const blur = distanceFromCenter * 2; // 0px -> 1px -> 2px
 
     return (
-        <Link href={`/articles/${title}`}>
+        <Link href={`/articles/${id}`}>
             <motion.div
                 className="group relative w-72 bg-white/5 border border-white/5 backdrop-blur-sm rounded-xl p-4 mx-2 transition-colors duration-300"
                 initial={{
