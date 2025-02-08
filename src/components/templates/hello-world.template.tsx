@@ -74,7 +74,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
     return (
         <MainContainer>
             <Highlight title="Hello, World!" description={description} button={button} />
-            <div className="relative mt-2 mb-12 md:mb-20">
+            <div className="relative mt-2 mb-12 md:mb-20 hidden md:block">
                 <ParallaxImage className="z-0" />
                 <motion.div
                     className="absolute inset-0 z-10 flex items-center justify-center p-6"
