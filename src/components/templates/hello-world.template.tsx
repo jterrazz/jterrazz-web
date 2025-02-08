@@ -4,28 +4,34 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
-import { UserExperience, UserValue } from '../../domain/user.js';
+import { UserExperience } from '../../domain/user.js';
 
 import { mergeClassName } from '../../lib/utils.js';
 
 import { HeadingSection } from '../atoms/typography/heading-section.js';
-import { ValueCard } from '../molecules/cards/value-card.jsx';
+import { ArticlePreviewCard } from '../molecules/cards/article-preview-card.jsx';
 import { Highlight } from '../molecules/typography/highlight.js';
 import { MainContainer } from '../organisms/main-container.jsx';
 import { Timeline } from '../organisms/timeline-of-experiences/timeline.js';
 import { TimelineExperience } from '../organisms/timeline-of-experiences/timeline-experience.js';
 
+interface Article {
+    title: string;
+    description: string;
+    imageUrl: string;
+}
+
 type HelloWorldTemplateProps = {
     experiences: UserExperience[];
-    values: UserValue[];
     description: string;
+    topArticles: Article[];
 };
 
 const ParallaxImage: React.FC<{ className?: string }> = ({ className }) => {
     const { scrollYProgress } = useScroll();
     const yPercentage = useTransform(scrollYProgress, [0, 1], [0, -15]);
     const generatedClassName = mergeClassName(
-        'relative rounded-3xl overflow-hidden bg-black w-full',
+        'relative rounded-2xl overflow-hidden bg-black w-full',
         className,
     );
 
@@ -44,6 +50,7 @@ const ParallaxImage: React.FC<{ className?: string }> = ({ className }) => {
                     alt="Computer workspace"
                     layout="fill"
                     objectFit="cover"
+                    className="blur-[10px]"
                 />
             </motion.div>
         </div>
@@ -52,8 +59,8 @@ const ParallaxImage: React.FC<{ className?: string }> = ({ className }) => {
 
 export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
     experiences,
-    values,
     description,
+    topArticles,
 }) => {
     const { scrollYProgress } = useScroll();
     const y = useTransform(scrollYProgress, [0, 1], [0, -65]);
@@ -73,10 +80,18 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                     className="absolute inset-0 z-10 flex items-center justify-center p-6"
                     style={{ y }}
                 >
-                    <div className="flex bg-white/5 border border-white/5 backdrop-blur-sm rounded-xl opacity-90">
-                        {values.map((value, index) => (
-                            <ValueCard key={index} value={value} />
-                        ))}
+                    <div className="flex gap-4 items-center justify-center w-full overflow-x-auto md:overflow-x-visible">
+                        {topArticles
+                            .slice(0, 6)
+                            .reverse()
+                            .map((article, index) => (
+                                <ArticlePreviewCard
+                                    key={article.title}
+                                    {...article}
+                                    position={index}
+                                    total={Math.min(topArticles.length, 6)}
+                                />
+                            ))}
                     </div>
                 </motion.div>
             </div>
@@ -94,9 +109,9 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
             </div>
             <Timeline className="mt-2 md:mt-12">
                 {experiences.map((experience, index) => (
-                    <TimelineExperience 
-                        key={experience.title} 
-                        experience={experience} 
+                    <TimelineExperience
+                        key={experience.title}
+                        experience={experience}
                         index={index}
                     />
                 ))}

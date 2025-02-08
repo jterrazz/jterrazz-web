@@ -32,18 +32,19 @@ export enum ArticleCategory {
 //     };
 // }
 
-export type Article = {
-    publicIndex: number;
-    contentInMarkdown: string;
+export interface Article {
     metadata: {
-        title: string;
-        description: string;
+        category: ArticleCategory;
         dateModified: string;
         datePublished: string;
-        category: ArticleCategory;
+        description: string;
+        title: string;
     };
+    contentInMarkdown: string;
+    imageUrl: string;
+    publicIndex: number;
     published: boolean;
-};
+}
 
 export interface ArticleRepository {
     getArticleByIndex(index: string): Promise<Article | undefined>;
