@@ -93,8 +93,12 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                 <HeadingSection className="mt-3">Timeline</HeadingSection>
             </div>
             <Timeline className="mt-2 md:mt-12">
-                {experiences.map((experience) => (
-                    <TimelineExperience key={experience.title} experience={experience} />
+                {experiences.map((experience, index) => (
+                    <TimelineExperience 
+                        key={experience.title} 
+                        experience={experience} 
+                        index={index}
+                    />
                 ))}
             </Timeline>
         </MainContainer>
