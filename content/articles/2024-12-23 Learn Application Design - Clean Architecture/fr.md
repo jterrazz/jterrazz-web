@@ -1,21 +1,21 @@
 ![](assets/thumbnail.jpg)
 
-# La Clean Architecture - Chapitre 4
+# La Clean Architecture - Chapitre 3
 
 L'architecture logicielle ne devrait pas dépendre de détails techniques comme les bases de données ou les frameworks utilisés. **Les cas d'utilisation (use cases) doivent être au centre de votre application.** C'est le fondement de la **Clean Architecture**, une méthodologie qui repose sur des couches bien définies et découplées, avec des dépendances strictement orientées vers le métier.
 
 **Navigation 📚**
 
-1. **Introduction: Le Design Applicatif, L'Art De Construire Des Logiciels Durables Et Évolutifs**
+1. [**Introduction: Le Design Applicatif, L'Art De Construire Des Logiciels Durables Et Évolutifs**](https://www.jterrazz.com/articles/9)
 	 *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
 
-2. **Chapitre 1: Le concept de dépendances**
+2. [**Chapitre 1: Le concept de dépendances**](https://www.jterrazz.com/articles/10)
 	 *Explorer les relations entre composants, l'importance des dépendances, et les principes comme SOLID.*
 
-3. **Chapitre 2: Comprendre Les Architectures Métier Et Technique**
+3. [**Chapitre 2: Comprendre Les Architectures Métier Et Technique**](https://www.jterrazz.com/articles/11)
 	 *Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs.*
 
-4. **Chapitre 3: La Clean Architecture**
+4. [**Chapitre 3: La Clean Architecture**](https://www.jterrazz.com/articles/12)
 	 *Découvrir une approche centrée sur le métier avec une structuration claire en couches.*
 
 ---
@@ -408,7 +408,7 @@ Dans cet exemple, la Screaming Architecture est utilisée pour refléter le mét
 
 ---
 
-**Conclusion: Une architecture centrée sur le métier**
+## Conclusion: Une Architecture Centrée Sur Le Métier
 
 À travers cette série, nous avons exploré les principes fondamentaux de l'architecture logicielle, en passant des bases aux concepts avancés de la **Clean Architecture**. L'objectif principal a toujours été de **placer le métier au centre**, tout en isolant les aspects techniques pour garantir une application modulaire, testable et évolutive.
 

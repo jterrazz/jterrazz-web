@@ -36,7 +36,12 @@ First things first, let's lay the groundwork for our project. Make sure you have
 2. **Install Necessary Packages**:
 	 Once `npm init` is complete, it's time to bring in the reinforcements. We'll install our core packages along with their TypeScript type definitions:
 
-![npm install command](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*43_uWaV4iNcrkmneVmUBjw.png)
+```sh
+# Install typescript related packages
+npm install --save typescript ts-node
+# Install web server related packages
+npm install --save koa @types/koa koa-router @types/koa-router
+```
 
 The `@types/package` versions are like translators for TypeScript, providing type definitions that enable strong type-checking for each package.
 
@@ -46,17 +51,47 @@ Node.js and TypeScript are like two friends who speak different languages. To he
 
 Let's create a simple "Hello World" file to test things out:
 
-![Hello World in TypeScript](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*XvXIivtPLKXyO8d-qZUANg.png)
+```js
+console.log('Hello world');
+```
 
 To run this file, we need to set up a script in our `package.json`:
 
-![package.json script](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*QGrsDCNOq9Lb5GBUrWn5pg.png)
+```json
+{
+  "name": "the-app-name",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.ts",
+  "scripts": {
+    "start": "ts-node src/server.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/koa": "^2.11.6",
+    "koa": "^2.13.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  }
+}
+```
 
 Now, when you run `npm start`, you should see "Hello World" printed in your console. Congratulations, you've just run your first TypeScript file with Node.js! 🎉
 
 **Pro tip**: Don't forget to create a `.gitignore` file to keep your repository clean:
 
-![.gitignore file](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*9JGCDeguZe5pnoAEf7csbg.png)
+```sh
+# NPM
+/node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# misc
+.DS_Store
+.env*
+```
 
 ## Handling Requests with Koa
 
@@ -64,7 +99,32 @@ Now that we've got the basics set up, let's introduce Koa into the mix. Think of
 
 Here's a simple example of how Koa handles a GET request to the root route ('/'):
 
-![Koa GET request example](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*w5QkqTrWpGJWUiX4pAc6VA.png)
+```js
+import Koa, { Middleware } from 'koa';
+import Router from 'koa-router';
+
+const PORT = 8080;
+const app = new Koa();
+const router = new Router();
+
+// Setup your route based logic
+
+const helloWorldController: Middleware = async (ctx) => {
+    console.log('Received a request');
+    ctx.body = {
+        message: 'Hello World!',
+    };
+};
+
+router.get('/', helloWorldController)
+
+// Add your router to the app
+
+app.use(router.routes()).use(router.allowedMethods());
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+```
 
 **Important note**: Koa is like a minimalist artist–it only provides the essentials. For more advanced features like routing or body parsing, you'll need to bring in additional packages (like `koa-router`). This might seem like extra work, but it's actually a great opportunity to understand web concepts more deeply!
 
@@ -74,7 +134,28 @@ One of Koa's superpowers is the `app.use()` method. This allows you to chain cus
 
 Think of middleware as a series of checkpoints that a request goes through before reaching its final destination (the controller). Each middleware can modify the "context" object, adding or changing information as needed.
 
-![Koa middleware example](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*fZgR6JB8Pa6hHtzewoF_rw.png)
+```js
+function addMoneyMiddleware(ctx) {
+  if (!ctx.money) {
+    ctx.money = 1
+  } else {
+    ctx.money += 1;
+  }
+}
+
+// Lets say a GET /add-money is received
+
+// Using it for every route
+app.use(addMoneyMiddleware); // ctx.money = 1
+app.use(addMoneyMiddleware); // ctx.money = 2
+
+router
+  // Using it only on /rich route
+  .use(addMoneyMiddleware) // ctx.money = 3
+  .get('/rich', (ctx) => ctx.body = ctx.money) // Return 3 in the response body
+router
+  .get('/not-rich', (ctx) => ctx.body = ctx.money) // Return 2 in the response body
+```
 
 In this example, we're using Koa to handle a GET request to the home route ('/'). The request passes through our middleware before reaching the `helloWorldController`, which then sends the response back to the user.
 

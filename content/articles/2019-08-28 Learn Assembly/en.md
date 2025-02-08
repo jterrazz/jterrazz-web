@@ -19,7 +19,14 @@ To begin your Assembly adventure, you'll need:
 
 Here's how you use NASM:
 
-![NASM Compilation](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*4hLUi4-pBhi3Ofrd_FYGHA.png)
+```sh
+# Install nasm on MacOS
+brew install nasm
+
+# Compile assembly files
+nasm -f macho64 <asm_file>.s -o <object_file>.o
+ar rcs <exec_name> <object_files>
+```
 
 > **Pro Tip:** The `-f` argument specifies the output format. For instance, `macho64` is the format for modern macOS executables.
 
@@ -50,7 +57,29 @@ Assembly offers several advantages:
 
 An Assembly file (`.s`) is typically divided into four main sections:
 
-![Assembly File Structure](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*2sQTJHkqfBIbUkc-mkGLvw.png)
+```python
+# SECTION: Initialized data
+.data
+my_str db "001101" # You can save strings and adds the terminating /0     
+my_var db 0 # The integer i is initialized to 0
+# db 1 declares 1 byte (b = byte)
+# dw 1 declares 2 bytes (w = word)
+# dd 1 declares 4 bytes (d = doubleword)
+# dq 1 declares 8 bytes (q = quadword)
+
+# SECTION: Constant data
+.rodata
+my_var db 6
+# Same as .data but the data can't be changed
+
+# SECTION: Uninitialized data     
+.bss
+my_var: resb 4 # Allocates 4 uninitialized bytes
+# resb 1 allocates 1 byte (b = byte)
+# resw 1 allocates 2 bytes (w = word)
+# resd 1 allocates 4 bytes (d = doubleword)
+# resq 1 allocates 8 bytes (q = quadword)
+```
 
 1. **data:** Initialized data storage
 2. **rodata:** Read-only data (constants)
@@ -136,12 +165,29 @@ Increases the given register by 1. Small steps, big results!
 **call**—`<function_name>`
 Calls a function. It's like shouting "Hey, function_name, do your thing!"
 
-![Function Call](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*SrMUyVoSFA102ujMnn4X1A.png)
+```python
+extern malloc
+
+.text
+call malloc # We will see arguments in the calling convention section
+
+# Result is stored in rax
+```
 
 **jmp**—`<dst_location>`
 Unconditional jump to a section. Like teleporting in your code!
 
-![Jump Instruction](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*DqE7QBS4MnpQ72pMfZOzJg.png)
+```python
+.text
+
+my_section_1:
+...
+jmp my_section_2 # Go at my_section_2
+... # Will be skipped
+
+my_section_2:
+jmp my_section_1 # Go at my_section_1
+```
 
 **j<condition>**—`<dst_location>`
 Conditional jump. It's like a "Choose Your Own Adventure" for your code.
@@ -154,7 +200,28 @@ Compares `reg0` and `reg1`, setting flags for conditional jumps.
 **test**—`<reg0> [reg]`, `<reg1> [reg]`
 Performs a bitwise AND between `reg0` and `reg1`, setting flags.
 
-![Comparison Example](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*mQA3efoih-mR_SIXznXgtQ.png)
+```python
+extern ft_ isalpha
+extern ft_isdigit
+
+.text
+_ft_isalnum:
+call _ft_isalpha # Returns 1 in rax if isalpha
+test rax, rax
+jnz is_alnum # If not 0, then jump
+
+call _ft_isdigit # Returns 1 in rax if isdigit
+test rax, rax
+jnz is_alnum # If not 0, then jump
+
+is_not_ alnum:
+xor rax, rax # Sets return to 0
+ret
+
+is_alnum:
+mov rax, 1 # Sets return to 1
+ret
+```
 
 **ret**
 Ends the function and returns to the caller. Like saying "My job here is done!"

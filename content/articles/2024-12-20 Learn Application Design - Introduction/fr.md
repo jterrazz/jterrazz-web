@@ -12,16 +12,16 @@ Dans cet article, nous allons explorer ce qu'est réellement le design applicati
 
 **Navigation 📚**
 
-1. **Introduction: Le Design Applicatif, L'Art De Construire Des Logiciels Durables Et Évolutifs**
+1. [**Introduction: Le Design Applicatif, L'Art De Construire Des Logiciels Durables Et Évolutifs**](https://www.jterrazz.com/articles/9)
 	 *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
 
-2. **Chapitre 1: Le concept de dépendances**
+2. [**Chapitre 1: Le concept de dépendances**](https://www.jterrazz.com/articles/10)
 	 *Explorer les relations entre composants, l'importance des dépendances, et les principes comme SOLID.*
 
-3. **Chapitre 2: Comprendre Les Architectures Métier Et Technique**
+3. [**Chapitre 2: Comprendre Les Architectures Métier Et Technique**](https://www.jterrazz.com/articles/11)
 	 *Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs.*
 
-4. **Chapitre 3: La Clean Architecture**
+4. [**Chapitre 3: La Clean Architecture**](https://www.jterrazz.com/articles/12)
 	 *Découvrir une approche centrée sur le métier avec une structuration claire en couches.*
 
 ---
@@ -59,7 +59,7 @@ Un logiciel n'est jamais simple à concevoir. L'une des premières étapes pour 
 3. **Complexité Accidentelle**
 	 Enfin, il y a la complexité créée involontairement par de mauvaises décisions de conception ou des choix techniques inappropriés. Par exemple, un code spaghetti difficile à lire, une surutilisation de frameworks, ou une documentation inexistante. Contrairement à la complexité essentielle, celle-ci peut et doit être réduite.
 
-![](assets/complexity-levels.jpg)
+![](assets/complexity-levels.svg)
 
 Un bon design applicatif consiste donc à minimiser la complexité accidentelle, à gérer la complexité technique, tout en s'attaquant de front à la complexité essentielle.
 

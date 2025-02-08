@@ -72,7 +72,28 @@ Before the main show begins, we need to set the stage. The input message needs t
 ![Message Formatting](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*6Lplvsky40XwCE3zBhsjOA.png)
 _The formatted message size must be a multiple of 512 bits_
 
-![Message Formatting Code](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*X7tNVYUXas0-UeWdq6F3nA.png)
+```c
+unsigned char build_msg(const char msg, size_t msg_len, size_t formatted_msg_len, bool is_little_endian)
+{
+  unsigned char  formatted_msg;
+  size_t         cursor;
+
+  if (! (formatted_msg = malloc(formatted_msg_len)))
+    return (NULL) ;
+
+  ft_memcpy(formatted_msg, msg, msg_len);
+  formatted_msg[msg_len]   = 0b10000000;
+  cursor = msg_len + 1;
+
+  while (cursor < formatted_msg_len)
+    formatted_msg[cursor++] = 0;
+
+  (uint64_t )(formatted_msg + cursor - 8) =
+    is_little_endian ? 8 + msg_len : ft_bswap_uint64(8, msg_len);
+
+  return (formatted_msg);
+}
+```
 
 To calculate the formatted message length, we use this magical formula:
 
@@ -82,7 +103,20 @@ aligned = (nb + (X-1)) & ~(X-1)
 
 This aligns our number 'nb' to a multiple of 'X' bytes. It's like making sure everyone in a marching band is in perfect rows!
 
-![Alignment Visualization](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*cLGPenuQuIiz-q1l8KJ-sg.png)
+```c
+#define DEC(x) (x - 1)
+
+// Chunks of 512 bits
+#define MD5_CHUNK_SIZE 64
+
+// +1 for the appended '1'
+// +8 for the size in 64 bits
+#define MD5_CHUNKS_SIZE(len) (len + 1 + 8 + DEC(MD5_CHUNK_SIZE) ) &
+~DEC(MD5_CHUNK_SIZE)
+#define MD5_CHUNK_COUNT(len) (MD5_CHUNKS_SIZE(len) / MD5_CHUNK_SIZE)
+
+formatted_msg_len = CHUNK_SIZE x CHUNK_COUNT;
+```
 
 ### The Endianness Enigma: Little & Big Endian
 
@@ -95,7 +129,16 @@ Before we dive deeper, let's talk about endianness–the order in which bytes ar
 
 To convert between these two, we use a bit of binary magic:
 
-![Endianness Conversion](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*KAcuzeZjKmuILLIBZ_E-Tg.png)
+```c
+uint64_t  ft_bswap_uint64(uint64_t x)
+{
+  x = ((x < 8) & 0XFF00FF00FF00FF00ULL ) | ((x >> 8) & 0X00FF00FF00FF00FFULL);
+  x = ((x < 16) & 0xFFFF0000FFFF0000ULL) | ((x >> 16) &
+0x0000FFFF0000FFFFULL);
+
+  return (x < 32) | (x >> 32) ;
+}
+```
 
 This shuffling algorithm works by swapping bytes, starting with small groups and progressively expanding. It's like a choreographed dance of bits!
 
@@ -126,11 +169,45 @@ After all the shuffling and juggling, we're left with 4 (for MD5) or 8 (for SHA-
 
 To create the hash, we simply concatenate these buffers in their hexadecimal form. It's like assembling a puzzle where each piece is a part of the final secret code!
 
-![Hash Assembly](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*R-HctJLm_B8QlAwseK2F_w.png)
+```c
+char build_hash(uint32_t buffers, size_t buffer_count, bool is_little_endian)
+{
+  char      hash;
+  char      hash_tmp;
+  size_t    buffer_i;
+  uint32_t  buffer;
+  
+  buffer_i = 0;
+
+  if (!(hash = ft_strnew(buffer_count 8)))
+    return (NULL);
+
+  while (buffer_i < buffer_count) {
+    buffer = is_little_endian ? ft_bswap_uint32(buffers[buffer_i]) :
+buffers[buffer_il;
+
+    if (!(hash_tmp = ft_uitoa_base_len(buffer, 16, 'a', 8)))
+      return (NULL);
+
+    ft_strncpy(hash + (buffer_i 8), hash_tmp, 8);
+    free(hash_tmp);
+    buffer_i++;
+  }
+  
+  return (hash);
+}
+```
 
 One last twist for MD5: the buffers are in little-endian format, so we need to flip them before printing. It's like reading the last page of a book first!
 
-![MD5 Buffer Flip](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*9aQ-8ukULZoxZumK63ArMA.png)
+```c
+uint32_t ft_bswap_uint32(uint32_t x)
+{
+  x = ((x < 8) & 0xFF00FF00) | ((x > 8) & 0xFF00FF);
+  
+  return (x << 16) (x >> 16);
+}
+```
 
 ## Need a Helping Hand?
 

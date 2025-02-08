@@ -57,6 +57,21 @@ Here's what each tool does:
 - **`nm`**: Lists the **symbols** (like function names) in an executable.
 - **`otool`**: Shows the **hexdump** of a specified segment. (Don't worry, we'll explain segments soon!)
 
+```c
+struct stat buf;
+
+if ((fd = open(filename, O_RDONLY)) < 0)
+      return FAILURE;
+if (fstat(fd, &buf) < 0)
+      return FAILURE;
+if (buf.st_size == 0)
+      return FAILURE;
+if ((file_start = mmap(NULL, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
+      return FAILURE;
+
+handle_file(file_start);
+```
+
 ![Example output of nm and otool](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*LyO3kfs-lQvJ-KmaKmyb9g.png)
 
 ## Diving into the Mach-O Structure
@@ -69,17 +84,47 @@ Imagine a Mach-O file as a nesting doll, with each layer revealing more details 
 
 First things first, we need to get our hands on the file's contents. We'll use a combination of `open`, `fstat`, `mmap`, and `close` to get a pointer to the start of the data:
 
-![Code snippet for file access](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*2P9advEEZER1LaLSebOucA.png)
+```c
+struct stat buf;
+
+if ((fd = open(filename, O_RDONLY)) < 0)
+      return FAILURE;
+if (fstat(fd, &buf) < 0)
+      return FAILURE;
+if (buf.st_size == 0)
+      return FAILURE;
+if ((file_start = mmap(NULL, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
+      return FAILURE;
+
+handle_file(file_start)
+```
 
 Once we have access, it's time to check that magic number:
 
-![Code snippet for magic number check](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*_477rmqdA6PR8WI7MKQJag.png)
+```c
+#include <mach-o/loader.h>
+
+uint32_t magic = *(uint32_t *)(file_start);
+
+if (magic == MH_MAGIC || magic == MH_CIGAM || magic == MH_MAGIC_64 || magic == MH_CIGAM_64)
+  handle_macho_file();
+```
 
 ### The Mach-O Header
 
 Every Mach-O file starts with a header, which is like the table of contents for our executable:
 
-![Mach-O header structure](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*lEQ1Fc-L7t3JrWsZLPaMbw.png)
+```c
+struct mach_header {
+  uint32_t	magic;		/* mach magic number identifier */
+  cpu_type_t	cputype;	/* cpu specifier */
+  cpu_subtype_t	cpusubtype;	/* machine specifier */
+  uint32_t	filetype;	/* type of file */
+  uint32_t	ncmds;		/* number of load commands */
+  uint32_t	sizeofcmds;	/* the size of all the load commands */
+  uint32_t	flags;		/* flags */
+};
+```
 
 This header is packed with useful information, such as:
 
@@ -95,11 +140,25 @@ For our purposes, we'll focus on two key commands:
 1. `LC_SYMTAB`: Contains symbol information
 2. `LC_SEGMENT`: Defines segments of the binary
 
-![Load command structure](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*BUqYPFgEHwtK4w5CvaKkmA.png)
+```c
+struct load_command {
+  uint32_t cmd;		/* type of load command */
+  uint32_t cmdsize;	/* total size of command in bytes */
+};
+```
 
 We can iterate through these commands like this:
 
-![Code snippet for iterating load commands](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*N5X6RsMxix8S5hvZc90tJw.png)
+```c
+uint32_t ncmds = ((struct mach_header *)file_start)->ncmds;
+
+lc = (struct load_command *)(file_start + sizeof(struct mach_header);
+
+while (ncmds--) {
+  parse_load_command(lc)
+  lc = (void *)lc +lc->cmdsize;
+}
+```
 
 #### LC_SEGMENT: The Building Blocks
 
@@ -109,27 +168,114 @@ Segment commands are like chapters in our executable book. They tell us:
 - How many bytes to allocate for it
 - How many sections it contains
 
-![Segment command structure](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*yCDINaWcuLYaNFOxAXRQ0g.png)
+```c
+struct segment_command {        /* for 32-bit architectures */
+	uint32_t	cmd;	     	/* LC_SEGMENT */
+	uint32_t	cmdsize;	    /* includes sizeof section structs */
+	char		segname[16];	/* segment name */
+	uint32_t	vmaddr;		    /* memory address of this segment */
+	uint32_t	vmsize;		    /* memory size of this segment */
+	uint32_t	fileoff;	    /* file offset of this segment */
+	uint32_t	filesize;	    /* amount to map from the file */
+	vm_prot_t	maxprot;	    /* maximum VM protection */
+	vm_prot_t	initprot;	    /* initial VM protection */
+	uint32_t	nsects;	        /* number of sections in segment */
+	uint32_t	flags;	        /* flags */
+}
+```
 
 Each segment contains sections, which are like paragraphs in our chapter:
 
-![Section structure](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Iaj8IPtZLbzeNE61m0BsGw.png)
+```c
+struct section {                /* for 32-bit architectures */
+	char		sectname[16];	/* name of this section */
+	char		segname[16];	/* segment this section goes in */
+	uint32_t	addr;		    /* memory address of this section */
+	uint32_t	size;		    /* size in bytes of this section */
+	uint32_t	offset;		    /* file offset of this section */
+	uint32_t	align;		    /* section alignment (power of 2) */
+	uint32_t	reloff;		    /* file offset of relocation entries */
+	uint32_t	nreloc;		    /* number of relocation entries */
+	uint32_t	flags;		    /* flags (section type and attributes)*/
+	uint32_t    reserved1;		/* reserved (for offset or index)*/
+	uint32_t    reserved2;		/* reserved (for count or sizeof)*/
+}
+```
 
 For `otool`, we'll need to hexdump the data at `addr`. For `nm`, we'll save the segment to match it later with symbols in the `SYMTAB`.
 
-![Code snippet for segment processing](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*izSPVsY0HsWiDpZPJx9onw.png)
+```c
+int	parse_mach_segment(void *segment_command) {
+	uint32_t nsects;
+	void *section;
+
+	section = segment_command + sizeof(struct segment_command);
+	nsects = ((struct segment_command *) segment_command)->nsects;
+
+	while (nsects--) {
+		// Do stuff with each section
+		if (bin == OTOOL) {
+		    // If section is __text, hexdump the data
+		} else if (bin == NM) {
+		    // Save the section in memory to match later with the SYMTAB
+		}
+		section += sizeof(struct s_section);
+	}
+}
+```
 
 ### LC_SYMTAB: The Symbol Table
 
 The symbol table is like an index for our executable book. It contains a list of `nlist` symbols:
 
-![Symbol table command structure](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Z2AszURFHXehcruzZNhosQ.png)
+```c
+struct symtab_command {
+	uint32_t	cmd;		/* LC_SYMTAB */
+	uint32_t	cmdsize;	/* sizeof(struct symtab_command) */
+	uint32_t	symoff;		/* symbol table offset */
+	uint32_t	nsyms;		/* number of symbol table entries */
+	uint32_t	stroff;		/* string table offset */
+	uint32_t	strsize;	/* string table size in bytes */
+};
+```
 
-![nlist structure](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*1_ww_etKWj-RuyMo6tHddQ.png)
+```c
+struct nlist {
+	union {
+		char *n_name;	/* for use when in-core */
+		long  n_strx;	/* index into the string table */
+	} n_un;
+	unsigned char n_type;	/* type flag, see below */
+	unsigned char n_sect;	/* section number or NO_SECT */
+	short	      n_desc;	/* see <mach-o/stab.h> */
+	unsigned long n_value;	/* value of this symbol (or stab offset) */
+};
+```
 
 To get the name of a symbol, we need to parse the `strtab` (string table). The `nlist` structure provides a wealth of information about each symbol:
 
-![Symbol information](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*7JKYozfu6nAg5gc7KkRcDg.png)
+```c
+int parse_mach_symtab(struct symtab_command *symtab_command)
+{
+	void *strtab = file_start + symtab_command->stroff;
+	void *symtab = file_start + symtab_command->symoff;
+	uint32_t nsyms = symtab_command->nsyms;
+	uint32_t i = 0;
+
+	while (i < nsyms) {
+		// Symbol data here
+		struct nlist *symbol_data = (nlist *)symtab + i;
+		
+		// Symbol name
+		char *symbol_name = strtab + ((struct nlist *)symtab + i)->n_un.n_strx;
+		
+		// Add to list for later use
+		handle_symbol(symbol_data, symbol_name);
+		i++;
+	}
+}
+```
+
 ![More symbol information](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Ib35tK7AbIyH_YPS6QhmJw.png)
 
 For `nm`, we need to construct a line for each symbol, showing:
@@ -141,11 +287,60 @@ For `nm`, we need to construct a line for each symbol, showing:
 
 Here's how we can determine the representation for a symbol:
 
-![Code snippet for symbol representation](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*UfyfZl05EnTvTL9S2L0MlA.png)
+```c
+// Defined in <mach-o/nlist.h>
+#define	N_UNDF	0x0		/* undefined, n_sect == NO_SECT */
+#define N_ABS 0x2  /* absolute, n_sect == NO_SECT */
+#define N_SECT 0xe  /* defined in section number n_sect */
+#define N_PBUD 0xc  /* prebound undefined (defined in a dylib) */
+#define N_INDR 0xa
+
+#define N_STAB 0xe0  /* if any of these bits set, a symbolic debugging entry */
+#define N_PEXT 0x10  /* private external symbol bit */
+#define N_TYPE 0x0e  /* mask for the type bits */
+#define N_EXT 0x01  /* external symbol bit, set for external symbols */
+
+char get_symbol_letter(sym) {
+  if (N_STAB & sym->type)
+    return '-'; // Debug symbols
+  else if ((N_TYPE & sym->type) == N_UNDF) {
+    if (sym->name_not_found)
+     return 'C';
+    else if (sym->type & N_EXT)
+     return = 'U';
+    else
+     return = '?';
+  } else if ((N_TYPE & sym->type) == N_SECT) {
+    return match_symbol_section(saved_sections, sym); // We have to match it with our saved sections
+  } else if ((N_TYPE & sym->type) == N_ABS) {
+    return = 'A';
+  } else if ((N_TYPE & sym->type) == N_INDR) {
+    return = 'I';
+  }
+}
+```
 
 When the `N_SECT` mask is true with `sect->type`, we need to find the type based on the given segment:
 
-![Code snippet for section type determination](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*De_TpMPgcxVz17p6yerOjA.png)
+```c
+char match_symbol_section(saved_sections, symbol)
+{
+  if (sect = find_mysection(saved_sections, symbol->n_sect)) # 
+  {
+    if (!ft_strcmp(sect->name, SECT_TEXT))
+      ret = 'T';
+    else if (!ft_strcmp(sect->name, SECT_DATA))
+      ret = 'D';
+    else if (!ft_strcmp(sect->name, SECT_BSS))
+      ret = 'B';
+    else
+      ret = 'S';
+
+    if (!(mysym->type & N_EXT))
+       ret -= 'A' - 'a';
+  }
+}
+```
 
 ## Leveling Up: Advanced Challenges
 

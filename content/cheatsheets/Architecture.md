@@ -100,3 +100,4 @@ src/
 3. Use **clear boundaries** to isolate concerns for better maintainability.
 4. Keep your architecture **modular and extensible**, with the domain as the priority.
 
+![[https://cdn.jsdelivr.net/gh/jterrazz/jterrazz-web@main/content/articles/2019-06-01](https://cdn.jsdelivr.net/gh/jterrazz/jterrazz-web@main/content/articles/2019-06-01) Learn Malloc/assets/thumbnail.jpg]]

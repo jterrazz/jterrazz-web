@@ -54,15 +54,33 @@ In this article, we'll focus on the backward resolver. It's like solving a myste
 
 ### The Node Class: The Versatile Building Block
 
-![Node Class](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*qdOZI0gZsK-ppQ7NFhdEzg.png)
+```python
+class Node:
+  def __init__(self):
+    self.children = [] # In A => B, => is child of B 
+    self.visited = False # When recursively parsing the Graph, it avoids infinite loop
+    self.state = False # Saves if the result is True
+```
 
 Nodes are the Swiss Army knives of our system. They handle logic, store states, and connect with other nodes through the `children` list. For example, in the rule `A => B`, `A` is the child of `=>`, which is the child of `B`. If `A` is true, we can deduce that `B` is true.
 
 ### AtomNode and ConnectorNode: The Specialized Tools
 
-![AtomNode Class](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*effi4JDwJZETJinrhcF5ZQ.png)
+```python
+class AtomNode(Node):
+  def __init__(self, name):
+    super(AtomNode, self).__init__()
+    self.name = name
+```
 
-![ConnectorNode Class](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*vq9IFTiRDtsCgRMd3jlM8A.png)
+```python
+class ConnectorNode(Node):
+  def __init__(self, connector_type):
+    super(ConnectorNode, self).__init__(tree)
+    self.type = connector_type
+    self.operands = [] # For example, in A + B, A and B are operands of +
+    self.state = None
+```
 
 These classes inherit from the Node class, adding specialized behaviors for atoms (like A, B, C) and connectors (AND, XOR, OR, IMPLY).
 
@@ -84,13 +102,58 @@ We use the Reverse Polish Notation (RPN) to represent our rules. It's like writi
 
 ### Step 3: Connecting the Dots
 
-![Node Relations](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*3jj8f3eJ_yLxGOAxBlVItw.png)
+```python
+stack = []
+
+for x in npi_rule:
+  if x not in OPERATORS:
+    stack.append(self.atoms[x])
+  else:
+    pop0 = stack.pop()
+    pop1 = stack.pop()
+    # If one of the popped element is the same connector that we will create (AND, OR, XOR)
+    if isinstance(pop0, ConnectorNode) and pop0.type is LST_OP[x]:
+      pop0.add_operand(pop1)
+      new_connector = pop0
+      self.connectors.pop()
+    elif isinstance(pop1, ConnectorNode) and pop1.type is LST_OP[x]:
+      pop1.add_operand(pop0)
+      new_connector = pop1
+      self.connectors.pop()
+    else:
+      connector_x = self.create_connector(LST_OP[x])
+      connector_x.add_operands([pop0, pop1])
+      new_connector = connector_x
+    self.connectors.append(new_connector)
+    stack.append(new_connector)
+
+return stack.pop()
+```
 
 We create relationships between nodes, building our logical network.
 
 ### Step 4: The Grand Finale - Resolving Queries
 
-![Query Resolution](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*QK1uVVixYp0su7ju6bikqQ.png)
+```python
+# Pseudocode
+
+def resolve(nodeX):
+  if nodeX is True:
+    return True
+  
+  for child in nodeX.children:
+    res = resolve(child)
+    if res is True:
+      # Only need on of the chlid to be True for deducting the current is True
+      return True
+    
+  if Node is Connector: # AND OR XOR IMPLY
+    op_results = []
+    for op in nodeX.operands:
+      op_results.append(resolve(op))
+    self.set_state_from_operands(op_results)
+    # Example: for AND all op_results elements must be True
+```
 
 Finally, we put our system to work, resolving the queries and unveiling the logical truths hidden within our rules and facts.
 

@@ -6,7 +6,25 @@ Have you ever wondered how your computer juggles all those bytes behind the scen
 
 In this article, we'll unravel the mysteries of `malloc`—its raison d'être, its inner workings, and most excitingly, how to build it yourself using `mmap/munmap` functions and some clever memory handling algorithms. Don't worry if that sounds like a mouthful; we'll break it down step by step. And for those who love to get their hands dirty with code, I've got a treat for you: my [completed project is available on GitHub](https://github.com/jterrazz/42-malloc) for your perusal and tinkering pleasure. So, let's roll up our sleeves and become memory management maestros! 🎩✨
 
-![Memory Allocation Concept](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*KWfKFWF9Hns1JCbOBzAQtA.png)
+```c
+// We will implement these methods
+void  malloc(size_t size) ;
+void  free(void ptr);
+void  realloc(void ptr, size_t size);
+void  calloc(size_t count, size_t size);
+
+// Calls to request memory
+#include <sys/mman.h>
+
+void  mmap(void addr, size_t len, int prot, int flags, int fd, off_t offset);
+int   munmap(void addr, size_t len);
+
+// Calls to limit our memory calls
+#include <sys/resource.h>
+
+int   getrlimit(int resource, struct rlimit rlp);
+int   setrlimit(int resource, const struct limit rlp);
+```
 
 ## Memory Management: The Good, The Bad, and The Dynamic
 
@@ -24,7 +42,11 @@ Enter the hero of our story: dynamic allocation! 🦸‍♂️
 
 ### Dynamic Allocation and Mmap: The Dynamic Duo
 
-![Memory Mapping Illustration](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*P03pFE1HjM0DUleA6Zz9XA.png)
+```c
+#include <sys/mman. h>
+
+void mmap(void addr, size_t len, int prot, int flags, int fd, off_t offset);
+```
 
 Here's where things get interesting. The UNIX kernel, in its infinite wisdom, provides us with a superpower called a **system call**. One such call is the `mmap()` function, which acts like a magical bridge between physical memory and virtual addresses. It's like having a teleporter for data! 🌌
 
@@ -61,11 +83,30 @@ Both heaps and blocks have metadata at their start, like a signpost giving infor
 
 Let's get a bit more technical with our metadata structures:
 
-![Metadata Structures](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5KATkGiqidT3NnXnEGCnYw.png)
+```c
+typedef struct s_heap {
+  struct s_heap   *prev;
+  struct s_heap   *next;
+  t_heap_group    group;
+  size_t          total_size;
+  size_t          free_size;
+  size_t          block_count;
+} t_heap;
+
+typedef struct s_block {
+  struct s_block  *prev;
+  struct s_block  *next;
+  size_t          data_size;
+  bool            freed;
+} t_block;
+```
 
 By chaining blocks with `next` and `prev` pointers, we create a linked list of memory blocks. This allows us to navigate through the heap and access any block we need. It's like creating a map of our memory kingdom!
 
-![Block Chaining](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*PD1IMRW3v8V7IPNt2Ki6fg.png)
+```c
+#define HEAP_SHIFT(start)   ((void *)start + sizeof(t_heap))
+#define BLOCK_SHIFT(start)  ((void *)start + sizeof(t_block))
+```
 
 ### Performance: Size Matters
 
@@ -75,7 +116,12 @@ Here's a pro tip: When defining the size of a heap, it's more efficient to use a
 
 Let's crunch some numbers to determine our heap sizes:
 
-![Heap Size Calculations](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*6nqafaoE8UwH3FM6cfC4vw.png)
+```c
+#define  TINY_HEAP_ALLOCATION_SIZE   (4 * getpagesize())
+#define  TINY_BLOCK_SIZE             (TINY_HEAP_ALLOCATION_SIZE / 128)
+#define  SMALL_HEAP_ALLOCATIONSIZE   (16 * getpagesize( ))
+#define  SMALL_BLOCK_SIZE            (SMALL_HEAP_ALLOCATION_SIZE / 128)
+```
 
 ### The Malloc Algorithm: Finding the Perfect Spot
 
@@ -86,7 +132,9 @@ When `malloc` is called, it's like a real estate agent looking for the perfect p
 3. If no suitable block is found, it adds a new block to the end of the last heap.
 4. If the last heap is full, it creates a new heap by calling `mmap` (time to buy more land!).
 
-![Malloc Algorithm Flowchart](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*AF9LEW_Od3MMQrTxsOgCXQ.png)
+```c
+void *heap = (t_heap *)mmap(NULL, heap_size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0) ;
+```
 
 ### Free and the Fragmentation Problem: Memory Tetris
 
@@ -99,7 +147,9 @@ To combat this, we employ a few strategies:
 - If adjacent blocks are free, we merge them (combining Tetris pieces).
 - If it's the last block in the heap and we have more than one preallocated heap, we return the memory to the system using `munmap`.
 
-![Free Algorithm](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*b6UUPdiLb3yAVyZXvPH0qg.png)
+```c
+munmap (heap, heap->total_size);
+```
 
 ### Realloc: The Shape-shifter
 
@@ -111,7 +161,13 @@ A word of caution: if you call `realloc` with a size of zero, the behavior can v
 
 The best way to test our `malloc` implementation is to use it in real-world scenarios. Let's create a simple script to inject our malloc into existing commands:
 
-![Test Script](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*CZyzZswnc5-Q5v84-TTSlg.png)
+```c
+#!/bin/sh
+export DYLD_LIBRARY_PATH=.
+export DYLD_INSERT_LIBRARIES=libft_malloc.so
+export DYLD_FORCE_FLAT_NAMESPACE=1
+$@
+```
 
 Save this as `run.sh` and use it like so: `sh run.sh ${CMD}`. Now you can test your malloc with commands like `ls` or `vim`!
 

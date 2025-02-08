@@ -1,21 +1,21 @@
 ![](assets/thumbnail.jpg)
 
-# Le Concept De Dépendances - Chapitre 2
+# Le Concept De Dépendances - Chapitre 1
 
 Les dépendances sont au cœur de l'architecture logicielle. Elles déterminent la manière dont les différents morceaux de code interagissent et se connectent les uns aux autres. Bien comprendre et maîtriser ces dépendances est crucial pour construire des applications robustes, maintenables et évolutives.
 
 **Navigation 📚**
 
-1. **Introduction: Le Design Applicatif, L'Art De Construire Des Logiciels Durables Et Évolutifs**
+1. [**Introduction: Le Design Applicatif, L'Art De Construire Des Logiciels Durables Et Évolutifs**](https://www.jterrazz.com/articles/9)
 	 *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
 
-2. **Chapitre 1: Le concept de dépendances**
+2. [**Chapitre 1: Le concept de dépendances**](https://www.jterrazz.com/articles/10)
 	 *Explorer les relations entre composants, l'importance des dépendances, et les principes comme SOLID.*
 
-3. **Chapitre 2: Comprendre Les Architectures Métier Et Technique**
+3. [**Chapitre 2: Comprendre Les Architectures Métier Et Technique**](https://www.jterrazz.com/articles/11)
 	 *Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs.*
 
-4. **Chapitre 3: La Clean Architecture**
+4. [**Chapitre 3: La Clean Architecture**](https://www.jterrazz.com/articles/12)
 	 *Découvrir une approche centrée sur le métier avec une structuration claire en couches.*
 
 ---
