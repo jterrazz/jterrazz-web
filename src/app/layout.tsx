@@ -161,7 +161,7 @@ export default function RootLayout({
                 <body className={generatedClassName}>
                     <PostHogPageView />
                     <TheNavigationBar pages={pages} contacts={contacts} />
-                    <div className="flex-1 flex flex-col">{children}</div>
+                    <div className="flex-1 flex flex-col overflow-x-hidden w-full">{children}</div>
                     <TheFooter />
                 </body>
             </CSPostHogProvider>
