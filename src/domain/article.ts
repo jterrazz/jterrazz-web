@@ -32,6 +32,8 @@ export enum ArticleCategory {
 //     };
 // }
 
+export type ArticleLanguage = 'en' | 'fr';
+
 export interface Article {
     metadata: {
         category: ArticleCategory;
@@ -40,13 +42,15 @@ export interface Article {
         description: string;
         title: string;
     };
-    contentInMarkdown: string;
+    content: {
+        [key in ArticleLanguage]?: string;
+    };
     imageUrl: string;
     publicIndex: number;
     published: boolean;
 }
 
 export interface ArticleRepository {
-    getArticleByIndex(index: string): Promise<Article | undefined>;
+    getArticleByIndex(index: string, language?: ArticleLanguage): Promise<Article | undefined>;
     getArticles(): Promise<Article[]>;
 }

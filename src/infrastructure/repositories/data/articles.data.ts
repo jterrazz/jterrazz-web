@@ -1,8 +1,8 @@
 import { promises as fs } from 'node:fs';
 
-import { Article, ArticleCategory } from '../../../domain/article.js';
+import { Article, ArticleCategory, ArticleLanguage } from '../../../domain/article.js';
 
-type ArticleConfig = Omit<Article, 'contentInMarkdown' | 'imageUrl'> & {
+type ArticleConfig = Omit<Article, 'content' | 'imageUrl'> & {
     filename: string;
     previewImage?: string;
 };
@@ -172,24 +172,51 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     },
 ];
 
+const processMarkdownContent = (content: string, filename: string): string => {
+    return content.replace(
+        /!\[([^\]]*)\]\(assets\/([^)]+)\)/g,
+        (match, altText, p1) =>
+            `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(
+                filename,
+            )}/assets/${encodeURIComponent(p1)})`,
+    );
+};
+
+const readMarkdownFile = async (
+    articlesDirectory: string,
+    filename: string,
+    language: ArticleLanguage,
+): Promise<string | undefined> => {
+    try {
+        const content = await fs.readFile(
+            `${articlesDirectory}/${filename}/${language}.md`,
+            'utf8',
+        );
+        return processMarkdownContent(content, filename);
+    } catch {
+        return undefined;
+    }
+};
+
 export const readMarkdownArticles = async (): Promise<Article[]> => {
     const articlesDirectory = `${process.cwd()}/content/articles`;
 
     return await Promise.all(
         ARTICLES_CONFIG.map(async ({ filename, previewImage, ...articleConfig }) => {
-            let contentInMarkdown: string;
+            const content: { [key in ArticleLanguage]?: string } = {};
 
-            try {
-                contentInMarkdown = await fs.readFile(
-                    `${articlesDirectory}/${filename}/en.md`,
-                    'utf8',
-                );
-            } catch {
-                // Fallback to French version if English is not available
-                contentInMarkdown = await fs.readFile(
-                    `${articlesDirectory}/${filename}/fr.md`,
-                    'utf8',
-                );
+            // Try to read both language versions
+            const [enContent, frContent] = await Promise.all([
+                readMarkdownFile(articlesDirectory, filename, 'en'),
+                readMarkdownFile(articlesDirectory, filename, 'fr'),
+            ]);
+
+            if (enContent) content.en = enContent;
+            if (frContent) content.fr = frContent;
+
+            // If no content was found, throw error
+            if (!Object.keys(content).length) {
+                throw new Error(`No content found for article ${filename}`);
             }
 
             const imageUrl = previewImage
@@ -198,11 +225,7 @@ export const readMarkdownArticles = async (): Promise<Article[]> => {
 
             return {
                 ...articleConfig,
-                contentInMarkdown: contentInMarkdown.replace(
-                    /!\[([^\]]*)\]\(assets\/([^)]+)\)/g,
-                    (match, altText, p1) =>
-                        `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)})`,
-                ),
+                content,
                 imageUrl,
             };
         }),

@@ -1,4 +1,4 @@
-import { Article, ArticleRepository } from '../../domain/article.js';
+import { Article, ArticleLanguage, ArticleRepository } from '../../domain/article.js';
 
 import { readMarkdownArticles } from './data/articles.data.js';
 
@@ -23,9 +23,12 @@ export class ArticleInMemoryRepository implements ArticleRepository {
         );
     }
 
-    async getArticleByIndex(index: string) {
+    async getArticleByIndex(index: string, language: ArticleLanguage = 'en') {
         const articles = await this.getMarkdownArticles();
-
-        return articles.find((article) => String(article.publicIndex) === index);
+        const article = articles.find((article) => String(article.publicIndex) === index);
+        
+        if (!article || !article.content[language]) return undefined;
+        
+        return article;
     }
 }
