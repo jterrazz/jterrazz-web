@@ -28,9 +28,9 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         },
         {
             description: 'Mobile',
-            href: 'https://capitaine.io',
-            imageSrc: '/assets/appicon-capitaine.png',
-            title: 'Capitaine',
+            href: 'https://apps.apple.com/fr/app/fake-news-trouvez-la-v%C3%A9rit%C3%A9/id6742116038',
+            imageSrc: '/assets/appicon-fake-news.png',
+            title: 'Fake News',
         },
     ];
 

@@ -13,31 +13,46 @@ export enum ProjectCategory {
 }
 
 export enum ProjectTechnology {
+    // Frontend
     NextJs = 'Next.js',
     React = 'React',
     ReactNative = 'React Native',
     TailwindCSS = 'TailwindCSS',
     Sass = 'Sass',
+
+    // Backend
     NodeJs = 'Node.js',
     Express = 'Express',
+    Hono = 'Hono',
     Prisma = 'Prisma',
-    Postgres = 'Postgres',
+    Koa = 'Koa',
+
+    // Languages
     C = 'C',
     Assembly = 'Assembly',
     Python = 'Python',
-    Koa = 'Koa',
-    TypeScript = 'TypeScript',
+
+    // TypeScript
+    Typescript = 'Typescript',
+
+    // Database
+    Postgres = 'Postgres',
     MongoDB = 'MongoDB',
+    Sqlite = 'SQLite',
+
+    // Tools
     Radare2 = 'Radare2',
     Gdb = 'GDB',
 }
 
 export enum ProjectArchitecture {
-    // Code Architecture
+    // Code Architectures
     Clean = 'Clean Architecture',
+    Hexagonal = 'Hexagonal Architecture',
+    DomainInfrastructure = 'Domain/Infrastructure Architecture',
     Atomic = 'Atomic Design',
 
-    // Design System
+    // Design Systems
     Spectrum = "Spectrum (Adobe's Design System)",
 }
 

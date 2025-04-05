@@ -72,6 +72,46 @@ export const projectsData: Project[] = [
         components: [
             {
                 architectures: [
+                    ProjectArchitecture.DomainInfrastructure,
+                    ProjectArchitecture.Hexagonal,
+                ],
+                description:
+                    'A typescript api server with prisma with a sqlite database. Built with clean architecture.',
+                name: 'API',
+                sourceUrl: new URL(REPOSITORY_BASE_URL + 'fake-news-api'),
+                status: ProjectStatus.Alive,
+                technologies: [
+                    ProjectTechnology.NodeJs,
+                    ProjectTechnology.Hono,
+                    ProjectTechnology.Prisma,
+                    ProjectTechnology.Sqlite,
+                    ProjectTechnology.Typescript,
+                ],
+            },
+            {
+                architectures: [
+                    ProjectArchitecture.Atomic,
+                    ProjectArchitecture.DomainInfrastructure,
+                    ProjectArchitecture.Spectrum,
+                ],
+                description: 'A react native mobile application for guessing fake news.',
+                name: 'Mobile Client',
+                sourceUrl: new URL(REPOSITORY_BASE_URL + 'fake-news-mobile'),
+                status: ProjectStatus.Alive,
+                technologies: [ProjectTechnology.ReactNative, ProjectTechnology.Typescript],
+            },
+        ],
+        description: 'A day to day copilot for your life.',
+        index: 2,
+        name: 'Fake News',
+        status: ProjectStatus.Alive,
+        type: ProjectCategory.Application,
+        url: new URL('https://fake-news.jterrazz.com'),
+    },
+    {
+        components: [
+            {
+                architectures: [
                     ProjectArchitecture.Atomic,
                     ProjectArchitecture.Clean,
                     ProjectArchitecture.Spectrum,
@@ -108,41 +148,41 @@ export const projectsData: Project[] = [
                 name: 'Typescript',
                 sourceUrl: new URL(REPOSITORY_BASE_URL + 'package-typescript'),
                 status: ProjectStatus.Alive,
-                technologies: [ProjectTechnology.NodeJs, ProjectTechnology.TypeScript],
+                technologies: [ProjectTechnology.NodeJs, ProjectTechnology.Typescript],
             },
             {
                 architectures: [],
                 description:
                     'A shareable typescript quality configuration that can be used across multiple projects. This repository provides a common set of code quality and formatting rules to ensure consistency of code across different projects.',
                 name: 'Quality',
-                sourceUrl: new URL(REPOSITORY_BASE_URL + 'package-typescript-quality'),
+                sourceUrl: new URL(REPOSITORY_BASE_URL + 'package-quality'),
                 status: ProjectStatus.Alive,
-                technologies: [ProjectTechnology.NodeJs, ProjectTechnology.TypeScript],
+                technologies: [ProjectTechnology.NodeJs, ProjectTechnology.Typescript],
             },
             {
                 architectures: [],
                 description:
                     'This package provides Jest configuration and test packages for TypeScript projects',
                 name: 'Test',
-                sourceUrl: new URL(REPOSITORY_BASE_URL + 'package-typescript-test'),
+                sourceUrl: new URL(REPOSITORY_BASE_URL + 'package-test'),
                 status: ProjectStatus.Alive,
-                technologies: [ProjectTechnology.NodeJs, ProjectTechnology.TypeScript],
+                technologies: [ProjectTechnology.NodeJs, ProjectTechnology.Typescript],
             },
             {
                 architectures: [],
                 description: 'A shareable typescript logger package for node.js applications.',
                 name: 'Logger',
-                sourceUrl: new URL(REPOSITORY_BASE_URL + 'package-typescript-logger'),
+                sourceUrl: new URL(REPOSITORY_BASE_URL + 'package-logger'),
                 status: ProjectStatus.Archived,
-                technologies: [ProjectTechnology.NodeJs, ProjectTechnology.TypeScript],
+                technologies: [ProjectTechnology.NodeJs, ProjectTechnology.Typescript],
             },
             {
                 architectures: [],
                 description: 'A shareable typescript http package for node.js applications.',
                 name: 'Http',
-                sourceUrl: new URL(REPOSITORY_BASE_URL + 'package-typescript-http'),
+                sourceUrl: new URL(REPOSITORY_BASE_URL + 'package-http'),
                 status: ProjectStatus.Archived,
-                technologies: [ProjectTechnology.NodeJs, ProjectTechnology.TypeScript],
+                technologies: [ProjectTechnology.NodeJs, ProjectTechnology.Typescript],
             },
         ],
         createdAt: new Date('2024-01-01'),
@@ -234,7 +274,7 @@ export const projectsData: Project[] = [
                 technologies: [
                     ProjectTechnology.NodeJs,
                     ProjectTechnology.Koa,
-                    ProjectTechnology.TypeScript,
+                    ProjectTechnology.Typescript,
                     ProjectTechnology.MongoDB,
                     ProjectTechnology.NextJs,
                     ProjectTechnology.React,
