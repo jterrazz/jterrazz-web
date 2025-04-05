@@ -12,10 +12,7 @@
         "start": "next start",
         "dev": "next dev",
         "test": "jest",
-        "lint": "npm run lint:type && npm run lint:code && npm run lint:style",
-        "lint:type": "tsc --noEmit",
-        "lint:code": "eslint .",
-        "lint:style": "prettier . --check",
+        "lint": "quality-check",
         "clean": "rm -rf .next && rm -rf node_modules"
     },
     "dependencies": {
@@ -35,9 +32,9 @@
         "tailwind-merge": "^2.4.0"
     },
     "devDependencies": {
-        "@jterrazz/package-typescript": "^1.7.0",
-        "@jterrazz/package-typescript-quality": "^1.4.0",
-        "@jterrazz/package-typescript-test": "^1.2.1",
+        "@jterrazz/quality": "^2.0.3",
+        "@jterrazz/test": "^2.0.3",
+        "@jterrazz/typescript": "^2.0.3",
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",
