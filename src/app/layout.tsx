@@ -18,6 +18,7 @@ import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the
 import './globals.css';
 
 import { CSPostHogProvider } from './providers.jsx';
+import { NotificationBanner } from '@/components/notification-banner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -159,9 +160,18 @@ export default function RootLayout({
             </Script>
             <CSPostHogProvider>
                 <body className={generatedClassName}>
-                    <PostHogPageView />
-                    <TheNavigationBar pages={pages} contacts={contacts} />
-                    <div className="flex-1 flex flex-col overflow-x-hidden w-full">{children}</div>
+                    <div className="sticky top-0 z-[50]">
+                        <NotificationBanner
+                            message="Download my new app from the App Store!"
+                            className="border-b border-white/10"
+                            href="/link/applications/fake-news-ios"
+                        />
+                        <TheNavigationBar pages={pages} contacts={contacts} />
+                    </div>
+                    <div className="flex-1 flex flex-col overflow-x-hidden w-full">
+                        <PostHogPageView />
+                        {children}
+                    </div>
                     <TheFooter />
                 </body>
             </CSPostHogProvider>

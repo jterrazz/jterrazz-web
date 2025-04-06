@@ -23,6 +23,11 @@ const nextConfig = {
                 permanent: false,
                 source: '/contact',
             },
+            {
+                destination: 'https://apps.apple.com/app/fake-news-trouvez-la-vérité/id6742116038',
+                permanent: false,
+                source: '/link/applications/fake-news-ios',
+            },
 
             // Legacy articles redirects
             {
