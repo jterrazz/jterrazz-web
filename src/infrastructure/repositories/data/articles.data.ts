@@ -170,6 +170,19 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         publicIndex: 12,
         published: true,
     },
+    {
+        filename: '2025-04-06 Fake News - Playfully Questioning Reality',
+        metadata: {
+            category: ArticleCategory.App,
+            dateModified: '2025-04-06',
+            datePublished: '2025-04-06',
+            description: 'A mobile app to playfully read and question news',
+            title: 'Fake News: Playfully Questioning Reality',
+        },
+        previewImage: DEFAULT_PREVIEW_IMAGE,
+        publicIndex: 13,
+        published: true,
+    },
 ];
 
 const processMarkdownContent = (content: string, filename: string): string => {
