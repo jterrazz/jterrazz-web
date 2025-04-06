@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 import { UserExperience } from '../../../domain/user.js';
 
-import { mergeClassName } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils.js';
 
 import { LinkButton } from '../../atoms/link-button.js';
 import { DotPulse, DotPulseColor } from '../../atoms/status/dot-pulse.js';
@@ -26,7 +26,7 @@ export const TimelineExperience: React.FC<TimelineEventProps> = ({
 }) => {
     const { activeIndex } = useTimelineContext();
     const isActive = activeIndex === index;
-    const generatedClassName = mergeClassName('flex flex-col', className);
+    const generatedClassName = cn('flex flex-col', className);
 
     return (
         <motion.div

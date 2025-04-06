@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { mergeClassName } from '../../lib/utils.js'; // Import the CSS file
+import { cn } from '../../lib/utils.js'; // Import the CSS file
 
 import styles from './highlighted-text.module.scss';
 
@@ -11,7 +11,7 @@ export const HighlightedText = ({
     children: React.ReactNode;
     className?: string;
 }) => {
-    const generatedClassName = mergeClassName(styles['highlight-text'], className);
+    const generatedClassName = cn(styles['highlight-text'], className);
 
     return <span className={generatedClassName}>{children}</span>;
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import Markdown from 'markdown-to-jsx';
 import { Highlight, themes } from 'prism-react-renderer';
 
-import { mergeClassName } from '../../lib/utils.js';
+import { cn } from '../../lib/utils.js';
 
 import { HeadingMain } from '../atoms/typography/heading-main.jsx';
 import { HeadingSection } from '../atoms/typography/heading-section.jsx';
@@ -40,7 +40,7 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
     className,
 }) => {
     const baseClassName = 'font-["Charter"] text-lg leading-relaxed text-gray-800';
-    const generatedClassName = mergeClassName(baseClassName, className);
+    const generatedClassName = cn(baseClassName, className);
 
     return (
         <article className={generatedClassName}>

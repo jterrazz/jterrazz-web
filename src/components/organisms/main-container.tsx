@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { mergeClassName } from '../../lib/utils.js';
+import { cn } from '../../lib/utils.js';
 
 type MainContainerProps = {
     size?: 'medium' | 'full';
@@ -13,7 +13,7 @@ export const MainContainer: React.FC<MainContainerProps> = ({
     size = 'medium',
     className,
 }) => {
-    const generatedClassName = mergeClassName(
+    const generatedClassName = cn(
         'w-full flex flex-col self-center justify-self-center px-5 my-6 md:my-20',
         className,
     );

@@ -10,7 +10,7 @@ import { UserContactType } from '../domain/user.js';
 
 import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-memory.repository.js';
 
-import { mergeClassName } from '../lib/utils.js';
+import { cn } from '../lib/utils.js';
 
 import { TheFooter } from '../components/organisms/the-footer.js';
 import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the-navigation-bar.js';
@@ -132,7 +132,7 @@ export default function RootLayout({
         },
     ];
 
-    const generatedClassName = mergeClassName(
+    const generatedClassName = cn(
         'min-h-screen flex flex-col text-storm-cloud-accent',
         inter.className,
     );

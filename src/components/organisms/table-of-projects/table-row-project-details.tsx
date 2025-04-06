@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ProjectComponent } from '../../../domain/project.js';
 
-import { mergeClassName } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils.js';
 
 import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge.js';
 import { HeadingSubSection } from '../../atoms/typography/heading-sub-section.js';
@@ -18,7 +18,7 @@ export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
     component,
     className,
 }) => {
-    const generalClassName = mergeClassName(
+    const generalClassName = cn(
         'my-2 border-black-and-white border mb-4 rounded-lg text-storm-cloud-accent overflow-hidden',
         className,
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { mergeClassName } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils.js';
 
 import styles from './dot-pulse.module.scss';
 
@@ -19,26 +19,26 @@ export type DotPulseProps = {
 };
 
 export const DotPulse: React.FC<DotPulseProps> = ({ color, className }) => {
-    let generatedClassName = mergeClassName(className, styles.pulse);
+    let generatedClassName = cn(className, styles.pulse);
 
     switch (color) {
         case DotPulseColor.Green:
-            generatedClassName = mergeClassName(generatedClassName, styles.green);
+            generatedClassName = cn(generatedClassName, styles.green);
             break;
         case DotPulseColor.Red:
-            generatedClassName = mergeClassName(generatedClassName, styles.red);
+            generatedClassName = cn(generatedClassName, styles.red);
             break;
         case DotPulseColor.Orange:
-            generatedClassName = mergeClassName(generatedClassName, styles.orange);
+            generatedClassName = cn(generatedClassName, styles.orange);
             break;
         case DotPulseColor.Black:
-            generatedClassName = mergeClassName(generatedClassName, styles.black);
+            generatedClassName = cn(generatedClassName, styles.black);
             break;
         case DotPulseColor.Gray:
-            generatedClassName = mergeClassName(generatedClassName, styles.gray);
+            generatedClassName = cn(generatedClassName, styles.gray);
             break;
         case DotPulseColor.Blue:
-            generatedClassName = mergeClassName(generatedClassName, styles.blue);
+            generatedClassName = cn(generatedClassName, styles.blue);
             break;
     }
 

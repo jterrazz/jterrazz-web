@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { mergeClassName } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils.js';
 
 export type HeadingSubSectionProps = {
     children: string;
@@ -17,13 +17,13 @@ export const HeadingSubSection: React.FC<HeadingSubSectionProps> = ({
 
     switch (size) {
         case 'small':
-            generatedClassName = mergeClassName(generatedClassName, 'text-sm font-bold mb-1');
+            generatedClassName = cn(generatedClassName, 'text-sm font-bold mb-1');
             break;
         case 'medium':
-            generatedClassName = mergeClassName(generatedClassName, 'text-md font-bold mb-2');
+            generatedClassName = cn(generatedClassName, 'text-md font-bold mb-2');
             break;
         case 'large':
-            generatedClassName = mergeClassName(generatedClassName, 'text-lg font-bold mb-4');
+            generatedClassName = cn(generatedClassName, 'text-lg font-bold mb-4');
             break;
     }
 

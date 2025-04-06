@@ -2,7 +2,7 @@
 import React, { Children, cloneElement, ReactElement, useEffect, useId, useState } from 'react';
 import { AnimatePresence, motion, Transition } from 'framer-motion';
 
-import { mergeClassName } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils.js';
 
 type AnimatedBackgroundProps = {
     children: ReactElement<{ 'data-id': string }>[] | ReactElement<{ 'data-id': string }>;
@@ -54,7 +54,7 @@ export default function AnimatedBackground({
             child,
             {
                 'aria-selected': activeId === id,
-                className: mergeClassName('relative inline-flex', child.props.className),
+                className: cn('relative inline-flex', child.props.className),
                 'data-checked': activeId === id ? 'true' : 'false',
                 key: index,
                 ...interactionProps,
@@ -64,7 +64,7 @@ export default function AnimatedBackground({
                     {activeId === id && (
                         <motion.div
                             layoutId={`background-${uniqueId}`}
-                            className={mergeClassName('absolute inset-0', className)}
+                            className={cn('absolute inset-0', className)}
                             transition={transition}
                             initial={{ opacity: defaultValue ? 1 : 0 }}
                             animate={{

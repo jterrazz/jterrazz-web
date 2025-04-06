@@ -10,7 +10,7 @@ import { UserContactType } from '../../domain/user.js';
 
 import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
 
-import { mergeClassName } from '../../lib/utils.js';
+import { cn } from '../../lib/utils.js';
 
 import { HighlightedText } from '../atoms/highlighted-text.js';
 
@@ -68,7 +68,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         </div>
     );
 
-    const generatedClassName = mergeClassName(
+    const generatedClassName = cn(
         'flex flex-col items-center justify-center py-12 text-storm-cloud-accent',
         className,
     );
@@ -87,7 +87,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         children: React.ReactNode;
         className?: string;
     }) => {
-        const generatedClassName = mergeClassName(
+        const generatedClassName = cn(
             'border border-black-and-white bg-white/70 backdrop-blur-sm p-12 py-6 rounded-3xl',
             className,
         );

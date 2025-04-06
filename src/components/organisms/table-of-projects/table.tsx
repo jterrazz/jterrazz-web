@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { mergeClassName } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils.js';
 
 type TableProps = {
     children: React.ReactNode;
@@ -8,7 +8,7 @@ type TableProps = {
 };
 
 export const Table: React.FC<TableProps> = ({ className, children }) => {
-    const generatedClassName = mergeClassName('flex flex-col select-none', className);
+    const generatedClassName = cn('flex flex-col select-none', className);
 
     return <ul className={generatedClassName}>{children}</ul>;
 };

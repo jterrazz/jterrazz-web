@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Project } from '../../../domain/project.js';
 
-import { mergeClassName } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils.js';
 
 import { Badge } from '../../atoms/status/badge.js';
 
@@ -37,7 +37,7 @@ const ProjectHeader: React.FC<TableRowProjectHeaderProps> = ({ project }) => {
 };
 
 export const TableRowProject: React.FC<TableRowProjectHeaderProps> = ({ project, className }) => {
-    const generatedClassName = mergeClassName('flex flex-col my-3', className);
+    const generatedClassName = cn('flex flex-col my-3', className);
 
     return (
         <li key={project.name} className={generatedClassName}>

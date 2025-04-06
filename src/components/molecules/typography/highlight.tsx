@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link.js';
 
-import { mergeClassName } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils.js';
 
 import { HeadingMain } from '../../atoms/typography/heading-main.js';
 
@@ -16,7 +16,7 @@ export type HighlightProps = {
 };
 
 export const Highlight: React.FC<HighlightProps> = ({ title, className, description, button }) => {
-    const generatedClassName = mergeClassName('mb-9 md:mb-20', className);
+    const generatedClassName = cn('mb-9 md:mb-20', className);
 
     return (
         <div className={generatedClassName}>

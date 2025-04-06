@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import { UserExperience } from '../../domain/user.js';
 
-import { mergeClassName } from '../../lib/utils.js';
+import { cn } from '../../lib/utils.js';
 
 import { HeadingSection } from '../atoms/typography/heading-section.js';
 import { ArticlePreviewCard } from '../molecules/cards/article-preview-card.jsx';
@@ -31,7 +31,7 @@ type HelloWorldTemplateProps = {
 const ParallaxImage: React.FC<{ className?: string }> = ({ className }) => {
     const { scrollYProgress } = useScroll();
     const yPercentage = useTransform(scrollYProgress, [0, 1], [0, -15]);
-    const generatedClassName = mergeClassName(
+    const generatedClassName = cn(
         'relative rounded-2xl overflow-hidden bg-black w-full',
         className,
     );

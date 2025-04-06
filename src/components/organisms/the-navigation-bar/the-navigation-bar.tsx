@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 
 import { UserContact } from '../../../domain/user.js';
 
-import { mergeClassName } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils.js';
 
 import AnimatedBackground from '../../molecules/cards/animated-backgrounds.jsx';
 
@@ -37,7 +37,7 @@ export const NavigationTabItem: React.FC<NavigationTabItemProps> = ({
     const selectedClassName = selected
         ? 'bg-storm-cloud-accent text-white'
         : 'text-storm-cloud-accent hover:bg-storm-cloud-accent/10';
-    const generatedClassName = mergeClassName(baseClassName, selectedClassName, className);
+    const generatedClassName = cn(baseClassName, selectedClassName, className);
 
     const handleClick = () => {
         if (newTab) {
@@ -77,7 +77,7 @@ export type NavigationTabsProps = {
 
 const NavigationTabs: React.FC<NavigationTabsProps> = ({ pages, className, onLinkClick }) => {
     const newTab = false;
-    const generatedClassName = mergeClassName(
+    const generatedClassName = cn(
         'flex flex-col md:flex-row justify-center items-center w-full',
         className,
     );
@@ -101,7 +101,7 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ pages, className, onLin
                     const selectedClassName = isSelected
                         ? 'bg-storm-cloud-accent text-white'
                         : 'text-storm-cloud-accent hover:bg-storm-cloud-accent/10';
-                    const generatedClassName = mergeClassName(baseClassName, selectedClassName);
+                    const generatedClassName = cn(baseClassName, selectedClassName);
 
                     return (
                         <div
@@ -150,7 +150,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
 
-    const generatedClassName = mergeClassName(
+    const generatedClassName = cn(
         'flex flex-wrap items-center font-medium px-5 py-4 w-full border-b sticky top-0 z-50 bg-white/90 backdrop-blur-xl',
         className,
     );

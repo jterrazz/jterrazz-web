@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { mergeClassName } from '../../lib/utils.js';
+import { cn } from '../../lib/utils.js';
 
 export type HorizontalContainerProps = {
     children: React.ReactNode;
@@ -11,7 +11,7 @@ export const HorizontalContainer: React.FC<HorizontalContainerProps> = ({
     children,
     className,
 }) => {
-    const generatedClassName = mergeClassName('flex flex-row space-x-12', className);
+    const generatedClassName = cn('flex flex-row space-x-12', className);
 
     return <ul className={generatedClassName}>{children}</ul>;
 };
