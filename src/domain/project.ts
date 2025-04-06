@@ -1,6 +1,6 @@
 export enum ProjectStatus {
-    Alive = 'alive',
-    InProgress = 'in progress',
+    Active = 'active',
+    Building = 'building',
     Concept = 'concept',
     Completed = 'completed',
     Archived = 'archived',

@@ -4,9 +4,9 @@ import { BadgeColor } from '../../atoms/status/badge.js';
 
 export const projectStatusToStatusBadgeState = (status: ProjectStatus): BadgeColor => {
     switch (status) {
-        case ProjectStatus.Alive:
+        case ProjectStatus.Active:
             return BadgeColor.Green;
-        case ProjectStatus.InProgress:
+        case ProjectStatus.Building:
             return BadgeColor.Blue;
         case ProjectStatus.Concept:
             return BadgeColor.Orange;

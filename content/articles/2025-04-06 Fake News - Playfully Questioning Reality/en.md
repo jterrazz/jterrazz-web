@@ -1,4 +1,4 @@
-![](assets/thumbnail.png)
+![](assets/thumbnail.jpg)
 
 # Fake News: Playfully Questioning Reality
 
