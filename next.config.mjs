@@ -23,8 +23,10 @@ const nextConfig = {
                 permanent: false,
                 source: '/contact',
             },
+
+            // Applications redirects
             {
-                destination: 'https://apps.apple.com/app/fake-news-trouvez-la-vérité/id6742116038',
+                destination: 'https://apps.apple.com/app/apple-store/id6742116038?pt=119085741&ct=Jterrazz%20Website&mt=8',
                 permanent: false,
                 source: '/link/applications/fake-news-ios',
             },

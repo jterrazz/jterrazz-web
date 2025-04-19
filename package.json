@@ -12,7 +12,7 @@
     "start": "next start",
     "dev": "next dev",
     "test": "jest",
-    "lint": "quality-check",
+    "lint": "code-standards",
     "clean": "rm -rf .next && rm -rf node_modules"
   },
   "dependencies": {
@@ -35,9 +35,9 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@jterrazz/quality": "^2.0.3",
+    "@jterrazz/quality": "^2.1.1",
     "@jterrazz/test": "^2.0.3",
-    "@jterrazz/typescript": "^2.0.3",
+    "@jterrazz/typescript": "^2.0.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
