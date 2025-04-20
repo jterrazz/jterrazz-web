@@ -7,7 +7,7 @@ type ArticleConfig = Omit<Article, 'content' | 'imageUrl'> & {
     previewImage?: string;
 };
 
-const CDN_BASE_URL = 'https://cdn.jsdelivr.net/gh/jterrazz/jterrazz-web@main/content/articles';
+const CDN_BASE_URL = 'https://github.com/jterrazz/jterrazz-web/raw/main/content/articles';
 const DEFAULT_PREVIEW_IMAGE_JPG = 'thumbnail.jpg';
 
 const ARTICLES_CONFIG: ArticleConfig[] = [
