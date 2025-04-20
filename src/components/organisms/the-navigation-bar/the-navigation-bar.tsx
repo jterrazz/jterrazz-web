@@ -17,20 +17,20 @@ import { NavigationPage } from './navigation-page.js';
 
 export type NavigationTabItemProps = {
     className?: string;
-    value: string;
     href: string;
     newTab?: boolean;
-    selected?: boolean;
     onClick?: () => void;
+    selected?: boolean;
+    value: string;
 };
 
 export const NavigationTabItem: React.FC<NavigationTabItemProps> = ({
     className = '',
-    value,
     href,
     newTab = false,
-    selected = false,
     onClick,
+    selected = false,
+    value,
 }) => {
     const baseClassName =
         'rounded-md px-3 py-2 text-sm w-full md:w-auto transition-colors duration-200 ease-in-out';
@@ -58,9 +58,9 @@ export const NavigationTabItem: React.FC<NavigationTabItemProps> = ({
                 content
             ) : (
                 <Link
+                    className="block w-full md:inline-block md:w-auto"
                     href={href}
                     onClick={onClick}
-                    className="block w-full md:inline-block md:w-auto"
                 >
                     {content}
                 </Link>
@@ -70,12 +70,12 @@ export const NavigationTabItem: React.FC<NavigationTabItemProps> = ({
 };
 
 export type NavigationTabsProps = {
-    pages: NavigationPage[];
     className?: string;
     onLinkClick?: () => void;
+    pages: NavigationPage[];
 };
 
-const NavigationTabs: React.FC<NavigationTabsProps> = ({ pages, className, onLinkClick }) => {
+const NavigationTabs: React.FC<NavigationTabsProps> = ({ className, onLinkClick, pages }) => {
     const newTab = false;
     const generatedClassName = cn(
         'flex flex-col md:flex-row justify-center items-center w-full',
@@ -87,12 +87,12 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ pages, className, onLin
         <div className={generatedClassName}>
             <AnimatedBackground
                 className="rounded-lg bg-zinc-200 dark:bg-zinc-600 p-2 md:p-1 flex flex-col md:flex-row items-center justify-center w-full md:w-auto"
+                enableHover
                 transition={{
                     bounce: 0.2,
                     duration: 0.3,
                     type: 'spring',
                 }}
-                enableHover
             >
                 {pages.map((page, index) => {
                     const isSelected = pathname === page.href;
@@ -105,25 +105,25 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ pages, className, onLin
 
                     return (
                         <div
-                            key={index}
-                            data-id={page.name}
                             className="w-full md:w-auto mb-2 md:mb-0 md:mx-1"
+                            data-id={page.name}
+                            key={index}
                         >
                             {newTab ? (
                                 <button
+                                    className={generatedClassName}
                                     onClick={() => {
                                         window.open(page.href, '_blank');
                                         onLinkClick?.();
                                     }}
-                                    className={generatedClassName}
                                 >
                                     {page.name}
                                 </button>
                             ) : (
                                 <Link
+                                    className="block w-full md:inline-block md:w-auto"
                                     href={page.href}
                                     onClick={onLinkClick}
-                                    className="block w-full md:inline-block md:w-auto"
                                 >
                                     <button className={generatedClassName}>{page.name}</button>
                                 </Link>
@@ -138,14 +138,14 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ pages, className, onLin
 
 type TheNavigationBarProps = {
     className?: string;
-    pages: NavigationPage[];
     contacts: UserContact[];
+    pages: NavigationPage[];
 };
 
 export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
+    className,
     contacts,
     pages,
-    className,
 }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
@@ -165,8 +165,8 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                 <div className="flex items-center">
                     <Link href="/" onClick={closeMenu}>
                         <motion.div
-                            initial={{ opacity: 0, x: -5 }}
                             animate={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, x: -5 }}
                             transition={{
                                 duration: 0.3,
                                 ease: 'easeOut',
@@ -177,28 +177,28 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             }}
                         >
                             <Image
-                                src="/assets/appicon-jterrazz.png"
                                 alt="Jterrazz"
-                                width={36}
-                                height={36}
                                 className="mr-3"
+                                height={36}
+                                src="/assets/icons/app-icon.jterrazz.png"
+                                width={36}
                             />
                         </motion.div>
                     </Link>
                     <div className="hidden md:block">
-                        <NavigationTabs pages={pages} onLinkClick={closeMenu} />
+                        <NavigationTabs onLinkClick={closeMenu} pages={pages} />
                     </div>
                 </div>
                 <div className="hidden md:flex items-center">
                     {contacts.map((contact, index) => (
                         <NavigationTabItem
-                            key={contact.name}
-                            value={contact.name}
-                            href={contact.url.toString()}
-                            newTab={true}
-                            selected={index === 0}
                             className="ml-1 flex-shrink-0"
+                            href={contact.url.toString()}
+                            key={contact.name}
+                            newTab={true}
                             onClick={closeMenu}
+                            selected={index === 0}
+                            value={contact.name}
                         />
                     ))}
                 </div>
@@ -207,16 +207,16 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                         <span className="mr-4 text-sm font-medium">{currentPage.name}</span>
                     )}
                     <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
                         aria-label="Toggle menu"
                         className="p-2"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
                         <AnimatePresence initial={false} mode="wait">
                             <motion.div
-                                key={isMenuOpen ? 'close' : 'open'}
-                                initial={{ opacity: 0, rotate: -180 }}
                                 animate={{ opacity: 1, rotate: 0 }}
                                 exit={{ opacity: 0, rotate: 180 }}
+                                initial={{ opacity: 0, rotate: -180 }}
+                                key={isMenuOpen ? 'close' : 'open'}
                                 transition={{ duration: 0.3 }}
                             >
                                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -229,37 +229,37 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
-                        initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
                         className="w-full md:hidden overflow-hidden"
+                        exit={{ height: 0, opacity: 0 }}
+                        initial={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
                     >
                         <motion.div
-                            initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ delay: 0.1, duration: 0.3 }}
                             className="border-t border-gray-200 dark:border-gray-700 mt-4 pt-4"
+                            exit={{ opacity: 0, y: -20 }}
+                            initial={{ opacity: 0, y: -20 }}
+                            transition={{ delay: 0.1, duration: 0.3 }}
                         >
-                            <NavigationTabs pages={pages} onLinkClick={closeMenu} />
+                            <NavigationTabs onLinkClick={closeMenu} pages={pages} />
                         </motion.div>
                         <motion.div
-                            initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ delay: 0.2, duration: 0.3 }}
                             className="border-t border-gray-200 dark:border-gray-700 mt-4 pt-4"
+                            exit={{ opacity: 0, y: -20 }}
+                            initial={{ opacity: 0, y: -20 }}
+                            transition={{ delay: 0.2, duration: 0.3 }}
                         >
                             <div className="flex flex-wrap mt-2">
                                 {contacts.map((contact, _index) => (
                                     <NavigationTabItem
-                                        key={contact.name}
-                                        value={contact.name}
-                                        href={contact.url.toString()}
-                                        newTab={true}
                                         className="mr-2 mb-2 flex-shrink-0"
+                                        href={contact.url.toString()}
+                                        key={contact.name}
+                                        newTab={true}
                                         onClick={closeMenu}
+                                        value={contact.name}
                                     />
                                 ))}
                             </div>

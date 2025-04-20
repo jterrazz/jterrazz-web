@@ -23,45 +23,45 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         {
             description: 'Web',
             href: 'https://jterrazz.com',
-            imageSrc: '/assets/appicon-jterrazz.png',
+            imageSrc: '/assets/icons/app-icon.jterrazz.png',
             title: 'Jterrazz',
         },
         {
             description: 'Mobile',
             href: 'https://jterrazz.com/link/applications/fake-news-ios',
-            imageSrc: '/assets/appicon-fake-news.png',
+            imageSrc: '/assets/icons/app-icon.fake-news.jpg', // TODO Use repository
             title: 'Fake News',
         },
     ];
 
     const Application = ({
+        description,
         href,
         imageSrc,
         title,
-        description,
     }: {
+        description: string;
         href: string;
         imageSrc: string;
         title: string;
-        description: string;
     }) => (
         <div className="flex items-center">
             <div className="rounded-2xl border border-black-and-white bg-white overflow-hidden">
-                <Link href={href} className="text-sm">
+                <Link className="text-sm" href={href}>
                     <Image
-                        src={imageSrc}
                         alt="Jterrazz.com"
-                        width="76"
                         height="76"
                         loading="lazy"
+                        src={imageSrc}
+                        width="76"
                     />
                 </Link>
             </div>
             <div className="ml-3">
-                <Link href={href} className="text-sm">
+                <Link className="text-sm" href={href}>
                     <h5 className="text-sm font-extrabold tracking-wide">{title}</h5>
                 </Link>
-                <Link href={href} className="text-sm">
+                <Link className="text-sm" href={href}>
                     <div className="text-xs">{description}</div>
                 </Link>
             </div>
@@ -92,7 +92,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
             className,
         );
         return (
-            <motion.div style={{ y }} className="z-2">
+            <motion.div className="z-2" style={{ y }}>
                 <div className={generatedClassName}>{children}</div>
             </motion.div>
         );
@@ -139,14 +139,14 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
             </div>
 
             <Image
-                src="/assets/image-florence.webp"
                 alt="Florence landscape"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
                 className="z-1 rounded-3xl"
-                width={1200}
                 height={800}
                 loading="lazy"
                 placeholder="blur"
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
+                src="/assets/image-florence.webp"
+                width={1200}
             />
 
             <div className="flex flex-col space-y-6 md:hidden mt-12">
