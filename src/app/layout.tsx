@@ -2,7 +2,6 @@ import React from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import { Inter } from 'next/font/google';
 
 import { UserContactType } from '../domain/user.js';
@@ -11,13 +10,13 @@ import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-m
 
 import { cn } from '../lib/utils.js';
 
+import { NotificationBanner } from '../components/notification-banner.jsx';
 import { TheFooter } from '../components/organisms/the-footer.js';
 import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the-navigation-bar.js';
 
 import './globals.css';
 
 import { CSPostHogProvider } from './providers.jsx';
-import { NotificationBanner } from '@/components/notification-banner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -137,9 +136,9 @@ export default function RootLayout({
         inter.className,
     );
 
-    const PostHogPageView = dynamic(() => import('./posthog-page-view.jsx'), {
-        ssr: false,
-    });
+    // const PostHogPageView = dynamic(() => import('./posthog-page-view.jsx'), {
+    //     ssr: false,
+    // });
 
     return (
         <html lang="en">
@@ -156,7 +155,7 @@ export default function RootLayout({
                         <TheNavigationBar contacts={contacts} pages={pages} />
                     </div>
                     <div className="flex-1 flex flex-col overflow-x-hidden w-full">
-                        <PostHogPageView />
+                        {/* <PostHogPageView /> */}
                         {children}
                     </div>
                     <TheFooter />

@@ -5,9 +5,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import Link from 'next/link';
 
-import { cn } from '@/lib/utils';
+import { cn } from '../lib/utils.js';
 
-import { Alert } from '@/components/ui/alert';
+import { Alert } from '../components/ui/alert.jsx';
 
 interface NotificationBannerProps {
     className?: string;

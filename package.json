@@ -2,7 +2,7 @@
   "name": "jterrazz-web",
   "description": "A personal portfolio website showcasing my development projects, photography, and articles.",
   "version": "1.0.0",
-  "author": "Jean-Baptiste Terrazzoni <jterrazzoni@gmail.com>",
+  "author": "Jean-Baptiste Terrazzoni <contact@jterrazz.com>",
   "type": "module",
   "engines": {
     "node": "22.x.x"
@@ -24,7 +24,7 @@
     "framer-motion": "^11.18.2",
     "lucide-react": "^0.487.0",
     "markdown-to-jsx": "^7.4.7",
-    "next": "14.2.3",
+    "next": "15.3.1",
     "posthog-js": "^1.165.0",
     "prism-react-renderer": "^2.4.1",
     "react": "^18",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@jterrazz/quality": "^2.2.6",
     "@jterrazz/test": "^2.0.3",
-    "@jterrazz/typescript": "^2.0.5",
+    "@jterrazz/typescript": "^2.4.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

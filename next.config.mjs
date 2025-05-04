@@ -70,6 +70,9 @@ const nextConfig = {
             },
         ];
     },
+    typescript: {
+        tsconfigPath: './node_modules/@jterrazz/typescript/tsconfig/next.json',
+    },
     webpack: (config) => {
         config.resolve.extensionAlias = {
             '.js': ['.ts', '.js', '.tsx', '.jsx'],
