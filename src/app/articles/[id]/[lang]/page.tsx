@@ -9,32 +9,9 @@ import { FeatureInMemoryRepository } from '../../../../infrastructure/repositori
 
 import { ArticleTemplate } from '../../../../components/templates/article.template.js';
 
-export async function generateStaticParams() {
-    const articlesRepository = new ArticleInMemoryRepository();
-    const articles = await articlesRepository.getArticles();
-
-    return articles.flatMap((article) =>
-        Object.keys(article.content).map((lang) => ({
-            id: String(article.publicIndex),
-            lang: lang as ArticleLanguage,
-        })),
-    );
-}
-
 type ArticlePageProps = {
     params: { id: string; lang: ArticleLanguage };
 };
-
-export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
-    const { id, lang } = params;
-    const articlesRepository = new ArticleInMemoryRepository();
-    const article = await articlesRepository.getArticleByIndex(id, lang);
-
-    return {
-        description: article?.metadata.description,
-        title: article?.metadata.title + ' ~ Jterrazz',
-    };
-}
 
 export default async function ArticlePage({ params: { id, lang } }: ArticlePageProps) {
     const featureRepository = new FeatureInMemoryRepository();
@@ -50,15 +27,38 @@ export default async function ArticlePage({ params: { id, lang } }: ArticlePageP
 
     return (
         <ArticleTemplate
-            features={features}
+            articleId={id}
             articles={articles.filter((a) => a.publicIndex !== article.publicIndex)}
+            availableLanguages={Object.keys(article.content) as ArticleLanguage[]}
             contentInMarkdown={article.content[lang]!}
+            currentLanguage={lang}
             dateModified={article.metadata.dateModified}
             datePublished={article.metadata.datePublished}
+            features={features}
             title={article.metadata.title}
-            availableLanguages={Object.keys(article.content) as ArticleLanguage[]}
-            currentLanguage={lang}
-            articleId={id}
         />
     );
-} 
+}
+
+export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+    const { id, lang } = params;
+    const articlesRepository = new ArticleInMemoryRepository();
+    const article = await articlesRepository.getArticleByIndex(id, lang);
+
+    return {
+        description: article?.metadata.description,
+        title: article?.metadata.title + ' ~ Jterrazz',
+    };
+}
+
+export async function generateStaticParams() {
+    const articlesRepository = new ArticleInMemoryRepository();
+    const articles = await articlesRepository.getArticles();
+
+    return articles.flatMap((article) =>
+        Object.keys(article.content).map((lang) => ({
+            id: String(article.publicIndex),
+            lang: lang as ArticleLanguage,
+        })),
+    );
+}

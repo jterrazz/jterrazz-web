@@ -6,16 +6,16 @@ import { cn } from '../../../lib/utils.js';
 import { HeadingMain } from '../../atoms/typography/heading-main.js';
 
 export type HighlightProps = {
-    title: string;
-    description: string;
-    className?: string;
     button: {
-        text: string;
         href: string;
+        text: string;
     };
+    className?: string;
+    description: string;
+    title: string;
 };
 
-export const Highlight: React.FC<HighlightProps> = ({ title, className, description, button }) => {
+export const Highlight: React.FC<HighlightProps> = ({ button, className, description, title }) => {
     const generatedClassName = cn('mb-9 md:mb-20', className);
 
     return (

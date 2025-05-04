@@ -1,3 +1,3 @@
-import { prettierConfig } from '@jterrazz/package-typescript-quality';
+import { prettierConfig } from '@jterrazz/quality';
 
 export default prettierConfig;

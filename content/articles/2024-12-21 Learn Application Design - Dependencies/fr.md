@@ -7,16 +7,16 @@ Les dépendances sont au cœur de l'architecture logicielle. Elles déterminent 
 **Navigation 📚**
 
 1. [**Introduction: Le Design Applicatif, L'Art De Construire Des Logiciels Durables Et Évolutifs**](https://www.jterrazz.com/articles/9)
-	 *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
+   _Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture._
 
 2. [**Chapitre 1: Le concept de dépendances**](https://www.jterrazz.com/articles/10)
-	 *Explorer les relations entre composants, l'importance des dépendances, et les principes comme SOLID.*
+   _Explorer les relations entre composants, l'importance des dépendances, et les principes comme SOLID._
 
 3. [**Chapitre 2: Comprendre Les Architectures Métier Et Technique**](https://www.jterrazz.com/articles/11)
-	 *Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs.*
+   _Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs._
 
 4. [**Chapitre 3: La Clean Architecture**](https://www.jterrazz.com/articles/12)
-	 *Découvrir une approche centrée sur le métier avec une structuration claire en couches.*
+   _Découvrir une approche centrée sur le métier avec une structuration claire en couches._
 
 ---
 
@@ -50,9 +50,9 @@ Martin Fowler propose plusieurs concepts pour gérer ces dépendances grâce à 
 ### Catégorie 1: Les Doublures Pour Les Retours (`DENOUEMENT`)
 
 1. **Dummy**:<br/>
-	 Un objet qui n'a aucune importance dans le test. On l'utilise simplement pour satisfaire une exigence.<br/>
+   Un objet qui n'a aucune importance dans le test. On l'utilise simplement pour satisfaire une exigence.<br/>
 
-	 *Exemple:*
+   _Exemple:_
 
 ```ts
 function greet(user: User) {
@@ -62,19 +62,19 @@ greet(new DummyUser());
 ```
 
 2. **Fake**:
-	 Un objet avec un faux comportement qui n'est pas utilisé en production.<br/>
+   Un objet avec un faux comportement qui n'est pas utilisé en production.<br/>
 
-	 *Exemple: une base de données en mémoire pour des tests unitaires.*
+   _Exemple: une base de données en mémoire pour des tests unitaires._
 
 3. **Stub**:
-	 Un objet qui retourne des valeurs prédéfinies pour permettre au test de fonctionner.<br/>
+   Un objet qui retourne des valeurs prédéfinies pour permettre au test de fonctionner.<br/>
 
-	 *Exemple:*
+   _Exemple:_
 
 ```ts
 class StubUserService {
   getUser() {
-    return { id: 1, name: "Test User" };
+    return { id: 1, name: 'Test User' };
   }
 }
 const userService = new StubUserService();
@@ -83,8 +83,8 @@ const userService = new StubUserService();
 ### Catégorie 2: Les Doublures Pour la `COLLABORATION`
 
 1. **Spy**:
-	 Les espions enregistrent les interactions pour les vérifier après le test.<br/>
-	 *Exemple:*
+   Les espions enregistrent les interactions pour les vérifier après le test.<br/>
+   _Exemple:_
 
 ```ts
 class SpyLogger {
@@ -96,12 +96,12 @@ class SpyLogger {
 ```
 
 2. **Mock**:
-	 Un mock vérifie qu'il a été appelé d'une manière spécifique.<br/>
-	 *Exemple:*
+   Un mock vérifie qu'il a été appelé d'une manière spécifique.<br/>
+   _Exemple:_
 
 ```ts
 const mockLogger = { log: jest.fn() };
-mockLogger.log("Test log");
+mockLogger.log('Test log');
 ```
 
 ---
@@ -116,25 +116,25 @@ Le principe d'inversion des dépendances (le "D" de **SOLID**) préconise que le
 
 Une classe ou un module doit avoir une seule responsabilité, c'est-à-dire une seule raison de changer. Cela permet de garder le code simple et clair.
 
-*Exemple: Une classe ne devrait pas à la fois gérer les calculs métier et écrire dans une base de données.*
+_Exemple: Une classe ne devrait pas à la fois gérer les calculs métier et écrire dans une base de données._
 
 2. **O - Open/Closed Principle (OCP)**:
 
 Les entités logicielles (classes, modules, fonctions) doivent être **ouvertes à l'extension** mais **fermées à la modification**. Cela signifie que vous pouvez ajouter de nouvelles fonctionnalités sans modifier le code existant.
 
-*Exemple: Utiliser des interfaces ou des classes abstraites pour ajouter de nouvelles implémentations sans toucher au reste du code.*
+_Exemple: Utiliser des interfaces ou des classes abstraites pour ajouter de nouvelles implémentations sans toucher au reste du code._
 
 3. **L - Liskov Substitution Principle (LSP)**:
 
 Les classes dérivées doivent pouvoir être utilisées à la place des classes parentes sans modifier le comportement attendu. Ce principe garantit que l'héritage reste logique.
 
-*Exemple: Si vous remplacez une classe "Rectangle" par une classe "Carré", votre programme ne devrait pas planter.*
+_Exemple: Si vous remplacez une classe "Rectangle" par une classe "Carré", votre programme ne devrait pas planter._
 
 4. **I - Interface Segregation Principle (ISP)**:
 
 Les clients ne doivent pas être obligés de dépendre d'interfaces qu'ils n'utilisent pas. Il vaut mieux créer plusieurs petites interfaces spécifiques plutôt qu'une grosse interface générale.
 
-*Exemple: Au lieu d'une interface `Animal` avec des méthodes `voler()` et `nager()`, vous pourriez avoir des interfaces séparées `Oiseau` et `Poisson`.*
+_Exemple: Au lieu d'une interface `Animal` avec des méthodes `voler()` et `nager()`, vous pourriez avoir des interfaces séparées `Oiseau` et `Poisson`._
 
 5. **D - Dependency Inversion Principle (DIP)**:
 
@@ -170,7 +170,8 @@ class HelloService {
 class HelloService {
   private db: Database;
 
-  constructor(db: Database) { // Injection de dépendance
+  constructor(db: Database) {
+    // Injection de dépendance
     this.db = db;
   }
 

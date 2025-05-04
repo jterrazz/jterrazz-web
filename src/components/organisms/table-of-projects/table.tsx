@@ -7,7 +7,7 @@ type TableProps = {
     className?: string;
 };
 
-export const Table: React.FC<TableProps> = ({ className, children }) => {
+export const Table: React.FC<TableProps> = ({ children, className }) => {
     const generatedClassName = cn('flex flex-col select-none', className);
 
     return <ul className={generatedClassName}>{children}</ul>;

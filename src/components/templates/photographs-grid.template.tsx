@@ -12,14 +12,14 @@ import { Highlight } from '../molecules/typography/highlight.js';
 import { MainContainer } from '../organisms/main-container.jsx';
 
 export type PhotographsGridTemplateProps = {
-    highlightTitle: string;
     highlightDescription: string;
+    highlightTitle: string;
     photographs: Photograph[];
 };
 
 export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = ({
-    highlightTitle,
     highlightDescription,
+    highlightTitle,
     photographs,
 }) => {
     const images = photographs.map((photograph) => ({
@@ -34,8 +34,8 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
 
     return (
         <MainContainer size="full">
-            <Highlight title={highlightTitle} description={highlightDescription} button={button} />
-            <ImageGallery imagesInfoArray={images} columnCount={3} gapSize={20} />
+            <Highlight button={button} description={highlightDescription} title={highlightTitle} />
+            <ImageGallery columnCount={3} gapSize={20} imagesInfoArray={images} />
         </MainContainer>
     );
 };

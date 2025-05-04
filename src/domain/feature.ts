@@ -5,14 +5,14 @@ export enum FeatureState {
 }
 
 export type Feature = {
-    id: number;
     description: string;
+    id: number;
     state: FeatureState;
     title: string;
     url: URL;
 };
 
 export interface FeatureRepository {
-    getFeatures(): Feature[];
     getFeatureById(id: number): Feature;
+    getFeatures(): Feature[];
 }

@@ -57,7 +57,7 @@ In this article, we'll focus on the backward resolver. It's like solving a myste
 ```python
 class Node:
   def __init__(self):
-    self.children = [] # In A => B, => is child of B 
+    self.children = [] # In A => B, => is child of B
     self.visited = False # When recursively parsing the Graph, it avoids infinite loop
     self.state = False # Saves if the result is True
 ```
@@ -140,13 +140,13 @@ We create relationships between nodes, building our logical network.
 def resolve(nodeX):
   if nodeX is True:
     return True
-  
+
   for child in nodeX.children:
     res = resolve(child)
     if res is True:
       # Only need on of the chlid to be True for deducting the current is True
       return True
-    
+
   if Node is Connector: # AND OR XOR IMPLY
     op_results = []
     for op in nodeX.operands:

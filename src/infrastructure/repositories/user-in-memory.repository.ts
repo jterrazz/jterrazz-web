@@ -11,9 +11,9 @@ import { userExperiencesData } from './data/user-experiences.data.js';
 import { userProfileData } from './data/user-profile.data.js';
 
 export class UserInMemoryRepository implements UserRepository {
-    private readonly userProfileData: UserProfile;
     private readonly userContactsData: Record<UserContactType, UserContact>;
     private readonly userExperiencesData: UserExperience[];
+    private readonly userProfileData: UserProfile;
 
     constructor() {
         this.userProfileData = userProfileData;
@@ -21,19 +21,19 @@ export class UserInMemoryRepository implements UserRepository {
         this.userExperiencesData = userExperiencesData;
     }
 
-    getProfile(): UserProfile {
-        return this.userProfileData;
+    getContact(contactType: UserContactType): UserContact {
+        return this.userContactsData[contactType];
     }
 
     getContacts(): UserContact[] {
         return Object.values(this.userContactsData);
     }
 
-    getContact(contactType: UserContactType): UserContact {
-        return this.userContactsData[contactType];
-    }
-
     getExperiences(): UserExperience[] {
         return this.userExperiencesData;
+    }
+
+    getProfile(): UserProfile {
+        return this.userProfileData;
     }
 }

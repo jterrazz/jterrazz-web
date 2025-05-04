@@ -31,10 +31,10 @@ Koa might be small, but it packs a punch when it comes to building web servers:
 First things first, let's lay the groundwork for our project. Make sure you have Node.js and npm installed on your machine.
 
 1. **Initialize Your Project**:
-	 Run the `npm init` command to create your project's `package.json` file. This is like setting up your project's ID card–it contains all the essential information about your application.
+   Run the `npm init` command to create your project's `package.json` file. This is like setting up your project's ID card–it contains all the essential information about your application.
 
 2. **Install Necessary Packages**:
-	 Once `npm init` is complete, it's time to bring in the reinforcements. We'll install our core packages along with their TypeScript type definitions:
+   Once `npm init` is complete, it's time to bring in the reinforcements. We'll install our core packages along with their TypeScript type definitions:
 
 ```sh
 # Install typescript related packages
@@ -137,7 +137,7 @@ Think of middleware as a series of checkpoints that a request goes through befor
 ```js
 function addMoneyMiddleware(ctx) {
   if (!ctx.money) {
-    ctx.money = 1
+    ctx.money = 1;
   } else {
     ctx.money += 1;
   }
@@ -152,9 +152,8 @@ app.use(addMoneyMiddleware); // ctx.money = 2
 router
   // Using it only on /rich route
   .use(addMoneyMiddleware) // ctx.money = 3
-  .get('/rich', (ctx) => ctx.body = ctx.money) // Return 3 in the response body
-router
-  .get('/not-rich', (ctx) => ctx.body = ctx.money) // Return 2 in the response body
+  .get('/rich', (ctx) => (ctx.body = ctx.money)); // Return 3 in the response body
+router.get('/not-rich', (ctx) => (ctx.body = ctx.money)); // Return 2 in the response body
 ```
 
 In this example, we're using Koa to handle a GET request to the home route ('/'). The request passes through our middleware before reaching the `helloWorldController`, which then sends the response back to the user.
@@ -175,18 +174,18 @@ import Koa from 'koa';
 const app = new Koa();
 
 app.use(async (ctx) => {
-    // Request data
-    console.log(ctx.request.url);
-    console.log(ctx.request.query);
-    console.log(ctx.request.body); // Requires body-parser middleware
+  // Request data
+  console.log(ctx.request.url);
+  console.log(ctx.request.query);
+  console.log(ctx.request.body); // Requires body-parser middleware
 
-    // Response helpers
-    ctx.body = 'Hello, World!';
-    ctx.status = 200;
-    ctx.type = 'text/plain';
+  // Response helpers
+  ctx.body = 'Hello, World!';
+  ctx.status = 200;
+  ctx.type = 'text/plain';
 
-    // State management
-    ctx.state.user = { id: 1, name: 'John Doe' };
+  // State management
+  ctx.state.user = { id: 1, name: 'John Doe' };
 });
 
 app.listen(3000);
@@ -256,16 +255,16 @@ const app = new Koa();
 
 // Error handling middleware
 app.use(async (ctx, next) => {
-    try {
-        await next();
-    } catch (err) {
-        ctx.status = err.status || 500;
-        ctx.body = {
-            message: err.message,
-            stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
-        };
-        ctx.app.emit('error', err, ctx);
-    }
+  try {
+    await next();
+  } catch (err) {
+    ctx.status = err.status || 500;
+    ctx.body = {
+      message: err.message,
+      stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+    };
+    ctx.app.emit('error', err, ctx);
+  }
 });
 
 // Logging middleware
@@ -273,7 +272,7 @@ app.use(logger());
 
 // Error event listener
 app.on('error', (err, ctx) => {
-    console.error('Server Error:', err, ctx);
+  console.error('Server Error:', err, ctx);
 });
 
 // Your routes and other middleware here

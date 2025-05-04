@@ -11,8 +11,8 @@ import { projectStatusToStatusBadgeState } from './table-row-project.view-model.
 import { TableRowProjectComponent } from './table-row-project-component.js';
 
 export type TableRowProjectHeaderProps = {
-    project: Project;
     className?: string;
+    project: Project;
 };
 
 const ProjectHeader: React.FC<TableRowProjectHeaderProps> = ({ project }) => {
@@ -29,18 +29,18 @@ const ProjectHeader: React.FC<TableRowProjectHeaderProps> = ({ project }) => {
 
             <Badge
                 className="ml-2"
-                value={project.status}
                 color={projectStatusToStatusBadgeState(project.status)}
+                value={project.status}
             />
         </div>
     );
 };
 
-export const TableRowProject: React.FC<TableRowProjectHeaderProps> = ({ project, className }) => {
+export const TableRowProject: React.FC<TableRowProjectHeaderProps> = ({ className, project }) => {
     const generatedClassName = cn('flex flex-col my-3', className);
 
     return (
-        <li key={project.name} className={generatedClassName}>
+        <li className={generatedClassName} key={project.name}>
             <ProjectHeader project={project} />
 
             <p className="text-xs text-storm-cloud mt-2 italic">{project.description}</p>
@@ -50,7 +50,7 @@ export const TableRowProject: React.FC<TableRowProjectHeaderProps> = ({ project,
                     {project.components
                         ?.filter((component) => component.status !== 'archived') // TODO Move to view model
                         .map((component) => (
-                            <TableRowProjectComponent key={component.name} component={component} />
+                            <TableRowProjectComponent component={component} key={component.name} />
                         ))}
                 </div>
             )}

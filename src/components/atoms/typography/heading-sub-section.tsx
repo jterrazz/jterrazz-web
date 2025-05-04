@@ -4,26 +4,26 @@ import { cn } from '../../../lib/utils.js';
 
 export type HeadingSubSectionProps = {
     children: string;
-    size?: 'small' | 'medium' | 'large';
     className?: string;
+    size?: 'large' | 'medium' | 'small';
 };
 
 export const HeadingSubSection: React.FC<HeadingSubSectionProps> = ({
     children,
-    size = 'medium',
     className = '',
+    size = 'medium',
 }) => {
     let generatedClassName = className;
 
     switch (size) {
-        case 'small':
-            generatedClassName = cn(generatedClassName, 'text-sm font-bold mb-1');
+        case 'large':
+            generatedClassName = cn(generatedClassName, 'text-lg font-bold mb-4');
             break;
         case 'medium':
             generatedClassName = cn(generatedClassName, 'text-md font-bold mb-2');
             break;
-        case 'large':
-            generatedClassName = cn(generatedClassName, 'text-lg font-bold mb-4');
+        case 'small':
+            generatedClassName = cn(generatedClassName, 'text-sm font-bold mb-1');
             break;
     }
 

@@ -13,16 +13,16 @@ export const userContactsData: Record<UserContactType, UserContact> = {
         name: 'LinkedIn',
         url: new URL('https://www.linkedin.com/in/jterrazz'),
     },
-    [UserContactType.X]: {
-        name: 'X',
-        url: new URL('https://twitter.com/j_terrazz'),
+    [UserContactType.Medium]: {
+        name: 'Medium',
+        url: new URL('https://medium.com/@jterrazz'),
     },
     [UserContactType.Pexels]: {
         name: 'Pexels',
         url: new URL('https://www.pexels.com/@jterrazz'),
     },
-    [UserContactType.Medium]: {
-        name: 'Medium',
-        url: new URL('https://medium.com/@jterrazz'),
+    [UserContactType.X]: {
+        name: 'X',
+        url: new URL('https://twitter.com/j_terrazz'),
     },
 };

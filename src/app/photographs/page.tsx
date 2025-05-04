@@ -18,9 +18,9 @@ export default function PhotographsPage() {
 
     return (
         <PhotographsGridTemplate
-            photographs={photographs}
-            highlightTitle={highlightTitle}
             highlightDescription={highlightDescription}
+            highlightTitle={highlightTitle}
+            photographs={photographs}
         />
     );
 }

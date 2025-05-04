@@ -1,6 +1,6 @@
 export enum ArticleCategory {
-    Code = 'code',
     App = 'app',
+    Code = 'code',
     World = 'world',
 }
 
@@ -32,9 +32,11 @@ export enum ArticleCategory {
 //     };
 // }
 
-export type ArticleLanguage = 'en' | 'fr';
-
 export interface Article {
+    content: {
+        [key in ArticleLanguage]?: string;
+    };
+    imageUrl: string;
     metadata: {
         category: ArticleCategory;
         dateModified: string;
@@ -42,13 +44,11 @@ export interface Article {
         description: string;
         title: string;
     };
-    content: {
-        [key in ArticleLanguage]?: string;
-    };
-    imageUrl: string;
     publicIndex: number;
     published: boolean;
 }
+
+export type ArticleLanguage = 'en' | 'fr';
 
 export interface ArticleRepository {
     getArticleByIndex(index: string, language?: ArticleLanguage): Promise<Article | undefined>;

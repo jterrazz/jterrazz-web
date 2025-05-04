@@ -1,17 +1,15 @@
 'use client';
 
 import React from 'react';
-import { useScroll } from 'framer-motion';
 
 import { TimelineContext } from './timeline-context.js';
 
 type TimelineProps = {
-    className?: string;
     children?: React.ReactNode;
+    className?: string;
 };
 
-export const Timeline: React.FC<TimelineProps> = ({ className, children }) => {
-    const { scrollY } = useScroll();
+export const Timeline: React.FC<TimelineProps> = ({ children, className }) => {
     const [activeIndex, setActiveIndex] = React.useState(0);
     const timelineRef = React.useRef<HTMLDivElement>(null);
 
@@ -57,7 +55,7 @@ export const Timeline: React.FC<TimelineProps> = ({ className, children }) => {
 
     return (
         <TimelineContext.Provider value={{ activeIndex }}>
-            <div ref={timelineRef} className={className}>
+            <div className={className} ref={timelineRef}>
                 {children}
             </div>
         </TimelineContext.Provider>

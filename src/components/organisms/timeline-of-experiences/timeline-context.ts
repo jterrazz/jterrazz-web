@@ -6,4 +6,4 @@ type TimelineContextType = {
 
 export const TimelineContext = createContext<TimelineContextType>({ activeIndex: 0 });
 
-export const useTimelineContext = () => useContext(TimelineContext); 
+export const useTimelineContext = () => useContext(TimelineContext);

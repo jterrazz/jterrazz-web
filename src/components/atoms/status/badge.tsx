@@ -16,23 +16,26 @@ export enum DotPulseSize {
 }
 
 export type StatusBadgeProps = {
-    value: string;
     className?: string;
     color: BadgeColor;
-    size?: DotPulseSize;
     filled?: boolean;
+    size?: DotPulseSize;
+    value: string;
 };
 
 export const Badge: React.FC<StatusBadgeProps> = ({
-    value,
     className,
     color,
-    size,
     filled = true,
+    size,
+    value,
 }) => {
     let generatedClassName = cn('rounded-md', className);
 
     switch (color) {
+        case BadgeColor.Blue:
+            generatedClassName = cn(generatedClassName, 'blue-grey blue-grey-accent font-medium');
+            break;
         case BadgeColor.Green:
             generatedClassName = cn(
                 generatedClassName,
@@ -40,22 +43,16 @@ export const Badge: React.FC<StatusBadgeProps> = ({
                 filled ? ' bg-olive-note text-olive-note-accent' : ' text-olive-note',
             );
             break;
-        case BadgeColor.Yellow:
-            generatedClassName = cn(
-                generatedClassName,
-                'bg-vanilla-punch text-vanilla-punch-accent',
-            );
-            break;
-        case BadgeColor.Blue:
-            generatedClassName = cn(
-                generatedClassName,
-                'blue-grey blue-grey-accent font-medium',
-            );
-            break;
         case BadgeColor.Orange:
             generatedClassName = cn(
                 generatedClassName,
                 'bg-apricot-sunset text-apricot-sunset-accent',
+            );
+            break;
+        case BadgeColor.Yellow:
+            generatedClassName = cn(
+                generatedClassName,
+                'bg-vanilla-punch text-vanilla-punch-accent',
             );
             break;
         case BadgeColor.Gray:

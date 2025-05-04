@@ -30,10 +30,10 @@ export default async function ApplicationsPage() {
 
     return (
         <ApplicationsListTemplate
-            projects={projects}
             features={features}
-            highlightTitle={highlightTitle}
             highlightDescription={highlightDescription}
+            highlightTitle={highlightTitle}
+            projects={projects}
         />
     );
 }

@@ -16,15 +16,15 @@ import { Timeline } from '../organisms/timeline-of-experiences/timeline.js';
 import { TimelineExperience } from '../organisms/timeline-of-experiences/timeline-experience.js';
 
 interface Article {
-    title: string;
     description: string;
-    imageUrl: string;
     id: string;
+    imageUrl: string;
+    title: string;
 }
 
 type HelloWorldTemplateProps = {
-    experiences: UserExperience[];
     description: string;
+    experiences: UserExperience[];
     topArticles: Article[];
 };
 
@@ -39,19 +39,19 @@ const ParallaxImage: React.FC<{ className?: string }> = ({ className }) => {
     return (
         <div className={generatedClassName} style={{ aspectRatio: '16 / 9' }}>
             <motion.div
+                className="absolute inset-0"
                 style={{
                     height: '115%',
                     width: '100%',
                     y: useTransform(yPercentage, (value) => `${value}%`),
                 }}
-                className="absolute inset-0"
             >
                 <Image
-                    src="/assets/image-computer-table.webp"
                     alt="Computer workspace"
+                    className="blur-[10px]"
                     layout="fill"
                     objectFit="cover"
-                    className="blur-[10px]"
+                    src="/assets/image-computer-table.webp"
                 />
             </motion.div>
         </div>
@@ -59,8 +59,8 @@ const ParallaxImage: React.FC<{ className?: string }> = ({ className }) => {
 };
 
 export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
-    experiences,
     description,
+    experiences,
     topArticles,
 }) => {
     const { scrollYProgress } = useScroll();
@@ -74,7 +74,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
 
     return (
         <MainContainer>
-            <Highlight title="Hello, World!" description={description} button={button} />
+            <Highlight button={button} description={description} title="Hello, World!" />
             <div className="relative mt-2 mb-12 md:mb-20 hidden md:block">
                 <ParallaxImage className="z-0" />
                 <motion.div
@@ -99,11 +99,11 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
             <div className="flex flex-col items-center">
                 <motion.div style={{ rotate, scale }}>
                     <Image
-                        src="/assets/icon-clock.png"
                         alt="Clock icon"
-                        width={42}
-                        height={42}
                         className="object-center"
+                        height={42}
+                        src="/assets/icon-clock.png"
+                        width={42}
                     />
                 </motion.div>
                 <HeadingSection className="mt-3">Timeline</HeadingSection>
@@ -111,9 +111,9 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
             <Timeline className="mt-2 md:mt-12">
                 {experiences.map((experience, index) => (
                     <TimelineExperience
-                        key={experience.title}
                         experience={experience}
                         index={index}
+                        key={experience.title}
                     />
                 ))}
             </Timeline>

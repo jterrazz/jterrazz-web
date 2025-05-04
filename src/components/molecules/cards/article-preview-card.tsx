@@ -4,21 +4,21 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 interface ArticlePreviewProps {
-    title: string;
     description: string;
+    id: string;
     imageUrl: string;
     position: number;
+    title: string;
     total: number;
-    id: string;
 }
 
 export const ArticlePreviewCard = ({
-    title,
     description,
+    id,
     imageUrl,
     position,
+    title,
     total,
-    id,
 }: ArticlePreviewProps) => {
     // For 6 cards (0,1,2,3,4,5), centers are at positions 2 and 3
     const centerLeft = Math.floor((total - 1) / 2);
@@ -43,24 +43,24 @@ export const ArticlePreviewCard = ({
                     opacity,
                     y: 0,
                 }}
-                whileHover={{
-                    filter: 'blur(0px)',
-                    opacity: 1,
-                    y: -5,
+                style={{
+                    willChange: 'transform, filter, opacity',
                 }}
                 transition={{
                     duration: 0.2,
                     ease: 'easeOut',
                 }}
-                style={{
-                    willChange: 'transform, filter, opacity',
+                whileHover={{
+                    filter: 'blur(0px)',
+                    opacity: 1,
+                    y: -5,
                 }}
             >
                 <div className="relative h-40 w-full mb-4 rounded-lg overflow-hidden">
                     <img
-                        src={imageUrl}
                         alt={title}
                         className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
+                        src={imageUrl}
                     />
                 </div>
                 <h3

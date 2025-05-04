@@ -16,8 +16,8 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
     const code = children.replace(/^[a-z]+\n/, '');
 
     return (
-        <Highlight theme={themes.oneLight} code={code.trim()} language={language}>
-            {({ style, tokens, getLineProps, getTokenProps }) => (
+        <Highlight code={code.trim()} language={language} theme={themes.oneLight}>
+            {({ getLineProps, getTokenProps, style, tokens }) => (
                 <pre
                     className="p-4 rounded-lg my-6 overflow-x-auto text-sm whitespace-pre-wrap -mx-4"
                     style={style}
@@ -36,8 +36,8 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
 };
 
 export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
-    contentInMarkdown,
     className,
+    contentInMarkdown,
 }) => {
     const baseClassName = 'font-["Charter"] text-lg leading-relaxed text-gray-800';
     const generatedClassName = cn(baseClassName, className);
@@ -107,14 +107,14 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                             },
                         },
                         img: {
-                            component: ({ src, alt, ...props }) => (
+                            component: ({ alt, src, ...props }) => (
                                 <img
-                                    src={src}
                                     alt={alt}
-                                    width={1200}
                                     height={800}
-                                    style={{ height: 'auto', width: '100%' }}
                                     loading="lazy"
+                                    src={src}
+                                    style={{ height: 'auto', width: '100%' }}
+                                    width={1200}
                                     {...props}
                                 />
                             ),

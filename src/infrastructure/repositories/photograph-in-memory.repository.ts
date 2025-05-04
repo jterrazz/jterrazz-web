@@ -9,11 +9,11 @@ export class PhotographInMemoryRepository implements PhotographRepository {
         this.photographsData = photographsData;
     }
 
-    getPhotographs() {
-        return this.photographsData;
-    }
-
     getPhotographByIndex(index: string) {
         return this.photographsData.find((photograph) => String(photograph.index) === index);
+    }
+
+    getPhotographs() {
+        return this.photographsData;
     }
 }

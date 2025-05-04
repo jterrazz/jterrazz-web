@@ -5,26 +5,26 @@ import { AnimatePresence, motion, Transition } from 'framer-motion';
 import { cn } from '../../../lib/utils.js';
 
 type AnimatedBackgroundProps = {
-    children: ReactElement<{ 'data-id': string }>[] | ReactElement<{ 'data-id': string }>;
-    defaultValue?: string;
-    onValueChange?: (newActiveId: string | null) => void;
+    children: ReactElement<{ 'data-id': string }> | ReactElement<{ 'data-id': string }>[];
     className?: string;
-    transition?: Transition;
+    defaultValue?: string;
     enableHover?: boolean;
+    onValueChange?: (newActiveId: null | string) => void;
+    transition?: Transition;
 };
 
 export default function AnimatedBackground({
     children,
-    defaultValue,
-    onValueChange,
     className,
-    transition,
+    defaultValue,
     enableHover = false,
+    onValueChange,
+    transition,
 }: AnimatedBackgroundProps) {
-    const [activeId, setActiveId] = useState<string | null>(null);
+    const [activeId, setActiveId] = useState<null | string>(null);
     const uniqueId = useId();
 
-    const handleSetActiveId = (id: string | null) => {
+    const handleSetActiveId = (id: null | string) => {
         setActiveId(id);
 
         if (onValueChange) {
@@ -63,16 +63,16 @@ export default function AnimatedBackground({
                 <AnimatePresence initial={false}>
                     {activeId === id && (
                         <motion.div
-                            layoutId={`background-${uniqueId}`}
-                            className={cn('absolute inset-0', className)}
-                            transition={transition}
-                            initial={{ opacity: defaultValue ? 1 : 0 }}
                             animate={{
                                 opacity: 1,
                             }}
+                            className={cn('absolute inset-0', className)}
                             exit={{
                                 opacity: 0,
                             }}
+                            initial={{ opacity: defaultValue ? 1 : 0 }}
+                            layoutId={`background-${uniqueId}`}
+                            transition={transition}
                         />
                     )}
                 </AnimatePresence>

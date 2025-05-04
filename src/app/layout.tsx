@@ -4,7 +4,6 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { Inter } from 'next/font/google';
-import Script from 'next/script';
 
 import { UserContactType } from '../domain/user.js';
 
@@ -150,11 +149,11 @@ export default function RootLayout({
                 <body className={generatedClassName}>
                     <div className="sticky top-0 z-[50]">
                         <NotificationBanner
-                            message="Download my new app from the App Store!"
                             className="border-b border-white/10"
                             href="/link/applications/fake-news-ios"
+                            message="Download my new app from the App Store!"
                         />
-                        <TheNavigationBar pages={pages} contacts={contacts} />
+                        <TheNavigationBar contacts={contacts} pages={pages} />
                     </div>
                     <div className="flex-1 flex flex-col overflow-x-hidden w-full">
                         <PostHogPageView />

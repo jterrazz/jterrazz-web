@@ -9,29 +9,9 @@ import { FeatureInMemoryRepository } from '../../../infrastructure/repositories/
 
 import { ArticleTemplate } from '../../../components/templates/article.template.js';
 
-export async function generateStaticParams() {
-    const articlesRepository = new ArticleInMemoryRepository();
-    const articles = await articlesRepository.getArticles();
-
-    return articles.map((article) => {
-        return { id: String(article.publicIndex) };
-    });
-}
-
 type ArticlePageProps = {
     params: { id: string };
 };
-
-export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
-    const id = params.id;
-    const articlesRepository = new ArticleInMemoryRepository();
-    const article = await articlesRepository.getArticleByIndex(id);
-
-    return {
-        description: article?.metadata.description,
-        title: article?.metadata.title + ' ~ Jterrazz',
-    };
-}
 
 export default async function ArticlePage({ params: { id } }: ArticlePageProps) {
     const featureRepository = new FeatureInMemoryRepository();
@@ -47,15 +27,35 @@ export default async function ArticlePage({ params: { id } }: ArticlePageProps) 
 
     return (
         <ArticleTemplate
-            features={features}
+            articleId={id}
             articles={articles.filter((a) => a.publicIndex !== article.publicIndex)}
+            availableLanguages={Object.keys(article.content) as ArticleLanguage[]}
             contentInMarkdown={article.content['en']!}
+            currentLanguage={'en'}
             dateModified={article.metadata.dateModified}
             datePublished={article.metadata.datePublished}
+            features={features}
             title={article.metadata.title}
-            availableLanguages={Object.keys(article.content) as ArticleLanguage[]}
-            currentLanguage={'en'}
-            articleId={id}
         />
     );
+}
+
+export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+    const id = params.id;
+    const articlesRepository = new ArticleInMemoryRepository();
+    const article = await articlesRepository.getArticleByIndex(id);
+
+    return {
+        description: article?.metadata.description,
+        title: article?.metadata.title + ' ~ Jterrazz',
+    };
+}
+
+export async function generateStaticParams() {
+    const articlesRepository = new ArticleInMemoryRepository();
+    const articles = await articlesRepository.getArticles();
+
+    return articles.map((article) => {
+        return { id: String(article.publicIndex) };
+    });
 }

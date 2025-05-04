@@ -18,6 +18,7 @@ export default async function HomePage() {
 
     return (
         <HelloWorldTemplate
+            description={description}
             experiences={userExperiences}
             topArticles={topArticles.map((article) => ({
                 description: article.metadata.description,
@@ -25,7 +26,6 @@ export default async function HomePage() {
                 imageUrl: article.imageUrl ?? '/assets/image-computer-table.webp',
                 title: article.metadata.title,
             }))}
-            description={description}
         />
     );
 }

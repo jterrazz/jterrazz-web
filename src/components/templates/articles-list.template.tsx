@@ -21,7 +21,7 @@ export const ArticleRow: React.FC<{ article: ArticleRowViewModel }> = ({ article
         <Link href={`/articles/${article.index}`}>
             <div className="flex items-center justify-between border-b border-black-and-white py-3">
                 <h3 className="font-medium">{article.title}</h3>
-                <Badge value={article.category} color={color} />
+                <Badge color={color} value={article.category} />
             </div>
         </Link>
     );
@@ -35,9 +35,9 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
     return (
         <MainContainer>
             <Highlight
-                title={viewModel.highlightTitle}
-                description={viewModel.highlightDescription}
                 button={viewModel.button}
+                description={viewModel.highlightDescription}
+                title={viewModel.highlightTitle}
             />
 
             <HeadingSection>
@@ -45,7 +45,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
             </HeadingSection>
 
             {viewModel.articles.map((article) => (
-                <ArticleRow key={article.index} article={article} />
+                <ArticleRow article={article} key={article.index} />
             ))}
         </MainContainer>
     );

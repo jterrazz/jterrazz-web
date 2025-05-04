@@ -10,15 +10,15 @@ import { cn } from '@/lib/utils';
 import { Alert } from '@/components/ui/alert';
 
 interface NotificationBannerProps {
-    message: string;
     className?: string;
     href?: string;
+    message: string;
 }
 
-export function NotificationBanner({ message, className, href }: NotificationBannerProps) {
+export function NotificationBanner({ className, href, message }: NotificationBannerProps) {
     const [isVisible, setIsVisible] = useState(true);
     const contentRef = useRef<HTMLDivElement>(null);
-    const [height, setHeight] = useState<number | 'auto'>('auto');
+    const [height, setHeight] = useState<'auto' | number>('auto');
 
     useEffect(() => {
         if (contentRef.current) {
@@ -27,7 +27,7 @@ export function NotificationBanner({ message, className, href }: NotificationBan
     }, [isVisible]);
 
     const MessageComponent = href ? (
-        <Link href={href} className="hover:text-white transition-colors">
+        <Link className="hover:text-white transition-colors" href={href}>
             {message}
         </Link>
     ) : (
@@ -38,7 +38,6 @@ export function NotificationBanner({ message, className, href }: NotificationBan
         <AnimatePresence>
             {isVisible && (
                 <motion.div
-                    initial={{ filter: 'blur(8px)', height: 0, opacity: 0 }}
                     animate={{
                         filter: 'blur(0px)',
                         height: height,
@@ -49,6 +48,7 @@ export function NotificationBanner({ message, className, href }: NotificationBan
                             opacity: { duration: 0.15, ease: 'easeOut' },
                         },
                     }}
+                    className="overflow-hidden"
                     exit={{
                         filter: 'blur(8px)',
                         height: 0,
@@ -59,7 +59,7 @@ export function NotificationBanner({ message, className, href }: NotificationBan
                             opacity: { duration: 0.1, ease: 'easeIn' },
                         },
                     }}
-                    className="overflow-hidden"
+                    initial={{ filter: 'blur(8px)', height: 0, opacity: 0 }}
                 >
                     <div ref={contentRef}>
                         <Alert
@@ -71,9 +71,9 @@ export function NotificationBanner({ message, className, href }: NotificationBan
                             <div className="mx-auto max-w-screen-xl relative flex items-center justify-center">
                                 <span className="px-8">{MessageComponent}</span>
                                 <button
-                                    onClick={() => setIsVisible(false)}
-                                    className="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-white hover:text-white/80 transition-colors"
                                     aria-label="Close notification"
+                                    className="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-white hover:text-white/80 transition-colors"
+                                    onClick={() => setIsVisible(false)}
                                 >
                                     <X size={16} />
                                 </button>

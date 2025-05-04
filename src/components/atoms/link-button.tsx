@@ -8,12 +8,12 @@ export type Link = {
 };
 
 export type LinkButtonProps = {
-    link: Link;
-    highlighted?: boolean;
     className?: string;
+    highlighted?: boolean;
+    link: Link;
 };
 
-export const LinkButton: React.FC<LinkButtonProps> = ({ link, className }) => {
+export const LinkButton: React.FC<LinkButtonProps> = ({ className, link }) => {
     // const highlightClassName = highlighted
     //     ? 'text-white bg-storm-cloud-accent border-black'
     //     : 'bg-black-and-white-hover border-black-and-white';
@@ -24,7 +24,7 @@ export const LinkButton: React.FC<LinkButtonProps> = ({ link, className }) => {
     );
 
     return (
-        <a key={link.title} href={link.url} target="_blank" className={generatedClassName}>
+        <a className={generatedClassName} href={link.url} key={link.title} target="_blank">
             <p className="text-xs font-semibold">
                 {link.title} {'>'}
             </p>

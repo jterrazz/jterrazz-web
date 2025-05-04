@@ -10,33 +10,33 @@ import { projectComponentStatusToDoPulseState } from './table-row-project-compon
 import { TableRowProjectDetails } from './table-row-project-details.js';
 
 type TableRowProjectComponentProps = {
-    component: ProjectComponent;
     className?: string;
+    component: ProjectComponent;
 };
 
 export const TableRowProjectComponent: React.FC<TableRowProjectComponentProps> = ({
-    component,
     className,
+    component,
 }) => {
     const [projectDetailIsVisible, setProjectDetailIsVisible] = React.useState(false);
 
     return (
-        <div key={component.name} className={className}>
+        <div className={className} key={component.name}>
             <div
                 className="flex items-center py-1 px-0 cursor-pointer text-storm-cloud text-storm-cloud-accent-hover"
                 onClick={() => setProjectDetailIsVisible(!projectDetailIsVisible)}
             >
                 <DotPulse color={projectComponentStatusToDoPulseState(component.status)} />
                 <h4 className="text-sm ml-3">{component.name}</h4>
-                {component.articleUrl && <AlignLeft size={16} className="ml-2" />}
+                {component.articleUrl && <AlignLeft className="ml-2" size={16} />}
             </div>
 
             <AnimatePresence>
                 {projectDetailIsVisible && (
                     <motion.div
-                        initial={{ marginTop: -50, opacity: 0, scale: 0.8 }}
                         animate={{ marginTop: 0, opacity: 1, scale: 1 }}
                         exit={{ marginTop: -50, opacity: 0, scale: 0.7 }}
+                        initial={{ marginTop: -50, opacity: 0, scale: 0.8 }}
                         transition={{
                             ease: 'anticipate',
                             marginTop: { duration: 0.2 },

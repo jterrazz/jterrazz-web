@@ -14,15 +14,15 @@ import { Table } from '../organisms/table-of-projects/table.js';
 import { TableRowProject } from '../organisms/table-of-projects/table-row-project.js';
 
 type ApplicationsListTemplateProps = {
-    highlightTitle: string;
-    highlightDescription: string;
-    projects: readonly Project[];
     features: readonly Feature[];
+    highlightDescription: string;
+    highlightTitle: string;
+    projects: readonly Project[];
 };
 
 export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> = ({
-    highlightTitle,
     highlightDescription,
+    highlightTitle,
     projects,
 }) => {
     const button = {
@@ -32,7 +32,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
 
     return (
         <MainContainer>
-            <Highlight title={highlightTitle} description={highlightDescription} button={button} />
+            <Highlight button={button} description={highlightDescription} title={highlightTitle} />
             <HeadingSection>
                 <HighlightedText className="pr-2">Projects</HighlightedText>
             </HeadingSection>

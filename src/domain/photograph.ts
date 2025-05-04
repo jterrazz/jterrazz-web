@@ -1,6 +1,6 @@
 export type Photograph = {
-    index: number;
     contentUrl: string;
+    index: number;
     metadata: {
         description: string;
         socials: {

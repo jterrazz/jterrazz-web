@@ -7,17 +7,18 @@
 Dependencies are at the core of software architecture. They dictate how different pieces of code interact and connect with one another. Understanding and managing these dependencies is crucial for building robust, maintainable, and scalable applications.
 
 **Navigation 📚**
+
 1. [**Introduction: Application Design, The Art of Building Sustainable and Scalable Software**](https://www.jterrazz.com/articles/9)
-	 *The basics to understand the stakes and objectives of good architecture.*
+   _The basics to understand the stakes and objectives of good architecture._
 
 2. [**Chapter 1: The Concept of Dependencies**](https://www.jterrazz.com/articles/10)
-	 *Exploring relationships between components, the importance of dependencies, and principles like SOLID.*
+   _Exploring relationships between components, the importance of dependencies, and principles like SOLID._
 
 3. [**Chapter 2: Understanding Business and Technical Architectures**](https://www.jterrazz.com/articles/11)
-	 *How to isolate business logic from technical concerns using ports and adapters.*
+   _How to isolate business logic from technical concerns using ports and adapters._
 
 4. [**Chapter 3: Clean Architecture**](https://www.jterrazz.com/articles/12)
-	 *Discovering an approach focused on business with a clear layered structure.*
+   _Discovering an approach focused on business with a clear layered structure._
 
 ---
 
@@ -29,8 +30,8 @@ Let's look at a concrete example in TypeScript:
 
 ```ts
 function hello() {
-	const instance = new Something(); // A dependency exists here
-	// …
+  const instance = new Something(); // A dependency exists here
+  // …
 }
 ```
 
@@ -51,32 +52,32 @@ Martin Fowler outlines several types of **test doubles** to manage these depende
 # Category 1: Test Doubles for **Returns**
 
 1. **Dummy**:
-	 An object that holds no importance in the test and is used solely to satisfy a requirement.
+   An object that holds no importance in the test and is used solely to satisfy a requirement.
 
-	 *Example:*
+   _Example:_
 
 ```ts
 function greet(user: User) {
-	console.log(`Hello, ${user.name}`);
+  console.log(`Hello, ${user.name}`);
 }
 greet(new DummyUser());
 ```
 
 2. **Fake**:
-	 An object with a mock implementation that isn't used in production.<br/>
+   An object with a mock implementation that isn't used in production.<br/>
 
-	 *Example: An in-memory database for unit testing.*
+   _Example: An in-memory database for unit testing._
 
 3. **Stub**:
-	 An object that returns predefined values to allow the test to proceed.<br/>
+   An object that returns predefined values to allow the test to proceed.<br/>
 
-	 *Example:*
+   _Example:_
 
 ```ts
 class StubUserService {
-	getUser() {
-		return { id: 1, name: "Test User" };
-	}
+  getUser() {
+    return { id: 1, name: 'Test User' };
+  }
 }
 const userService = new StubUserService();
 ```
@@ -84,27 +85,27 @@ const userService = new StubUserService();
 # Category 2: Test Doubles for **Collaboration**
 
 1. **Spy**:
-	 A spy records interactions to verify them after the test.<br/>
+   A spy records interactions to verify them after the test.<br/>
 
-	 *Example:*
+   _Example:_
 
 ```ts
 class SpyLogger {
-	logs: string[] = [];
-	log(message: string) {
-		this.logs.push(message);
-	}
+  logs: string[] = [];
+  log(message: string) {
+    this.logs.push(message);
+  }
 }
 ```
 
 2. **Mock**:
-	 A mock ensures it was called in a specific way.<br/>
+   A mock ensures it was called in a specific way.<br/>
 
-	 *Example:*
+   _Example:_
 
 ```ts
 const mockLogger = { log: jest.fn() };
-mockLogger.log("Test log");
+mockLogger.log('Test log');
 ```
 
 ---
@@ -116,23 +117,23 @@ The Dependency Inversion Principle (the "D" in **SOLID**) states that high-level
 # A Brief Overview of SOLID Principles
 
 1. **S - Single Responsibility Principle (SRP):**
-	 A class or module should have only one responsibility, meaning one reason to change. This keeps the code simple and clear.
-	 *Example: A class should not handle both business logic and database operations.*
+   A class or module should have only one responsibility, meaning one reason to change. This keeps the code simple and clear.
+   _Example: A class should not handle both business logic and database operations._
 
 2. **O - Open/Closed Principle (OCP):**
-	 Software entities (classes, modules, functions) should be **open for extension** but **closed for modification**. This means new features can be added without altering existing code.
-	 *Example: Use interfaces or abstract classes to add new implementations without changing the existing code.*
+   Software entities (classes, modules, functions) should be **open for extension** but **closed for modification**. This means new features can be added without altering existing code.
+   _Example: Use interfaces or abstract classes to add new implementations without changing the existing code._
 
 3. **L - Liskov Substitution Principle (LSP):**
-	 Derived classes should be usable in place of their parent classes without altering the expected behavior. This ensures logical inheritance.
-	 *Example: Replacing a "Rectangle" class with a "Square" class should not break the program.*
+   Derived classes should be usable in place of their parent classes without altering the expected behavior. This ensures logical inheritance.
+   _Example: Replacing a "Rectangle" class with a "Square" class should not break the program._
 
 4. **I - Interface Segregation Principle (ISP):**
-	 Clients should not be forced to depend on interfaces they do not use. Smaller, specific interfaces are better than one large general interface.
-	 *Example: Instead of a single `Animal` interface with `fly()` and `swim()` methods, use separate `Bird` and `Fish` interfaces.*
+   Clients should not be forced to depend on interfaces they do not use. Smaller, specific interfaces are better than one large general interface.
+   _Example: Instead of a single `Animal` interface with `fly()` and `swim()` methods, use separate `Bird` and `Fish` interfaces._
 
 5. **D - Dependency Inversion Principle (DIP):**
-	 **High-level modules (which contain core logic) should not depend on low-level modules (which implement technical details).** Both should depend on abstractions (interfaces). This reduces coupling and makes testing easier.
+   **High-level modules (which contain core logic) should not depend on low-level modules (which implement technical details).** Both should depend on abstractions (interfaces). This reduces coupling and makes testing easier.
 
 ---
 
@@ -146,15 +147,15 @@ The Dependency Inversion Principle (the "D" in **SOLID**) states that high-level
 
 ```ts
 class HelloService {
-	private db: Database;
+  private db: Database;
 
-	constructor() {
-		this.db = new Database(); // Tight coupling
-	}
+  constructor() {
+    this.db = new Database(); // Tight coupling
+  }
 
-	sayHello() {
-		return this.db.getGreeting();
-	}
+  sayHello() {
+    return this.db.getGreeting();
+  }
 }
 ```
 
@@ -162,15 +163,16 @@ class HelloService {
 
 ```ts
 class HelloService {
-	private db: Database;
+  private db: Database;
 
-	constructor(db: Database) { // Dependency injection
-		this.db = db;
-	}
+  constructor(db: Database) {
+    // Dependency injection
+    this.db = db;
+  }
 
-	sayHello() {
-		return this.db.getGreeting();
-	}
+  sayHello() {
+    return this.db.getGreeting();
+  }
 }
 ```
 

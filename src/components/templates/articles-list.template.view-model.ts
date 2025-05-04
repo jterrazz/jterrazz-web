@@ -1,23 +1,23 @@
 import { Article } from '../../domain/article.js';
 import { UserContactType, UserRepository } from '../../domain/user.js';
 
+export interface ArticleRowViewModel {
+    category: string;
+    index: string;
+    isCodeCategory: boolean;
+    title: string;
+}
+
 export interface ArticlesListButton {
     href: string;
     text: string;
 }
 
-export interface ArticleRowViewModel {
-    index: string;
-    title: string;
-    category: string;
-    isCodeCategory: boolean;
-}
-
 export interface ArticlesListViewModel {
-    highlightTitle: string;
-    highlightDescription: string;
-    button: ArticlesListButton;
     articles: ArticleRowViewModel[];
+    button: ArticlesListButton;
+    highlightDescription: string;
+    highlightTitle: string;
 }
 
 export interface ViewModel<T> {

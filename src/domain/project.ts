@@ -1,9 +1,12 @@
-export enum ProjectStatus {
-    Active = 'active',
-    Building = 'building',
-    Concept = 'concept',
-    Completed = 'completed',
-    Archived = 'archived',
+export enum ProjectArchitecture {
+    Atomic = 'Atomic Design',
+    // Code Architectures
+    Clean = 'Clean Architecture',
+    DomainInfrastructure = 'Domain/Infrastructure Architecture',
+    Hexagonal = 'Hexagonal Architecture',
+
+    // Design Systems
+    Spectrum = "Spectrum (Adobe's Design System)",
 }
 
 export enum ProjectCategory {
@@ -12,72 +15,69 @@ export enum ProjectCategory {
     Writing = 'writing',
 }
 
+export enum ProjectStatus {
+    Active = 'active',
+    Archived = 'archived',
+    Building = 'building',
+    Completed = 'completed',
+    Concept = 'concept',
+}
+
 export enum ProjectTechnology {
-    // Frontend
-    NextJs = 'Next.js',
-    React = 'React',
-    ReactNative = 'React Native',
-    TailwindCSS = 'TailwindCSS',
-    Sass = 'Sass',
-
-    // Backend
-    NodeJs = 'Node.js',
-    Express = 'Express',
-    Hono = 'Hono',
-    Prisma = 'Prisma',
-    Koa = 'Koa',
-
+    Assembly = 'Assembly',
     // Languages
     C = 'C',
-    Assembly = 'Assembly',
-    Python = 'Python',
+    Express = 'Express',
+    Gdb = 'GDB',
+    Hono = 'Hono',
 
-    // TypeScript
-    Typescript = 'Typescript',
-
+    Koa = 'Koa',
+    MongoDB = 'MongoDB',
+    // Frontend
+    NextJs = 'Next.js',
+    // Backend
+    NodeJs = 'Node.js',
     // Database
     Postgres = 'Postgres',
-    MongoDB = 'MongoDB',
-    Sqlite = 'SQLite',
 
+    Prisma = 'Prisma',
+    Python = 'Python',
     // Tools
     Radare2 = 'Radare2',
-    Gdb = 'GDB',
+
+    React = 'React',
+
+    ReactNative = 'React Native',
+    Sass = 'Sass',
+    Sqlite = 'SQLite',
+
+    TailwindCSS = 'TailwindCSS',
+    // TypeScript
+    Typescript = 'Typescript',
 }
-
-export enum ProjectArchitecture {
-    // Code Architectures
-    Clean = 'Clean Architecture',
-    Hexagonal = 'Hexagonal Architecture',
-    DomainInfrastructure = 'Domain/Infrastructure Architecture',
-    Atomic = 'Atomic Design',
-
-    // Design Systems
-    Spectrum = "Spectrum (Adobe's Design System)",
-}
-
-export type ProjectComponent = {
-    name: string;
-    description: string;
-    sourceUrl: URL;
-    status: ProjectStatus;
-    architectures: Array<ProjectArchitecture>;
-    technologies: Array<ProjectTechnology>;
-    articleUrl?: URL;
-};
 
 export type Project = {
+    components: Array<ProjectComponent>;
+    createdAt?: Date;
+    description: string;
     index: number;
     name: string;
-    description: string;
-    url: URL;
-    type: ProjectCategory;
     status: ProjectStatus;
-    createdAt?: Date;
-    components: Array<ProjectComponent>;
+    type: ProjectCategory;
+    url: URL;
+};
+
+export type ProjectComponent = {
+    architectures: Array<ProjectArchitecture>;
+    articleUrl?: URL;
+    description: string;
+    name: string;
+    sourceUrl: URL;
+    status: ProjectStatus;
+    technologies: Array<ProjectTechnology>;
 };
 
 export interface ProjectRepository {
-    getProjects(): Project[];
     getProjectByIndex(index: string): Project | undefined;
+    getProjects(): Project[];
 }

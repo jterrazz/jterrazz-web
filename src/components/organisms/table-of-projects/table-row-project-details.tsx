@@ -10,13 +10,13 @@ import { HeadingSubSection } from '../../atoms/typography/heading-sub-section.js
 import { projectStatusToDescription } from './table-row-project-component-view-model.js';
 
 export type TableRowProjectDetailsProps = {
-    component: ProjectComponent;
     className?: string;
+    component: ProjectComponent;
 };
 
 export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
-    component,
     className,
+    component,
 }) => {
     const generalClassName = cn(
         'my-2 border-black-and-white border mb-4 rounded-lg text-storm-cloud-accent overflow-hidden',
@@ -34,12 +34,12 @@ export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
                 <ul className="flex mt-2">
                     {component.technologies.map((technology) => (
                         <Badge
-                            key={technology}
                             className="mr-2"
-                            value={technology}
                             color={BadgeColor.Gray}
-                            size={DotPulseSize.Small}
                             filled={false}
+                            key={technology}
+                            size={DotPulseSize.Small}
+                            value={technology}
                         />
                     ))}
                 </ul>
@@ -52,12 +52,12 @@ export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
                         <ul className="flex mt-2">
                             {component.architectures.map((architecture) => (
                                 <Badge
-                                    key={architecture}
                                     className="mr-2"
-                                    value={architecture}
                                     color={BadgeColor.Gray}
-                                    size={DotPulseSize.Small}
                                     filled={false}
+                                    key={architecture}
+                                    size={DotPulseSize.Small}
+                                    value={architecture}
                                 />
                             ))}
                         </ul>
@@ -67,14 +67,14 @@ export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
 
             <div className="flex flex-col">
                 {component.articleUrl && (
-                    <a href={component.articleUrl.toString()} target="_blank" className="text-sm">
+                    <a className="text-sm" href={component.articleUrl.toString()} target="_blank">
                         <div className="flex justify-between border-t border-black-and-white px-4 py-3 text-storm-cloud bg-black-and-white bg-black-and-white-hover cursor-pointer">
                             <p className="text-sm">Read the article</p>
                             <span>Learn more</span>
                         </div>
                     </a>
                 )}
-                <a href={component.sourceUrl.toString()} target="_blank" className="text-sm">
+                <a className="text-sm" href={component.sourceUrl.toString()} target="_blank">
                     <div className="flex justify-between border-t border-black-and-white px-4 py-3 text-storm-cloud bg-black-and-white bg-black-and-white-hover cursor-pointer">
                         <p className="text-sm">{projectStatusToDescription(component.status)}</p>
                         <span>Open source</span>

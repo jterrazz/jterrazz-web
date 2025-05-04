@@ -5,12 +5,13 @@ import { readMarkdownArticles } from './data/articles.data.js';
 export class ArticleInMemoryRepository implements ArticleRepository {
     private markdownArticles: Article[] | undefined;
 
-    async getMarkdownArticles() {
-        if (!this.markdownArticles) {
-            this.markdownArticles = await readMarkdownArticles();
-        }
+    async getArticleByIndex(index: string, language: ArticleLanguage = 'en') {
+        const articles = await this.getMarkdownArticles();
+        const article = articles.find((article) => String(article.publicIndex) === index);
 
-        return this.markdownArticles;
+        if (!article || !article.content[language]) return undefined;
+
+        return article;
     }
 
     async getArticles() {
@@ -23,12 +24,11 @@ export class ArticleInMemoryRepository implements ArticleRepository {
         );
     }
 
-    async getArticleByIndex(index: string, language: ArticleLanguage = 'en') {
-        const articles = await this.getMarkdownArticles();
-        const article = articles.find((article) => String(article.publicIndex) === index);
-        
-        if (!article || !article.content[language]) return undefined;
-        
-        return article;
+    async getMarkdownArticles() {
+        if (!this.markdownArticles) {
+            this.markdownArticles = await readMarkdownArticles();
+        }
+
+        return this.markdownArticles;
     }
 }

@@ -9,11 +9,11 @@ export class ProjectInMemoryRepository implements ProjectRepository {
         this.projectsData = projectsData;
     }
 
-    getProjects() {
-        return this.projectsData;
-    }
-
     getProjectByIndex(index: string) {
         return this.projectsData.find((project) => String(project.index) === index);
+    }
+
+    getProjects() {
+        return this.projectsData;
     }
 }

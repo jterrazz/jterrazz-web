@@ -9,10 +9,6 @@ export class FeatureInMemoryRepository implements FeatureRepository {
         this.featuresData = featuresData;
     }
 
-    getFeatures(): Feature[] {
-        return this.featuresData;
-    }
-
     getFeatureById(id: FeaturedId): Feature {
         const features = this.featuresData.find((feature) => feature.id === id);
 
@@ -21,5 +17,9 @@ export class FeatureInMemoryRepository implements FeatureRepository {
         }
 
         return features;
+    }
+
+    getFeatures(): Feature[] {
+        return this.featuresData;
     }
 }

@@ -9,16 +9,16 @@ When designing a software application, one of the fundamental questions is how t
 **Navigation 📚**
 
 1. [**Introduction: Application Design, The Art of Building Sustainable and Scalable Software**](https://www.jterrazz.com/articles/9)
-	 *The basics to understand the stakes and objectives of good architecture.*
+   _The basics to understand the stakes and objectives of good architecture._
 
 2. [**Chapter 1: The Concept of Dependencies**](https://www.jterrazz.com/articles/10)
-	 *Exploring relationships between components, the importance of dependencies, and principles like SOLID.*
+   _Exploring relationships between components, the importance of dependencies, and principles like SOLID._
 
 3. [**Chapter 2: Understanding Business and Technical Architectures**](https://www.jterrazz.com/articles/11)
-	 *How to isolate business logic from technical concerns using ports and adapters.*
+   _How to isolate business logic from technical concerns using ports and adapters._
 
 4. [**Chapter 3: Clean Architecture**](https://www.jterrazz.com/articles/12)
-	 *Discovering an approach focused on business with a clear layered structure.*
+   _Discovering an approach focused on business with a clear layered structure._
 
 ---
 
@@ -109,6 +109,7 @@ In essence, the hexagon embodies **modularity** and **technological neutrality**
 
 > **ℹ️ Naming**
 > In hexagonal architecture, ports and adapters can be named differently depending on the perspective. Common terminologies include:
+>
 > 1. Left/Right
 > 2. Driving/Driven
 > 3. Primary/Secondary
@@ -141,28 +142,29 @@ The domain contains the system's core, defining business rules and remaining ind
 
 ```ts
 export interface OrderInputPort {
-   processOrder(order: Order): void; // Left-side port
+  processOrder(order: Order): void; // Left-side port
 }
 
 export interface OrderOutputPort {
-   saveOrder(order: Order): void; // Right-side port
+  saveOrder(order: Order): void; // Right-side port
 }
 
 export class OrderService implements OrderInputPort {
-   constructor(private outputPort: OrderOutputPort) {}
+  constructor(private outputPort: OrderOutputPort) {}
 
-   processOrder(order: Order): void {
-      if (!order.isValid()) {
-         throw new Error("Order is invalid");
-      }
+  processOrder(order: Order): void {
+    if (!order.isValid()) {
+      throw new Error('Order is invalid');
+    }
 
-      console.log("Processing order:", order);
-      this.outputPort.saveOrder(order); // Calls the output port
-   }
+    console.log('Processing order:', order);
+    this.outputPort.saveOrder(order); // Calls the output port
+  }
 }
 ```
 
 **Explanation:**
+
 - `OrderInputPort` (left-side port) defines how actions are initiated.
 - `OrderOutputPort` (right-side port) abstracts the dependencies required to save orders.
 - `OrderService` contains the business rules and uses both ports to operate.
@@ -174,21 +176,21 @@ export class OrderService implements OrderInputPort {
 A left-side adapter transforms user actions into domain calls via the `OrderInputPort`.
 
 ```ts
-import express from "express";
+import express from 'express';
 
 export class OrderController {
-   constructor(private orderInputPort: OrderInputPort) {}
+  constructor(private orderInputPort: OrderInputPort) {}
 
-   handleRequest(req: express.Request, res: express.Response): void {
-      const order = req.body;
+  handleRequest(req: express.Request, res: express.Response): void {
+    const order = req.body;
 
-      try {
-         this.orderInputPort.processOrder(order); // Calls the domain
-         res.status(200).send("Order processed successfully!");
-      } catch (err) {
-         res.status(400).send(err.message);
-      }
-   }
+    try {
+      this.orderInputPort.processOrder(order); // Calls the domain
+      res.status(200).send('Order processed successfully!');
+    } catch (err) {
+      res.status(400).send(err.message);
+    }
+  }
 }
 ```
 
@@ -203,9 +205,9 @@ A right-side adapter implements the `OrderOutputPort` for saving data.
 
 ```ts
 export class DatabaseAdapter implements OrderOutputPort {
-   saveOrder(order: Order): void {
-      console.log("Saving order to database:", order);
-   }
+  saveOrder(order: Order): void {
+    console.log('Saving order to database:', order);
+  }
 }
 ```
 
@@ -219,7 +221,7 @@ This adapter saves orders to a database by implementing the `saveOrder` method.
 Here's how to connect the components:
 
 ```ts
-import express from "express";
+import express from 'express';
 
 const databaseAdapter = new DatabaseAdapter();
 const orderService = new OrderService(databaseAdapter);
@@ -228,12 +230,13 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/orders", (req, res) => orderController.handleRequest(req, res));
+app.post('/orders', (req, res) => orderController.handleRequest(req, res));
 
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+app.listen(3000, () => console.log('Server running on http://localhost:3000'));
 ```
 
 **Explanation:**
+
 - The user sends an HTTP `POST /orders` request.
 - The controller (`OrderController`) initiates an action through the `OrderInputPort`.
 - The business logic (`OrderService`) processes the order and uses the `OrderOutputPort` for persistence.
@@ -255,6 +258,7 @@ With this architecture, every component is independently testable:
 >
 > **Example:**
 > Imagine an order management application. Here's how you could name the ports:
+>
 > - **Driving Port (Left):** `ForProcessingOrders`. This port initiates the processing of an order.
 > - **Driven Port (Right):** `ForSavingOrders`. This port is used to save orders in a database.
 >

@@ -7,16 +7,16 @@ Lorsqu'on conçoit une application logicielle, une des questions fondamentales e
 **Navigation 📚**
 
 1. [**Introduction: Le Design Applicatif, L'Art De Construire Des Logiciels Durables Et Évolutifs**](https://www.jterrazz.com/articles/9)
-	 *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
+   _Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture._
 
 2. [**Chapitre 1: Le concept de dépendances**](https://www.jterrazz.com/articles/10)
-	 *Explorer les relations entre composants, l'importance des dépendances, et les principes comme SOLID.*
+   _Explorer les relations entre composants, l'importance des dépendances, et les principes comme SOLID._
 
 3. [**Chapitre 2: Comprendre Les Architectures Métier Et Technique**](https://www.jterrazz.com/articles/11)
-	 *Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs.*
+   _Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs._
 
 4. [**Chapitre 3: La Clean Architecture**](https://www.jterrazz.com/articles/12)
-	 *Découvrir une approche centrée sur le métier avec une structuration claire en couches.*
+   _Découvrir une approche centrée sur le métier avec une structuration claire en couches._
 
 ---
 
@@ -60,6 +60,7 @@ Cela respecte le **S** de **SOLID** (Single Responsibility Principle), car chaqu
 ### Les Limites De L'architecture En Couches
 
 Malgré ses avantages, l'architecture en couches présente plusieurs **inconvénients majeurs**:
+
 - **Pas d'inversion des dépendances**: Les couches dépendent les unes des autres de manière descendante.
 - **Couplage métier-technique**: La logique métier dépend souvent directement de la couche de persistance, ce qui rend les tests et l'évolution plus compliqués.
 - **Découpage purement technique**: Le regroupement du code est basé sur des aspects techniques (UI, base de données) plutôt que sur des aspects métiers.
@@ -93,7 +94,7 @@ L'**architecture hexagonale** (ou architecture Ports & Adapters), introduite par
 3. **Favoriser l'évolutivité**: Les aspects techniques (bases de données, API, etc.) peuvent être modifiés ou remplacés sans affecter le cœur métier.
 4. **Créer des points d'entrée et de sortie clairs**: Les interactions avec l'extérieur passent par des ports et des adaptateurs.
 
->ℹ️ Le terme **"architecture hexagonale"** vient de la représentation visuelle en forme d'hexagone que **Alistair Cockburn** a choisie pour illustrer son concept. Cette forme n'a pas de signification technique stricte.
+> ℹ️ Le terme **"architecture hexagonale"** vient de la représentation visuelle en forme d'hexagone que **Alistair Cockburn** a choisie pour illustrer son concept. Cette forme n'a pas de signification technique stricte.
 
 ![](assets/hexagonal-architecture.jpg)
 
@@ -105,14 +106,15 @@ L'hexagone met en avant l'idée que:
 
 En d'autres termes, l'hexagone incarne la **modularité** et la **neutralité technologique**. Cette forme montre aussi visuellement que la logique métier est au centre, protégée des interactions techniques par des ports et des adaptateurs.
 
->**ℹ️ Naming**<br/>
->Dans l'architecture hexagonale, les ports et adaptateurs peuvent être nommés de différentes manières, selon la perspective adoptée. Voici les terminologies les plus courantes:
->1. Left/Right (Gauche/Droite)
->2. Driving/Driven
->3. Primary/Secondary (Principal/Secondaire)
->4. User Side/Server Side (Côté utilisateur/serveur)
+> **ℹ️ Naming**<br/>
+> Dans l'architecture hexagonale, les ports et adaptateurs peuvent être nommés de différentes manières, selon la perspective adoptée. Voici les terminologies les plus courantes:
 >
->Chaque nommage dépend de la perspective ou de la culture technique de l'équipe, mais ils convergent tous vers une idée centrale: séparer ce qui initie une action de ce qui est utilisé pour l'accomplir.
+> 1.  Left/Right (Gauche/Droite)
+> 2.  Driving/Driven
+> 3.  Primary/Secondary (Principal/Secondaire)
+> 4.  User Side/Server Side (Côté utilisateur/serveur)
+>
+> Chaque nommage dépend de la perspective ou de la culture technique de l'équipe, mais ils convergent tous vers une idée centrale: séparer ce qui initie une action de ce qui est utilisé pour l'accomplir.
 
 ---
 
@@ -139,24 +141,24 @@ Le domaine contient le cœur du système. Il définit les règles métier et res
 
 ```ts
 export interface OrderInputPort {
-   processOrder(order: Order): void; // Port côté gauche
+  processOrder(order: Order): void; // Port côté gauche
 }
 
 export interface OrderOutputPort {
-   saveOrder(order: Order): void; // Port côté droit
+  saveOrder(order: Order): void; // Port côté droit
 }
 
 export class OrderService implements OrderInputPort {
-   constructor(private outputPort: OrderOutputPort) {}
+  constructor(private outputPort: OrderOutputPort) {}
 
-   processOrder(order: Order): void {
-	  if (!order.isValid()) {
-		 throw new Error("Order is invalid");
-	  }
+  processOrder(order: Order): void {
+    if (!order.isValid()) {
+      throw new Error('Order is invalid');
+    }
 
-	  console.log("Processing order:", order);
-	  this.outputPort.saveOrder(order); // Appel au port de sortie
-   }
+    console.log('Processing order:', order);
+    this.outputPort.saveOrder(order); // Appel au port de sortie
+  }
 }
 ```
 
@@ -173,21 +175,21 @@ export class OrderService implements OrderInputPort {
 Un adaptateur côté gauche transforme une action utilisateur en appel au domaine via le port `OrderInputPort`.
 
 ```ts
-import express from "express";
+import express from 'express';
 
 export class OrderController {
-   constructor(private orderInputPort: OrderInputPort) {}
+  constructor(private orderInputPort: OrderInputPort) {}
 
-   handleRequest(req: express.Request, res: express.Response): void {
-	  const order = req.body;
+  handleRequest(req: express.Request, res: express.Response): void {
+    const order = req.body;
 
-	  try {
-		 this.orderInputPort.processOrder(order); // Appel au domaine
-		 res.status(200).send("Order processed successfully!");
-	  } catch (err) {
-		 res.status(400).send(err.message);
-	  }
-   }
+    try {
+      this.orderInputPort.processOrder(order); // Appel au domaine
+      res.status(200).send('Order processed successfully!');
+    } catch (err) {
+      res.status(400).send(err.message);
+    }
+  }
 }
 ```
 
@@ -203,9 +205,9 @@ Un adaptateur côté droit implémente le port `OrderOutputPort` pour sauvegarde
 
 ```ts
 export class DatabaseAdapter implements OrderOutputPort {
-   saveOrder(order: Order): void {
-	  console.log("Saving order to database:", order);
-   }
+  saveOrder(order: Order): void {
+    console.log('Saving order to database:', order);
+  }
 }
 ```
 
@@ -220,7 +222,7 @@ Cet adaptateur sauvegarde les commandes dans une base de données en implémenta
 Voici comment connecter tous les éléments:
 
 ```ts
-import express from "express";
+import express from 'express';
 
 const databaseAdapter = new DatabaseAdapter();
 const orderService = new OrderService(databaseAdapter);
@@ -229,9 +231,9 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/orders", (req, res) => orderController.handleRequest(req, res));
+app.post('/orders', (req, res) => orderController.handleRequest(req, res));
 
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+app.listen(3000, () => console.log('Server running on http://localhost:3000'));
 ```
 
 **Explication:**  
@@ -257,6 +259,7 @@ Avec cette architecture, chaque élément est testable de manière isolée:
 >
 > **Exemple**
 > Imaginons une application de gestion de commandes. Voici comment nommer les ports:
+>
 > - **Port Driving (Gauche)**: `ForProcessingOrders`. Ce port sert à initier le traitement d'une commande.
 > - **Port Driven (Droite)**: `ForSavingOrders`. Ce port est utilisé pour sauvegarder les commandes dans une base de données.
 
