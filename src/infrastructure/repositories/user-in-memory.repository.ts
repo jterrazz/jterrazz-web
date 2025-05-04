@@ -1,9 +1,9 @@
 import {
-    UserContact,
-    UserContactType,
-    UserExperience,
-    UserProfile,
-    UserRepository,
+    type UserContact,
+    type UserContactType,
+    type UserExperience,
+    type UserProfile,
+    type UserRepository,
 } from '../../domain/user.js';
 
 import { userContactsData } from './data/user-contacts.data.js';

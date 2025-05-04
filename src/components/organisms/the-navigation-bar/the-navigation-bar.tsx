@@ -7,13 +7,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { UserContact } from '../../../domain/user.js';
+import { type UserContact } from '../../../domain/user.js';
 
 import { cn } from '../../../lib/utils.js';
 
 import AnimatedBackground from '../../molecules/cards/animated-backgrounds.jsx';
 
-import { NavigationPage } from './navigation-page.js';
+import { type NavigationPage } from './navigation-page.js';
 
 export type NavigationTabItemProps = {
     className?: string;

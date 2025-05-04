@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 
 import { PhotographInMemoryRepository } from '../../infrastructure/repositories/photograph-in-memory.repository.js';
 

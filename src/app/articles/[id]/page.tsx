@@ -1,7 +1,7 @@
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { ArticleLanguage } from '../../../domain/article.js';
+import { type ArticleLanguage } from '../../../domain/article.js';
 
 import { ArticleInMemoryRepository } from '../../../infrastructure/repositories/article-in-memory.repository.js';
 import { FeaturedId } from '../../../infrastructure/repositories/data/features.data.js';
@@ -10,10 +10,14 @@ import { FeatureInMemoryRepository } from '../../../infrastructure/repositories/
 import { ArticleTemplate } from '../../../components/templates/article.template.js';
 
 type ArticlePageProps = {
-    params: { id: string };
+    params: Promise<{ id: string }>;
 };
 
-export default async function ArticlePage({ params: { id } }: ArticlePageProps) {
+export default async function ArticlePage(props: ArticlePageProps) {
+    const params = await props.params;
+
+    const { id } = params;
+
     const featureRepository = new FeatureInMemoryRepository();
     const articlesRepository = new ArticleInMemoryRepository();
 
@@ -40,7 +44,8 @@ export default async function ArticlePage({ params: { id } }: ArticlePageProps) 
     );
 }
 
-export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+export async function generateMetadata(props: ArticlePageProps): Promise<Metadata> {
+    const params = await props.params;
     const id = params.id;
     const articlesRepository = new ArticleInMemoryRepository();
     const article = await articlesRepository.getArticleByIndex(id);

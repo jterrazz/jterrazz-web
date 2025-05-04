@@ -1,5 +1,5 @@
 import {
-    Project,
+    type Project,
     ProjectArchitecture,
     ProjectCategory,
     ProjectStatus,

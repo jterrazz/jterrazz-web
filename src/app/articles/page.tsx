@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 
 import { ArticleInMemoryRepository } from '../../infrastructure/repositories/article-in-memory.repository.js';
 import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';

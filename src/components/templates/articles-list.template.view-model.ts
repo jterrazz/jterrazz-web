@@ -1,5 +1,5 @@
-import { Article } from '../../domain/article.js';
-import { UserContactType, UserRepository } from '../../domain/user.js';
+import { type Article } from '../../domain/article.js';
+import { UserContactType, type UserRepository } from '../../domain/user.js';
 
 export interface ArticleRowViewModel {
     category: string;

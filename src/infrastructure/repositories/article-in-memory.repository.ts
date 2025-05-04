@@ -1,4 +1,8 @@
-import { Article, ArticleLanguage, ArticleRepository } from '../../domain/article.js';
+import {
+    type Article,
+    type ArticleLanguage,
+    type ArticleRepository,
+} from '../../domain/article.js';
 
 import { readMarkdownArticles } from './data/articles.data.js';
 

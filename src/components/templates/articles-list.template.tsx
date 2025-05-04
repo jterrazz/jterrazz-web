@@ -10,8 +10,8 @@ import { Highlight } from '../molecules/typography/highlight.jsx';
 import { MainContainer } from '../organisms/main-container.jsx';
 
 import {
-    ArticleRowViewModel,
-    ArticlesListViewModel,
+    type ArticleRowViewModel,
+    type ArticlesListViewModel,
 } from './articles-list.template.view-model.jsx';
 
 export const ArticleRow: React.FC<{ article: ArticleRowViewModel }> = ({ article }) => {

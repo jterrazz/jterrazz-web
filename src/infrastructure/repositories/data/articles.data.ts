@@ -1,6 +1,6 @@
 import { promises as fs } from 'node:fs';
 
-import { Article, ArticleCategory, ArticleLanguage } from '../../../domain/article.js';
+import { type Article, ArticleCategory, type ArticleLanguage } from '../../../domain/article.js';
 
 type ArticleConfig = Omit<Article, 'content' | 'imageUrl'> & {
     filename: string;

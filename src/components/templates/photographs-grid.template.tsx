@@ -3,7 +3,7 @@
 import React from 'react';
 import { ImageGallery } from 'react-image-grid-gallery';
 
-import { Photograph } from '../../domain/photograph.js';
+import { type Photograph } from '../../domain/photograph.js';
 import { UserContactType } from '../../domain/user.js';
 
 import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';

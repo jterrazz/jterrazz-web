@@ -1,3 +1,3 @@
 {
-  "extends": "@jterrazz/typescript/tsconfig/next.json",
+  "extends": "@jterrazz/typescript/tsconfig/next.json"
 }

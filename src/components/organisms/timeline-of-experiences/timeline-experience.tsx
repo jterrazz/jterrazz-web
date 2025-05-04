@@ -4,7 +4,7 @@ import React from 'react';
 import { Circle } from 'react-feather';
 import { motion } from 'framer-motion';
 
-import { UserExperience } from '../../../domain/user.js';
+import { type UserExperience } from '../../../domain/user.js';
 
 import { cn } from '../../../lib/utils.js';
 

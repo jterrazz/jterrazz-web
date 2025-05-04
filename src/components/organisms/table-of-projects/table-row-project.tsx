@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-import { Project } from '../../../domain/project.js';
+import { type Project } from '../../../domain/project.js';
 
 import { cn } from '../../../lib/utils.js';
 

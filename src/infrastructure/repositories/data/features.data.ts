@@ -1,4 +1,4 @@
-import { Feature, FeatureState } from '../../../domain/feature.js';
+import { type Feature, FeatureState } from '../../../domain/feature.js';
 
 export enum FeaturedId {
     Repository,

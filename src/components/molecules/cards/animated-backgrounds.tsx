@@ -1,6 +1,13 @@
 'use client';
-import React, { Children, cloneElement, ReactElement, useEffect, useId, useState } from 'react';
-import { AnimatePresence, motion, Transition } from 'framer-motion';
+import React, {
+    Children,
+    cloneElement,
+    type ReactElement,
+    useEffect,
+    useId,
+    useState,
+} from 'react';
+import { AnimatePresence, motion, type Transition } from 'framer-motion';
 
 import { cn } from '../../../lib/utils.js';
 

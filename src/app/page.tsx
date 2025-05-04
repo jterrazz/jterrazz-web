@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Article } from '../domain/article.js';
-import { UserExperience } from '../domain/user.js';
+import { type Article } from '../domain/article.js';
+import { type UserExperience } from '../domain/user.js';
 
 import { ArticleInMemoryRepository } from '../infrastructure/repositories/article-in-memory.repository.js';
 import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-memory.repository.js';

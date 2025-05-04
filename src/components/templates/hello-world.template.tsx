@@ -4,7 +4,7 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
-import { UserExperience } from '../../domain/user.js';
+import { type UserExperience } from '../../domain/user.js';
 
 import { cn } from '../../lib/utils.js';
 

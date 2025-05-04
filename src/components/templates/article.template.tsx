@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 
-import { Article, ArticleLanguage } from '../../domain/article.js';
-import { Feature } from '../../domain/feature.js';
+import { type Article, type ArticleLanguage } from '../../domain/article.js';
+import { type Feature } from '../../domain/feature.js';
 
 import { HighlightedText } from '../atoms/highlighted-text.jsx';
 import { HeadingSection } from '../atoms/typography/heading-section.jsx';

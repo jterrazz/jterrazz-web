@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ProjectComponent } from '../../../domain/project.js';
+import { type ProjectComponent } from '../../../domain/project.js';
 
 import { cn } from '../../../lib/utils.js';
 

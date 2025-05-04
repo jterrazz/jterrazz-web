@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Feature } from '../../domain/feature.js';
-import { Project } from '../../domain/project.js';
+import { type Feature } from '../../domain/feature.js';
+import { type Project } from '../../domain/project.js';
 import { UserContactType } from '../../domain/user.js';
 
 import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';

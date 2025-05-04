@@ -1,4 +1,4 @@
-import { Photograph } from '../../../domain/photograph.js';
+import { type Photograph } from '../../../domain/photograph.js';
 
 export const photographsData: Photograph[] = [
     {

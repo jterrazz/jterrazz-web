@@ -1,8 +1,8 @@
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 
 import { ApplicationsListTemplate } from '../../components/templates/applications-list.template.js';
 
-import { Project } from '../../domain/project.js';
+import { type Project } from '../../domain/project.js';
 
 import { FeaturedId } from '../../infrastructure/repositories/data/features.data.js';
 import { FeatureInMemoryRepository } from '../../infrastructure/repositories/feature-in-memory.repository.js';

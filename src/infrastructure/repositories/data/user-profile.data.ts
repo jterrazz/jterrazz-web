@@ -1,4 +1,4 @@
-import { UserProfile } from '../../../domain/user.js';
+import { type UserProfile } from '../../../domain/user.js';
 
 export const userProfileData: UserProfile = {
     age: '28',
