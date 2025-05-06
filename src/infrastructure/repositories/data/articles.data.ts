@@ -183,6 +183,19 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         publicIndex: 13,
         published: true,
     },
+    {
+        filename: '2025-05-06 AI - Navigation the AI Revolution',
+        metadata: {
+            category: ArticleCategory.World,
+            dateModified: '2025-05-06',
+            datePublished: '2025-05-06',
+            description: 'A guide to navigate the AI revolution',
+            title: 'AI: Navigating the AI Revolution',
+        },
+        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        publicIndex: 14,
+        published: true,
+    },
 ];
 
 const processMarkdownContent = (content: string, filename: string): string => {
