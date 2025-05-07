@@ -6,7 +6,7 @@ Artificial Intelligence is not just a _popular term_; it's a **powerful tool**
 
 ## A Radical Truth
 
-I strongly believe in being direct and honest because I genuinely care. So here's a straightforward truth: AI will impact your job. Whether you're a programmer, designer, product manager, lawyer, or salesperson, no job is completely safe. **In fact, any job you can do on Google Meet is set for deep and rapid change in the short term.**
+I strongly believe in being direct and honest because I genuinely care. So here's a straightforward truth: AI will impact your job. Whether you're a programmer, designer, product manager, lawyer, or salesperson, no job is completely safe. **In fact, any job you can do on a desk is set for deep and rapid change in the short term.**
 
 Tasks that used to be simple might gradually fade away, while today's challenging tasks will become more manageable, and previously impossible tasks will start to feel within reach. Staying relevant will mean continually improving and aiming for excellence in your field. Developing strong skills and adaptability will become increasingly important for navigating this changing landscape.
 
@@ -24,7 +24,7 @@ Humans intuitively think linearly, but technology advances exponentially. Consid
 
 Soon, we will see big changes all around us—new scientific discoveries coming much faster, useful apps and tools being released every day, and businesses starting and launching in just a few weeks. The speed of change will affect every part of life, bringing constant new ideas and exciting chances for everyone. This is exactly what exponential growth means: **progress that keeps speeding up and bringing more and more new things faster than before**.
 
-In such a world, **adaptability is your new super-skill**. Treat every tutorial as an excuse to explore. Your deep skills still give you leverage, but now _everyone_ has a 136-IQ assistant on call. The edge goes to the person who talks to that assistant often, asks sharper questions, and turns the answers into action.
+In such a world, **adaptability is your new super-skill**. Treat every tutorial as an excuse to explore. Your deep skills still give you leverage, but now _everyone_ has a 136-IQ assistant on call (as scored by the latest o3 model from OpenAI). The edge goes to the person who talks to that assistant often, asks sharper questions, and turns the answers into action.
 
 AI models from OpenAI, Google, and others have already achieved remarkable expertise in several critical areas. I like to picture these advances as a stack of _layers_. Strengthening any lower layer instantly boosts everything above it, so each breakthrough cascades upward.
 
@@ -36,11 +36,13 @@ To understand where we stand today, it's helpful to break down **what AI can alr
 - **Speaking**: AI-generated content now matches the quality of content produced by even the best human writers, capable of creating engaging and insightful articles, emails, and reports. While top human writers set a high standard, AI consistently meets or closely approaches this benchmark.
 - **Reasoning**: Advanced models can reason logically, make informed decisions, solve complex problems, and reflect critically on their responses.
 
-_These abilities still have rough edges—AI can lose track of context, its memory can drift over time, and it sometimes misses subtle cultural or emotional cues. But these flaws are steadily improving with each new iteration. The smart play is to get involved early—just like the first iPhone developers who built simple apps and then grew alongside the platform's explosive success._
+_These abilities still have rough edges—AI can lose track of context, its memory can drift over time, and it sometimes misses subtle cultural or emotional cues. But just like the ocean before a big swell, these imperfections are signs of something larger building beneath the surface. The smart move isn't to chase the wave, but to be in position when it comes—wait for it, feel its pull, and let it carry you. That's how you gain real momentum. It's the same mindset early iPhone developers had: they built small imperfect apps, stayed close to the curve, and grew as the wave lifted them._
+
+![](assets/wave.jpg)
 
 **Start experimenting now so you can ride the wave of progress, not scramble to catch up later.**
 
-Significant challenges still exist in the next layers:
+Significant challenges still exist with the next intelligence layers:
 
 - **Planning**: While AI can solve well-defined problems, it often struggles with long-term, multi-step strategies that require flexibility and foresight. True planning involves adapting to changing circumstances, prioritizing competing goals, and anticipating obstacles—capabilities that remain rudimentary in current systems.
 - **Assisting Humans**: Currently limited mostly to text-based interactions, AI interfaces lacks the subtleties of human interaction, such as body language, emotional intelligence, and contextual understanding.
