@@ -196,6 +196,19 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         publicIndex: 14,
         published: true,
     },
+    {
+        filename: '2025-05-07 AI - Applied Intelligence',
+        metadata: {
+            category: ArticleCategory.World,
+            dateModified: '2025-05-07',
+            datePublished: '2025-05-07',
+            description: 'A guide to apply intelligence to your life',
+            title: 'AI: Applied Intelligence',
+        },
+        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        publicIndex: 15,
+        published: true,
+    },
 ];
 
 const processMarkdownContent = (content: string, filename: string): string => {
