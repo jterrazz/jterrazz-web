@@ -32,7 +32,7 @@ This new landscape is like having a digital talent marketplace at your fingertip
 
 Learning which models to use, and when, is part of mastering your new digital team. But don't worry—getting started is as easy as trying a few tools, comparing their results, and seeing which ones match your needs best.
 
-## The Tools
+## A Toolbox
 
 To make the most of AI, it helps to think of its abilities like a toolbox—different tools for different jobs. Whether you're writing, analyzing, creating, or exploring, there's likely a model designed just for that.
 
@@ -49,11 +49,13 @@ Remember: each tool is different. Some are great generalists, others are niche s
 
 But know this: If AI can technically do something today, chances are tools to make it practical and easy are already being built—or will be soon. **We're in a phase where the capabilities exist, but the right user-friendly products are still catching up.** What feels rough or frustrating now could become tomorrow's breakthrough feature.
 
-## Some Misconceptions
+## Misconceptions
 
 Many people assume AI is **cold and robotic**—but the truth is, it's often surprisingly warm and articulate. In fact, studies show that patients rate AI-generated responses as more empathetic than those from real doctors. Why? Because AI never gets tired, annoyed, or impatient. It always answers with calm, focused attention.
 
 Others think AI can't be **creative**—but anyone who has used a modern AI tool knows it can generate hundreds of ideas, headlines, or visual concepts in seconds. Ask it to write a poem or redesign your living room, and it'll offer you a dozen fresh takes instantly. That's not just helpful—it's like having a fast, idea-generating tool whenever you need it.
+
+Many assume human creativity is mysterious and uniquely ours—but is it? We're shaped by genetics, culture, training, and context. In a way, we're models too—absorbing, remixing, and iterating on what we've seen. As James Cameron put it: _"You're a model already."_ So the question isn't whether AI can be creative—it already is. The deeper question is: **what exactly makes our creativity so different?** And are we ready to collaborate with something that mirrors it?
 
 But that doesn't mean it has deep understanding or awareness of its actions. The real limitations lie elsewhere: in how AI interfaces with us, in its shallow logical reasoning, and in its lack of long-term planning. It often guesses well, but doesn't think deeply. It responds fast, but doesn't plan ahead. It's impressive—but still a tool with limits we must keep in mind.
 
@@ -93,7 +95,7 @@ You might've seen the term "vibe coding" or "vibe designing"—think of it like 
 
 Remember: your AI assistant is in a box. Every time you chat, you're just waking it up for a few seconds. It doesn't have memory of what came before, it doesn't know everything you know, and it can't see the big picture unless you show it. You bring the context, the strategy, and the continuity. **That's why being complementary—mixing your judgment with its speed—is the real superpower.**
 
-## Delegate Mental Load and Automate
+## Outsource Intellectual Work
 
 Now is the time to proactively incorporate AI into your workflow. Identify the mental tasks you're regularly performing—like conducting research, writing drafts, summarizing complex information, or brainstorming ideas—and explore how AI tools can efficiently handle them. Initially, it might feel unusual, and your output may even seem slower while adapting, but that's just the temporary dip of learning something new. Persist through this adjustment period, and you'll soon become proficient at delegating routine cognitive workload to your AI assistant.
 

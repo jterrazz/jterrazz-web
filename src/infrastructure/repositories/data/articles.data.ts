@@ -184,7 +184,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         published: true,
     },
     {
-        filename: '2025-05-06 AI - Navigation the AI Revolution',
+        filename: '2025-05-06 AI - Navigating the AI Revolution',
         metadata: {
             category: ArticleCategory.World,
             dateModified: '2025-05-06',
@@ -207,6 +207,19 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
         publicIndex: 15,
+        published: true,
+    },
+    {
+        filename: '2025-05-08 AI - Architects of Inversion',
+        metadata: {
+            category: ArticleCategory.World,
+            dateModified: '2025-05-08',
+            datePublished: '2025-05-08',
+            description: 'An exploration about the future of AI',
+            title: 'AI: Architects of Inversion',
+        },
+        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        publicIndex: 16,
         published: true,
     },
 ];
