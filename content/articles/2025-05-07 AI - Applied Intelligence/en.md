@@ -1,5 +1,23 @@
 ![](assets/thumbnail.jpg)
 
+# 📚 Table of Contents–AI Series
+
+1. [**Navigating the AI Revolution**](https://www.jterrazz.com/articles/14)  
+
+   _Understanding how AI is transforming work, creativity, and the future of every profession._
+
+2. [**Applied Intelligence**](https://www.jterrazz.com/articles/15)  
+
+   _A practical guide to using AI tools, adapting your mindset, and thriving in the age of automation._
+
+3. [**Architects of Inversion – The Collapse of Execution**](https://www.jterrazz.com/articles/16)  
+
+   _Exploring how AI is reshaping value, collapsing execution costs, and shifting human worth to ideas and direction._
+
+4. [**Architects of Inversion – The World That Follows**](https://www.jterrazz.com/articles/17)  
+
+   _A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization._
+
 # Applied Intelligence in Your Life
 
 AI isn't science fiction anymore—it's now part of how we live, work, and think every day. In my day-to-day role as a software developer, adapting quickly to technological advances is built into my profession. Tools and techniques considered state-of-the-art five years ago may already be outdated today. **But here's the new reality: this rapid change is no longer limited to the world of tech professionals—it's impacting all of us.**
