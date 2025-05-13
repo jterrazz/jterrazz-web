@@ -6,10 +6,10 @@
 
 **📚 Table des Matières–Série IA**
 
-1. [**Naviguer dans la Révolution de l'IA :**](https://www.jterrazz.com/articles/14) _Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession._
-2. [**L'Intelligence Appliquée :**](https://www.jterrazz.com/articles/15) _Un guide pratique pour utiliser les outils d'IA, adapter votre mentalité et prospérer à l'ère de l'automatisation._
-3. [**Architectes de l'Inversion – L'Effondrement de l'Exécution :**](https://www.jterrazz.com/articles/16) _Explorer comment l'IA redéfinit la valeur, effondre les coûts d'exécution et déplace la valeur humaine vers les idées et la direction._
-4. [**Architectes de l'Inversion – Le Monde qui Suit :**](https://www.jterrazz.com/articles/17) _Une plongée en profondeur dans la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme de la civilisation._
+1. [**Naviguer dans la Révolution de l'IA :**](https://www.jterrazz.com/articles/14/fr) _Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession._
+2. [**L'Intelligence Appliquée :**](https://www.jterrazz.com/articles/15/fr) _Un guide pratique pour utiliser les outils d'IA, adapter votre mentalité et prospérer à l'ère de l'automatisation._
+3. [**Architectes de l'Inversion – L'Effondrement de l'Exécution :**](https://www.jterrazz.com/articles/16/fr) _Explorer comment l'IA redéfinit la valeur, effondre les coûts d'exécution et déplace la valeur humaine vers les idées et la direction._
+4. [**Architectes de l'Inversion – Le Monde qui Suit :**](https://www.jterrazz.com/articles/17/fr) _Une plongée en profondeur dans la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme de la civilisation.__
 
 ---
 
