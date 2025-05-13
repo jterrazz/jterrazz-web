@@ -265,10 +265,10 @@ int parse_mach_symtab(struct symtab_command *symtab_command)
 	while (i < nsyms) {
 		// Symbol data here
 		struct nlist *symbol_data = (nlist *)symtab + i;
-
+		
 		// Symbol name
 		char *symbol_name = strtab + ((struct nlist *)symtab + i)->n_un.n_strx;
-
+		
 		// Add to list for later use
 		handle_symbol(symbol_data, symbol_name);
 		i++;
@@ -325,7 +325,7 @@ When the `N_SECT` mask is true with `sect->type`, we need to find the type based
 ```c
 char match_symbol_section(saved_sections, symbol)
 {
-  if (sect = find_mysection(saved_sections, symbol->n_sect)) #
+  if (sect = find_mysection(saved_sections, symbol->n_sect)) # 
   {
     if (!ft_strcmp(sect->name, SECT_TEXT))
       ret = 'T';

@@ -210,16 +210,29 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         published: true,
     },
     {
-        filename: '2025-05-08 AI - Architects of Inversion',
+        filename: '2025-05-08 AI - Architects of Inversion - The Collapse of Execution',
         metadata: {
             category: ArticleCategory.World,
             dateModified: '2025-05-08',
             datePublished: '2025-05-08',
             description: 'An exploration about the future of AI',
-            title: 'AI: 2. Architects of Inversion',
+            title: 'AI: 2. Architects of Inversion - The Collapse of Execution',
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
         publicIndex: 16,
+        published: true,
+    },
+    {
+        filename: '2025-05-09 AI - Architects of Inversion - The World That Follows',
+        metadata: {
+            category: ArticleCategory.World,
+            dateModified: '2025-05-09',
+            datePublished: '2025-05-09',
+            description: 'An exploration about the future of AI',
+            title: 'AI: 3. Architects of Inversion - The World That Follows',
+        },
+        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        publicIndex: 17,
         published: true,
     },
 ];

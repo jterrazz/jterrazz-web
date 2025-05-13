@@ -13,16 +13,16 @@ Dans cet article, nous allons explorer ce qu'est réellement le design applicati
 **Navigation 📚**
 
 1. [**Introduction: Le Design Applicatif, L'Art De Construire Des Logiciels Durables Et Évolutifs**](https://www.jterrazz.com/articles/9)
-   _Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture._
+	 *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
 
 2. [**Chapitre 1: Le concept de dépendances**](https://www.jterrazz.com/articles/10)
-   _Explorer les relations entre composants, l'importance des dépendances, et les principes comme SOLID._
+	 *Explorer les relations entre composants, l'importance des dépendances, et les principes comme SOLID.*
 
 3. [**Chapitre 2: Comprendre Les Architectures Métier Et Technique**](https://www.jterrazz.com/articles/11)
-   _Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs._
+	 *Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs.*
 
 4. [**Chapitre 3: La Clean Architecture**](https://www.jterrazz.com/articles/12)
-   _Découvrir une approche centrée sur le métier avec une structuration claire en couches._
+	 *Découvrir une approche centrée sur le métier avec une structuration claire en couches.*
 
 ---
 
@@ -51,13 +51,13 @@ Son objectif principal est de créer des applications **maintenables**, c'est-à
 Un logiciel n'est jamais simple à concevoir. L'une des premières étapes pour réussir un design applicatif est de comprendre les différentes formes de **complexité** qui composent une architecture logicielle. Cette complexité se divise généralement en trois grandes catégories:
 
 1. **Complexité Essentielle**
-   C'est la complexité inhérente au métier ou au domaine fonctionnel que le logiciel doit traiter. Par exemple, dans une application bancaire, les règles de calcul des intérêts ou les processus de validation des transactions font partie de cette complexité. Elle est inévitable, car liée au problème que le logiciel résout.
+	 C'est la complexité inhérente au métier ou au domaine fonctionnel que le logiciel doit traiter. Par exemple, dans une application bancaire, les règles de calcul des intérêts ou les processus de validation des transactions font partie de cette complexité. Elle est inévitable, car liée au problème que le logiciel résout.
 
 2. **Complexité Technique**
-   Cette complexité découle des outils et technologies utilisés, comme les bases de données, les frameworks, ou encore les serveurs. Bien qu'elle soit nécessaire, elle doit être maîtrisée pour éviter qu'elle ne devienne un fardeau.
+	 Cette complexité découle des outils et technologies utilisés, comme les bases de données, les frameworks, ou encore les serveurs. Bien qu'elle soit nécessaire, elle doit être maîtrisée pour éviter qu'elle ne devienne un fardeau.
 
 3. **Complexité Accidentelle**
-   Enfin, il y a la complexité créée involontairement par de mauvaises décisions de conception ou des choix techniques inappropriés. Par exemple, un code spaghetti difficile à lire, une surutilisation de frameworks, ou une documentation inexistante. Contrairement à la complexité essentielle, celle-ci peut et doit être réduite.
+	 Enfin, il y a la complexité créée involontairement par de mauvaises décisions de conception ou des choix techniques inappropriés. Par exemple, un code spaghetti difficile à lire, une surutilisation de frameworks, ou une documentation inexistante. Contrairement à la complexité essentielle, celle-ci peut et doit être réduite.
 
 ![](assets/complexity-levels.svg)
 
@@ -70,11 +70,11 @@ Un bon design applicatif consiste donc à minimiser la complexité accidentelle,
 Pour mieux comprendre comment nous en sommes arrivés à parler de design applicatif aujourd'hui, il est utile de regarder en arrière et de suivre son évolution. Voici une vue d'ensemble des grandes étapes:
 
 - **Avant 2000:**
-  À cette époque, les logiciels étaient souvent conçus de manière empirique, sans méthodologies claires. Les architectures spaghettis étaient monnaie courante et les tests étaient réalisés manuellement.
+	À cette époque, les logiciels étaient souvent conçus de manière empirique, sans méthodologies claires. Les architectures spaghettis étaient monnaie courante et les tests étaient réalisés manuellement.
 - **Années 2000:**
-  L'introduction des frameworks, des modèles en couches et des méthodologies agiles a transformé la façon de concevoir le logiciel. La pyramide des tests automatisés est née, avec des tests unitaires ciblant des portions réduites de code. Les équipes commencent à comprendre l'importance d'une organisation plus rigoureuse.
+	L'introduction des frameworks, des modèles en couches et des méthodologies agiles a transformé la façon de concevoir le logiciel. La pyramide des tests automatisés est née, avec des tests unitaires ciblant des portions réduites de code. Les équipes commencent à comprendre l'importance d'une organisation plus rigoureuse.
 - **Après 2015:**
-  Avec l'avènement de pratiques comme le **Test-Driven Development (TDD)**, le **Domain-Driven Design (DDD)**, et des architectures avancées comme l'**architecture hexagonale** et la **clean architecture**, la collaboration entre équipes (produit, ops, métier) est redéfinie. Le **déploiement continu** est aujourd'hui la norme, codifiant des pratiques qui favorisent la qualité et l'adaptabilité.
+	Avec l'avènement de pratiques comme le **Test-Driven Development (TDD)**, le **Domain-Driven Design (DDD)**, et des architectures avancées comme l'**architecture hexagonale** et la **clean architecture**, la collaboration entre équipes (produit, ops, métier) est redéfinie. Le **déploiement continu** est aujourd'hui la norme, codifiant des pratiques qui favorisent la qualité et l'adaptabilité.
 
 ---
 
@@ -83,19 +83,18 @@ Pour mieux comprendre comment nous en sommes arrivés à parler de design applic
 Le design applicatif est également influencé par des principes fondamentaux issus de deux manifestes fondateurs:
 
 1. **Le manifeste du développement agile**
-   Publié en 2001, il met en avant:
-
-   - Les **logiciels opérationnels** plutôt que la documentation exhaustive.
-   - L'**adaptation au changement** plutôt que le suivi rigide d'un plan.
-   - Les **individus et leurs interactions** plutôt que les processus et outils.
-   - La **collaboration avec le client** plutôt que la négociation contractuelle.
+	 Publié en 2001, il met en avant:
+	 - Les **logiciels opérationnels** plutôt que la documentation exhaustive.
+	 - L'**adaptation au changement** plutôt que le suivi rigide d'un plan.
+	 - Les **individus et leurs interactions** plutôt que les processus et outils.
+	 - La **collaboration avec le client** plutôt que la négociation contractuelle.
 
 2. **Le manifeste du Software Craftsmanship**
-   Considéré comme une réponse complémentaire point par point, il valorise:
-   - Les **logiciels bien conçus**.
-   - L'**ajout constant de valeur**.
-   - Une **communauté de professionnels compétents** et engagés.
-   - Des **partenariats productifs** avec les parties prenantes.
+	 Considéré comme une réponse complémentaire point par point, il valorise:
+	 - Les **logiciels bien conçus**.
+	 - L'**ajout constant de valeur**.
+	 - Une **communauté de professionnels compétents** et engagés.
+	 - Des **partenariats productifs** avec les parties prenantes.
 
 ---
 

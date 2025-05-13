@@ -7,16 +7,16 @@ L'architecture logicielle ne devrait pas dépendre de détails techniques comme 
 **Navigation 📚**
 
 1. [**Introduction: Le Design Applicatif, L'Art De Construire Des Logiciels Durables Et Évolutifs**](https://www.jterrazz.com/articles/9)
-   _Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture._
+	 *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
 
 2. [**Chapitre 1: Le concept de dépendances**](https://www.jterrazz.com/articles/10)
-   _Explorer les relations entre composants, l'importance des dépendances, et les principes comme SOLID._
+	 *Explorer les relations entre composants, l'importance des dépendances, et les principes comme SOLID.*
 
 3. [**Chapitre 2: Comprendre Les Architectures Métier Et Technique**](https://www.jterrazz.com/articles/11)
-   _Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs._
+	 *Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs.*
 
 4. [**Chapitre 3: La Clean Architecture**](https://www.jterrazz.com/articles/12)
-   _Découvrir une approche centrée sur le métier avec une structuration claire en couches._
+	 *Découvrir une approche centrée sur le métier avec une structuration claire en couches.*
 
 ---
 
@@ -96,40 +96,40 @@ src/
 ```ts
 // business/entity/floor.ts
 export class Floor {
-  constructor(public floor: number) {}
+    constructor(public floor: number) {}
 
-  getFactor() {
-    if (this.floor === 1) {
-      return 1.07;
+    getFactor() {
+        if (this.floor === 1) {
+            return 1.07;
+        }
+        if (this.floor === 2) {
+            return 1.22;
+        }
+        if (this.floor === 3) {
+            return 1.33;
+        }
+        return 1;
     }
-    if (this.floor === 2) {
-      return 1.22;
-    }
-    if (this.floor === 3) {
-      return 1.33;
-    }
-    return 1;
-  }
 }
 ```
 
 ```ts
 // business/entity/room.ts
-import { Floor } from './floor';
+import { Floor } from "./floor";
 
 export class Room {
-  public floor: Floor;
-  constructor(
-    floorNumber: number,
-    public number: number,
-    public price: number,
-  ) {
-    this.floor = new Floor(floorNumber);
-  }
+    public floor: Floor;
+    constructor(
+        floorNumber: number,
+        public number: number,
+        public price: number,
+    ) {
+        this.floor = new Floor(floorNumber);
+    }
 
-  setPrice(basePrice: number) {
-    this.price = Math.min(Number((basePrice * this.floor.getFactor()).toFixed(2)), 200);
-  }
+    setPrice(basePrice: number) {
+        this.price = Math.min(Number((basePrice * this.floor.getFactor()).toFixed(2)), 200)
+    }
 }
 ```
 
@@ -158,14 +158,14 @@ Ces entités peuvent être utilisées dans plusieurs cas d'utilisation sans dupl
 ```ts
 // business/gateway/room.gateway.ts
 export interface RoomDTO {
-  floor: number;
-  number: number;
-  price: number;
+    floor: number;
+    number: number;
+    price: number;
 }
 
 export interface RoomGateway {
-  updateRoomPrice(roomNumber: number, newPrice: number): Promise<void>;
-  getRooms(): Promise<Array<RoomDTO>>;
+    updateRoomPrice(roomNumber: number, newPrice: number): Promise<void>
+    getRooms(): Promise<Array<RoomDTO>>
 }
 ```
 
@@ -177,32 +177,30 @@ Le **RoomGateway** sert d'abstraction entre la logique métier et les détails t
 
 ```ts
 // business/use-cases/update-room-price.ts
-import { Room } from '../entity/room';
-import { RoomGateway } from '../gateway/room.gateway';
+import { Room } from "../entity/room";
+import { RoomGateway } from "../gateway/room.gateway";
 
 export interface Presenter {
-  set: (rooms: Array<Room>) => void;
+    set: (rooms: Array<Room>) => void
 }
 
-export type UpdateRoomPrice = (basePrice: number, presenter: Presenter) => Promise<void>;
+export type UpdateRoomPrice = (basePrice: number, presenter: Presenter) => Promise<void>
 
 export const updateRoomPriceFactory = (repository: RoomGateway) => {
-  return async (basePrice: number, presenter: Presenter) => {
-    if (basePrice < 0) {
-      throw new Error('Amount cannot be negative number');
+    return async (basePrice: number, presenter: Presenter) => {
+        if (basePrice < 0) {
+            throw new Error('Amount cannot be negative number')
+        }
+        const roomsDto = await repository.getRooms()
+        const rooms = roomsDto.map(r => new Room(r.floor, r.number, r.price));
+        for (const room of rooms) {
+            room.setPrice(basePrice)
+            await repository.updateRoomPrice(room.number, room.price)
+        }
+        const updatedRooms = (await repository.getRooms()).map(r => new Room(r.floor, r.number, r.price));
+        presenter.set(updatedRooms);
     }
-    const roomsDto = await repository.getRooms();
-    const rooms = roomsDto.map((r) => new Room(r.floor, r.number, r.price));
-    for (const room of rooms) {
-      room.setPrice(basePrice);
-      await repository.updateRoomPrice(room.number, room.price);
-    }
-    const updatedRooms = (await repository.getRooms()).map(
-      (r) => new Room(r.floor, r.number, r.price),
-    );
-    presenter.set(updatedRooms);
-  };
-};
+}
 ```
 
 Le **cas d'utilisation** UpdateRoomPrice orchestre les interactions entre le métier et les couches externes (gateway et presenter) pour appliquer une logique spécifique: mettre à jour les prix des chambres.
@@ -227,23 +225,23 @@ Ce design rend le cas d'utilisation testable isolément grâce à l'injection de
 
 ```ts
 // controller/gateway/room.repository.ts
-import { RoomDTO, RoomGateway } from '../../business/gateway/room.gateway';
+import { RoomDTO, RoomGateway } from "../../business/gateway/room.gateway";
 
 export class RoomRepository implements RoomGateway {
-  constructor(private rooms: Array<RoomDTO>) {}
+    constructor(private rooms: Array<RoomDTO>) {}
 
-  updateRoomPrice(roomNumber: number, newPrice: number): Promise<void> {
-    const room = this.rooms.find((room) => room.number === roomNumber);
-    if (!room) {
-      throw new Error(`Failed to find room ${roomNumber}`);
+    updateRoomPrice(roomNumber: number, newPrice: number): Promise<void> {
+        const room = this.rooms.find(room => room.number === roomNumber);
+        if (!room) {
+            throw new Error(`Failed to find room ${roomNumber}`)
+        }
+        room.price = newPrice;
+        return Promise.resolve()
     }
-    room.price = newPrice;
-    return Promise.resolve();
-  }
 
-  getRooms(): Promise<Array<RoomDTO>> {
-    return Promise.resolve(this.rooms);
-  }
+    getRooms(): Promise<Array<RoomDTO>> {
+        return Promise.resolve(this.rooms);
+    }
 }
 ```
 
@@ -253,24 +251,24 @@ export class RoomRepository implements RoomGateway {
 
 ```ts
 // controller/presenter/room.presenter-json.ts
-import { Room } from '../../business/entity/room';
+import { Room } from "../../business/entity/room";
 
 export class RoomPresenterJson {
-  private r: Array<Room> = [];
+    private r: Array<Room> = [];
 
-  set(rooms: Array<Room>) {
-    this.r = rooms;
-  }
+    set(rooms: Array<Room>) {
+        this.r = rooms;
+    }
 
-  format() {
-    return this.r.map((r) => {
-      return {
-        floor: r.floor.floor,
-        price: r.price,
-        number: r.number,
-      };
-    });
-  }
+    format() {
+        return this.r.map(r => {
+            return {
+                floor: r.floor.floor,
+                price: r.price,
+                number: r.number,
+            }
+        })
+    }
 }
 ```
 
@@ -280,23 +278,23 @@ export class RoomPresenterJson {
 
 ```ts
 // controller/room.controller.ts
-import { Request, Response } from 'express';
-import { createContainer } from '../container/container';
-import { RoomPresenterJson } from './presenter/room-presenter.json';
+import { Request, Response } from "express"
+import { createContainer } from "../container/container"
+import { RoomPresenterJson } from "./presenter/room-presenter.json";
 
 // A bouger quelque part
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
 
 const container = createContainer();
 
 app.put('/rooms', async (req: Request, res: Response) => {
-  const roomPresenterJson = new RoomPresenterJson();
-  await container.UpdateRoomPrice(200, roomPresenterJson);
-  res.send(roomPresenterJson.format());
-});
+    const roomPresenterJson = new RoomPresenterJson();
+    await container.UpdateRoomPrice(200, roomPresenterJson)
+    res.send(roomPresenterJson.format())
+})
 
-app.listen(3000);
+app.listen(3000)
 ```
 
 Isoler le **presenter** dans le contrôleur permet de **respecter le principe de séparation des responsabilités** et d'assurer un découplage clair entre les couches. Dans cet exemple, le **Use Case** se concentre uniquement sur la logique métier, sans se préoccuper de la manière dont les résultats seront formatés ou présentés à l'utilisateur. Cela apporte plusieurs avantages:
@@ -328,41 +326,39 @@ Le **Use Case** dépend d'une abstraction (RoomPresenter ou similaire) et non d'
 
 ```ts
 // business/container/container.ts
-import { UpdateRoomPrice, updateRoomPriceFactory } from '../business/use-cases/update-room-price';
-import { RoomRepository } from '../controller/gateway/room.repository';
+import { UpdateRoomPrice, updateRoomPriceFactory } from "../business/use-cases/update-room-price"
+import { RoomRepository } from "../controller/gateway/room.repository"
 
 interface Container {
-  UpdateRoomPrice: UpdateRoomPrice;
+    UpdateRoomPrice: UpdateRoomPrice
 }
 
 export const createContainer = (): Container => {
-  return {
-    UpdateRoomPrice: updateRoomPriceFactory(
-      new RoomRepository([
-        {
-          floor: 0,
-          number: 1,
-          price: 0,
-        },
-        {
-          floor: 1,
-          number: 2,
-          price: 0,
-        },
-        {
-          floor: 2,
-          number: 3,
-          price: 0,
-        },
-        {
-          floor: 3,
-          number: 4,
-          price: 0,
-        },
-      ]),
-    ),
-  };
-};
+    return {
+        UpdateRoomPrice: updateRoomPriceFactory(new RoomRepository([
+            {
+                floor: 0,
+                number: 1,
+                price: 0,
+            },
+            {
+                floor: 1,
+                number: 2,
+                price: 0,
+            },
+            {
+                floor: 2,
+                number: 3,
+                price: 0,
+            },
+            {
+                floor: 3,
+                number: 4,
+                price: 0,
+            }
+        ]))
+    }
+}
 ```
 
 Le **conteneur** centralise la configuration et l'instanciation des dépendances de l'application. En utilisant createContainer, toutes les relations entre les cas d'utilisation (UpdateRoomPrice) et leurs dépendances (ex.: RoomRepository) sont définies en un seul endroit.
@@ -373,30 +369,30 @@ Le **conteneur** centralise la configuration et l'instanciation des dépendances
 
 ```ts
 // update-price.test.ts
-import assert from 'assert';
-import { describe, test } from 'mocha';
-import { createContainer } from './container/container';
-import { RoomPresenterJson } from './controller/presenter/room-presenter.json';
+import assert from "assert";
+import { describe, test } from "mocha";
+import { createContainer } from "./container/container";
+import { RoomPresenterJson } from "./controller/presenter/room-presenter.json";
 
 describe('Update price', () => {
-  test('Update room number 1 price to 100', async () => {
-    // Given
-    const container = createContainer();
-    const presenter = new RoomPresenterJson();
+    test('Update room number 1 price to 100', async () => {
+        // Given
+        const container = createContainer()
+        const presenter = new RoomPresenterJson()
 
-    // When
-    await container.UpdateRoomPrice(100, presenter);
+        // When
+        await container.UpdateRoomPrice(100, presenter);
 
-    // Then
-    const value = presenter.format();
-    assert.deepStrictEqual(value, [
-      { number: 1, price: 100, floor: 0 },
-      { number: 2, price: 107, floor: 1 },
-      { number: 3, price: 122, floor: 2 },
-      { number: 4, price: 133, floor: 3 },
-    ]);
-  });
-});
+        // Then
+        const value = presenter.format()
+        assert.deepStrictEqual(value, [
+            { "number": 1, "price": 100, "floor": 0 },
+            { "number": 2, "price": 107, "floor": 1 },
+            { "number": 3, "price": 122, "floor": 2 },
+            { "number": 4, "price": 133, "floor": 3 },
+        ]);
+    });
+})
 ```
 
 Ce test est essentiel car il vérifie que la logique métier de mise à jour des prix des chambres fonctionne correctement, en appliquant les règles spécifiques définies, comme les facteurs par étage ou la limite maximale de prix. Grâce à la Clean Architecture, il est facile à écrire et à maintenir, car les dépendances sont bien séparées. L'utilisation d'un conteneur pour injecter les cas d'utilisation (UpdateRoomPrice) et d'un presenter comme RoomPresenterJson permet de simuler le comportement complet sans nécessiter de détails techniques lourds, comme une vraie base de données. Cela rend le test rapide, clair et ciblé sur le métier.
@@ -406,7 +402,6 @@ Ce test est essentiel car il vérifie que la logique métier de mise à jour des
 ## Pourquoi la Screaming Architecture Est Utile Ici
 
 Dans cet exemple, la Screaming Architecture est utilisée pour refléter le métier:
-
 - Les noms des fichiers (`Order`, `CalculateOrderTotal`) décrivent clairement leur rôle métier.
 - Les responsabilités sont isolées et alignées avec les besoins métier.
 - Une duplication raisonnable (comme les interfaces et classes spécifiques à chaque couche) permet de garder le code clair et compréhensible.

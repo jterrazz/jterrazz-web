@@ -13,16 +13,16 @@ In this article, we'll explore what application design truly is, why it is criti
 **Navigation 📚**
 
 1. [**Introduction: Application Design, The Art of Building Sustainable and Scalable Software**](https://www.jterrazz.com/articles/9)
-   _The basics to understand the stakes and objectives of good architecture._
+	 *The basics to understand the stakes and objectives of good architecture.*
 
 2. [**Chapter 1: The Concept of Dependencies**](https://www.jterrazz.com/articles/10)
-   _Exploring relationships between components, the importance of dependencies, and principles like SOLID._
+	 *Exploring relationships between components, the importance of dependencies, and principles like SOLID.*
 
 3. [**Chapter 2: Understanding Business and Technical Architectures**](https://www.jterrazz.com/articles/11)
-   _How to isolate business logic from technical concerns using ports and adapters._
+	 *How to isolate business logic from technical concerns using ports and adapters.*
 
 4. [**Chapter 3: Clean Architecture**](https://www.jterrazz.com/articles/12)
-   _Discovering an approach focused on business with a clear layered structure._
+	 *Discovering an approach focused on business with a clear layered structure.*
 
 ---
 
@@ -51,13 +51,13 @@ Its primary goal is to create **maintainable** applications—easy to understand
 Designing software is never simple. One of the first steps in successful application design is understanding the different forms of **complexity** that make up software architecture. This complexity generally falls into three main categories:
 
 1. **Essential Complexity**
-   This is the inherent complexity of the business or functional domain the software addresses. For example, in a banking application, interest calculation rules or transaction validation processes are part of this complexity. It is unavoidable because it is tied to the problem the software solves.
+	 This is the inherent complexity of the business or functional domain the software addresses. For example, in a banking application, interest calculation rules or transaction validation processes are part of this complexity. It is unavoidable because it is tied to the problem the software solves.
 
 2. **Technical Complexity**
-   This complexity arises from the tools and technologies used, such as databases, frameworks, or servers. While necessary, it must be managed to prevent it from becoming a burden.
+	 This complexity arises from the tools and technologies used, such as databases, frameworks, or servers. While necessary, it must be managed to prevent it from becoming a burden.
 
 3. **Accidental Complexity**
-   Finally, there is complexity unintentionally introduced by poor design decisions or inappropriate technical choices. Examples include spaghetti code that is hard to read, overuse of frameworks, or nonexistent documentation. Unlike essential complexity, accidental complexity can—and should—be reduced.
+	 Finally, there is complexity unintentionally introduced by poor design decisions or inappropriate technical choices. Examples include spaghetti code that is hard to read, overuse of frameworks, or nonexistent documentation. Unlike essential complexity, accidental complexity can—and should—be reduced.
 
 ![](assets/complexity-levels.svg)
 
@@ -70,11 +70,11 @@ Good application design focuses on minimizing accidental complexity, managing te
 To better understand how we came to discuss application design today, it's helpful to look back and follow its evolution. Here's an overview of the key milestones:
 
 - **Before 2000:**
-  Software was often designed empirically, without clear methodologies. Spaghetti architectures were common, and testing was manual.
+	Software was often designed empirically, without clear methodologies. Spaghetti architectures were common, and testing was manual.
 - **2000s:**
-  The introduction of frameworks, layered models, and agile methodologies transformed how software was built. The automated testing pyramid emerged, focusing on unit tests targeting small portions of code. Teams began to understand the importance of a more structured approach.
+	The introduction of frameworks, layered models, and agile methodologies transformed how software was built. The automated testing pyramid emerged, focusing on unit tests targeting small portions of code. Teams began to understand the importance of a more structured approach.
 - **Post-2015:**
-  With practices like **Test-Driven Development (TDD)**, **Domain-Driven Design (DDD)**, and advanced architectures such as **hexagonal architecture** and **clean architecture**, collaboration among teams (product, operations, business) was redefined. **Continuous deployment** became the norm, codifying practices that foster quality and adaptability.
+	With practices like **Test-Driven Development (TDD)**, **Domain-Driven Design (DDD)**, and advanced architectures such as **hexagonal architecture** and **clean architecture**, collaboration among teams (product, operations, business) was redefined. **Continuous deployment** became the norm, codifying practices that foster quality and adaptability.
 
 ---
 
@@ -83,19 +83,18 @@ To better understand how we came to discuss application design today, it's helpf
 Application design is also shaped by fundamental principles from two key manifestos:
 
 1. **The Agile Manifesto**
-   Published in 2001, it emphasizes:
-
-   - **Working software** over comprehensive documentation.
-   - **Adapting to change** over following a rigid plan.
-   - **Individuals and interactions** over processes and tools.
-   - **Customer collaboration** over contract negotiation.
+	 Published in 2001, it emphasizes:
+	 - **Working software** over comprehensive documentation.
+	 - **Adapting to change** over following a rigid plan.
+	 - **Individuals and interactions** over processes and tools.
+	 - **Customer collaboration** over contract negotiation.
 
 2. **The Software Craftsmanship Manifesto**
-   Considered a complementary point-by-point response, it values:
-   - **Well-crafted software**.
-   - **Continuous delivery of value**.
-   - A **community of skilled, committed professionals**.
-   - **Productive partnerships** with stakeholders.
+	 Considered a complementary point-by-point response, it values:
+	 - **Well-crafted software**.
+	 - **Continuous delivery of value**.
+	 - A **community of skilled, committed professionals**.
+	 - **Productive partnerships** with stakeholders.
 
 ---
 

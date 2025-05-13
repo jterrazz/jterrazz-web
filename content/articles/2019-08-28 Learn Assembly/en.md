@@ -60,7 +60,7 @@ An Assembly file (`.s`) is typically divided into four main sections:
 ```python
 # SECTION: Initialized data
 .data
-my_str db "001101" # You can save strings and adds the terminating /0
+my_str db "001101" # You can save strings and adds the terminating /0     
 my_var db 0 # The integer i is initialized to 0
 # db 1 declares 1 byte (b = byte)
 # dw 1 declares 2 bytes (w = word)
@@ -72,7 +72,7 @@ my_var db 0 # The integer i is initialized to 0
 my_var db 6
 # Same as .data but the data can't be changed
 
-# SECTION: Uninitialized data
+# SECTION: Uninitialized data     
 .bss
 my_var: resb 4 # Allocates 4 uninitialized bytes
 # resb 1 allocates 1 byte (b = byte)
@@ -104,7 +104,11 @@ Registers are like the VIP lounge of memory–exclusive and fast. Here are the k
 
 #### General-Purpose Registers
 
-- `rax`, `rbx`, `rcx`, `rdx`: The workhorses of Assembly instructions - `a`: Accumulator (often for arithmetic) - `b`: Base (often for memory addressing) - `c`: Counter (loops, anyone?) - `d`: Data (general data operations)
+- `rax`, `rbx`, `rcx`, `rdx`: The workhorses of Assembly instructions
+		- `a`: Accumulator (often for arithmetic)
+		- `b`: Base (often for memory addressing)
+		- `c`: Counter (loops, anyone?)
+		- `d`: Data (general data operations)
 
 #### Index Registers
 

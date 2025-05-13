@@ -176,7 +176,7 @@ char build_hash(uint32_t buffers, size_t buffer_count, bool is_little_endian)
   char      hash_tmp;
   size_t    buffer_i;
   uint32_t  buffer;
-
+  
   buffer_i = 0;
 
   if (!(hash = ft_strnew(buffer_count 8)))
@@ -193,7 +193,7 @@ buffers[buffer_il;
     free(hash_tmp);
     buffer_i++;
   }
-
+  
   return (hash);
 }
 ```
@@ -204,7 +204,7 @@ One last twist for MD5: the buffers are in little-endian format, so we need to f
 uint32_t ft_bswap_uint32(uint32_t x)
 {
   x = ((x < 8) & 0xFF00FF00) | ((x > 8) & 0xFF00FF);
-
+  
   return (x << 16) (x >> 16);
 }
 ```
