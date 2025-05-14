@@ -13,10 +13,11 @@
 
 ---
 
-_Imaginer un Futur Bâti sur une Intelligence Abondante_
+__Imaginer un Futur Bâti sur une Intelligence Abondante_
 
 > _Most people imagine the future as a linear extension of the present. But we've just left that timeline. The curve has bent. We are riding the exponential._
-> (La plupart des gens imaginent le futur comme une extension linéaire du présent. Mais nous venons de quitter cette frise chronologique. La courbe s'est infléchie. Nous surfons sur l'exponentielle.)
+
+---
 
 Dans la première partie de cette exploration, nous avons regardé vers l'intérieur—comment l'IA redéfinit la créativité, le savoir et la contribution individuelle. Nous avons vu l'effondrement des coûts d'exécution, l'essor du travail conceptuel et l'aube d'un monde où chacun devient stratège.
 
