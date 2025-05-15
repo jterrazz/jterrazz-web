@@ -144,3 +144,5 @@ We are all architects now. Not of buildings, but of understanding frameworks, of
 **The second half of this journey, "The World That Follows," begins where many AI narratives stop**: delving into the tangible physical world, our social fabric, and civilization's shape. What happens when AI integrates deeply into our cities, governance, rituals, and relationships? That is what we explore next.
 
 The intelligence is here. Now comes the architecture.
+
+[**Read next article**](https://www.jterrazz.com/articles/17)

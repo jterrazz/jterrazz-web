@@ -142,3 +142,5 @@ Nous sommes tous des architectes désormais. Non pas de bâtiments, mais de cadr
 **La seconde moitié de ce voyage, " Le Monde qui Suit ", commence là où s'arrêtent de nombreux récits sur l'IA**: en explorant le monde physique tangible, notre tissu social et la forme même de notre civilisation. Que se passe-t-il lorsque l'IA s'intègre profondément dans nos villes, notre gouvernance, nos rituels et nos relations? C'est ce que nous explorerons ensuite.
 
 L'intelligence est là. L'heure est maintenant à l'architecture.
+
+[**Lire la suite**](https://www.jterrazz.com/articles/17)

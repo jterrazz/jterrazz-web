@@ -127,3 +127,5 @@ Les outils d'IA actuels peuvent sembler rudimentaires ou incomplets, tout comme 
 Commencez dès maintenant à construire votre flux de travail intégrant l'IA. Créez de nouvelles habitudes, expérimentez généreusement, adoptez rapidement. Vous vous préparez, en ce moment même, à une vague technologique imminente qui modifiera fondamentalement notre façon de travailler et de vivre.
 
 Grâce à une évolution de votre état d'esprit, à l'expérimentation et à une délégation judicieuse, **l'Intelligence Artificielle ne menacera pas votre succès–elle deviendra votre plus grande alliée.**
+
+[**Lire la suite**](https://www.jterrazz.com/articles/16)
