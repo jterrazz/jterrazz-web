@@ -1,3 +1,5 @@
+![](assets/thumbnail.jpg)
+
 # **IA: Architectes De l'Inversion–L'Effondrement De l'Exécution**
 
 ---
@@ -128,8 +130,6 @@ L'IA est un **amplificateur à usage général**, un outil pour inventer de meil
 Chaque génération se croit à un tournant unique de l'histoire. La plupart se trompent. Mais en observant les grandes inflexions historiques, certains moments **modifient véritablement l'arc** du destin humain. Celui-ci en a indéniablement toutes les caractéristiques. La seule question est: **Quel degré de conscience, d'engagement et d'intentionnalité souhaitez-vous manifester alors que tout cela se déroule?**
 
 ---
-
-![](../2025-05-09%20AI%20-%20Architects%20of%20Inversion%20-%20The%20World%20That%20Follows/assets/thumbnail.jpg)
 
 ## **Conclusion: De la Courbe à la Toile–Nous Sommes Tous Des Architectes Désormais**
 
