@@ -17,6 +17,8 @@ _Imagining a Future Built on Abundant Intelligence_
 
 > _Most people imagine the future as a linear extension of the present. But we've just left that timeline. The curve has bent. We are riding the exponential._
 
+---
+
 In the first part of this exploration, we looked inward—at how AI is reshaping creativity, knowledge, and individual contribution. We saw the collapse of execution costs, the rise of conceptual labor, and the dawn of a world where everyone becomes a strategist.
 
 But intelligence doesn't stay in the cloud. It spills out—into matter, into systems, into daily life.

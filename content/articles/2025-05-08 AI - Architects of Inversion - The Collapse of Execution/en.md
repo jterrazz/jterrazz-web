@@ -302,7 +302,7 @@ In the past, humanity could only make exponential progress in one domain at a ti
 
 But today? We're accelerating in **all three at once**:
 
-- Biological: AI-assisted protein folding, robotic labs, personalized medicine.
+- Intelligence: AI.
 - Physical: factory automation, humanoid robotics, energy systems.
 - Digital: language models, image generators, self-improving algorithms.
 
