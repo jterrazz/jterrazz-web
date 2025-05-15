@@ -39,7 +39,7 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
     className,
     contentInMarkdown,
 }) => {
-    const baseClassName = 'font-["Charter"] text-lg leading-relaxed text-gray-800';
+    const baseClassName = 'font-["Charter"] text-base md:text-lg leading-relaxed text-gray-800';
     const generatedClassName = cn(baseClassName, className);
 
     return (
@@ -81,24 +81,24 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                         h1: {
                             component: HeadingMain,
                             props: {
-                                className: 'text-4xl font-bold mb-8 mt-12',
+                                className: 'text-3xl md:text-4xl font-bold mb-8 mt-12',
                             },
                         },
                         h2: {
                             component: HeadingSection,
                             props: {
-                                className: 'text-3xl font-bold mb-4 mt-10',
+                                className: 'text-2xl md:text-3xl font-bold mb-4 mt-10',
                             },
                         },
                         h3: {
                             component: HeadingSection,
                             props: {
-                                className: 'text-2xl font-semibold mb-3 mt-8',
+                                className: 'text-xl md:text-2xl font-semibold mb-3 mt-8',
                             },
                         },
                         h4: {
                             props: {
-                                className: 'text-xl font-semibold mb-2 mt-6',
+                                className: 'text-lg md:text-xl font-semibold mb-2 mt-6',
                             },
                         },
                         hr: {
