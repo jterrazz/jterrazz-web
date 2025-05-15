@@ -35,7 +35,7 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
     getViewModel(): ArticlesListViewModel {
         const button = {
             href: this.userRepo.getContact(UserContactType.Medium).url.toString(),
-            text: 'Follow me on Medium',
+            text: 'Check me on Medium',
         };
 
         const sortedArticles = this.articles

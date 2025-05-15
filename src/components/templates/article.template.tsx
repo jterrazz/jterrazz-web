@@ -44,12 +44,18 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
 
     return (
         <MainContainer className="my-6 md:my-6">
+            <aside aria-label="Article metadata" className="flex justify-center mb-8">
+                <div className="rounded-lg bg-white border border-black/10 px-6 py-2 text-xs text-black/70 shadow-sm font-medium max-w-2xl w-full text-center">
+                    Final text polished by AI for readability. The underlying concepts &
+                    architecture are my own.
+                </div>
+            </aside>
             <Script id="json-ld" strategy="beforeInteractive" type="application/ld+json">
                 {JSON.stringify(jsonLd)}
             </Script>
 
             {availableLanguages.length > 1 && (
-                <div className="flex justify-center mb-12">
+                <div className="flex justify-center">
                     <div className="inline-flex border border-black/10 hover:border-black/20 transition-colors duration-300 rounded-full overflow-hidden">
                         {availableLanguages.map((lang) => (
                             <Link

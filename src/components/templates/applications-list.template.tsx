@@ -27,7 +27,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
 }) => {
     const button = {
         href: new UserInMemoryRepository().getContact(UserContactType.GitHub).url.toString(),
-        text: 'Follow me on GitHub',
+        text: 'Check me on GitHub',
     };
 
     return (
