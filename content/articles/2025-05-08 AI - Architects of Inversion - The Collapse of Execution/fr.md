@@ -143,4 +143,4 @@ Nous sommes tous des architectes désormais. Non pas de bâtiments, mais de cadr
 
 L'intelligence est là. L'heure est maintenant à l'architecture.
 
-[**Lire la suite**](https://www.jterrazz.com/articles/17)
+[**Lire la suite**](https://www.jterrazz.com/articles/17/fr)
