@@ -235,6 +235,19 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         publicIndex: 17,
         published: true,
     },
+    {
+        filename: '2025-05-18 AI - Cheatsheet 2025',
+        metadata: {
+            category: ArticleCategory.World,
+            dateModified: '2025-05-18',
+            datePublished: '2025-05-18',
+            description: 'A cheatsheet about the AI revolution',
+            title: 'AI: Cheatsheet 2025',
+        },
+        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        publicIndex: 18,
+        published: true,
+    },
 ];
 
 const processMarkdownContent = (content: string, filename: string): string => {
