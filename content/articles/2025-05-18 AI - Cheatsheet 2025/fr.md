@@ -230,4 +230,13 @@ _(P=Payant, F=Gratuit, Fm=Freemium, Incl.=Inclus)_
 
 ---
 
+## 📚 Série IA
+
+1. [**Naviguer dans la Révolution de l'IA :**](https://www.jterrazz.com/articles/14/fr) _Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession._
+2. [**Intelligence Appliquée :**](https://www.jterrazz.com/articles/15/fr) _Un guide pratique pour utiliser les outils d'IA, adapter votre état d'esprit et prospérer à l'ère de l'automatisation._
+3. [**Architectes de l'Inversion – L'Effondrement de l'Exécution :**](https://www.jterrazz.com/articles/16/fr) _Explorer comment l'IA redéfinit la valeur, rend l'exécution largement accessible et déplace la valeur humaine vers les idées et la direction._
+4. [**Architectes de l'Inversion–Le Monde qui Suit:**](https://www.jterrazz.com/articles/17/fr) _Une plongée en profondeur dans la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme de la civilisation._
+
+---
+
 **À Retenir pour 2025:** L'IA évolue à une vitesse fulgurante. Soyez curieux, expérimentez et découvrez comment ces outils peuvent amplifier vos compétences!
