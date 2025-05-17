@@ -1,3 +1,5 @@
+![](assets/thumbnail.png)
+
 # AI Cheatsheet 2025
 
 AI in 2025: Your rapid guide to tools & models supercharging work and creativity.
