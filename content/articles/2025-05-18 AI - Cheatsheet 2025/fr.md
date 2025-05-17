@@ -1,4 +1,4 @@
-![](assets/thumbnail.png)
+![](assets/thumbnail.jpg)
 
 # Cheatsheet IA 2025
 

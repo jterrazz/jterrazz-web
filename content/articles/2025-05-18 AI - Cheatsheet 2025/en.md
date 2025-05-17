@@ -1,4 +1,4 @@
-![](assets/thumbnail.png)
+![](assets/thumbnail.jpg)
 
 # AI Cheatsheet 2025
 
