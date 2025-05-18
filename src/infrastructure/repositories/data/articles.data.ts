@@ -248,6 +248,19 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         publicIndex: 18,
         published: true,
     },
+    {
+        filename: '2025-05-18 AI - Cursor',
+        metadata: {
+            category: ArticleCategory.World,
+            dateModified: '2025-05-19',
+            datePublished: '2025-05-18',
+            description: 'A Cursor Guide for Developers',
+            title: 'AI: Cursor Guide for Developers',
+        },
+        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        publicIndex: 19,
+        published: true,
+    },
 ];
 
 const processMarkdownContent = (content: string, filename: string): string => {
