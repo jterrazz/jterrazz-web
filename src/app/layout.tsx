@@ -149,7 +149,7 @@ export default function RootLayout({
                     <div className="sticky top-0 z-[50]">
                         <NotificationBanner
                             className="border-b border-white/10"
-                            href="/link/applications/fake-news-ios"
+                            href="/link/applications/fake-news"
                             message="Download my new app from the App Store!"
                         />
                         <TheNavigationBar contacts={contacts} pages={pages} />

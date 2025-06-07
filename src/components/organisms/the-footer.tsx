@@ -28,7 +28,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         },
         {
             description: 'Mobile',
-            href: 'https://jterrazz.com/link/applications/fake-news-ios',
+            href: 'https://jterrazz.com/link/applications/fake-news',
             imageSrc: '/assets/icons/app-icon.fake-news.jpg', // TODO Use repository
             title: 'Fake News',
         },
