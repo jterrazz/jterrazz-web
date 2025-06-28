@@ -8,6 +8,10 @@ import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-m
 
 import { HelloWorldTemplate } from '../components/templates/hello-world.template.js';
 
+// Force static generation for this page
+export const dynamic = 'force-static';
+export const revalidate = false;
+
 export default async function HomePage() {
     const userRepository = new UserInMemoryRepository();
     const articlesRepository = new ArticleInMemoryRepository();

@@ -1,3 +1,4 @@
+import React from 'react';
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -8,6 +9,11 @@ import { FeaturedId } from '../../../infrastructure/repositories/data/features.d
 import { FeatureInMemoryRepository } from '../../../infrastructure/repositories/feature-in-memory.repository.js';
 
 import { ArticleTemplate } from '../../../components/templates/article.template.js';
+
+// Force static generation for this page
+export const dynamic = 'force-static';
+export const revalidate = false;
+export const dynamicParams = false;
 
 type ArticlePageProps = {
     params: Promise<{ id: string }>;

@@ -16,7 +16,7 @@
     "clean": "rm -rf .next && rm -rf node_modules"
   },
   "dependencies": {
-    "@jterrazz/quality": "^2.2.6",
+    "@jterrazz/quality": "^2.2.7",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "autoprefixer": "^10.4.20",
@@ -25,7 +25,7 @@
     "framer-motion": "^11.18.2",
     "lucide-react": "^0.487.0",
     "markdown-to-jsx": "^7.4.7",
-    "next": "15.3.1",
+    "next": "15.3.4",
     "posthog-js": "^1.165.0",
     "prism-react-renderer": "^2.4.1",
     "react": "^18",
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@jterrazz/test": "^3.0.0",
-    "@jterrazz/typescript": "^2.4.1",
+    "@jterrazz/typescript": "^2.4.3",
     "@types/node": "^22.15.3",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.3",

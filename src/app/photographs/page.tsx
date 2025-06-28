@@ -1,8 +1,13 @@
+import React from 'react';
 import { type Metadata } from 'next';
 
 import { PhotographInMemoryRepository } from '../../infrastructure/repositories/photograph-in-memory.repository.js';
 
 import { PhotographsGridTemplate } from '../../components/templates/photographs-grid.template.js';
+
+// Force static generation for this page
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata: Metadata = {
     description: 'A collection of photographs taken by me.',

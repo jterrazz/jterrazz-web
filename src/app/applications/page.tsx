@@ -1,3 +1,4 @@
+import React from 'react';
 import { type Metadata } from 'next';
 
 import { ApplicationsListTemplate } from '../../components/templates/applications-list.template.js';
@@ -7,6 +8,10 @@ import { type Project } from '../../domain/project.js';
 import { FeaturedId } from '../../infrastructure/repositories/data/features.data.js';
 import { FeatureInMemoryRepository } from '../../infrastructure/repositories/feature-in-memory.repository.js';
 import { ProjectInMemoryRepository } from '../../infrastructure/repositories/project-in-memory.repository.js';
+
+// Force static generation for this page
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata: Metadata = {
     description: 'The best of my development projects, showcasing my skills and experience.',

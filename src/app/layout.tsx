@@ -1,6 +1,4 @@
 import React from 'react';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -10,13 +8,16 @@ import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-m
 
 import { cn } from '../lib/utils.js';
 
+import { ClientLayoutWrapper } from '../components/client-layout-wrapper.js';
 import { NotificationBanner } from '../components/notification-banner.jsx';
 import { TheFooter } from '../components/organisms/the-footer.js';
 import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the-navigation-bar.js';
 
 import './globals.css';
 
-import { CSPostHogProvider } from './providers.jsx';
+// Force static generation globally
+export const dynamicParams = false;
+export const revalidate = false;
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -136,15 +137,9 @@ export default function RootLayout({
         inter.className,
     );
 
-    // const PostHogPageView = dynamic(() => import('./posthog-page-view.jsx'), {
-    //     ssr: false,
-    // });
-
     return (
         <html lang="en">
-            <SpeedInsights sampleRate={1} />
-            <Analytics />
-            <CSPostHogProvider>
+            <ClientLayoutWrapper>
                 <body className={generatedClassName}>
                     <div className="sticky top-0 z-[50]">
                         <NotificationBanner
@@ -155,12 +150,11 @@ export default function RootLayout({
                         <TheNavigationBar contacts={contacts} pages={pages} />
                     </div>
                     <div className="flex-1 flex flex-col overflow-x-hidden w-full">
-                        {/* <PostHogPageView /> */}
                         {children}
                     </div>
                     <TheFooter />
                 </body>
-            </CSPostHogProvider>
+            </ClientLayoutWrapper>
         </html>
     );
 }

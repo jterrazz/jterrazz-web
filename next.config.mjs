@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // Optimize for static generation while maintaining SSR capabilities
+    experimental: {
+        optimizePackageImports: ['@vercel/analytics', '@vercel/speed-insights', 'posthog-js'],
+    },
     async redirects() {
         return [
             // Permanent redirects
