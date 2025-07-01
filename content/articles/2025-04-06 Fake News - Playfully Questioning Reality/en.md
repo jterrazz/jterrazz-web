@@ -56,4 +56,4 @@ Fake News isn't just an app; it's a step toward smarter, more informed communiti
 
 Let's build a world where skepticism and critical thinking become second nature—one headline at a time.
 
-[Download the app here](https://jterrazz.com/link/applications/fake-news)
+[Download the app here](https://jterrazz.com/link/applications/fake-news-ios)

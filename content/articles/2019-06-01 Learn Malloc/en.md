@@ -1,4 +1,4 @@
-![](assets/thumbnail.jpg)
+![](./assets/thumbnail.jpg)
 
 # Master Memory Management: Create Your Own Malloc Library from Scratch
 

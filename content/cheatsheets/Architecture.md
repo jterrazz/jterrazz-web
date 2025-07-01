@@ -22,8 +22,8 @@
 
 - **Key Idea**: Isolate the domain (business logic) from the technical details.
 - **Structure**:
-  - **Ports**: Define communication points (e.g., interfaces).
-  - **Adapters**: Implement the ports to connect with external systems (e.g., DB, UI).
+	- **Ports**: Define communication points (e.g., interfaces).
+	- **Adapters**: Implement the ports to connect with external systems (e.g., DB, UI).
 - **Benefits**: Testable, modular, and framework-agnostic.
 
 ---
@@ -32,10 +32,10 @@
 
 - **Core Concept**: Keep the **business logic (Entities)** at the center.
 - **Layers**:
-  1.  **Entities** (Enterprise Business Rules): Core rules of the domain.
-  2.  **Use Cases** (Application Business Rules): Orchestrate entity interactions.
-  3.  **Interface Adapters**: Translate data between domain and external systems.
-  4.  **Frameworks & Drivers**: External tech like DB, UI, APIs.
+	1. **Entities** (Enterprise Business Rules): Core rules of the domain.
+	2. **Use Cases** (Application Business Rules): Orchestrate entity interactions.
+	3. **Interface Adapters**: Translate data between domain and external systems.
+	4. **Frameworks & Drivers**: External tech like DB, UI, APIs.
 - **Dependency Rule**: Always depend inward towards the domain.
 - **Screaming Architecture**: Your code structure should "scream" the domain's purpose.
 
@@ -59,9 +59,9 @@
 ### 🧪 **Testing**
 
 - Use **mocks**, **stubs**, and **spies** to isolate behavior:
-  - **Mock**: Verifies interactions (e.g., method calls).
-  - **Stub**: Returns predefined data for tests.
-  - **Spy**: Tracks usage during a test.
+	- **Mock**: Verifies interactions (e.g., method calls).
+	- **Stub**: Returns predefined data for tests.
+	- **Spy**: Tracks usage during a test.
 
 ---
 
@@ -69,8 +69,8 @@
 
 1. **Business Logic First**: Focus on the rules that define your domain.
 2. **DTO vs DAO**:
-   - **DTO (Data Transfer Object)**: Holds data only (struct).
-   - **DAO (Data Access Object)**: Encapsulates data and domain logic (object).
+	 - **DTO (Data Transfer Object)**: Holds data only (struct).
+	 - **DAO (Data Access Object)**: Encapsulates data and domain logic (object).
 3. **Explicit Naming**: Use `For + Verbing + Objective` for clear interfaces (e.g., `ForCalculatingPrices`).
 4. **Presenter Separation**: Presenters receive data from Use Cases and handle formatting for controllers.
 
