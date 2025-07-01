@@ -265,7 +265,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
 
 const processMarkdownContent = (content: string, filename: string): string => {
     return content.replace(
-        /!\[([^\]]*)\]\(assets\/([^)]+)\)/g,
+        /!\[([^\]]*)\]\((?:\.\/)?assets\/([^)]+)\)/g,
         (match, altText, p1) =>
             `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(
                 filename,
