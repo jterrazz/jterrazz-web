@@ -3,8 +3,7 @@ import { type UserProfile } from '../../../domain/user.js';
 export const userProfileData: UserProfile = {
     age: '28',
     name: 'Jean-Baptiste Terrazzoni',
-    tagline:
-        'Full-Stack Developer at Bridge by Bankin’ | Exploring the Intersection of Decentralization and FinTech with Open.MT',
+    tagline: 'AI Agent Developer • Fintech Engineer • Bitcoin Maximalist',
     // TODO Probably remove this
     values: [
         {

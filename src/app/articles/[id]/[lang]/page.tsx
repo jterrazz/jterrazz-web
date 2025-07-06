@@ -56,9 +56,35 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
     const articlesRepository = new ArticleInMemoryRepository();
     const article = await articlesRepository.getArticleByIndex(id, lang);
 
+    if (!article) {
+        return {
+            title: 'Article Not Found ~ Jterrazz',
+        };
+    }
+
+    const availableLanguages = Object.keys(article.content) as ArticleLanguage[];
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
+
+    // Generate hreflang links for all available languages
+    const alternates: Record<string, string> = {};
+    availableLanguages.forEach((language) => {
+        alternates[language] = `${baseUrl}/articles/${id}/${language}`;
+    });
+
     return {
-        description: article?.metadata.description,
-        title: article?.metadata.title + ' ~ Jterrazz',
+        alternates: {
+            canonical: `${baseUrl}/articles/${id}/${lang}`,
+            languages: alternates,
+        },
+        description: article.metadata.description,
+        openGraph: {
+            alternateLocale: availableLanguages.filter((l) => l !== lang),
+            description: article.metadata.description,
+            locale: lang,
+            title: article.metadata.title,
+            url: `${baseUrl}/articles/${id}/${lang}`,
+        },
+        title: article.metadata.title + ' ~ Jterrazz',
     };
 }
 

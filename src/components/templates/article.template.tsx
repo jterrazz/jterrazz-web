@@ -40,6 +40,10 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
         dateModified: new Date(dateModified).toISOString(),
         datePublished: new Date(datePublished).toISOString(),
         headline: title,
+        inLanguage: currentLanguage,
+        ...(availableLanguages.length > 1 && {
+            inLanguage: availableLanguages,
+        }),
     };
 
     return (
@@ -56,9 +60,10 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
 
             {availableLanguages.length > 1 && (
                 <div className="flex justify-center">
-                    <div className="inline-flex border border-black/10 hover:border-black/20 transition-colors duration-300 rounded-full overflow-hidden">
+                    <div aria-label="Language selection" className="inline-flex border border-black/10 hover:border-black/20 transition-colors duration-300 rounded-full overflow-hidden" role="navigation">
                         {availableLanguages.map((lang) => (
                             <Link
+                                aria-current={currentLanguage === lang ? 'page' : undefined}
                                 className={`
                                     px-6 py-2.5 text-[11px] font-medium tracking-[0.2em]
                                     transition-all duration-300 ease-out
@@ -69,7 +74,9 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                                     }
                                 `}
                                 href={`/articles/${articleId}/${lang}`}
+                                hrefLang={lang}
                                 key={lang}
+                                rel={currentLanguage === lang ? 'canonical' : 'alternate'}
                             >
                                 {lang.toUpperCase()}
                             </Link>
