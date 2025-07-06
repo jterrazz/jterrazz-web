@@ -34,12 +34,13 @@ export const metadata: Metadata = {
         'crypto',
         'blockchain',
     ],
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'),
     openGraph: {
         description: 'AI Agent Developer and Fintech Engineer. Building intelligent systems that help humans grow—one commit at a time.',
         images: [
             {
-                height: 630,
                 alt: 'Jean-Baptiste Terrazzoni - Developer Portfolio',
+                height: 630,
                 url: '/assets/image-florence.webp',
                 width: 1200,
             },

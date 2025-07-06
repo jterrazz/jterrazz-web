@@ -22,8 +22,9 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
     highlightTitle,
     photographs,
 }) => {
-    const images = photographs.map((photograph) => ({
+    const images = photographs.map((photograph, index) => ({
         alt: photograph.metadata.description,
+        id: `photograph-${photograph.index || index}`,
         src: photograph.contentUrl,
         title: photograph.metadata.description,
     }));
