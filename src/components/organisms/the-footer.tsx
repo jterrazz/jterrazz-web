@@ -5,6 +5,7 @@ import { GitHub, Linkedin, Mail, Twitter } from 'react-feather';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import Script from 'next/script';
 
 import { UserContactType } from '../../domain/user.js';
 
@@ -21,13 +22,13 @@ type TheFooterProps = {
 export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
     const applications = [
         {
-            description: 'Web',
+            description: 'Web Portfolio',
             href: 'https://jterrazz.com',
             imageSrc: '/assets/icons/app-icon.jterrazz.png',
             title: 'Jterrazz',
         },
         {
-            description: 'Mobile',
+            description: 'Mobile App',
             href: 'https://jterrazz.com/link/applications/fake-news',
             imageSrc: '/assets/icons/app-icon.fake-news.jpg', // TODO Use repository
             title: 'Fake News',
@@ -45,11 +46,15 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         imageSrc: string;
         title: string;
     }) => (
-        <div className="flex items-center">
+        <article className="flex items-center">
             <div className="rounded-2xl border border-black-and-white bg-white overflow-hidden">
-                <Link className="text-sm" href={href}>
+                <Link
+                    aria-label={`Visit ${title} - ${description}`}
+                    className="text-sm"
+                    href={href}
+                >
                     <Image
-                        alt="Jterrazz.com"
+                        alt={`${title} app icon`}
                         height="76"
                         loading="lazy"
                         src={imageSrc}
@@ -58,14 +63,22 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                 </Link>
             </div>
             <div className="ml-3">
-                <Link className="text-sm" href={href}>
-                    <h5 className="text-sm font-extrabold tracking-wide">{title}</h5>
+                <Link
+                    aria-label={`Visit ${title} - ${description}`}
+                    className="text-sm"
+                    href={href}
+                >
+                    <h3 className="text-sm font-extrabold tracking-wide">{title}</h3>
                 </Link>
-                <Link className="text-sm" href={href}>
-                    <div className="text-xs">{description}</div>
+                <Link
+                    aria-label={`Visit ${title} - ${description}`}
+                    className="text-sm"
+                    href={href}
+                >
+                    <p className="text-xs">{description}</p>
                 </Link>
             </div>
-        </div>
+        </article>
     );
 
     const generatedClassName = cn(
@@ -104,42 +117,106 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
     const x = userRepository.getContact(UserContactType.X);
     const github = userRepository.getContact(UserContactType.GitHub);
 
+    // Structured data for footer
+    const footerJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        alumniOf: {
+            '@type': 'Organization',
+            name: '42 Paris',
+        },
+        description:
+            'AI Agent Developer and Fintech Engineer. Building intelligent systems that help humans grow—one commit at a time.',
+        email: email.url.toString(),
+        jobTitle: 'AI Agent Developer, Fintech Engineer',
+        knowsAbout: [
+            'AI Agent Development',
+            'Fintech Engineering',
+            'TypeScript',
+            'Node.js',
+            'Next.js',
+            'React',
+            'Solidity',
+            'Personal Growth',
+        ],
+        name: 'Jean-Baptiste Terrazzoni',
+        sameAs: [github.url.toString(), linkedin.url.toString(), x.url.toString()],
+        url: 'https://jterrazz.com',
+        worksFor: {
+            '@type': 'Organization',
+            name: 'Self-Employed',
+        },
+    };
+
     return (
-        <footer className={generatedClassName} ref={ref}>
+        <footer
+            aria-label="Site footer"
+            className={generatedClassName}
+            ref={ref}
+            role="contentinfo"
+        >
+            <Script id="footer-json-ld" strategy="beforeInteractive" type="application/ld+json">
+                {JSON.stringify(footerJsonLd)}
+            </Script>
+
             <div className="flex flex-col items-center -mb-40 md:-mb-72">
                 <FloatingContainer className="flex flex-col items-center">
-                    <p className="font-extrabold tracking-wide">Jean-Baptiste Terrazzoni</p>
+                    <h2 className="font-extrabold tracking-wide">Jean-Baptiste Terrazzoni</h2>
                     <p className="text-sm mt-2 tracking-wide">
                         On a mission to <HighlightedText>craft what matters.</HighlightedText>
                     </p>
 
-                    <div className="flex items-center space-x-4 justify-center mt-3">
+                    <nav
+                        aria-label="Social media links"
+                        className="flex items-center space-x-4 justify-center mt-3"
+                    >
                         <span className="text-xs font-medium">@jterrazz</span>
-                        <a href={email.url.toString()} target="blank">
+                        <a
+                            aria-label="Send email to Jean-Baptiste Terrazzoni"
+                            href={email.url.toString()}
+                            rel="noopener noreferrer"
+                            target="blank"
+                        >
                             <Mail color="black" size="20" />
                         </a>
-                        <a href={linkedin.url.toString()} target="blank">
+                        <a
+                            aria-label="Visit Jean-Baptiste Terrazzoni on LinkedIn"
+                            href={linkedin.url.toString()}
+                            rel="noopener noreferrer"
+                            target="blank"
+                        >
                             <Linkedin color="black" size="20" />
                         </a>
-                        <a href={x.url.toString()} target="blank">
+                        <a
+                            aria-label="Follow Jean-Baptiste Terrazzoni on X (Twitter)"
+                            href={x.url.toString()}
+                            rel="noopener noreferrer"
+                            target="blank"
+                        >
                             <Twitter color="black" size="20" />
                         </a>
-                        <a href={github.url.toString()} target="blank">
+                        <a
+                            aria-label="View Jean-Baptiste Terrazzoni on GitHub"
+                            href={github.url.toString()}
+                            rel="noopener noreferrer"
+                            target="blank"
+                        >
                             <GitHub color="black" size="20" />
                         </a>
-                    </div>
+                    </nav>
                 </FloatingContainer>
-                <div className="mt-6 w-full">
+
+                <section aria-label="Featured applications" className="mt-6 w-full">
                     <FloatingContainer className="hidden md:flex md:space-x-12">
                         {applications.map((application, index) => (
                             <Application key={index} {...application} />
                         ))}
                     </FloatingContainer>
-                </div>
+                </section>
             </div>
 
             <Image
-                alt="Florence landscape"
+                alt="Florence landscape - Jean-Baptiste Terrazzoni's portfolio background"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
                 className="z-1 rounded-3xl"
                 height={800}
@@ -149,13 +226,18 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                 width={1200}
             />
 
-            <div className="flex flex-col space-y-6 md:hidden mt-12">
-                {applications.map((application, _index) => (
-                    <Application {...application} />
+            <section
+                aria-label="Mobile applications"
+                className="flex flex-col space-y-6 md:hidden mt-12"
+            >
+                {applications.map((application, index) => (
+                    <Application key={index} {...application} />
                 ))}
-            </div>
+            </section>
 
-            <p className="text-sm mt-12 text-storm-cloud">© 2024. All rights reserved.</p>
+            <p className="text-sm mt-12 text-storm-cloud">
+                © 2025 Jean-Baptiste Terrazzoni. All rights reserved.
+            </p>
         </footer>
     );
 };
