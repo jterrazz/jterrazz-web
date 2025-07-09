@@ -18,7 +18,8 @@ export const metadata: Metadata = {
     alternates: {
         canonical: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
     },
-    description: 'AI Agent Developer and Fintech Engineer. Building intelligent systems that help humans grow—one commit at a time. Explore my portfolio of AI-powered tools and fintech projects.',
+    description:
+        'Beta-testing tomorrow — AI, Apps, Learn. Let’s build the future together.',
     keywords: [
         'Jean-Baptiste Terrazzoni',
         'AI Agent Developer',
@@ -36,7 +37,8 @@ export const metadata: Metadata = {
     ],
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'),
     openGraph: {
-        description: 'AI Agent Developer and Fintech Engineer. Building intelligent systems that help humans grow—one commit at a time.',
+        description:
+            'Beta-testing tomorrow — AI, Apps, Learn. Let’s build the future together.',
         images: [
             {
                 alt: 'Jean-Baptiste Terrazzoni - Developer Portfolio',
@@ -46,11 +48,11 @@ export const metadata: Metadata = {
             },
         ],
         siteName: 'Jterrazz',
-        title: 'Jean-Baptiste Terrazzoni: AI Agent Developer & Fintech Engineer',
+        title: 'Jean-Baptiste Terrazzoni: AI, Apps, Learn',
         type: 'website',
         url: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
     },
-    title: 'Jean-Baptiste Terrazzoni: AI Agent Developer & Fintech Engineer',
+    title: 'Jean-Baptiste Terrazzoni: AI, Apps, Learn',
 };
 
 export default async function HomePage() {
@@ -59,7 +61,7 @@ export default async function HomePage() {
     const userExperiences: UserExperience[] = userRepository.getExperiences();
     const topArticles: Article[] = await articlesRepository.getArticles();
     const description =
-        'AI Agent Developer • Fintech Engineer. Building intelligent systems that help humans grow—one commit at a time.';
+        'Beta-testing tomorrow — AI, Apps, Learn. Let’s build the future together.';
 
     // Structured data for better SEO
     const jsonLd = {
@@ -72,11 +74,11 @@ export default async function HomePage() {
         description: description,
         hasOccupation: {
             '@type': 'Occupation',
-            description: 'Building intelligent systems for personal and financial growth',
+            description: 'Beta-testing tomorrow — AI, Apps, Learn. Let’s build the future together.',
             name: 'Software Developer',
         },
         image: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/assets/image-florence.webp`,
-        jobTitle: 'AI Agent Developer, Fintech Engineer',
+        jobTitle: 'AI, Apps, Learn',
         knowsAbout: [
             'AI Agent Development',
             'Fintech Engineering',
