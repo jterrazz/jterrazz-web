@@ -7,6 +7,7 @@ import { UserInMemoryRepository } from '../../infrastructure/repositories/user-i
 
 import { ArticlesListTemplate } from '../../components/templates/articles-list.template.js';
 import { ArticlesListViewModelImpl } from '../../components/templates/articles-list.template.view-model.js';
+import { buildArticleSlug } from '../../lib/slugify.js';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -71,7 +72,7 @@ export default async function ArticlesPage() {
                 description: article.metadata.description,
                 inLanguage: Object.keys(article.content),
                 name: article.metadata.title,
-                url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles/${article.publicIndex}`,
+                url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles/${buildArticleSlug(article.publicIndex, article.metadata.title)}`,
             })),
         name: 'Articles by Jean-Baptiste Terrazzoni: AI & Fintech Insights',
         url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,

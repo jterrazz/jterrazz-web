@@ -13,7 +13,7 @@ import { MainContainer } from '../organisms/main-container.jsx';
 import {
     type ArticleRowViewModel,
     type ArticlesListViewModel,
-} from './articles-list.template.view-model.jsx';
+} from './articles-list.template.view-model.js';
 
 export const ArticleRow: React.FC<{ article: ArticleRowViewModel }> = ({ article }) => {
     const color = article.isCodeCategory ? BadgeColor.Green : BadgeColor.Blue;
@@ -23,7 +23,7 @@ export const ArticleRow: React.FC<{ article: ArticleRowViewModel }> = ({ article
             <Link
                 aria-label={`Read article: ${article.title} - ${article.category}`}
                 className="flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
-                href={`/articles/${article.index}`}
+                href={`/articles/${article.slug}`}
             >
                 <h3 className="font-medium text-left">{article.title}</h3>
                 <Badge color={color} value={article.category} />
@@ -58,7 +58,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                 url: 'https://jterrazz.com',
             },
             name: article.title,
-            url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles/${article.index}`,
+            url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles/${article.slug}`,
         })),
         name: 'Articles by Jean-Baptiste Terrazzoni',
         url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
@@ -87,7 +87,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
 
                 <nav aria-label="Article navigation">
                     {viewModel.articles.map((article) => (
-                        <ArticleRow article={article} key={article.index} />
+                        <ArticleRow article={article} key={article.slug} />
                     ))}
                 </nav>
             </section>

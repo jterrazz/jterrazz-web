@@ -1,6 +1,6 @@
 import React from 'react';
 import { type Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
 import { type ArticleLanguage } from '../../../domain/article.js';
 
@@ -9,6 +9,7 @@ import { FeaturedId } from '../../../infrastructure/repositories/data/features.d
 import { FeatureInMemoryRepository } from '../../../infrastructure/repositories/feature-in-memory.repository.js';
 
 import { ArticleTemplate } from '../../../components/templates/article.template.js';
+import { buildArticleSlug } from '../../../lib/slugify.js';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -16,28 +17,37 @@ export const revalidate = false;
 export const dynamicParams = false;
 
 type ArticlePageProps = {
-    params: Promise<{ id: string }>;
+    params: Promise<{ slugId: string }>;
 };
 
 export default async function ArticlePage(props: ArticlePageProps) {
     const params = await props.params;
+    const { slugId } = params;
 
-    const { id } = params;
+    // Extract the numeric id prefix before the first dash
+    const id = slugId.split('-')[0];
 
     const featureRepository = new FeatureInMemoryRepository();
     const articlesRepository = new ArticleInMemoryRepository();
 
     const article = await articlesRepository.getArticleByIndex(id);
-    const articles = await articlesRepository.getArticles();
-    const features = [featureRepository.getFeatureById(FeaturedId.Source)];
 
     if (!article) {
         return notFound();
     }
 
+    // Compute canonical slug and redirect if needed
+    const canonicalSlug = buildArticleSlug(article.publicIndex, article.metadata.title);
+    if (slugId !== canonicalSlug) {
+        return redirect(`/articles/${canonicalSlug}`);
+    }
+
+    const articles = await articlesRepository.getArticles();
+    const features = [featureRepository.getFeatureById(FeaturedId.Source)];
+
     return (
         <ArticleTemplate
-            articleId={id}
+            articleId={slugId}
             articles={articles.filter((a) => a.publicIndex !== article.publicIndex)}
             availableLanguages={Object.keys(article.content) as ArticleLanguage[]}
             contentInMarkdown={article.content['en']!}
@@ -52,7 +62,11 @@ export default async function ArticlePage(props: ArticlePageProps) {
 
 export async function generateMetadata(props: ArticlePageProps): Promise<Metadata> {
     const params = await props.params;
-    const id = params.id;
+    const { slugId } = params;
+    const id = slugId.split('-')[0];
+
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
+
     const articlesRepository = new ArticleInMemoryRepository();
     const article = await articlesRepository.getArticleByIndex(id);
 
@@ -63,17 +77,16 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
     }
 
     const availableLanguages = Object.keys(article.content) as ArticleLanguage[];
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
 
     // Generate hreflang links for all available languages
     const alternates: Record<string, string> = {};
     availableLanguages.forEach((language) => {
-        alternates[language] = `${baseUrl}/articles/${id}/${language}`;
+        alternates[language] = `${baseUrl}/articles/${slugId}/${language}`;
     });
 
     return {
         alternates: {
-            canonical: `${baseUrl}/articles/${id}/en`, // Default to English
+            canonical: `${baseUrl}/articles/${slugId}/en`, // Default to English
             languages: alternates,
         },
         description: article.metadata.description,
@@ -82,7 +95,7 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
             description: article.metadata.description,
             locale: 'en',
             title: article.metadata.title,
-            url: `${baseUrl}/articles/${id}/en`,
+            url: `${baseUrl}/articles/${slugId}/en`,
         },
         title: article.metadata.title + ' ~ Jterrazz',
     };
@@ -92,7 +105,8 @@ export async function generateStaticParams() {
     const articlesRepository = new ArticleInMemoryRepository();
     const articles = await articlesRepository.getArticles();
 
-    return articles.map((article) => {
-        return { id: String(article.publicIndex) };
-    });
+    return articles.flatMap((article) => [
+        { slugId: buildArticleSlug(article.publicIndex, article.metadata.title) },
+        { slugId: String(article.publicIndex) },
+    ]);
 }

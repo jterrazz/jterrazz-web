@@ -9,6 +9,7 @@ import { ArticleInMemoryRepository } from '../infrastructure/repositories/articl
 import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-memory.repository.js';
 
 import { HelloWorldTemplate } from '../components/templates/hello-world.template.js';
+import { buildArticleSlug } from '../lib/slugify.js';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -110,8 +111,8 @@ export default async function HomePage() {
                 experiences={userExperiences}
                 topArticles={topArticles.map((article) => ({
                     description: article.metadata.description,
-                    id: article.publicIndex.toString(),
                     imageUrl: article.imageUrl ?? '/assets/image-computer-table.webp',
+                    slug: buildArticleSlug(article.publicIndex, article.metadata.title),
                     title: article.metadata.title,
                 }))}
             />

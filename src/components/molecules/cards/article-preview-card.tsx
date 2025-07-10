@@ -1,20 +1,21 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 interface ArticlePreviewProps {
     description: string;
-    id: string;
     imageUrl: string;
     position: number;
+    slug: string;
     title: string;
     total: number;
 }
 
 export const ArticlePreviewCard = ({
     description,
-    id,
+    slug,
     imageUrl,
     position,
     title,
@@ -35,7 +36,7 @@ export const ArticlePreviewCard = ({
     const blur = distanceFromCenter * 2; // 0px -> 1px -> 2px
 
     return (
-        <Link href={`/articles/${id}`}>
+        <Link href={`/articles/${slug}`}>
             <motion.div
                 className="group relative w-72 bg-white/5 border border-white/5 backdrop-blur-sm rounded-xl p-4 mx-2 transition-colors duration-300"
                 initial={{

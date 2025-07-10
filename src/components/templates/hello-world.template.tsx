@@ -17,8 +17,8 @@ import { TimelineExperience } from '../organisms/timeline-of-experiences/timelin
 
 interface Article {
     description: string;
-    id: string;
     imageUrl: string;
+    slug: string;
     title: string;
 }
 

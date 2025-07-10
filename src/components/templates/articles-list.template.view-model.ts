@@ -1,10 +1,12 @@
 import { type Article } from '../../domain/article.js';
 import { UserContactType, type UserRepository } from '../../domain/user.js';
 
+import { buildArticleSlug } from '../../lib/slugify.js';
+
 export interface ArticleRowViewModel {
     category: string;
-    index: string;
     isCodeCategory: boolean;
+    slug: string;
     title: string;
 }
 
@@ -47,8 +49,8 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
             )
             .map((article) => ({
                 category: article.metadata.category,
-                index: String(article.publicIndex),
                 isCodeCategory: article.metadata.category === 'code',
+                slug: buildArticleSlug(article.publicIndex, article.metadata.title),
                 title: article.metadata.title,
             }));
 
