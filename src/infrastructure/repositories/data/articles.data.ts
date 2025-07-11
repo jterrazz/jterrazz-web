@@ -332,7 +332,7 @@ export const readMarkdownArticles = async (): Promise<Article[]> => {
 
             const imageUrl = previewImage
                 ? `${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${previewImage}`
-                : '/assets/image-computer-table.webp';
+                : '';
 
             return {
                 ...articleConfig,

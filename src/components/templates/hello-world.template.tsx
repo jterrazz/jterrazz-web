@@ -36,26 +36,7 @@ const ParallaxImage: React.FC<{ className?: string }> = ({ className }) => {
         className,
     );
 
-    return (
-        <div className={generatedClassName} style={{ aspectRatio: '16 / 9' }}>
-            <motion.div
-                className="absolute inset-0"
-                style={{
-                    height: '115%',
-                    width: '100%',
-                    y: useTransform(yPercentage, (value) => `${value}%`),
-                }}
-            >
-                <Image
-                    alt="Computer workspace"
-                    className="blur-[10px]"
-                    layout="fill"
-                    objectFit="cover"
-                    src="/assets/image-computer-table.webp"
-                />
-            </motion.div>
-        </div>
-    );
+    return <div className={generatedClassName} style={{ aspectRatio: '16 / 9' }}></div>;
 };
 
 export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
@@ -73,28 +54,22 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
     };
 
     return (
-        <MainContainer>
+        <MainContainer size="full">
             <Highlight button={button} description={description} title="Hello, World!" />
-            <div className="relative mt-2 mb-12 md:mb-20 hidden md:block">
-                <ParallaxImage className="z-0" />
-                <motion.div
-                    className="absolute inset-0 z-10 flex items-center justify-center p-6"
-                    style={{ y }}
-                >
-                    <div className="flex gap-4 items-center justify-center w-full overflow-x-auto md:overflow-x-visible">
-                        {topArticles
-                            .slice(0, 6)
-                            .reverse()
-                            .map((article, index) => (
-                                <ArticlePreviewCard
-                                    key={article.title}
-                                    {...article}
-                                    position={index}
-                                    total={Math.min(topArticles.length, 6)}
-                                />
-                            ))}
-                    </div>
-                </motion.div>
+            {/* Article previews section */}
+
+            <HeadingSection className="mb-12">Latest Articles</HeadingSection>
+            <div className="relative w-full">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                    {topArticles.slice(0, 6).map((article, index, arr) => (
+                        <ArticlePreviewCard
+                            key={article.title}
+                            {...article}
+                            position={index}
+                            total={arr.length}
+                        />
+                    ))}
+                </div>
             </div>
             <div className="flex flex-col items-center">
                 <motion.div style={{ rotate, scale }}>

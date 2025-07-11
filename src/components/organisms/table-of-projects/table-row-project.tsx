@@ -21,7 +21,14 @@ const ProjectHeader: React.FC<TableRowProjectHeaderProps> = ({ project }) => {
             <h2 className="font-medium">
                 {project.name}{' '}
                 <span className="text-storm-cloud">
-                    {project.createdAt ? '~ ' + project.createdAt?.getFullYear() : ''}
+                    {(() => {
+                        if (!project.createdAt) return '';
+                        const year =
+                            typeof project.createdAt === 'string'
+                                ? new Date(project.createdAt).getFullYear()
+                                : project.createdAt.getFullYear();
+                        return `~ ${year}`;
+                    })()}
                 </span>
             </h2>
 

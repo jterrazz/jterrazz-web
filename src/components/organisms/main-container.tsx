@@ -22,7 +22,7 @@ export const MainContainer: React.FC<MainContainerProps> = ({
         <main
             className={generatedClassName}
             style={{
-                maxWidth: size === 'medium' ? '700px' : '1300px',
+                maxWidth: size === 'medium' ? '700px' : '950px',
             }}
         >
             {children}

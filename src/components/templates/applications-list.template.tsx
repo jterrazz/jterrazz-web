@@ -17,7 +17,18 @@ type ApplicationsListTemplateProps = {
     features: readonly Feature[];
     highlightDescription: string;
     highlightTitle: string;
-    projects: readonly Project[];
+    projects: readonly SerializableProject[];
+};
+
+type SerializableProject = Omit<Project, 'components' | 'createdAt' | 'url'> & {
+    components: Array<
+        Omit<Project['components'][number], 'articleUrl' | 'sourceUrl'> & {
+            articleUrl: null | string;
+            sourceUrl: string;
+        }
+    >;
+    createdAt: null | string;
+    url: string;
 };
 
 export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> = ({
@@ -38,7 +49,10 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
             </HeadingSection>
             <Table>
                 {projects.map((project) => (
-                    <TableRowProject key={project.name} project={project} />
+                    <TableRowProject
+                        key={project.name}
+                        project={project as unknown as Project}
+                    />
                 ))}
             </Table>
         </MainContainer>

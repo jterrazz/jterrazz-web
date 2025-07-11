@@ -7,8 +7,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { type UserContact } from '../../../domain/user.js';
-
 import { cn } from '../../../lib/utils.js';
 
 import AnimatedBackground from '../../molecules/cards/animated-backgrounds.jsx';
@@ -85,13 +83,14 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ className, onLinkClick,
 
     return (
         <div className={generatedClassName}>
+            {/* Smoother, lighter transition config for background highlight */}
             <AnimatedBackground
                 className="rounded-lg bg-zinc-200 dark:bg-zinc-600 p-2 md:p-1 flex flex-col md:flex-row items-center justify-center w-full md:w-auto"
                 enableHover
                 transition={{
-                    bounce: 0.2,
-                    duration: 0.3,
-                    type: 'spring',
+                    duration: 0.18,
+                    ease: 'easeOut',
+                    type: 'tween',
                 }}
             >
                 {pages.map((page, index) => {
@@ -124,8 +123,10 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ className, onLinkClick,
                                     className="block w-full md:inline-block md:w-auto"
                                     href={page.href}
                                     onClick={onLinkClick}
+                                    // Prevent React hydration mismatch when inside motion layout by
+                                    // moving the actual button styling on the anchor.
                                 >
-                                    <button className={generatedClassName}>{page.name}</button>
+                                    <span className={generatedClassName}>{page.name}</span>
                                 </Link>
                             )}
                         </div>
@@ -136,9 +137,14 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ className, onLinkClick,
     );
 };
 
+type SerializableContact = {
+    name: string;
+    url: string;
+};
+
 type TheNavigationBarProps = {
     className?: string;
-    contacts: UserContact[];
+    contacts: SerializableContact[];
     pages: NavigationPage[];
 };
 
@@ -193,7 +199,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                     {contacts.map((contact, index) => (
                         <NavigationTabItem
                             className="ml-1 flex-shrink-0"
-                            href={contact.url.toString()}
+                            href={contact.url}
                             key={contact.name}
                             newTab={true}
                             onClick={closeMenu}
@@ -211,17 +217,12 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                         className="p-2"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
-                        <AnimatePresence initial={false} mode="wait">
-                            <motion.div
-                                animate={{ opacity: 1, rotate: 0 }}
-                                exit={{ opacity: 0, rotate: 180 }}
-                                initial={{ opacity: 0, rotate: -180 }}
-                                key={isMenuOpen ? 'close' : 'open'}
-                                transition={{ duration: 0.3 }}
-                            >
-                                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                            </motion.div>
-                        </AnimatePresence>
+                        <motion.div
+                            animate={{ rotate: isMenuOpen ? 90 : 0 }}
+                            transition={{ duration: 0.2, ease: 'easeOut' }}
+                        >
+                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </motion.div>
                     </button>
                 </div>
             </div>
@@ -233,7 +234,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                         className="w-full md:hidden overflow-hidden"
                         exit={{ height: 0, opacity: 0 }}
                         initial={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        transition={{ duration: 0.25, ease: 'easeOut' }}
                     >
                         <motion.div
                             animate={{ opacity: 1, y: 0 }}
@@ -255,7 +256,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                                 {contacts.map((contact, _index) => (
                                     <NavigationTabItem
                                         className="mr-2 mb-2 flex-shrink-0"
-                                        href={contact.url.toString()}
+                                        href={contact.url}
                                         key={contact.name}
                                         newTab={true}
                                         onClick={closeMenu}

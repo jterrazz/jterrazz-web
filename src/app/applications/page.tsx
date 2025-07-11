@@ -44,7 +44,19 @@ export default async function ApplicationsPage() {
     const projectRepository = new ProjectInMemoryRepository();
     const featureRepository = new FeatureInMemoryRepository();
 
-    const projects: Project[] = projectRepository.getProjects();
+    const projectsDomain: Project[] = projectRepository.getProjects();
+
+    // Convert URL and Date instances to plain serialisable values for client components
+    const projects = projectsDomain.map((project) => ({
+        ...project,
+        components: project.components.map((component) => ({
+            ...component,
+            articleUrl: component.articleUrl ? component.articleUrl.toString() : null,
+            sourceUrl: component.sourceUrl.toString(),
+        })),
+        createdAt: project.createdAt ? project.createdAt.toISOString() : null,
+        url: project.url.toString(),
+    }));
     const features = [
         featureRepository.getFeatureById(FeaturedId.Repository),
         featureRepository.getFeatureById(FeaturedId.Capitaine),

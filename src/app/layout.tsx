@@ -108,11 +108,15 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     const userRepository = new UserInMemoryRepository();
+    // Convert `URL` instances to plain strings to safely pass to the client navigation bar.
     const contacts = [
         userRepository.getContact(UserContactType.X),
         userRepository.getContact(UserContactType.GitHub),
         userRepository.getContact(UserContactType.Medium),
-    ];
+    ].map((contact) => ({
+        ...contact,
+        url: contact.url.toString(),
+    }));
     const pages = [
         {
             href: '/',
@@ -139,8 +143,8 @@ export default function RootLayout({
 
     return (
         <html lang="en">
-            <ClientLayoutWrapper>
-                <body className={generatedClassName}>
+            <body className={generatedClassName}>
+                <ClientLayoutWrapper>
                     <div className="sticky top-0 z-[50]">
                         <NotificationBanner
                             className="border-b border-white/10"
@@ -153,8 +157,8 @@ export default function RootLayout({
                         {children}
                     </div>
                     <TheFooter />
-                </body>
-            </ClientLayoutWrapper>
+                </ClientLayoutWrapper>
+            </body>
         </html>
     );
 }
