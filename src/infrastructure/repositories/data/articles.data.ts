@@ -1,3 +1,4 @@
+import { sanitizeAiText } from 'ai-text-sanitizer';
 import { promises as fs } from 'node:fs';
 
 import { type Article, ArticleCategory, type ArticleLanguage } from '../../../domain/article.js';
@@ -289,6 +290,9 @@ const processMarkdownContent = (content: string, filename: string): string => {
     );
 };
 
+const sanitizeText = (text: string | undefined): string | undefined =>
+    text ? sanitizeAiText(text).cleaned : text;
+
 const readMarkdownFile = async (
     articlesDirectory: string,
     filename: string,
@@ -318,8 +322,8 @@ export const readMarkdownArticles = async (): Promise<Article[]> => {
                 readMarkdownFile(articlesDirectory, filename, 'fr'),
             ]);
 
-            if (enContent) content.en = enContent;
-            if (frContent) content.fr = frContent;
+            if (enContent) content.en = sanitizeText(enContent)!;
+            if (frContent) content.fr = sanitizeText(frContent)!;
 
             // If no content was found, throw error
             if (!Object.keys(content).length) {
@@ -334,7 +338,12 @@ export const readMarkdownArticles = async (): Promise<Article[]> => {
                 ...articleConfig,
                 content,
                 imageUrl,
-            };
+                metadata: {
+                    ...articleConfig.metadata,
+                    description: sanitizeText(articleConfig.metadata.description) ?? '',
+                    title: sanitizeText(articleConfig.metadata.title) ?? '',
+                },
+            } as Article;
         }),
     );
 };
