@@ -150,7 +150,7 @@ Cursor isn't just another tool. It's a partner. And when you guide it well, it c
 
 ## 📚 AI Series
 
-1. [**Navigating the AI Revolution:**](https://www.jterrazz.com/articles/14/en) *Understanding how AI is transforming work, creativity, and the future of every profession.*
-2. [**Applied Intelligence:**](https://www.jterrazz.com/articles/15) *A practical guide to using AI tools, adapting your mindset, and thriving in the age of automation.*
-3. [**Architects of Inversion – The Collapse of Execution:**](https://www.jterrazz.com/articles/16) *Exploring how AI is reshaping value, collapsing execution costs, and shifting human worth to ideas and direction.*
-4. [**Architects of Inversion – The World That Follows:**](https://www.jterrazz.com/articles/17) *A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization.*
+1. [**Navigating the AI Revolution:**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution) *Understanding how AI is transforming work, creativity, and the future of every profession.*
+2. [**Applied Intelligence:**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work) *A practical guide to using AI tools, adapting your mindset, and thriving in the age of automation.*
+3. [**Architects of Inversion – The Collapse of Execution:**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution) *Exploring how AI is reshaping value, collapsing execution costs, and shifting human worth to ideas and direction.*
+4. [**Architects of Inversion – The World That Follows:**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse) *A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization.**

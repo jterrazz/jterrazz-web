@@ -150,7 +150,7 @@ Cursor n'est pas juste un outil de plus. C'est un partenaire. Et quand vous le g
 
 ## 📚 Série IA
 
-1. [**Naviguer dans la Révolution de l'IA :**](https://www.jterrazz.com/articles/14/fr) *Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession.*
-2. [**Intelligence Appliquée :**](https://www.jterrazz.com/articles/15/fr) *Un guide pratique pour utiliser les outils d'IA, adapter votre état d'esprit et prospérer à l'ère de l'automatisation.*
-3. [**Architectes de l'Inversion – L'Effondrement de l'Exécution :**](https://www.jterrazz.com/articles/16/fr) *Explorer comment l'IA redéfinit la valeur, rend l'exécution largement accessible et déplace la valeur humaine vers les idées et la direction.*
-4. [**Architectes de l'Inversion–Le Monde qui Suit:**](https://www.jterrazz.com/articles/17/fr) *Une plongée en profondeur dans la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme de la civilisation.*
+1. [**Naviguer dans la Révolution de l'IA:**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution/fr) *Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession.*
+2. [**Intelligence Appliquée:**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work/fr) *Un guide pratique pour utiliser les outils d'IA, adapter votre état d'esprit et prospérer à l'ère de l'automatisation.*
+3. [**Architectes de l'Inversion – L'Effondrement de l'Exécution:**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution/fr) *Explorer comment l'IA redéfinit la valeur, réduit les coûts d'exécution et déplace la valeur humaine vers les idées et la direction stratégique.*
+4. [**Architectes de l'Inversion – Le Monde qui Suit:**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse/fr) *Une plongée en profondeur dans la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme de la civilisation.*
