@@ -1,36 +1,8 @@
 export enum ArticleCategory {
-    App = 'app',
+    Build = 'build',
     Code = 'code',
-    World = 'world',
+    Insight = 'insight',
 }
-
-// export type ArticleStatus = 'draft' | 'published' | 'archived';
-
-// export type Slug = string & { readonly _: unique symbol };
-
-// export interface ArticleMetadata {
-//     title: string;
-//     slug: Slug;
-//     description: string;
-//     dateModified: Date;
-//     datePublished: Date;
-//     category: ArticleCategory;
-//     tags: string[];
-// }
-
-// export interface Article {
-//     publicId: string;
-//     content: {
-//         markdown: string;
-//     };
-//     metadata: ArticleMetadata;
-//     status: ArticleStatus;
-//     seo?: {
-//         canonicalUrl?: string;
-//         keywords?: string[];
-//         ogImage?: string;
-//     };
-// }
 
 export interface Article {
     content: {
