@@ -82,7 +82,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
     );
 
     const generatedClassName = cn(
-        'flex flex-col items-center justify-center py-12 text-storm-cloud-accent',
+        'relative flex flex-col items-center justify-center py-12 text-storm-cloud-accent pb-[300px] sm:pb-[450px] md:pb-[600px]',
         className,
     );
 
@@ -159,7 +159,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                 {JSON.stringify(footerJsonLd)}
             </Script>
 
-            <div className="flex flex-col items-center -mb-40 md:-mb-72">
+            <div className="flex flex-col items-center -mb-40 md:-mb-60">
                 <FloatingContainer className="flex flex-col items-center">
                     <h2 className="font-extrabold tracking-wide">Jean-Baptiste Terrazzoni</h2>
                     <p className="text-sm mt-2 tracking-wide">
@@ -215,16 +215,19 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                 </section>
             </div>
 
-            <Image
-                alt="Florence landscape - Jean-Baptiste Terrazzoni's portfolio background"
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
-                className="z-1 rounded-3xl"
-                height={800}
-                loading="lazy"
-                placeholder="blur"
-                src="/assets/image-florence.webp"
-                width={1200}
-            />
+            {/* Full-width landscape image positioned at the very bottom */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[300px] sm:h-[450px] md:h-[600px] overflow-hidden -z-10">
+                <Image
+                    alt="Mountain landscape - Jean-Baptiste Terrazzoni's portfolio background"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
+                    className="object-cover object-bottom"
+                    fill
+                    loading="lazy"
+                    placeholder="blur"
+                    sizes="100vw"
+                    src="/assets/images/footer.jpg"
+                />
+            </div>
 
             <section
                 aria-label="Mobile applications"
@@ -235,7 +238,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                 ))}
             </section>
 
-            <p className="text-sm mt-12 text-storm-cloud">
+            <p className="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs md:text-sm text-white z-20 text-center pointer-events-none mb-8">
                 © 2025 Jean-Baptiste Terrazzoni. All rights reserved.
             </p>
         </footer>

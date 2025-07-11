@@ -42,7 +42,7 @@ export const metadata: Metadata = {
             {
                 alt: 'Jean-Baptiste Terrazzoni - Developer Portfolio',
                 height: 630,
-                url: '/assets/image-florence.webp',
+                url: '/assets/images/footer.jpg',
                 width: 1200,
             },
         ],
@@ -76,7 +76,7 @@ export default async function HomePage() {
                 'Beta-testing tomorrow - AI, Apps, Learn. Let’s build the future together.',
             name: 'Software Developer',
         },
-        image: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/assets/image-florence.webp`,
+        image: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/assets/images/footer.jpg`,
         jobTitle: 'AI, Apps, Learn',
         knowsAbout: [
             'AI Agent Development',

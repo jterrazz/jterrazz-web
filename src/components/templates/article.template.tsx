@@ -5,8 +5,6 @@ import Script from 'next/script';
 import { type Article, type ArticleLanguage } from '../../domain/article.js';
 import { type Feature } from '../../domain/feature.js';
 
-import { HighlightedText } from '../atoms/highlighted-text.jsx';
-import { HeadingSection } from '../atoms/typography/heading-section.jsx';
 import { ArticleInMarkdown } from '../organisms/article-in-markdown.js';
 import { MainContainer } from '../organisms/main-container.jsx';
 
@@ -60,7 +58,11 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
 
             {availableLanguages.length > 1 && (
                 <div className="flex justify-center">
-                    <div aria-label="Language selection" className="inline-flex border border-black/10 hover:border-black/20 transition-colors duration-300 rounded-full overflow-hidden" role="navigation">
+                    <div
+                        aria-label="Language selection"
+                        className="inline-flex border border-black/10 hover:border-black/20 transition-colors duration-300 rounded-full overflow-hidden"
+                        role="navigation"
+                    >
                         {availableLanguages.map((lang) => (
                             <Link
                                 aria-current={currentLanguage === lang ? 'page' : undefined}
@@ -92,18 +94,6 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
             <p className="text-center text-storm-cloud text-sm mt-2 italic">
                 Published on {new Date(datePublished).toLocaleDateString()}
             </p>
-            <HeadingSection className="mt-6 md:mt-12 flex flex-col items-center">
-                <HighlightedText className="pr-2">Featured Posts</HighlightedText>
-            </HeadingSection>
-            {/* {filteredArticles
-                .sort(
-                    (a, b) =>
-                        new Date(b.metadata.datePublished).getTime() -
-                        new Date(a.metadata.datePublished).getTime(),
-                )
-                .map((article) => (
-                    <ArticleRow key={article.index} article={article} />
-                ))} */}
         </MainContainer>
     );
 };
