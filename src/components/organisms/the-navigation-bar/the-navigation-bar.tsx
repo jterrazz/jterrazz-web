@@ -85,7 +85,7 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ className, onLinkClick,
         <div className={generatedClassName}>
             {/* Smoother, lighter transition config for background highlight */}
             <AnimatedBackground
-                className="rounded-lg bg-zinc-200 dark:bg-zinc-600 p-2 md:p-1 flex flex-col md:flex-row items-center justify-center w-full md:w-auto"
+                className="rounded-lg bg-zinc-200 dark:bg-zinc-600 p-2 md:p-1 flex flex-col md:flex-row items-center justify-center w-auto md:w-auto mx-auto gap-2 md:gap-1"
                 enableHover
                 transition={{
                     duration: 0.18,
@@ -96,15 +96,19 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ className, onLinkClick,
                 {pages.map((page, index) => {
                     const isSelected = pathname === page.href;
                     const baseClassName =
-                        'rounded-md px-3 py-2 text-sm w-full md:w-auto transition-colors duration-200 ease-in-out text-center';
+                        'rounded-md px-3 py-2 text-sm w-auto md:w-auto transition-colors duration-200 ease-in-out text-center';
                     const selectedClassName = isSelected
                         ? 'bg-storm-cloud-accent text-white'
                         : 'text-storm-cloud-accent hover:bg-storm-cloud-accent/10';
                     const generatedClassName = cn(baseClassName, selectedClassName);
+                    const isLastItem = index === pages.length - 1;
 
                     return (
                         <div
-                            className="w-full md:w-auto mb-2 md:mb-0 md:mx-1"
+                            className={cn(
+                                'w-auto md:w-auto md:mx-1',
+                                !isLastItem ? 'mb-4 md:mb-0' : 'md:mb-0',
+                            )}
                             data-id={page.name}
                             key={index}
                         >
@@ -120,7 +124,7 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({ className, onLinkClick,
                                 </button>
                             ) : (
                                 <Link
-                                    className="block w-full md:inline-block md:w-auto"
+                                    className="block w-auto md:inline-block md:w-auto"
                                     href={page.href}
                                     onClick={onLinkClick}
                                     // Prevent React hydration mismatch when inside motion layout by
@@ -252,10 +256,10 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             initial={{ opacity: 0, y: -20 }}
                             transition={{ delay: 0.2, duration: 0.3 }}
                         >
-                            <div className="flex flex-wrap mt-2">
+                            <div className="flex flex-wrap justify-center gap-2">
                                 {contacts.map((contact, _index) => (
                                     <NavigationTabItem
-                                        className="mr-2 mb-2 flex-shrink-0"
+                                        className="flex-shrink-0"
                                         href={contact.url}
                                         key={contact.name}
                                         newTab={true}
