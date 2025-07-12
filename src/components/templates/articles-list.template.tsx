@@ -19,10 +19,10 @@ export const ArticleRow: React.FC<{ article: ArticleRowViewModel }> = ({ article
     const color = article.isCodeCategory ? BadgeColor.Green : BadgeColor.Blue;
 
     return (
-        <article className="border-b border-black-and-white py-3">
+        <article className="border-b border-black-and-white py-3 hover:bg-gray-50">
             <Link
                 aria-label={`Read article: ${article.title} - ${article.category}`}
-                className="flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                className="flex items-center justify-between transition-colors duration-200"
                 href={`/articles/${article.slug}`}
             >
                 <h3 className="font-medium text-left">{article.title}</h3>
