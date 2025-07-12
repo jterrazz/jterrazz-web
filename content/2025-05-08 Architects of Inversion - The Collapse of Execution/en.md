@@ -143,4 +143,4 @@ We are all architects now. Not of buildings, but of understanding frameworks, of
 
 The intelligence is here. Now comes the architecture.
 
-[**Read next article**](https://www.jterrazz.com/articles/https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse)
+[**Read next article**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse)
