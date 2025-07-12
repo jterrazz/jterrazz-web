@@ -50,8 +50,8 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
             .map((article) => ({
                 category: article.metadata.category,
                 isCodeCategory: article.metadata.category === 'code',
-                slug: buildArticleSlug(article.publicIndex, article.metadata.title),
-                title: article.metadata.title,
+                slug: buildArticleSlug(article.publicIndex, article.metadata.title.en),
+                title: article.metadata.title.en,
             }));
 
         return {

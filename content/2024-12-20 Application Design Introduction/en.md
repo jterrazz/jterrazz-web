@@ -85,18 +85,18 @@ To understand where application design is today, it helps to see how we got here
 Application design didn't appear out of thin air. It stands on the shoulders of two foundational manifestos that shifted how we think about building software.
 
 1. **The Agile Manifesto (2001)**
-		This was a revolution. It reminded us to value:
-		* **Working software** over piles of documentation.
-		* **Responding to change** over blindly following a plan.
-		* **People and collaboration** over rigid processes.
-		* **Customer partnership** over fighting about contracts.
+This was a revolution. It reminded us to value:
+* **Working software** over piles of documentation.
+* **Responding to change** over blindly following a plan.
+* **People and collaboration** over rigid processes.
+* **Customer partnership** over fighting about contracts.
 
 2. **The Software Craftsmanship Manifesto**
-		This took Agile a step further. It's about professional pride and quality, emphasizing:
-		* **Well-crafted software**, not just functioning software.
-		* **Steadily adding value** for users.
-		* A **community of professionals** who help each other grow.
-		* **Productive partnerships**, not just contractual obligations.
+This took Agile a step further. It's about professional pride and quality, emphasizing:
+* **Well-crafted software**, not just functioning software.
+* **Steadily adding value** for users.
+* A **community of professionals** who help each other grow.
+* **Productive partnerships**, not just contractual obligations.
 
 ---
 

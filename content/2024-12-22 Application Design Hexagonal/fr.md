@@ -275,4 +275,4 @@ Mais ce n'est pas la destination finale. La **Clean Architecture**, popularisée
 
 Dans le prochain chapitre, on va plonger dans la Clean Architecture. Vous verrez comment elle s'appuie sur les fondations de l'Hexagonale pour vous donner un moyen puissant et évolutif de structurer n'importe quelle application. C'est parti
 
-[Prochain Article](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)
+[Prochain Article](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)

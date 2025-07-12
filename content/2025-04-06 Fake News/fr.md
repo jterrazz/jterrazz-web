@@ -56,4 +56,4 @@ Aujourd'hui, l'IA nous permet de préparer cette information et de la présenter
 
 Ensemble, cultivons un monde où la curiosité et l'esprit critique sont une seconde nature. Un titre à la fois.
 
-[Téléchargez l'application ici](https://jterrazz.com/link/applications/fake-news-ios)
+[Téléchargez l'application ici](https://jterrazz.com/link/applications/fake-news)

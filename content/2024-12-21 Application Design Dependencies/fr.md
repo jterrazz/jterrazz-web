@@ -196,4 +196,4 @@ Maîtriser les dépendances, c'est un vrai *game-changer*. Quand vous apprenez �
 
 Dans le prochain chapitre, on verra comment ces idées s'assemblent dans une architecture complète, comme l'architecture hexagonale.
 
-[Prochain Article](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
+[Prochain Article](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)

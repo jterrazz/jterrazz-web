@@ -58,4 +58,4 @@ Now, AI allows us to pre-process and package that information to perfectly suit 
 
 Let's build a world where curiosity becomes second nature—one headline at a time.
 
-[Download the app here](https://jterrazz.com/link/applications/fake-news-ios)
+[Download the app here](https://jterrazz.com/link/applications/fake-news)

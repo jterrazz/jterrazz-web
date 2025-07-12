@@ -37,7 +37,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
     }
 
     // Compute canonical slug and redirect if needed
-    const canonicalSlug = buildArticleSlug(article.publicIndex, article.metadata.title);
+    const canonicalSlug = buildArticleSlug(article.publicIndex, article.metadata.title.en);
     if (slugId !== canonicalSlug) {
         return redirect(`/articles/${canonicalSlug}`);
     }
@@ -55,7 +55,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
             dateModified={article.metadata.dateModified}
             datePublished={article.metadata.datePublished}
             features={features}
-            title={article.metadata.title}
+            title={article.metadata.title['en']}
         />
     );
 }
@@ -89,15 +89,15 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
             canonical: `${baseUrl}/articles/${slugId}/en`, // Default to English
             languages: alternates,
         },
-        description: article.metadata.description,
+        description: article.metadata.description['en'],
         openGraph: {
             alternateLocale: availableLanguages.filter((l) => l !== 'en'),
-            description: article.metadata.description,
+            description: article.metadata.description['en'],
             locale: 'en',
-            title: article.metadata.title,
+            title: article.metadata.title['en'],
             url: `${baseUrl}/articles/${slugId}/en`,
         },
-        title: article.metadata.title + ' ~ Jterrazz',
+        title: `${article.metadata.title['en']} ~ Jterrazz`,
     };
 }
 
@@ -106,7 +106,7 @@ export async function generateStaticParams() {
     const articles = await articlesRepository.getArticles();
 
     return articles.flatMap((article) => [
-        { slugId: buildArticleSlug(article.publicIndex, article.metadata.title) },
+        { slugId: buildArticleSlug(article.publicIndex, article.metadata.title.en) },
         { slugId: String(article.publicIndex) },
     ]);
 }

@@ -13,8 +13,8 @@ export interface Article {
         category: ArticleCategory;
         dateModified: string;
         datePublished: string;
-        description: string;
-        title: string;
+        description: Record<ArticleLanguage, string>;
+        title: Record<ArticleLanguage, string>;
     };
     publicIndex: number;
     published: boolean;

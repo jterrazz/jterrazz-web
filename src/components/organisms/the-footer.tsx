@@ -216,7 +216,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
             </div>
 
             {/* Full-width landscape image positioned at the very bottom */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[300px] sm:h-[450px] md:h-[600px] overflow-hidden -z-10">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-full overflow-hidden -z-10">
                 <Image
                     alt="Mountain landscape - Jean-Baptiste Terrazzoni's portfolio background"
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="

@@ -110,10 +110,10 @@ export default async function HomePage() {
                 description={description}
                 experiences={userExperiences}
                 topArticles={topArticles.map((article) => ({
-                    description: article.metadata.description,
+                    description: article.metadata.description.en,
                     imageUrl: article.imageUrl ?? '',
-                    slug: buildArticleSlug(article.publicIndex, article.metadata.title),
-                    title: article.metadata.title,
+                    slug: buildArticleSlug(article.publicIndex, article.metadata.title.en),
+                    title: article.metadata.title.en,
                 }))}
             />
         </>

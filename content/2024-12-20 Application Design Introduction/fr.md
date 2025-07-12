@@ -85,18 +85,18 @@ Pour mieux saisir où on en est aujourd'hui, un petit retour en arrière s'impos
 Le design applicatif ne sort pas de nulle part. Il repose sur deux manifestes qui ont changé la donne.
 
 1. **Le Manifeste Agile (2001)**
-		Une vraie révolution. Il nous a rappelé de valoriser:
-		* **Un logiciel qui fonctionne** plus qu'une documentation exhaustive.
-		* **S'adapter au changement** plus que suivre un plan à la lettre.
-		* **Les gens et leurs interactions** plus que les processus et les outils.
-		* **Collaborer avec le client** plus que négocier des contrats.
+Une vraie révolution. Il nous a rappelé de valoriser:
+* **Un logiciel qui fonctionne** plus qu'une documentation exhaustive.
+* **S'adapter au changement** plus que suivre un plan à la lettre.
+* **Les gens et leurs interactions** plus que les processus et les outils.
+* **Collaborer avec le client** plus que négocier des contrats.
 
 2. **Le Manifeste du Software Craftsmanship**
-		Il est allé encore plus loin. C'est une question de fierté professionnelle et de qualité. Il met en avant:
-		* **Un logiciel bien fait**, pas juste un logiciel qui marche.
-		* **Ajouter de la valeur en continu** pour les utilisateurs.
-		* Une **communauté de professionnels** qui s'entraident pour s'améliorer.
-		* Des **partenariats productifs**, pas juste des obligations contractuelles.
+	Il est allé encore plus loin. C'est une question de fierté professionnelle et de qualité. Il met en avant:
+	* **Un logiciel bien fait**, pas juste un logiciel qui marche.
+	* **Ajouter de la valeur en continu** pour les utilisateurs.
+	* Une **communauté de professionnels** qui s'entraident pour s'améliorer.
+	* Des **partenariats productifs**, pas juste des obligations contractuelles.
 
 ---
 
