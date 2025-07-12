@@ -159,7 +159,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                 {JSON.stringify(footerJsonLd)}
             </Script>
 
-            <div className="flex flex-col items-center -mb-40 md:-mb-60">
+            <div className="flex flex-col items-center mt-10 -mb-10 md:-mb-10">
                 <FloatingContainer className="flex flex-col items-center">
                     <h2 className="font-extrabold tracking-wide">Jean-Baptiste Terrazzoni</h2>
                     <p className="text-sm mt-2 tracking-wide">
