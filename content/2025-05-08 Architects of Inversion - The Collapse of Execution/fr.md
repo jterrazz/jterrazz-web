@@ -143,4 +143,4 @@ Nous sommes tous des architectes désormais. Non pas de bâtiments, mais de cadr
 
 L'intelligence est là. L'heure est maintenant à l'architecture.
 
-[**Lire la suite**](https://www.jterrazz.com/articles/17-ai-3-architects-of-inversion-the-world-that-follows/fr)
+[**Lire la suite**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse)

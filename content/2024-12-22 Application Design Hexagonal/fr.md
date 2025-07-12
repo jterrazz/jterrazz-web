@@ -274,3 +274,5 @@ L'architecture hexagonale est un énorme pas en avant par rapport au simple mod�
 Mais ce n'est pas la destination finale. La **Clean Architecture**, popularisée par Robert C. Martin (Uncle Bob), pousse ces idées encore plus loin. Elle fournit un ensemble de règles plus structurées pour les couches et les dépendances, créant une séparation des préoccupations encore plus forte.
 
 Dans le prochain chapitre, on va plonger dans la Clean Architecture. Vous verrez comment elle s'appuie sur les fondations de l'Hexagonale pour vous donner un moyen puissant et évolutif de structurer n'importe quelle application. C'est parti
+
+[Prochain Article](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)

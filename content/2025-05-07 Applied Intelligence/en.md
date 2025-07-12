@@ -128,4 +128,4 @@ Start building your AI-powered workflow now. Create new habits, experiment gener
 
 With mindset shifts, experimentation, and careful delegation, **Artificial Intelligence will not threaten your success—it will become your greatest ally.**
 
-[**Read next article**](https://www.jterrazz.com/articles/16-ai-2-architects-of-inversion-the-collapse-of-execution)
+[**Read next article**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution)

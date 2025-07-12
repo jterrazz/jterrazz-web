@@ -103,3 +103,5 @@ Le design applicatif ne sort pas de nulle part. Il repose sur deux manifestes qu
 Au final, le **design applicatif**, ce n'est pas une théorie abstraite. C'est un ensemble de principes qui ont fait leurs preuves et de choix stratégiques. En comprenant la complexité, en tirant les leçons du passé et en visant la qualité, on peut construire des logiciels qui non seulement répondent aux besoins d'aujourd'hui, mais qui cartonnent encore demain.
 
 Dans le premier chapitre, on va plonger dans un des concepts les plus importants: les dépendances. On verra comment les gérer pour garder un code propre, testable et solide. C'est parti
+
+[Prochain Article](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)

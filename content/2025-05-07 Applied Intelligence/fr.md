@@ -128,4 +128,4 @@ Commencez dès maintenant à construire votre flux de travail intégrant l'IA. C
 
 Grâce à une évolution de votre état d'esprit, à l'expérimentation et à une délégation judicieuse, **l'Intelligence Artificielle ne menacera pas votre succès–elle deviendra votre plus grande alliée.**
 
-[**Lire la suite**](https://www.jterrazz.com/articles/16-ai-2-architects-of-inversion-the-collapse-of-execution/fr)
+[**Lire la suite**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution/fr)

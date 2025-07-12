@@ -103,3 +103,5 @@ Application design didn't appear out of thin air. It stands on the shoulders of 
 At its core, **application design** isn't an academic theory. It's a set of battle-tested principles and strategic choices. By understanding complexity, learning from the past, and committing to quality, we can build software that doesn't just work today but thrives tomorrow.
 
 In the first chapter, we'll dive into one of the most critical concepts: dependencies. We'll see how to manage them to keep your code clean, testable, and resilient. Let's get started.
+
+[Next Article](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)

@@ -274,3 +274,5 @@ Hexagonal architecture is a massive step up from simple layering. It forces you 
 But it's not the final destination. **Clean Architecture**, which was popularized by Robert C. Martin (Uncle Bob), takes these ideas even further. It provides a more structured set of rules for layering and dependencies, creating an even stronger separation of concerns.
 
 In the next chapter, we'll dive into Clean Architecture. You'll see how it builds on the foundation of Hexagonal to give you a powerful and scalable way to structure any application. Let's go
+
+[Next Article](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)

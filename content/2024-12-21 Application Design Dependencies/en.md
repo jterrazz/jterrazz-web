@@ -197,3 +197,5 @@ class HelloService {
 Getting a handle on dependencies is a game-changer. When you learn to control the flow, use principles like DIP, and leverage patterns like IoC, you can build systems that are robust, testable, and ready for whatever comes next.
 
 Next, we'll look at how these ideas come together in a full-blown architecture, like the hexagonal architecture.
+
+[Next Article](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)

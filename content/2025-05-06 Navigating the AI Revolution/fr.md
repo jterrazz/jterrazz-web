@@ -97,4 +97,4 @@ Nous entrons rapidement dans une ère où la seule maîtrise technique ne suffit
 
 Dans le prochain article, nous examinerons des exemples concrets illustrant comment l'IA transforme le travail de manière simple et limpide. Je vous montrerai comment j'utilise l'IA pour gagner du temps, optimiser mon efficacité et concrétiser de nouvelles idées–le tout expliqué de façon accessible à chacun, quel que soit son domaine d'activité.
 
-[**Lire la suite**](https://www.jterrazz.com/articles/15-ai-1-applied-intelligence/fr)
+[**Lire la suite**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work/fr)

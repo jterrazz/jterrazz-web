@@ -195,3 +195,5 @@ class HelloService {
 Maîtriser les dépendances, c'est un vrai *game-changer*. Quand vous apprenez à contrôler le flux, à utiliser des principes comme le DIP et des patterns comme l'IoC, vous pouvez construire des systèmes robustes, testables et prêts pour l'avenir.
 
 Dans le prochain chapitre, on verra comment ces idées s'assemblent dans une architecture complète, comme l'architecture hexagonale.
+
+[Prochain Article](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
