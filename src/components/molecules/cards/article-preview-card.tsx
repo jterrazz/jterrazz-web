@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface ArticlePreviewProps {
@@ -40,9 +41,11 @@ export const ArticlePreviewCard = ({
                 whileHover={{ opacity: 1, y: -5 }}
             >
                 <div className="relative h-40 w-full mb-4 rounded-lg overflow-hidden">
-                    <img
+                    <Image
                         alt={title}
                         className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
+                        fill
+                        sizes="(max-width: 640px) 100vw, 50vw"
                         src={imageUrl}
                     />
                 </div>

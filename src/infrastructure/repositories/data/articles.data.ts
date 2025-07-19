@@ -24,7 +24,9 @@ type ArticleMetadataConfig = {
 // Utility type for storing translations directly in the seed file.
 type TranslatedString = Record<ArticleLanguage, string>;
 
-const CDN_BASE_URL = 'https://github.com/jterrazz/jterrazz-web/raw/main/content';
+// Serve images directly from the local content route exposed by `src/app/content/[...path]/route.ts`.
+// This avoids relying on an external CDN and allows Next.js to optimise the files via its built-in <Image> component.
+const CDN_BASE_URL = '/content';
 const DEFAULT_PREVIEW_IMAGE_JPG = 'thumbnail.jpg';
 
 const ARTICLES_CONFIG: ArticleConfig[] = [
@@ -395,9 +397,8 @@ const processMarkdownContent = (content: string, filename: string): string => {
     return content.replace(
         /!\[([^\]]*)\]\((?:\.\/)?assets\/([^)]+)\)/g,
         (match, altText, p1) =>
-            `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(
-                filename,
-            )}/assets/${encodeURIComponent(p1)})`,
+            // Point to the locally-served image so that <Image> receives an internal URL.
+            `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)})`,
     );
 };
 
