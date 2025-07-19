@@ -72,7 +72,12 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
     }
 
     const availableLanguages = Object.keys(article.content) as ArticleLanguage[];
+
+    // Determine primary image (thumbnail) for OpenGraph and link previews
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
+    const thumbnailUrl = article.imageUrl
+        ? `${baseUrl}${article.imageUrl}`
+        : `${baseUrl}/assets/images/footer.jpg`;
 
     // Generate hreflang links
     const alternates: Record<string, string> = {};
@@ -89,6 +94,14 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
         openGraph: {
             alternateLocale: availableLanguages.filter((l) => l !== lang),
             description: article.metadata.description[lang],
+            images: [
+                {
+                    alt: article.metadata.title[lang],
+                    height: 630,
+                    url: thumbnailUrl,
+                    width: 1200,
+                },
+            ],
             locale: lang,
             title: article.metadata.title[lang],
             url: `${baseUrl}/articles/${slugId}/${lang}`,

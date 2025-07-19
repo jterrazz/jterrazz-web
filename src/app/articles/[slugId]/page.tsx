@@ -78,6 +78,10 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
 
     const availableLanguages = Object.keys(article.content) as ArticleLanguage[];
 
+    const thumbnailUrl = article.imageUrl
+        ? `${baseUrl}${article.imageUrl}`
+        : `${baseUrl}/assets/images/footer.jpg`;
+
     // Generate hreflang links for all available languages
     const alternates: Record<string, string> = {};
     availableLanguages.forEach((language) => {
@@ -93,6 +97,14 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
         openGraph: {
             alternateLocale: availableLanguages.filter((l) => l !== 'en'),
             description: article.metadata.description['en'],
+            images: [
+                {
+                    alt: article.metadata.title['en'],
+                    height: 630,
+                    url: thumbnailUrl,
+                    width: 1200,
+                },
+            ],
             locale: 'en',
             title: article.metadata.title['en'],
             url: `${baseUrl}/articles/${slugId}/en`,

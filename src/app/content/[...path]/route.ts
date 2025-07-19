@@ -1,5 +1,5 @@
 import { promises as fs } from 'node:fs';
-import { extname,join } from 'node:path';
+import { extname, join } from 'node:path';
 
 const getMimeType = (filePath: string): string => {
     switch (extname(filePath).toLowerCase()) {
@@ -23,7 +23,9 @@ export async function GET(request: Request, { params }: { params: { path: string
     const { path } = params;
 
     // Prevent path traversal outside the content directory.
-    const safePath = path.filter((segment) => !segment.includes('..'));
+    const safePath = path
+        .filter((segment) => !segment.includes('..'))
+        .map((segment) => decodeURIComponent(segment));
     const filePath = join(process.cwd(), 'content', ...safePath);
 
     try {
@@ -39,4 +41,4 @@ export async function GET(request: Request, { params }: { params: { path: string
     } catch {
         return new Response('File not found', { status: 404 });
     }
-} 
+}

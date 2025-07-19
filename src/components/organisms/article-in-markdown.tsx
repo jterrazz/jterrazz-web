@@ -1,5 +1,6 @@
 import React from 'react';
 import Markdown from 'markdown-to-jsx';
+import Image from 'next/image';
 import { Highlight, themes } from 'prism-react-renderer';
 
 import { cn } from '../../lib/utils.js';
@@ -108,19 +109,20 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                         },
                         img: {
                             component: ({ alt, src, ...props }) => (
-                                <img
-                                    alt={alt}
-                                    height={800}
-                                    loading="lazy"
-                                    src={src}
-                                    style={{ height: 'auto', width: '100%' }}
-                                    width={1200}
-                                    {...props}
-                                />
+                                <div className="rounded-lg overflow-hidden mt-8">
+                                    <Image
+                                        alt={alt as string}
+                                        className="my-8 w-full"
+                                        height={0}
+                                        loading="lazy"
+                                        sizes="100vw"
+                                        src={src as string}
+                                        style={{ height: 'auto', width: '100%' }}
+                                        width={0}
+                                        {...props}
+                                    />
+                                </div>
                             ),
-                            props: {
-                                className: 'my-8 w-full rounded-lg',
-                            },
                         },
                         li: {
                             props: {
