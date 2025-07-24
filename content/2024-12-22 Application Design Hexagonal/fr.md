@@ -1,152 +1,152 @@
 ![](assets/thumbnail.jpg)
 
-# Design Applicatif: Séparer Le Métier De la Technique
+# Conception applicative: isoler la logique métier de la technologie
 
-## Structurons Notre Code, Pour De Vrai
+## Structurer son code
 
-Alors, comment on organise concrètement un projet? C'est l'une des plus grandes questions qu'on se pose. Si vous y répondez bien, votre application peut grandir et s'adapter pendant des années. Si vous vous plantez, vous vous préparez des jours sombres.
+Comment organiser concrètement un projet? C'est l'une des questions les plus fondamentales qui soient. Une bonne réponse, et votre application pourra évoluer et s'adapter pendant des années. Une mauvaise, et vous vous condamnez à un véritable calvaire.
 
-Dans ce chapitre, je veux vous guider à travers l'évolution de la manière dont on structure le code. On va commencer par les approches classiques, voir où elles échouent, puis plonger dans une bien meilleure façon de penser: l'**architecture hexagonale**. C'est un vrai *game-changer* pour isoler ce que votre application *fait* de la technologie qu'elle *utilise*.
+Dans ce chapitre, je vous propose d'explorer l'évolution de nos approches en matière de structuration du code. Nous commencerons par les modèles classiques, identifierons leurs limites, pour ensuite plonger dans une manière de penser bien plus puissante: **l'architecture hexagonale**. C'est une approche qui change radicalement la donne, en isolant ce que votre application *fait* de la technologie qu'elle *utilise*.
 
 **Navigation 📚**
 
-1. [**Introduction : Le Design Applicatif, l'Art de Construire des Logiciels Durables et Évolutifs**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
-		*Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
+1. [**Introduction : La conception d'applications, l'art de bâtir des logiciels durables et évolutifs**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
+    *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
 
-2. [**Chapitre 1 : Le Concept de Dépendances**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
-		*Explorer les relations entre composants, l'importance des dépendances et les principes comme SOLID.*
+2. [**Chapitre 1 : Le concept de dépendances**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
+    *Explorez les relations entre composants, l'importance des dépendances et les principes comme SOLID.*
 
-3. [**Chapitre 2 : Comprendre les Architectures Métier et Technique**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
-		*Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs.*
+3. [**Chapitre 2 : Comprendre les architectures métier et technique**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
+    *Comment isoler la logique métier des préoccupations techniques à l'aide de ports et d'adaptateurs.*
 
 4. [**Chapitre 3 : La Clean Architecture**](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)
-		*Découvrir une approche centrée sur le métier avec une structuration claire en couches.*
+    *Découvrez une approche centrée sur le métier avec une structure en couches claire.*
 
 ---
 
-## Le Point De Départ: Les Architectures Classiques
+# Le point de départ: les architectures courantes
 
-### L'Architecture Spaghetti: L'architecture "sans architecture"
+## L'architecture spaghetti: l'absence d'architecture
 
-On l'a tous vue. Certains d'entre nous l'ont même écrite. L'architecture spaghetti, c'est ce qui arrive quand il n'y a pas de règles. La logique métier, les appels à la base de données, le code de l'interface utilisateur—tout est mélangé dans un seul plat de nouilles inextricable.
+Nous l'avons tous vue. Certains d'entre nous l'ont même écrite. L'architecture spaghetti est le résultat de l'absence totale de règles. Logique métier, appels à la base de données, code de l'interface utilisateur—tout est jeté dans un imbroglio inextricable.
 
 **Le résultat?**
 
-* Le code est impossible à lire.
-* Les tests sont un cauchemar.
-* Chaque modification risque de tout casser.
+- Le code est impossible à lire.
+- Les tests sont un cauchemar.
+- Chaque modification risque de faire s'effondrer l'ensemble du système.
 
-C'est le résultat naturel quand on veut aller vite sans avoir de plan. C'est le chaos.
-
----
-
-### L'Architecture En Couches: Un Pas Dans la Bonne Direction
-
-Pour combattre ce chaos, on a inventé l'**architecture en couches**. C'est probablement le pattern le plus répandu parce qu'il est simple et intuitif. On divise l'application en couches distinctes, chacune avec une mission claire.
-
-#### Les Couches Habituelles
-
-1. **Couche Présentation**: L'interface utilisateur ou l'API avec laquelle l'utilisateur interagit.
-2. **Couche Application**: Elle orchestre les flux de travail. Elle ne contient pas de logique métier elle-même, mais dit à la couche domaine quoi faire.
-3. **Couche Domaine**: Le cœur de l'application. C'est là que vivent toutes les règles métier essentielles.
-4. **Couche Persistance**: Gère tout ce qui touche à la base de données.
-
-#### La Règle d'Or: On Ne Parle Qu'à la Couche Du Dessous
-
-La couche Présentation parle à la couche Application, qui parle au Domaine, qui parle à la Persistance. Simple. Ça respecte le principe de responsabilité unique (**S** de **SOLID**), car chaque couche a un seul rôle.
+C'est la conséquence naturelle d'un développement mené à la hâte, sans plan. C'est le chaos.
 
 ---
 
-### Le Gros Problème De l'Architecture En Couches
+## L'architecture en couches: un premier pas dans la bonne direction
 
-À première vue, ça a l'air propre. Mais il y a un défaut fatal.
+Pour combattre ce chaos, nous avons inventé **l'architecture en couches** (*layered architecture*). C'est probablement le modèle le plus répandu, car il est simple et intuitif. L'idée est de diviser l'application en couches distinctes, chacune ayant une mission claire.
 
-* **La Règle de Dépendance est un Piège**: Les couches dépendent directement des couches inférieures. Cela signifie que votre logique métier (Domaine) finit par dépendre de détails techniques (Persistance). Vos règles fondamentales sont maintenant liées à votre base de données.
-* **Un Découpage Technique, pas Métier**: Le code est regroupé par *ce qu'il est* (du code d'UI, du code de BDD) plutôt que par *ce qu'il fait* pour le business.
+### Les couches habituelles
 
-Ce couplage entre la logique métier et la base de données est le point de départ de tous les problèmes. Ça rend les tests plus difficiles et changer de base de données devient un projet titanesque et douloureux.
+1. **Couche de présentation**: L'interface utilisateur ou l'API avec laquelle l'utilisateur interagit.
+2. **Couche applicative**: Elle orchestre les flux de travail. Elle ne contient pas de logique métier en elle-même, mais indique à la couche domaine quoi faire.
+3. **Couche domaine**: Le cœur de l'application. C'est ici que résident toutes les règles métier essentielles.
+4. **Couche de persistance**: Elle gère tout ce qui touche à la base de données.
 
----
+### La règle d'or: une couche communique uniquement avec celle du dessous
 
-## Le Vrai Objectif: Libérer Votre Logique Métier
-
-Pour moi, c'est l'objectif numéro un de toute bonne architecture: **isoler votre logique métier de tout le reste.** Vos règles métier sont la raison d'être de votre logiciel. Elles devraient être indépendantes de l'interface utilisateur, de la base de données, des frameworks—de tout.
-
-**Pourquoi c'est si important?**
-
-1. **Les Choses Changent**: Vos règles métier évoluent lentement. Mais la technologie? Elle change tout le temps. Vous pourriez passer d'une API REST à GraphQL, ou de Postgres à une base NoSQL. Votre logique principale ne devrait pas avoir à changer quand votre stack technique change.
-2. **Des Tests Faciles**: Quand votre logique métier est pure, sans aucun lien avec une base de données ou un serveur web, vous pouvez la tester avec des tests unitaires simples et rapides.
-3. **Flexibilité**: En gardant le cœur propre, vous pouvez changer les composants techniques en périphérie sans casser le cœur de votre application.
-
-La stratégie est simple: **mettez votre logique métier au centre, et poussez toute la technique à l'extérieur.**
+La couche de présentation parle à la couche applicative, qui parle au domaine, qui parle à la persistance. Simple. Cela impose le principe de responsabilité unique (le **S** de **SOLID**), car chaque couche a un seul objectif clair.
 
 ---
 
-## La Solution: l'Architecture Hexagonale (Ports & Adapters)
+## Le problème fondamental de l'architecture en couches
 
-C'est là qu'intervient l'**Architecture Hexagonale**. Alistair Cockburn a eu cette idée géniale en 2005. C'est une conception qui place votre **logique métier** en plein centre et construit une barrière protectrice autour.
+À première vue, tout semble propre. Mais une faille fatale se cache sous la surface.
 
-### Ce Qu'elle Vise à Faire
+- **La règle des dépendances est un piège**: Les couches dépendent directement de celles qui se trouvent en dessous. Cela signifie que votre logique métier (le domaine) finit par dépendre de détails techniques (la persistance). Vos règles fondamentales sont maintenant menottées à votre base de données.
+- **Une vision technique, pas métier**: Le code est regroupé par *ce qu'il est* (UI, code de base de données) plutôt que par *ce qu'il fait* pour le métier.
 
-1. **Isoler le Cœur**: Votre domaine est complètement indépendant. Il ne connaît ni votre framework web, ni votre base de données.
-2. **Rendre les Tests Simples comme Bonjour**: Puisque le cœur est isolé, tester vos règles métier devient trivial.
-3. **Pérenniser votre App**: Vous voulez ajouter une nouvelle façon d'interagir avec votre application, comme une interface en ligne de commande? Il suffit d'ajouter un nouvel "adaptateur". La logique de base ne change pas.
-4. **Des Points d'Entrée et de Sortie Clairs**: Toute communication avec le monde extérieur passe par des "ports" et des "adaptateurs" bien définis.
+Ce couplage entre la logique métier et la base de données est la racine du mal. Il complexifie les tests et transforme le moindre changement de base de données en un chantier titanesque et douloureux.
 
-> ℹ️ **Pourquoi un hexagone?** Alistair Cockburn a juste choisi cette forme parce qu'elle avait assez de côtés pour représenter différents types de connexions (UI, BDD, autres API, etc.). Ne vous bloquez pas sur la forme. Le nom **"Ports & Adapters"** est en fait plus parlant.
+---
+
+# Le véritable objectif: libérer votre logique métier
+
+Pour moi, c'est la mission numéro un de toute bonne architecture: **isoler votre logique métier de tout le reste.** Vos règles métier sont la raison d'être du logiciel, son âme. Elles doivent être indépendantes de l'interface utilisateur, de la base de données, des frameworks—de tout.
+
+**Pourquoi est-ce si crucial?**
+
+1. **Le changement est une constante**: Vos règles métier évoluent lentement. La technologie, elle, change en permanence. Vous pourriez passer d'une API REST à GraphQL, ou de Postgres à une base de données NoSQL. Votre logique fondamentale ne devrait pas avoir à changer au gré des modes technologiques.
+2. **Des tests d'une simplicité déconcertante**: Quand votre logique métier est pure, découplée de toute base de données ou serveur web, vous pouvez la valider avec des tests unitaires simples et ultra-rapides.
+3. **Une flexibilité à toute épreuve**: En gardant le cœur intact, vous pouvez remplacer les composants techniques en périphérie sans jamais risquer de briser ce qui fait la valeur de votre application.
+
+La stratégie est simple: **placez votre logique métier au centre et poussez tout ce qui est technique en périphérie.**
+
+---
+
+# La solution: l'architecture hexagonale (Ports & Adapters)
+
+C'est ici qu'intervient **l'architecture hexagonale**. Alistair Cockburn a eu cette idée brillante en 2005. Il s'agit d'une conception qui place votre **logique métier** au cœur même de l'application et érige une barrière protectrice tout autour.
+
+## Ses objectifs
+
+1. **Isoler le cœur**: Votre domaine est complètement indépendant. Il ne sait rien de votre framework web ou de votre base de données.
+2. **Rendre les tests simples comme bonjour**: Le cœur étant isolé, tester vos règles métier devient trivial.
+3. **Pérenniser votre application**: Vous voulez ajouter une nouvelle façon d'interagir avec votre application, comme une interface en ligne de commande? Il suffit d'ajouter un nouvel "adaptateur". La logique centrale, elle, ne bouge pas.
+4. **Des points d'entrée et de sortie clairs**: Toute communication avec le monde extérieur passe par des "ports" et des "adaptateurs" bien définis.
+
+> ℹ️ **Pourquoi un hexagone?** Alistair Cockburn a simplement choisi cette forme car elle avait assez de côtés pour représenter différents types de connexions (UI, base de données, autres API, etc.). Ne vous focalisez pas sur la forme. Le nom **"Ports & Adapters"** est en réalité bien plus descriptif.
 
 ![](assets/hexagonal-architecture.jpg)
 
-L'hexagone montre visuellement votre logique métier au centre, protégée du monde extérieur désordonné par une couche de ports et d'adaptateurs. Tout est une question de **modularité** et de **neutralité technologique**.
+L'hexagone illustre parfaitement cette idée: votre logique métier au centre, protégée du monde extérieur tumultueux par une couche de ports et d'adaptateurs. Tout est une question de **modularité** et de **neutralité technologique**.
 
-> **ℹ️ Une Question de Noms**
-> Les gens utilisent différents termes pour les deux côtés de l'hexagone:
-> 1. Gauche/Droite (Left/Right)
-> 2. Acteur/Acté (Driving/Driven)
-> 3. Primaire/Secondaire (Primary/Secondary)
-> 4. Côté Utilisateur/Côté Serveur (User Side/Server Side)
+> **ℹ️ Une question de nom**
+> On utilise différents termes pour désigner les deux côtés de l'hexagone:
+> 1. Gauche/Droite
+> 2. Pilotant/Piloté (*Driving/Driven*)
+> 3. Primaire/Secondaire
+> 4. Côté utilisateur/Côté serveur
 >
-> Honnêtement, les noms importent moins que le concept. Choisissez-en un et soyez cohérent. Personnellement, j'aime bien **Driving/Driven** (qu'on pourrait traduire par Acteur/Acté) car ça sépare clairement ce qui *déclenche une action* de ce qui *répond à une demande*.
+> Honnêtement, les noms importent moins que le concept. Choisissez une terminologie et tenez-vous-y. Personnellement, j'aime **Pilotant/Piloté** (*Driving/Driven*), car cette distinction sépare clairement ce qui *est à l'origine* d'une action de ce qui *y répond*.
 
 ---
 
-### Le Cœur De Votre Application, C'est Son "Moteur De Règles"
+# Le cœur de votre application est son " moteur de règles "
 
-Voici un point crucial: **l'architecture hexagonale n'est utile que si vous avez VRAIMENT une logique métier à protéger.**
+Voici un point essentiel: **l'architecture hexagonale n'est utile que si vous avez réellement une logique métier à protéger.**
 
-Si votre application est juste un simple service CRUD qui déplace des données d'une base de données vers une réponse JSON sans véritables règles ou transformations, alors c'est complètement surdimensionné. Un simple modèle en couches est probablement suffisant.
+Si votre application se résume à un simple service CRUD qui déplace des données d'une base de données vers une réponse JSON, sans véritables règles ou transformations, alors cette approche est une complexité superflue. Un simple modèle en couches fera amplement l'affaire.
 
-Mais si votre application contient de vraies règles métier—la logique qui fait gagner de l'argent à votre entreprise ou qui applique des contraintes critiques—alors ces règles sont précieuses. Elles doivent être au centre. **Sans règles métier, l'hexagone est vide.**
-
----
-
-### Un Exemple Complet: Driving Side vs. Driven Side
-
-Rendons ça concret. Imaginons qu'on construise un système de traitement de commandes.
-
-* **Driving Side (Côté gauche / Acteur)**: C'est ce qui déclenche une action. Un utilisateur qui soumet une commande via un formulaire web est un acteur "driving".
-* **Driven Side (Côté droit / Acté)**: C'est l'infrastructure que l'application utilise. La base de données où la commande est sauvegardée est un acteur "driven".
+Mais si votre application contient de vraies règles métier—la logique qui fait gagner de l'argent à votre entreprise ou qui applique des contraintes critiques—alors ces règles sont un trésor. Elles doivent être au centre. **Sans règles métier, l'hexagone n'est qu'une coquille vide.**
 
 ---
 
-#### **1. Le Domaine (la Logique Métier pure)**
+# Un exemple complet: pilotant vs. piloté
 
-Au centre, nous avons nos règles métier, complètement indépendantes de toute technologie. Le domaine définit des "ports", qui sont des interfaces décrivant ce qu'il a besoin de faire.
+Rendons cela concret. Imaginons que nous construisons un système de traitement de commandes.
+
+- **Côté pilotant (gauche)**: C'est ce qui déclenche une action. Un utilisateur qui soumet une commande via un formulaire web est un acteur pilotant.
+- **Côté piloté (droite)**: C'est l'infrastructure que l'application utilise. La base de données où la commande est sauvegardée est un acteur piloté.
+
+---
+
+## **1. Le domaine (la logique métier pure)**
+
+Au centre, nous avons nos règles métier, complètement indépendantes de toute technologie. Le domaine définit des "ports", qui sont des interfaces décrivant ce dont il a besoin du monde extérieur pour fonctionner.
 
 ```ts
-// C'est une interface pour quelque chose qui va *piloter* notre application.
+// Ceci est une interface pour quelque chose qui va *piloter* notre application.
 export interface OrderInputPort {
-   processOrder(order: Order): void; // Un port "driving" (gauche)
+   processOrder(order: Order): void; // Un port "pilotant" (côté gauche)
 }
 
-// C'est une interface pour un service que notre application va *utiliser*.
+// Ceci est une interface pour un service que notre application va *utiliser*.
 export interface OrderOutputPort {
-   saveOrder(order: Order): void; // Un port "driven" (droit)
+   saveOrder(order: Order): void; // Un port "piloté" (côté droit)
 }
 
-// C'est notre logique métier principale.
+// Voici notre logique métier centrale.
 export class OrderService implements OrderInputPort {
-   // Elle dépend d'une *abstraction* (le port), pas d'une base de données concrète.
+   // Elle dépend d'une *abstraction* (le port), et non d'une base de données concrète.
    constructor(private outputPort: OrderOutputPort) {}
 
    processOrder(order: Order): void {
@@ -155,28 +155,28 @@ export class OrderService implements OrderInputPort {
       }
 
       console.log("Processing order:", order);
-      // Elle appelle le port de sortie pour faire le travail.
+      // Elle appelle le port de sortie pour accomplir sa tâche.
       this.outputPort.saveOrder(order);
    }
 }
 ```
 
-**Qu'est-ce qui se passe ici?**
+**Que se passe-t-il ici?**
 
-* `OrderInputPort` est le point d'entrée pour les commandes.
-* `OrderOutputPort` est le point de sortie pour les choses dont l'application a besoin du monde extérieur (comme sauvegarder des données).
-* `OrderService` est de la pure logique métier. Elle ne connaît ni les bases de données, ni les API. Elle sait juste qu'elle doit sauvegarder une commande via un port.
+- `OrderInputPort` est le point d'entrée pour les commandes.
+- `OrderOutputPort` est le point de sortie pour les services dont l'application a besoin (comme la sauvegarde de données).
+- `OrderService` est de la logique métier pure. Il ne connaît ni les bases de données, ni les API. Il sait juste qu'il doit sauvegarder une commande en passant par un port.
 
 ---
 
-#### **2. L'Adaptateur Driving (le Contrôleur d'API)**
+## **2. L'adaptateur pilotant (le contrôleur d'API)**
 
-C'est le code qui traduit une requête entrante (du web, d'un CLI, etc.) en un appel sur le port d'entrée de notre application.
+C'est le code qui traduit une requête entrante (venant du web, d'un CLI, etc.) en un appel sur le port d'entrée de notre application.
 
 ```ts
 import express from "express";
 
-// C'est un "adaptateur" qui connecte le monde extérieur (HTTP) à notre application.
+// Cet "adaptateur" connecte le monde extérieur (HTTP) à notre application.
 export class OrderController {
    constructor(private orderInputPort: OrderInputPort) {}
 
@@ -184,7 +184,7 @@ export class OrderController {
       const order = req.body;
 
       try {
-         // Le seul travail du contrôleur est de traduire et de déléguer.
+         // Son unique rôle est de traduire la requête et de la déléguer.
          this.orderInputPort.processOrder(order); // Il appelle le domaine via le port.
          res.status(200).send("Order processed successfully!");
       } catch (err) {
@@ -194,45 +194,45 @@ export class OrderController {
 }
 ```
 
-Ce contrôleur est bête. Il connaît HTTP, mais il ne connaît rien aux règles métier. Il se contente de passer la requête.
+Ce contrôleur est volontairement simple. Il connaît le protocole HTTP, mais il ignore tout des règles métier. Son seul travail est de faire le traducteur.
 
 ---
 
-#### **3. L'Adaptateur Driven (la Base De données)**
+## **3. L'adaptateur piloté (la base de données)**
 
 C'est l'implémentation concrète de notre port de sortie. C'est ici que vivent les détails techniques.
 
 ```ts
-// Cet adaptateur implémente notre port de sortie avec une technologie spécifique.
+// Cet adaptateur implémente notre port de sortie avec une technologie spécifique (ex: une base de données).
 export class DatabaseAdapter implements OrderOutputPort {
    saveOrder(order: Order): void {
-      // Ici, vous auriez votre vraie logique de base de données.
+      // Ici, vous auriez votre logique de base de données réelle.
       console.log("Saving order to database:", order);
    }
 }
 ```
 
-Cette classe ne s'occupe que de la base de données. Elle ne sait rien des règles métier qui ont mené à la sauvegarde de la commande.
+Cette classe est entièrement dédiée à la base de données. Elle ignore tout des règles métier qui ont mené à cette sauvegarde.
 
 ---
 
-### **4. On Assemble Le Tout**
+## **4. Assembler les pièces du puzzle**
 
-Enfin, quelque part tout à la périphérie de notre application (comme dans `index.ts`), on connecte tout.
+Enfin, quelque part à l'extrémité de notre application (typiquement dans `index.ts`), nous connectons tous les éléments.
 
 ```ts
 import express from "express";
 
-// 1. On crée les adaptateurs concrets.
-const databaseAdapter = new DatabaseAdapter(); // Driven Side
+// 1. Créer les adaptateurs concrets.
+const databaseAdapter = new DatabaseAdapter(); // Côté Piloté
 
-// 2. On crée le service du domaine, en lui injectant l'adaptateur.
+// 2. Créer le service du domaine, en lui injectant l'adaptateur.
 const orderService = new OrderService(databaseAdapter);
 
-// 3. On crée l'adaptateur "driving", en lui injectant le service du domaine.
-const orderController = new OrderController(orderService); // Driving Side
+// 3. Créer l'adaptateur pilotant, en lui injectant le service du domaine.
+const orderController = new OrderController(orderService); // Côté Pilotant
 
-// 4. On met en place le serveur web.
+// 4. Configurer le serveur web.
 const app = express();
 app.use(express.json());
 
@@ -241,38 +241,38 @@ app.post("/orders", (req, res) => orderController.handleRequest(req, res));
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));
 ```
 
-C'est le seul endroit où la logique du domaine et les détails techniques se rencontrent. Les dépendances sont "injectées" de l'extérieur vers l'intérieur, protégeant le cœur.
+C'est l'unique point de contact entre la logique du domaine et les détails techniques. Les dépendances sont "injectées" de l'extérieur vers l'intérieur, protégeant ainsi le cœur de l'application.
 
 ---
 
-### L'Impact Sur Les Tests Est Énorme
+## L'impact sur les tests est immense
 
-Cette structure rend les tests un vrai plaisir:
+Cette structure transforme les tests en un véritable plaisir:
 
-* **Tester le Contrôleur**: Donnez-lui un `OrderInputPort` mocké et vérifiez qu'il appelle `processOrder` correctement. Pas besoin de serveur web.
-* **Tester la Logique Métier**: Donnez-lui un `OrderOutputPort` mocké et testez toutes vos règles métier en isolement complet. Ces tests sont ultra-rapides.
-* **Tester l'Adaptateur de Base de Données**: Testez-le seul pour vous assurer qu'il peut réellement sauvegarder dans la base de données.
+- **Tester le contrôleur**: Fournissez-lui un mock de `OrderInputPort` et vérifiez qu'il appelle `processOrder` correctement. Pas besoin de démarrer un serveur web.
+- **Tester la logique métier**: Fournissez-lui un mock de `OrderOutputPort` et testez toutes vos règles métier en isolation complète. Ces tests sont d'une rapidité foudroyante.
+- **Tester l'adaptateur de base de données**: Testez-le de manière autonome pour vous assurer qu'il peut réellement sauvegarder des données dans la base.
 
-Chaque pièce peut être testée indépendamment. Fini les tests de bout en bout fragiles qui échouent pour des raisons obscures.
+Chaque pièce du puzzle peut être testée indépendamment. Fini les tests de bout en bout fragiles qui échouent pour des raisons obscures.
 
 ---
 
-> **Le Conseil d'Alistair Cockburn en 2023: Nommez avec Intention**<br/>
-> Alistair a récemment donné un excellent conseil sur la façon de nommer vos ports pour rendre leur but évident. Il suggère le format: **"For + Verbe-ing + Objectif"** (Pour + [Action] + [But]).
+> **Conseil d'Alistair Cockburn (2023): nommer avec intention**
+> Alistair a récemment partagé un excellent conseil pour nommer les ports de manière à rendre leur objectif limpide. Il suggère d'adopter en anglais le format: **"For + Verbe-ing + Objectif"**.
 >
 > **Exemple:**
 >
-> * **Port Driving:** `ForProcessingOrders` (PourTraiterLesCommandes)
-> * **Port Driven:** `ForSavingOrders` (PourSauvegarderLesCommandes)
+> - **Port pilotant:** `ForProcessingOrders`
+> - **Port piloté:** `ForSavingOrders`
 >
-> J'adore ça, car ça rend le code auto-documenté. Vous savez immédiatement à quoi sert chaque interface. C'est un petit changement qui ajoute une tonne de clarté.
+> J'adore cette approche, car elle rend le code auto-documenté. On sait immédiatement à quoi sert chaque interface. C'est un petit changement qui apporte une clarté considérable.
 
 ---
 
-L'architecture hexagonale est un énorme pas en avant par rapport au simple modèle en couches. Elle vous force à mettre votre logique métier en premier et à traiter la technologie comme un détail.
+L'architecture hexagonale représente une avancée majeure par rapport à la simple architecture en couches. Elle vous force à placer votre logique métier au premier plan et à traiter la technologie comme un simple détail d'implémentation.
 
-Mais ce n'est pas la destination finale. La **Clean Architecture**, popularisée par Robert C. Martin (Uncle Bob), pousse ces idées encore plus loin. Elle fournit un ensemble de règles plus structurées pour les couches et les dépendances, créant une séparation des préoccupations encore plus forte.
+Mais l'aventure ne s'arrête pas là. La **Clean Architecture**, popularisée par Robert C. Martin (Uncle Bob), pousse ces idées encore plus loin. Elle fournit un ensemble de règles plus structurées pour les couches et les dépendances, créant une séparation des préoccupations encore plus nette.
 
-Dans le prochain chapitre, on va plonger dans la Clean Architecture. Vous verrez comment elle s'appuie sur les fondations de l'Hexagonale pour vous donner un moyen puissant et évolutif de structurer n'importe quelle application. C'est parti
+Dans le prochain chapitre, nous nous plongerons dans la Clean Architecture. Vous verrez comment elle s'appuie sur les fondations de l'hexagonale pour vous offrir un moyen puissant et évolutif de structurer n'importe quelle application. C'est parti!
 
-[Prochain Article](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)
+[Article suivant](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)

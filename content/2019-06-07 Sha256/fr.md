@@ -1,78 +1,78 @@
 ![](assets/thumbnail.jpg)
 
-# Le Hachage En C: Plongée Au Cœur De SHA-256 Et MD5
+# L'art du hachage en C: un duel entre MD5 et SHA-256
 
-Vous êtes-vous déjà demandé ce qui protège votre monde en ligne? De vos transactions bancaires à vos mots de passe, les héros méconnus de cet univers sont les fonctions de hachage cryptographiques. Aujourd'hui, je lève le rideau sur deux des plus célèbres d'entre elles: MD5 et SHA-256. Et nous n'allons pas nous contenter de théorie: nous allons mettre les mains dans le cambouis avec du code en C.
+Vous êtes-vous déjà demandé ce qui sécurise vraiment votre univers numérique? Derrière vos transactions bancaires et vos mots de passe se cachent des gardiens de l'ombre: les fonctions de hachage cryptographiques. Aujourd'hui, nous allons lever le voile sur deux des plus emblématiques d'entre elles, MD5 et SHA-256. Et nous n'allons pas nous contenter de théorie; nous allons mettre les mains dans le cambouis avec du code en C.
 
-J'ai même inclus un lien vers un dépôt GitHub avec l'implémentation complète. Prêt à faire passer vos connaissances en cryptographie au niveau supérieur? C'est parti.
+J'ai même inclus un lien vers un dépôt GitHub contenant une implémentation complète. Prêts à décrypter leurs secrets? Plongeons dans le code.
 
-[🔗 Plongez dans l'univers fascinant des fonctions de hachage sur notre dépôt GitHub](https://github.com/jterrazz/42-ssl-md5?source=post_page-----78c17e657794--------------------------------)
+[🔗 Explorez l'univers fascinant des fonctions de hachage sur notre dépôt GitHub](https://github.com/jterrazz/42-ssl-md5?source=post_page-----78c17e657794--------------------------------)
 
-## 🔐 Fonctions Cryptographiques: Les Gardiens Silencieux De Votre Vie Numérique
+## 🔐 Fonctions de hachage: l'armure invisible de votre vie numérique
 
-Imaginez les fonctions cryptographiques comme le champ de force invisible de l'univers numérique. Elles travaillent constamment en coulisses pour:
+Voyez les fonctions de hachage comme l'armure invisible du monde numérique. Elles œuvrent sans relâche en coulisses pour:
 
-* **Garantir l'intégrité des données**, en s'assurant que les fichiers et messages que vous envoyez et recevez sont exactement conformes à l'original.
-* **Vérifier les mots de passe en toute sécurité**, sans jamais les stocker en clair.
-* Être le moteur de la **"preuve de travail"** (*proof of work*), un concept fondamental pour les cryptomonnaies comme le Bitcoin et l'Ethereum.
-* Permettre les **signatures numériques**, l'équivalent en ligne d'une signature manuscrite ayant une valeur juridique.
+* **Garantir l'intégrité des données**, en s'assurant que les fichiers et les messages que vous envoyez et recevez sont la copie conforme de l'original.
+* **Protéger les mots de passe**, sans jamais stocker leur version en clair.
+* Alimenter la **preuve de travail** (*proof of work*), un concept fondamental pour des cryptomonnaies comme le Bitcoin et l'Ethereum.
+* Forger les **signatures numériques**, l'équivalent en ligne d'une signature manuscrite ayant force de loi.
 
-Ces puissants outils numériques prennent n'importe quelle entrée—un simple caractère ou un fichier volumineux—et la transforment en une chaîne de caractères de longueur fixe, appelée *hash*. C'est un peu comme créer une empreinte digitale unique pour vos données.
+Ces piliers de la sécurité numérique prennent n'importe quelle donnée que vous leur soumettez—d'un simple caractère à un fichier colossal—et la transforment en une chaîne de caractères de longueur fixe, appelée *hachage* ou *hash*. C'est l'empreinte digitale unique de vos données.
 
-* **MD5** produit un *hash* de 128 bits (soit 32 caractères hexadécimaux).
-* **SHA-256** génère un *hash* de 256 bits (soit 64 caractères hexadécimaux).
+* **MD5** produit un hachage de 128 bits (soit 32 caractères hexadécimaux).
+* **SHA-256** génère un hachage de 256 bits (soit 64 caractères hexadécimaux).
 
-![Hash Function Visualization](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*aZh9gQlawdGcwSrCO0KOeA.png)
+![Visualisation d'une fonction de hachage](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*aZh9gQlawdGcwSrCO0KOeA.png)
 
-### Les Super-pouvoirs D'une Bonne Fonction De Hachage
+### Les propriétés essentielles d'une fonction de hachage robuste
 
-Une bonne fonction de hachage possède quelques propriétés clés qui en font un véritable couteau suisse de la cryptographie:
+Une fonction de hachage digne de ce nom possède plusieurs propriétés clés qui en font un véritable couteau suisse de la cryptographie:
 
-1. **Déterministe**: Une même entrée produit toujours, sans exception, une même sortie.
-2. **Rapide**: Elles sont conçues pour la vitesse, calculant les *hashes* en un éclair.
-3. **À sens unique**: Il est impossible de retrouver l'entrée à partir du *hash*. C'est une rue à sens unique.
-4. **Résistante aux collisions**: Il est pratiquement impossible de trouver deux entrées différentes qui produisent le même *hash*.
-5. **Effet d'avalanche**: Changez un seul bit dans l'entrée, et le *hash* en sortie est modifié de manière drastique et imprévisible.
+1. **Déterminisme**: Même entrée, même sortie. Systématiquement.
+2. **Rapidité**: Elles sont conçues pour être fulgurantes, calculant des hachages en un éclair.
+3. **Irréversibilité**: Impossible de remonter à l'entrée à partir du hachage. C'est une voie à sens unique.
+4. **Résistance aux collisions**: Pratiquement impossible de trouver deux entrées distinctes qui produisent le même hachage.
+5. **Effet d'avalanche**: Modifiez un seul bit dans l'entrée, et le hachage en sortie est transformé de manière drastique et imprévisible.
 
-## Le Grand Duel: MD5 vs. SHA-256
+## Le duel: MD5 vs SHA-256
 
-### MD5: Le Vétéran (qui Devrait Prendre Sa retraite)
+### MD5: le vétéran sur le déclin
 
-MD5 a été un véritable cheval de bataille en son temps, mais cette époque est révolue. Des vulnérabilités importantes y ont été découvertes, notamment sa sensibilité aux "attaques par collision", où différentes entrées peuvent produire le même *hash*. Cela le rend absolument impropre à tout usage lié à la sécurité.
+MD5 fut une véritable bête de somme en son temps, mais son heure est passée. Des vulnérabilités critiques y ont été découvertes, notamment une sensibilité aux attaques par collision, où des entrées différentes peuvent produire le même hachage. Cela le rend absolument rédhibitoire pour toute application liée à la sécurité.
 
-Alors, où peut-on encore croiser MD5?
+Alors, où pourriez-vous encore croiser MD5?
 
 * Comme simple somme de contrôle (*checksum*) pour vérifier l'intégrité d'un fichier contre une corruption accidentelle.
 * Dans des systèmes hérités ou des applications non critiques où seule la vitesse compte.
 
-**En résumé: n'utilisez jamais MD5 pour la sécurité.** C'est comme se présenter à une fusillade avec un couteau.
+**En bref, n'utilisez jamais MD5 pour la sécurité.** Ce serait comme vous présenter à un duel au pistolet armé d'un couteau.
 
-### SHA-256: la Référence Actuelle
+### SHA-256: la référence actuelle
 
-SHA-256 fait partie de la famille SHA-2, conçue par la NSA pour succéder à SHA-1 (qui s'est également révélé vulnérable). C'est aujourd'hui la norme de l'industrie pour un large éventail d'applications.
+SHA-256 fait partie de la famille SHA-2, conçue par la NSA pour succéder à SHA-1 (qui s'est également révélé vulnérable). Il constitue aujourd'hui la norme de l'industrie pour un large éventail d'applications.
 
 SHA-256 est considéré comme sûr car:
 
-* Inverser le *hash* pour retrouver l'entrée originale est calculatoirement infaisable.
-* Il possède une forte résistance aux collisions, ce qui rend incroyablement difficile de trouver deux entrées avec le même *hash*.
+* Inverser le hachage pour retrouver l'entrée originale est pratiquement infaisable sur le plan calculatoire.
+* Il possède une forte résistance aux collisions, ce qui rend extrêmement difficile la découverte de deux entrées ayant le même hachage.
 
-Cependant, malgré ses atouts, je ne recommanderais pas d'utiliser SHA-256 "brut" pour stocker des mots de passe. Sa rapidité le rend vulnérable aux attaques par force brute. Pour le hachage de mots de passe, des algorithmes plus lents et plus complexes comme Bcrypt ou Scrypt sont les solutions à privilégier.
+Toutefois, malgré sa robustesse, il n'est pas recommandé d'utiliser SHA-256 seul pour stocker des mots de passe. Sa rapidité le rend vulnérable aux attaques par force brute. Pour cette tâche, des algorithmes plus lents et plus complexes comme Bcrypt ou Scrypt sont de rigueur.
 
-## Sous Le Capot: Comment la Magie Opère
+## Sous le capot: la mécanique interne du hachage
 
-### Étape 1: Préparation Du Message
+### Étape 1: la préparation du message
 
-Avant que le hachage ne puisse commencer, le message d'entrée doit être formaté d'une manière très spécifique:
+Avant que le calcul ne puisse commencer, le message d'entrée doit être préparé selon des règles précises:
 
-1. Le message est découpé en **blocs de 512 bits**.
-2. Un bit unique '1' est ajouté à la fin du message.
-3. Des bits '0' sont ajoutés jusqu'à ce que la longueur du message soit à 64 bits d'un multiple de 512.
+1. Le message est décomposé en **blocs de 512 bits**.
+2. Un unique bit `1` est ajouté à la fin du message.
+3. Des bits `0` sont ajoutés jusqu'à ce que la longueur du message soit à 64 bits près d'un multiple de 512.
 4. Les 64 derniers bits sont utilisés pour stocker la longueur du message original.
 
-![Message Formatting](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*6Lplvsky40XwCE3zBhsjOA.png)
-*La taille du message formaté doit être un multiple de 512 bits*
+![Formatage du message](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*6Lplvsky40XwCE3zBhsjOA.png)
+*La taille du message formaté doit être un multiple de 512 bits.*
 
-Voici un aperçu de la manière dont on peut construire ce message formaté en C:
+Voici un aperçu de la manière dont on pourrait construire ce message formaté en C:
 
 ```c
 unsigned char build_msg(const char msg, size_t msg_len, size_t formatted_msg_len, bool is_little_endian)
@@ -97,7 +97,7 @@ unsigned char build_msg(const char msg, size_t msg_len, size_t formatted_msg_len
 }
 ```
 
-Pour obtenir la longueur du message formaté, une astuce binaire élégante peut être utilisée pour aligner la longueur sur un multiple de 'X' octets:
+Pour obtenir la longueur du message formaté, une élégante astuce de manipulation de bits (*bitwise*) permet d'aligner la longueur sur un multiple de `X` octets:
 
 ```c
 aligned = (nb + (X-1)) & ~(X-1)
@@ -120,16 +120,16 @@ Dans notre code, cela ressemble à ceci:
 formatted_msg_len = CHUNK_SIZE x CHUNK_COUNT;
 ```
 
-### Le Duel: Big-Endian vs. Little-Endian
+### Big-Endian vs Little-Endian: le duel des octets
 
-Avant d'aller plus loin, un mot rapide sur l'endianness. C'est une question d'ordre des octets en mémoire.
+Avant d'aller plus loin, un mot rapide sur l'*endianness* (ou boutisme). C'est une question d'ordre des octets dans la mémoire de l'ordinateur.
 
-* **Little-endian**: L'octet le moins significatif est stocké en premier.
-* **Big-endian**: L'octet le plus significatif est stocké en premier.
+* **Little-endian**: L'octet de poids faible est stocké en premier.
+* **Big-endian**: L'octet de poids fort est stocké en premier.
 
-[🔗 Explorez les profondeurs de l'endianness (en anglais)](https://medium.com/@nonuruzun/little-big-endian-dc9abe36270?source=post_page-----78c17e657794--------------------------------)
+[🔗 Plongez plus profondément dans le terrier du lapin de l'endianness (en anglais)](https://medium.com/@nonuruzun/little-big-endian-dc9abe36270?source=post_page-----78c17e657794--------------------------------)
 
-Pour basculer entre les deux, nous pouvons utiliser une fonction d'inversion d'octets (*byte-swapping*):
+Pour basculer de l'un à l'autre, nous pouvons utiliser une fonction d'inversion d'octets (*byte-swapping*):
 
 ```c
 uint64_t  ft_bswap_uint64(uint64_t x)
@@ -142,20 +142,20 @@ uint64_t  ft_bswap_uint64(uint64_t x)
 }
 ```
 
-Cette fonction réorganise les octets selon un schéma astucieux et expansif.
+Cette fonction réorganise les octets selon une cascade d'échanges astucieux.
 
-![Byte Shuffling](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*i8YyrTUB3CcCpwK2PacC5g.png)
+![Schéma d'inversion des octets](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*i8YyrTUB3CcCpwK2PacC5g.png)
 
-### Étape 2: La Boucle De Traitement Principale
+### Étape 2: le cœur du réacteur, la boucle de traitement
 
-C'est ici que le véritable travail a lieu. Les deux algorithmes traitent le message par blocs de 512 bits, mais ils utilisent un nombre différent de tampons (*buffers*) internes:
+C'est ici que le véritable travail commence. Les deux algorithmes traitent le message par blocs de 512 bits, mais ils utilisent un nombre différent de tampons (*buffers*) internes:
 
 * MD5: 4 tampons de 32 bits
 * SHA-256: 8 tampons de 32 bits
 
-Ces tampons sont initialisés avec des valeurs spécifiques, puis mis à jour à travers une série de "rondes". Chaque ronde implique un mélange complexe d'opérations bit à bit, d'additions modulaires et de fonctions non linéaires personnalisées.
+Ces tampons sont initialisés avec des valeurs spécifiques, puis mis à jour au fil d'une série de tours. Chaque tour implique un mélange complexe d'opérations bitwise, d'additions modulaires et de fonctions non linéaires spécifiques.
 
-Pour ceux qui veulent voir les entrailles des algorithmes:
+Pour ceux qui souhaitent explorer les entrailles des algorithmes:
 
 * [🔗 Plongée dans l'algorithme MD5 (en anglais)](https://en.wikipedia.org/wiki/MD5?source=post_page-----78c17e657794--------------------------------#Pseudocode)
 * [🔗 Explication de l'algorithme SHA-256 (en anglais)](https://en.wikipedia.org/wiki/SHA-2?source=post_page-----78c17e657794--------------------------------#Pseudocode)
@@ -165,9 +165,9 @@ Ou, consultez directement le code C:
 * [Implémentation de SHA-256](https://github.com/jterrazz/42-ssl-md5/blob/master/src/ft_sha256/sha256.c)
 * [Implémentation de MD5](https://github.com/jterrazz/42-ssl-md5/blob/master/src/ft_md5/md5.c)
 
-### La Touche Finale: L'assemblage Du Hash
+### Le bouquet final: l'assemblage du hachage
 
-Une fois que chaque bloc a été traité, les valeurs finales des tampons sont concaténées pour former le *hash*.
+Une fois que chaque bloc a été traité, les valeurs finales des tampons sont concaténées pour former le hachage.
 
 ```c
 char build_hash(uint32_t buffers, size_t buffer_count, bool is_little_endian)
@@ -198,7 +198,7 @@ buffers[buffer_il;
 }
 ```
 
-Une dernière particularité pour MD5: ses tampons sont au format *little-endian*, ils doivent donc subir une inversion d'octets avant d'être convertis en chaîne hexadécimale finale.
+Une dernière particularité pour MD5: ses tampons sont au format little-endian, ils doivent donc subir une inversion d'octets avant d'être convertis en la chaîne hexadécimale finale.
 
 ```c
 uint32_t ft_bswap_uint32(uint32_t x)
@@ -209,17 +209,17 @@ uint32_t ft_bswap_uint32(uint32_t x)
 }
 ```
 
-## Vous Vous Sentez Un Peu Perdu?
+## Si les détails vous semblent complexes
 
-Si les détails de SHA-256 vous semblent un peu denses, ne vous inquiétez pas. J'ai trouvé ce guide pas à pas exceptionnel qui décortique tout le processus.
+Pas de panique. Cet excellent guide décortique le processus de SHA-256 étape par étape, le rendant parfaitement accessible.
 
-* [🔗 Guide pas à pas de SHA-256 (en anglais)](https://docs.google.com/spreadsheets/d/1mOTrqckdetCoRxY5QkVcyQ7Z0gcYIH-Dc0tu7t9f7tw/edit?source=post_page-----78c17e657794--------------------------------#gid=2107569783)
+* [🔗 Guide détaillé de SHA-256, étape par étape (en anglais)](https://docs.google.com/spreadsheets/d/1mOTrqckdetCoRxY5QkVcyQ7Z0gcYIH-Dc0tu7t9f7tw/edit?source=post_page-----78c17e657794--------------------------------#gid=2107569783)
 
-## Pour Conclure
+## En conclusion
 
-Et voilà, un tour d'horizon express des fonctions de hachage cryptographiques. Vous avez vu ce qu'elles font, pourquoi elles sont essentielles à la sécurité numérique, et même comment les construire à partir de zéro.
+Et voilà, notre exploration des fonctions de hachage touche à sa fin. Vous avez vu ce qu'elles font, pourquoi elles sont essentielles à la sécurité numérique, et même comment les construire à partir de zéro.
 
-Le monde de la cryptographie est en perpétuel mouvement. Ce qui est sûr aujourd'hui pourrait être vulnérable demain. Continuez d'apprendre, continuez d'expérimenter, et peut-être serez-vous celui ou celle qui construira la prochaine génération d'algorithmes sécurisés.
+Le monde de la cryptographie est en perpétuel mouvement. Ce qui est sécurisé aujourd'hui pourrait être vulnérable demain. Continuez d'apprendre, d'expérimenter… et qui sait? Vous développerez peut-être la prochaine génération d'algorithmes qui protègeront notre avenir numérique.
 
 Et n'oubliez pas de jouer avec le code dans le dépôt GitHub. Il n'y a pas de meilleure façon d'apprendre que par la pratique.
 

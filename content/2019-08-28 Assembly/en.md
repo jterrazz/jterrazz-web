@@ -1,18 +1,18 @@
 ![](assets/thumbnail.jpg)
 
-# Let's Dive into Assembly and Build Our First Functions (Intel x86–64)
+# Let's dive into assembly and build our first functions (Intel x86-64)
 
 I've always been obsessed with what happens deep inside a computer. You hear people call C a "low-level" language, but honestly, it's still a cushy layer of abstraction. It hides the raw, powerful instructions your processor is actually running.
 
 If you want to talk directly to the metal, you need to learn its native tongue. That language is Assembly. 🖥️💓
 
-This isn't just about theory. We're going to build things. I'll walk you through the tools and concepts so you can start writing your own Assembly functions today. Let's get to it. 👷‍♂️🔧
+This isn't just about theory. We're going to build things. I'll walk you through the tools and concepts so you can start writing your own assembly functions today. Let's get to it. 👷‍♂️🔧
 
-## The Setup: Your Assembly Playground
+## The setup: your assembly playground
 
-First, a quick note: Assembly isn't one single language. It changes based on the processor's architecture. We're going to focus on Intel x86-64, which is what most desktops and laptops are running these days.
+First, a quick note: Assembly isn't a single language; it changes with the processor's architecture. We're going to focus on Intel x86-64, which is what most desktops and laptops are running these days.
 
-### The Toolkit: NASM
+### The toolkit: NASM
 
 You don't need a heavy IDE or a complex toolchain. For me, it's just two things:
 
@@ -32,28 +32,28 @@ nasm -f macho64 your_file.s -o your_file.o
 ar rcs libyourstuff.a your_file.o
 ```
 
-> A quick tip: that `-f` flag is important. It tells NASM the format for the output file. `macho64` is what modern macOS needs.
+> A quick tip: that `-f` flag is crucial. It tells NASM the format for the output file. `macho64` is what modern macOS needs.
 
-### Debugging: Your Secret Weapon 🕵️‍♂️
+### Debugging: your secret weapon 🕵️‍♂️
 
-Writing Assembly without a debugger is like flying blind. You will make mistakes. Things will crash. `lldb` (on macOS) and `gdb` (on Linux) are your best friends for figuring out why. They let you step through your code one instruction at a time and see exactly what's happening in memory and the registers. Don't skip learning the basics of these tools.
+Writing assembly without a debugger is like flying blind. You will make mistakes. Things will crash. `lldb` (on macOS) and `gdb` (on Linux) are your best friends for figuring out why. They let you step through your code one instruction at a time and see exactly what's happening in memory and the registers. Don't skip learning the basics of these tools.
 
-## The Language of the CPU
+## The language of the CPU
 
-Think of Assembly as a set of direct orders for your CPU. Each line is one single, tiny command.
+Think of assembly as a set of direct orders for your CPU. Each line is one single, tiny command.
 
-### Assembly vs. Machine Code
+### Assembly vs. machine code
 
-People often use "Assembly" and "machine code" interchangeably, but they aren't the same.
+People often use "assembly" and "machine code" interchangeably, but they aren't the same.
 
-* **Machine Code:** This is the raw binary—the 1s and 0s—that the processor executes. It's completely unreadable for humans.
-* **Assembly:** This is the human-readable version of machine code. We write in Assembly, and then a compiler (like NASM) translates it into machine code.
+- **Machine Code:** This is the raw binary—the 1s and 0s—that the processor executes. It's completely unreadable for humans.
+- **Assembly:** This is the human-readable version of machine code. We write in assembly, and then a compiler (like NASM) translates it into machine code.
 
-Writing in Assembly gives us a huge advantage over trying to write raw binary. It gives us structure: we can use labels for functions, define variables, and organize our logic into sections. It's the thinnest possible layer of abstraction over the hardware.
+Writing in assembly gives us a huge advantage over trying to write raw binary. It gives us structure: we can use labels for functions, define variables, and organize our logic into sections. It's the thinnest possible layer of abstraction over the hardware.
 
-### The Layout of an Assembly File
+### The layout of an assembly file
 
-I organize my Assembly files (`.s`) into a few standard sections. This keeps things clean.
+I organize my assembly files (`.s`) into a few standard sections. This keeps things clean.
 
 ```asm
 ; SECTION: Initialized Data
@@ -91,9 +91,9 @@ _start:
 
 If you don't specify a section, the assembler usually defaults to `.text`. That's where the action is.
 
-### Where Your Data Lives
+### Where your data lives
 
-In Assembly, you're constantly moving data around. You have three places to put it:
+In assembly, you're constantly moving data around. You have three places to put it:
 
 1. **Registers:** A small number of super-fast storage spots right inside the CPU. This is your go-to for calculations.
 2. **Memory (RAM):** This is the huge pool of storage outside the CPU. It's much bigger than the registers, but also much slower to access.
@@ -101,38 +101,38 @@ In Assembly, you're constantly moving data around. You have three places to put 
 
 ![Memory Types](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*N6b1GTJFRIUNdcqCwrHAZA.png)
 
-### The Registers
+### The registers
 
 Getting to know the registers is key. They're your workbench. On x86-64, the main ones you'll use are:
 
-#### General-Purpose Registers
+#### General-purpose registers
 
 These are the heavy lifters.
 
-* `rax`: The "accumulator." Often used for return values from functions and in arithmetic.
-* `rbx`: The "base" register. Can be used for anything, but sometimes used in memory addressing.
-* `rcx`: The "counter." Often used for loops.
-* `rdx`: The "data" register. Often used in multiplication and division, or just as a spare.
+- `rax`: The "accumulator." Often used for return values from functions and in arithmetic.
+- `rbx`: The "base" register. Can be used for anything, but sometimes used in memory addressing.
+- `rcx`: The "counter." Often used for loops.
+- `rdx`: The "data" register. Often used in multiplication and division, or just as a spare.
 
-#### Index and Pointer Registers
+#### Index and pointer registers
 
 These are for keeping track of memory locations.
 
-* `rdi`, `rsi`: Destination and Source Index. Used heavily in operations that move blocks of memory. They are also the first two argument registers in function calls.
-* `rbp`: Base Pointer. Used to keep track of the current function's "stack frame."
-* `rsp`: Stack Pointer. Always points to the top of the stack.
-* `rip`: Instruction Pointer. Points to the next CPU instruction to be executed. You can't change this one directly.
+- `rdi`, `rsi`: Destination and Source Index. Used heavily in operations that move blocks of memory. They are also the first two argument registers in function calls.
+- `rbp`: Base Pointer. Used to keep track of the current function's "stack frame."
+- `rsp`: Stack Pointer. Always points to the top of the stack.
+- `rip`: Instruction Pointer. Points to the next CPU instruction to be executed. You can't change this one directly.
 
 You can mostly ignore the Segment Registers (`CS`, `DS`, etc.) for simple programs.
 
-## The Instruction Set: Your Toolbox
+## The instruction set: your toolbox
 
-An Assembly program is just a list of instructions. The format is usually `INSTRUCTION destination, source`. Let's look at the most common ones.
+An assembly program is just a list of instructions. The format is usually `INSTRUCTION destination, source`. Let's look at the most common ones.
 
-### Moving Data Around
+### Moving data around
 
 **`mov`** `<dst>, <src>`
-This is the most fundamental instruction. It copies the data from `src` to `dst`. The source can be a register, a memory address, or a constant. The destination has to be a register or a memory address. Think of it as the `_=_` operator of Assembly.
+This is the most fundamental instruction. It copies the data from `src` to `dst`. The source can be a register, a memory address, or a constant. The destination has to be a register or a memory address. Think of it as the `=` operator of assembly.
 
 **`push`** `<data>`
 Takes a value and puts it on top of the stack. The stack is a region of memory for temporary storage. `push` is how you save things you'll need later.
@@ -143,7 +143,7 @@ Takes the top value off the stack and puts it into your destination register or 
 **`lea`** `<dst>, [<src>]`
 This one is "Load Effective Address." It's a bit different from `mov`. Instead of loading the *value* at the source address, it loads the *address itself*. Super useful for doing math on pointers.
 
-### Doing Math
+### Doing math
 
 **`add`** `<dst>, <src>`
 `dst = dst + src`.
@@ -157,7 +157,7 @@ Increments the destination by 1. Faster than `add dst, 1`.
 **`dec`** `<dst>`
 Decrements the destination by 1. Faster than `sub dst, 1`.
 
-### Controlling the Flow
+### Controlling the flow
 
 **`call`** `<function_label>`
 This jumps to a function, but it first `push`es the address of the next instruction onto the stack. This is how the CPU knows where to return to when the function is done.
@@ -171,7 +171,7 @@ call malloc  ; Call the malloc function
 ```
 
 **`jmp`** `<label>`
-An unconditional jump. It just moves the execution pointer (`rip`) to a new location. This is the basis for loops and `goto`.
+An unconditional jump. It just moves the execution pointer (`rip`) to a new location. This is your `goto`, the foundation for building loops.
 
 ```asm
 .text
@@ -186,9 +186,9 @@ section_2:
 ```
 
 **`j<condition>`** `<label>`
-A conditional jump. This is the heart of `if` statements. It only jumps if certain flags (set by `cmp` or `test`) are met. For example, `jz` jumps if the result of the last comparison was zero.
+A conditional jump. This is the heart of every `if` statement. It jumps only when certain flags, set by `cmp` or `test`, are met. For example, `jz` jumps if the result of the last comparison was zero.
 
-### Comparing and Testing
+### Comparing and testing
 
 **`cmp`** `<reg1>, <reg2>`
 Compares two registers by internally doing `reg1 - reg2`. It doesn't store the result, but it sets status flags (like the zero flag, sign flag, etc.). The conditional jump instructions then read these flags.
@@ -204,16 +204,16 @@ extern ft_isdigit
 
 .text
 _ft_isalnum:
-    call _ft_isalpha  ; This function will return 1 in rax if the char is an alphabet
+    call _ft_isalpha  ; Sets rax to 1 if the char is an alphabet
     test rax, rax     ; Check if rax is zero
-    jnz is_alnum      ; If it's not zero (jnz), then it was an alphabet. Jump.
+    jnz is_alnum      ; If not zero (jnz), it was an alphabet. Jump.
 
-    call _ft_isdigit  ; Otherwise, check if it's a digit. This also returns 1 in rax on success.
+    call _ft_isdigit  ; Otherwise, check if it's a digit (also returns 1 in rax).
     test rax, rax     ; Check if rax is zero
     jnz is_alnum      ; If not zero, it was a digit. Jump.
 
 is_not_alnum:
-    xor rax, rax      ; A clever way to set rax to 0. (anything XORed with itself is 0)
+    xor rax, rax      ; A clever way to set rax to 0 (anything XORed with itself is 0)
     ret               ; Return 0
 
 is_alnum:
@@ -224,17 +224,17 @@ is_alnum:
 **`ret`**
 When a function is done, `ret` `pop`s the return address from the stack and jumps back to it. It's how you end a function and give control back to the caller.
 
-## Calling Conventions: The Rules of the Road
+## Calling conventions: the rules of the road
 
 How does one function know how to call another? How are arguments passed? How are return values sent back? This is all defined by a "calling convention." If you don't follow it, things break spectacularly.
 
 For x86-64 on Linux and macOS, the first six integer/pointer arguments are passed in registers: `%rdi`, `%rsi`, `%rdx`, `%rcx`, `%r8`, `%r9`. The return value is expected in `%rax`.
 
-### Talking to the OS: Syscalls
+### Talking to the OS: syscalls
 
 If you want to do anything interesting like read a file, print to the screen, or open a network connection, you need to ask the operating system's kernel for help. You do this with a "syscall." It's a special instruction that hands control over to the kernel to perform a privileged operation.
 
-## Putting It All Together: `ft_isascii`
+## Putting it all together: ft_isascii
 
 Let's look at a really simple function. This one checks if the input character (passed in `rdi`) is a valid ASCII character (i.e., between 0 and 127).
 
@@ -250,15 +250,15 @@ Breaking it down:
 7. `.end:`: This is our exit label.
 8. `ret`: Return to the caller. The value in `rax` is the result.
 
-## Where to Go From Here
+## Where to go from here
 
 We've only scratched the surface. Understanding how the stack works in detail is a whole topic on its own. But this should be enough to get you started.
 
-* [x86-64 Cheatsheet](https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf): Keep this handy. It's an invaluable quick reference.
-* [Instruction List](http://faydoc.tripod.com/cpu/index.htm): A comprehensive list of x86 instructions.
+- [x86-64 Cheatsheet](https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf): Keep this handy. It's an invaluable quick reference.
+- [Instruction List](http://faydoc.tripod.com/cpu/index.htm): A comprehensive list of x86 instructions.
 
-I've put a bunch of my own implementations of standard C library functions in Assembly up on a repo. Feel free to check it out and use it as a reference.
+I've put a bunch of my own implementations of standard C library functions in assembly up on a repo. Feel free to check it out and use it as a reference.
 
-Learning Assembly is a grind, I won't lie. But the insight it gives you into how computers *actually* work is a kind of superpower. It'll change the way you write code, even in high-level languages.
+Learning assembly is a grind, I won't lie. But the insight it gives you into how computers *actually* work is a kind of superpower. It'll change the way you write code, even in high-level languages.
 
 Happy coding. May your registers always hold the right values. 🖥️💪

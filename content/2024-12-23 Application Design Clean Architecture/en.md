@@ -1,32 +1,32 @@
 ![](assets/thumbnail.jpg)
 
-# Application Design: Let's Talk Clean Architecture
+# Application design: let's talk clean architecture
 
-## Getting to the Heart of What Matters
+## Getting to the heart of what matters
 
-Here's the big idea that changed how I build software: your architecture should not care about your database. It shouldn't care about your web framework. It shouldn't care about your UI. The only thing it should care about is what your application *actually does*.
+Here's the big idea that changed how I build software: your architecture shouldn't care about your database. It shouldn't care about your web framework. It shouldn't care about your UI. The only thing it should care about is what your application *actually does*.
 
-This is the entire philosophy behind **Clean Architecture**. It's a way of building software that puts your **use cases**—the real business value—right at the absolute center. Everything else is just a detail. It's a powerful evolution of the ideas we saw in Hexagonal Architecture, with stricter rules that give you even more clarity and power.
+This is the philosophy behind **Clean Architecture**. It's a design approach that places your **use cases**—the real business value—at the very heart of your system. Everything else is just a detail. It's a powerful evolution of the ideas we saw in Hexagonal Architecture, but with stricter rules that yield even greater clarity and power.
 
 **Navigation 📚**
 
-1. [**Introduction: Application Design, The Art of Building Sustainable and Scalable Software**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
+1. [**Introduction: Application design, the art of building sustainable and scalable software**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
 		*The basics to understand the stakes and objectives of good architecture.*
 
-2. [**Chapter 1: The Concept of Dependencies**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
+2. [**Chapter 1: The concept of dependencies**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
 		*Exploring relationships between components, the importance of dependencies, and principles like SOLID.*
 
-3. [**Chapter 2: Understanding Business and Technical Architectures**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
+3. [**Chapter 2: Understanding business and technical architectures**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
 		*How to isolate business logic from technical concerns using ports and adapters.*
 
-4. [**Chapter 3: Clean Architecture**](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)
+4. [**Chapter 3: Clean architecture**](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)
 		*Discovering an approach focused on business with a clear layered structure.*
 
 ---
 
-# What Clean Architecture Looks Like in Theory
+# What clean architecture looks like in theory
 
-Clean Architecture is all about creating independent layers with a strict set of rules about how they can interact. Think of it like a series of concentric circles.
+Clean Architecture is all about creating independent layers governed by a strict set of rules about how they can interact. Picture a series of concentric circles.
 
 1. **Entities**: At the very core. These are your enterprise-wide business rules. The pure, unadulterated logic that defines your business.
 2. **Use Cases**: This layer surrounds the entities. It contains the application-specific business rules. It orchestrates the flow of data to and from the entities to achieve a specific goal (e.g., "Register a User" or "Process a Payment").
@@ -39,26 +39,26 @@ The golden rule is the **Dependency Rule**: all dependencies must point inwards.
 
 ---
 
-# Clean Architecture vs. Hexagonal Architecture
+# Clean architecture vs. hexagonal architecture
 
-So, how does this compare to the Hexagonal Architecture we just discussed?
+So, how does this compare to the Hexagonal Architecture we've just discussed?
 
 They are built on the exact same philosophy: **protect the business logic**. I see Clean Architecture as a more specific, opinionated version of Hexagonal Architecture.
 
-* Hexagonal Architecture gives you the "what": separate your app into an "inside" (domain) and an "outside" (infrastructure) using ports and adapters.
-* Clean Architecture gives you a more detailed "how": it explicitly defines the layers within the "inside" part (Entities and Use Cases) and provides stricter rules about how they interact.
+- Hexagonal Architecture gives you the "what": separate your app into an "inside" (domain) and an "outside" (infrastructure) using ports and adapters.
+- Clean Architecture gives you a more detailed "how": it explicitly defines layers *within* the "inside" part (Entities and Use Cases) and provides stricter rules governing their interaction.
 
 Think of it this way: Hexagonal Architecture drew the map. Clean Architecture added the highways and road signs. It makes the path clearer.
 
 ---
 
-# Let's Build It: A Complete Example
+# Let's build it: a complete example
 
 Theory is great, but code is better. Let's build a small part of a hotel management app. The goal is to update room prices based on a new base price and a set of business rules (e.g., different floors have different price multipliers).
 
-## Our File Structure
+## Our file structure
 
-First, look at the project structure. This is what Robert C. Martin calls a "Screaming Architecture." Your folder structure should scream what the application *does*, not what frameworks it uses. You see `business`, `use-cases`, and `entity`. You don't see `models`, `views`, and `controllers` at the top level.
+First, let's look at the project structure. This is what Robert C. Martin calls a "Screaming Architecture"—one where your folder structure screams what the application *does*, not what frameworks it uses. You see `business`, `use-cases`, and `entity`. You don't see `models`, `views`, and `controllers` at the top level.
 
 ```sh
 src/
@@ -82,16 +82,16 @@ src/
 		└── update-price.test.ts
 ```
 
-* `business/`: This is the heart of our application. All pure business logic lives here. It has zero dependencies on the outside world.
-* `controller/`: This is our interface adapter layer. It handles the messy details of talking to the outside world (like implementing gateways and presenters).
-* `container/`: This is our assembly plant. It's where we wire everything together using dependency injection.
-* `tests/`: Tests that prove our business logic works.
+- `business/`: This is the heart of our application. All pure business logic lives here. It has zero dependencies on the outside world.
+- `controller/`: This is our interface adapter layer. It handles the messy details of talking to the outside world (like implementing gateways and presenters).
+- `container/`: This is our assembly plant. It's where we wire everything together using dependency injection.
+- `tests/`: Tests that prove our business logic works.
 
 ---
 
-## 1. The Entities: `Floor` & `Room`
+## 1. The entities: `Floor` & `Room`
 
-Entities are not just dumb data bags. They contain the most fundamental business rules. This is logic that is true for the entire enterprise, regardless of the application using it.
+Entities are not just dumb data containers. They embody the most fundamental business rules—the logic that holds true for the entire enterprise, regardless of the specific application using it.
 
 ```ts
 // business/entity/floor.ts
@@ -134,9 +134,9 @@ export class Room {
 
 ---
 
-## 2. The Gateway: `RoomGateway`
+## 2. The gateway: `RoomGateway`
 
-The gateway is an interface. It's a contract defined by the business layer that says, "I need to do these things with rooms, but I don't care *how* you do them." It's a promise that the outer layers will have to fulfill.
+The gateway is an interface—a contract defined by the business layer that says, "I need to perform these actions with rooms, but I don't care *how* you do them." It's a promise the outer layers must fulfill.
 
 ```ts
 // business/gateway/room.gateway.ts
@@ -157,9 +157,9 @@ This interface lives in the `business` layer, ensuring the dependency points inw
 
 ---
 
-## 3. The Use Case: `UpdateRoomPrice`
+## 3. The use case: `UpdateRoomPrice`
 
-The use case is the star of the show. It represents a single action the application can perform. It orchestrates the entities and uses gateways to interact with the outside world.
+The use case is the star of the show. It represents a single, specific action the application can perform. It orchestrates the entities and uses gateways to communicate with the outside world.
 
 ```ts
 // business/use-cases/update-room-price.ts
@@ -202,9 +202,9 @@ This code is pure business logic. It gets rooms, loops through them, tells each 
 
 ---
 
-## 4. The Gateway Implementation: `RoomRepository`
+## 4. The gateway implementation: `RoomRepository`
 
-Now we're in the outer layers. The `RoomRepository` is the concrete implementation of the `RoomGateway` interface. This is where we write the actual database code. For this example, I'm just using an in-memory array, but this is where your `Prisma`, `TypeORM`, or `node-postgres` code would go.
+Now we're moving to the outer layers. The `RoomRepository` is our concrete implementation of the `RoomGateway` interface. This is where the actual database code lives. For this example, I'm just using an in-memory array, but this is where your `Prisma`, `TypeORM`, or `node-postgres` code would go.
 
 ```ts
 // controller/gateway/room.repository.ts
@@ -232,9 +232,9 @@ This class fulfills the promise made by the `RoomGateway` interface.
 
 ---
 
-## 5. The Presenter Implementation: `RoomPresenterJson`
+## 5. The presenter implementation: `RoomPresenterJson`
 
-The presenter's job is to take the pure entity objects from the use case and format them for the outside world. Here, we're formatting them as simple JSON objects.
+The presenter's job is to take the pure entity objects from the use case and translate them into a format for the outside world. Here, we're formatting them as simple JSON objects.
 
 ```ts
 // controller/presenter/room-presenter.json.ts
@@ -263,9 +263,9 @@ This creates a beautiful separation. The use case doesn't know about JSON. The c
 
 ---
 
-## 6. The Controller: `RoomController`
+## 6. The controller: `RoomController`
 
-The controller is the entry point from the web. Its only job is to parse the request, call the correct use case, and send the formatted response. It's a thin, dumb layer.
+The controller is the entry point from the web. Its only job is to parse incoming requests, call the correct use case, and return the formatted response. It's a thin, simple layer.
 
 ```ts
 // controller/room.controller.ts
@@ -294,9 +294,9 @@ Look how clean that is. The controller orchestrates the flow but contains zero b
 
 ---
 
-## 7. The Dependency Container
+## 7. The dependency container
 
-This is where the magic happens. The container is a single place where we construct our objects and inject their dependencies. This is Inversion of Control in action.
+This is where it all comes together. The container is the single place where we construct our objects and inject their dependencies. This is Inversion of Control in action.
 
 ```ts
 // container/container.ts
@@ -325,9 +325,9 @@ export const createContainer = (): Container => {
 
 ---
 
-## 8. The Test: Where It All Pays Off
+## 8. The test: where it all pays off
 
-Now, the best part. Look how easy it is to test our core business logic.
+And now for the best part: look how easy it is to test our core business logic.
 
 ```ts
 // tests/update-price.test.ts
@@ -357,16 +357,16 @@ describe("Update Room Price", () => {
 });
 ```
 
-This test is lightning-fast. It runs in memory. It doesn't need a database or a web server. It tests our entire business process from end to end, proving that our logic is correct, all because we so carefully separated our concerns. This is the payoff.
+This test is lightning-fast. It runs in memory. It doesn't need a database or a web server. It tests our entire business process from end to end, proving our logic is correct—all because we so carefully separated our concerns. This is the payoff.
 
 ---
 
-# Conclusion: Build for the Business, Not the Tech
+# Conclusion: build for the business, not the tech
 
-We've come a long way, from basic dependencies to Hexagonal Architecture, and now to the disciplined structure of Clean Architecture. The lesson through it all has been the same: **put your business logic first.**
+We've traveled a long way, from basic dependencies to Hexagonal Architecture, and now to the disciplined structure of Clean Architecture. The lesson through it all remains the same: **put your business logic first.**
 
 Frameworks will change. Databases will be replaced. User interfaces will be redesigned. But your core business rules are what provide lasting value. Clean Architecture isn't just a pattern; it's a philosophy that forces you to protect that value.
 
-It demands discipline and a bit more thought upfront, but the reward is a system that is testable, maintainable, flexible, and understandable. You build something that can evolve with the business, not something that holds it back.
+It demands discipline and a bit more thought upfront, but the reward is a system that is testable, maintainable, flexible, and understandable—one that can evolve *with* the business, not hold it back.
 
-Thank you for coming on this journey with me. Now go build something great. 🚀
+Thank you for joining me on this journey. Now go build something great. 🚀

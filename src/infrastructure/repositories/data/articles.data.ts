@@ -391,6 +391,82 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         publicIndex: 19,
         published: true,
     },
+    {
+        filename: '2025-07-19 Intelligence Levels',
+        metadata: {
+            category: ArticleCategory.Insight,
+            dateModified: '2025-07-19',
+            datePublished: '2025-07-19',
+            description: {
+                en: 'A practical framework for understanding and leveraging the four levels of AI integration in your work and life.',
+                fr: "Un cadre pratique pour comprendre et exploiter les quatre niveaux d'intégration de l'IA dans votre travail et votre vie.",
+            },
+            title: {
+                en: 'The Four Levels of AI',
+                fr: 'Les quatre niveaux de l’IA',
+            },
+        },
+        previewImage: 'thumbnail.jpg',
+        publicIndex: 20,
+        published: true,
+    },
+    {
+        filename: '2025-07-20 Directing Agents',
+        metadata: {
+            category: ArticleCategory.Insight,
+            dateModified: '2025-07-20',
+            datePublished: '2025-07-20',
+            description: {
+                en: 'How developers can leverage guided AI agents to shift from manual coding to intention-driven development.',
+                fr: "Comment les développeurs peuvent exploiter les agents IA guidés pour passer du codage manuel au développement guidé par l'intention.",
+            },
+            title: {
+                en: 'Guided AI for Developers',
+                fr: 'L’IA guidée pour développeurs',
+            },
+        },
+        previewImage: 'thumbnail.jpg',
+        publicIndex: 21,
+        published: true,
+    },
+    {
+        filename: '2025-07-21 Autonomous Agents',
+        metadata: {
+            category: ArticleCategory.Insight,
+            dateModified: '2025-07-21',
+            datePublished: '2025-07-21',
+            description: {
+                en: 'Exploring the transition from guided to autonomous AI agents in software development and the new role of the developer as supervisor.',
+                fr: 'Explorer la transition des agents IA guidés vers les agents autonomes en développement logiciel et le nouveau rôle du développeur comme superviseur.',
+            },
+            title: {
+                en: 'Autonomous AI Agents',
+                fr: 'Agents IA autonomes',
+            },
+        },
+        previewImage: 'thumbnail.jpg',
+        publicIndex: 22,
+        published: true,
+    },
+    {
+        filename: '2025-07-22 Intelligent Systems',
+        metadata: {
+            category: ArticleCategory.Insight,
+            dateModified: '2025-07-22',
+            datePublished: '2025-07-22',
+            description: {
+                en: 'How to design and orchestrate intelligent systems that combine deterministic code and creative AI reasoning.',
+                fr: "Comment concevoir et orchestrer des systèmes intelligents alliant code déterministe et raisonnement créatif de l'IA.",
+            },
+            title: {
+                en: 'Programming Intelligence',
+                fr: 'Programmer l’intelligence',
+            },
+        },
+        previewImage: 'thumbnail.jpg',
+        publicIndex: 23,
+        published: true,
+    },
 ];
 
 const processMarkdownContent = (content: string, filename: string): string => {

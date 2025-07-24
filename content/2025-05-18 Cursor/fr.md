@@ -1,39 +1,39 @@
 ![](assets/thumbnail.jpg)
 
-# Cursor: Mon Guide Pratique Du Développement à l'Ere De l'IA
+# Cursor: mon guide pratique du développement assisté par l'IA
 
-**La façon dont on crée du logiciel est en train de basculer. L'IA, ce n'est plus de la science-fiction, c'est devenu mon copilote au quotidien. Je baigne dans le développement assisté par IA depuis un moment, et un outil a complètement changé la donne pour moi: Cursor. C'est bien plus qu'un éditeur de code intelligent, c'est un avant-goût du Dev 2.0.**
+**Notre manière de concevoir des logiciels connaît une transformation radicale. L'IA n'est plus un simple gadget; c'est un outil sans lequel je ne pourrais plus coder. Je baigne dans l'univers du développement assisté par l'IA depuis un certain temps, et un outil a complètement bouleversé ma façon de travailler: Cursor. C'est bien plus qu'un éditeur de code: c'est l'avenir du développement qui prend forme.**
 
-Pendant des années, on a débattu: WebStorm ou VS Code? Le but était d'optimiser notre propre environnement. Cursor change complètement les règles du jeu. Imaginez une équipe de 100 développeurs de classe mondiale, avec un budget à neuf chiffres, qui passeraient des mois à vous préparer un environnement parfait. Un setup conçu pour qu'une IA comprenne *votre* projet, *vos* objectifs, et *votre* intention, instantanément. C'est cette puissance que Cursor vous offre, clé en main.
+Pendant des années, le débat s'est résumé à WebStorm contre VS Code, une quête sans fin de la configuration personnelle parfaite. Cursor change complètement la donne. Imaginez un environnement de code idéal, conçu pour vous par une équipe de cent experts mondiaux dotée d'un budget à neuf chiffres. Un environnement si intelligemment pensé qu'une IA est capable de saisir instantanément votre projet, vos objectifs, vos intentions. Voilà la promesse que Cursor tient, clés en main.
 
-La plupart des outils d'IA pour le code butent sur les mêmes problèmes:
-* **Le Contexte:** Comment donner à l'IA les bonnes infos sur votre projet?
-* **Le Timing:** Quand lui donner ces infos?
-* **L'Interface:** Comment interagir avec l'IA sans casser son flow?
-* **La Puissance:** Avez-vous accès aux meilleurs modèles?
-* **L'Efficacité:** Comment gérer l'usage et les coûts sans y penser?
+La plupart des outils de codage par IA se heurtent aux mêmes écueils:
+- **Le contexte:** Comment nourrir l'IA avec les bonnes informations sur votre projet?
+- **Le timing:** Quand les lui transmettre?
+- **L'interface:** Comment interagir avec ses suggestions sans briser votre concentration?
+- **La puissance:** Utilisez-vous les modèles les plus récents et les plus performants?
+- **L'efficacité:** Comment gérer l'utilisation et les coûts sans même y penser?
 
-Cursor résout ces problèmes. Tout est intégré dans une expérience unique, intelligente et incroyablement intuitive. Le but n'est pas de taper du code plus vite. **Il s'agit de changer de rôle: passer de "celui qui tape le code" à "celui qui l'architecte".** **Vous vous concentrez sur la vision et la qualité, pendant que l'IA se charge des tâches lourdes.** Pour moi, le résultat est clair: je suis plus productif, le code est plus propre, le nommage est meilleur, et mes tests sont plus complets, le tout avec une sensation d'effort moindre.
+Cursor relève ces défis avec brio, en intégrant le tout dans une expérience unique, intelligente et intuitive. Il ne s'agit pas de taper du code plus vite. **Il s'agit de transformer votre rôle: passer du " dactylo du code " à l'" architecte logiciel ".** **Vous vous concentrez sur la vision et la qualité, pendant que l'IA se charge du gros œuvre.** Résultat des courses? Je suis plus productif, le code est plus propre, les conventions de nommage sont plus cohérentes et ma couverture de test est plus élevée, le tout avec une facilité déconcertante.
 
-C'est comme avoir une équipe de développeurs seniors dans son éditeur. Une équipe qui a toujours besoin d'une direction claire, surtout sur des projets complexes ou nouveaux, mais qui vous y amène plus vite. Je me retrouve à passer moins de temps à écrire du code et plus de temps dans une boucle simple: **"instruire -> vérifier".**
+C'est comme avoir une équipe de développeurs seniors logée au cœur de votre éditeur. Une équipe qui requiert toujours des directives claires, surtout face à des idées complexes ou inédites, mais qui vous mène à bon port, bien plus vite. Je me surprends à écrire moins de code à la main pour passer plus de temps dans une boucle d'une simplicité désarmante: **" instruire -> valider "**.
 
-## Cas d'Usage: Comment Mon Quotidien a Changé
+## Cas d'usage: comment il a transformé mon quotidien
 
-La vraie magie de Cursor, c'est sa capacité à nous faire travailler en trio—vous, l'IA, et le code—de manière totalement fluide. L'UX est si naturelle qu'elle devient une extension de la pensée.
+L'alchimie de Cursor opère dans cette collaboration fluide entre vous, l'IA et votre code. L'expérience utilisateur est si naturelle qu'elle devient le prolongement de vos pensées.
 
-### 1. Il Comprend Votre Code Sur Le Bout Des Doigts
+### 1. Il connaît votre code, tout simplement
 
 ![](assets/indexing.jpg)
 
-C'est là que j'ai compris que c'était différent. Fini les copier-coller dans une fenêtre de chat externe.
-* **Zéro Configuration:** Ouvrez un projet, et Cursor se met au travail.
-* **Indexation Intelligente:** Il cartographie tout votre code et comprend comment les pièces s'emboîtent.
-* **Contexte Autonome:** Il trouve ce dont il a besoin, où que ce soit dans le projet, lit n'importe quel fichier, et peut même lancer des commandes (comme un linter ou des tests) pour en savoir plus. Vous pouvez littéralement lui dire: "Fais passer `@montest.test.ts`", et le regarder lancer le test, voir l'échec, trouver les bons imports et proposer un correctif.
+C'est ce qui m'a immédiatement sidéré. Oubliez les copier-coller de code dans une fenêtre de chat séparée.
+- **Aucune configuration:** Ouvrez un projet, et Cursor commence son analyse.
+- **Indexation intelligente:** Il cartographie l'ensemble de votre base de code et en comprend toutes les connexions.
+- **Contexte autonome:** Il trouve ce dont il a besoin à travers les fichiers, lit n'importe quel document nécessaire et peut même exécuter des commandes (linters, tests) pour évaluer la situation. Vous pouvez littéralement lui dire: " Fais en sorte que `@montest.test.ts` passe ", et le regarder lancer le test, constater l'échec, trouver les bons imports et rédiger une proposition de correctif.
 
-### 2. "Tab Tab Tab" Sous Stéroïdes
+### 2. " Tab Tab Tab " sous stéroïdes
 
 Pensez à GitHub Copilot, mais avec un turbocompresseur.
-* **Puissance Prédictive:** Il ne se contente pas de finir votre ligne, il anticipe souvent le bloc de code entier que vous aviez en tête.
+- **Puissance prédictive:** Il ne se contente pas de compléter la ligne en cours; il anticipe souvent le bloc de code entier que vous aviez en tête.
 
 ![](assets/single-line.jpg)
 *Complétion sur une seule ligne*
@@ -41,116 +41,116 @@ Pensez à GitHub Copilot, mais avec un turbocompresseur.
 ![](assets/multi-line.jpg)
 *Complétions sur plusieurs lignes*
 
-* **Curseur Prédictif:** Il devine même où vous voulez placer votre curseur. Un coup de `Tab`, et vous y êtes.
-* **Magie en un Clic:** Les petites choses deviennent sans effort. Cliquez sur un JSON en désordre, et il est instantanément formaté. Il proposera aussi de reformuler un commentaire maladroit ou de corriger une petite erreur d'un seul clic.
+- **Prédiction du curseur:** Il devine même où vous voudrez placer votre curseur ensuite. Une pression sur Tab, et vous y êtes.
+- **Magie en un clic:** Les tâches simples deviennent triviales. Cliquez sur un JSON en désordre, et il est instantanément formaté. D'un clic, il reformule un commentaire maladroit ou corrige une petite erreur.
 
 ![](assets/inline-predictions.jpg)
-*Éditions en un clic (exemple simple, mais il gère des mises à jour complexes avec une facilité déconcertante)*
+*Modifications en un clic (un exemple simple, mais il gère des mises à jour complexes avec une aisance déconcertante)*
 
-### 3. Le Chat Intégré: Votre Partenaire De Code IA
+### 3. Le chat intégré: votre partenaire de code
 
 ![](assets/chat.jpg)
-*Demandez n'importe quoi*
+*Demandez-lui n'importe quoi*
 
-Le chat n'est pas un simple bot, c'est un collaborateur qui connaît votre projet par cœur.
-* **Conversation Contextualisée:** Ses suggestions sont pertinentes parce qu'il comprend le contexte de votre travail.
-* **Références Faciles avec `@`:** Ça, c'est énorme. Tapez `@nomdufichier` ou `@nomdusymbole` pour pointer l'IA exactement là où elle doit regarder. Plus d'ambiguïté.
+Le chat n'est pas un simple bot; c'est un collaborateur qui connaît votre projet sur le bout des doigts.
+- **Un chat conscient du code:** Ses suggestions sont d'une pertinence redoutable car il comprend le contexte de votre travail.
+- **Références faciles avec `@`:** C'est un atout majeur. Tapez `@nomdefichier` ou `@symbole` pour indiquer à l'IA exactement où regarder. Fini l'ambiguïté.
 
 ![](assets/include.jpg)
-*Référencez des fichiers manuellement avec @*
+*Référencez manuellement des fichiers avec @*
 
-* **Modifications Chirurgicales:** Le bouton "Apply" est intelligent. Il insère ou modifie le code au bon endroit, même si cela concerne plusieurs fichiers.
+- **Modifications ciblées:** Le bouton " Appliquer " est d'une intelligence rare. Il insère ou modifie le code précisément au bon endroit, même si cela concerne plusieurs fichiers ou des sections opposées d'un même document.
 
 ![](assets/apply.jpg)
-*Appliquez le code automatiquement*
+*Appliquer le code automatiquement*
 
-* **Super-pouvoirs:** Vous pouvez lui donner des images (comme une maquette UI) pour générer du code, ou un lien vers une issue GitHub ou une doc en ligne pour qu'il s'en serve. Il connaît même les frameworks populaires. Taper `@NextJs` injecte la doc officielle de Next.js directement dans le chat.
+- **Pouvoirs supplémentaires:** Vous pouvez lui fournir une image (comme une maquette d'interface) pour générer du code, ou lui donner un lien vers une issue GitHub ou une documentation, qu'il utilisera comme contexte. Il intègre même une connaissance native des frameworks populaires. Taper `@NextJs` importe la documentation officielle de Next.js directement dans votre chat.
 
 ![](assets/context.jpg)
-*Une tonne de sources @context pour nourrir vos prompts*
+*Une multitude de sources de contexte avec @ pour enrichir vos prompts*
 
-### 4. Éditer En Langage Naturel (Cmd+K / Ctrl+K)
+### 4. Modifier son code en langage naturel (Cmd+K / Ctrl+K)
 
-Cette fonctionnalité change la vie pour le refactoring et les modifications rapides.
-* **Commandes Intuitives:** Appuyez sur `Cmd+K` et dites-lui ce que vous voulez. "Refactor cette fonction en async." "Ajoute des commentaires JSDoc." "Explique-moi cette regex."
-* **Des Diffs Parfaits:** Cursor vous montre les changements proposés dans une interface de diff visuelle, claire et propre. Vous validez, refusez ou demandez une modification en quelques secondes.
-* **Terminal Augmenté:** `Cmd+K` dans le terminal vous permet de taper des commandes shell en français. "Trouve tous les fichiers de plus de 1Mo et compresse-les." Et voilà.
+Cette fonctionnalité révolutionne le refactoring et les modifications rapides.
+- **Commandes en langage naturel:** Appuyez sur `Cmd+K` et dictez vos volontés. " Refactorise ceci en fonction asynchrone. " " Ajoute des commentaires JSDoc. " " Explique-moi cette regex. "
+- **Des diffs d'une clarté exemplaire:** Cursor vous montre les changements proposés avec une visualisation "diff" claire et nette. Vous pouvez examiner, accepter ou demander une révision en quelques secondes.
+- **Un génie dans le terminal:** `Cmd+K` dans le terminal vous permet d'écrire des commandes shell en langage naturel. " Trouve tous les fichiers de plus de 1 Mo et compresse-les en zip. " Et voilà.
 
 ![](assets/inline-diff.jpg)
-*Prompts en ligne, diffs de code en ligne*
+*Prompts et diffs de code, directement dans l'éditeur*
 
-### 5. Mode Agent: Lâcher la Bride à l'IA
+### 5. Mode agent: lâcher la bride à l'IA
 
-Pour les tâches plus importantes, le Mode Agent donne à l'IA la liberté de réfléchir et d'agir seule.
-* **Résolution de Problèmes en Autonomie:** L'agent décompose votre demande en un plan, explore le code, crée des fichiers, lance des commandes et se corrige même s'il rencontre une erreur.
-* **Correction Auto des Erreurs de Lint:** Il peut se connecter au linter de votre projet et corriger automatiquement les erreurs et les avertissements selon vos règles.
-* **Il applique les changements lui-même et vous présente un diff de style "Pull Request" directement dans votre IDE. C'est incroyable. 😍**
+Pour les tâches d'envergure, le mode agent donne à l'IA la liberté de réfléchir et d'agir par elle-même.
+- **Résolution de problèmes autonome:** L'agent décompose votre demande en un plan, explore la base de code, crée des fichiers, exécute des commandes et se corrige même en cas d'erreur.
+- **Correction automatique des erreurs de linter:** Il peut se connecter au linter de votre projet pour corriger automatiquement les avertissements et les erreurs selon vos règles.
+- **Il applique automatiquement les changements et vous présente un diff de type " pull request " directement dans votre IDE. Le résultat est bluffant. 😍**
 
-*C'est le mode que j'utilise pour 99% de mon travail maintenant.*
+*C'est devenu mon mode de prédilection pour 99 % de mes tâches.*
 
 ![](assets/agent.jpg)
-*Il a cherché sur le web, ajouté les nouvelles marques, et créé le nouveau fichier de test, le tout à partir d'un seul prompt.*
+*À partir d'un seul prompt, il a cherché sur le web, ajouté les nouvelles marques et créé le fichier de test correspondant.*
 
-## Mon Expérience: Astuces, Conseils Et Nouvelle Mentalité
+## Mon expérience: astuces et nouvel état d'esprit
 
-Après avoir utilisé Cursor tous les jours pendant plus d'un an, j'ai tiré quelques leçons qui ont complètement changé ma façon de développer.
+Après plus d'un an d'utilisation quotidienne de Cursor, j'ai tiré quelques leçons qui ont complètement transformé mon approche du développement.
 
-### Faire De l'IA *Votre* Copilote
+### Faire de l'IA *votre* copilote
 
-* **Les Règles Cursor (`Cursor Rules`):** C'est ici que vous pouvez entraîner Cursor à suivre le style de code de votre projet. Je l'utilise pour imposer un format "Given-When-Then" à toutes mes descriptions de test. C'est un simple fichier dans le dossier `.cursor/rules`.
-		* *Exemple:* [Vous pouvez voir mes règles spécifiques ici](https://github.com/jterrazz/fake-news-api/blob/main/.cursor/rules).
+- **Les "Cursor Rules":** C'est là que vous pouvez dresser Cursor pour qu'il suive le style de codage de votre projet. Je l'utilise pour imposer un modèle " Given-When-Then " à toutes les descriptions de mes tests. Il suffit d'un simple fichier dans le répertoire `.cursor/rules`.
+    - *Exemple:* [Vous pouvez consulter mes règles spécifiques au projet ici](https://github.com/jterrazz/fake-news-api/blob/main/.cursor/rules).
 
 ![](assets/rules.jpg)
 
-* **Connaissez Vos Modèles:** C'est utile de comprendre la "personnalité" de chaque modèle. Cursor est malin pour router vos requêtes, mais y penser vous aide à écrire de meilleurs prompts. Ma vision simplifiée:
-		* **Le Stratège:** Un modèle puissant comme `GPT-4` ou `Claude 3 Opus` est parfait pour la stratégie ou pour décomposer une tâche complexe.
-		* **Le Codeur:** Un modèle optimisé pour le code, comme un `Gemini Pro` spécialisé ou un `Claude 3.5`, est le meilleur pour générer le code.
-		* **Le Débogueur:** Un mix des deux peut être utile. Des modèles robustes pour générer des cas de test, et des plus rapides pour des corrections itératives.
-* **Exploitez les MCPs (`Model-Capable Plugins`):** Voyez-les comme des boîtes à outils pour des services externes comme AWS ou Stripe. Ils permettent à l'IA de générer du code en utilisant une documentation API réelle et à jour.
+- **Connaître ses modèles:** Il est utile de comprendre la " personnalité " des différents modèles d'IA. Cursor choisit intelligemment le plus adapté, mais y réfléchir aide à rédiger de meilleurs prompts. Voici ma grille de lecture:
+    - **Le planificateur:** Un modèle puissant comme `GPT-4` ou `Claude 3 Opus` est excellent pour la stratégie de haut niveau ou pour décomposer une tâche complexe.
+    - **Le codeur:** Un modèle spécialisé pour le code, comme un `Gemini Pro` ou `Claude 3.5`, est idéal pour générer le code lui-même.
+    - **Le débogueur:** Un mélange de modèles fonctionne bien ici—les plus puissants pour générer des cas de test et les plus rapides pour des corrections itératives.
+- **Tirer parti des MCPs (Model-Capable Plugins):** Imaginez-les comme des boîtes à outils spécialisées pour des services externes comme AWS ou Stripe. Ils permettent à l'IA de générer du code en s'appuyant sur une documentation d'API à jour et en temps réel.
 
-### Refactorings Et Corrections Surhumains
+### Refactorings et correctifs surhumains
 
-* **Réappliquer un Commit:** Une astuce d'une puissance folle. "Réapplique les changements du commit `[hash]` à ce fichier, mais adapte-les à la nouvelle structure."
-* **"Fais passer les tests au vert":** Je dis littéralement à Cursor de lancer mes tests et de réparer ce qui casse jusqu'à ce que tout soit vert. C'est un super-pouvoir pour le TDD ou pour intégrer une nouvelle feature.
+- **Réappliquer un commit:** C'est une astuce d'une puissance déconcertante. " Réapplique les changements du commit `[hash]` à ce fichier, mais adapte-les à la nouvelle structure. "
+- **" Fais en sorte que les tests passent au vert ":** Je demande littéralement à Cursor de lancer ma suite de tests et de corriger tout ce qui échoue jusqu'à ce que tout soit validé. Un super-pouvoir, purement et simplement, pour le TDD ou l'intégration d'une nouvelle fonctionnalité.
 
-## Le Déclic Mental: Vous Êtes Le Metteur En Scène
+## Le changement de posture : vous êtes désormais le chef d'orchestre
 
-Le plus grand changement n'est pas la vitesse, c'est l'état d'esprit.
-* **Adoptez Votre Rôle de Metteur en Scène:** Votre travail est de guider l'IA. Donnez-lui des instructions claires et assurez-vous que le résultat final correspond à votre vision. L'IA devient une extension de votre intention, comme un collègue brillant avec qui vous travaillez depuis des années.
-* **Déléguez Tout ce que Vous Pouvez:** Plus vous confiez de tâches à l'IA, plus vous avez d'énergie mentale pour la vue d'ensemble: l'architecture, l'expérience utilisateur et la résolution des *bons* problèmes.
-* **Le Piège du "Code au Feeling":** Le plus grand danger est de faire confiance à la machine aveuglément ou de coder sans but précis. C'est le meilleur moyen de produire du code désordonné et de perdre du temps. **Vous devez rester le pilote.** Vous devez savoir où vous allez et donner des instructions précises, comme si vous étiez soudainement capable de coder à la vitesse de la lumière.
-* **La Qualité par Défaut:** C'est le paradoxe: l'IA vous pousse à écrire du code de *meilleure* qualité. Comme vous passez plus de temps à relire qu'à taper, vous devenez naturellement plus attentif au nommage, à la structure et aux tests. **Vous finissez par faire plus confiance aux tests qu'au code lui-même.**
+La plus grande révolution n'est pas la vitesse ; elle est mentale.
+- **Endossez votre rôle de chef d'orchestre:** Votre travail consiste à guider l'IA. Donnez-lui des instructions claires et assurez-vous que le produit final correspond à votre vision. L'IA devient le prolongement de votre intention, comme un alter ego technique avec qui vous collaboreriez depuis des années.
+- **Déléguez tout ce que vous pouvez:** Plus vous confiez de tâches à l'IA, plus vous libérez d'énergie mentale pour la vue d'ensemble: l'architecture, l'expérience utilisateur et la résolution des *vrais* problèmes.
+- **Le piège du "code au feeling" (*vibe coding*):** Le plus grand danger est de faire aveuglément confiance à la machine ou de coder sans objectif clair. Cela mène à du code désordonné et à une perte de temps. **Vous restez le pilote.** Vous devez savoir où vous allez et donner des caps précis, comme si vous étiez seul aux commandes, mais avec la vitesse de la lumière.
+- **La qualité, par défaut:** Voici le paradoxe: l'assistance de l'IA vous pousse en réalité à produire un code de *meilleure* qualité. Comme vous passez plus de temps à relire qu'à taper, vous portez naturellement plus d'attention au nommage, à la structure et aux tests. **Vous en venez à faire plus confiance aux tests qu'au code lui-même.**
 
-### Le Développement Piloté Par l'Intention (IDD)
+### Le développement guidé par l'intention (IDD)
 
-Tout cela m'amène à un workflow que j'appelle le **Développement Piloté par l'Intention (IDD)**. De la même manière que le TDD utilise les tests pour guider la conception du code, l'IDD utilise une intention claire et de haut niveau pour guider le développement.
-* **La Valeur d'Abord:** En s'inspirant du raisonnement par premiers principes, l'IDD vous oblige à vous demander: "Quelle valeur cette fonctionnalité apporte-t-elle?" Votre rôle est de traduire cette valeur en intention claire pour l'IA.
-* **Des "Tests d'Intention" de Haut Niveau:** Parfois, j'écris un test de haut niveau qui capture une *user story* essentielle (par exemple, `l_utilisateur_peut_payer_avec_succes.intent.test.ts`). Mon objectif devient alors simple: dire à l'IA de faire passer ce test au vert.
+Tout cela mène à un flux de travail que j'appelle le **développement guidé par l'intention (IDD)**. De la même manière que le TDD utilise les tests pour piloter la conception du code, l'IDD s'appuie sur une intention claire et de haut niveau pour piloter le développement.
+- **Se concentrer sur la valeur:** Puisant dans la pensée par principes premiers, l'IDD vous force à demander: " Quelle valeur cette fonctionnalité apporte-t-elle? " Votre travail consiste à traduire cette valeur en une intention limpide pour l'IA.
+- **Des "tests d'intention" de haut niveau:** Parfois, j'écris un test de haut niveau qui capture une *user story* fondamentale (ex: `l_utilisateur_peut_finaliser_sa_commande.intent.test.ts`). Mon objectif est alors simple: ordonner à l'IA de faire passer ce test.
 
-Cela garantit que chaque ligne de code est liée à un résultat clair et précieux.
+Cela garantit que chaque ligne de code est liée à un résultat clair et à forte valeur ajoutée.
 
-## Pour Se Lancer Avec Cursor
+## Pour bien démarrer avec Cursor
 
-Prêt à sauter le pas?
-1. **Passez au Pro:** La version gratuite est excellente, mais l'abonnement Pro (environ 20$/mois) vous donne accès aux modèles les plus puissants comme GPT-4 et Claude 3 Opus. C'est là que la vraie magie opère.
-2. **Personnalisez-le:** Ne restez pas avec les réglages par défaut. Passez 10 minutes dans les paramètres. Configurez vos raccourcis et choisissez vos modèles préférés. (Pour l'inspiration, voici mes réglages globaux: [https://github.com/jterrazz/jterrazz-configuration/tree/main/configurations/cursor](https://github.com/jterrazz/jterrazz-configuration/tree/main/configurations/cursor)).
-3. **Jouez avec Tout:** Ne vous cantonnez pas au chat. Utilisez les éditions `Cmd+K`. Essayez le Mode Agent. Apprenez à lui donner du contexte avec `@`.
+Prêt à plonger?
+1. **Passez à la version Pro:** La version gratuite est excellente, mais l'abonnement Pro (environ 20 $/mois) vous donne accès aux modèles les plus puissants comme GPT-4 et Claude 3 Opus. C'est là que la magie opère.
+2. **Appropriez-vous l'outil:** Ne vous contentez pas des réglages par défaut. Passez 10 minutes dans les paramètres pour configurer vos raccourcis clavier et choisir vos modèles préférés. (Pour vous inspirer, voici mes réglages globaux: [https://github.com/jterrazz/jterrazz-configuration/tree/main/configurations/cursor](https://github.com/jterrazz/jterrazz-configuration/tree/main/configurations/cursor)).
+3. **Expérimentez:** Ne vous limitez pas au chat. Utilisez les modifications avec `Cmd+K`. Essayez le mode agent. Apprenez à nourrir l'IA de contexte avec `@`.
 
-## Vous Êtes Le Guide
+## Vous êtes le guide
 
-L'IA peut gérer le "comment", mais le "quoi" et le "pourquoi" restent votre domaine. Coder "au feeling" ne construira pas un produit sécurisé, scalable ou maintenable. L'IA ne connaît pas votre entreprise, vos utilisateurs ou votre vision à long terme. Pas encore, en tout cas.
+L'IA peut gérer le " comment ", mais le " quoi " et le " pourquoi " restent votre domaine. Le 'code au feeling' ne construira jamais un produit sécurisé, scalable ou maintenable. L'IA ne connaît pas votre entreprise, vos utilisateurs ou votre vision à long terme. Pas encore.
 
-Vous êtes le **médiateur** essentiel entre un besoin du monde réel et l'incroyable capacité d'exécution de l'IA. Votre jugement, votre goût et votre vision ont plus de valeur que jamais. Voyez l'IA comme le consultant le plus talentueux du monde. Votre travail est d'appliquer son expertise à *votre* projet.
+Vous êtes le **médiateur** indispensable entre un besoin du monde réel et l'incroyable capacité d'exécution de l'IA. Votre jugement, votre goût et votre vision ont plus de valeur que jamais. Voyez l'IA comme le plus brillant des consultants. Votre travail est d'appliquer son expertise à *votre* projet.
 
-L'expérience Cursor par défaut est incroyable. Mais elle devient un super-pouvoir quand vous l'adaptez à vos besoins et que vous vous concentrez sur ce qui compte vraiment. Pour moi, c'est construire de belles choses, plus vite, en me concentrant sur l'exploration, la recherche, les commits, les revues et des tests en béton.
+L'expérience par défaut de Cursor est stupéfiante. Mais elle devient un super-pouvoir lorsque vous l'adaptez à vos besoins et vous concentrez sur ce qui compte vraiment. Pour moi, cela signifie construire de grandes choses, plus rapidement, en mettant l'accent sur l'exploration, la recherche, les commits, les revues de code et des tests en béton.
 
-Cursor n'est pas juste un outil de plus. C'est un partenaire. Et quand vous le guidez bien, il peut élever votre travail à un tout autre niveau.
+Cursor n'est pas un outil de plus. C'est un partenaire. Et lorsque vous le guidez avec soin, il élèvera votre travail à un niveau que vous n'imaginiez pas.
 
 ---
 
-## 📚 Série IA
+## 📚 Série sur l'IA
 
-1. [**Naviguer dans la Révolution de l'IA:**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution/fr) *Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession.*
-2. [**Intelligence Appliquée:**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work/fr) *Un guide pratique pour utiliser les outils d'IA, adapter votre état d'esprit et prospérer à l'ère de l'automatisation.*
-3. [**Architectes de l'Inversion – L'Effondrement de l'Exécution:**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution/fr) *Explorer comment l'IA redéfinit la valeur, réduit les coûts d'exécution et déplace la valeur humaine vers les idées et la direction stratégique.*
-4. [**Architectes de l'Inversion – Le Monde qui Suit:**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse/fr) *Une plongée en profondeur dans la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme de la civilisation.*
+1. [**Naviguer la révolution de l'IA :**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution/fr) *Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession.*
+2. [**Intelligence appliquée :**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work/fr) *Guide pratique pour utiliser les outils d'IA, adapter son état d'esprit et prospérer à l'ère de l'automatisation.*
+3. [**Architectes de l'inversion – L'effondrement de l'exécution :**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution/fr) *Explorer comment l'IA redéfinit la valeur, fait s'effondrer les coûts d'exécution et déplace la valeur humaine vers les idées et la vision stratégique.*
+4. [**Architectes de l'inversion – Le monde d'après :**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse/fr) *Une exploration en profondeur de la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme même de la civilisation.*

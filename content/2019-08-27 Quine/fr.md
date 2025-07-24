@@ -1,28 +1,28 @@
 ![](assets/thumbnail.jpg)
 
-# L'art De Créer Un Programme Qui S'écrit Lui-même: Le Quine
+# Le paradoxe du code: à la découverte du quine, le programme qui s'écrit lui-même
 
-J'ai toujours été fasciné par une idée simple, presque paradoxale: un programme peut-il se construire lui-même? Loin d'être une simple question philosophique, c'est un véritable défi de programmation. Bienvenue dans l'univers fascinant des **quines**.
+Il existe une idée simple, presque un paradoxe, qui m'a toujours fasciné: un programme peut-il s'écrire lui-même? Loin d'être une simple interrogation philosophique, c'est un authentique défi de programmation. Bienvenue dans l'univers vertigineux des **quines**.
 
-## Le Défi
+## Le défi
 
-L'objectif est d'écrire un programme dont l'unique sortie est son propre code source. Les règles sont simples mais strictes:
+Le défi est le suivant: écrire un programme dont l'unique sortie est son propre code source. Les règles sont simples, mais la rigueur est de mise:
 
-1. **Autoréplication:** La sortie du programme doit être une copie exacte de son code source.
-2. **Sans tricher:** Il est interdit de simplement ouvrir le fichier source pour en imprimer le contenu. Ce serait trop facile.
-3. **Aucune entrée:** Le programme doit être entièrement autonome. Il ne peut solliciter aucune information extérieure pour accomplir sa tâche.
+1. **Auto-réplication:** La sortie du programme doit être une copie conforme, au caractère près, de son code source.
+2. **Pas de triche:** Il est interdit d'ouvrir le fichier source pour en lire le contenu. Ce serait tricher.
+3. **Aucune entrée:** Le programme doit être parfaitement autonome et ne solliciter aucune information extérieure pour fonctionner.
 
-Cela ressemble à un tour de magie, mais ce n'est que pure logique. Voyons comment c'est possible.
+On pourrait y voir un tour de magie, mais tout n'est que pure logique. Voyons ensemble comment cette prouesse est possible.
 
-## La Théorie Derrière la Magie: Le Théorème De Kleene
+## La théorie derrière l'illusion: le théorème de Kleene
 
-Bien avant que nous ayons les langages de programmation pour construire facilement des quines, la possibilité même de leur existence a été prouvée par un mathématicien nommé Stephen Kleene. Ses travaux dans les années 1930 ont jeté les bases théoriques des programmes autoréplicatifs.
+Bien avant que les langages de programmation modernes ne nous permettent de construire des quines, leur existence fut démontrée par un mathématicien du nom de Stephen Kleene. Ses travaux dans les années 1930 ont posé les fondations théoriques des programmes auto-réplicatifs.
 
-### Première forme—Le Théorème Du point Fixe
+### Première forme—Le théorème du point fixe
 
-Le premier théorème de la récursion de Kleene est un concept fondamental de la théorie de la calculabilité. Il énonce essentiellement que pour toute fonction calculable `f`, on peut trouver un programme `e` qui se comporte d'une manière très spéciale.
+Le premier théorème de la récursion de Kleene est un pilier de la théorie de la calculabilité. Il énonce que pour toute fonction calculable `f`, on peut trouver un programme `e` qui se comporte d'une manière très singulière.
 
-En substance, transformer la logique du programme (`e`) avec la fonction `f` produit le même résultat que d'exécuter directement le programme `e`.
+En substance, si l'on applique une transformation `f` à la logique du programme `e`, le résultat est identique à l'exécution de ce même programme `e`.
 
 `ϕe(x) = f(e,x)`
 
@@ -31,26 +31,26 @@ En substance, transformer la logique du programme (`e`) avec la fonction `f` pro
 * `x` est une entrée quelconque.
 * `f` est une fonction qui transforme le programme.
 
-C'est une idée vertigineuse, car elle prouve qu'un programme peut faire référence à lui-même de manière significative.
+C'est une idée vertigineuse, car elle prouve mathématiquement qu'un programme peut faire référence à lui-même de manière cohérente et fonctionnelle.
 
-### Seconde forme—Le Théorème Du Quine
+### Seconde forme—Le principe du quine
 
-Cela nous mène à une conclusion plus directe et puissante. Pour toute fonction calculable `f`, il existe un programme `p` qui est un "point fixe" de cette fonction.
+Cela nous conduit à une conclusion encore plus directe et puissante pour notre objectif. Pour toute fonction calculable `f`, il existe un programme `p` qui est un " point fixe " de cette fonction.
 
 `p = f(p)`
 
-En d'autres termes, il existe un programme `p` qui, lorsqu'on l'utilise comme entrée de la fonction `f`, se produit lui-même en sortie. C'est le feu vert théorique pour les quines. Cela signifie que dans n'importe quel langage Turing-complet, l'autoréplication est possible.
+Autrement dit, il existe un programme `p` qui, lorsqu'il est traité par la fonction `f`, produit une copie de lui-même en sortie. C'est le feu vert théorique qui rend les quines possibles. Cela signifie que dans n'importe quel langage Turing-complet, l'auto-réplication est non seulement envisageable, mais inévitable.
 
-## Passons à la Pratique
+## Construisons-en un
 
-La théorie, c'est bien, mais le code, c'est mieux. Voici les spécifications de notre quine, conçues pour montrer qu'il ne s'agit pas d'une simple astuce:
+La théorie, c'est bien. Le code, c'est mieux. Voici le cahier des charges de notre quine, conçu pour prouver qu'il ne s'agit pas d'un simple artifice:
 
-1. **Afficher son code source sans lire le fichier:** une véritable autoréplication.
-2. **Inclure au moins deux commentaires:** pour montrer que même les parties non exécutables sont répliquées.
-3. **Utiliser au moins deux fonctions:** pour démontrer que la complexité structurelle est possible.
-4. **Une réplication parfaite:** la commande `diff <(./quine) quine.c` ne doit rien retourner, prouvant que la sortie et le source sont identiques.
+1. **Afficher le code source sans lire le fichier:** une véritable auto-génération.
+2. **Inclure au moins deux commentaires:** pour prouver que même les parties non exécutables sont fidèlement reproduites.
+3. **Utiliser au moins deux fonctions:** pour démontrer qu'une complexité structurelle est possible.
+4. **Réplication parfaite:** la commande `diff <(./quine) quine.c` ne doit retourner aucune différence, prouvant que la sortie et la source sont identiques.
 
-### Une Solution En C
+### Une solution en C
 
 Voici un programme en C qui remplit tous ces critères.
 
@@ -76,26 +76,26 @@ int main(void)
 }
 ```
 
-Comment cela fonctionne-t-il? L'astuce repose sur une structure en deux parties: des données d'un côté, et du code qui utilise ces données de l'autre.
+Alors, comment cela fonctionne-t-il? L'astuce repose sur une dualité: le programme est à la fois données et code qui exploite ces données.
 
-La fonction `get_str()` retourne une chaîne de caractères qui est un *modèle* de l'ensemble du programme, truffé de spécificateurs de format `printf` comme `%1$c` (un caractère) et `%4$s` (une chaîne). La fonction `main` récupère ce modèle puis l'injecte *en retour dans lui-même* via `printf`. Elle remplit les espaces réservés avec les codes ASCII pour un retour à la ligne (10), une tabulation (9), un guillemet double (34), et le modèle lui-même. C'est un plan qui contient les instructions pour sa propre reconstruction.
+La fonction `get_str()` retourne une chaîne de caractères qui est un gabarit (*template*) de l'ensemble du programme. Ce gabarit inclut des spécificateurs de format pour `printf`, comme `%1$c` (un caractère) et `%4$s` (une chaîne). La fonction `main`, elle, récupère ce gabarit et le réinjecte *en lui-même* via `printf`. Elle remplit les espaces réservés avec les codes ASCII pour le saut de ligne (10), la tabulation (9), le guillemet double (34), et surtout, la chaîne gabarit elle-même.
 
-## D'où Vient Le Nom "Quine"?
+C'est un peu comme posséder le plan d'un bâtiment qui contiendrait, dans ses moindres détails, les instructions pour imprimer ce même plan.
 
-Le terme a été popularisé par Douglas Hofstadter dans son livre *Gödel, Escher, Bach*. Il l'a nommé en l'honneur du philosophe **Willard Van Orman Quine**, qui a beaucoup travaillé sur l'autoréférence indirecte.
+## D'où vient le nom " quine "?
 
-Quine a exploré ce concept à travers un paradoxe:
+Le terme fut popularisé par Douglas Hofstadter dans son livre culte *Gödel, Escher, Bach*. Il l'a nommé ainsi en l'honneur du philosophe **Willard Van Orman Quine**, qui a longuement exploré le concept d'auto-référence indirecte.
 
-> "yields falsehood when preceded by its quotation" yields falsehood when preceded by its quotation.
->
-> *"donne une fausseté si précédée de sa propre citation" donne une fausseté si précédée de sa propre citation.*
+Quine a illustré cette idée à travers un paradoxe célèbre:
 
-Cette phrase est paradoxale car elle affirme sa propre fausseté, tout comme un quine en programmation contient une représentation de lui-même. Un lien magnifique entre la logique, la philosophie et le code.
+> " est fausse si précédée de sa propre citation " est fausse si précédée de sa propre citation.
 
-## Pour Aller plus Loin
+Cette phrase est paradoxale car elle énonce sa propre fausseté, tout comme un quine en programmation contient une représentation de lui-même. Un pont magnifique entre la logique, la philosophie et le code.
 
-Ce concept n'est pas qu'une simple astuce de salon. Lorsque j'étais étudiant à 42 Paris, nous avions des projets comme Dr. Quine qui nous forçaient à nous plonger dans ces idées, comme une introduction à la manière dont les virus peuvent se propager. Cela change fondamentalement votre manière de penser la relation entre le code et les données.
+## Pour aller plus loin
 
-Si le virus vous a piqué, tout un monde de programmes autoréplicatifs s'offre à vous. J'ai rassemblé certains de mes travaux de 42 dans un dépôt si vous souhaitez voir des exemples plus complexes. Vous pourriez bien devenir vous-même un maître des quines! 😊
+Ce concept est bien plus qu'une simple curiosité intellectuelle. Lorsque j'étais étudiant à 42 Paris, des projets comme Dr. Quine nous forçaient à plonger au cœur de ces mécanismes, notamment pour comprendre comment les virus informatiques peuvent se propager. Cela transforme fondamentalement votre regard sur la relation entre le code et les données.
 
-Happy coding
+Si le virus de la curiosité vous a piqué, tout un univers de programmes auto-réplicatifs s'ouvre à vous. J'ai d'ailleurs rassemblé certains de mes travaux de 42 dans un dépôt si vous souhaitez explorer des exemples plus complexes. Qui sait, peut-être deviendrez-vous à votre tour un maître en l'art du quine! 😊
+
+Bon code.

@@ -1,199 +1,201 @@
 ![](assets/thumbnail.jpg)
 
-# Design Applicatif: Parlons Dépendances
+# Conception d'applications: plongeons au cœur des dépendances
 
-## Au Cœur Du Réacteur De Votre Code
+## Les liens qui tissent votre code
 
-Pour moi, si vous ne deviez maîtriser qu'un seul concept en architecture logicielle, ce serait celui-là: les dépendances. Ce sont les fils invisibles qui relient tout votre code. C'est ce qui détermine comment les différentes parties de votre application interagissent. Maîtrisez-les, et vous pouvez construire n'importe quoi. Ratez-vous, et vous ne faites que préparer un futur cauchemar.
+Les dépendances sont les fils invisibles qui tissent la toile de votre application. Chaque morceau de code qui en appelle un autre crée une dépendance. Pour moi, la compréhension de ces connexions est la compétence la plus fondamentale en architecture logicielle. Maîtrisez-la, et vous pourrez tout construire. Ignorez-la, et ce sont des lendemains cauchemardesques que vous préparez.
 
-Comprendre et dompter ces dépendances est la clé pour bâtir des applications solides, faciles à maintenir et prêtes à évoluer.
+Car c'est bien cette maîtrise qui nous permet de bâtir des logiciels flexibles, simples à tester et prêts à évoluer.
 
 **Navigation 📚**
 
-1. [**Introduction : Le Design Applicatif, l'Art de Construire des Logiciels Durables et Évolutifs**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
-		*Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
+1. [**Introduction : La conception d'applications, l'art de bâtir des logiciels durables et évolutifs**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
+    *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
 
-2. [**Chapitre 1 : Le Concept de Dépendances**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
-		*Explorer les relations entre composants, l'importance des dépendances et les principes comme SOLID.*
+2. [**Chapitre 1 : Le concept de dépendances**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
+    *Explorez les relations entre composants, l'importance des dépendances et les principes comme SOLID.*
 
-3. [**Chapitre 2 : Comprendre les Architectures Métier et Technique**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
-		*Comprendre comment isoler le métier des préoccupations techniques grâce aux ports et adaptateurs.*
+3. [**Chapitre 2 : Comprendre les architectures métier et technique**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
+    *Comment isoler la logique métier des préoccupations techniques à l'aide de ports et d'adaptateurs.*
 
 4. [**Chapitre 3 : La Clean Architecture**](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)
-		*Découvrir une approche centrée sur le métier avec une structuration claire en couches.*
+    *Découvrez une approche centrée sur le métier avec une structure en couches claire.*
 
 ---
 
-## C'est Quoi, Une Dépendance?
+# Mais au fait, qu'est-ce qu'une dépendance?
 
-C'est simple. Une dépendance existe quand un changement dans un bout de code (B) vous force à changer un autre bout de code (A). Autrement dit, **A dépend de B si, en cassant B, vous cassez aussi A.**
+C'est très simple. On parle de dépendance dès qu'un changement dans une partie du code vous oblige à en modifier une autre. Dit autrement: **le code A dépend du code B si casser B, c'est aussi casser A.**
 
-Regardons un exemple tout bête en TypeScript:
+Prenons un exemple ultra-basique en TypeScript:
 
 ```ts
 function hello() {
-  const instance = new Something(); // Ici, on a une dépendance.
-  // …
+	const instance = new Something(); // Juste ici. C'est une dépendance.
+	// …
 }
 ```
 
-Dans ce code, ma fonction `hello` est directement liée à la classe `Something`. Si je modifie `Something` (par exemple, son constructeur demande un nouveau paramètre), ma fonction `hello` est cassée. Je suis obligé de la mettre à jour. Voilà une dépendance en action.
+Dans cet extrait, ma fonction `hello` est directement liée à la classe `Something`. Si je modifie cette dernière–par exemple, si son constructeur exige désormais un argument–ma fonction `hello` ne compilera plus. Je devrai la mettre à jour. Voilà une dépendance en action.
 
-### Le Sens De la Dépendance
+## Le sens de la dépendance
 
-Le sens de cette dépendance est crucial. Pour que ce soit limpide, je me pose toujours une seule question: **Si je coupe le fil entre deux fichiers, lequel arrête de fonctionner?**
+La direction de cette dépendance est un point crucial. Pour y voir clair, je me pose toujours la même question: **si je supprime le lien entre deux éléments, lequel cesse de fonctionner?**
 
-Dans notre exemple, si je supprime la classe `Something`, la fonction `hello` est bonne pour la poubelle. Elle ne peut plus tourner. Donc, `hello` dépend de `Something`, et pas l'inverse.
+Dans notre exemple, si je supprime la classe `Something`, la fonction `hello` est paralysée, incapable de s'exécuter. Donc, `hello` dépend de `Something`, et non l'inverse.
 
 ---
 
-## Comment Dompter Les Dépendances Dans Vos Tests Avec Les Doublures
+# Dompter les dépendances dans vos tests avec les doublures
 
-Les dépendances, c'est l'enfer pour les tests. On a tous connu ça. Vous écrivez un test pour une fonction simple, mais il échoue parce qu'il n'arrive pas à se connecter à la base de données. Le problème, ce n'est pas votre code, c'est l'environnement. C'est là que vos tests deviennent fragiles et inutiles.
+Les dépendances sont un véritable casse-tête lorsqu'il s'agit de tester. Nous sommes tous passés par là. Vous écrivez un test pour une fonction simple, mais il échoue parce qu'il ne parvient pas à se connecter à la base de données. Le problème ne vient pas de votre code, mais de l'environnement. C'est précisément là que vos tests deviennent fragiles, voire inutiles.
 
-Pour régler ça, on utilise ce que Martin Fowler appelle des **doublures de test** (*test doubles*). Ce sont des remplaçants pour vos vraies dépendances, qui vous permettent de tester votre code en isolation.
+Pour résoudre ce problème, on utilise ce que Martin Fowler appelle des **test doubles**. Il s'agit de substituts qui prennent la place de vos vraies dépendances, vous permettant de tester votre code en vase clos.
 
 Voici les principaux types:
 
-### Catégorie 1: Les Doublures Qui **retournent Des valeurs**
+## Catégorie 1: les doublures qui **retournent des valeurs**
 
-1. **Dummy (Le Figurant)**:
-		Un objet factice que vous passez juste pour que le code tourne. Il n'est pas vraiment utilisé.
+1. **Dummy**:
+    Un simple figurant que l'on passe pour que le code s'exécute, mais qui n'est jamais vraiment utilisé.
 
-*Exemple*: Une fonction a besoin d'un objet `User`, mais on se fiche de savoir lequel. On lui passe un `DummyUser` juste pour qu'elle soit contente.
+    *Exemple:* Une fonction a besoin d'un objet `User`, mais peu importe lequel.
 
-```ts
-function greet(user: User) {
-    console.log(`Hello, ${user.name}`);
-}
-greet(new DummyUser());
-```
+    ```ts
+    function greet(user: User) {
+      console.log(`Hello, ${user.name}`);
+    }
 
-2. **Fake (Le Trucage)**:
-		Une fausse implémentation qui fonctionne, mais qui est simplifiée. L'exemple classique, c'est la base de données en mémoire que vous utilisez pour les tests au lieu d'une vraie BDD. Ça marche, mais ce n'est pas pour la prod.
+    // On a juste besoin de *quelque chose* à passer.
+    greet(new DummyUser());
+    ```
 
-3. **Stub (La Réponse Automatique)**:
-		Un objet qui renvoie des réponses codées en dur. Vous l'utilisez quand votre test a besoin d'une réponse spécifique d'une dépendance pour continuer.
+2. **Fake**:
+    Une implémentation fonctionnelle mais simplifiée d'une dépendance. L'exemple-type est la base de données en mémoire utilisée pour les tests à la place d'une vraie. Elle fonctionne, mais n'est pas taillée pour la production.
 
-*Exemple*:
+3. **Stub**:
+    Un objet qui se contente de retourner des valeurs prédéfinies. On l'utilise quand un test a besoin d'une réponse spécifique d'une dépendance pour pouvoir continuer.
 
-```ts
-class StubUserService {
-	getUser() {
-		// Renvoie toujours la même chose.
-		return { id: 1, name: "Test User" };
-	}
-}
-const userService = new StubUserService();
-```
+    *Exemple:*
 
-### Catégorie 2: Les Doublures Qui **vérifient Un comportement**
+    ```ts
+    class StubUserService {
+        getUser() {
+            // Retourne toujours la même chose.
+            return { id: 1, name: "Test User" };
+        }
+    }
+    const userService = new StubUserService();
+    ```
 
-1. **Spy (L'Espion)**:
-		Un espion, c'est un mouchard. Il observe comment une dépendance est utilisée et prend des notes. Après le test, vous pouvez vérifier ses notes. "Est-ce que ma fonction a bien appelé `logger.log` trois fois?". L'espion vous le dira.
+## Catégorie 2: les doublures qui **vérifient un comportement**
 
-*Exemple*:
+1. **Spy**:
+    Un *spy* (espion) est un wrapper qui observe comment une dépendance est utilisée. Il enregistre tous les appels pour que vous puissiez les vérifier après coup. " Ma fonction a-t-elle bien appelé `logger.log` trois fois? " Un *spy* peut vous l'affirmer.
 
-```ts
-class SpyLogger {
-	logs: string[] = [];
-	log(message: string) {
-		this.logs.push(message);
-	}
-}
-```
+    *Exemple:*
 
-2. **Mock (L'Exigeant)**:
-		Le mock, c'est un espion avec des attentes. Vous lui dites *à l'avance* ce qu'il doit voir. Il sait quelles méthodes doivent être appelées, avec quels arguments, et dans quel ordre. Le test ne passe que si toutes ses attentes sont satisfaites.
+    ```ts
+    class SpyLogger {
+        logs: string[] = [];
+        log(message: string) {
+            this.logs.push(message);
+      }
+    }
+    ```
 
-*Exemple*:
+2. **Mock**:
+    Le *mock* est un espion, mais avec des attentes prédéfinies. Vous lui indiquez *à l'avance* ce que vous attendez de lui: quelles méthodes doivent être appelées, avec quels arguments et dans quel ordre. Le test ne réussit que si ce scénario est parfaitement respecté.
 
-```ts
-// Avec une librairie comme Jest
-const mockLogger = { log: jest.fn() };
-mockLogger.log("Test log");
-// On peut maintenant vérifier que mockLogger.log a été appelé correctement.
-```
+    *Exemple:*
 
----
-
-## L'Arme Secrète: Le Principe d'Inversion Des Dépendances (DIP)
-
-C'est le "D" de **SOLID**, et pour moi, c'est l'une des idées les plus puissantes en design logiciel. Le principe est le suivant: les modules de haut niveau ne doivent pas dépendre des modules de bas niveau. **Les deux doivent dépendre d'abstractions.**
-
-En clair: votre logique métier principale ne devrait pas dépendre de détails techniques comme une base de données ou un framework spécifique. Au lieu de ça, les deux dépendent d'un contrat (une interface). Ça "inverse" le flux de dépendance habituel et ça vous donne une flexibilité incroyable.
-
-### Petit Rappel Des Principes SOLID
-
-Ces cinq principes sont les piliers d'une bonne conception orientée objet.
-
-1. **S - Single Responsibility Principle (SRP)**:
-		Une classe ne doit avoir qu'une seule raison de changer. Ne mélangez pas vos règles métier avec votre code de base de données. Gardez les choses simples.
-
-2. **O - Open/Closed Principle (OCP)**:
-		Votre code doit être **ouvert à l'extension**, mais **fermé à la modification**. Vous devriez pouvoir ajouter des fonctionnalités sans réécrire le code qui fonctionne déjà. Pensez "plugins".
-
-3. **L - Liskov Substitution Principle (LSP)**:
-		Si une classe `Carré` hérite de `Rectangle`, vous devez pouvoir utiliser `Carré` partout où vous utilisiez `Rectangle` sans que ça explose. Ça garantit que votre héritage a du sens.
-
-4. **I - Interface Segregation Principle (ISP)**:
-		Ne forcez pas une classe à implémenter des méthodes dont elle n'a pas besoin. Préférez des petites interfaces spécifiques. Une interface `Oiseau` ne devrait pas avoir de méthode `nager()`.
-
-5. **D - Dependency Inversion Principle (DIP)**:
-		On vient de le dire: faites dépendre votre logique de haut niveau d'abstractions, pas de détails concrets de bas niveau. Ça découple votre code et le rend beaucoup plus facile à tester et à faire évoluer.
+    ```ts
+    // Avec une bibliothèque comme Jest
+    const mockLogger = { log: jest.fn() };
+    mockLogger.log("Test log");
+    // Vous pouvez maintenant vérifier que mockLogger.log a été appelé correctement.
+    ```
 
 ---
 
-## Comment Mettre Ça En Pratique Avec l'Inversion De Contrôle (IoC)
+# L'arme secrète: le principe d'inversion des dépendances (DIP)
 
-Alors, comment on applique ce fameux principe d'inversion? Avec un pattern appelé **Inversion de Contrôle (IoC)**.
+C'est le " D " de **SOLID**, et pour moi, l'une des idées les plus puissantes en conception logicielle. Le principe est le suivant: les modules de haut niveau ne doivent pas dépendre des modules de bas niveau. **Les deux doivent dépendre d'abstractions.**
 
-Au lieu qu'une classe crée ses propres dépendances (comme sa connexion à la base de données), on "inverse le contrôle" et on laisse quelqu'un d'autre lui fournir cette dépendance de l'extérieur. C'est ce qu'on fait généralement avec l'**Injection de Dépendances**.
+Pour le dire simplement: votre cœur de métier ne devrait pas être enchaîné à des détails techniques comme une base de données ou un framework spécifique. À la place, tous deux devraient s'appuyer sur un contrat (une interface, par exemple). Cette approche inverse le flux de dépendance traditionnel et vous offre une flexibilité incroyable.
 
-Voyons ça en action.
+## Petit rappel des principes SOLID
 
-### Avant: Le Couplage Fort
+Ces cinq principes constituent le socle d'une bonne conception orientée objet.
 
-Ici, ma classe `HelloService` est directement responsable de créer sa propre instance de `Database`. C'est un lien très fort. Je ne peux pas tester `HelloService` sans une vraie base de données.
+1. **S - Single Responsibility Principle (SRP):**
+    L'idée: une classe doit avoir une seule et unique raison d'exister, une seule raison de changer. Ne mélangez pas vos règles métier avec votre code d'accès à la base de données. Gardez les choses propres.
+
+2. **O - Open/Closed Principle (OCP):**
+    Votre code doit être **ouvert à l'extension**, mais **fermé à la modification**. Vous devriez pouvoir ajouter de nouvelles fonctionnalités sans réécrire le code existant et fonctionnel. Imaginez un système de plugins.
+
+3. **L - Liskov Substitution Principle (LSP):**
+    Si une classe `Square` hérite d'une classe `Rectangle`, vous devez pouvoir utiliser une instance de `Square` partout où une instance de `Rectangle` est attendue, sans rien casser. Ce principe garantit un héritage sensé et prévisible.
+
+4. **I - Interface Segregation Principle (ISP):**
+    Ne forcez pas une classe à implémenter des méthodes dont elle n'a pas besoin. Gardez vos interfaces petites et ciblées. Une interface `Bird` ne devrait pas imposer une méthode `swim()`.
+
+5. **D - Dependency Inversion Principle (DIP):**
+    On l'a déjà dit: faites en sorte que votre logique de haut niveau s'appuie sur des abstractions, et non sur des détails d'implémentation. Cela découple votre code et le rend infiniment plus facile à tester et à faire évoluer.
+
+---
+
+# Mettre tout ça en musique avec l'inversion de contrôle (IoC)
+
+Alors, comment met-on ce principe en pratique? Grâce à un design pattern appelé **Inversion de Contrôle (IoC)**.
+
+Plutôt que de laisser une classe créer ses dépendances, on inverse la charge: c'est une entité extérieure qui les lui fournit. Ce mécanisme prend vie le plus souvent grâce à l'**injection de dépendances** (Dependency Injection).
+
+Voyons cela en action.
+
+## Avant: le piège du couplage fort
+
+Ici, `HelloService` est directement responsable de la création de sa propre instance de `Database`. Cela crée un lien indéfectible, un couplage serré. Impossible de tester `HelloService` sans une véritable base de données.
 
 ```ts
 class HelloService {
-  private db: Database;
+	private db: Database;
 
-  constructor() {
-    // Ma classe crée sa propre dépendance. Mauvaise idée.
-    this.db = new Database(); // Couplage fort
-  }
+	constructor() {
+		// Mon service crée lui-même sa dépendance. Mauvaise idée.
+		this.db = new Database(); // Couplage fort
+	}
 
-  sayHello() {
-    return this.db.getGreeting();
-  }
+	sayHello() {
+		return this.db.getGreeting();
+	}
 }
 ```
 
-### Après: La Liberté Avec Le Couplage Faible
+## Après: la liberté du couplage faible
 
-Maintenant, `HelloService` demande simplement une `Database` dans son constructeur. Elle ne sait pas comment elle a été créée et elle s'en moque. Je peux lui passer une vraie BDD en production ou une fausse pour mes tests. C'est la liberté!
+Désormais, `HelloService` se contente de demander une instance de `Database` dans son constructeur. Elle ignore, et n'a pas à savoir, comment cette instance a été créée. Je peux ainsi lui passer une vraie base de données en production, ou une fausse pour mes tests. C'est ça, la liberté.
 
 ```ts
 class HelloService {
-  private db: Database;
+	private db: Database;
 
-  // La dépendance est "injectée" de l'extérieur.
-  constructor(db: Database) { // Injection de dépendance
-    this.db = db;
-  }
+	// La dépendance est « injectée » depuis l'extérieur.
+	constructor(db: Database) { // Injection de dépendances
+		this.db = db;
+	}
 
-  sayHello() {
-    return this.db.getGreeting();
-  }
+	sayHello() {
+		return this.db.getGreeting();
+	}
 }
 ```
 
 ---
 
-Maîtriser les dépendances, c'est un vrai *game-changer*. Quand vous apprenez à contrôler le flux, à utiliser des principes comme le DIP et des patterns comme l'IoC, vous pouvez construire des systèmes robustes, testables et prêts pour l'avenir.
+Au final, prendre le contrôle de ses dépendances change la donne. Lorsque vous apprenez à maîtriser leur flux, à appliquer des principes comme le DIP et à exploiter des patterns comme l'IoC, vous pouvez bâtir des systèmes robustes, testables et prêts à évoluer face à l'imprévu.
 
-Dans le prochain chapitre, on verra comment ces idées s'assemblent dans une architecture complète, comme l'architecture hexagonale.
+Dans notre prochain chapitre, nous verrons comment ces concepts s'articulent au sein d'une architecture complète, comme l'architecture hexagonale.
 
-[Prochain Article](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
+[Article Suivant](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
