@@ -14,7 +14,7 @@ import { buildArticleSlug } from '../../../../lib/slugify.js';
 // Force static generation for this page
 export const dynamic = 'force-static';
 export const revalidate = false;
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 type ArticlePageProps = {
     params: Promise<{ lang: ArticleLanguage; slugId: string }>;
