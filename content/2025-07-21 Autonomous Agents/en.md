@@ -2,7 +2,7 @@
 
 # AI in development, level 3: The rise of the autonomous agent
 
-Alright, let's dive into the deep end. In this series, we've been mapping out how AI is changing the game for developers. We started with AI as a silent **assistant (Level 1)**, then promoted it to a **guided agent (Level 2)**, where you became its direct manager. If you're new here, I seriously recommend starting with the [first article](link-to-article-1) to get the full picture of the four-level framework we're using.
+Alright, let's dive into the deep end. In this series, we've been mapping out how AI is changing the game for developers. We started with AI as a silent **assistant (Level 1)**, then promoted it to a **guided agent (Level 2)**, where you became its direct manager. If you're new here, I seriously recommend starting with the [first article](https://www.jterrazz.com/articles/20-the-four-levels-of-ai) to get the full picture of the four-level framework we're using.
 
 Now, we're taking the next big leap. Welcome to **Level 3: The autonomous agent**.
 
@@ -12,7 +12,7 @@ This is where your role transforms completely. You stop being a hands-on directo
 
 Let's explore how this actually works.
 
-***
+---
 
 ![](assets/developer.jpg)
 
@@ -29,7 +29,7 @@ You become the architect, and the AIs are your master builders. They handle the 
 
 ## **The technical foundation: Model-centric protocols (MCPs)**
 
-For an AI to actually *do* anything, it needs to interact with the world. A large language model, on its own, is a brain in a jar: brilliant but trapped. It can think, but it can't act. This is the exact problem **Model-Centric Protocols (MCPs)** were designed to solve.
+For an AI to actually _do_ anything, it needs to interact with the world. A large language model, on its own, is a brain in a jar: brilliant but trapped. It can think, but it can't act. This is the exact problem **Model-Centric Protocols (MCPs)** were designed to solve.
 
 Think of an MCP as a universal API adapter for AI. It's a secure layer that lets a model plug into any external tool, API, or data source without needing to know the nitty-gritty details of authentication or custom syntax.
 
@@ -49,7 +49,7 @@ Autonomous agents operate on a new stack of powerful systems. Here's a look at t
 
 - **Agentic Frameworks & Platforms:** These are the big guns—platforms built for true autonomy. You feed them a high-level task, like "Implement a secure login flow with 2FA and social sign-on," and the system orchestrates the whole thing. It might use one AI for planning, another for coding, and a third for testing before finally delivering a complete pull request. The tools in this space are evolving at a dizzying pace.
 - **AI-Powered Command-Line Interfaces (CLIs):** This is where I spend a lot of my time. It feels like you're scripting the future. Tools like the Claude or Gemini CLI let you command fleets of agents right from your terminal. You can write a simple script that tells an agent: `claude code --watch-repo my-project --fix-critical-bugs`. This agent will then monitor the repository, spot new bugs as they appear in logs, and automatically draft PRs with proposed fixes.
-- **The Essential Safety Net: Sandboxes:** I cannot stress this enough: never, *ever* let an autonomous agent run free in your production environment. **Sandboxing**—using isolated, containerized environments like Docker—is absolutely non-negotiable. This gives the AI a padded room where it can safely install packages, run code, and execute tests without any chance of breaking your real systems. The final merge into the main branch is always, always a human decision.
+- **The Essential Safety Net: Sandboxes:** I cannot stress this enough: never, _ever_ let an autonomous agent run free in your production environment. **Sandboxing**—using isolated, containerized environments like Docker—is absolutely non-negotiable. This gives the AI a padded room where it can safely install packages, run code, and execute tests without any chance of breaking your real systems. The final merge into the main branch is always, always a human decision.
 
 ## **Practical use cases: This isn't sci-fi**
 
@@ -64,11 +64,11 @@ So, what does this look like in the real world? This is happening right now.
 Okay, this all sounds great, but what are the catches? The risks are real, but I've found they're manageable with the right approach.
 
 - **Security:** The nightmare scenario is an AI going rogue or leaking secrets.
-    - **The Fix:** Fences. You build strong fences. Use sandboxed environments for execution, tightly scoped API keys through MCPs, and always, *always* require human review before merging.
+  - **The Fix:** Fences. You build strong fences. Use sandboxed environments for execution, tightly scoped API keys through MCPs, and always, _always_ require human review before merging.
 - **Quality & Hallucinations:** An AI can produce buggy or nonsensical code with terrifying confidence.
-    - **The Fix:** A good map and good guardrails. Give it a great map (clear requirements, design docs, example code) and strict guardrails (a comprehensive automated test suite that *must* pass).
+  - **The Fix:** A good map and good guardrails. Give it a great map (clear requirements, design docs, example code) and strict guardrails (a comprehensive automated test suite that _must_ pass).
 - **Cost and Dependencies:** The most powerful models aren't cheap and usually live in the cloud, which can create dependencies.
-    - **The Fix:** Be smart and strategic. I use a hybrid model: smaller, local models for quick, simple tasks, and I call in the powerful cloud-based AIs for the heavy lifting. This keeps costs down and gives me more control.
+  - **The Fix:** Be smart and strategic. I use a hybrid model: smaller, local models for quick, simple tasks, and I call in the powerful cloud-based AIs for the heavy lifting. This keeps costs down and gives me more control.
 
 Honestly, the best mental model is to think of it exactly like onboarding a new human engineer. You provide clear training, set expectations, grant limited access at first, and review their work carefully. It's the same process.
 
@@ -86,7 +86,7 @@ Have you tried any of these autonomous tools in your own work? What did you buil
 
 ---
 
-1. [**The Four Levels of AI: How to Ride the Wave and Amplify Your Potential**](http://localhost:3000/articles/20-the-four-levels-of-ai) *A practical framework for integrating AI into any field, from assistant to programmable intelligence, empowering you to supercharge your work and creativity.*
-2. [**AI in Development, Level 2: From Coder to Conductor**](http://localhost:3000/articles/21-guided-ai-for-developers) *A guide for developers to direct AI as a guided agent, transforming coding into high-level orchestration with tools like Cursor and intention-driven development.*
-3. [**AI in Development, Level 3: The Rise of the Autonomous Agent**](http://localhost:3000/articles/22-autonomous-ai-agents) *Exploring how developers can delegate entire workflows to autonomous AI agents, leveraging model-centric protocols and sandboxes for secure, scalable outcomes.*
-4. [**AI in Development, Level 4: Programming Intelligence Itself**](http://localhost:3000/articles/23-programming-intelligence) *A deep dive into designing intelligent systems that blend deterministic code with creative AI reasoning, enabling developers to architect self-optimizing solutions.*
+1. [**The Four Levels of AI: How to Ride the Wave and Amplify Your Potential**](http://localhost:3000/articles/20-the-four-levels-of-ai) _A practical framework for integrating AI into any field, from assistant to programmable intelligence, empowering you to supercharge your work and creativity._
+2. [**AI in Development, Level 2: From Coder to Conductor**](http://localhost:3000/articles/21-guided-ai-for-developers) _A guide for developers to direct AI as a guided agent, transforming coding into high-level orchestration with tools like Cursor and intention-driven development._
+3. [**AI in Development, Level 3: The Rise of the Autonomous Agent**](http://localhost:3000/articles/22-autonomous-ai-agents) _Exploring how developers can delegate entire workflows to autonomous AI agents, leveraging model-centric protocols and sandboxes for secure, scalable outcomes._
+4. [**AI in Development, Level 4: Programming Intelligence Itself**](http://localhost:3000/articles/23-programming-intelligence) _A deep dive into designing intelligent systems that blend deterministic code with creative AI reasoning, enabling developers to architect self-optimizing solutions._

@@ -2,7 +2,7 @@
 
 # L'IA dans le développement, niveau 4: Programmer l'intelligence elle-même
 
-Nous y voici. Le dernier article de notre série sur l'IA dans le développement logiciel. Nous avons voyagé de l'IA en tant que simple **Assistant (Niveau 1)**, à un **Agent Guidé (Niveau 2)**, puis à un puissant **Agent Autonome (Niveau 3)**. Si vous nous rejoignez, je vous recommande vivement de commencer par le [premier article](link-to-article-1), qui pose les fondations de tout ce cadre de pensée.
+Nous y voici. Le dernier article de notre série sur l'IA dans le développement logiciel. Nous avons voyagé de l'IA en tant que simple **Assistant (Niveau 1)**, à un **Agent Guidé (Niveau 2)**, puis à un puissant **Agent Autonome (Niveau 3)**. Si vous nous rejoignez, je vous recommande vivement de commencer par le [premier article](https://www.jterrazz.com/articles/20-the-four-levels-of-ai), qui pose les fondations de tout ce cadre de pensée.
 
 Aujourd'hui, nous sommes au sommet: le **Niveau 4, l'Intelligence Programmable**. C'est ici que, pour moi, les règles du jeu changent du tout au tout. Nous dépassons le simple fait d'*utiliser* l'IA pour commencer à programmer la *nature même de son raisonnement*.
 
