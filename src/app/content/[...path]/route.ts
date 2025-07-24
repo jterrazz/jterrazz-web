@@ -19,7 +19,8 @@ const getMimeType = (filePath: string): string => {
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(request: Request, { params }: { params: { path: string[] } }) {
+export async function GET(request: Request, context: { params: { path: string[] } }) {
+    const { params } = await context;
     const { path } = params;
 
     // Prevent path traversal outside the content directory.

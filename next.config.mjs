@@ -4,6 +4,15 @@ const nextConfig = {
     experimental: {
         optimizePackageImports: ['@vercel/analytics', '@vercel/speed-insights', 'posthog-js'],
     },
+    images: {
+        remotePatterns: [
+            {
+                hostname: 'miro.medium.com',
+                protocol: 'https',
+                // pathname: '/**' // optional, allows all paths
+            },
+        ],
+    },
     async redirects() {
         return [
             // Permanent redirects
