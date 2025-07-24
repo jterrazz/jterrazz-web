@@ -11,7 +11,6 @@ import { FeatureInMemoryRepository } from '../../../../infrastructure/repositori
 import { ArticleTemplate } from '../../../../components/templates/article.template.js';
 import { buildArticleSlug } from '../../../../lib/slugify.js';
 
-export const revalidate = false;
 export const dynamicParams = true;
 
 type ArticlePageProps = {
