@@ -15,10 +15,6 @@ import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the
 
 import './globals.css';
 
-// Force static generation globally
-export const dynamicParams = false;
-export const revalidate = false;
-
 const inter = Inter({ subsets: ['latin'] });
 
 const APPLE_TOUCH_ICON = 'apple-touch-icon';
