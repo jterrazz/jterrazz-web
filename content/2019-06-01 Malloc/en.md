@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Master memory management: I built my own malloc, and you should too
+# Master memory management, I built my own malloc, and you should too
 
 Ever stop and think about how your computer is actually shuffling trillions of bytes around every second? 🤹‍♂️ It's a question that always fascinated me. So, I decided to peek behind the curtain and dive into one of the most fundamental pieces of the puzzle: **dynamic memory allocation**.
 

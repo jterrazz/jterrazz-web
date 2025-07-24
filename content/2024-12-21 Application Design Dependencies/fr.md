@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Conception d'applications: plongeons au cœur des dépendances
+# Conception d'applications, plongeons au cœur des dépendances
 
 ## Les liens qui tissent votre code
 

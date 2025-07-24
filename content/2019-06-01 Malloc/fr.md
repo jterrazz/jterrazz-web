@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Maîtriser la gestion de la mémoire: le jour où j'ai codé mon `malloc`, et pourquoi cette aventure est fondatrice
+# Maîtriser la gestion de la mémoire, le jour où j'ai codé mon `malloc`
 
 Vous êtes-vous déjà demandé comment votre ordinateur jongle avec des milliards d'octets chaque seconde? 🤹‍♂️ C'est une question qui m'a toujours fasciné. J'ai donc décidé de soulever le capot pour explorer l'une des pièces maîtresses de cette mécanique: **l'allocation dynamique de la mémoire**.
 
@@ -30,8 +30,8 @@ int   setrlimit(int resource, const struct rlimit* rlp);
 
 Revenons un instant aux fondamentaux: comment le C gère-t-il la mémoire par défaut? C'est un système plutôt rigide.
 
-* **Variables statiques et globales**: Elles sont figées dans le marbre à la compilation. Leur place est réservée pour toute la durée de vie du programme, au même titre que le code exécutable lui-même.
-* **Variables automatiques**: Celles que l'on déclare au sein des fonctions. Elles naissent sur la " stack " (la pile) à l'appel d'une fonction et s'évanouissent dès que celle-ci se termine.
+- **Variables statiques et globales**: Elles sont figées dans le marbre à la compilation. Leur place est réservée pour toute la durée de vie du programme, au même titre que le code exécutable lui-même.
+- **Variables automatiques**: Celles que l'on déclare au sein des fonctions. Elles naissent sur la " stack " (la pile) à l'appel d'une fonction et s'évanouissent dès que celle-ci se termine.
 
 Ce système fonctionne, mais il bute sur deux limitations majeures:
 
@@ -66,16 +66,16 @@ C'est là que `malloc` entre en jeu. Il joue le rôle d'un gestionnaire avisé. 
 
 Ma bibliothèque `malloc` fournit le trio classique:
 
-* `malloc`: Demande un bloc de mémoire et retourne un pointeur vers celui-ci.
-* `free`: Récupère ce pointeur lorsque vous avez terminé et marque la mémoire comme de nouveau disponible.
-* `realloc`: Permet de redimensionner un bloc de mémoire déjà alloué, tout en préservant les données qu'il contient.
+- `malloc`: Demande un bloc de mémoire et retourne un pointeur vers celui-ci.
+- `free`: Récupère ce pointeur lorsque vous avez terminé et marque la mémoire comme de nouveau disponible.
+- `realloc`: Permet de redimensionner un bloc de mémoire déjà alloué, tout en préservant les données qu'il contient.
 
 ### La structure des données: l'anatomie de ma mémoire
 
 Pour que cela fonctionne, je devais savoir à tout instant où se trouvait chaque allocation. Mon approche repose sur une hiérarchie à deux niveaux:
 
-* **Heap** (ou tas): Une large région de mémoire que je demande au système d'exploitation via `mmap`.
-* **Bloc**: Un plus petit morceau d'un *heap* que je distribue à chaque appel à `malloc`.
+- **Heap** (ou tas): Une large région de mémoire que je demande au système d'exploitation via `mmap`.
+- **Bloc**: Un plus petit morceau d'un *heap* que je distribue à chaque appel à `malloc`.
 
 Ces deux entités nécessitent des métadonnées. J'ai donc placé un petit en-tête (*header*) juste avant chaque *heap* et chaque *bloc* pour y stocker des informations cruciales. Après un simple appel à `malloc`, la carte mémoire ressemble à ceci:
 
@@ -152,8 +152,8 @@ Quand `free` est appelé, marquer un bloc comme " disponible " est simple. Mais 
 
 Pour contrer ce phénomène, j'ai mis en œuvre deux stratégies clés:
 
-* **La fusion (*coalescing*)**: Lorsqu'un bloc est libéré, je vérifie si ses voisins immédiats sont eux aussi libres. Si oui, je les fusionne pour former un seul grand bloc disponible.
-* **La restitution de la mémoire**: Si le bloc en cours de libération est le tout dernier d'un *heap* et que d'autres *heaps* sont encore actifs, je libère l'intégralité du *heap* devenu vide en le retournant au système d'exploitation via `munmap`. Inutile de conserver de la mémoire inoccupée.
+- **La fusion (*coalescing*)**: Lorsqu'un bloc est libéré, je vérifie si ses voisins immédiats sont eux aussi libres. Si oui, je les fusionne pour former un seul grand bloc disponible.
+- **La restitution de la mémoire**: Si le bloc en cours de libération est le tout dernier d'un *heap* et que d'autres *heaps* sont encore actifs, je libère l'intégralité du *heap* devenu vide en le retournant au système d'exploitation via `munmap`. Inutile de conserver de la mémoire inoccupée.
 
 ```c
 // Rendre la mémoire au noyau.

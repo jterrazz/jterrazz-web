@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Cursor: a practical guide to AI-powered development
+# Cursor, a practical guide to AI-powered development
 
 **The way I build software has fundamentally changed. AI isn't a gimmick anymore; it's a tool I can't imagine coding without. I've been living in the world of AI-assisted development for a while now, and one tool has completely reshaped how I work: Cursor. It's more than an editor. It feels like the next evolution of development.**
 

@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# AI in development, level 4: Programming intelligence itself
+# AI in development, programming intelligence itself
 
 Alright, we've arrived at the final post in this series on AI in software development. We've journeyed from AI as a simple **Assistant (Level 1)**, to a **Guided Agent (Level 2)**, and then to a powerful **Autonomous Agent (Level 3)**. If you're just joining us, I highly recommend starting with the [first article](https://www.jterrazz.com/articles/20-the-four-levels-of-ai), which lays the foundation for this entire framework.
 

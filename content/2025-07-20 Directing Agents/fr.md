@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# L'IA dans le développement, niveau 2: du codeur au chef d'orchestre
+# L'IA dans le développement, du codeur au chef d'orchestre
 
 Entrons dans le vif du sujet.
 

@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Plongeon dans l'assembleur: nos premières fonctions (Intel x86-64)
+# Plongeon dans l'assembleur, nos premières fonctions (Intel x86-64)
 
 J'ai toujours été fasciné par ce qui se trame au plus profond d'un ordinateur. On entend souvent qualifier le C de langage dit de " bas niveau ", mais pour être honnête, il ne s'agit encore que d'une confortable couche d'abstraction. Elle dissimule les instructions brutes et puissantes que votre processeur exécute réellement.
 
@@ -46,8 +46,8 @@ Imaginez l'assembleur comme un ensemble d'ordres directs donnés à votre CPU. C
 
 On confond souvent les termes " assembleur " et " code machine ", mais ils ne sont pas identiques.
 
-* **Code Machine:** C'est le binaire brut—les 1 et les 0—que le processeur exécute. Il est totalement illisible pour un humain.
-* **Assembleur:** C'est la version lisible par l'homme du code machine. Nous écrivons en assembleur, puis un compilateur (comme NASM) le traduit en code machine.
+- **Code Machine:** C'est le binaire brut—les 1 et les 0—que le processeur exécute. Il est totalement illisible pour un humain.
+- **Assembleur:** C'est la version lisible par l'homme du code machine. Nous écrivons en assembleur, puis un compilateur (comme NASM) le traduit en code machine.
 
 Écrire en assembleur nous offre un avantage considérable par rapport à la tentative d'écrire du binaire brut. Cela nous apporte une structure: nous pouvons utiliser des étiquettes pour les fonctions, définir des variables et organiser notre logique en sections. C'est la plus fine couche d'abstraction possible au-dessus du matériel.
 
@@ -109,19 +109,19 @@ Se familiariser avec les registres est la clé. C'est votre établi. Sur x86-64,
 
 Ce sont eux qui font le gros du travail.
 
-* `rax`: L'" accumulateur ". Souvent utilisé pour les valeurs de retour des fonctions et dans les opérations arithmétiques.
-* `rbx`: Le registre de " base ". Peut servir à tout, mais est parfois utilisé dans l'adressage mémoire.
-* `rcx`: Le " compteur " (*counter*). Fréquemment utilisé pour les boucles.
-* `rdx`: Le registre de " données " (*data*). Sert souvent dans les multiplications et divisions, ou simplement comme registre d'appoint.
+- `rax`: L'" accumulateur ". Souvent utilisé pour les valeurs de retour des fonctions et dans les opérations arithmétiques.
+- `rbx`: Le registre de " base ". Peut servir à tout, mais est parfois utilisé dans l'adressage mémoire.
+- `rcx`: Le " compteur " (*counter*). Fréquemment utilisé pour les boucles.
+- `rdx`: Le registre de " données " (*data*). Sert souvent dans les multiplications et divisions, ou simplement comme registre d'appoint.
 
 #### Registres d'index et de pointeurs
 
 Ceux-ci servent à suivre des emplacements en mémoire.
 
-* `rdi`, `rsi`: Index de Destination et de Source. Très utilisés dans les opérations qui déplacent des blocs de mémoire. Ce sont aussi les deux premiers registres d'arguments lors des appels de fonction.
-* `rbp`: Pointeur de Base (*Base Pointer*). Utilisé pour suivre le " cadre de pile " (*stack frame*) de la fonction actuelle.
-* `rsp`: Pointeur de Pile (*Stack Pointer*). Pointe toujours vers le sommet de la pile.
-* `rip`: Pointeur d'Instruction (*Instruction Pointer*). Pointe vers la prochaine instruction CPU à exécuter. Celui-ci, vous ne pouvez pas le modifier directement.
+- `rdi`, `rsi`: Index de Destination et de Source. Très utilisés dans les opérations qui déplacent des blocs de mémoire. Ce sont aussi les deux premiers registres d'arguments lors des appels de fonction.
+- `rbp`: Pointeur de Base (*Base Pointer*). Utilisé pour suivre le " cadre de pile " (*stack frame*) de la fonction actuelle.
+- `rsp`: Pointeur de Pile (*Stack Pointer*). Pointe toujours vers le sommet de la pile.
+- `rip`: Pointeur d'Instruction (*Instruction Pointer*). Pointe vers la prochaine instruction CPU à exécuter. Celui-ci, vous ne pouvez pas le modifier directement.
 
 Pour des programmes simples, vous pouvez ignorer la plupart du temps les registres de segment (`CS`, `DS`, etc.).
 
@@ -254,8 +254,8 @@ Décortiquons-la:
 
 Nous n'avons fait qu'effleurer la surface. Comprendre en détail le fonctionnement de la pile est un sujet à part entière. Mais cela devrait suffire à vous mettre le pied à l'étrier.
 
-* [x86-64 Cheatsheet](https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf): Gardez-le à portée de main. C'est une référence rapide inestimable.
-* [Instruction List](http://faydoc.tripod.com/cpu/index.htm): Une liste exhaustive des instructions x86.
+- [x86-64 Cheatsheet](https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf): Gardez-le à portée de main. C'est une référence rapide inestimable.
+- [Instruction List](http://faydoc.tripod.com/cpu/index.htm): Une liste exhaustive des instructions x86.
 
 J'ai publié sur un dépôt plusieurs de mes propres implémentations de fonctions de la bibliothèque standard C en assembleur. N'hésitez pas à le consulter et à l'utiliser comme référence.
 

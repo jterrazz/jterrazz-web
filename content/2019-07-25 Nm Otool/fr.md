@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Décrypter la magie: mon aventure au cœur de `nm` et `otool`
+# Décrypter la magie, mon aventure au cœur de `nm` et `otool`
 
 Vous êtes-vous déjà demandé comment votre ordinateur *comprend* réellement un fichier binaire? Je veux dire, au plus profond de ses circuits. Si cette curiosité vous anime, alors vous êtes au bon endroit. J'ai récemment plongé dans les abysses de l'implémentation des commandes `nm` et `otool`, en repartant de zéro avec le langage C. Ce fut une véritable odyssée, et j'en suis ressorti avec une compréhension bien plus intime du fonctionnement des binaires et des systèmes Unix. C'est un monde fascinant que celui de la programmation de bas niveau.
 
@@ -14,9 +14,9 @@ Pour celles et ceux qui souhaitent plonger directement dans le code, [le projet 
 
 Lorsqu'un système d'exploitation lance un programme, il s'attend à ce que le fichier soit structuré d'une manière bien précise. Imaginez cela comme une poignée de main secrète. Chaque système a ses propres conventions:
 
-* **macOS** utilise `Mach-O`
-* **Linux** utilise principalement `ELF`
-* **Windows** opte pour le format `PE`
+- **macOS** utilise `Mach-O`
+- **Linux** utilise principalement `ELF`
+- **Windows** opte pour le format `PE`
 
 Il existe une multitude d'autres formats. Si le sujet vous passionne, vous pouvez consulter cette [impressionnante liste de formats de fichiers exécutables](https://en.wikipedia.org/wiki/Comparison_of_executable_file_formats).
 
@@ -54,8 +54,8 @@ Ces outils sont de véritables lunettes à rayons X pour les fichiers Mach-O. Il
 
 Voici la répartition des rôles:
 
-* **`nm`**: Affiche une liste de **symboles** (comme les noms de fonctions et de variables) présents dans le fichier.
-* **`otool`**: Affiche le **contenu hexadécimal** d'une section spécifique du fichier, généralement celle contenant le code.
+- **`nm`**: Affiche une liste de **symboles** (comme les noms de fonctions et de variables) présents dans le fichier.
+- **`otool`**: Affiche le **contenu hexadécimal** d'une section spécifique du fichier, généralement celle contenant le code.
 
 ![Example output of nm and otool](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*LyO3kfs-lQvJ-KmaKmyb9g.png)
 
@@ -113,8 +113,8 @@ struct mach_header {
 
 Cette structure regorge d'informations précieuses, comme:
 
-* `cpu_type`: Quels processeurs peuvent exécuter ce fichier.
-* `filetype`: S'agit-il d'un exécutable, d'une bibliothèque, ou autre chose?
+- `cpu_type`: Quels processeurs peuvent exécuter ce fichier.
+- `filetype`: S'agit-il d'un exécutable, d'une bibliothèque, ou autre chose?
 
 ### Les Load Commands: la feuille de route du binaire
 

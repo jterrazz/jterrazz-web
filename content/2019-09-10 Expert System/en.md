@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Building a brain: my journey into expert systems with Python
+# My journey into expert systems with Python
 
 I've always been fascinated by how we reason. How do we connect the dots, follow a trail of logic, and piece together a puzzle? As it turns out, we can teach computers to do something remarkably similar. That's where **expert systems** come in.
 

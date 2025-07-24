@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Application design: separating business logic from the tech
+# Application design, separating business logic from the tech
 
 ## Structuring your code
 

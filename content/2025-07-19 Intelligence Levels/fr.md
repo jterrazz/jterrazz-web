@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Les quatre niveaux de l'IA: comment surfer la vague et décupler votre potentiel
+# Les quatre niveaux de l'IA
 
 Allons droit au but. Une immense vague de changement déferle sur nous, et son nom est intelligence artificielle. Ce n'est plus un lointain concept de science-fiction; l'IA est là, et elle est en train de tout redéfinir.
 

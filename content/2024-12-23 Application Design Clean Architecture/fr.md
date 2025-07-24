@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Conception d'applications: au cœur de la Clean Architecture
+# Conception d'applications, au cœur de la Clean Architecture
 
 ## Pour aller à l'essentiel
 

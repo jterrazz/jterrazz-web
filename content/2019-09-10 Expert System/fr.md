@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Construire un cerveau: mon aventure au cœur des systèmes experts avec Python
+# Mon aventure au cœur des systèmes experts avec Python
 
 La manière dont nous raisonnons m'a toujours fasciné. Comment notre esprit parvient-il à tisser des liens, à remonter le fil d'une logique, à résoudre une énigme? Il se trouve que nous pouvons enseigner aux ordinateurs un processus très similaire. C'est précisément là qu'interviennent les **systèmes experts**.
 

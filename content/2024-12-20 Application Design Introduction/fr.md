@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Conception applicative: Bâtir des logiciels conçus pour durer
+# Conception applicative, Bâtir des logiciels conçus pour durer
 
 ## L'architecture logicielle
 

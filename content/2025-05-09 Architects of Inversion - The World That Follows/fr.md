@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **IA: Architectes de l'inversion–Le monde d'après**
+# **Architectes de l'Inversion, le monde d'après**
 
 ---
 

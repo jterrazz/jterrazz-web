@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Fake News: et si l'on remettait la réalité en jeu?
+# Fake news, et si l'on remettait la réalité en jeu?
 
 Ce titre, pensé uniquement pour vous faire cliquer, vous l'avez déjà vu. Partager un article dans l'élan, sans l'avoir lu, juste pour son accroche percutante? Nous sommes tous tombés dans le panneau. Dans un monde où l'information circule à la vitesse de la lumière, comment pouvons-nous affûter notre regard de lecteur, et même y trouver du plaisir?
 

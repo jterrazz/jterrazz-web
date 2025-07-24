@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# The four levels of AI: how to ride the wave and amplify your potential
+# The four levels of AI
 
 Let's be direct. There's a massive wave of change coming, and its name is artificial intelligence. It's not some distant sci-fi concept anymore; it's here, and it's reshaping everything.
 

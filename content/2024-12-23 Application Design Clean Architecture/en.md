@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Application design: let's talk clean architecture
+# Application design, let's talk clean architecture
 
 ## Getting to the heart of what matters
 

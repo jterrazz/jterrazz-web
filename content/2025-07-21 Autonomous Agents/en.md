@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# AI in development, level 3: The rise of the autonomous agent
+# AI in development, the rise of the autonomous agent
 
 Alright, let's dive into the deep end. In this series, we've been mapping out how AI is changing the game for developers. We started with AI as a silent **assistant (Level 1)**, then promoted it to a **guided agent (Level 2)**, where you became its direct manager. If you're new here, I seriously recommend starting with the [first article](https://www.jterrazz.com/articles/20-the-four-levels-of-ai) to get the full picture of the four-level framework we're using.
 

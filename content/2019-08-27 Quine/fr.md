@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Le paradoxe du code: à la découverte du quine, le programme qui s'écrit lui-même
+# Le paradoxe du code, à la découverte du quine, le programme qui s'écrit lui-même
 
 Il existe une idée simple, presque un paradoxe, qui m'a toujours fasciné: un programme peut-il s'écrire lui-même? Loin d'être une simple interrogation philosophique, c'est un authentique défi de programmation. Bienvenue dans l'univers vertigineux des **quines**.
 
@@ -26,10 +26,10 @@ En substance, si l'on applique une transformation `f` à la logique du programme
 
 `ϕe(x) = f(e,x)`
 
-* `e` est la logique du programme.
-* `ϕe` est sa syntaxe (le code lui-même).
-* `x` est une entrée quelconque.
-* `f` est une fonction qui transforme le programme.
+- `e` est la logique du programme.
+- `ϕe` est sa syntaxe (le code lui-même).
+- `x` est une entrée quelconque.
+- `f` est une fonction qui transforme le programme.
 
 C'est une idée vertigineuse, car elle prouve mathématiquement qu'un programme peut faire référence à lui-même de manière cohérente et fonctionnelle.
 

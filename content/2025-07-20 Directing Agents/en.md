@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# AI in development, level 2: from coder to conductor
+# AI in development, from coder to conductor
 
 Alright, let's get into it.
 

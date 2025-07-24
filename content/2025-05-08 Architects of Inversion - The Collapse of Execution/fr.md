@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **IA: architectes de l'inversion–L'effondrement de l'exécution**
+# **Architectes de l'Inversion, l'effondrement de l'exécution**
 
 ---
 

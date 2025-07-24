@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# L'IA dans le développement, niveau 3: L'avènement de l'agent autonome
+# L'IA dans le développement, l'avènement de l'agent autonome
 
 Plongeons dans le grand bain. Dans cette série, nous avons cartographié la manière dont l'IA redéfinit les règles du jeu pour les développeurs. Nous avons commencé avec l'IA en tant qu'**assistant** silencieux (Niveau 1), puis nous l'avons promue au rang d'**agent guidé** (Niveau 2), dont vous étiez le manager direct. Si vous nous rejoignez, je vous recommande vivement de commencer par le [premier article](https://www.jterrazz.com/articles/20-the-four-levels-of-ai/fr) pour avoir une vision complète du cadre en quatre niveaux que nous utilisons.
 

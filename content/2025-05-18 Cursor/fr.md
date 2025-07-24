@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Cursor: mon guide pratique du développement assisté par l'IA
+# Cursor, mon guide pratique du développement assisté par l'IA
 
 **Notre manière de concevoir des logiciels connaît une transformation radicale. L'IA n'est plus un simple gadget; c'est un outil sans lequel je ne pourrais plus coder. Je baigne dans l'univers du développement assisté par l'IA depuis un certain temps, et un outil a complètement bouleversé ma façon de travailler: Cursor. C'est bien plus qu'un éditeur de code: c'est l'avenir du développement qui prend forme.**
 

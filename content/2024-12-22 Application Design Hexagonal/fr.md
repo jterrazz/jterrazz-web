@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Conception applicative: isoler la logique métier de la technologie
+# Conception applicative, isoler la logique métier de la technologie
 
 ## Structurer son code
 

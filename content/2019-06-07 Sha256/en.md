@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Hashing in C: a deep dive into SHA-256 and MD5
+# Hashing in C, a deep dive into SHA-256 and MD5
 
 Ever wonder what keeps your online world safe? From your bank transactions to your passwords, the unsung heroes are cryptographic hash functions. Today, I'm pulling back the curtain on two of the big ones: MD5 and SHA-256. We're not just talking theory; we're getting our hands dirty with C code.
 

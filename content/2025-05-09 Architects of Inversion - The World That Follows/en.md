@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **AI: Architects of inversion–The world that follows**
+# **Architects of Inversion, the world that follows**
 
 ---
 

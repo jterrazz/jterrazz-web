@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Fake news: let's playfully question reality
+# Fake news, let's playfully question reality
 
 Have you ever scrolled past a headline and felt it was engineered for a click? Or shared an article on title alone, swept up in the moment? We've all been there. In a world saturated with information, how do we become more mindful readers—and have a little fun doing it?
 

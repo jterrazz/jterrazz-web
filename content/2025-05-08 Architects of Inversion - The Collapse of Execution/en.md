@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **AI: architects of inversion—the collapse of execution**
+# **Architects of Inversion, the collapse of execution**
 
 ---
 

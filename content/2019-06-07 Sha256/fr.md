@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# L'art du hachage en C: un duel entre MD5 et SHA-256
+# L'art du hachage en C, un duel entre MD5 et SHA-256
 
 Vous êtes-vous déjà demandé ce qui sécurise vraiment votre univers numérique? Derrière vos transactions bancaires et vos mots de passe se cachent des gardiens de l'ombre: les fonctions de hachage cryptographiques. Aujourd'hui, nous allons lever le voile sur deux des plus emblématiques d'entre elles, MD5 et SHA-256. Et nous n'allons pas nous contenter de théorie; nous allons mettre les mains dans le cambouis avec du code en C.
 
@@ -12,15 +12,15 @@ J'ai même inclus un lien vers un dépôt GitHub contenant une implémentation c
 
 Voyez les fonctions de hachage comme l'armure invisible du monde numérique. Elles œuvrent sans relâche en coulisses pour:
 
-* **Garantir l'intégrité des données**, en s'assurant que les fichiers et les messages que vous envoyez et recevez sont la copie conforme de l'original.
-* **Protéger les mots de passe**, sans jamais stocker leur version en clair.
-* Alimenter la **preuve de travail** (*proof of work*), un concept fondamental pour des cryptomonnaies comme le Bitcoin et l'Ethereum.
-* Forger les **signatures numériques**, l'équivalent en ligne d'une signature manuscrite ayant force de loi.
+- **Garantir l'intégrité des données**, en s'assurant que les fichiers et les messages que vous envoyez et recevez sont la copie conforme de l'original.
+- **Protéger les mots de passe**, sans jamais stocker leur version en clair.
+- Alimenter la **preuve de travail** (*proof of work*), un concept fondamental pour des cryptomonnaies comme le Bitcoin et l'Ethereum.
+- Forger les **signatures numériques**, l'équivalent en ligne d'une signature manuscrite ayant force de loi.
 
 Ces piliers de la sécurité numérique prennent n'importe quelle donnée que vous leur soumettez—d'un simple caractère à un fichier colossal—et la transforment en une chaîne de caractères de longueur fixe, appelée *hachage* ou *hash*. C'est l'empreinte digitale unique de vos données.
 
-* **MD5** produit un hachage de 128 bits (soit 32 caractères hexadécimaux).
-* **SHA-256** génère un hachage de 256 bits (soit 64 caractères hexadécimaux).
+- **MD5** produit un hachage de 128 bits (soit 32 caractères hexadécimaux).
+- **SHA-256** génère un hachage de 256 bits (soit 64 caractères hexadécimaux).
 
 ![Visualisation d'une fonction de hachage](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*aZh9gQlawdGcwSrCO0KOeA.png)
 
@@ -42,8 +42,8 @@ MD5 fut une véritable bête de somme en son temps, mais son heure est passée. 
 
 Alors, où pourriez-vous encore croiser MD5?
 
-* Comme simple somme de contrôle (*checksum*) pour vérifier l'intégrité d'un fichier contre une corruption accidentelle.
-* Dans des systèmes hérités ou des applications non critiques où seule la vitesse compte.
+- Comme simple somme de contrôle (*checksum*) pour vérifier l'intégrité d'un fichier contre une corruption accidentelle.
+- Dans des systèmes hérités ou des applications non critiques où seule la vitesse compte.
 
 **En bref, n'utilisez jamais MD5 pour la sécurité.** Ce serait comme vous présenter à un duel au pistolet armé d'un couteau.
 
@@ -53,8 +53,8 @@ SHA-256 fait partie de la famille SHA-2, conçue par la NSA pour succéder à SH
 
 SHA-256 est considéré comme sûr car:
 
-* Inverser le hachage pour retrouver l'entrée originale est pratiquement infaisable sur le plan calculatoire.
-* Il possède une forte résistance aux collisions, ce qui rend extrêmement difficile la découverte de deux entrées ayant le même hachage.
+- Inverser le hachage pour retrouver l'entrée originale est pratiquement infaisable sur le plan calculatoire.
+- Il possède une forte résistance aux collisions, ce qui rend extrêmement difficile la découverte de deux entrées ayant le même hachage.
 
 Toutefois, malgré sa robustesse, il n'est pas recommandé d'utiliser SHA-256 seul pour stocker des mots de passe. Sa rapidité le rend vulnérable aux attaques par force brute. Pour cette tâche, des algorithmes plus lents et plus complexes comme Bcrypt ou Scrypt sont de rigueur.
 
@@ -124,8 +124,8 @@ formatted_msg_len = CHUNK_SIZE x CHUNK_COUNT;
 
 Avant d'aller plus loin, un mot rapide sur l'*endianness* (ou boutisme). C'est une question d'ordre des octets dans la mémoire de l'ordinateur.
 
-* **Little-endian**: L'octet de poids faible est stocké en premier.
-* **Big-endian**: L'octet de poids fort est stocké en premier.
+- **Little-endian**: L'octet de poids faible est stocké en premier.
+- **Big-endian**: L'octet de poids fort est stocké en premier.
 
 [🔗 Plongez plus profondément dans le terrier du lapin de l'endianness (en anglais)](https://medium.com/@nonuruzun/little-big-endian-dc9abe36270?source=post_page-----78c17e657794--------------------------------)
 
@@ -150,20 +150,20 @@ Cette fonction réorganise les octets selon une cascade d'échanges astucieux.
 
 C'est ici que le véritable travail commence. Les deux algorithmes traitent le message par blocs de 512 bits, mais ils utilisent un nombre différent de tampons (*buffers*) internes:
 
-* MD5: 4 tampons de 32 bits
-* SHA-256: 8 tampons de 32 bits
+- MD5: 4 tampons de 32 bits
+- SHA-256: 8 tampons de 32 bits
 
 Ces tampons sont initialisés avec des valeurs spécifiques, puis mis à jour au fil d'une série de tours. Chaque tour implique un mélange complexe d'opérations bitwise, d'additions modulaires et de fonctions non linéaires spécifiques.
 
 Pour ceux qui souhaitent explorer les entrailles des algorithmes:
 
-* [🔗 Plongée dans l'algorithme MD5 (en anglais)](https://en.wikipedia.org/wiki/MD5?source=post_page-----78c17e657794--------------------------------#Pseudocode)
-* [🔗 Explication de l'algorithme SHA-256 (en anglais)](https://en.wikipedia.org/wiki/SHA-2?source=post_page-----78c17e657794--------------------------------#Pseudocode)
+- [🔗 Plongée dans l'algorithme MD5 (en anglais)](https://en.wikipedia.org/wiki/MD5?source=post_page-----78c17e657794--------------------------------#Pseudocode)
+- [🔗 Explication de l'algorithme SHA-256 (en anglais)](https://en.wikipedia.org/wiki/SHA-2?source=post_page-----78c17e657794--------------------------------#Pseudocode)
 
 Ou, consultez directement le code C:
 
-* [Implémentation de SHA-256](https://github.com/jterrazz/42-ssl-md5/blob/master/src/ft_sha256/sha256.c)
-* [Implémentation de MD5](https://github.com/jterrazz/42-ssl-md5/blob/master/src/ft_md5/md5.c)
+- [Implémentation de SHA-256](https://github.com/jterrazz/42-ssl-md5/blob/master/src/ft_sha256/sha256.c)
+- [Implémentation de MD5](https://github.com/jterrazz/42-ssl-md5/blob/master/src/ft_md5/md5.c)
 
 ### Le bouquet final: l'assemblage du hachage
 
@@ -213,7 +213,7 @@ uint32_t ft_bswap_uint32(uint32_t x)
 
 Pas de panique. Cet excellent guide décortique le processus de SHA-256 étape par étape, le rendant parfaitement accessible.
 
-* [🔗 Guide détaillé de SHA-256, étape par étape (en anglais)](https://docs.google.com/spreadsheets/d/1mOTrqckdetCoRxY5QkVcyQ7Z0gcYIH-Dc0tu7t9f7tw/edit?source=post_page-----78c17e657794--------------------------------#gid=2107569783)
+- [🔗 Guide détaillé de SHA-256, étape par étape (en anglais)](https://docs.google.com/spreadsheets/d/1mOTrqckdetCoRxY5QkVcyQ7Z0gcYIH-Dc0tu7t9f7tw/edit?source=post_page-----78c17e657794--------------------------------#gid=2107569783)
 
 ## En conclusion
 
