@@ -149,7 +149,7 @@ Alors, commencez petit. Cette semaine, choisissez un outil—ChatGPT, Canva, Not
 
 **Pour tous les autres:** Ce cadre est votre carte. L'aventure commence maintenant. Quelle est la tâche dans votre vie que vous rêveriez de confier à un assistant intelligent? Partagez une idée en commentaire.
 
-[**La Suite**](http://localhost:3000/articles/21-guided-ai-for-developers/fr)
+[**La Suite**](https://jterrazz.com/articles/21-guided-ai-for-developers/fr)
 
 ---
 

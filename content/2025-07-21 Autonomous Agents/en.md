@@ -82,7 +82,7 @@ In our final article, we'll go to the ultimate level: **Level 4: Programmable In
 
 Have you tried any of these autonomous tools in your own work? What did you build? I'm genuinely curious to hear your stories in the comments. Let's figure this out together.
 
-[**Next Article**](http://localhost:3000/articles/23-programming-intelligence)
+[**Next Article**](https://jterrazz.com/articles/23-programming-intelligence)
 
 ---
 

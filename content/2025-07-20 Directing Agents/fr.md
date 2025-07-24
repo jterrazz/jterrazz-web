@@ -91,7 +91,7 @@ Dans notre prochain article, nous repousserons encore plus loin les limites en e
 
 Quelles ont été vos expériences avec les agents IA guidés dans votre travail? J'adorerais lire vos histoires–succès comme frustrations–dans les commentaires ci-dessous.
 
-[**La Suite**](http://localhost:3000/articles/22-autonomous-ai-agents/fr)
+[**La Suite**](https://jterrazz.com/articles/22-autonomous-ai-agents/fr)
 
 ---
 

@@ -91,7 +91,7 @@ In our next article, we'll push the envelope even further and explore **Level 3:
 
 What have your experiences been with guided AI agents in your workflow? I'd love to hear your stories—both successes and frustrations—in the comments below.
 
-[**Next Article**](http://localhost:3000/articles/22-autonomous-ai-agents)
+[**Next Article**](https://jterrazz.com/articles/22-autonomous-ai-agents)
 
 ---
 

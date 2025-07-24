@@ -149,7 +149,7 @@ So, start small. This week, pick one tool—ChatGPT, Canva, Notion AI—and try 
 
 **For everyone else:** This framework is your map. The adventure starts now. What's one task in your life you'd love to hand over to an intelligent assistant? Drop a thought in the comments.
 
-[**Next Article**](http://localhost:3000/articles/21-guided-ai-for-developers)
+[**Next Article**](https://jterrazz.com/articles/21-guided-ai-for-developers)
 
 ---
 
