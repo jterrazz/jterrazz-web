@@ -11,8 +11,6 @@ import { FeatureInMemoryRepository } from '../../../infrastructure/repositories/
 import { ArticleTemplate } from '../../../components/templates/article.template.js';
 import { buildArticleSlug } from '../../../lib/slugify.js';
 
-// Force static generation for this page
-export const dynamic = 'force-static';
 export const revalidate = false;
 export const dynamicParams = true;
 
