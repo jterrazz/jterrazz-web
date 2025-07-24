@@ -82,7 +82,7 @@ Dans notre dernier article, nous atteindrons le niveau ultime: le **Niveau 4: L'
 
 Avez-vous déjà essayé l'un de ces outils autonomes dans votre propre travail? Qu'avez-vous construit? Je suis sincèrement curieux de lire vos histoires dans les commentaires. Explorons cela ensemble.
 
-[**La Suite**](http://localhost:3000/articles/23-programming-intelligence/fr)
+[**La Suite**](https://jterrazz.com/articles/23-programming-intelligence/fr)
 
 ---
 
