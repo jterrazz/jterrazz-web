@@ -106,7 +106,6 @@ export default function RootLayout({
     const userRepository = new UserInMemoryRepository();
     // Convert `URL` instances to plain strings to safely pass to the client navigation bar.
     const contacts = [
-        userRepository.getContact(UserContactType.X),
         userRepository.getContact(UserContactType.GitHub),
         userRepository.getContact(UserContactType.Medium),
     ].map((contact) => ({
