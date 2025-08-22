@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Menu, X } from 'react-feather';
+import { Menu } from 'react-feather';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -221,12 +221,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                         className="p-2"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
-                        <motion.div
-                            animate={{ rotate: isMenuOpen ? 90 : 0 }}
-                            transition={{ duration: 0.2, ease: 'easeOut' }}
-                        >
-                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </motion.div>
+                        <Menu size={24} />
                     </button>
                 </div>
             </div>
