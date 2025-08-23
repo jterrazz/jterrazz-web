@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { type Metadata } from 'next';
 
+// Infrastructure
 import { PhotographInMemoryRepository } from '../../infrastructure/repositories/photograph-in-memory.repository.js';
 
 import { PhotographsGridTemplate } from '../../components/templates/photographs-grid.template.js';

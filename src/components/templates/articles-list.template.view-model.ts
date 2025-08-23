@@ -1,3 +1,4 @@
+// Domain
 import { type Article } from '../../domain/article.js';
 import { UserContactType, type UserRepository } from '../../domain/user.js';
 

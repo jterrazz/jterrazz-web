@@ -1,3 +1,4 @@
+// Domain
 import { type Photograph, type PhotographRepository } from '../../domain/photograph.js';
 
 import { photographsData } from './data/photographs.data.js';

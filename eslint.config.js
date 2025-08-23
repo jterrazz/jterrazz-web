@@ -1,3 +1,3 @@
-import { eslintNodeConfig } from '@jterrazz/quality';
+import { node } from '@jterrazz/quality';
 
-export default eslintNodeConfig;
+export default node;

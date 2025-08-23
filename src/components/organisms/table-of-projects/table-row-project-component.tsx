@@ -1,7 +1,9 @@
 import React from 'react';
-import { AlignLeft } from 'react-feather';
-import { AnimatePresence, motion } from 'framer-motion';
 
+import { AnimatePresence, motion } from 'framer-motion';
+import { AlignLeft } from 'react-feather';
+
+// Domain
 import { type ProjectComponent } from '../../../domain/project.js';
 
 import { DotPulse } from '../../atoms/status/dot-pulse.js';

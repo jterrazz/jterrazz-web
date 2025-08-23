@@ -1,3 +1,4 @@
+// Domain
 import { ProjectStatus } from '../../../domain/project.js';
 
 import { DotPulseColor } from '../../atoms/status/dot-pulse.js';

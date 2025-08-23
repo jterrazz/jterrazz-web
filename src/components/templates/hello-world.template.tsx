@@ -1,19 +1,22 @@
 'use client';
 
 import React from 'react';
+
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
+// Domain
 import { type UserExperience } from '../../domain/user.js';
 
+// Utils
 import { cn } from '../../lib/utils.js';
 
 import { HeadingSection } from '../atoms/typography/heading-section.js';
 import { ArticlePreviewCard } from '../molecules/cards/article-preview-card.jsx';
 import { Highlight } from '../molecules/typography/highlight.js';
 import { MainContainer } from '../organisms/main-container.jsx';
-import { Timeline } from '../organisms/timeline-of-experiences/timeline.js';
 import { TimelineExperience } from '../organisms/timeline-of-experiences/timeline-experience.js';
+import { Timeline } from '../organisms/timeline-of-experiences/timeline.js';
 
 interface Article {
     description: string;

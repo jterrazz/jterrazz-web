@@ -1,3 +1,4 @@
+// Domain
 import { ProjectStatus } from '../../../domain/project.js';
 
 import { BadgeColor } from '../../atoms/status/badge.js';

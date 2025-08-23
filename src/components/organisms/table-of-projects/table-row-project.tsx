@@ -1,14 +1,16 @@
 'use client';
 import React from 'react';
 
+// Domain
 import { type Project } from '../../../domain/project.js';
 
+// Utils
 import { cn } from '../../../lib/utils.js';
 
 import { Badge } from '../../atoms/status/badge.js';
 
-import { projectStatusToStatusBadgeState } from './table-row-project.view-model.js';
 import { TableRowProjectComponent } from './table-row-project-component.js';
+import { projectStatusToStatusBadgeState } from './table-row-project.view-model.js';
 
 export type TableRowProjectHeaderProps = {
     className?: string;

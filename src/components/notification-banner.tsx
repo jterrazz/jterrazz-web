@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import Link from 'next/link';
 
+// Utils
 import { cn } from '../lib/utils.js';
 
 import { Alert } from '../components/ui/alert.jsx';

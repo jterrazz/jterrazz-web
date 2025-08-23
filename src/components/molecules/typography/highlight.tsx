@@ -1,6 +1,8 @@
 import React from 'react';
+
 import Link from 'next/link.js';
 
+// Utils
 import { cn } from '../../../lib/utils.js';
 
 import { HeadingMain } from '../../atoms/typography/heading-main.js';

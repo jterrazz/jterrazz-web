@@ -1,11 +1,16 @@
 import React from 'react';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 
+import type { Metadata } from 'next';
+// Google Fonts temporarily disabled due to network restrictions in build environment
+// import { Inter } from 'next/font/google';
+
+// Domain
 import { UserContactType } from '../domain/user.js';
 
+// Infrastructure
 import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-memory.repository.js';
 
+// Utils
 import { cn } from '../lib/utils.js';
 
 import { ClientLayoutWrapper } from '../components/client-layout-wrapper.js';
@@ -15,7 +20,8 @@ import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the
 
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+// Using system fonts due to network restrictions
+// const inter = Inter({ subsets: ['latin'] });
 
 const APPLE_TOUCH_ICON = 'apple-touch-icon';
 export const metadata: Metadata = {
@@ -132,8 +138,8 @@ export default function RootLayout({
     ];
 
     const generatedClassName = cn(
-        'min-h-screen flex flex-col text-storm-cloud-accent',
-        inter.className,
+        'min-h-screen flex flex-col text-storm-cloud-accent font-sans',
+        // inter.className, // Commented out due to network restrictions
     );
 
     return (

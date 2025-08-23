@@ -1,11 +1,14 @@
 'use client';
 
 import React from 'react';
+
 import { ImageGallery } from 'react-image-grid-gallery';
 
+// Domain
 import { type Photograph } from '../../domain/photograph.js';
 import { UserContactType } from '../../domain/user.js';
 
+// Infrastructure
 import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
 
 import { Highlight } from '../molecules/typography/highlight.js';

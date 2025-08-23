@@ -1,10 +1,13 @@
 import React from 'react';
+
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
+// Domain
 import { type Article } from '../domain/article.js';
 import { type UserExperience } from '../domain/user.js';
 
+// Infrastructure
 import { ArticleInMemoryRepository } from '../infrastructure/repositories/article-in-memory.repository.js';
 import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-memory.repository.js';
 

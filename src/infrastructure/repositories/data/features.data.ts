@@ -1,3 +1,4 @@
+// Domain
 import { type Feature, FeatureState } from '../../../domain/feature.js';
 
 export enum FeaturedId {

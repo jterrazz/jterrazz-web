@@ -1,3 +1,4 @@
+// Domain
 import { type Feature, type FeatureRepository } from '../../domain/feature.js';
 
 import { type FeaturedId, featuresData } from './data/features.data.js';

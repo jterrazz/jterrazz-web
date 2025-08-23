@@ -1,8 +1,10 @@
 import React from 'react';
+
 import Markdown from 'markdown-to-jsx';
 import Image from 'next/image';
 import { Highlight, themes } from 'prism-react-renderer';
 
+// Utils
 import { cn } from '../../lib/utils.js';
 
 import { HeadingMain } from '../atoms/typography/heading-main.jsx';

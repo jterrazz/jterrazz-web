@@ -1,12 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Menu, X } from 'react-feather';
+
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Menu, X } from 'react-feather';
 
+// Utils
 import { cn } from '../../../lib/utils.js';
 
 import AnimatedBackground from '../../molecules/cards/animated-backgrounds.jsx';

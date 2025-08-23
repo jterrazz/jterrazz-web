@@ -7,8 +7,10 @@ import React, {
     useId,
     useState,
 } from 'react';
+
 import { AnimatePresence, motion, type Transition } from 'framer-motion';
 
+// Utils
 import { cn } from '../../../lib/utils.js';
 
 type AnimatedBackgroundProps = {

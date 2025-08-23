@@ -1,7 +1,9 @@
 import React from 'react';
 
+// Domain
 import { type ProjectComponent } from '../../../domain/project.js';
 
+// Utils
 import { cn } from '../../../lib/utils.js';
 
 import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge.js';

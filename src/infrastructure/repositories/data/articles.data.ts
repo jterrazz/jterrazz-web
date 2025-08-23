@@ -1,6 +1,7 @@
 import { sanitizeAiText } from 'ai-text-sanitizer';
 import { promises as fs } from 'node:fs';
 
+// Domain
 import { type Article, ArticleCategory, type ArticleLanguage } from '../../../domain/article.js';
 
 // Configuration structure for each article before being transformed into the Article domain model.

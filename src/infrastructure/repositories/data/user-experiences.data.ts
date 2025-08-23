@@ -1,3 +1,4 @@
+// Domain
 import { type UserExperience } from '../../../domain/user.js';
 
 const PARIS = 'Paris, France';

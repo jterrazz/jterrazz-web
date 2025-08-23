@@ -1,7 +1,9 @@
 import React from 'react';
+
 import Link from 'next/link';
 import Script from 'next/script';
 
+// Domain
 import { type Article, type ArticleLanguage } from '../../domain/article.js';
 import { type Feature } from '../../domain/feature.js';
 

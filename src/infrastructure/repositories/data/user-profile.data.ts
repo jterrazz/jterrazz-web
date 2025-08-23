@@ -1,3 +1,4 @@
+// Domain
 import { type UserProfile } from '../../../domain/user.js';
 
 export const userProfileData: UserProfile = {

@@ -1,11 +1,14 @@
 'use client';
 
 import React from 'react';
-import { Circle } from 'react-feather';
-import { motion } from 'framer-motion';
 
+import { motion } from 'framer-motion';
+import { Circle } from 'react-feather';
+
+// Domain
 import { type UserExperience } from '../../../domain/user.js';
 
+// Utils
 import { cn } from '../../../lib/utils.js';
 
 import { LinkButton } from '../../atoms/link-button.js';
