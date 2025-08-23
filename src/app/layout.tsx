@@ -1,7 +1,8 @@
 import React from 'react';
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+// Temporarily comment out Google Fonts to test CSS issue
+// import { Inter } from 'next/font/google';
 
 // Domain
 import { UserContactType } from '../domain/user.js';
@@ -19,7 +20,8 @@ import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the
 
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+// Temporarily use system fonts
+// const inter = Inter({ subsets: ['latin'] });
 
 const APPLE_TOUCH_ICON = 'apple-touch-icon';
 export const metadata: Metadata = {
@@ -136,8 +138,8 @@ export default function RootLayout({
     ];
 
     const generatedClassName = cn(
-        'min-h-screen flex flex-col text-storm-cloud-accent',
-        inter.className,
+        'min-h-screen flex flex-col text-storm-cloud-accent font-sans',
+        // inter.className,
     );
 
     return (
