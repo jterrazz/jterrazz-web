@@ -1,7 +1,7 @@
 import React from 'react';
 
 import type { Metadata } from 'next';
-// Temporarily comment out Google Fonts to test CSS issue
+// Google Fonts temporarily disabled due to network restrictions in build environment
 // import { Inter } from 'next/font/google';
 
 // Domain
@@ -20,7 +20,7 @@ import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the
 
 import './globals.css';
 
-// Temporarily use system fonts
+// Using system fonts due to network restrictions
 // const inter = Inter({ subsets: ['latin'] });
 
 const APPLE_TOUCH_ICON = 'apple-touch-icon';
@@ -139,7 +139,7 @@ export default function RootLayout({
 
     const generatedClassName = cn(
         'min-h-screen flex flex-col text-storm-cloud-accent font-sans',
-        // inter.className,
+        // inter.className, // Commented out due to network restrictions
     );
 
     return (
