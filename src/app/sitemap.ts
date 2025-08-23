@@ -1,5 +1,6 @@
 import { type MetadataRoute } from 'next';
 
+// Infrastructure
 import { ArticleInMemoryRepository } from '../infrastructure/repositories/article-in-memory.repository.js';
 
 import { buildArticleSlug } from '../lib/slugify.js';

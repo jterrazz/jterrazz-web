@@ -1,11 +1,15 @@
 import React from 'react';
+
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
+// Application
 import { ApplicationsListTemplate } from '../../components/templates/applications-list.template.js';
 
+// Domain
 import { type Project } from '../../domain/project.js';
 
+// Infrastructure
 import { FeaturedId } from '../../infrastructure/repositories/data/features.data.js';
 import { FeatureInMemoryRepository } from '../../infrastructure/repositories/feature-in-memory.repository.js';
 import { ProjectInMemoryRepository } from '../../infrastructure/repositories/project-in-memory.repository.js';

@@ -1,3 +1,4 @@
+// Domain
 import { type UserContact, UserContactType } from '../../../domain/user.js';
 
 export const userContactsData: Record<UserContactType, UserContact> = {

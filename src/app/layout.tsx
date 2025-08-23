@@ -1,11 +1,15 @@
 import React from 'react';
+
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+// Domain
 import { UserContactType } from '../domain/user.js';
 
+// Infrastructure
 import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-memory.repository.js';
 
+// Utils
 import { cn } from '../lib/utils.js';
 
 import { ClientLayoutWrapper } from '../components/client-layout-wrapper.js';

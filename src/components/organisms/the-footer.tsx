@@ -1,16 +1,20 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { GitHub, Linkedin, Mail, Twitter } from 'react-feather';
+
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
+import { GitHub, Linkedin, Mail, Twitter } from 'react-feather';
 
+// Domain
 import { UserContactType } from '../../domain/user.js';
 
+// Infrastructure
 import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
 
+// Utils
 import { cn } from '../../lib/utils.js';
 
 import { HighlightedText } from '../atoms/highlighted-text.js';

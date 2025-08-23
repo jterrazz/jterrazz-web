@@ -1,3 +1,4 @@
+// Domain
 import {
     type Article,
     type ArticleLanguage,

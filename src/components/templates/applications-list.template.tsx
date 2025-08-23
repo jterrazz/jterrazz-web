@@ -1,17 +1,19 @@
 import React from 'react';
 
+// Domain
 import { type Feature } from '../../domain/feature.js';
 import { type Project } from '../../domain/project.js';
 import { UserContactType } from '../../domain/user.js';
 
+// Infrastructure
 import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
 
 import { HighlightedText } from '../atoms/highlighted-text.jsx';
 import { HeadingSection } from '../atoms/typography/heading-section.js';
 import { Highlight } from '../molecules/typography/highlight.js';
 import { MainContainer } from '../organisms/main-container.jsx';
-import { Table } from '../organisms/table-of-projects/table.js';
 import { TableRowProject } from '../organisms/table-of-projects/table-row-project.js';
+import { Table } from '../organisms/table-of-projects/table.js';
 
 type ApplicationsListTemplateProps = {
     features: readonly Feature[];

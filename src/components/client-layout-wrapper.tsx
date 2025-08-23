@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import dynamic from 'next/dynamic';
 
 // Dynamically load analytics to prevent SSR issues
