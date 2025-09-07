@@ -1,101 +1,85 @@
-![](assets/thumbnail.jpg)
+![](./assets/thumbnail.jpg)
 
-# AI in development, from coder to conductor
+# Using AI: Prompting the implementation
 
-Alright, let's get into it.
+The biggest shift for developers isn't AI that just autocompletes code; it's a fundamental change in our role—from a typist of code to a technical director of an AI. This is the reality of the **guided agent**.
 
-In the first piece of this series, I laid out a simple four-level framework for thinking about AI's role in our work. It's a universal map, whether you're in marketing or project management. If you missed it, I'd give it a quick scan—it sets the stage for everything we're about to cover.
+At this stage, you're no longer just *using* a tool; you're *directing* an agent. You become the conductor of an orchestra, the director of a film. The fundamental shift is from doing the task yourself to supervising its completion.
 
-Today, we're zeroing in on my world: software development. We're diving deep into **Level 2: The guided agent**.
+For a developer, this is a seismic shift. I formulate an intention—"Build out this API endpoint from the spec"—and the AI does the heavy lifting, steered by my expertise. My brainpower is now spent on high-level architecture and product strategy, not hunting for misplaced semicolons.
 
-Let's nail down the core idea. At Level 2, you're no longer just *using* a tool; you're *directing* an agent. Think of yourself as the conductor of an orchestra or the manager of a highly-skilled—if sometimes naive—team member. You set the objective, and then you iteratively guide and refine the output. The fundamental shift is from doing the task yourself to supervising its completion.
-
-For a developer, this isn't a small tweak; it's a seismic shift in how you build. You go from being a typist of code to a technical director of an AI. I formulate an intention—"Refactor this module for better performance," or "Build out this API endpoint from the spec"—and the AI does the heavy lifting, steered by my expertise. For me, this change brought back a feeling of magic, allowing me to build and iterate at a speed I hadn't thought possible. My brainpower is now spent on high-level architecture and product strategy, not hunting for misplaced semicolons.
-
-Let's break down the mindset, the tools, and the workflows that define this new reality.
+Let's break down the mindset and the workflow that define this new reality.
 
 ***
 
 ![](assets/conductor.jpg)
 
-## The mindset shift: from executor to director
+## **The Mindset: from executor to director**
 
-The biggest change at Level 2 isn't on your screen; it's in your head. The new mantra is simple and direct: **I instruct, I guide, I review. I do not execute.**
+The biggest change at Level 2 isn't on your screen; it's in your head. The new mantra is simple: **I instruct, I guide, I review. I do not execute.**
 
-I've found it helpful to think of my AI agent as an incredibly fast junior developer—brilliant, but in need of clear direction. A good "prompt" isn't a single cryptic command. It's a proper brief, packed with context, just like one you'd give a human teammate.
+I've found it helpful to think of my AI agent as an incredibly fast junior developer—brilliant, but in need of clear direction. A good "prompt" isn't a single command; it's a proper brief, packed with context, just like one you'd give a human teammate.
 
-- **The Power:** The friction between a good idea and working code practically vanishes. All that time spent typing, fixing typos, and looking up syntax on Stack Overflow simply melts away. This frees up your mental RAM to operate at a higher level of abstraction. You start thinking more about clean architecture, elegant user experiences, and the *why* behind the *what*.
-- **The Trap:** It's easy to fall into the "YOLO coding" trap—just throwing vague prompts at the AI and hoping for the best. Don't do it. The key is to visualize the solution as if you were coding it yourself, but at the speed of thought. You still need a firm grasp of the logic and data flow to provide meaningful feedback. A great director doesn't need to play every instrument, but they damn well better know how the music is supposed to sound.
+The power of this is that the friction between a good idea and working code practically vanishes. Time spent on boilerplate, syntax lookup, and typos just melts away, freeing your mental RAM to operate at a higher level of abstraction. You start thinking more about clean architecture, elegant user experiences, and the *why* behind the *what*.
 
-What I found most surprising? My code quality actually went *up*. When you spend less time typing and more time reviewing from a high level, your attention naturally shifts to what truly matters: clear logic, robust tests, and simple, elegant design.
+The trap, however, is getting lazy. Don't just throw vague prompts at the AI and hope for the best. You still need a firm grasp of the logic to provide meaningful feedback. A great director doesn't need to play every instrument, but they damn well better know how the music is supposed to sound. When you spend less time typing and more time reviewing, your attention naturally shifts to what truly matters: clear logic, robust tests, and simple, elegant design.
 
-![](assets/pyramid.jpg)
-
-## Choosing your tools: the right AI for the job
-
-You wouldn't use a sledgehammer to hang a picture frame. Picking the right AI model for the task is just as critical. Your choice boils down to a trade-off between complexity, speed, and cost.
-
-Here's a simple way I think about the tiers of models available today:
-
-- **The Senior Architects (e.g., Claude 4 Sonnet, Grok 4, o3):** These are the heavy thinkers. I pull them in for complex, multi-step operations: a major refactor, architecting a new microservice from scratch, or hunting down a nasty, logic-based bug. They have incredible reasoning power, but they're also the most expensive. Use them deliberately.
-- **The Workhorses (e.g., o3, Claude 4 Opus, Gemini 2.5 Pro):** These models are my daily drivers. They hit the sweet spot of speed, intelligence, and cost. I use them for analyzing large chunks of code, generating boilerplate, writing unit tests, and iterating on new features. They are fantastically capable.
-- **The Sprinters (Smaller, faster models):** For quick-fire tasks like autocompleting a line of code or answering a simple "how do I do X in Python?" question, these faster, cheaper models are perfect.
-
-My workflow is a fluid mix of all three. I'll use a workhorse for 80% of my tasks and call in the senior architect when I need a moment of brilliance. Learning to optimize your model usage is a new, and I would argue essential, skill for developers.
+***
 
 ![](assets/editor.jpg)
 
-## In practice: guiding an agent with Cursor
+## **The Workflow: intention-driven development**
 
-Theory is one thing, but let's see what this looks like on the ground. For me, an editor like **Cursor**—which is basically VS Code with AI superpowers—is the ultimate guided agent tool. It works by indexing your entire codebase, giving the AI the same deep context a human teammate would have after a week of onboarding.
+Theory is one thing, but let's see what this looks like on the ground. For me, an editor like **Cursor**—which is basically VS Code with AI superpowers—is the ultimate guided agent tool. It works by indexing your entire codebase, giving the AI the same deep context a human teammate would have.
 
-**Getting started:**
-It's dead simple. You clone your repo, open the folder in Cursor, and let it do its thing. The editor scans and indexes everything—files, folder structures, dependencies. The AI now *knows* your project.
+This leads to a powerful new workflow I call **Intention-Driven Development (IDD)**. It elevates the starting point from a low-level unit test to a high-level business intention.
 
-**The magic of `Cmd + K` (or `Ctrl + K`):**
-This key command is your new best friend. Instead of typing code, you pop open an inline chat and state your intent.
+Here's how it works. I want to build a new feature: an API endpoint that lets users subscribe to a newsletter.
 
-- **Use Case 1: Quick refactor**
-    I'll highlight a clunky function and hit `Cmd + K`: "Refactor this to use modern async/await and add JSDoc comments for each parameter." Cursor generates the changes right there, showing me a clean `diff` view. I review, hit accept, and I'm done.
-- **Use Case 2: Crushing bugs**
-    Got a failing test file? I'll just type `Cmd + K` and say: "Run the tests in `@monTest.test.ts`. Figure out why they're failing and fix the underlying code until they all pass." The AI will then start a cycle of analyzing, proposing a fix, and re-testing, all while I supervise and approve the changes.
-- **Use Case 3: Ambitious migrations**
-    You can even tackle massive projects. I started a recent migration with a simple prompt: `Cmd + K`, "Give me a step-by-step plan to migrate this entire project from JavaScript to TypeScript." The AI laid out a coherent strategy. From there, I could instruct it to execute each step, one by one, across dozens of files.
+**Step 1: State the Intention**
+I start by creating a new test file, `subscribe.intent.test.ts`. In it, I write a single, high-level integration test that describes the exact business outcome I want:
 
-With features like **Cursor Rules**, you can even enforce your team's coding conventions, like telling it to always use a "Given-When-Then" structure for new tests. It's like handing your AI a personalized style guide.
+*"When a user POSTs to `/api/subscribe` with a valid email, the API must return a 200 status with `{ success: true }`, and the database must contain the new subscriber's email."*
 
-## A new paradigm: intention-driven development (IDD)
+This test will fail, obviously. Nothing has been built yet.
 
-This guided workflow led me to a concept I've started calling **intention-driven development (IDD)**. It's a twist on test-driven development (TDD), but it elevates the starting point from a low-level unit test to a high-level business intention.
+**Step 2: Delegate to the Agent**
+Now, the pivotal moment. Instead of opening a blank file and starting to type, I simply tell the AI agent: **"Make this test pass."**
 
-Here's how it works in practice:
+This is where you, as the director, choose your actors. For this initial, high-level task of architecting the feature, I'll tell the editor to use a "senior architect" model—a powerful, heavy thinker AI that understands complex systems.
 
-- I create a new test file, something like `feature-x.intent.test.ts`. In it, I write a single, high-level integration test that describes the exact business outcome I want. For example: "When a user POSTs to `/api/subscribe` with a valid email, the API must return a 200 status with `{ success: true }` in the body, and the entire response must take less than 200ms."
-- Then comes the pivotal moment. I hand this "intent file" to my AI agent and give it a simple directive: "Make this test pass."
+**Step 3: Guide and Review**
+The AI gets to work. It lays out a plan:
+1. Create a new database migration for the `subscribers` table.
+2. Add a route for `POST /api/subscribe`.
+3. Create a controller to handle the request logic.
+4. Implement a service to validate the email and save it to the database.
 
-The AI is now free to implement whatever it needs to—the controller, the service logic, the database interaction—as long as the final result satisfies my stated intention. This approach keeps me laser-focused on shipping actual product value, not just lines of code.
+It presents this plan to me. I review it, maybe suggest a small change ("Actually, let's put the validation logic in a separate helper function"), and then give the green light. The agent generates the code for each part, and I review the `diff` for each change, accepting it with a click. For the boilerplate code generation, I can even tell the editor to switch to a faster, cheaper "workhorse" model to save on costs.
 
-## The positive fallout: a better way to build
+The entire process is a conversation. I am not typing code; I am directing the construction of a feature at the speed of thought. The agent handles the tedious execution, while I focus entirely on ensuring the quality, logic, and structure are sound.
 
-When you truly lean into this conductor role, you become something more than a coder. You become an AI-assisted architect. You offload the cognitive grind of manual execution, freeing your mind to focus on what humans do best: innovation, creativity, and strategic thinking.
+Finally, the AI runs the test again. This time, it passes.
 
-Your AI becomes a partner that learns to operate in sync with your style and your project's needs. High-quality code—tested and documented—becomes the default, not a "nice-to-have." The result is a massive productivity spike, cleaner and more maintainable code, and honestly, it just makes building things fun again.
+***
 
-## Conclusion: are you ready for autonomy?
+![](assets/pyramid.jpg)
 
-The guided agent isn't a theoretical concept; it's a game-changer, and it's here now. In my own work, I can build and ship features that used to take a week in a single day, simply by giving clear, high-level instructions to an AI like Claude within Cursor. The idea that "prompting" is a trivial skill is officially dead. A well-crafted prompt, rich with context and intent, is one of the highest-leverage skills a modern developer can possess.
+## **The Payoff: a better way to build**
 
-This level perfectly embodies the principle from our first article: you're managing a virtual team member. For developers, the impact is concrete and immediate. I really encourage you to download Cursor or try a similar workflow today. Just jump in.
+When you lean into this conductor role, you become something more than a coder. You become an AI-assisted architect. You offload the cognitive grind of manual execution, freeing your mind to focus on what humans do best: innovation, creativity, and strategic thinking.
 
-In our next article, we'll push the envelope even further and explore **Level 3: The autonomous agent**, where the AI goes from being your direct report to a fully independent, supervised member of your team.
+High-quality, tested, and documented code becomes the default, not a "nice-to-have." The result is a massive productivity spike, cleaner and more maintainable code, and honestly, it just makes building things fun again.
 
-What have your experiences been with guided AI agents in your workflow? I'd love to hear your stories—both successes and frustrations—in the comments below.
+## **Conclusion: are you ready to delegate?**
 
-[**Next Article**](https://jterrazz.com/articles/22-autonomous-ai-agents)
+The guided agent is a game-changer, and it's here now. A well-crafted prompt, rich with context and intent, is one of the highest-leverage skills a modern developer can possess.
+
+This new role is just one step in a broader journey of AI integration, which begins with simple [AI assistants](https://jterrazz.com/articles/20-the-four-levels-of-ai) and progresses toward fully [autonomous agents](https://jterrazz.com/articles/22-autonomous-ai-agents). For developers, the impact at this stage is concrete and immediate. The next step is to explore how we can delegate entire workflows, not just individual tasks.
 
 ---
 
-1. [**The Four Levels of AI: How to Ride the Wave and Amplify Your Potential**](https://jterrazz.com/articles/20-the-four-levels-of-ai) *A practical framework for integrating AI into any field, from assistant to programmable intelligence, empowering you to supercharge your work and creativity.*
-2. [**AI in Development, Level 2: From Coder to Conductor**](https://jterrazz.com/articles/21-guided-ai-for-developers) *A guide for developers to direct AI as a guided agent, transforming coding into high-level orchestration with tools like Cursor and intention-driven development.*
-3. [**AI in Development, Level 3: The Rise of the Autonomous Agent**](https://jterrazz.com/articles/22-autonomous-ai-agents) *Exploring how developers can delegate entire workflows to autonomous AI agents, leveraging model-centric protocols and sandboxes for secure, scalable outcomes.*
-4. [**AI in Development, Level 4: Programming Intelligence Itself**](https://jterrazz.com/articles/23-programming-intelligence) *A deep dive into designing intelligent systems that blend deterministic code with creative AI reasoning, enabling developers to architect self-optimizing solutions.*
+1. [Using AI: A practical four-level framework](https://jterrazz.com/articles/20-the-four-levels-of-ai) *A practical framework for integrating AI into any field, from assistant to programmable intelligence, empowering you to supercharge your work and creativity.*
+2. [**Using AI: Prompting the implementation**](https://jterrazz.com/articles/21-guided-ai-for-developers) *A guide for developers to direct AI as a guided agent, transforming coding into high-level orchestration with tools like Cursor and intention-driven development.*
+3. [Using AI: Delegating the workflow](https://jterrazz.com/articles/22-autonomous-ai-agents) *Exploring how developers can delegate entire workflows to autonomous AI agents, leveraging model-centric protocols and sandboxes for secure, scalable outcomes.*
+4. [Using AI: Designing the intelligence](https://jterrazz.com/articles/23-programming-intelligence) *A deep dive into designing intelligent systems that blend deterministic code with creative AI reasoning, enabling developers to architect self-optimizing solutions.*

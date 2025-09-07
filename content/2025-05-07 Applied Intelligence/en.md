@@ -1,17 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Applied intelligence in your life
-
----
-
-**📚 Table of Contents–AI Series**
-
-1. [**Navigating the AI revolution:**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution) _Understanding how AI is transforming work, creativity, and the future of every profession._
-2. [**Applied intelligence:**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work) _A practical guide to using AI tools, adapting your mindset, and thriving in the age of automation._
-3. [**Architects of inversion – The collapse of execution:**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution) _Exploring how AI is reshaping value, collapsing execution costs, and shifting human worth to ideas and direction._
-4. [**Architects of inversion – The world that follows:**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse) _A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization._
-
----
+# **Abundant intelligence: a practical playbook**
 
 AI isn't science fiction anymore. It's a part of our daily lives, woven into how we work, create, and think. As a software developer, I'm used to this breakneck pace of change—it's baked into the job. Tools that were state-of-the-art five years ago are ancient history today. **But here's the new reality: this relentless cycle of innovation is no longer confined to the tech world. It's coming for everyone.**
 
@@ -128,4 +117,15 @@ Start building your AI-powered workflow now. Create new habits, experiment gener
 
 With the right mindset, a spirit of experimentation, and smart delegation, **AI won't threaten your success—it will become your greatest ally.**
 
-[**Read next article**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution)
+---
+
+### **Explore the series**
+
+- [**Abundant intelligence: a guide to the revolution**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution)
+  _Understanding how AI is transforming work, creativity, and the future of every profession._
+
+- [**Abundant intelligence: when execution collapses**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution)
+  _Exploring how AI is reshaping value, collapsing execution costs, and shifting human worth to ideas and direction._
+
+- [**Abundant intelligence: life after the collapse**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse)
+  _A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization._

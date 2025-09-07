@@ -1,12 +1,12 @@
 ![](assets/thumbnail.jpg)
 
-# Fake news, let's playfully question reality
+# Let's playfully question everything
 
 Have you ever scrolled past a headline and felt it was engineered for a click? Or shared an article on title alone, swept up in the moment? We've all been there. In a world saturated with information, how do we become more mindful readers—and have a little fun doing it?
 
-That's the question that sparked **Fake News**, my first mobile app. The goal is simple and optimistic: to encourage people to playfully question the news they see every day.
+That's the question that sparked the idea for my first mobile app. The goal is simple and optimistic: to encourage people to playfully question the news they see every day.
 
-## Why an app about fake news?
+## Why this app?
 
 The idea sparked not from a grand revelation, but from a simple observation. I noticed how often headlines are crafted to provoke a reaction rather than to inform. Sensationalism and bias can easily eclipse objectivity, pulling us into echo chambers. A news source considered "neutral" in one country might be viewed as anything but elsewhere, simply because of cultural and political context.
 
@@ -16,9 +16,9 @@ The question that truly lit a fire under me was this: could I build something ge
 
 At first, the concept felt monumental. How could I possibly generate an endless stream of engaging content, detect subtle nuances, and make the whole thing scalable? Then, as I began exploring what AI could do, the pieces clicked into place.
 
-## How AI makes "Fake News" possible
+## How AI makes it possible
 
-To put it simply, AI is the engine that powers "Fake News." It's what makes the entire project feasible. It gives me abilities that would have been pure science fiction just a few years ago, like generating content automatically, identifying subtle perspectives, and presenting news from multiple angles. Its capacity to process massive amounts of data with incredible speed and accuracy is what breathes life into this vision.
+To put it simply, AI is the engine that powers the app. It's what makes the entire project feasible. It gives me abilities that would have been pure science fiction just a few years ago, like generating content automatically, identifying subtle perspectives, and presenting news from multiple angles. Its capacity to process massive amounts of data with incredible speed and accuracy is what breathes life into this vision.
 
 AI has also completely reshaped my development process. I'll share a deeper dive into my AI-driven workflow in a future article, but here are the highlights:
 
@@ -28,6 +28,8 @@ AI has also completely reshaped my development process. I'll share a deeper dive
 - **Smart summaries:** The AI can distill complex stories in near real-time, giving users the key takeaways without sacrificing crucial context.
 
 And the most exciting part? Every new AI model release makes the app smarter and more insightful. I feel like I'm riding a technological wave that's constantly lifting us higher.
+
+![](assets/growth.jpg)
 
 ## The exciting challenges ahead
 
@@ -54,7 +56,7 @@ Now, AI lets us pre-process and package that information to perfectly suit a use
 
 ## Join the movement
 
-"Fake News" is more than an app—it's an invitation to build a smarter, more curious community together. If you enjoy a good mental workout and love the idea of playing with information, I'd be thrilled for you to give it a try.
+The app is more than an app—it's an invitation to build a smarter, more curious community together. If you enjoy a good mental workout and love the idea of playing with information, I'd be thrilled for you to give it a try.
 
 Let's build a world where curiosity becomes second nature—one headline at a time.
 

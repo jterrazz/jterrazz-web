@@ -145,12 +145,3 @@ You are the crucial **mediator** between a real-world need and the AI's incredib
 The default Cursor experience is amazing. But it becomes a superpower when you tailor it to your needs and focus on what truly matters. For me, that's building great things, faster, with a focus on exploration, search, commits, reviews, and rock-solid testing.
 
 Cursor isn't just another tool. It's a partner. And when you guide it well, it can elevate your work to a whole new level.
-
----
-
-## 📚 AI Series
-
-1. [**Navigating the AI Revolution:**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution) *Understanding how AI is transforming work, creativity, and the future of every profession.*
-2. [**Applied Intelligence:**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work) *A practical guide to using AI tools, adapting your mindset, and thriving in the age of automation.*
-3. [**Architects of Inversion – The Collapse of Execution:**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution) *Exploring how AI is reshaping value, collapsing execution costs, and shifting human worth to ideas and direction.*
-4. [**Architects of Inversion – The World That Follows:**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse) *A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization.**

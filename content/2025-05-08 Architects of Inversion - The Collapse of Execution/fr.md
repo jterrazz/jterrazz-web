@@ -1,15 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **Architectes de l'Inversion, l'effondrement de l'exécution**
-
----
-
-**📚 Sommaire–Série sur l'IA**
-
-1. [**Naviguer la révolution de l'IA :**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution/fr) _Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession._
-2. [**Intelligence appliquée :**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work/fr) _Guide pratique pour utiliser les outils d'IA, adapter son état d'esprit et prospérer à l'ère de l'automatisation._
-3. [**Architectes de l'inversion – L'effondrement de l'exécution :**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution/fr) _Explorer comment l'IA redéfinit la valeur, fait s'effondrer les coûts d'exécution et déplace la valeur humaine vers les idées et la vision stratégique._
-4. [**Architectes de l'inversion – Le monde d'après :**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse/fr) _Une exploration en profondeur de la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme même de la civilisation._
+# **Intelligence abondante: quand l'exécution s'effondre**
 
 ---
 
@@ -33,7 +24,7 @@ Ce terme s'est imposé parce que l'IA ne se contente pas d'automatiser des tâch
 
 ### Un essai, pas une feuille de route
 
-Attendez-vous à de la spéculation et de la synthèse, mêlant des exemples d'aujourd'hui à des projections pour demain. Certaines idées pourront sembler relever de la science-fiction, d'autres vous paraîtront étrangement familières. La nature du changement exponentiel veut que le passage de l'" impossible " au " courant " puisse se faire en quelques années, et non plus en décennies. Nous commencerons par les mutations actuelles–l'inversion de la valeur du travail numérique, la chute des barrières à l'exécution, la démocratisation de l'intelligence–avant de nous projeter plus loin, vers les transformations de la communauté, de la créativité et plus encore, dans un monde à l'intelligence quasi infinie. Face à une telle transformation, on peut reculer ou s'y engager pleinement. Cette série choisit l'optimisme, un techno-optimisme ancré dans une réalité observable. Bienvenue dans le monde inversé.
+Attendez-vous à de la spéculation et de la synthèse, mêlant des exemples d'aujourd'hui à des projections pour demain. Certaines idées pourront sembler relever de la science-fiction, d'autres vous paraîtront étrangement familières. La nature du changement exponentiel veut que le passage de l'" impossible " au " courant " puisse se faire en quelques années, et non plus en décennies. Nous commencerons par les mutations actuelles–l'inversion de la valeur du travail numérique, la chute des barrières à l'exécution, la démocratisation de l'intelligence–avant de nous projeter plus loin, vers les transformations de la communauté, de la créativité et plus encore, dans un monde à l'intelligence quasi infinie. Face à une telle transformation, on peut reculer ou s'y engager pleinement. Cet article choisit l'optimisme, un techno-optimisme ancré dans une réalité observable. Bienvenue dans le monde inversé.
 
 ---
 
@@ -139,8 +130,17 @@ Les anciennes questions–" Comment faire ceci? Qui peut m'aider? "–sont suppl
 
 Nous sommes tous devenus des architectes. Non pas de bâtiments, mais d'architectures de pensée, de cadres de valeurs, de futurs à dessiner.
 
-**La seconde moitié de ce voyage, " Le monde d'après ", commence là où de nombreux récits sur l'IA s'arrêtent**: en explorant le monde physique tangible, notre tissu social et la forme même de notre civilisation. Que se passe-t-il lorsque l'IA s'intègre profondément dans nos villes, notre gouvernance, nos rituels et nos relations? C'est ce que nous explorerons ensuite.
-
 L'intelligence est là. Place, maintenant, à l'architecture.
 
-[**Lire l'article suivant**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse/fr)
+---
+
+### **Explorer la série**
+
+- [**Intelligence abondante: un guide pour la révolution**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution/fr)
+  _Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession._
+
+- [**Intelligence abondante: un manuel pratique**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work/fr)
+  _Un guide pratique pour utiliser les outils d'IA, adapter votre état d'esprit et prospérer à l'ère de l'automatisation._
+
+- [**Intelligence abondante: la vie après l'effondrement**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse/fr)
+  _Une immersion profonde dans la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme de la civilisation._

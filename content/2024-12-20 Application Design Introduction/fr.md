@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Conception applicative, Bâtir des logiciels conçus pour durer
+# Conception applicative: bâtir des logiciels conçus pour durer
 
 ## L'architecture logicielle
 
@@ -10,21 +10,7 @@ Pour moi, l'architecture logicielle n'est pas un simple schéma technique. C'est
 
 Ces choix constituent l'ossature invisible de votre logiciel. Maîtrisez-les, et vous créerez un système capable de grandir, de s'adapter et de rester sain pour des années. Négligez-les, et vous ne ferez qu'accumuler de la dette technique. C'est tout l'enjeu de la **conception applicative** (*application design*): l'art pragmatique de bâtir des logiciels faits pour durer.
 
-Dans cette série d'articles, je décortiquerai ce que signifie réellement la conception applicative, pourquoi elle est si cruciale et comment nous en sommes arrivés là. Nous explorerons les principes et les pratiques qui permettent de construire des logiciels à la fois **maintenables** et **évolutifs** (*scalable*).
-
-**Navigation 📚**
-
-1. [**Introduction : La conception d'applications, l'art de bâtir des logiciels durables et évolutifs**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
-    *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
-
-2. [**Chapitre 1 : Le concept de dépendances**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
-    *Explorez les relations entre composants, l'importance des dépendances et les principes comme SOLID.*
-
-3. [**Chapitre 2 : Comprendre les architectures métier et technique**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
-    *Comment isoler la logique métier des préoccupations techniques à l'aide de ports et d'adaptateurs.*
-
-4. [**Chapitre 3 : La Clean Architecture**](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)
-    *Découvrez une approche centrée sur le métier avec une structure en couches claire.*
+Cet article décortique ce que signifie réellement la conception applicative, pourquoi elle est si cruciale et comment nous en sommes arrivés là. Nous explorerons les principes et les pratiques qui permettent de construire des logiciels à la fois **maintenables** et **évolutifs** (*scalable*).
 
 ---
 
@@ -102,6 +88,11 @@ La conception applicative n'est pas née de rien. Elle repose sur deux manifeste
 
 Au fond, la **conception applicative** n'est pas une théorie académique. C'est un ensemble de principes rodés sur le terrain et de choix stratégiques. En domptant la complexité, en tirant les leçons du passé et en nous engageant pour la qualité, nous pouvons bâtir des logiciels qui ne se contentent pas de fonctionner aujourd'hui, mais qui s'épanouissent demain.
 
-Dans le premier chapitre, nous plongerons au cœur de l'un des concepts les plus critiques : les dépendances. Nous verrons comment les gérer pour garder votre code propre, testable et résilient. Allons-y.
+---
 
-[Article Suivant](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
+### Lire la suite dans cette série
+
+1.  **Conception applicative: bâtir des logiciels conçus pour durer**
+2.  [Conception applicative: maîtriser le flux des dépendances](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
+3.  [Conception applicative: séparer le métier de la technique](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
+4.  [Conception applicative: un voyage au cœur de la clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)

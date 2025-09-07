@@ -1,17 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# L'intelligence appliquée au cœur de votre quotidien
-
----
-
-**📚 Sommaire–Série IA**
-
-1. [**Naviguer la révolution de l'IA :**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution/fr) _Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession._
-2. [**Intelligence appliquée :**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work/fr) _Guide pratique pour utiliser les outils d'IA, adapter son état d'esprit et prospérer à l'ère de l'automatisation._
-3. [**Architectes de l'inversion – L'effondrement de l'exécution :**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution/fr) _Explorer comment l'IA redéfinit la valeur, fait s'effondrer les coûts d'exécution et déplace la valeur humaine vers les idées et la vision stratégique._
-4. [**Architectes de l'inversion – Le monde d'après :**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse/fr) _Une exploration en profondeur de la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme même de la civilisation._
-
----
+# **Intelligence abondante: un manuel pratique**
 
 L'intelligence artificielle a quitté les pages de la science-fiction pour s'ancrer dans notre manière de vivre, de travailler et de penser. En tant que développeur, l'adaptation rapide aux avancées technologiques fait partie intégrante de mon métier. Des outils considérés à la pointe il y a cinq ans sont parfois déjà obsolètes. **Pourtant, une nouvelle réalité s'impose: cette mutation fulgurante ne se cantonne plus au monde des experts de la tech. Elle nous concerne tous.**
 
@@ -128,4 +117,15 @@ Commencez dès maintenant à construire votre flux de travail assisté par l'IA.
 
 Avec un nouvel état d'esprit, de l'expérimentation et une délégation réfléchie, **l'intelligence artificielle ne menacera pas votre réussite: elle deviendra votre plus grande alliée.**
 
-[**Lire l'article suivant**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution/fr)
+---
+
+### **Explorer la série**
+
+- [**Intelligence abondante: un guide pour la révolution**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution/fr)
+  _Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession._
+
+- [**Intelligence abondante: quand l'exécution s'effondre**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution/fr)
+  _Explorer comment l'IA redéfinit la valeur, effondre les coûts d'exécution et déplace la valeur humaine vers les idées et la direction._
+
+- [**Intelligence abondante: la vie après l'effondrement**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse/fr)
+  _Une immersion profonde dans la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme de la civilisation._

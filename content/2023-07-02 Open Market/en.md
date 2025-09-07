@@ -58,8 +58,7 @@ Think of walking into a shop where the owner knows your name and can recommend t
 
 ### 3. Build trust with open technology
 
-![Postal boxes](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ntEGSgaBWfjYyxjecvWzcQ.jpeg)
-_Photo by [Yannik Mika](https://unsplash.com/@yannikm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/postal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)_
+![](assets/handshake.jpg)
 
 So, how do you do all this without becoming just another middleman? The answer could lie in open protocols and blockchain. These technologies would allow us to **streamline and automate** interactions that normally require a central authority—things like delivery tracking, warranties, and insurance. Many of these could be handled by transparent, automated smart contracts, cutting out the need for a central arbiter.
 

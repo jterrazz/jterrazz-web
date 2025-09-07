@@ -1,17 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **Navigating the AI revolution**
-
----
-
-**📚 Table of Contents–AI Series**
-
-1. [**Navigating the AI revolution:**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution) _Understanding how AI is transforming work, creativity, and the future of every profession._
-2. [**Applied intelligence:**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work) _A practical guide to using AI tools, adapting your mindset, and thriving in the age of automation._
-3. [**Architects of inversion – The collapse of execution:**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution) _Exploring how AI is reshaping value, collapsing execution costs, and shifting human worth to ideas and direction._
-4. [**Architects of inversion – The world that follows:**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse) _A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization._
-
----
+# **Abundant intelligence: a guide to the revolution**
 
 Artificial intelligence isn't just a buzzword; it's a force reshaping our lives, from our jobs to our daily routines. As someone who works with this technology every day, I've had a front-row seat to its explosive growth and transformative power. This article is my attempt to cut through the noise—to offer a **clear message**, a simple look at what's unfolding, and a **hopeful guide** to help you prepare. Let's dive in.
 
@@ -94,8 +83,17 @@ We are rapidly entering an era where technical proficiency alone is no longer en
 
 As AI handles more of the cognitive tasks we traditionally found rewarding, human fulfillment may increasingly flow from **tangible, hands-on, and deeply creative work**. This profound change is not just a professional realignment—it's an opportunity to rediscover the very essence of what makes work meaningful.
 
-## Next
+We are at a pivotal moment. The AI revolution is not a distant event but a present-day reality unfolding at an exponential pace. Embracing this change requires a shift in mindset—from viewing AI as a threat to seeing it as a powerful collaborator. By investing in adaptability, focusing on uniquely human skills like strategy and creativity, and learning to work alongside these intelligent systems, we can not only navigate this new landscape but also shape it. The future of work is not about replacement, but about redefinition. The journey starts now.
 
-In the next article, we'll explore practical, real-world examples of how AI is changing work. I'll share how I use AI to save time, work smarter, and bring new ideas to life—all explained in a simple, accessible way, no matter your profession.
+---
 
-[**Read next article**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work)
+### **Explore the series**
+
+- [**Abundant intelligence: a practical playbook**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work)
+  _A practical guide to using AI tools, adapting your mindset, and thriving in the age of automation._
+
+- [**Abundant intelligence: when execution collapses**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution)
+  _Exploring how AI is reshaping value, collapsing execution costs, and shifting human worth to ideas and direction._
+
+- [**Abundant intelligence: life after the collapse**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse)
+  _A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization._

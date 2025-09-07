@@ -58,8 +58,7 @@ Pensez à cette boutique où le propriétaire vous salue par votre nom et sait v
 
 ### 3. Bâtir la confiance sur des technologies ouvertes
 
-![Boîtes aux lettres](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ntEGSgaBWfjYyxjecvWzcQ.jpeg)
-_Photo par [Yannik Mika](https://unsplash.com/@yannikm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) sur [Unsplash](https://unsplash.com/s/photos/postal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)_
+![](assets/handshake.jpg)
 
 Alors, comment accomplir tout cela sans devenir un énième intermédiaire? La réponse pourrait bien résider dans les protocoles ouverts et la blockchain. Ces technologies nous permettraient de **rationaliser et d'automatiser** des interactions qui requièrent d'ordinaire une autorité centrale—comme le suivi des livraisons, les garanties ou les assurances. Nombre de ces processus pourraient être gérés par des contrats transparents et décentralisés.
 

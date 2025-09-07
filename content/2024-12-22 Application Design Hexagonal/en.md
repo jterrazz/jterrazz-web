@@ -1,26 +1,12 @@
 ![](assets/thumbnail.jpg)
 
-# Application design, separating business logic from the tech
+# Application design: separating business from technology
 
 ## Structuring your code
 
 So, how do you organize a project? It's one of the most fundamental questions we face as developers. Get it right, and your application can grow and adapt for years. Get it wrong, and you're signing up for a world of pain.
 
 In this chapter, I'll walk you through the evolution of how we structure code. We'll start with the classic approaches, see where they fall short, and then dive into a much better way of thinking: **hexagonal architecture**. It's a game-changer for isolating what your application *does* from the technology it *uses*.
-
-**Navigation 📚**
-
-1. [**Introduction: Application design, the art of building sustainable and scalable software**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
-		*The basics to understand the stakes and objectives of good architecture.*
-
-2. [**Chapter 1: The concept of dependencies**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
-		*Exploring relationships between components, the importance of dependencies, and principles like SOLID.*
-
-3. [**Chapter 2: Understanding business and technical architectures**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
-		*How to isolate business logic from technical concerns using ports and adapters.*
-
-4. [**Chapter 3: Clean architecture**](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)
-		*Discovering an approach focused on business with a clear layered structure.*
 
 ---
 
@@ -269,10 +255,13 @@ Each piece can be tested independently. No more fragile, end-to-end tests that f
 
 ---
 
-Hexagonal architecture is a massive step up from simple layering. It forces you to put your business logic first and to treat technology as a detail.
+Hexagonal architecture is a massive step up from simple layering. It forces you to put your business logic first and to treat technology as a detail. By isolating the core domain, you build systems that are more testable, flexible, and resilient to technological change. It’s a powerful pattern for creating software that lasts.
 
-But it's not the final destination. **Clean Architecture**, popularized by Robert C. Martin (Uncle Bob), takes these ideas even further. It provides a more structured set of rules for layering and dependencies, creating an even stronger separation of concerns.
+---
 
-In the next chapter, we'll dive into Clean Architecture. You'll see how it builds on the foundation of Hexagonal to give you a powerful and scalable way to structure any application.
+### Read more in this series
 
-[Next Article](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)
+1.  [Application design: building software that lasts](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
+2.  [Application design: mastering the flow of dependencies](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
+3.  **Application design: separating business from technology**
+4.  [Application design: a journey into clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)

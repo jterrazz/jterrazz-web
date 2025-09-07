@@ -1,26 +1,12 @@
 ![](assets/thumbnail.jpg)
 
-# Conception d'applications, au cœur de la Clean Architecture
+# Conception applicative: un voyage au cœur de la clean architecture
 
 ## Pour aller à l'essentiel
 
 Voici la grande idée qui a transformé ma façon de concevoir des logiciels: votre architecture n'a que faire de votre base de données. Elle se moque de votre framework web. Elle ignore votre interface utilisateur. Sa seule et unique préoccupation doit être ce que votre application *fait réellement*.
 
-Telle est la philosophie qui sous-tend la **Clean Architecture**. C'est une manière de construire des logiciels qui place vos **cas d'utilisation** (*use cases*)—la véritable valeur métier—au centre absolu de tout. Le reste n'est qu'un détail. Il s'agit d'une évolution puissante des concepts de l'Architecture Hexagonale, mais avec des règles plus strictes qui confèrent encore plus de clarté et de maîtrise.
-
-**Sommaire 📚**
-
-1. [**Introduction : La conception d'applications, l'art de bâtir des logiciels durables et évolutifs**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
-    *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
-
-2. [**Chapitre 1 : Le concept de dépendances**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
-    *Explorez les relations entre composants, l'importance des dépendances et les principes comme SOLID.*
-
-3. [**Chapitre 2 : Comprendre les architectures métier et technique**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
-    *Comment isoler la logique métier des préoccupations techniques à l'aide de ports et d'adaptateurs.*
-
-4. [**Chapitre 3 : La Clean Architecture**](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)
-    *Découvrez une approche centrée sur le métier avec une structure en couches claire.*
+Telle est la philosophie qui sous-tend la **Clean Architecture**. C'est une manière de construire des logiciels qui place vos **cas d'utilisation** (*use cases*)—la véritable valeur métier—au centre absolu de tout. Le reste n'est qu'un détail, menant à un système testable, maintenable, et indépendant de ses aspects techniques.
 
 ---
 
@@ -363,10 +349,19 @@ Ce test est d'une rapidité fulgurante. Il s'exécute en mémoire. Il n'a besoin
 
 # Conclusion: construire pour le métier, pas pour la technologie
 
-Nous avons parcouru un long chemin, des dépendances de base à l'Architecture Hexagonale, pour aboutir à la structure disciplinée de la Clean Architecture. La leçon à retenir est toujours la même: **donnez la priorité à votre logique métier.**
+La leçon de la Clean Architecture est simple mais profonde: **donnez la priorité à votre logique métier.**
 
 Les frameworks changeront. Les bases de données seront remplacées. Les interfaces utilisateur seront redessinées. Mais ce sont vos règles métier fondamentales qui constituent sa valeur durable. La Clean Architecture n'est pas seulement un patron de conception; c'est une philosophie qui vous contraint à protéger cette valeur.
 
 Elle exige de la discipline et un peu plus de réflexion en amont, mais la récompense est un système testable, maintenable, flexible et compréhensible. Vous bâtissez un système capable d'évoluer avec le métier, et non un système qui le freine.
 
-Merci de m'avoir accompagné dans cette exploration. À vous de jouer maintenant, et de construire quelque chose d'exceptionnel. 🚀
+À vous de jouer maintenant, et de construire quelque chose d'exceptionnel. 🚀
+
+---
+
+### Lire la suite dans cette série
+
+1.  [Conception applicative: bâtir des logiciels conçus pour durer](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
+2.  [Conception applicative: maîtriser le flux des dépendances](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
+3.  [Conception applicative: séparer le métier de la technique](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
+4.  **Conception applicative: un voyage au cœur de la clean architecture**

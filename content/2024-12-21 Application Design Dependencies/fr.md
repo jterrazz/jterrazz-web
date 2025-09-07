@@ -1,26 +1,12 @@
 ![](assets/thumbnail.jpg)
 
-# Conception d'applications, plongeons au cœur des dépendances
+# Conception applicative: maîtriser le flux des dépendances
 
 ## Les liens qui tissent votre code
 
 Les dépendances sont les fils invisibles qui tissent la toile de votre application. Chaque morceau de code qui en appelle un autre crée une dépendance. Pour moi, la compréhension de ces connexions est la compétence la plus fondamentale en architecture logicielle. Maîtrisez-la, et vous pourrez tout construire. Ignorez-la, et ce sont des lendemains cauchemardesques que vous préparez.
 
 Car c'est bien cette maîtrise qui nous permet de bâtir des logiciels flexibles, simples à tester et prêts à évoluer.
-
-**Navigation 📚**
-
-1. [**Introduction : La conception d'applications, l'art de bâtir des logiciels durables et évolutifs**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
-    *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
-
-2. [**Chapitre 1 : Le concept de dépendances**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
-    *Explorez les relations entre composants, l'importance des dépendances et les principes comme SOLID.*
-
-3. [**Chapitre 2 : Comprendre les architectures métier et technique**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
-    *Comment isoler la logique métier des préoccupations techniques à l'aide de ports et d'adaptateurs.*
-
-4. [**Chapitre 3 : La Clean Architecture**](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)
-    *Découvrez une approche centrée sur le métier avec une structure en couches claire.*
 
 ---
 
@@ -194,8 +180,13 @@ class HelloService {
 
 ---
 
-Au final, prendre le contrôle de ses dépendances change la donne. Lorsque vous apprenez à maîtriser leur flux, à appliquer des principes comme le DIP et à exploiter des patterns comme l'IoC, vous pouvez bâtir des systèmes robustes, testables et prêts à évoluer face à l'imprévu.
+Au final, prendre le contrôle de ses dépendances change la donne. Lorsque vous apprenez à maîtriser leur flux, à appliquer des principes comme le DIP et à exploiter des patterns comme l'IoC, vous pouvez bâtir des systèmes robustes, testables et prêts à évoluer face à l'imprévu. Comprendre ces principes est le fondement de la construction d'architectures logicielles avancées.
 
-Dans notre prochain chapitre, nous verrons comment ces concepts s'articulent au sein d'une architecture complète, comme l'architecture hexagonale.
+---
 
-[Article Suivant](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
+### Lire la suite dans cette série
+
+1.  [Conception applicative: bâtir des logiciels conçus pour durer](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
+2.  **Conception applicative: maîtriser le flux des dépendances**
+3.  [Conception applicative: séparer le métier de la technique](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
+4.  [Conception applicative: un voyage au cœur de la clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)

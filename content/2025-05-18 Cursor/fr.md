@@ -145,12 +145,3 @@ Vous êtes le **médiateur** indispensable entre un besoin du monde réel et l'i
 L'expérience par défaut de Cursor est stupéfiante. Mais elle devient un super-pouvoir lorsque vous l'adaptez à vos besoins et vous concentrez sur ce qui compte vraiment. Pour moi, cela signifie construire de grandes choses, plus rapidement, en mettant l'accent sur l'exploration, la recherche, les commits, les revues de code et des tests en béton.
 
 Cursor n'est pas un outil de plus. C'est un partenaire. Et lorsque vous le guidez avec soin, il élèvera votre travail à un niveau que vous n'imaginiez pas.
-
----
-
-## 📚 Série sur l'IA
-
-1. [**Naviguer la révolution de l'IA :**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution/fr) *Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession.*
-2. [**Intelligence appliquée :**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work/fr) *Guide pratique pour utiliser les outils d'IA, adapter son état d'esprit et prospérer à l'ère de l'automatisation.*
-3. [**Architectes de l'inversion – L'effondrement de l'exécution :**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution/fr) *Explorer comment l'IA redéfinit la valeur, fait s'effondrer les coûts d'exécution et déplace la valeur humaine vers les idées et la vision stratégique.*
-4. [**Architectes de l'inversion – Le monde d'après :**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse/fr) *Une exploration en profondeur de la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme même de la civilisation.*

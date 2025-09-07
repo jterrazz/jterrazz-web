@@ -8,20 +8,6 @@ Dependencies are the invisible threads holding your entire application together.
 
 Mastering dependencies is what allows us to build software that is flexible, easy to test, and ready to scale.
 
-**Navigation 📚**
-
-1. [**Introduction: Application design, the art of building sustainable and scalable software**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
-		*The basics to understand the stakes and objectives of good architecture.*
-
-2. [**Chapter 1: The concept of dependencies**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
-		*Exploring relationships between components, the importance of dependencies, and principles like SOLID.*
-
-3. [**Chapter 2: Understanding business and technical architectures**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
-		*How to isolate business logic from technical concerns using ports and adapters.*
-
-4. [**Chapter 3: Clean architecture**](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)
-		*Discovering an approach focused on business with a clear layered structure.*
-
 ---
 
 # So what *is* a dependency?
@@ -194,8 +180,13 @@ class HelloService {
 
 ---
 
-Getting a handle on dependencies is a game-changer. When you learn to control this flow, apply principles like DIP, and use patterns like IoC, you start building systems that are robust, testable, and ready for whatever the future throws at them.
+Getting a handle on dependencies is a game-changer. When you learn to control this flow, apply principles like DIP, and use patterns like IoC, you start building systems that are robust, testable, and ready for whatever the future throws at them. Understanding these principles is the foundation for building advanced software architectures.
 
-Next, we'll look at how these ideas come together in a full-blown architecture, like the hexagonal architecture.
+---
 
-[Next Article](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
+### Read more in this series
+
+1.  [Application design: building software that lasts](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
+2.  **Application design: mastering the flow of dependencies**
+3.  [Application design: separating business from technology](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
+4.  [Application design: a journey into clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)

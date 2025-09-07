@@ -1,17 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **Naviguer la révolution de l'IA**
-
----
-
-**📚 Table des matières–Série sur l'IA**
-
-1. [**Naviguer la révolution de l'IA :**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution/fr) _Comprendre comment l'IA transforme le travail, la créativité et l'avenir de chaque profession._
-2. [**Intelligence appliquée :**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work/fr) _Guide pratique pour utiliser les outils d'IA, adapter son état d'esprit et prospérer à l'ère de l'automatisation._
-3. [**Architectes de l'inversion – L'effondrement de l'exécution :**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution/fr) _Explorer comment l'IA redéfinit la valeur, fait s'effondrer les coûts d'exécution et déplace la valeur humaine vers les idées et la vision stratégique._
-4. [**Architectes de l'inversion – Le monde d'après :**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse/fr) _Une exploration en profondeur de la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme même de la civilisation._
-
----
+# **Intelligence abondante: un guide pour la révolution**
 
 L'intelligence artificielle n'est pas qu'une _expression à la mode_; c'est une **force puissante** qui refaçonne déjà des pans entiers de nos vies, de notre _travail_ à nos _habitudes quotidiennes_. Travaillant au cœur de la technologie et utilisant l'IA au quotidien, je suis aux premières loges pour constater la vitesse vertigineuse de son évolution et l'ampleur de ses transformations. Cet article se veut un **message limpide**, un regard sans fard sur les événements actuels, et un **guide optimiste** pour vous aider à comprendre et à vous préparer. Entrons dans le vif du sujet.
 
@@ -93,8 +82,17 @@ Nous entrons à grands pas dans une ère où la simple maîtrise technique ne su
 
 Alors que l'IA prend en charge un nombre croissant de tâches cognitives autrefois jugées gratifiantes, l'épanouissement humain pourrait de plus en plus provenir de **missions tangibles, manuelles et profondément créatives**. Ce changement profond n'est pas un simple réajustement professionnel; c'est une occasion de renouer avec l'essence même du travail qui fait sens.
 
-## Prochaine étape
+Nous sommes à un moment charnière. La révolution de l'IA n'est pas un événement lointain, mais une réalité qui se déploie à un rythme exponentiel. Pour y faire face, il faut changer d'état d'esprit: cesser de voir l'IA comme une menace et la considérer comme une puissante collaboratrice. En misant sur l'adaptabilité, en cultivant des compétences humaines uniques comme la stratégie et la créativité, et en apprenant à travailler avec ces systèmes intelligents, nous pouvons non seulement naviguer dans ce nouveau paysage, mais aussi le façonner. L'avenir du travail ne réside pas dans le remplacement, mais dans la redéfinition. L'aventure commence maintenant.
 
-Dans le prochain article, nous examinerons des exemples concrets qui illustrent, de manière simple et claire, comment l'IA transforme le travail. Je vous montrerai comment j'utilise l'IA pour gagner du temps, travailler plus intelligemment et donner vie à de nouvelles idées. Le tout, expliqué de façon accessible à tous, quel que soit votre métier.
+---
 
-[**Lire l'article suivant**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work/fr)
+### **Explorer la série**
+
+- [**Intelligence abondante: un manuel pratique**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work/fr)
+  _Un guide pratique pour utiliser les outils d'IA, adapter votre état d'esprit et prospérer à l'ère de l'automatisation._
+
+- [**Intelligence abondante: quand l'exécution s'effondre**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution/fr)
+  _Explorer comment l'IA redéfinit la valeur, effondre les coûts d'exécution et déplace la valeur humaine vers les idées et la direction._
+
+- [**Intelligence abondante: la vie après l'effondrement**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse/fr)
+  _Une immersion profonde dans la manière dont l'intelligence abondante transforme le travail, la société, l'espace et la forme de la civilisation._

@@ -1,26 +1,12 @@
 ![](assets/thumbnail.jpg)
 
-# Application design, let's talk clean architecture
+# Application design: a journey into clean architecture
 
 ## Getting to the heart of what matters
 
 Here's the big idea that changed how I build software: your architecture shouldn't care about your database. It shouldn't care about your web framework. It shouldn't care about your UI. The only thing it should care about is what your application *actually does*.
 
-This is the philosophy behind **Clean Architecture**. It's a design approach that places your **use cases**—the real business value—at the very heart of your system. Everything else is just a detail. It's a powerful evolution of the ideas we saw in Hexagonal Architecture, but with stricter rules that yield even greater clarity and power.
-
-**Navigation 📚**
-
-1. [**Introduction: Application design, the art of building sustainable and scalable software**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
-		*The basics to understand the stakes and objectives of good architecture.*
-
-2. [**Chapter 1: The concept of dependencies**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
-		*Exploring relationships between components, the importance of dependencies, and principles like SOLID.*
-
-3. [**Chapter 2: Understanding business and technical architectures**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
-		*How to isolate business logic from technical concerns using ports and adapters.*
-
-4. [**Chapter 3: Clean architecture**](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)
-		*Discovering an approach focused on business with a clear layered structure.*
+This is the philosophy behind **Clean Architecture**. It's a design approach that places your **use cases**—the real business value—at the very heart of your system. Everything else is just a detail, leading to a system that is testable, maintainable, and independent of its technical plumbing.
 
 ---
 
@@ -363,10 +349,19 @@ This test is lightning-fast. It runs in memory. It doesn't need a database or a 
 
 # Conclusion: build for the business, not the tech
 
-We've traveled a long way, from basic dependencies to Hexagonal Architecture, and now to the disciplined structure of Clean Architecture. The lesson through it all remains the same: **put your business logic first.**
+The lesson behind Clean Architecture is simple but profound: **put your business logic first.**
 
 Frameworks will change. Databases will be replaced. User interfaces will be redesigned. But your core business rules are what provide lasting value. Clean Architecture isn't just a pattern; it's a philosophy that forces you to protect that value.
 
 It demands discipline and a bit more thought upfront, but the reward is a system that is testable, maintainable, flexible, and understandable—one that can evolve *with* the business, not hold it back.
 
-Thank you for joining me on this journey. Now go build something great. 🚀
+Now go build something great. 🚀
+
+---
+
+### Read more in this series
+
+1.  [Application design: building software that lasts](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
+2.  [Application design: mastering the flow of dependencies](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
+3.  [Application design: separating business from technology](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
+4.  **Application design: a journey into clean architecture**

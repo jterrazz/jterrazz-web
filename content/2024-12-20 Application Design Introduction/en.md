@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Application design, building software that lasts
+# Application design: building software that lasts
 
 ## About software architecture
 
@@ -10,21 +10,7 @@ For me, software architecture isn't just a technical diagram. It's the set of cr
 
 These choices are the invisible scaffolding of your software. Get them right, and you create something that can grow, adapt, and stay healthy for years. Get them wrong, and you're just building technical debt. This is what **application design** is all about: the pragmatic art of building software that's meant to last.
 
-In this series, I'll break down what application design truly means, why it's so critical, and how we arrived at today's best practices. We'll explore the principles that empower you to build software that is both **maintainable** and **scalable**.
-
-**Navigation 📚**
-
-1. [**Introduction: Application design, the art of building sustainable and scalable software**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
-		*The basics to understand the stakes and objectives of good architecture.*
-
-2. [**Chapter 1: The concept of dependencies**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
-		*Exploring relationships between components, the importance of dependencies, and principles like SOLID.*
-
-3. [**Chapter 2: Understanding business and technical architectures**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
-		*How to isolate business logic from technical concerns using ports and adapters.*
-
-4. [**Chapter 3: Clean architecture**](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)
-		*Discovering an approach focused on business with a clear layered structure.*
+This article breaks down what application design truly means, why it's so critical, and how we arrived at today's best practices. We'll explore the principles that empower you to build software that is both **maintainable** and **scalable**.
 
 ---
 
@@ -102,6 +88,11 @@ Application design didn't appear out of thin air. It stands on the shoulders of 
 
 At its core, **application design** isn't an academic theory. It's a collection of battle-tested principles and strategic choices. By understanding complexity, learning from the past, and committing to quality, we can build software that doesn't just work today but thrives tomorrow.
 
-In the first chapter, we'll dive into one of the most critical concepts of all: dependencies. We'll explore how to manage them to keep your code clean, testable, and resilient. Let's begin.
+---
 
-[Next Article](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
+### Read more in this series
+
+1.  **Application design: building software that lasts**
+2.  [Application design: mastering the flow of dependencies](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
+3.  [Application design: separating business from technology](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
+4.  [Application design: a journey into clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)

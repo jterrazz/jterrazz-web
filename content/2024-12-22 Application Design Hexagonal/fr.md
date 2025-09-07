@@ -1,26 +1,12 @@
 ![](assets/thumbnail.jpg)
 
-# Conception applicative, isoler la logique métier de la technologie
+# Conception applicative: séparer le métier de la technique
 
 ## Structurer son code
 
 Comment organiser concrètement un projet? C'est l'une des questions les plus fondamentales qui soient. Une bonne réponse, et votre application pourra évoluer et s'adapter pendant des années. Une mauvaise, et vous vous condamnez à un véritable calvaire.
 
-Dans ce chapitre, je vous propose d'explorer l'évolution de nos approches en matière de structuration du code. Nous commencerons par les modèles classiques, identifierons leurs limites, pour ensuite plonger dans une manière de penser bien plus puissante: **l'architecture hexagonale**. C'est une approche qui change radicalement la donne, en isolant ce que votre application *fait* de la technologie qu'elle *utilise*.
-
-**Navigation 📚**
-
-1. [**Introduction : La conception d'applications, l'art de bâtir des logiciels durables et évolutifs**](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
-    *Les bases pour comprendre les enjeux et les objectifs d'une bonne architecture.*
-
-2. [**Chapitre 1 : Le concept de dépendances**](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
-    *Explorez les relations entre composants, l'importance des dépendances et les principes comme SOLID.*
-
-3. [**Chapitre 2 : Comprendre les architectures métier et technique**](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
-    *Comment isoler la logique métier des préoccupations techniques à l'aide de ports et d'adaptateurs.*
-
-4. [**Chapitre 3 : La Clean Architecture**](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)
-    *Découvrez une approche centrée sur le métier avec une structure en couches claire.*
+Dans cet article, je vous propose d'explorer l'évolution de nos approches en matière de structuration du code. Nous commencerons par les modèles classiques, identifierons leurs limites, pour ensuite plonger dans une manière de penser bien plus puissante: **l'architecture hexagonale**. C'est une approche qui change radicalement la donne, en isolant ce que votre application *fait* de la technologie qu'elle *utilise*.
 
 ---
 
@@ -269,10 +255,13 @@ Chaque pièce du puzzle peut être testée indépendamment. Fini les tests de bo
 
 ---
 
-L'architecture hexagonale représente une avancée majeure par rapport à la simple architecture en couches. Elle vous force à placer votre logique métier au premier plan et à traiter la technologie comme un simple détail d'implémentation.
+L'architecture hexagonale représente une avancée majeure par rapport à la simple architecture en couches. Elle vous force à placer votre logique métier au premier plan et à traiter la technologie comme un simple détail d'implémentation. En isolant le cœur du domaine, vous construisez des systèmes plus testables, plus flexibles et plus résilients face aux changements technologiques. C'est un modèle puissant pour créer des logiciels qui durent.
 
-Mais l'aventure ne s'arrête pas là. La **Clean Architecture**, popularisée par Robert C. Martin (Uncle Bob), pousse ces idées encore plus loin. Elle fournit un ensemble de règles plus structurées pour les couches et les dépendances, créant une séparation des préoccupations encore plus nette.
+---
 
-Dans le prochain chapitre, nous nous plongerons dans la Clean Architecture. Vous verrez comment elle s'appuie sur les fondations de l'hexagonale pour vous offrir un moyen puissant et évolutif de structurer n'importe quelle application. C'est parti!
+### Lire la suite dans cette série
 
-[Article suivant](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)
+1.  [Conception applicative: bâtir des logiciels conçus pour durer](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
+2.  [Conception applicative: maîtriser le flux des dépendances](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
+3.  **Conception applicative: séparer le métier de la technique**
+4.  [Conception applicative: un voyage au cœur de la clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)

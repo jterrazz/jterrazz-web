@@ -1,15 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **Architects of Inversion, the collapse of execution**
-
----
-
-**📚 Table of contents—AI series**
-
-1. [**Navigating the AI revolution:**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution) _Understanding how AI is transforming work, creativity, and the future of every profession._
-2. [**Applied intelligence:**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work) _A practical guide to using AI tools, adapting your mindset, and thriving in the age of automation._
-3. [**Architects of inversion – The collapse of execution:**](https://www.jterrazz.com/articles/16-ai-series-2-the-collapse-of-execution) _Exploring how AI is reshaping value, collapsing execution costs, and shifting human worth to ideas and direction._
-4. [**Architects of inversion – The world that follows:**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse) _A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization._
+# **Abundant intelligence: when execution collapses**
 
 ---
 
@@ -33,7 +24,7 @@ The term arose because AI isn't just automating tasks; it's flipping value hiera
 
 ### **An essay, not a roadmap**
 
-This is a work of speculation and synthesis, weaving today's examples with projections for tomorrow. Some ideas may feel like science fiction, others uncannily familiar. Exponential change means the journey from "impossible" to "mainstream" can happen in years, not decades. We'll start with the current shifts—the inversion of digital work, the crumbling of execution barriers, the democratization of intelligence—then look further, to the transformations in community, creativity, and more that await in a world of near-infinite intelligence. Faced with such change, we can retreat or lean in. This series embraces possibility with **techno-optimism rooted in observable reality.** Welcome to the inverted world.
+This is a work of speculation and synthesis, weaving today's examples with projections for tomorrow. Some ideas may feel like science fiction, others uncannily familiar. Exponential change means the journey from "impossible" to "mainstream" can happen in years, not decades. We'll start with the current shifts—the inversion of digital work, the crumbling of execution barriers, the democratization of intelligence—then look further, to the transformations in community, creativity, and more that await in a world of near-infinite intelligence. Faced with such change, we can retreat or lean in. This article embraces possibility with **techno-optimism rooted in observable reality.** Welcome to the inverted world.
 
 ---
 
@@ -139,8 +130,17 @@ The old questions—"How do I do this? Who can help me?"—are being superseded 
 
 We are all architects now. Not just of buildings, but of understanding, of values, of the futures we dare to imagine.
 
-**The second half of this journey, "The World That Follows," begins where many AI narratives stop**: delving into the tangible physical world, our social fabric, and the very shape of our civilization. What happens when AI integrates deeply into our cities, our governance, our rituals, and our relationships? That is what we explore next.
-
 The intelligence is here. Now comes the architecture.
 
-[**Read the next article**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse)
+---
+
+### **Explore the series**
+
+- [**Abundant intelligence: a guide to the revolution**](https://www.jterrazz.com/articles/14-ai-series-0-navigating-the-ai-revolution)
+  _Understanding how AI is transforming work, creativity, and the future of every profession._
+
+- [**Abundant intelligence: a practical playbook**](https://www.jterrazz.com/articles/15-ai-series-1-applied-intelligence-for-everyday-work)
+  _A practical guide to using AI tools, adapting your mindset, and thriving in the age of automation._
+
+- [**Abundant intelligence: life after the collapse**](https://www.jterrazz.com/articles/17-ai-series-3-life-after-the-execution-collapse)
+  _A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization._
