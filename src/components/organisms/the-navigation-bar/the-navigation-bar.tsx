@@ -190,7 +190,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                         >
                             <Image
                                 alt="Jterrazz"
-                                className="mr-3"
+                                className="mr-3 rounded-md"
                                 height={36}
                                 src="/assets/icons/app-icon.jterrazz.png"
                                 width={36}

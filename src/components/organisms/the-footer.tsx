@@ -26,16 +26,16 @@ type TheFooterProps = {
 export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
     const applications = [
         {
-            description: 'Web Portfolio',
+            description: 'Gallery',
             href: 'https://jterrazz.com',
             imageSrc: '/assets/icons/app-icon.jterrazz.png',
             title: 'Jterrazz',
         },
         {
-            description: 'Mobile App',
+            description: 'Application',
             href: 'https://jterrazz.com/link/applications/fake-news',
             imageSrc: '/assets/icons/app-icon.fake-news.jpg', // TODO Use repository
-            title: 'Fake News',
+            title: 'News',
         },
     ];
 
