@@ -9,7 +9,7 @@ export type HeadingMainProps = {
 };
 
 export const HeadingMain: React.FC<HeadingMainProps> = ({ children, className = '' }) => {
-    const generatedClassName = cn('text-4xl font-black mb-6 tracking-wide', className);
+    const generatedClassName = cn('text-4xl font-black mb-4 tracking-tight', className);
 
     return <h1 className={generatedClassName}>{children}</h1>;
 };

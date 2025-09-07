@@ -4,7 +4,7 @@ const config: Config = {
     content: ['./src/**/*.{jsx,tsx}'],
     darkMode: ['class'],
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    plugins: [require('tailwindcss-animate')],
+    plugins: [require('tailwindcss-animate'), require('@tailwindcss/line-clamp')],
     theme: {
         extend: {
             backgroundImage: {
