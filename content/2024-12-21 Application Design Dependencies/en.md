@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Application design, let's talk about dependencies
+# Application design: mastering the flow of dependencies
 
 ## How your code is connected
 
