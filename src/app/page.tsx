@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     alternates: {
         canonical: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
     },
-    description: 'Beta-testing tomorrow - AI, Apps, Learn. Let’s build the future together.',
+    description: 'Engineering tomorrow\'s intelligent systems with AI agents, clean architecture, and decentralized solutions. Building where execution meets direction.',
     keywords: [
         'Jean-Baptiste Terrazzoni',
         'AI Agent Developer',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     ],
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'),
     openGraph: {
-        description: 'Beta-testing tomorrow - AI, Apps, Learn. Let’s build the future together.',
+        description: 'Engineering tomorrow\'s intelligent systems with AI agents, clean architecture, and decentralized solutions. Building where execution meets direction.',
         images: [
             {
                 alt: 'Jean-Baptiste Terrazzoni - Developer Portfolio',
@@ -62,7 +62,7 @@ export default async function HomePage() {
     const articlesRepository = new ArticleInMemoryRepository();
     const userExperiences: UserExperience[] = userRepository.getExperiences();
     const topArticles: Article[] = await articlesRepository.getArticles();
-    const description = 'Beta-testing tomorrow - AI, Apps, Learn. Let’s build the future together.';
+    const description = 'Engineering tomorrow\'s intelligent systems with AI agents, clean architecture, and decentralized solutions. Building where execution meets direction.';
 
     // Structured data for better SEO
     const jsonLd = {
@@ -76,7 +76,7 @@ export default async function HomePage() {
         hasOccupation: {
             '@type': 'Occupation',
             description:
-                'Beta-testing tomorrow - AI, Apps, Learn. Let’s build the future together.',
+                'Engineering tomorrow\'s intelligent systems with AI agents, clean architecture, and decentralized solutions. Building where execution meets direction.',
             name: 'Software Developer',
         },
         image: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/assets/images/footer.jpg`,
