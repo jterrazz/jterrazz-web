@@ -1,147 +1,181 @@
 ![](assets/thumbnail.jpg)
 
-# Cursor, mon guide pratique du développement assisté par l'IA
+# Cursor : le développement assisté par l'ia
 
-**Notre manière de concevoir des logiciels connaît une transformation radicale. L'IA n'est plus un simple gadget; c'est un outil sans lequel je ne pourrais plus coder. Je baigne dans l'univers du développement assisté par l'IA depuis un certain temps, et un outil a complètement bouleversé ma façon de travailler: Cursor. C'est bien plus qu'un éditeur de code: c'est l'avenir du développement qui prend forme.**
+Vous devez refactoriser votre système d'authentification pour supporter des fournisseurs OAuth. La tâche s'étend sur plusieurs fichiers : le service d'authentification, les `route handlers`, les migrations de base de données, la gestion de la configuration et les tests. Vous maîtrisez l'architecture, mais le travail mécanique — mettre à jour chaque fichier de manière cohérente, gérer les cas limites, s'assurer que les tests couvrent les changements — prendra des heures.
 
-Pendant des années, le débat s'est résumé à WebStorm contre VS Code, une quête sans fin de la configuration personnelle parfaite. Cursor change complètement la donne. Imaginez un environnement de code idéal, conçu pour vous par une équipe de cent experts mondiaux dotée d'un budget à neuf chiffres. Un environnement si intelligemment pensé qu'une IA est capable de saisir instantanément votre projet, vos objectifs, vos intentions. Voilà la promesse que Cursor tient, clés en main.
+L'approche traditionnelle : ouvrir chaque fichier, apporter les modifications, consulter d'autres fichiers pour garantir la cohérence, lancer les tests, déboguer les échecs, et répéter. Trois à quatre heures de travail concentré.
 
-La plupart des outils de codage par IA se heurtent aux mêmes écueils:
-- **Le contexte:** Comment nourrir l'IA avec les bonnes informations sur votre projet?
-- **Le timing:** Quand les lui transmettre?
-- **L'interface:** Comment interagir avec ses suggestions sans briser votre concentration?
-- **La puissance:** Utilisez-vous les modèles les plus récents et les plus performants?
-- **L'efficacité:** Comment gérer l'utilisation et les coûts sans même y penser?
+Avec Cursor : rédiger un test de haut niveau décrivant le nouveau flux OAuth. Dire à l'IA : « Fais passer ce test. Suis nos modèles d'authentification existants. » La regarder générer la migration, mettre à jour le service, modifier les routes et écrire des cas de test supplémentaires. Examiner les changements, demander des ajustements si nécessaire. Fusionner. Quarante-cinq minutes, dont la majeure partie a été consacrée à la revue plutôt qu'à la saisie.
 
-Cursor relève ces défis avec brio, en intégrant le tout dans une expérience unique, intelligente et intuitive. Il ne s'agit pas de taper du code plus vite. **Il s'agit de transformer votre rôle: passer du " dactylo du code " à l'" architecte logiciel ".** **Vous vous concentrez sur la vision et la qualité, pendant que l'IA se charge du gros œuvre.** Résultat des courses? Je suis plus productif, le code est plus propre, les conventions de nommage sont plus cohérentes et ma couverture de test est plus élevée, le tout avec une facilité déconcertante.
+C'est cette différence qui rend Cursor digne d'intérêt. Ce n'est pas une autocomplétion sous stéroïdes — c'est un éditeur conçu autour de la capacité de l'IA à comprendre l'intégralité de votre codebase et à exécuter des modifications complexes sur plusieurs fichiers, vous laissant vous concentrer sur l'architecture et la qualité.
 
-C'est comme avoir une équipe de développeurs seniors logée au cœur de votre éditeur. Une équipe qui requiert toujours des directives claires, surtout face à des idées complexes ou inédites, mais qui vous mène à bon port, bien plus vite. Je me surprends à écrire moins de code à la main pour passer plus de temps dans une boucle d'une simplicité désarmante: **" instruire -> valider "**.
+Ce guide explore ce que Cursor fait réellement, comment ses fonctionnalités se traduisent en workflows concrets, et où se situent ses limites.
 
-## Cas d'usage: comment il a transformé mon quotidien
-
-L'alchimie de Cursor opère dans cette collaboration fluide entre vous, l'IA et votre code. L'expérience utilisateur est si naturelle qu'elle devient le prolongement de vos pensées.
-
-### 1. Il connaît votre code, tout simplement
+## Le différenciateur clé : la compréhension du codebase
 
 ![](assets/indexing.jpg)
 
-C'est ce qui m'a immédiatement sidéré. Oubliez les copier-coller de code dans une fenêtre de chat séparée.
-- **Aucune configuration:** Ouvrez un projet, et Cursor commence son analyse.
-- **Indexation intelligente:** Il cartographie l'ensemble de votre base de code et en comprend toutes les connexions.
-- **Contexte autonome:** Il trouve ce dont il a besoin à travers les fichiers, lit n'importe quel document nécessaire et peut même exécuter des commandes (linters, tests) pour évaluer la situation. Vous pouvez littéralement lui dire: " Fais en sorte que `@montest.test.ts` passe ", et le regarder lancer le test, constater l'échec, trouver les bons imports et rédiger une proposition de correctif.
+Ce qui distingue Cursor des outils d'autocomplétion IA basiques, c'est la manière dont il appréhende l'ensemble de votre projet. Lorsque vous ouvrez un codebase, Cursor l'indexe automatiquement — cartographiant les relations entre les fichiers, suivant les imports, comprenant vos motifs architecturaux. Ce n'est pas une recherche intelligente ; il construit un modèle sémantique de la façon dont votre code s'articule.
 
-### 2. " Tab Tab Tab " sous stéroïdes
+L'impact pratique : vous pouvez référencer n'importe quel fichier, n'importe quelle fonction, n'importe quel concept de votre projet sans avoir à copier-coller du contexte. L'IA sait déjà comment fonctionne votre système d'authentification, à quoi ressemble le schéma de votre base de données, quels modèles de test vous suivez. Des requêtes comme « refactor the user service to match how we handle organization entities » fonctionnent parce que l'IA comprend les deux composants et leur relation.
 
-Pensez à GitHub Copilot, mais avec un turbocompresseur.
-- **Puissance prédictive:** Il ne se contente pas de compléter la ligne en cours; il anticipe souvent le bloc de code entier que vous aviez en tête.
+Cette conscience contextuelle s'étend au-delà du code statique. Cursor peut exécuter vos tests, analyser les échecs et proposer des correctifs qui tiennent compte de votre configuration spécifique. Il peut invoquer votre linter, comprendre les règles que vous avez configurées et appliquer des correctifs qui correspondent à votre style de code.
+
+## Des fonctionnalités adaptées aux workflows
+
+### Écrire du nouveau code : la complétion intelligente
 
 ![](assets/single-line.jpg)
 *Complétion sur une seule ligne*
 
 ![](assets/multi-line.jpg)
-*Complétions sur plusieurs lignes*
+*Complétion sur plusieurs lignes*
 
-- **Prédiction du curseur:** Il devine même où vous voudrez placer votre curseur ensuite. Une pression sur Tab, et vous y êtes.
-- **Magie en un clic:** Les tâches simples deviennent triviales. Cliquez sur un JSON en désordre, et il est instantanément formaté. D'un clic, il reformule un commentaire maladroit ou corrige une petite erreur.
+L'autocomplétion va au-delà de la prédiction du prochain token. Appuyez sur tabulation, et Cursor génère souvent le corps entier de la fonction, le cas de test ou le bloc de configuration que vous vous apprêtiez à écrire. Il prédit en se basant sur vos habitudes : si vous utilisez systématiquement async/await, il génère du code asynchrone ; si vous préférez la composition fonctionnelle, il suggère ce style.
+
+Prédiction du curseur : après avoir accepté une complétion, une nouvelle pression sur tabulation déplace souvent votre curseur au prochain point d'édition logique — le paramètre suivant, le cas de test suivant, le bloc similaire suivant qui nécessite une mise à jour.
+
+Suggestions en un clic : de petites améliorations de qualité apparaissent en ligne. Un commentaire verbeux se voit proposer une reformulation concise. Un nom de variable incohérent se voit offrir une meilleure option. Celles-ci ne sont pas intrusives — elles apparaissent lorsqu'elles sont utiles et disparaissent si elles sont ignorées.
 
 ![](assets/inline-predictions.jpg)
-*Modifications en un clic (un exemple simple, mais il gère des mises à jour complexes avec une aisance déconcertante)*
 
-### 3. Le chat intégré: votre partenaire de code
-
-![](assets/chat.jpg)
-*Demandez-lui n'importe quoi*
-
-Le chat n'est pas un simple bot; c'est un collaborateur qui connaît votre projet sur le bout des doigts.
-- **Un chat conscient du code:** Ses suggestions sont d'une pertinence redoutable car il comprend le contexte de votre travail.
-- **Références faciles avec `@`:** C'est un atout majeur. Tapez `@nomdefichier` ou `@symbole` pour indiquer à l'IA exactement où regarder. Fini l'ambiguïté.
-
-![](assets/include.jpg)
-*Référencez manuellement des fichiers avec @*
-
-- **Modifications ciblées:** Le bouton " Appliquer " est d'une intelligence rare. Il insère ou modifie le code précisément au bon endroit, même si cela concerne plusieurs fichiers ou des sections opposées d'un même document.
-
-![](assets/apply.jpg)
-*Appliquer le code automatiquement*
-
-- **Pouvoirs supplémentaires:** Vous pouvez lui fournir une image (comme une maquette d'interface) pour générer du code, ou lui donner un lien vers une issue GitHub ou une documentation, qu'il utilisera comme contexte. Il intègre même une connaissance native des frameworks populaires. Taper `@NextJs` importe la documentation officielle de Next.js directement dans votre chat.
-
-![](assets/context.jpg)
-*Une multitude de sources de contexte avec @ pour enrichir vos prompts*
-
-### 4. Modifier son code en langage naturel (Cmd+K / Ctrl+K)
-
-Cette fonctionnalité révolutionne le refactoring et les modifications rapides.
-- **Commandes en langage naturel:** Appuyez sur `Cmd+K` et dictez vos volontés. " Refactorise ceci en fonction asynchrone. " " Ajoute des commentaires JSDoc. " " Explique-moi cette regex. "
-- **Des diffs d'une clarté exemplaire:** Cursor vous montre les changements proposés avec une visualisation "diff" claire et nette. Vous pouvez examiner, accepter ou demander une révision en quelques secondes.
-- **Un génie dans le terminal:** `Cmd+K` dans le terminal vous permet d'écrire des commandes shell en langage naturel. " Trouve tous les fichiers de plus de 1 Mo et compresse-les en zip. " Et voilà.
+### Modifier du code existant : les éditions en ligne avec `Cmd+K`
 
 ![](assets/inline-diff.jpg)
-*Prompts et diffs de code, directement dans l'éditeur*
 
-### 5. Mode agent: lâcher la bride à l'IA
+Faites `Cmd+K` (ou `Ctrl+K`) sur n'importe quelle sélection et décrivez le changement en langage naturel :
+- « Refactor this to use async/await instead of promises »
+- « Add JSDoc comments with type annotations »
+- « Extract this logic into a separate helper function »
 
-Pour les tâches d'envergure, le mode agent donne à l'IA la liberté de réfléchir et d'agir par elle-même.
-- **Résolution de problèmes autonome:** L'agent décompose votre demande en un plan, explore la base de code, crée des fichiers, exécute des commandes et se corrige même en cas d'erreur.
-- **Correction automatique des erreurs de linter:** Il peut se connecter au linter de votre projet pour corriger automatiquement les avertissements et les erreurs selon vos règles.
-- **Il applique automatiquement les changements et vous présente un diff de type " pull request " directement dans votre IDE. Le résultat est bluffant. 😍**
+Cursor génère un diff montrant les changements proposés. Acceptez, rejetez ou affinez avec une instruction de suivi. Cela fonctionne sur plusieurs sélections simultanément — vous pouvez modifier dix fonctions similaires à la fois avec une seule instruction.
 
-*C'est devenu mon mode de prédilection pour 99 % de mes tâches.*
+Mode terminal : `Cmd+K` dans le terminal traduit l'anglais en commandes shell. « Find all TypeScript files modified in the last week » devient l'incantation `find` appropriée. Utile pour les commandes dont vous ne vous souvenez plus de la syntaxe exacte.
+
+### Comprendre le code : un chat avec du contexte
+
+![](assets/chat.jpg)
+
+Le panneau de chat fonctionne avec le contexte complet du codebase. Vous pouvez poser des questions d'architecture (« How does our caching layer work? »), de débogage (« Why would this function throw a timeout error? ») ou d'implémentation (« What's the right way to add a new API endpoint given our existing patterns? »).
+
+Le système de référence avec `@` rend cela précis :
+
+![](assets/include.jpg)
+
+- `@filename.ts` inclut un fichier spécifique
+- `@symbolName` référence une fonction ou une classe
+- `@foldername` inclut un répertoire entier
+- `@docs` inclut la documentation officielle des frameworks
+- `@web` effectue une recherche sur le web pour des informations actuelles
+- `@codebase` recherche dans l'ensemble de votre projet
+
+![](assets/context.jpg)
+
+Le bouton « Apply » insère le code généré par l'IA directement dans vos fichiers, gérant automatiquement les imports et le positionnement :
+
+![](assets/apply.jpg)
+
+Cela fonctionne sur plusieurs fichiers. Demandez « Add input validation to all API routes » et il peut appliquer des changements à des dizaines de fichiers, en maintenant la cohérence entre eux.
+
+### Travail autonome : le mode agent
 
 ![](assets/agent.jpg)
-*À partir d'un seul prompt, il a cherché sur le web, ajouté les nouvelles marques et créé le fichier de test correspondant.*
 
-## Mon expérience: astuces et nouvel état d'esprit
+Le mode agent gère les tâches en plusieurs étapes qui nécessitent exploration, itération et récupération d'erreurs. Au lieu de diriger chaque action, vous décrivez l'objectif et les contraintes.
 
-Après plus d'un an d'utilisation quotidienne de Cursor, j'ai tiré quelques leçons qui ont complètement transformé mon approche du développement.
+Exemple : « Add support for CSV export to the analytics dashboard. Follow our existing export patterns for PDF. »
 
-### Faire de l'IA *votre* copilote
+L'agent :
+1. Explore les implémentations d'exportation existantes pour comprendre les motifs
+2. Crée l'endpoint et la logique de service backend nécessaires
+3. Met à jour le frontend pour ajouter l'option d'exportation CSV
+4. Génère des tests couvrant la nouvelle fonctionnalité
+5. Exécute les tests, identifie les échecs et les corrige
+6. Présente un diff complet de tous les changements
 
-- **Les "Cursor Rules":** C'est là que vous pouvez dresser Cursor pour qu'il suive le style de codage de votre projet. Je l'utilise pour imposer un modèle " Given-When-Then " à toutes les descriptions de mes tests. Il suffit d'un simple fichier dans le répertoire `.cursor/rules`.
-    - *Exemple:* [Vous pouvez consulter mes règles spécifiques au projet ici](https://github.com/jterrazz/fake-news-api/blob/main/.cursor/rules).
+Le processus est visible — vous voyez le raisonnement de l'agent, les fichiers qu'il examine, les commandes qu'il exécute. Vous pouvez l'interrompre, fournir des commentaires ou le laisser continuer. Une fois terminé, vous examinez le diff complet comme une pull request avant d'accepter.
+
+Le mode agent excelle dans les tâches bien définies avec des critères de réussite clairs : implémenter des fonctionnalités qui suivent des modèles établis, corriger des bugs avec des tests complets, refactoriser du code pour correspondre à de nouvelles conventions. Il peine avec les architectures nouvelles ou les exigences ambiguës où le jugement humain est essentiel.
+
+## Configuration pratique
+
+### Les règles de Cursor
 
 ![](assets/rules.jpg)
 
-- **Connaître ses modèles:** Il est utile de comprendre la " personnalité " des différents modèles d'IA. Cursor choisit intelligemment le plus adapté, mais y réfléchir aide à rédiger de meilleurs prompts. Voici ma grille de lecture:
-    - **Le planificateur:** Un modèle puissant comme `GPT-4` ou `Claude 3 Opus` est excellent pour la stratégie de haut niveau ou pour décomposer une tâche complexe.
-    - **Le codeur:** Un modèle spécialisé pour le code, comme un `Gemini Pro` ou `Claude 3.5`, est idéal pour générer le code lui-même.
-    - **Le débogueur:** Un mélange de modèles fonctionne bien ici—les plus puissants pour générer des cas de test et les plus rapides pour des corrections itératives.
-- **Tirer parti des MCPs (Model-Capable Plugins):** Imaginez-les comme des boîtes à outils spécialisées pour des services externes comme AWS ou Stripe. Ils permettent à l'IA de générer du code en s'appuyant sur une documentation d'API à jour et en temps réel.
+Cursor respecte des règles spécifiques au projet définies dans `.cursor/rules`. Celles-ci appliquent les conventions de votre équipe sans avoir à les répéter dans chaque prompt. Exemples de règles :
+- Les descriptions de test suivent le format Given-When-Then
+- Les réponses d'API utilisent le camelCase, et non le snake_case
+- Toutes les fonctions publiques nécessitent des commentaires JSDoc
+- Préférer la composition fonctionnelle à l'héritage de classe
 
-### Refactorings et correctifs surhumains
+[Fichier de règles d'exemple](https://github.com/jterrazz/fake-news-api/blob/main/.cursor/rules)
 
-- **Réappliquer un commit:** C'est une astuce d'une puissance déconcertante. " Réapplique les changements du commit `[hash]` à ce fichier, mais adapte-les à la nouvelle structure. "
-- **" Fais en sorte que les tests passent au vert ":** Je demande littéralement à Cursor de lancer ma suite de tests et de corriger tout ce qui échoue jusqu'à ce que tout soit validé. Un super-pouvoir, purement et simplement, pour le TDD ou l'intégration d'une nouvelle fonctionnalité.
+### La sélection des modèles
 
-## Le changement de posture : vous êtes désormais le chef d'orchestre
+Cursor achemine les requêtes vers différents modèles en fonction de la complexité de la tâche, mais comprendre les caractéristiques des modèles vous aide à rédiger de meilleurs prompts :
 
-La plus grande révolution n'est pas la vitesse ; elle est mentale.
-- **Endossez votre rôle de chef d'orchestre:** Votre travail consiste à guider l'IA. Donnez-lui des instructions claires et assurez-vous que le produit final correspond à votre vision. L'IA devient le prolongement de votre intention, comme un alter ego technique avec qui vous collaboreriez depuis des années.
-- **Déléguez tout ce que vous pouvez:** Plus vous confiez de tâches à l'IA, plus vous libérez d'énergie mentale pour la vue d'ensemble: l'architecture, l'expérience utilisateur et la résolution des *vrais* problèmes.
-- **Le piège du "code au feeling" (*vibe coding*):** Le plus grand danger est de faire aveuglément confiance à la machine ou de coder sans objectif clair. Cela mène à du code désordonné et à une perte de temps. **Vous restez le pilote.** Vous devez savoir où vous allez et donner des caps précis, comme si vous étiez seul aux commandes, mais avec la vitesse de la lumière.
-- **La qualité, par défaut:** Voici le paradoxe: l'assistance de l'IA vous pousse en réalité à produire un code de *meilleure* qualité. Comme vous passez plus de temps à relire qu'à taper, vous portez naturellement plus d'attention au nommage, à la structure et aux tests. **Vous en venez à faire plus confiance aux tests qu'au code lui-même.**
+- **Planification :** utilisez des modèles de raisonnement puissants (GPT-4, Claude Opus) pour les décisions architecturales et les refactorisations complexes
+- **Génération de code :** utilisez des modèles spécialisés pour le code (Claude Sonnet, Gemini Pro) pour l'implémentation
+- **Corrections rapides :** utilisez des modèles plus rapides pour les transformations simples et les petites modifications
 
-### Le développement guidé par l'intention (IDD)
+Le forfait Pro (environ 20 $/mois) donne accès aux modèles de pointe. Le forfait gratuit fonctionne mais vous limite à des modèles moins performants qui produisent un code sensiblement plus faible.
 
-Tout cela mène à un flux de travail que j'appelle le **développement guidé par l'intention (IDD)**. De la même manière que le TDD utilise les tests pour piloter la conception du code, l'IDD s'appuie sur une intention claire et de haut niveau pour piloter le développement.
-- **Se concentrer sur la valeur:** Puisant dans la pensée par principes premiers, l'IDD vous force à demander: " Quelle valeur cette fonctionnalité apporte-t-elle? " Votre travail consiste à traduire cette valeur en une intention limpide pour l'IA.
-- **Des "tests d'intention" de haut niveau:** Parfois, j'écris un test de haut niveau qui capture une *user story* fondamentale (ex: `l_utilisateur_peut_finaliser_sa_commande.intent.test.ts`). Mon objectif est alors simple: ordonner à l'IA de faire passer ce test.
+### Quelques approches utiles
 
-Cela garantit que chaque ligne de code est liée à un résultat clair et à forte valeur ajoutée.
+**Réappliquer des commits :** « Reapply the changes from commit [hash] to this file, but adapt them for the new structure. » Utile lorsque le même motif doit s'appliquer à du code refactorisé.
 
-## Pour bien démarrer avec Cursor
+**Corrections pilotées par les tests :** « Run the test suite and fix all failures. » Le mode agent exécute les tests de manière itérative, analyse les échecs, implémente des correctifs et répète jusqu'à ce que les tests passent. Cela fonctionne remarquablement bien pour les tests d'intégration avec des messages d'échec clairs.
 
-Prêt à plonger?
-1. **Passez à la version Pro:** La version gratuite est excellente, mais l'abonnement Pro (environ 20 $/mois) vous donne accès aux modèles les plus puissants comme GPT-4 et Claude 3 Opus. C'est là que la magie opère.
-2. **Appropriez-vous l'outil:** Ne vous contentez pas des réglages par défaut. Passez 10 minutes dans les paramètres pour configurer vos raccourcis clavier et choisir vos modèles préférés. (Pour vous inspirer, voici mes réglages globaux: [https://github.com/jterrazz/jterrazz-configuration/tree/main/configurations/cursor](https://github.com/jterrazz/jterrazz-configuration/tree/main/configurations/cursor)).
-3. **Expérimentez:** Ne vous limitez pas au chat. Utilisez les modifications avec `Cmd+K`. Essayez le mode agent. Apprenez à nourrir l'IA de contexte avec `@`.
+**Opérations par lots :** sélectionnez plusieurs fonctions similaires et utilisez `Cmd+K` avec une seule instruction. « Add error handling to all these API calls » applique des changements cohérents à toutes les sélections.
 
-## Vous êtes le guide
+## Ce qui ne fonctionne pas bien
 
-L'IA peut gérer le " comment ", mais le " quoi " et le " pourquoi " restent votre domaine. Le 'code au feeling' ne construira jamais un produit sécurisé, scalable ou maintenable. L'IA ne connaît pas votre entreprise, vos utilisateurs ou votre vision à long terme. Pas encore.
+**Les architectures nouvelles :** lorsque vous concevez quelque chose de véritablement nouveau — une stratégie de cache personnalisée, une structure de données inédite, un motif architectural que votre codebase n'a jamais vu — Cursor est en difficulté. Il excelle à suivre des modèles établis mais ne peut pas innover en matière d'approches architecturales.
 
-Vous êtes le **médiateur** indispensable entre un besoin du monde réel et l'incroyable capacité d'exécution de l'IA. Votre jugement, votre goût et votre vision ont plus de valeur que jamais. Voyez l'IA comme le plus brillant des consultants. Votre travail est d'appliquer son expertise à *votre* projet.
+**Les exigences ambiguës :** « Make this faster » ou « improve the UX » produit des changements génériques et souvent malavisés. L'IA a besoin de critères de réussite concrets. « Reduce response time below 200ms by implementing request caching » fonctionne ; les demandes d'amélioration vagues, non.
 
-L'expérience par défaut de Cursor est stupéfiante. Mais elle devient un super-pouvoir lorsque vous l'adaptez à vos besoins et vous concentrez sur ce qui compte vraiment. Pour moi, cela signifie construire de grandes choses, plus rapidement, en mettant l'accent sur l'exploration, la recherche, les commits, les revues de code et des tests en béton.
+**Le débogage complexe :** lorsqu'un bug nécessite une connaissance approfondie du domaine ou la compréhension d'interactions subtiles entre plusieurs systèmes, Cursor propose souvent des correctifs superficiels qui ne traitent pas la cause profonde. Il est excellent pour corriger des échecs de test clairs mais faible pour raisonner sur les raisons pour lesquelles un système se comporte de manière inattendue.
 
-Cursor n'est pas un outil de plus. C'est un partenaire. Et lorsque vous le guidez avec soin, il élèvera votre travail à un niveau que vous n'imaginiez pas.
+**Le coût sans surveillance :** le mode agent peut entraîner des coûts d'API substantiels sur des tâches complexes, surtout s'il reste bloqué dans des boucles. Surveillez l'utilisation, fixez des limites budgétaires et interrompez les agents qui ne progressent pas.
+
+**Les limitations de contexte :** malgré l'indexation, les très grands codebases (plus de 100k lignes) peuvent dépasser les fenêtres de contexte. L'IA pourrait manquer des motifs pertinents dans des parties éloignées du codebase, conduisant à des implémentations incohérentes.
+
+**Le piège du « code au feeling » :** la facilité de génération encourage à accepter du code sans le comprendre. Cela accumule de la dette technique — du code qui fonctionne mais que personne ne comprend. Vous devez examiner minutieusement. L'IA est rapide, pas infaillible.
+
+## L'intent-driven development
+
+Le workflow que Cursor rend possible : rédiger des tests de haut niveau décrivant les résultats souhaités, puis diriger l'IA pour les faire passer. C'est le développement piloté par les tests (TDD) à un niveau supérieur — au lieu d'écrire vous-même les tests unitaires et les implémentations, vous écrivez des tests d'intégration qui capturent la valeur pour l'utilisateur et déléguez les détails de l'implémentation.
+
+Exemple : créer `user_can_purchase_with_saved_card.intent.test.ts` décrivant le flux de paiement complet avec un moyen de paiement enregistré. Dire au mode agent : « Make this test pass. Follow our existing payment processing patterns. »
+
+L'IA implémente la logique de service nécessaire, met à jour l'API, gère les cas limites et écrit des tests de support. Vous examinez pour vous assurer que cela correspond à votre architecture et gère correctement la sécurité.
+
+Cela maintient le développement axé sur les résultats plutôt que sur la mécanique de l'implémentation. Chaque fonctionnalité commence par une déclaration claire de la valeur qui doit être livrée.
+
+## Stratégie d'adoption
+
+**Commencez avec le forfait Pro.** Le forfait gratuit limite suffisamment l'accès aux modèles pour que vous ne puissiez pas expérimenter les véritables capacités de l'outil. À 20 $/mois, le Pro est moins cher que le gain de productivité d'une seule session de débogage évitée.
+
+**Configurez délibérément.** Passez 30 minutes à personnaliser les raccourcis clavier, à définir les modèles préférés et à définir les règles du projet. [Configuration d'exemple](https://github.com/jterrazz/jterrazz-configuration/tree/main/configurations/cursor) pour référence.
+
+**Apprenez les modes d'interaction progressivement :**
+1. Semaine 1 : utilisez uniquement l'autocomplétion. Familiarisez-vous avec le flux basé sur la tabulation.
+2. Semaine 2 : ajoutez `Cmd+K` pour les modifications en ligne. Entraînez-vous à décrire les changements avec précision.
+3. Semaine 3 : utilisez le chat avec les références `@` pour les modifications sur plusieurs fichiers.
+4. Semaine 4 : essayez le mode agent sur de petites fonctionnalités bien définies.
+
+**Instaurez une discipline de revue dès le début.** La facilité de génération incite à accepter du code sans le comprendre. Chaque changement généré par l'IA exige la même rigueur de revue que le code d'un développeur junior : résout-il réellement le problème ? Gère-t-il les cas limites ? Est-il maintenable ?
+
+**Surveillez les coûts.** Le mode agent peut consommer des crédits d'API importants sur des tâches complexes. Définissez des alertes budgétaires et interrompez les agents qui ne progressent pas.
+
+## Le changement de rôle
+
+Cursor change ce à quoi vous consacrez votre temps. Moins de saisie de détails d'implémentation, plus de définition d'architecture et de revue de qualité. Moins de débogage d'erreurs de syntaxe, plus de raisonnement sur le comportement du système. Moins de refactorisation mécanique, plus de décisions de conception stratégiques.
+
+Il ne s'agit pas de coder plus vite — il s'agit d'opérer à un niveau d'abstraction supérieur. Le travail mécanique qui consommait 60 % du temps de développement se réduit à 20 %, libérant de l'attention pour les problèmes qui nécessitent réellement un jugement humain : l'architecture, la sécurité, l'expérience utilisateur, les décisions techniques stratégiques.
+
+L'IA gère le « comment » avec une efficacité redoutable. Le « quoi » et le « pourquoi » restent votre responsabilité. Un outil qui génère un code impeccable pour la mauvaise fonctionnalité est pire qu'inutile — c'est une erreur d'aiguillage coûteuse.
+
+Votre valeur en tant que développeur provient de plus en plus de votre vision architecturale, de votre expertise du domaine et de votre jugement sur la qualité. Cursor amplifie ces compétences en supprimant les barrières mécaniques entre l'intention et l'implémentation. Utilisez-le pour construire de meilleurs systèmes, pas seulement pour construire plus vite.

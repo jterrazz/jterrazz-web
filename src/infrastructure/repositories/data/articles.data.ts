@@ -355,25 +355,6 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         published: true,
     },
     {
-        filename: '2025-05-18 AI Cheatsheet 2025',
-        metadata: {
-            category: ArticleCategory.Insight,
-            dateModified: '2025-07-11',
-            datePublished: '2025-05-18',
-            description: {
-                en: 'A concise reference of key AI concepts, frameworks and resources to stay current this year.',
-                fr: 'Une référence concise des concepts, frameworks et ressources clés de l\'IA pour rester à jour cette année.',
-            },
-            title: {
-                en: 'AI Cheatsheet 2025',
-                fr: 'Cheatsheet IA 2025',
-            },
-        },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
-        publicIndex: 18,
-        published: true,
-    },
-    {
         filename: '2025-05-18 Cursor',
         metadata: {
             category: ArticleCategory.Insight,
