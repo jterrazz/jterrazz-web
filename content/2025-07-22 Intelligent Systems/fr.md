@@ -201,3 +201,10 @@ C'est là toute la transformation.
 ***
 
 *Cet article explore le niveau 4 de l'intégration de l'IA : la programmation de systèmes intelligents qui allient contrôle déterministe et raisonnement IA. Chaque niveau du cadre représente une intégration plus profonde, de l'assistance intégrée à la conception d'intelligence sur mesure, en passant par l'opération autonome.*
+
+---
+
+1. [Les quatre niveaux de l'intégration de l'ia](https://jterrazz.com/articles/20-the-four-levels-of-ai) *Un cadre pratique pour intégrer l'IA dans n'importe quel domaine, de l'assistant à l'intelligence programmable, vous permettant de décupler votre travail et votre créativité.*
+2. [Diriger les agents ia](https://jterrazz.com/articles/21-guided-ai-for-developers) *Un guide pour les développeurs pour diriger l'IA en tant qu'agent guidé, transformant le codage en une orchestration de haut niveau avec des outils comme Cursor et le développement piloté par l'intention.*
+3. [Les agents ia autonomes](https://jterrazz.com/articles/22-autonomous-ai-agents) *Explorer comment les développeurs peuvent déléguer des workflows entiers à des agents IA autonomes, en tirant parti des protocoles centrés sur le modèle et des sandboxes pour des résultats sécurisés et évolutifs.*
+4. [**Programmer les systèmes intelligents**](https://jterrazz.com/articles/23-programming-intelligence) *Une plongée en profondeur dans la conception de systèmes intelligents qui mêlent code déterministe et raisonnement IA créatif, permettant aux développeurs d'architecturer des solutions auto-optimisées.*

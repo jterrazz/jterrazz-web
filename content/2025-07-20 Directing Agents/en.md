@@ -125,3 +125,10 @@ The blank file is gone. The question is what you'll build with the time you've r
 ***
 
 *This article explores Level 2 AI integration for developers. The broader framework spans from embedded assistance to programmable intelligence, with each level representing deeper integration between human judgment and AI capability.*
+
+---
+
+1. [The four levels of AI integration](https://jterrazz.com/articles/20-the-four-levels-of-ai) *A practical framework for integrating AI into any field, from assistant to programmable intelligence, empowering you to supercharge your work and creativity.*
+2. [**Directing AI agents**](https://jterrazz.com/articles/21-guided-ai-for-developers) *A guide for developers to direct AI as a guided agent, transforming coding into high-level orchestration with tools like Cursor and intention-driven development.*
+3. [Autonomous AI agents](https://jterrazz.com/articles/22-autonomous-ai-agents) *Exploring how developers can delegate entire workflows to autonomous AI agents, leveraging model-centric protocols and sandboxes for secure, scalable outcomes.*
+4. [Programming intelligent systems](https://jterrazz.com/articles/23-programming-intelligence) *A deep dive into designing intelligent systems that blend deterministic code with creative AI reasoning, enabling developers to architect self-optimizing solutions.*
