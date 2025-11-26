@@ -451,12 +451,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     },
 ];
 
-const processMarkdownContent = (content: string, filename: string): string => {
+const processMarkdownContent = (content: string, filename: string, cacheKey: string): string => {
     return content.replace(
         /!\[([^\]]*)\]\((?:\.\/)?assets\/([^)]+)\)/g,
         (match, altText, p1) =>
             // Point to the locally-served image so that <Image> receives an internal URL.
-            `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)})`,
+            `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)}?v=${cacheKey})`,
     );
 };
 
@@ -467,13 +467,14 @@ const readMarkdownFile = async (
     articlesDirectory: string,
     filename: string,
     language: ArticleLanguage,
+    cacheKey: string,
 ): Promise<string | undefined> => {
     try {
         const content = await fs.readFile(
             `${articlesDirectory}/${filename}/${language}.md`,
             'utf8',
         );
-        return processMarkdownContent(content, filename);
+        return processMarkdownContent(content, filename, cacheKey);
     } catch {
         return undefined;
     }
@@ -485,11 +486,12 @@ export const readMarkdownArticles = async (): Promise<Article[]> => {
     return await Promise.all(
         ARTICLES_CONFIG.map(async ({ filename, previewImage, ...articleConfig }) => {
             const content: { [key in ArticleLanguage]?: string } = {};
+            const cacheKey = articleConfig.metadata.dateModified.replace(/-/g, '');
 
             // Try to read both language versions
             const [enContent, frContent] = await Promise.all([
-                readMarkdownFile(articlesDirectory, filename, 'en'),
-                readMarkdownFile(articlesDirectory, filename, 'fr'),
+                readMarkdownFile(articlesDirectory, filename, 'en', cacheKey),
+                readMarkdownFile(articlesDirectory, filename, 'fr', cacheKey),
             ]);
 
             if (enContent) content.en = sanitizeText(enContent)!;
@@ -501,7 +503,7 @@ export const readMarkdownArticles = async (): Promise<Article[]> => {
             }
 
             const imageUrl = previewImage
-                ? `${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${previewImage}`
+                ? `${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${previewImage}?v=${cacheKey}`
                 : '';
 
             // Localise title and description for each available language (defaulting to English if none provided)
