@@ -2,209 +2,97 @@
 
 # Programming intelligent systems
 
-You're building an educational platform. Students ask questions in natural language, and the system needs to respond with explanations tailored to their level and learning style.
+**Intelligent systems** represent a fundamental shift. In previous approaches, AI is a tool that helps *you* build software. Here, AI becomes a component of the software *itself*.
 
-Autonomous agents (Level 3) won't work here. You can't give an agent the objective "teach physics" and let it run unsupervised. Teaching requires adhering to curriculum sequences, ensuring factual accuracy, tracking student progress through specific learning objectives. These need deterministic control.
+You are no longer just writing code; you are architecting systems that combine **deterministic logic** (traditional code) with **probabilistic reasoning** (AI).
 
-But pure rules won't work either. "If student asks about momentum, return explanation template B" produces rigid, generic responses. Teaching requires reading comprehension level, adapting tone to confidence signals, choosing examples that resonate with individual interests. These need creative reasoning.
+Consider a modern customer support bot.
+- A **pure code** approach (if/else statements) is safe but rigid. It breaks whenever a user asks a question that doesn't fit the pre-defined script.
+- A **pure AI** approach is flexible but risky. It might invent a refund policy that doesn't exist or promise things it can't deliver.
 
-You need both. Deterministic systems for structure, reliability, and compliance. AI reasoning for adaptation, creativity, and judgment. The challenge is architecting systems where these two modes work together seamlessly.
-
-This is Level 4: programming intelligent systems. You're not using AI as a tool or supervising it as an agent. You're building hybrid architectures where deterministic logic and AI reasoning each handle what they do best, interfacing at carefully designed boundaries.
-
-Here's how you build systems like this.
+The **hybrid architecture** addresses this. It uses code for constraints and AI for flexibility.
 
 ***
 
-![](assets/bricks.jpg)
+## The Hybrid Architecture
 
-## Designing hybrid architecture
+![](assets/bridge-merge.jpg)
 
-The key decision is identifying what belongs in deterministic code versus AI reasoning. The boundary matters because each has different failure modes, costs, and testing requirements.
+The core principle is **Separation of Responsibilities**.
 
-**Deterministic layer responsibilities:**
-- Enforce constraints that must never be violated (curriculum prerequisites, age-appropriate content)
-- Manage state that requires perfect reliability (student progress, completion tracking)
-- Handle high-volume, low-complexity operations (logging, authentication, data validation)
-- Provide structured context to AI components (student history, current learning objectives)
+**Code handles constraints:**
+- Business logic (pricing, refunds).
+- Permissions and security (who can see what).
+- State management (database records).
+- Audit trails.
 
-**AI reasoning layer responsibilities:**
-- Generate creative content (explanations, analogies, examples)
-- Adapt communication style (reading level, tone, engagement approach)
-- Make judgment calls with incomplete information (is the student confused or just thinking?)
-- Handle novel situations not covered by rules (unusual questions, creative misconceptions)
+**AI handles ambiguity:**
+- Understanding user intent from natural language.
+- Summarizing complex data.
+- Generating personalized explanations.
+- Transforming unstructured data (emails, images) into structured data.
 
-The architecture defines clear interfaces between layers. Deterministic code calls AI reasoning with structured inputs and expects structured outputs. AI never directly modifies state—it returns recommendations that deterministic code validates and executes.
-
-## Building the adaptive tutor
-
-Let's architect the physics tutoring system with this hybrid approach.
-
-### Component 1: Curriculum graph (deterministic)
-
-A traditional knowledge graph implementation. Nodes represent concepts (Newton's First Law, momentum, kinetic energy). Edges represent dependencies and recommended learning sequences.
-
-```typescript
-interface CurriculumNode {
-  conceptId: string;
-  prerequisites: string[];
-  assessmentCriteria: TestCase[];
-  difficultyLevel: number;
-}
-
-function getNextConcept(
-  masteredConcepts: Set<string>,
-  currentLevel: number
-): CurriculumNode | null {
-  return curriculum.nodes.find(node => 
-    node.difficultyLevel === currentLevel &&
-    node.prerequisites.every(prereq => masteredConcepts.has(prereq))
-  );
-}
-```
-
-This is deterministic by design. Students cannot skip prerequisites. The system enforces learning sequences based on explicit rules.
-
-### Component 2: Student model (deterministic state + AI analysis)
-
-Student progress lives in a database—deterministic state management. But understanding *how* a student learns requires AI analysis of their interactions.
-
-```typescript
-interface StudentProfile {
-  studentId: string;
-  masteredConcepts: Set<string>;
-  currentConcept: string;
-  interactionHistory: Interaction[];
-  // Deterministic state above
-  
-  // AI-generated insights below (regenerated periodically)
-  comprehensionLevel: 'struggling' | 'progressing' | 'confident';
-  preferredExplanationStyle: 'visual' | 'analogy' | 'mathematical';
-  commonMisconceptions: string[];
-  engagementPatterns: string;
-}
-```
-
-The deterministic layer tracks facts: which concepts are mastered, when questions were asked, how long responses took. Periodically, an AI model analyzes this history to generate insights about learning style and comprehension patterns.
-
-These insights are cached and versioned. If AI analysis fails, the system falls back to previous insights or generic defaults. The deterministic layer never depends on real-time AI generation for critical decisions.
-
-### Component 3: Adaptive explanation generator (AI reasoning)
-
-When a student asks a question, the deterministic layer assembles context and calls the AI component:
-
-```typescript
-interface ExplanationRequest {
-  question: string;
-  targetConcept: string;
-  studentProfile: StudentProfile;
-  constraints: {
-    maxReadingLevel: number;
-    prohibitedTerms: string[];  // Too advanced or inappropriate
-    requiredCoverage: string[];  // Must explain these aspects
-  };
-}
-
-async function generateExplanation(
-  request: ExplanationRequest
-): Promise<Explanation> {
-  const prompt = buildPrompt(request);
-  const aiResponse = await callLLM(prompt);
-  
-  // Deterministic validation before returning
-  if (!meetsConstraints(aiResponse, request.constraints)) {
-    return fallbackExplanation(request.targetConcept);
-  }
-  
-  return aiResponse;
-}
-```
-
-The AI has creative freedom within bounds. It can choose examples, adapt tone, use analogies—but the deterministic layer enforces constraints. If the AI violates reading level limits or fails to cover required concepts, the system rejects the response and uses a pre-vetted fallback.
-
-### Component 4: Socratic question generator (AI creativity with deterministic scaffolding)
-
-Instead of explaining directly, the system often guides students to discover answers. This requires creative question generation:
-
-```typescript
-interface QuestionGenerationRequest {
-  studentQuestion: string;
-  correctAnswer: string;
-  currentUnderstanding: string;  // From student's attempt
-  guidanceStrategy: 'leading_question' | 'analogy_prompt' | 'worked_example';
-  prohibitedHints: string[];  // Don't give away these key insights yet
-}
-```
-
-The deterministic layer chooses the guidance strategy based on rules (struggling students get more scaffolding, confident students get harder challenges). The AI generates the actual question within that strategy, ensuring it's appropriate for the student's level and won't reveal answers prematurely.
-
-### Cost optimization through layering
-
-Running expensive AI models for every interaction is unsustainable. The hybrid architecture enables intelligent cost management:
-
-**Tier 1 - Deterministic routing (free):** If the question exactly matches a common FAQ, return the cached answer. No AI invocation.
-
-**Tier 2 - Cheap AI model (cents):** Use a small, fast model for simple adaptations. "Rewrite this explanation at 8th grade reading level." Simple transformations don't need frontier models.
-
-**Tier 3 - Expensive AI model (dollars):** Use frontier models only for complex reasoning: generating novel analogies, analyzing unusual misconceptions, creating personalized problem sets.
-
-The deterministic layer decides which tier to invoke based on complexity heuristics. 80% of requests handle at Tiers 1-2, keeping costs manageable while reserving expensive intelligence for cases that genuinely need it.
+The goal is to build a "sandwich": Code prepares the context, AI performs the reasoning task, and Code validates the output.
 
 ***
 
-## Testing hybrid systems
+## The "Sandwich" Pattern
 
-Traditional software testing validates deterministic behavior: given input X, expect output Y. Hybrid systems require different approaches because AI components are explicitly designed to be creative.
+![](assets/layered-cake.jpg)
 
-**Deterministic layer testing:** Standard unit and integration tests. The curriculum graph should always enforce prerequisites. Student progress should never regress unexpectedly. State management must be bulletproof.
+Let's apply this to the support bot example.
 
-**AI layer testing:** You're evaluating quality, not determinism. Generate 100 explanations for the same concept and have domain experts rate them. Measure: factual accuracy (must be 100%), reading level appropriateness (95%+ on target), engagement quality (subjective but trackable). Set quality thresholds and fail builds that don't meet them.
+**Layer 1: Code (Preparation)**
+When a user asks about a refund, the system doesn't just send the query to an LLM. First, traditional code runs:
+- Is the user logged in?
+- Fetch their recent orders from the database.
+- Fetch the official refund policy document.
+- *Construct a prompt* that includes this specific data.
 
-**Integration testing:** Test the boundaries. What happens when AI generates an explanation that violates constraints? The deterministic layer should catch and handle it. What happens when AI model calls fail? The system should degrade gracefully to fallbacks.
+**Layer 2: AI (Reasoning)**
+The model receives the user's question along with the *facts* provided by Layer 1. It is instructed: "Answer the user based *only* on the provided policy and order history." The AI generates a response.
 
-**A/B testing in production:** The only real test of personalization effectiveness is student outcomes. Does the AI-personalized path lead to better concept mastery than generic content? You need instrumentation and controlled rollouts to measure actual impact.
+**Layer 3: Code (Validation)**
+Before showing the response to the user, traditional code runs again:
+- Does the response contain prohibited words?
+- Does it attempt to execute a tool call (like `refund_user`)? If so, enforce limits (e.g., "Max refund $50 without human approval").
 
-## What this enables
-
-The hybrid architecture pattern extends beyond education to any domain requiring both reliability and adaptation:
-
-**Healthcare diagnostics:** Deterministic rules enforce medical standards and legal requirements. AI reasoning interprets novel symptom combinations and suggests diagnostic paths a purely algorithmic system would miss.
-
-**Financial analysis:** Deterministic code ensures regulatory compliance and accounting accuracy. AI reasoning identifies patterns in market behavior, generates investment hypotheses, and adapts strategies to changing conditions.
-
-**Creative tools:** Deterministic systems manage file formats, rendering pipelines, and asset storage. AI reasoning suggests design improvements, generates variations, and helps creators explore possibilities they wouldn't have considered.
-
-**Legal document analysis:** Deterministic parsing extracts structured data from contracts. AI reasoning identifies unusual clauses, assesses risk in context, and flags potential issues that don't match template patterns.
-
-Each domain requires the same architectural thinking: identify what demands perfect reliability, identify what benefits from creative reasoning, design clean interfaces between them, and build comprehensive fallback handling.
-
-## From tool user to system architect
-
-You started this series wondering how to integrate AI into your work. The progression reveals itself:
-
-Level 1 embedded AI in tools you already use. Level 2 taught you to direct AI agents for complete tasks. Level 3 enabled autonomous systems that run workflows continuously. Level 4 shows you how to architect intelligence itself—building systems where deterministic reliability and AI creativity augment each other.
-
-This final level is the most technically demanding. You need strong software architecture skills, deep understanding of AI capabilities and limitations, domain expertise to know where each belongs, and systems thinking to handle the inevitable edge cases.
-
-**Start small.** Don't architect a complete tutoring platform on day one. Build one component: an AI explanation generator wrapped in deterministic constraints. Deploy it, measure quality, learn from failures. Add the next component. Build complexity incrementally.
-
-**Invest in observability.** Hybrid systems fail in novel ways. You need comprehensive logging of both deterministic and AI decision-making, quality metrics for AI outputs, cost tracking per operation, and clear alerts when either layer behaves unexpectedly.
-
-**Plan for AI evolution.** The AI models available today will be obsolete within months. Design your architecture so you can swap models without rewriting the system. The interfaces between deterministic and AI layers are your stability layer.
-
-The developers who master this won't just ship features faster. They'll build products that were impossible before—systems that combine human-designed reliability with AI-driven adaptation, scaling personalized intelligence to millions of users.
-
-The education platform we designed doesn't just deliver content faster. It teaches in ways that adapt to each student's mind, providing personalized attention at scale that no amount of human tutors could match.
-
-That's the transformation.
+This architecture allows the system to be conversational and helpful (AI) while remaining safe and compliant (Code).
 
 ***
 
-*This article explores Level 4 AI integration: programming intelligent systems that blend deterministic control with AI reasoning. Each level in the framework represents deeper integration, from embedded assistance to autonomous operation to custom intelligence design.*
+## Testing probabilistic systems
+
+![](assets/lab-instruments.jpg)
+
+Testing hybrid systems requires a mindset shift. Traditional software is binary: a test passes or fails. AI systems are probabilistic: they are "mostly right."
+
+Testing strategy involves:
+1. **Unit Tests for Code:** The constraints and data fetching logic must be 100% correct.
+2. **Evals for AI:** You run the model against a dataset of 100 example questions and grade the answers. You accept the system if it scores above a threshold (e.g., 95% accuracy).
+3. **Guardrails:** You test the safety mechanisms. What happens if the AI tries to hallucinate? The validation layer must catch it.
+
+***
+
+## The future of software
+
+We are moving toward a world where most complex applications will be hybrids.
+
+- Legal apps will use AI to read contracts, but code to calculate deadlines.
+- Medical apps will use AI to analyze symptoms, but code to check drug interactions.
+- Finance apps will use AI to summarize market news, but code to execute trades.
+
+The role of the engineer evolves from writing logic to **orchestrating intelligence**. You become the designer of the boundaries, ensuring that the "magic" of AI creates value without creating chaos.
+
+***
+
+This concludes our series on the Four Levels of AI Integration. From the **Predictive Accelerator**, to the **Director**, to the **Architect** of autonomous agents, and finally to the **Systems Designer** of hybrid applications.
+
+The technology is moving fast, but the fundamental engineering principles—modularity, safety, and clear specification—remain more important than ever.
 
 ---
 
-1. [The four levels of AI integration](https://jterrazz.com/articles/20-the-four-levels-of-ai) *A practical framework for integrating AI into any field, from assistant to programmable intelligence, empowering you to supercharge your work and creativity.*
-2. [Directing AI agents](https://jterrazz.com/articles/21-guided-ai-for-developers) *A guide for developers to direct AI as a guided agent, transforming coding into high-level orchestration with tools like Cursor and intention-driven development.*
-3. [Autonomous AI agents](https://jterrazz.com/articles/22-autonomous-ai-agents) *Exploring how developers can delegate entire workflows to autonomous AI agents, leveraging model-centric protocols and sandboxes for secure, scalable outcomes.*
-4. [**Programming intelligent systems**](https://jterrazz.com/articles/23-programming-intelligence) *A deep dive into designing intelligent systems that blend deterministic code with creative AI reasoning, enabling developers to architect self-optimizing solutions.*
+1. [The four levels of AI integration](https://jterrazz.com/articles/20-the-four-levels-of-ai)
+2. [Directing AI agents](https://jterrazz.com/articles/21-guided-ai-for-developers)
+3. [Autonomous AI agents](https://jterrazz.com/articles/22-autonomous-ai-agents)
+4. [**Programming intelligent systems**](https://jterrazz.com/articles/23-programming-intelligence)

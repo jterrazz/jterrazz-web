@@ -186,7 +186,7 @@ Au final, prendre le contrôle de ses dépendances change la donne. Lorsque vous
 
 ### Lire la suite dans cette série
 
-1.  [Conception applicative: bâtir des logiciels conçus pour durer](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
-2.  **Conception applicative: maîtriser le flux des dépendances**
-3.  [Conception applicative: séparer le métier de la technique](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
-4.  [Conception applicative: un voyage au cœur de la clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)
+1. [Conception applicative: bâtir des logiciels conçus pour durer](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
+2. **Conception applicative: maîtriser le flux des dépendances**
+3. [Conception applicative: séparer le métier de la technique](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
+4. [Conception applicative: un voyage au cœur de la clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)

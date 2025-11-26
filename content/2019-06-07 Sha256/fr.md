@@ -17,7 +17,7 @@ Voyez les fonctions de hachage comme l'armure invisible du monde numérique. Ell
 - Alimenter la **preuve de travail** (*proof of work*), un concept fondamental pour des cryptomonnaies comme le Bitcoin et l'Ethereum.
 - Forger les **signatures numériques**, l'équivalent en ligne d'une signature manuscrite ayant force de loi.
 
-Ces piliers de la sécurité numérique prennent n'importe quelle donnée que vous leur soumettez—d'un simple caractère à un fichier colossal—et la transforment en une chaîne de caractères de longueur fixe, appelée *hachage* ou *hash*. C'est l'empreinte digitale unique de vos données.
+Ces piliers de la sécurité numérique prennent n'importe quelle donnée que vous leur soumettez, d'un simple caractère à un fichier colossal, et la transforment en une chaîne de caractères de longueur fixe, appelée *hachage* ou *hash*. C'est l'empreinte digitale unique de vos données.
 
 - **MD5** produit un hachage de 128 bits (soit 32 caractères hexadécimaux).
 - **SHA-256** génère un hachage de 256 bits (soit 64 caractères hexadécimaux).

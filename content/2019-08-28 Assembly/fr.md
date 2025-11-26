@@ -46,7 +46,7 @@ Imaginez l'assembleur comme un ensemble d'ordres directs donnés à votre CPU. C
 
 On confond souvent les termes " assembleur " et " code machine ", mais ils ne sont pas identiques.
 
-- **Code Machine:** C'est le binaire brut—les 1 et les 0—que le processeur exécute. Il est totalement illisible pour un humain.
+- **Code Machine:** C'est le binaire brut, les 1 et les 0, que le processeur exécute. Il est totalement illisible pour un humain.
 - **Assembleur:** C'est la version lisible par l'homme du code machine. Nous écrivons en assembleur, puis un compilateur (comme NASM) le traduit en code machine.
 
 Écrire en assembleur nous offre un avantage considérable par rapport à la tentative d'écrire du binaire brut. Cela nous apporte une structure: nous pouvons utiliser des étiquettes pour les fonctions, définir des variables et organiser notre logique en sections. C'est la plus fine couche d'abstraction possible au-dessus du matériel.

@@ -45,7 +45,7 @@ Développer un logiciel, c'est mener une bataille incessante contre la complexit
     Celle-ci provient de vos outils: bases de données, frameworks, serveurs et toute la technologie nécessaire pour faire fonctionner le logiciel. C'est une composante inévitable de l'équation, mais elle doit être maîtrisée pour ne pas phagocyter l'ensemble du projet.
 
 3. **La complexité accidentelle**
-    Celle-ci, c'est la blessure que l'on s'inflige à soi-même. C'est la complexité que nous créons par de mauvais choix de conception. Pensez au code spaghetti, à l'utilisation abusive d'un framework juste parce que c'est possible, ou à une documentation inexistante. Contrairement aux autres, cette forme de complexité est évitable. Nous pouvons—et devons—l'éliminer.
+    Celle-ci, c'est la blessure que l'on s'inflige à soi-même. C'est la complexité que nous créons par de mauvais choix de conception. Pensez au code spaghetti, à l'utilisation abusive d'un framework juste parce que c'est possible, ou à une documentation inexistante. Contrairement aux autres, cette forme de complexité est évitable. Nous pouvons, et devons, l'éliminer.
 
 ![](assets/complexity-levels.svg)
 
@@ -90,9 +90,9 @@ Au fond, la **conception applicative** n'est pas une théorie académique. C'est
 
 ---
 
-### Lire la suite dans cette série
+## Lire la suite dans cette série
 
-1.  **Conception applicative: bâtir des logiciels conçus pour durer**
-2.  [Conception applicative: maîtriser le flux des dépendances](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
-3.  [Conception applicative: séparer le métier de la technique](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
-4.  [Conception applicative: un voyage au cœur de la clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)
+1. **Conception applicative: bâtir des logiciels conçus pour durer**
+2. [Conception applicative: maîtriser le flux des dépendances](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
+3. [Conception applicative: séparer le métier de la technique](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture/fr)
+4. [Conception applicative: un voyage au cœur de la clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)

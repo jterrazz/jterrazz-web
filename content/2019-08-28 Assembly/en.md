@@ -46,7 +46,7 @@ Think of assembly as a set of direct orders for your CPU. Each line is one singl
 
 People often use "assembly" and "machine code" interchangeably, but they aren't the same.
 
-- **Machine Code:** This is the raw binary—the 1s and 0s—that the processor executes. It's completely unreadable for humans.
+- **Machine Code:** This is the raw binary, the 1s and 0s, that the processor executes. It's completely unreadable for humans.
 - **Assembly:** This is the human-readable version of machine code. We write in assembly, and then a compiler (like NASM) translates it into machine code.
 
 Writing in assembly gives us a huge advantage over trying to write raw binary. It gives us structure: we can use labels for functions, define variables, and organize our logic into sections. It's the thinnest possible layer of abstraction over the hardware.

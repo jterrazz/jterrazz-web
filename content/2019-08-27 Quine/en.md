@@ -18,7 +18,7 @@ It sounds like a magic trick, but it's pure logic. Let's break down the logic be
 
 Long before we had programming languages that could easily build quines, a mathematician named Stephen Kleene proved it was possible. His work in the 1930s laid the foundation for self-replicating programs.
 
-### First form—The fixed-point theorem
+### First form, The fixed-point theorem
 
 Kleene's first recursion theorem, a cornerstone of computability theory, states that for any computable function `f`, you can find a program `e` that behaves in a special way.
 
@@ -33,7 +33,7 @@ Essentially, transforming the program's logic (`e`) with the function `f` produc
 
 This is wild because it proves that a program can meaningfully refer to itself.
 
-### Second form—The quine theorem
+### Second form, The quine theorem
 
 This leads us to a conclusion that's even more direct and powerful for our purposes. For any computable function `f`, there exists a program `p` that acts as a "fixed point" for that function.
 

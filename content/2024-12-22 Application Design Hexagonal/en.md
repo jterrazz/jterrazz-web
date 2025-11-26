@@ -14,7 +14,7 @@ In this chapter, I'll walk you through the evolution of how we structure code. W
 
 ## Spaghetti architecture: the "no-architecture" architecture
 
-We've all seen it. Some of us have even written it. Spaghetti architecture is what happens when there are no rules. Business logic, database calls, and UI code—everything is thrown into a single, tangled mess.
+We've all seen it. Some of us have even written it. Spaghetti architecture is what happens when there are no rules. Business logic, database calls, and UI code, everything is thrown into a single, tangled mess.
 
 **The result?**
 
@@ -56,7 +56,7 @@ This coupling between business logic and the database is where everything starts
 
 # The real goal: set your business logic free
 
-For me, this is the number one goal of any good architecture: **isolate your business logic from everything else.** Your business rules are the very reason the software exists. They should be independent of the UI, the database, the frameworks—all of it.
+For me, this is the number one goal of any good architecture: **isolate your business logic from everything else.** Your business rules are the very reason the software exists. They should be independent of the UI, the database, the frameworks, all of it.
 
 **Why is this so important?**
 
@@ -102,7 +102,7 @@ Here's a critical point: **hexagonal architecture is only useful if you actually
 
 If your app is just a simple CRUD service that moves data from a database to a JSON response without any real rules or transformations, this is massive overkill. A simple layered model is probably fine.
 
-But if your application contains real business rules—the logic that makes your company money or enforces critical constraints—then those rules are precious. They need to be at the center. **Without business rules, the hexagon is empty.**
+But if your application contains real business rules, the logic that makes your company money or enforces critical constraints, then those rules are precious. They need to be at the center. **Without business rules, the hexagon is empty.**
 
 ---
 
@@ -255,13 +255,13 @@ Each piece can be tested independently. No more fragile, end-to-end tests that f
 
 ---
 
-Hexagonal architecture is a massive step up from simple layering. It forces you to put your business logic first and to treat technology as a detail. By isolating the core domain, you build systems that are more testable, flexible, and resilient to technological change. It’s a powerful pattern for creating software that lasts.
+Hexagonal architecture is a massive step up from simple layering. It forces you to put your business logic first and to treat technology as a detail. By isolating the core domain, you build systems that are more testable, flexible, and resilient to technological change. It's a powerful pattern for creating software that lasts.
 
 ---
 
 ### Read more in this series
 
-1.  [Application design: building software that lasts](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
-2.  [Application design: mastering the flow of dependencies](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
-3.  **Application design: separating business from technology**
-4.  [Application design: a journey into clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)
+1. [Application design: building software that lasts](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
+2. [Application design: mastering the flow of dependencies](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
+3. **Application design: separating business from technology**
+4. [Application design: a journey into clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)

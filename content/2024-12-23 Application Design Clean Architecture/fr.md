@@ -6,7 +6,7 @@
 
 Voici la grande idée qui a transformé ma façon de concevoir des logiciels: votre architecture n'a que faire de votre base de données. Elle se moque de votre framework web. Elle ignore votre interface utilisateur. Sa seule et unique préoccupation doit être ce que votre application *fait réellement*.
 
-Telle est la philosophie qui sous-tend la **Clean Architecture**. C'est une manière de construire des logiciels qui place vos **cas d'utilisation** (*use cases*)—la véritable valeur métier—au centre absolu de tout. Le reste n'est qu'un détail, menant à un système testable, maintenable, et indépendant de ses aspects techniques.
+Telle est la philosophie qui sous-tend la **Clean Architecture**. C'est une manière de construire des logiciels qui place vos **cas d'utilisation** (*use cases*), la véritable valeur métier, au centre absolu de tout. Le reste n'est qu'un détail, menant à un système testable, maintenable, et indépendant de ses aspects techniques.
 
 ---
 

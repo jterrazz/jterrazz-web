@@ -14,7 +14,7 @@ Dans cet article, je vous propose d'explorer l'évolution de nos approches en ma
 
 ## L'architecture spaghetti: l'absence d'architecture
 
-Nous l'avons tous vue. Certains d'entre nous l'ont même écrite. L'architecture spaghetti est le résultat de l'absence totale de règles. Logique métier, appels à la base de données, code de l'interface utilisateur—tout est jeté dans un imbroglio inextricable.
+Nous l'avons tous vue. Certains d'entre nous l'ont même écrite. L'architecture spaghetti est le résultat de l'absence totale de règles. Logique métier, appels à la base de données, code de l'interface utilisateur, tout est jeté dans un imbroglio inextricable.
 
 **Le résultat?**
 
@@ -56,7 +56,7 @@ Ce couplage entre la logique métier et la base de données est la racine du mal
 
 # Le véritable objectif: libérer votre logique métier
 
-Pour moi, c'est la mission numéro un de toute bonne architecture: **isoler votre logique métier de tout le reste.** Vos règles métier sont la raison d'être du logiciel, son âme. Elles doivent être indépendantes de l'interface utilisateur, de la base de données, des frameworks—de tout.
+Pour moi, c'est la mission numéro un de toute bonne architecture: **isoler votre logique métier de tout le reste.** Vos règles métier sont la raison d'être du logiciel, son âme. Elles doivent être indépendantes de l'interface utilisateur, de la base de données, des frameworks, de tout.
 
 **Pourquoi est-ce si crucial?**
 
@@ -102,7 +102,7 @@ Voici un point essentiel: **l'architecture hexagonale n'est utile que si vous av
 
 Si votre application se résume à un simple service CRUD qui déplace des données d'une base de données vers une réponse JSON, sans véritables règles ou transformations, alors cette approche est une complexité superflue. Un simple modèle en couches fera amplement l'affaire.
 
-Mais si votre application contient de vraies règles métier—la logique qui fait gagner de l'argent à votre entreprise ou qui applique des contraintes critiques—alors ces règles sont un trésor. Elles doivent être au centre. **Sans règles métier, l'hexagone n'est qu'une coquille vide.**
+Mais si votre application contient de vraies règles métier, la logique qui fait gagner de l'argent à votre entreprise ou qui applique des contraintes critiques, alors ces règles sont un trésor. Elles doivent être au centre. **Sans règles métier, l'hexagone n'est qu'une coquille vide.**
 
 ---
 
@@ -261,7 +261,7 @@ L'architecture hexagonale représente une avancée majeure par rapport à la sim
 
 ### Lire la suite dans cette série
 
-1.  [Conception applicative: bâtir des logiciels conçus pour durer](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
-2.  [Conception applicative: maîtriser le flux des dépendances](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
-3.  **Conception applicative: séparer le métier de la technique**
-4.  [Conception applicative: un voyage au cœur de la clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)
+1. [Conception applicative: bâtir des logiciels conçus pour durer](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters/fr)
+2. [Conception applicative: maîtriser le flux des dépendances](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies/fr)
+3. **Conception applicative: séparer le métier de la technique**
+4. [Conception applicative: un voyage au cœur de la clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice/fr)

@@ -6,11 +6,11 @@ Online shopping is a modern marvel. A few taps on your phone, and almost anythin
 
 But I started thinking… what is the actual long-term cost of all this convenience? Have we paused to consider where this is all heading?
 
-As we all shifted our shopping online, I watched local stores—the lifeblood of our communities—begin to struggle. That human connection, like chatting with the bookstore owner who knows your taste or the grocer who sets aside the good stuff for you, is becoming a rarity.
+As we all shifted our shopping online, I watched local stores, the lifeblood of our communities, begin to struggle. That human connection, like chatting with the bookstore owner who knows your taste or the grocer who sets aside the good stuff for you, is becoming a rarity.
 
 This isn't just nostalgia. It has a real economic bite. As local businesses see less traffic, they have less reason to innovate, and many are forced to close. We're unintentionally building a world dominated by a handful of centralized giants.
 
-> "Amazon is moving us toward a future in which the buying and selling of goods occurs not in an open public market, but on a private platform controlled by Amazon."—[Amazon is becoming more powerful than you realize](https://medium.com/s/2069/amazon-is-becoming-more-powerful-than-you-realize-2093d6860886)
+> "Amazon is moving us toward a future in which the buying and selling of goods occurs not in an open public market, but on a private platform controlled by Amazon.", [Amazon is becoming more powerful than you realize](https://medium.com/s/2069/amazon-is-becoming-more-powerful-than-you-realize-2093d6860886)
 
 This level of centralization is perilous. It raises serious questions about fair competition, censorship, and the very health of our local economies. It's like we've put all our eggs in one digital basket. It's convenient, but fragile.
 
@@ -30,7 +30,7 @@ That's the vision. Here's what it could look like.
 
 ## A new mission: empowering the creator
 
-Imagine a new kind of e-commerce ecosystem. It wouldn't be another store. In fact, it wouldn't sell anything itself. Instead, it would be a public foundation—a set of tools that gives merchants of all sizes the power to:
+Imagine a new kind of e-commerce ecosystem. It wouldn't be another store. In fact, it wouldn't sell anything itself. Instead, it would be a public foundation, a set of tools that gives merchants of all sizes the power to:
 
 1. **Set up shop** with zero friction.
 2. **List their products** in a clean, simple way.
@@ -46,9 +46,9 @@ To make this a reality, it would need to be built on three core values:
 
 ### 1. Let innovation happen at the edges
 
-This digital town square would be open to everyone. A multinational brand, a skilled artisan, a small-town shop owner—all would be welcome. By not curating or creating its own stores, the platform would leave the entire space open for the incredible diversity and creativity of its users.
+This digital town square would be open to everyone. A multinational brand, a skilled artisan, a small-town shop owner, all would be welcome. By not curating or creating its own stores, the platform would leave the entire space open for the incredible diversity and creativity of its users.
 
-The best ideas would be free to emerge from anywhere. It's like a potluck dinner—when everyone brings their signature dish, you get a feast far more vibrant and exciting than anything a single chef could create.
+The best ideas would be free to emerge from anywhere. It's like a potluck dinner, when everyone brings their signature dish, you get a feast far more vibrant and exciting than anything a single chef could create.
 
 ### 2. Make it social
 
@@ -58,9 +58,9 @@ Think of walking into a shop where the owner knows your name and can recommend t
 
 ### 3. Build trust with open technology
 
-![](assets/handshake.jpg)
+![](assets/trust.jpg)
 
-So, how do you do all this without becoming just another middleman? The answer could lie in open protocols and blockchain. These technologies would allow us to **streamline and automate** interactions that normally require a central authority—things like delivery tracking, warranties, and insurance. Many of these could be handled by transparent, automated smart contracts, cutting out the need for a central arbiter.
+So, how do you do all this without becoming just another middleman? The answer could lie in open protocols and blockchain. These technologies would allow us to **streamline and automate** interactions that normally require a central authority, things like delivery tracking, warranties, and insurance. Many of these could be handled by transparent, automated smart contracts, cutting out the need for a central arbiter.
 
 By building on open-source code, we could create a platform that is both **transparent and open for anyone to build on**. It would be like a set of digital Legos. Developers and entrepreneurs could use these digital Legos to build entirely new solutions. Think you can use code to build a more efficient postal service? Go for it. The system would be designed to welcome any open protocol that shares this commitment to a decentralized, transparent future.
 

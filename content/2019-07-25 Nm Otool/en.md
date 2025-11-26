@@ -2,7 +2,7 @@
 
 # Decoding the magic, my journey building `nm` and `otool`
 
-Ever wondered how your computer *actually* understands a binary file? I mean, down to the last byte. If that curiosity resonates with you, you're in for a ride. I recently tumbled down the rabbit hole of implementing the `nm` and `otool` commands from scratch in C. It was a journey. I emerged with a much deeper intuition for how binaries and Unix-like systems tick—a fascinating, low-level world.
+Ever wondered how your computer *actually* understands a binary file? I mean, down to the last byte. If that curiosity resonates with you, you're in for a ride. I recently tumbled down the rabbit hole of implementing the `nm` and `otool` commands from scratch in C. It was a journey. I emerged with a much deeper intuition for how binaries and Unix-like systems tick, a fascinating, low-level world.
 
 Here, I'll retrace my steps and share a roadmap for building your own versions of these tools. But let me offer a piece of advice upfront: try to build it yourself first. Seriously. The experience of digging through **man pages** and system **header files** will grant you a level of understanding no article can replicate.
 

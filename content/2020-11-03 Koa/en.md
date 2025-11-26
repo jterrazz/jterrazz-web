@@ -2,7 +2,7 @@
 
 # Building my go-to web server with TypeScript and Koa
 
-Ever get that itch to build something from the ground up? That was me. I wanted to create my own web server—something solid and powerful, without the black boxes of bigger frameworks. This is how I did it, and how you can, too. We're going to build an HTTP server, a lean request-handling engine, using two of my favorite tools: TypeScript and Koa. Let's get into it. 🚀
+Ever get that itch to build something from the ground up? That was me. I wanted to create my own web server, something solid and powerful, without the black boxes of bigger frameworks. This is how I did it, and how you can, too. We're going to build an HTTP server, a lean request-handling engine, using two of my favorite tools: TypeScript and Koa. Let's get into it. 🚀
 
 ## My tech choices: TypeScript and Koa
 
@@ -31,7 +31,7 @@ Ready to build something cool? Let's lay the foundation. 💪
 First, you'll need Node.js and npm ready to go on your machine.
 
 1. **Initialize your project**:
-    I always start with `npm init -y`. This command quickly scaffolds a `package.json` file. Think of it as your project's passport—it holds all the vital stats and dependency info.
+    I always start with `npm init -y`. This command quickly scaffolds a `package.json` file. Think of it as your project's passport, it holds all the vital stats and dependency info.
 
 2. **Install the essentials**:
     With the project initialized, it's time to pull in our core tools. We need the packages themselves and their corresponding TypeScript type definitions.

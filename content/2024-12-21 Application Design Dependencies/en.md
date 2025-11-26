@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Application design: mastering the flow of dependencies
+# Application design: let's talk about dependencies
 
 ## How your code is connected
 
@@ -23,7 +23,7 @@ function hello() {
 }
 ```
 
-In this snippet, my `hello` function is directly tied to the `Something` class. If I change the `Something` class—say, its constructor now needs an argument—my `hello` function breaks. It has to be updated. That's a dependency in action.
+In this snippet, my `hello` function is directly tied to the `Something` class. If I change the `Something` class, say, its constructor now needs an argument, my `hello` function breaks. It has to be updated. That's a dependency in action.
 
 ## The flow of dependency
 
@@ -186,7 +186,7 @@ Getting a handle on dependencies is a game-changer. When you learn to control th
 
 ### Read more in this series
 
-1.  [Application design: building software that lasts](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
-2.  **Application design: mastering the flow of dependencies**
-3.  [Application design: separating business from technology](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
-4.  [Application design: a journey into clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)
+1. [Application design: building software that lasts](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
+2. **Application design: mastering the flow of dependencies**
+3. [Application design: separating business from technology](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
+4. [Application design: a journey into clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)

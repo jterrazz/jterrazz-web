@@ -18,7 +18,7 @@ On pourrait y voir un tour de magie, mais tout n'est que pure logique. Voyons en
 
 Bien avant que les langages de programmation modernes ne nous permettent de construire des quines, leur existence fut démontrée par un mathématicien du nom de Stephen Kleene. Ses travaux dans les années 1930 ont posé les fondations théoriques des programmes auto-réplicatifs.
 
-### Première forme—Le théorème du point fixe
+### Première forme, Le théorème du point fixe
 
 Le premier théorème de la récursion de Kleene est un pilier de la théorie de la calculabilité. Il énonce que pour toute fonction calculable `f`, on peut trouver un programme `e` qui se comporte d'une manière très singulière.
 
@@ -33,7 +33,7 @@ En substance, si l'on applique une transformation `f` à la logique du programme
 
 C'est une idée vertigineuse, car elle prouve mathématiquement qu'un programme peut faire référence à lui-même de manière cohérente et fonctionnelle.
 
-### Seconde forme—Le principe du quine
+### Seconde forme, Le principe du quine
 
 Cela nous conduit à une conclusion encore plus directe et puissante pour notre objectif. Pour toute fonction calculable `f`, il existe un programme `p` qui est un " point fixe " de cette fonction.
 

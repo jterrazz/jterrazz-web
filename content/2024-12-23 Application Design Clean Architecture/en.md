@@ -6,7 +6,7 @@
 
 Here's the big idea that changed how I build software: your architecture shouldn't care about your database. It shouldn't care about your web framework. It shouldn't care about your UI. The only thing it should care about is what your application *actually does*.
 
-This is the philosophy behind **Clean Architecture**. It's a design approach that places your **use cases**—the real business value—at the very heart of your system. Everything else is just a detail, leading to a system that is testable, maintainable, and independent of its technical plumbing.
+This is the philosophy behind **Clean Architecture**. It's a design approach that places your **use cases**, the real business value, at the very heart of your system. Everything else is just a detail, leading to a system that is testable, maintainable, and independent of its technical plumbing.
 
 ---
 
@@ -44,7 +44,7 @@ Theory is great, but code is better. Let's build a small part of a hotel managem
 
 ## Our file structure
 
-First, let's look at the project structure. This is what Robert C. Martin calls a "Screaming Architecture"—one where your folder structure screams what the application *does*, not what frameworks it uses. You see `business`, `use-cases`, and `entity`. You don't see `models`, `views`, and `controllers` at the top level.
+First, let's look at the project structure. This is what Robert C. Martin calls a "Screaming Architecture", one where your folder structure screams what the application *does*, not what frameworks it uses. You see `business`, `use-cases`, and `entity`. You don't see `models`, `views`, and `controllers` at the top level.
 
 ```sh
 src/
@@ -77,7 +77,7 @@ src/
 
 ## 1. The entities: `Floor` & `Room`
 
-Entities are not just dumb data containers. They embody the most fundamental business rules—the logic that holds true for the entire enterprise, regardless of the specific application using it.
+Entities are not just dumb data containers. They embody the most fundamental business rules, the logic that holds true for the entire enterprise, regardless of the specific application using it.
 
 ```ts
 // business/entity/floor.ts
@@ -122,7 +122,7 @@ export class Room {
 
 ## 2. The gateway: `RoomGateway`
 
-The gateway is an interface—a contract defined by the business layer that says, "I need to perform these actions with rooms, but I don't care *how* you do them." It's a promise the outer layers must fulfill.
+The gateway is an interface, a contract defined by the business layer that says, "I need to perform these actions with rooms, but I don't care *how* you do them." It's a promise the outer layers must fulfill.
 
 ```ts
 // business/gateway/room.gateway.ts
@@ -343,7 +343,7 @@ describe("Update Room Price", () => {
 });
 ```
 
-This test is lightning-fast. It runs in memory. It doesn't need a database or a web server. It tests our entire business process from end to end, proving our logic is correct—all because we so carefully separated our concerns. This is the payoff.
+This test is lightning-fast. It runs in memory. It doesn't need a database or a web server. It tests our entire business process from end to end, proving our logic is correct, all because we so carefully separated our concerns. This is the payoff.
 
 ---
 
@@ -353,7 +353,7 @@ The lesson behind Clean Architecture is simple but profound: **put your business
 
 Frameworks will change. Databases will be replaced. User interfaces will be redesigned. But your core business rules are what provide lasting value. Clean Architecture isn't just a pattern; it's a philosophy that forces you to protect that value.
 
-It demands discipline and a bit more thought upfront, but the reward is a system that is testable, maintainable, flexible, and understandable—one that can evolve *with* the business, not hold it back.
+It demands discipline and a bit more thought upfront, but the reward is a system that is testable, maintainable, flexible, and understandable, one that can evolve *with* the business, not hold it back.
 
 Now go build something great. 🚀
 

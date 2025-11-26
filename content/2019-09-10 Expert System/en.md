@@ -31,7 +31,7 @@ The core of this whole thing is a set of **rules**. I like to think of them as l
 
 ![Inference Truth Table](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*aZ-xKiHeAcPBCnP2bgcOTQ.png)
 
-To make sense of it all, we need a cheat sheet. This truth table is our compass for logic. It shows how the connectors work. Look at `p => q`. If `p` is `false`, `q` can be anything—a real wild card. But if `p` is `true`, `q` *must* also be `true`. This simple principle is the engine of our deduction.
+To make sense of it all, we need a cheat sheet. This truth table is our compass for logic. It shows how the connectors work. Look at `p => q`. If `p` is `false`, `q` can be anything, a real wild card. But if `p` is `true`, `q` *must* also be `true`. This simple principle is the engine of our deduction.
 
 ### Facts and queries: the inputs and outputs
 
@@ -39,7 +39,7 @@ To make sense of it all, we need a cheat sheet. This truth table is our compass 
 
 Now for the inputs and outputs.
 
-**Facts** are our starting truths, represented by uppercase letters. By default, I set everything to `false`—the system starts out knowing nothing. A fact becomes `true` only if we declare it as an initial fact (`=ABC`) or if the system proves it using the rules.
+**Facts** are our starting truths, represented by uppercase letters. By default, I set everything to `false`, the system starts out knowing nothing. A fact becomes `true` only if we declare it as an initial fact (`=ABC`) or if the system proves it using the rules.
 
 **Queries** (`?XYZ`) are simply the questions we want our system to answer.
 
@@ -52,7 +52,7 @@ Okay, so how do we actually *solve* something? There are two main ways to go abo
 1. **Forward chaining**: Start with what you know (the facts) and see where the rules take you. It's like starting a maze at the beginning.
 2. **Backward chaining**: Start with what you want to prove (the query) and work backward to see if the facts support it. It's like starting a maze from the end and finding your way back.
 
-For this project, I went with backward chaining. It feels more intuitive to me—like solving a mystery by starting with the suspect and looking for clues.
+For this project, I went with backward chaining. It feels more intuitive to me, like solving a mystery by starting with the suspect and looking for clues.
 
 ## The data structure: assembling the Lego set
 
@@ -138,7 +138,7 @@ return stack.pop()
 
 When I hit an atom, I push it onto a stack. When I hit an operator, I pop the atoms it needs, link them as operands to the new connector node, and push the whole new structure back onto the stack. This is how the logical Lego castle gets built, piece by piece.
 
-### Step 4: the grand finale—resolving the queries
+### Step 4: the grand finale, resolving the queries
 
 And now, the moment of truth. To solve a query, I built a recursive function that dives down the logic graph.
 

@@ -17,7 +17,7 @@ Think of cryptographic functions as the invisible force field of the digital uni
 - Power the **"proof of work"** that's fundamental to cryptocurrencies like Bitcoin and Ethereum.
 - Enable **digital signatures**, which are the online equivalent of a legally binding signature.
 
-These digital powerhouses take any input you throw at them—a single character or a massive file—and crunch it down into a fixed-length string of characters called a hash. It's like creating a unique fingerprint for your data.
+These digital powerhouses take any input you throw at them, a single character or a massive file, and crunch it down into a fixed-length string of characters called a hash. It's like creating a unique fingerprint for your data.
 
 - **MD5** spits out a 128-bit hash (that's 32 hexadecimal characters).
 - **SHA-256** creates a 256-bit hash (64 hexadecimal characters).
@@ -216,7 +216,7 @@ If the details of SHA-256 feel a little dense, don't worry. I found this awesome
 
 ## Wrapping it up
 
-So there you have it—a whirlwind tour of cryptographic hash functions. You've seen what they do, why they're essential for digital security, and even how to build them from scratch.
+So there you have it, a whirlwind tour of cryptographic hash functions. You've seen what they do, why they're essential for digital security, and even how to build them from scratch.
 
 The world of cryptography never stands still. What's secure today might be vulnerable tomorrow. Keep learning, keep experimenting, and maybe you'll be the one building the next generation of secure algorithms.
 

@@ -10,7 +10,7 @@ Avec le basculement massif de nos achats vers le web, j'ai vu les commerces de p
 
 Et ce n'est pas une simple affaire de nostalgie. Les conséquences économiques sont concrètes et douloureuses. Face à la baisse de fréquentation, les entreprises locales sont moins incitées à innover, et beaucoup sont contraintes de mettre la clé sous la porte. Sans vraiment nous en rendre compte, nous bâtissons un monde dominé par une poignée de géants centralisés.
 
-> " Amazon nous entraîne vers un futur où l'achat et la vente de biens ne se dérouleront plus sur un marché public et ouvert, mais sur une plateforme privée contrôlée par Amazon. "—[Amazon is becoming more powerful than you realize](https://medium.com/s/2069/amazon-is-becoming-more-powerful-than-you-realize-2093d6860886)
+> " Amazon nous entraîne vers un futur où l'achat et la vente de biens ne se dérouleront plus sur un marché public et ouvert, mais sur une plateforme privée contrôlée par Amazon. ", [Amazon is becoming more powerful than you realize](https://medium.com/s/2069/amazon-is-becoming-more-powerful-than-you-realize-2093d6860886)
 
 Un tel niveau de centralisation est périlleux. Il soulève de graves questions sur l'équité de la concurrence, la censure et la vitalité de nos économies locales. C'est comme si nous avions mis tous nos œufs dans le même panier numérique. C'est pratique, mais éminemment fragile.
 
@@ -46,7 +46,7 @@ Pour que ce projet devienne réalité, il devrait reposer sur trois valeurs fond
 
 ### 1. Laisser l'innovation émerger par la base
 
-Cette place de marché numérique serait ouverte à tous. Une marque internationale, un artisan de talent, la petite boutique d'un village—tous seraient les bienvenus. En s'abstenant de toute curation ou de la création de ses propres magasins, la plateforme laisserait le champ entièrement libre à l'incroyable diversité et à la créativité de ses utilisateurs.
+Cette place de marché numérique serait ouverte à tous. Une marque internationale, un artisan de talent, la petite boutique d'un village, tous seraient les bienvenus. En s'abstenant de toute curation ou de la création de ses propres magasins, la plateforme laisserait le champ entièrement libre à l'incroyable diversité et à la créativité de ses utilisateurs.
 
 Les meilleures idées pourraient ainsi germer de partout. C'est comme un grand repas partagé: quand chacun apporte son plat fétiche, on obtient un festin bien plus riche et exaltant que tout ce qu'un chef solitaire pourrait composer.
 
@@ -58,9 +58,9 @@ Pensez à cette boutique où le propriétaire vous salue par votre nom et sait v
 
 ### 3. Bâtir la confiance sur des technologies ouvertes
 
-![](assets/handshake.jpg)
+![](assets/trust.jpg)
 
-Alors, comment accomplir tout cela sans devenir un énième intermédiaire? La réponse pourrait bien résider dans les protocoles ouverts et la blockchain. Ces technologies nous permettraient de **rationaliser et d'automatiser** des interactions qui requièrent d'ordinaire une autorité centrale—comme le suivi des livraisons, les garanties ou les assurances. Nombre de ces processus pourraient être gérés par des contrats transparents et décentralisés.
+Alors, comment accomplir tout cela sans devenir un énième intermédiaire? La réponse pourrait bien résider dans les protocoles ouverts et la blockchain. Ces technologies nous permettraient de **rationaliser et d'automatiser** des interactions qui requièrent d'ordinaire une autorité centrale, comme le suivi des livraisons, les garanties ou les assurances. Nombre de ces processus pourraient être gérés par des contrats transparents et décentralisés.
 
 En nous appuyant sur du code open-source, nous pourrions créer une plateforme **transparente et sur laquelle n'importe qui pourrait bâtir sans permission**. Pensez à un jeu de Legos numériques. Développeurs et entrepreneurs pourraient se servir de ces briques fondamentales pour créer des solutions inédites. Vous pensez pouvoir utiliser du code pour bâtir un service postal plus efficace? Lancez-vous. Le système serait conçu pour accueillir tous les protocoles ouverts qui partagent cette vision d'un avenir décentralisé et transparent.
 
