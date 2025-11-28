@@ -38,8 +38,8 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-06-23',
             datePublished: '2019-06-01',
             description: {
-                en: 'Hands-on guide: build your own malloc in C — learn mmap, buckets, first-fit, coalescing, alignment fixes to master dynamic memory.',
-                fr: 'Guide pratique : construisez votre propre malloc en C — apprenez mmap, buckets, first-fit, coalescence et correctifs d\'alignement pour maîtriser la mémoire dynamique.',
+                en: 'Build your own malloc in C, learn mmap, buckets, first-fit, coalescing, alignment fixes to master dynamic memory.',
+                fr: 'Construisez votre propre malloc en C, apprenez mmap, buckets, first-fit, coalescence et correctifs d\'alignement pour maîtriser la mémoire dynamique.',
             },
             title: {
                 en: 'Master memory management, I built my own malloc, and you should too',
@@ -57,8 +57,8 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-06-24',
             datePublished: '2019-06-07',
             description: {
-                en: 'Implement SHA-256 and MD5 from scratch in C: bitwise ops, message padding, compression loops, test vectors, and performance tips.',
-                fr: 'Implémentez SHA-256 et MD5 from scratch en C : opérations binaires, padding de messages, boucles de compression, vecteurs de test et conseils performance.',
+                en: 'Implement SHA-256 and MD5 from scratch in C: bitwise ops, message padding, compression loops and test vectors.',
+                fr: 'Implémentez SHA-256 et MD5 from scratch en C : opérations binaires, padding de messages, boucles de compression et vecteurs de test.',
             },
             title: {
                 en: 'Hashing in C, a deep dive into SHA-256 and MD5',
@@ -76,8 +76,8 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-06-25',
             datePublished: '2019-07-25',
             description: {
-                en: 'Comprehensive guide to Mach-O analysis on macOS: decode symbol tables, headers, sections, and build your own nm/otool utilities in C.',
-                fr: 'Guide complet de l\'analyse Mach-O sur macOS : décodez tables de symboles, en-têtes, sections et construisez vos propres utilitaires nm/otool en C.',
+                en: 'A guide to Mach-O analysis: decode symbol tables, headers, sections, and build your own nm/otool utilities in C.',
+                fr: 'Guide de l\'analyse Mach-O : décodez tables de symboles, en-têtes, sections et construisez vos propres utilitaires nm/otool en C.',
             },
             title: {
                 en: 'Decoding the magic, my journey building nm and otool',
@@ -95,8 +95,8 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-06-26',
             datePublished: '2019-08-27',
             description: {
-                en: 'Hands-on guide: craft self-replicating quine programs in multiple languages, understand theory, and master code that prints itself.',
-                fr: 'Guide pratique : créez des programmes quines auto-répliquants dans plusieurs langages, comprenez la théorie et maîtrisez le code qui s\'imprime lui-même.',
+                en: 'Craft self-replicating quine programs in multiple languages, understand theory, and master code that prints itself.',
+                fr: 'Créez des programmes quines auto-répliquants dans plusieurs langages, comprenez la théorie et maîtrisez le code qui s\'imprime lui-même.',
             },
             title: {
                 en: 'Building a program that writes itself (a quine)',
@@ -114,8 +114,8 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-06-27',
             datePublished: '2019-08-28',
             description: {
-                en: 'Step-by-step intro to assembly: set up toolchain, grasp registers & calling conventions, and code/link your first assembly functions.',
-                fr: 'Introduction pas-à-pas à l\'assembleur : installez la toolchain, maîtrisez registres et conventions d\'appel, codez et linkez vos premières fonctions assembleur.',
+                en: 'Set up toolchain, grasp registers & calling conventions, and code/link your first assembly functions.',
+                fr: 'Installez la toolchain, maîtrisez registres et conventions d\'appel, codez et linkez vos premières fonctions assembleur.',
             },
             title: {
                 en: "Let's dive into assembly and build our first functions (Intel x86-64)",
@@ -133,8 +133,8 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-06-28',
             datePublished: '2019-09-10',
             description: {
-                en: 'Step-by-step guide to expert systems: code a backward-chaining inference engine in Python, with rules, facts, and reasoning examples.',
-                fr: 'Guide pas-à-pas des systèmes experts : codez un moteur d\'inférence à chaînage arrière en Python, avec règles, faits et exemples de raisonnement.',
+                en: 'Guide to expert systems: code a backward-chaining inference engine in Python, with rules and facts.',
+                fr: 'Guide des systèmes experts : codez un moteur d\'inférence à chaînage arrière en Python, avec règles et faits.',
             },
             title: {
                 en: 'My journey into expert systems with Python',
@@ -152,8 +152,8 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-06-29',
             datePublished: '2020-11-03',
             description: {
-                en: 'Hands-on tutorial: set up a lightweight web server in TypeScript using Koa — routing, middleware, typing, and testing in minutes.',
-                fr: 'Tutoriel pratique : montez un serveur web léger en TypeScript avec Koa — routing, middleware, typage et tests en quelques minutes.',
+                en: 'Set up a lightweight web server in TypeScript using Koa, routing, middleware and typing in minutes.',
+                fr: 'Montez un serveur web léger en TypeScript avec Koa, routing, middleware et typage en quelques minutes.',
             },
             title: {
                 en: 'Building my go-to web server with TypeScript and Koa',
@@ -171,8 +171,8 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-01',
             datePublished: '2023-07-02',
             description: {
-                en: 'Reimagine online shopping: open, decentralized platform links local shops to customers, reviving community, transparency & competition.',
-                fr: 'Réinventer le e-commerce : une plateforme ouverte et décentralisée qui relie commerces locaux et clients, ravivant communauté, transparence et concurrence.',
+                en: 'Reimagine online shopping: open and decentralized. Reviving community, transparency & competition.',
+                fr: 'Réinventer le e-commerce : ouvert et décentralisé. Raviver communauté, transparence et concurrence.',
             },
             title: {
                 en: 'What if we got online shopping wrong?',
@@ -190,12 +190,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-02',
             datePublished: '2024-12-20',
             description: {
-                en: 'Learn application-design essentials: manage dependencies, layer architecture, and craft maintainable, growth-ready code.',
-                fr: "Apprenez les essentiels de la conception applicative : gérer les dépendances, architecturer en couches et créer du code maintenable et prêt à grandir.",
+                en: 'Learn application design essentials.',
+                fr: 'Apprenez les essentiels de la conception applicative.',
             },
             title: {
-                en: 'Application design: building software that lasts',
-                fr: 'Conception applicative : bâtir des logiciels qui durent',
+                en: 'Building software that lasts',
+                fr: 'Bâtir des logiciels qui durent',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
@@ -209,12 +209,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-03',
             datePublished: '2024-12-21',
             description: {
-                en: 'Tame complexity with application design — principles for sustainable architecture, maintainable code, and growth-ready scalable apps.',
-                fr: "Domptez la complexité avec la conception applicative — principes pour une architecture durable, du code maintenable et des apps évolutives prêtes à grandir.",
+                en: 'Principles for sustainable architecture, maintainable code, and growth-ready scalable apps.',
+                fr: 'Principes pour une architecture durable, du code maintenable et des apps évolutives.',
             },
             title: {
-                en: 'Application design: mastering the flow of dependencies',
-                fr: "Conception applicative : maîtriser le flux des dépendances",
+                en: 'Mastering the flow of dependencies',
+                fr: 'Maîtriser le flux des dépendances',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
@@ -228,12 +228,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-04',
             datePublished: '2024-12-22',
             description: {
-                en: 'Decode business and technical architectures: align strategy, capabilities, and tech layers to deliver scalable, value-driven systems.',
-                fr: "Décodez les architectures métier et techniques : alignez stratégie, capacités et couches tech pour livrer des systèmes évolutifs et créateurs de valeur.",
+                en: 'Align strategy, capabilities, and tech layers to deliver scalable, value-driven systems.',
+                fr: 'Alignez stratégie, capacités et couches tech pour livrer des systèmes évolutifs et créateurs de valeur.',
             },
             title: {
-                en: 'Application design: separating business from technology',
-                fr: 'Conception applicative : séparer le métier de la technologie',
+                en: 'Separating business from technology',
+                fr: 'Séparer le métier de la technologie',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
@@ -247,12 +247,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-05',
             datePublished: '2024-12-23',
             description: {
-                en: 'Build scalable apps with Clean Architecture: layer entities, use cases, adapters & drivers; decouple business logic from tech details.',
-                fr: "Construisez des apps évolutives avec la Clean Architecture : organisez entités, cas d'usage, adaptateurs et drivers ; découplez la logique métier des détails techniques.",
+                en: 'Layer entities, use cases, adapters and drivers; decouple business logic from tech details.',
+                fr: 'Organisez entités, cas d\'usage, adaptateurs et drivers ; découplez la logique métier des détails techniques.',
             },
             title: {
-                en: 'Application design: a journey into clean architecture',
-                fr: 'Conception applicative : voyage au cœur de la Clean Architecture',
+                en: 'A journey into clean architecture',
+                fr: 'Voyage au cœur de la Clean Architecture',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
@@ -285,12 +285,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-07',
             datePublished: '2025-05-06',
             description: {
-                en: 'Navigate the AI revolution: practical insights on trends, tools, and mindset shifts to future-proof work, creativity, and careers.',
-                fr: "Naviguez dans la révolution IA : insights pratiques sur les tendances, outils et changements de mindset pour sécuriser travail, créativité et carrières.",
+                en: 'Practical insights on trends, tools, and mindset shifts.',
+                fr: 'Insights pratiques sur les tendances, outils et changements de mindset.',
             },
             title: {
-                en: 'Abundant intelligence: a guide to the revolution',
-                fr: "Intelligence abondante : guide de la révolution",
+                en: 'A guide to the AI revolution',
+                fr: 'Guide de la révolution IA',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
@@ -304,12 +304,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-08',
             datePublished: '2025-05-07',
             description: {
-                en: 'Practical roadmap to integrate AI tools, delegate cognitive work, and adopt mindsets for balance and future-proof skills.',
-                fr: "Feuille de route pratique pour intégrer les outils IA, déléguer le travail cognitif et adopter les bons mindsets pour un équilibre et des compétences d'avenir.",
+                en: 'Integrate AI tools, delegate cognitive work, and adopt mindsets for balance and future-proof skills.',
+                fr: 'Intégrez les outils IA, déléguez le travail cognitif et adoptez les bons mindsets pour un équilibre et des compétences d\'avenir.',
             },
             title: {
-                en: 'Abundant intelligence: a practical playbook',
-                fr: "Intelligence abondante : un guide pratique",
+                en: 'A practical playbook to AI',
+                fr: 'Un guide pratique de l\'IA',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
@@ -323,12 +323,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-09',
             datePublished: '2025-05-08',
             description: {
-                en: 'Abundant AI collapses execution costs, inverts value hierarchies, and moves human work up to ideas, taste, and strategic direction.',
-                fr: "L'IA abondante effondre les coûts d'exécution, inverse les hiérarchies de valeur et élève le travail humain vers les idées, le goût et la direction stratégique.",
+                en: 'Abundant AI collapses execution costs, inverts value hierarchies, and moves human work up.',
+                fr: 'L\'IA abondante effondre les coûts d\'exécution, inverse les hiérarchies de valeur et élève le travail humain.',
             },
             title: {
-                en: 'Abundant intelligence: when execution collapses',
-                fr: "Intelligence abondante : quand l'exécution s'effondre",
+                en: 'When execution collapses',
+                fr: 'Quand l\'exécution s\'effondre',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
@@ -342,12 +342,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-10',
             datePublished: '2025-05-09',
             description: {
-                en: 'Abundant AI collapses execution costs, decentralizes work, and reimagines society into purpose-driven, post-physical communities.',
-                fr: "L'IA abondante effondre les coûts d'exécution, décentralise le travail et réimagine la société en communautés post-physiques guidées par le sens.",
+                en: 'Abundant AI reimagines society into purpose-driven, post-physical communities.',
+                fr: 'L\'IA abondante réimagine la société en communautés post-physiques guidées par le sens.',
             },
             title: {
-                en: 'Abundant intelligence: life after the collapse',
-                fr: "Intelligence abondante : la vie après l'effondrement",
+                en: 'Life after the collapse',
+                fr: 'La vie après l\'effondrement',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
@@ -361,12 +361,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-12',
             datePublished: '2025-05-18',
             description: {
-                en: 'Boost dev productivity with Cursor: learn context-aware AI coding, agent mode, intent-driven development & pro tips from daily use.',
-                fr: 'Boostez votre productivité de dév avec Cursor : apprenez le coding IA contextuel, le mode agent, le développement intentionnel et les astuces pro d\'usage quotidien.',
+                en: 'Learn context aware AI coding, agent mode, intent driven development.',
+                fr: 'Apprenez le coding IA contextuel, le mode agent, le développement intentionnel.',
             },
             title: {
-                en: 'Cursor, a practical guide to AI-powered development',
-                fr: "Cursor, mon guide pratique du développement assisté par l'IA",
+                en: 'Cursor: the compression of mechanical work',
+                fr: 'Cursor : la compression du travail mécanique',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
@@ -380,12 +380,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-19',
             datePublished: '2025-07-19',
             description: {
-                en: 'Explore a practical framework for AI integration in any field, from assistant to programmable intelligence. Boost productivity & creativity',
-                fr: "Explorez un cadre pratique d'intégration de l'IA dans tous les domaines, de l'assistant à l'intelligence programmable. Boostez productivité et créativité.",
+                en: 'A framework for AI integration in any field, from assistant to programmable intelligence.',
+                fr: 'Un cadre d\'intégration de l\'IA dans tous les domaines, de l\'assistant à l\'intelligence programmable.',
             },
             title: {
-                en: 'Using AI: A practical four-level framework',
-                fr: "Utiliser l'IA : un cadre pratique en quatre niveaux",
+                en: 'The four levels of AI integration',
+                fr: 'Les quatre niveaux d\'intégration de l\'IA',
             },
         },
         previewImage: 'thumbnail.jpg',
@@ -399,12 +399,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-20',
             datePublished: '2025-07-20',
             description: {
-                en: 'Guide for developers to direct AI as guided agent, transforming coding into orchestration with tools like cursor and intention-driven dev.',
-                fr: "Guide pour développeurs : diriger l'IA comme agent guidé, transformer le codage en orchestration avec des outils comme Cursor et le développement intentionnel.",
+                en: 'Guide for developers to direct AI as guided agent, transforming coding into orchestration.',
+                fr: 'Guide pour développeurs : diriger l\'IA comme agent guidé, transformer le codage en orchestration.',
             },
             title: {
-                en: 'Using AI: Prompting the implementation',
-                fr: "Utiliser l'IA : guider l'implémentation",
+                en: 'Directing AI agents',
+                fr: 'Diriger les agents IA',
             },
         },
         previewImage: 'thumbnail.jpg',
@@ -418,12 +418,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-21',
             datePublished: '2025-07-21',
             description: {
-                en: 'Explore how developers delegate workflows to autonomous ai agents, using model-centric protocols and sandboxes for secure, scalable…',
-                fr: "Explorez comment les développeurs délèguent les flux de travail aux agents IA autonomes, avec protocoles centrés sur les modèles et bacs à sable sécurisés.",
+                en: 'Explore how to delegate workflows to autonomous ai agents.',
+                fr: 'Explorez comment déléguer les flux de travail aux agents IA autonomes.',
             },
             title: {
-                en: 'Using AI: Delegating the workflow',
-                fr: "Utiliser l'IA : déléguer le workflow",
+                en: 'Autonomous AI agents',
+                fr: 'Agents IA autonomes',
             },
         },
         previewImage: 'thumbnail.jpg',
@@ -437,12 +437,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             dateModified: '2025-07-22',
             datePublished: '2025-07-22',
             description: {
-                en: 'Deep dive into designing intelligent systems blending code and ai reasoning for self-optimizing solutions in software development.',
-                fr: "Plongée au cœur de la conception de systèmes intelligents alliant code et raisonnement IA pour des solutions auto-optimisantes en développement logiciel.",
+                en: 'Deep dive into designing intelligent systems blending code and ai reasoning.',
+                fr: 'Plongée au cœur de la conception de systèmes intelligents alliant code et raisonnement IA.',
             },
             title: {
-                en: 'Using AI: Designing the intelligence',
-                fr: "Utiliser l'IA : concevoir l'intelligence",
+                en: 'Programming intelligent systems',
+                fr: 'Programmer des systèmes intelligents',
             },
         },
         previewImage: 'thumbnail.jpg',
