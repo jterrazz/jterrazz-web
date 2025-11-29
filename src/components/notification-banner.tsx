@@ -50,7 +50,7 @@ export function NotificationBanner({ className, href, message }: NotificationBan
                             opacity: { duration: 0.15, ease: 'easeOut' },
                         },
                     }}
-                    className="overflow-hidden"
+                    className="overflow-hidden pointer-events-auto"
                     exit={{
                         filter: 'blur(8px)',
                         height: 0,

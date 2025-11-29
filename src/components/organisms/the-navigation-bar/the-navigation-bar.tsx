@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import { BookOpen, Github, Menu, Monitor, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'react-feather';
 
 // Utils
 import { cn } from '../../../lib/utils.js';
@@ -16,130 +16,45 @@ import AnimatedBackground from '../../molecules/cards/animated-backgrounds.jsx';
 import { type NavigationPage } from './navigation-page.js';
 
 export type NavigationTabItemProps = {
+    children: React.ReactNode;
     className?: string;
     href: string;
     newTab?: boolean;
     onClick?: () => void;
-    selected?: boolean;
-    value: string;
+    title?: string;
 };
 
-export const NavigationTabItem: React.FC<NavigationTabItemProps> = ({
+const NavigationTabItem: React.FC<NavigationTabItemProps> = ({
+    children,
     className = '',
     href,
     newTab = false,
     onClick,
-    selected = false,
-    value,
+    title,
 }) => {
-    const baseClassName =
-        'rounded-md px-3 py-2 text-sm w-full md:w-auto transition-colors duration-200 ease-in-out';
-    const selectedClassName = selected
-        ? 'bg-storm-cloud-accent text-white'
-        : 'text-storm-cloud-accent hover:bg-storm-cloud-accent/10';
-    const generatedClassName = cn(baseClassName, selectedClassName, className);
-
-    const handleClick = () => {
-        if (newTab) {
-            window.open(href, '_blank');
-        }
-        onClick?.();
-    };
-
     const content = (
-        <button className={generatedClassName} onClick={handleClick}>
-            {value}
-        </button>
+        <span className={cn('flex items-center gap-2', className)}>{children}</span>
     );
 
-    return (
-        <div className="w-full md:w-auto md:ml-1">
-            {newTab ? (
-                content
-            ) : (
-                <Link
-                    className="block w-full md:inline-block md:w-auto"
-                    href={href}
-                    onClick={onClick}
-                >
-                    {content}
-                </Link>
-            )}
-        </div>
-    );
-};
-
-export type NavigationTabsProps = {
-    className?: string;
-    onLinkClick?: () => void;
-    pages: NavigationPage[];
-};
-
-const NavigationTabs: React.FC<NavigationTabsProps> = ({ className, onLinkClick, pages }) => {
-    const newTab = false;
-    const generatedClassName = cn(
-        'flex flex-col md:flex-row justify-center items-center w-full',
-        className,
-    );
-    const pathname = usePathname();
-
-    return (
-        <div className={generatedClassName}>
-            {/* Smoother, lighter transition config for background highlight */}
-            <AnimatedBackground
-                className="rounded-lg bg-zinc-200 dark:bg-zinc-600 p-2 md:p-1 flex flex-col md:flex-row items-center justify-center w-auto md:w-auto mx-auto gap-2 md:gap-1"
-                enableHover
-                transition={{
-                    duration: 0.18,
-                    ease: 'easeOut',
-                    type: 'tween',
-                }}
+    if (newTab) {
+        return (
+            <a
+                className={className}
+                href={href}
+                onClick={onClick}
+                rel="noopener noreferrer"
+                target="_blank"
+                title={title}
             >
-                {pages.map((page, index) => {
-                    const isSelected = pathname === page.href;
-                    const baseClassName =
-                        'rounded-md px-3 py-2 text-sm w-auto md:w-auto transition-colors duration-200 ease-in-out text-center';
-                    const selectedClassName = isSelected
-                        ? 'bg-storm-cloud-accent text-white'
-                        : 'text-storm-cloud-accent hover:bg-storm-cloud-accent/10';
-                    const generatedClassName = cn(baseClassName, selectedClassName);
-                    const isLastItem = index === pages.length - 1;
+                {content}
+            </a>
+        );
+    }
 
-                    return (
-                        <div
-                            className={cn(
-                                'w-auto md:w-auto md:mx-1',
-                                !isLastItem ? 'mb-4 md:mb-0' : 'md:mb-0',
-                            )}
-                            data-id={page.name}
-                            key={index}
-                        >
-                            {newTab ? (
-                                <button
-                                    className={generatedClassName}
-                                    onClick={() => {
-                                        window.open(page.href, '_blank');
-                                        onLinkClick?.();
-                                    }}
-                                >
-                                    {page.name}
-                                </button>
-                            ) : (
-                                <Link
-                                    className="block w-auto md:inline-block md:w-auto"
-                                    href={page.href}
-                                    onClick={onLinkClick}
-                                    // Prevent React hydration mismatch when inside motion layout by
-                                    // moving the actual button styling on the anchor.
-                                >
-                                    <span className={generatedClassName}>{page.name}</span>
-                                </Link>
-                            )}
-                        </div>
-                    );
-                })}
-            </AnimatedBackground>
-        </div>
+    return (
+        <Link className={className} href={href} onClick={onClick} title={title}>
+            {content}
+        </Link>
     );
 };
 
@@ -162,118 +77,176 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
 
-    const generatedClassName = cn(
-        'flex flex-wrap items-center font-medium px-5 py-4 w-full border-b sticky top-0 z-50 bg-white/90 backdrop-blur-xl',
-        className,
-    );
-
     const closeMenu = () => setIsMenuOpen(false);
 
-    const currentPage = pages.find((page) => page.href === pathname);
+    // Helper to get icon for contact
+    const getContactIcon = (name: string) => {
+        if (name.toLowerCase().includes('github')) return <Github size={18} />;
+        if (name.toLowerCase().includes('medium')) return <BookOpen size={18} />;
+        return null;
+    };
 
     return (
-        <nav className={generatedClassName}>
-            <div className="flex items-center justify-between w-full">
-                <div className="flex items-center">
-                    <Link href="/" onClick={closeMenu}>
+        <>
+            {/* Desktop & Mobile Wrapper */}
+            {/* We use pointer-events-none on the wrapper so the transparent areas don't block clicks, 
+                but re-enable it on the actual navbar content. */}
+            <nav
+                className={cn(
+                    'w-full flex justify-center p-4 md:pt-6 pointer-events-none',
+                    className,
+                )}
+            >
+                <div
+                    className={cn(
+                        'pointer-events-auto relative flex items-center justify-between w-full md:w-auto md:min-w-[600px]',
+                        'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl',
+                        'border border-zinc-200 dark:border-zinc-800 shadow-sm',
+                        'rounded-2xl md:rounded-full px-4 py-2 transition-all duration-300',
+                    )}
+                >
+                    {/* Logo */}
+                    <Link className="flex-shrink-0 mr-4 md:mr-8" href="/" onClick={closeMenu}>
                         <motion.div
-                            animate={{ opacity: 1, x: 0 }}
-                            initial={{ opacity: 0, x: -5 }}
-                            transition={{
-                                duration: 0.3,
-                                ease: 'easeOut',
-                            }}
-                            whileHover={{
-                                scale: 1.05,
-                                transition: { duration: 0.2 },
-                            }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                         >
                             <Image
                                 alt="Jterrazz"
-                                className="mr-3 rounded-md"
-                                height={36}
+                                className="rounded-full"
+                                height={32}
                                 src="/assets/icons/app-icon.jterrazz.png"
-                                width={36}
+                                width={32}
                             />
                         </motion.div>
                     </Link>
-                    <div className="hidden md:block">
-                        <NavigationTabs onLinkClick={closeMenu} pages={pages} />
+
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center justify-center flex-1">
+                        <AnimatedBackground
+                            className="rounded-full bg-zinc-100 dark:bg-zinc-800"
+                            enableHover
+                            transition={{
+                                type: 'spring',
+                                bounce: 0.2,
+                                duration: 0.3,
+                            }}
+                        >
+                            {pages.map((page) => {
+                                const isSelected = pathname === page.href;
+                                return (
+                                    <div
+                                        className="px-1"
+                                        data-id={page.href}
+                                        key={page.href}
+                                    >
+                                        <Link
+                                            className={cn(
+                                                'relative px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 block',
+                                                isSelected
+                                                    ? 'text-zinc-900 dark:text-zinc-100'
+                                                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200',
+                                            )}
+                                            href={page.href}
+                                        >
+                                            {page.name}
+                                        </Link>
+                                    </div>
+                                );
+                            })}
+                        </AnimatedBackground>
                     </div>
-                </div>
-                <div className="hidden md:flex items-center">
-                    {contacts.map((contact, index) => (
-                        <NavigationTabItem
-                            className="ml-1 flex-shrink-0"
-                            href={contact.url}
-                            key={contact.name}
-                            newTab={true}
-                            onClick={closeMenu}
-                            selected={index === 0}
-                            value={contact.name}
-                        />
-                    ))}
-                </div>
-                <div className="md:hidden flex items-center">
-                    {currentPage && (
-                        <span className="mr-4 text-sm font-medium">{currentPage.name}</span>
-                    )}
-                    <button
-                        aria-label="Toggle menu"
-                        className="p-2"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    >
-                        <motion.div
-                            animate={{ rotate: isMenuOpen ? 90 : 0 }}
-                            transition={{ duration: 0.2, ease: 'easeOut' }}
+
+                    {/* Desktop Contacts */}
+                    <div className="hidden md:flex items-center gap-2 ml-4 md:ml-8">
+                        {contacts.map((contact) => (
+                            <NavigationTabItem
+                                className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors p-2"
+                                href={contact.url}
+                                key={contact.name}
+                                newTab
+                                title={contact.name}
+                            >
+                                {getContactIcon(contact.name) || (
+                                    <span className="text-xs font-medium">{contact.name}</span>
+                                )}
+                            </NavigationTabItem>
+                        ))}
+                    </div>
+
+                    {/* Mobile Menu Toggle */}
+                    <div className="md:hidden flex items-center ml-auto">
+                        <button
+                            aria-label="Toggle menu"
+                            className="p-2 text-zinc-600 dark:text-zinc-300"
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </motion.div>
-                    </button>
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </nav>
 
+            {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
-                        animate={{ height: 'auto', opacity: 1 }}
-                        className="w-full md:hidden overflow-hidden"
-                        exit={{ height: 0, opacity: 0 }}
-                        initial={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="fixed inset-0 z-[40] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md flex flex-col pt-32 px-8 md:hidden"
+                        exit={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        transition={{ duration: 0.2 }}
                     >
+                        <div className="flex flex-col gap-6">
+                            {pages.map((page, index) => (
+                                <motion.div
+                                    animate={{ opacity: 1, x: 0 }}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    key={page.href}
+                                    transition={{ delay: index * 0.05 + 0.1 }}
+                                >
+                                    <Link
+                                        className={cn(
+                                            'text-2xl font-semibold tracking-tight block',
+                                            pathname === page.href
+                                                ? 'text-zinc-900 dark:text-zinc-100'
+                                                : 'text-zinc-500 dark:text-zinc-500',
+                                        )}
+                                        href={page.href}
+                                        onClick={closeMenu}
+                                    >
+                                        {page.name}
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </div>
+
                         <motion.div
-                            animate={{ opacity: 1, y: 0 }}
-                            className="border-t border-gray-200 dark:border-gray-700 mt-4 pt-4"
-                            exit={{ opacity: 0, y: -20 }}
-                            initial={{ opacity: 0, y: -20 }}
-                            transition={{ delay: 0.1, duration: 0.3 }}
+                            animate={{ opacity: 1 }}
+                            className="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800"
+                            initial={{ opacity: 0 }}
+                            transition={{ delay: 0.3 }}
                         >
-                            <NavigationTabs onLinkClick={closeMenu} pages={pages} />
-                        </motion.div>
-                        <motion.div
-                            animate={{ opacity: 1, y: 0 }}
-                            className="border-t border-gray-200 dark:border-gray-700 mt-4 pt-4"
-                            exit={{ opacity: 0, y: -20 }}
-                            initial={{ opacity: 0, y: -20 }}
-                            transition={{ delay: 0.2, duration: 0.3 }}
-                        >
-                            <div className="flex flex-wrap justify-center gap-2">
-                                {contacts.map((contact, _index) => (
-                                    <NavigationTabItem
-                                        className="flex-shrink-0"
+                            <div className="flex gap-6">
+                                {contacts.map((contact) => (
+                                    <a
+                                        className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400"
                                         href={contact.url}
                                         key={contact.name}
-                                        newTab={true}
-                                        onClick={closeMenu}
-                                        value={contact.name}
-                                    />
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        {getContactIcon(contact.name) || <Monitor size={20} />}
+                                        <span className="text-sm font-medium">
+                                            {contact.name}
+                                        </span>
+                                    </a>
                                 ))}
                             </div>
                         </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </nav>
+        </>
     );
 };

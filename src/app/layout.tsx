@@ -146,7 +146,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={generatedClassName}>
                 <ClientLayoutWrapper>
-                    <div className="sticky top-0 z-[50]">
+                    <div className="sticky top-0 z-[50] pointer-events-none">
                         <NotificationBanner
                             className="border-b border-white/10"
                             href="/link/applications/fake-news"
