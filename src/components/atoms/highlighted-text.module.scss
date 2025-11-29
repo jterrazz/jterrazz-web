@@ -1,29 +1,26 @@
 @use 'sass:color';
 
-//$highlight-color-hover: rgba(154, 95, 250, 0.5);
-//$highlight-color: rgb(221, 202, 252);
-
-// Same in green light like the grass on a sunset
-//$highlight-color-hover: rgba(0, 191, 255, 0.5);
-//$highlight-color: rgb(135, 206, 250);
-
+// Light mode colors
 $highlight-color-hover: rgba(191, 200, 201, 0.8);
 $highlight-color: rgb(191, 200, 201);
+
+// Dark mode colors
+$highlight-color-dark-hover: rgba(80, 90, 100, 0.8);
+$highlight-color-dark: rgb(70, 80, 90);
 
 .highlight-text {
     position: relative;
     background: linear-gradient(transparent 30%, rgba($highlight-color, 0.5) 70%, transparent 100%);
-    //background: linear-gradient(transparent 30%, rgba(197, 198, 162, 0.5) 70%, transparent 100%);
     display: inline-block;
     line-height: 1.5;
-    border-radius: 8px; /* Adding a subtle curve */
+    border-radius: 8px;
     transition: transform 0.3s ease;
 
     &::before,
     &::after {
         transition:
             transform 0.3s ease,
-            background 0.3s ease; // Smooth animation for transform and background
+            background 0.3s ease;
     }
 
     &:hover {
@@ -31,21 +28,35 @@ $highlight-color: rgb(191, 200, 201);
             transparent 30%,
             color.adjust($highlight-color-hover, $lightness: 10%) 70%,
             transparent 100%
-        ); // Lighten the color on hover
+        );
         &::before {
-            transform: scale(1.12) skewY(-3deg) rotate(2deg); // Slightly scale up the highlight
-            background: color.adjust(
-                $highlight-color-hover,
-                $lightness: 10%
-            ); // Lighten the color on hover
+            transform: scale(1.12) skewY(-3deg) rotate(2deg);
+            background: color.adjust($highlight-color-hover, $lightness: 10%);
         }
 
         &::after {
-            transform: scale(1.12) skewY(-2deg) rotate(2deg); // Slightly scale up the highlight
-            background: color.adjust(
-                $highlight-color-hover,
-                $lightness: 20%
-            ); // Lighten the color on hover
+            transform: scale(1.12) skewY(-2deg) rotate(2deg);
+            background: color.adjust($highlight-color-hover, $lightness: 20%);
+        }
+    }
+
+    // Dark mode
+    :global(.dark) & {
+        background: linear-gradient(transparent 30%, rgba($highlight-color-dark, 0.5) 70%, transparent 100%);
+
+        &:hover {
+            background: linear-gradient(
+                transparent 30%,
+                color.adjust($highlight-color-dark-hover, $lightness: 10%) 70%,
+                transparent 100%
+            );
+            &::before {
+                background: color.adjust($highlight-color-dark-hover, $lightness: 10%);
+            }
+
+            &::after {
+                background: color.adjust($highlight-color-dark-hover, $lightness: 15%);
+            }
         }
     }
 }
@@ -60,8 +71,12 @@ $highlight-color: rgb(191, 200, 201);
     background: rgba($highlight-color, 0.5);
     z-index: -1;
     transform: skewY(-3deg);
-    border-radius: 8px 50% 50% 8px; /* Curved border */
-    filter: blur(1px); /* Slight blur to soften edges */
+    border-radius: 8px 50% 50% 8px;
+    filter: blur(1px);
+
+    :global(.dark) & {
+        background: rgba($highlight-color-dark, 0.5);
+    }
 }
 
 .highlight-text::after {
@@ -74,6 +89,10 @@ $highlight-color: rgb(191, 200, 201);
     background: rgba($highlight-color, 0.3);
     z-index: -1;
     transform: skewY(3deg);
-    border-radius: 50% 8px 8px 50%; /* Curved border */
-    filter: blur(1px); /* Slight blur to soften edges */
+    border-radius: 50% 8px 8px 50%;
+    filter: blur(1px);
+
+    :global(.dark) & {
+        background: rgba($highlight-color-dark, 0.3);
+    }
 }

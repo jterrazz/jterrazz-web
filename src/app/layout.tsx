@@ -137,12 +137,26 @@ export default function RootLayout({
     ];
 
     const generatedClassName = cn(
-        'min-h-screen flex flex-col text-storm-cloud-accent font-sans',
+        'min-h-screen flex flex-col text-zinc-900 dark:text-zinc-100 font-sans',
         // inter.className, // Commented out due to network restrictions
     );
 
+    // Inline script to prevent flash of wrong theme
+    const themeScript = `
+        (function() {
+            const stored = localStorage.getItem('theme');
+            const theme = stored === 'dark' || stored === 'light' ? stored : 
+                (stored === 'system' || !stored) && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.classList.add(theme);
+        })();
+    `;
+
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
+            <head>
+                {/* biome-ignore lint/security/noDangerouslySetInnerHtml: Required to prevent theme flash before hydration */}
+                <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+            </head>
             <body className={generatedClassName}>
                 <ClientLayoutWrapper>
                     <div className="sticky top-0 z-[50] pointer-events-none">

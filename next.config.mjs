@@ -6,11 +6,15 @@ const nextConfig = {
     },
     turbopack: {},
     images: {
+        localPatterns: [
+            {
+                pathname: '/**',
+            },
+        ],
         remotePatterns: [
             {
                 hostname: 'miro.medium.com',
                 protocol: 'https',
-                // pathname: '/**' // optional, allows all paths
             },
         ],
     },

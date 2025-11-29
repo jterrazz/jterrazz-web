@@ -4,6 +4,8 @@ import React from 'react';
 
 import dynamic from 'next/dynamic';
 
+import { ThemeProvider } from './providers/theme-provider';
+
 // Dynamically load analytics to prevent SSR issues
 const Analytics = dynamic(
     () => import('@vercel/analytics/react').then((mod) => ({ default: mod.Analytics })),
@@ -33,10 +35,10 @@ interface ClientLayoutWrapperProps {
 
 export function ClientLayoutWrapper({ children }: ClientLayoutWrapperProps) {
     return (
-        <>
+        <ThemeProvider>
             <SpeedInsights sampleRate={1} />
             <Analytics />
             <ClientProviders>{children}</ClientProviders>
-        </>
+        </ThemeProvider>
     );
 }

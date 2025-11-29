@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import Markdown from 'markdown-to-jsx';
@@ -7,6 +9,7 @@ import { Highlight, themes } from 'prism-react-renderer';
 // Utils
 import { cn } from '../../lib/utils';
 
+import { useTheme } from '../../hooks/use-theme';
 import { HeadingMain } from '../atoms/typography/heading-main';
 import { HeadingSection } from '../atoms/typography/heading-section';
 
@@ -17,10 +20,12 @@ type ArticleInMarkdownProps = {
 
 const CodeBlock = ({ children, language }: { children: string; language: string }) => {
     const code = children.replace(/^[a-z]+\n/, '');
+    const { resolvedTheme } = useTheme();
+    const codeTheme = resolvedTheme === 'dark' ? themes.oneDark : themes.oneLight;
 
     return (
         <div className="my-8 rounded-lg overflow-hidden border border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50">
-            <Highlight code={code.trim()} language={language} theme={themes.oneLight}>
+            <Highlight code={code.trim()} language={language} theme={codeTheme}>
                 {({ getLineProps, getTokenProps, style, tokens }) => (
                     <pre
                         className="p-4 overflow-x-auto text-[13px] font-mono leading-relaxed"

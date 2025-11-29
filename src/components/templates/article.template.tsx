@@ -64,10 +64,10 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
             />
 
             <ArticleInMarkdown className="mb-6" contentInMarkdown={contentInMarkdown} />
-            <p className="text-center text-storm-cloud text-sm mt-4 italic">
+            <p className="text-center text-zinc-500 dark:text-zinc-400 text-sm mt-4 italic">
                 Last updated on {new Date(dateModified).toLocaleDateString()}
             </p>
-            <p className="text-center text-storm-cloud text-sm mt-2 italic">
+            <p className="text-center text-zinc-500 dark:text-zinc-400 text-sm mt-2 italic">
                 Published on {new Date(datePublished).toLocaleDateString()}
             </p>
         </MainContainer>

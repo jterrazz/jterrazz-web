@@ -12,6 +12,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '../../../lib/utils';
 
 import AnimatedBackground from '../../molecules/cards/animated-backgrounds';
+import { ThemeToggle } from '../../molecules/theme-toggle';
 
 import { type NavigationPage } from './navigation-page';
 
@@ -164,6 +165,8 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             </NavigationTabItem>
                         ))}
 
+                        <ThemeToggle />
+
                         <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-800 mx-2" />
 
                         <a
@@ -231,6 +234,8 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             initial={{ opacity: 0 }}
                             transition={{ delay: 0.3 }}
                         >
+                            <ThemeToggle />
+
                             <div className="flex gap-6">
                                 {contacts.map((contact) => (
                                     <a
