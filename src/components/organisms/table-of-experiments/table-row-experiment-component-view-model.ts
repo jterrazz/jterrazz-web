@@ -3,7 +3,9 @@ import { ExperimentStatus } from '../../../domain/experiment';
 
 import { DotPulseColor } from '../../atoms/status/dot-pulse';
 
-export const experimentComponentStatusToDoPulseState = (status: ExperimentStatus): DotPulseColor => {
+export const experimentComponentStatusToDoPulseState = (
+    status: ExperimentStatus,
+): DotPulseColor => {
     switch (status) {
         case ExperimentStatus.Active:
             return DotPulseColor.Green;

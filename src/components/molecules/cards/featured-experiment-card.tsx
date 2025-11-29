@@ -2,11 +2,11 @@
 
 import React from 'react';
 
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 // Domain
-import { type Experiment, ExperimentStatus } from '../../../domain/experiment';
+import { type Experiment } from '../../../domain/experiment';
 
 // Utils
 import { cn } from '../../../lib/utils';
@@ -42,16 +42,16 @@ export const FeaturedExperimentCard: React.FC<FeaturedExperimentCardProps> = ({
                 {/* Header: Title & Status */}
                 <div className="flex items-start justify-between gap-4 mb-4">
                     <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors">
-                            {experiment.name}
-                        </h3>
+                        {experiment.name}
+                    </h3>
                     <ExperimentStatusBadge className="shrink-0" status={experiment.status} />
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 mb-8">
                     <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed line-clamp-3 font-normal">
-                    {experiment.description}
-                </p>
+                        {experiment.description}
+                    </p>
                 </div>
 
                 {/* Footer: Meta info */}

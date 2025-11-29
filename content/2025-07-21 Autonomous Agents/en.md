@@ -5,7 +5,6 @@
 Imagine waking up to a notification:
 
 > **System Update:**
->
 > - Identified dependency vulnerability in `lodash`.
 > - Created isolated branch.
 > - Updated dependency.
@@ -18,7 +17,7 @@ This defines **autonomous systems**. The shift from directing agents is not capa
 
 Directing involves supervision; autonomy involves architecture. The question changes from "How do I describe what I want?" to "How much autonomy can this system have, and under what constraints?"
 
----
+***
 
 ## From tasks to workflows
 
@@ -26,7 +25,6 @@ When directing agents, you are in the loop: you prompt, the AI generates, you re
 With autonomous agents, you step out of the loop. The system runs asynchronously.
 
 This is particularly valuable for **maintenance and hygiene** tasks—the important work that often gets deprioritized in favor of new features:
-
 - **Dependency Management:** Keeping libraries up to date.
 - **Documentation:** Detecting when code changes drift from documentation and drafting updates.
 - **Test Coverage:** Identifying untested code paths and generating test cases.
@@ -34,7 +32,7 @@ This is particularly valuable for **maintenance and hygiene** tasks—the import
 
 The agent acts as a digital groundskeeper, ensuring the codebase remains clean and secure without requiring your constant attention.
 
----
+***
 
 ## The architecture of trust
 
@@ -45,9 +43,8 @@ An autonomous agent is only useful if you can trust it not to break things. This
 ### 1. Clear Triggers
 
 The system needs unambiguous rules for when to act.
-
-- _Bad:_ "Check if the code looks messy."
-- _Good:_ "Trigger when a dependency is >2 versions behind" or "Trigger when a function has 0% test coverage."
+- *Bad:* "Check if the code looks messy."
+- *Good:* "Trigger when a dependency is >2 versions behind" or "Trigger when a function has 0% test coverage."
 
 ### 2. Sandboxed Execution
 
@@ -59,7 +56,7 @@ Autonomous execution does not mean "fully automatic." It means "automatic prepar
 
 The goal is to present you with a **decision**, not a task. Reviewing a prepared PR takes 5 minutes; doing the work takes 50.
 
----
+***
 
 ## Building the system
 
@@ -74,7 +71,7 @@ Allow the script to create a branch and a draft Pull Request. It touches the cod
 **Stage 3: The Assistant.**
 Once the drafter is reliable, you integrate it into your workflow. It runs nightly, and you start your day by reviewing its proposals.
 
----
+***
 
 ## The value of background work
 
@@ -84,13 +81,7 @@ An autonomous system does not get bored. It applies the same standard of hygiene
 
 By offloading this cognitive load, you preserve your energy for the work that requires deep context and creativity—architecting new features and solving complex user problems.
 
----
+***
 
-_Next, we look at intelligent systems: integrating this intelligence directly into the products we build for users._
+*Next, we look at intelligent systems: integrating this intelligence directly into the products we build for users.*
 
----
-
-1. [The four levels of AI integration](https://jterrazz.com/articles/20-the-four-levels-of-ai)
-2. [Directing AI agents](https://jterrazz.com/articles/21-guided-ai-for-developers)
-3. [**Autonomous AI agents**](https://jterrazz.com/articles/22-autonomous-ai-agents)
-4. [Programming intelligent systems](https://jterrazz.com/articles/23-programming-intelligence)

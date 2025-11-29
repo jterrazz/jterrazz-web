@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { type Experiment } from '../../domain/experiment';
 import { type UserExperience } from '../../domain/user';
 
+// Utils
 import { cn } from '../../lib/utils';
 
 import { ArticlePreviewCard } from '../molecules/cards/article-preview-card';
@@ -105,10 +106,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                         {latestExperiments.map((experiment) => (
-                            <FeaturedExperimentCard
-                                experiment={experiment}
-                                key={experiment.name}
-                            />
+                            <FeaturedExperimentCard experiment={experiment} key={experiment.name} />
                         ))}
                     </div>
                 </section>

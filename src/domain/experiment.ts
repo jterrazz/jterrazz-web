@@ -35,7 +35,7 @@ export type Experiment = {
     components: Array<ExperimentComponent>; // Can be empty for simple experiments
     context: ExperimentContext;
     description: string;
-    
+
     // Optional details for rich page
     articleUrl?: string;
     longDescription?: string;

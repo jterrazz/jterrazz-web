@@ -31,7 +31,7 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
         title: photograph.metadata.description,
     }));
     const button = {
-        href: new UserInMemoryRepository().getContact(UserContactType.Pexels).url.toString(),
+        href: new UserInMemoryRepository().getContact(UserContactType.Website).url.toString(),
         text: 'View Pexels',
     };
 

@@ -23,7 +23,7 @@ export type UserExperience = {
     organizationUrl?: string;
     timeframe: string;
     title: string;
-    type: 'Job' | 'Hackathon' | 'School' | 'Internship';
+    type: 'Hackathon' | 'Internship' | 'Job' | 'School';
     year: string;
 };
 

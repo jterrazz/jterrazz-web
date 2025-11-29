@@ -39,16 +39,17 @@ export const CompactExperimentCard: React.FC<CompactExperimentCardProps> = ({
                     {experiment.name}
                 </h3>
                 {experiment.url && (
-                    <div
-                        className="text-zinc-300 group-hover:text-zinc-900 dark:text-zinc-600 dark:group-hover:text-zinc-100 transition-colors"
+                    <button
+                        className="text-zinc-300 group-hover:text-zinc-900 dark:text-zinc-600 dark:group-hover:text-zinc-100 transition-colors bg-transparent border-none cursor-pointer p-0"
                         onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
                             window.open(experiment.url?.toString(), '_blank');
                         }}
+                        type="button"
                     >
                         <Github size={18} />
-                    </div>
+                    </button>
                 )}
             </div>
 

@@ -66,9 +66,7 @@ export default async function HomePage() {
 
     const userExperiences: UserExperience[] = userRepository.getExperiences();
     const topArticles: Article[] = await articlesRepository.getArticles();
-    const latestExperiments: Experiment[] = experimentRepository
-        .getExperiments()
-        .slice(0, 2);
+    const latestExperiments: Experiment[] = experimentRepository.getExperiments().slice(0, 2);
 
     const description =
         'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.';

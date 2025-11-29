@@ -1,6 +1,9 @@
 import React from 'react';
 
+// Domain
 import { ExperimentStatus } from '../../../domain/experiment';
+
+// Utils
 import { cn } from '../../../lib/utils';
 
 export type ExperimentStatusBadgeProps = {
@@ -8,7 +11,10 @@ export type ExperimentStatusBadgeProps = {
     status: ExperimentStatus;
 };
 
-export const ExperimentStatusBadge: React.FC<ExperimentStatusBadgeProps> = ({ className, status }) => {
+export const ExperimentStatusBadge: React.FC<ExperimentStatusBadgeProps> = ({
+    className,
+    status,
+}) => {
     const getStatusDotColor = (status: ExperimentStatus) => {
         switch (status) {
             case ExperimentStatus.Active:
@@ -30,10 +36,7 @@ export const ExperimentStatusBadge: React.FC<ExperimentStatusBadgeProps> = ({ cl
             )}
         >
             <div
-                className={cn(
-                    'w-1.5 h-1.5 rounded-full animate-pulse',
-                    getStatusDotColor(status),
-                )}
+                className={cn('w-1.5 h-1.5 rounded-full animate-pulse', getStatusDotColor(status))}
             />
             <span className="text-[10px] font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide">
                 {status}
@@ -41,4 +44,3 @@ export const ExperimentStatusBadge: React.FC<ExperimentStatusBadgeProps> = ({ cl
         </div>
     );
 };
-

@@ -4,7 +4,7 @@
 
 ## Getting to the heart of what matters
 
-Here's the big idea that changed how I build software: your architecture shouldn't care about your database. It shouldn't care about your web framework. It shouldn't care about your UI. The only thing it should care about is what your application _actually does_.
+Here's the big idea that changed how I build software: your architecture shouldn't care about your database. It shouldn't care about your web framework. It shouldn't care about your UI. The only thing it should care about is what your application *actually does*.
 
 This is the philosophy behind **Clean Architecture**. It's a design approach that places your **use cases**, the real business value, at the very heart of your system. Everything else is just a detail, leading to a system that is testable, maintainable, and independent of its technical plumbing.
 
@@ -19,7 +19,7 @@ Clean Architecture is all about creating independent layers governed by a strict
 3. **Interface Adapters**: This is the translation layer. It takes data from the format most convenient for the use cases and entities and converts it into the format most convenient for the outside world (like a database or the web).
 4. **Frameworks and Drivers**: The outermost layer. This is where all the details live: the web framework, the database, the UI, etc. This stuff is the most likely to change.
 
-The golden rule is the **Dependency Rule**: all dependencies must point inwards. Your UI can depend on your use cases, but your use cases know _nothing_ about the UI. Your business logic is the king, and it is never, ever dethroned by a technical detail.
+The golden rule is the **Dependency Rule**: all dependencies must point inwards. Your UI can depend on your use cases, but your use cases know *nothing* about the UI. Your business logic is the king, and it is never, ever dethroned by a technical detail.
 
 ![](assets/clean-architecture.jpg)
 
@@ -32,7 +32,7 @@ So, how does this compare to the Hexagonal Architecture we've just discussed?
 They are built on the exact same philosophy: **protect the business logic**. I see Clean Architecture as a more specific, opinionated version of Hexagonal Architecture.
 
 - Hexagonal Architecture gives you the "what": separate your app into an "inside" (domain) and an "outside" (infrastructure) using ports and adapters.
-- Clean Architecture gives you a more detailed "how": it explicitly defines layers _within_ the "inside" part (Entities and Use Cases) and provides stricter rules governing their interaction.
+- Clean Architecture gives you a more detailed "how": it explicitly defines layers *within* the "inside" part (Entities and Use Cases) and provides stricter rules governing their interaction.
 
 Think of it this way: Hexagonal Architecture drew the map. Clean Architecture added the highways and road signs. It makes the path clearer.
 
@@ -44,7 +44,7 @@ Theory is great, but code is better. Let's build a small part of a hotel managem
 
 ## Our file structure
 
-First, let's look at the project structure. This is what Robert C. Martin calls a "Screaming Architecture", one where your folder structure screams what the application _does_, not what frameworks it uses. You see `business`, `use-cases`, and `entity`. You don't see `models`, `views`, and `controllers` at the top level.
+First, let's look at the project structure. This is what Robert C. Martin calls a "Screaming Architecture", one where your folder structure screams what the application *does*, not what frameworks it uses. You see `business`, `use-cases`, and `entity`. You don't see `models`, `views`, and `controllers` at the top level.
 
 ```sh
 src/
@@ -82,37 +82,37 @@ Entities are not just dumb data containers. They embody the most fundamental bus
 ```ts
 // business/entity/floor.ts
 export class Floor {
-  constructor(public floor: number) {}
+		constructor(public floor: number) {}
 
-  // This is a core business rule.
-  getFactor() {
-    if (this.floor === 1) return 1.07;
-    if (this.floor === 2) return 1.22;
-    if (this.floor === 3) return 1.33;
-    return 1;
-  }
+    // This is a core business rule.
+    getFactor() {
+        if (this.floor === 1) return 1.07;
+        if (this.floor === 2) return 1.22;
+        if (this.floor === 3) return 1.33;
+        return 1;
+    }
 }
 ```
 
 ```ts
 // business/entity/room.ts
-import { Floor } from './floor';
+import { Floor } from "./floor";
 
 export class Room {
-  public floor: Floor;
-  constructor(
-    floorNumber: number,
-    public number: number,
-    public price: number,
-  ) {
-    this.floor = new Floor(floorNumber);
-  }
+		public floor: Floor;
+		constructor(
+				floorNumber: number,
+				public number: number,
+				public price: number,
+		) {
+				this.floor = new Floor(floorNumber);
+		}
 
-  // Another core business rule.
-  setPrice(basePrice: number) {
-    const calculatedPrice = basePrice * this.floor.getFactor();
-    this.price = Math.min(Number(calculatedPrice.toFixed(2)), 200);
-  }
+    // Another core business rule.
+    setPrice(basePrice: number) {
+        const calculatedPrice = basePrice * this.floor.getFactor();
+        this.price = Math.min(Number(calculatedPrice.toFixed(2)), 200);
+    }
 }
 ```
 
@@ -122,20 +122,20 @@ export class Room {
 
 ## 2. The gateway: `RoomGateway`
 
-The gateway is an interface, a contract defined by the business layer that says, "I need to perform these actions with rooms, but I don't care _how_ you do them." It's a promise the outer layers must fulfill.
+The gateway is an interface, a contract defined by the business layer that says, "I need to perform these actions with rooms, but I don't care *how* you do them." It's a promise the outer layers must fulfill.
 
 ```ts
 // business/gateway/room.gateway.ts
 export interface RoomDTO {
-  floor: number;
-  number: number;
-  price: number;
+		floor: number;
+		number: number;
+		price: number;
 }
 
 // This is the contract.
 export interface RoomGateway {
-  updateRoomPrice(roomNumber: number, newPrice: number): Promise<void>;
-  getRooms(): Promise<Array<RoomDTO>>;
+		updateRoomPrice(roomNumber: number, newPrice: number): Promise<void>;
+		getRooms(): Promise<Array<RoomDTO>>;
 }
 ```
 
@@ -149,12 +149,12 @@ The use case is the star of the show. It represents a single, specific action th
 
 ```ts
 // business/use-cases/update-room-price.ts
-import { Room } from '../entity/room';
-import { RoomGateway } from '../gateway/room.gateway';
+import { Room } from "../entity/room";
+import { RoomGateway } from "../gateway/room.gateway";
 
 // Another contract: how the use case reports its results.
 export interface Presenter {
-  set: (rooms: Array<Room>) => void;
+    set: (rooms: Array<Room>) => void;
 }
 
 // The use case itself.
@@ -162,25 +162,25 @@ export type UpdateRoomPrice = (basePrice: number, presenter: Presenter) => Promi
 
 // A factory to create the use case and inject its dependencies.
 export const updateRoomPriceFactory = (repository: RoomGateway) => {
-  return async (basePrice: number, presenter: Presenter) => {
-    if (basePrice < 0) {
-      throw new Error('Amount cannot be negative');
-    }
-    const roomsDto = await repository.getRooms();
-    const rooms = roomsDto.map((r) => new Room(r.floor, r.number, r.price));
+    return async (basePrice: number, presenter: Presenter) => {
+        if (basePrice < 0) {
+            throw new Error("Amount cannot be negative");
+        }
+        const roomsDto = await repository.getRooms();
+        const rooms = roomsDto.map((r) => new Room(r.floor, r.number, r.price));
 
-    for (const room of rooms) {
-      room.setPrice(basePrice); // Use the entity's business logic.
-      await repository.updateRoomPrice(room.number, room.price);
-    }
+        for (const room of rooms) {
+            room.setPrice(basePrice); // Use the entity's business logic.
+            await repository.updateRoomPrice(room.number, room.price);
+        }
 
-    const updatedRooms = (await repository.getRooms()).map(
-      (r) => new Room(r.floor, r.number, r.price),
-    );
-
-    // Hand off the results to the presenter.
-    presenter.set(updatedRooms);
-  };
+        const updatedRooms = (await repository.getRooms()).map(
+            (r) => new Room(r.floor, r.number, r.price)
+        );
+        
+        // Hand off the results to the presenter.
+        presenter.set(updatedRooms);
+    };
 };
 ```
 
@@ -194,23 +194,23 @@ Now we're moving to the outer layers. The `RoomRepository` is our concrete imple
 
 ```ts
 // controller/gateway/room.repository.ts
-import { RoomDTO, RoomGateway } from '../../business/gateway/room.gateway';
+import { RoomDTO, RoomGateway } from "../../business/gateway/room.gateway";
 
 export class RoomRepository implements RoomGateway {
-  constructor(private rooms: Array<RoomDTO>) {}
+    constructor(private rooms: Array<RoomDTO>) {}
 
-  async updateRoomPrice(roomNumber: number, newPrice: number): Promise<void> {
-    const room = this.rooms.find((room) => room.number === roomNumber);
-    if (!room) {
-      throw new Error(`Failed to find room ${roomNumber}`);
+    async updateRoomPrice(roomNumber: number, newPrice: number): Promise<void> {
+        const room = this.rooms.find((room) => room.number === roomNumber);
+        if (!room) {
+            throw new Error(`Failed to find room ${roomNumber}`);
+        }
+        room.price = newPrice;
+        return Promise.resolve();
     }
-    room.price = newPrice;
-    return Promise.resolve();
-  }
 
-  async getRooms(): Promise<Array<RoomDTO>> {
-    return Promise.resolve(this.rooms);
-  }
+    async getRooms(): Promise<Array<RoomDTO>> {
+        return Promise.resolve(this.rooms);
+    }
 }
 ```
 
@@ -224,24 +224,24 @@ The presenter's job is to take the pure entity objects from the use case and tra
 
 ```ts
 // controller/presenter/room-presenter.json.ts
-import { Room } from '../../business/entity/room';
+import { Room } from "../../business/entity/room";
 
 export class RoomPresenterJson {
-  private r: Array<Room> = [];
+    private r: Array<Room> = [];
 
-  // The use case calls this method.
-  set(rooms: Array<Room>) {
-    this.r = rooms;
-  }
+    // The use case calls this method.
+    set(rooms: Array<Room>) {
+        this.r = rooms;
+    }
 
-  // The controller calls this method to get the final output.
-  format() {
-    return this.r.map((r) => ({
-      floor: r.floor.floor,
-      price: r.price,
-      number: r.number,
-    }));
-  }
+    // The controller calls this method to get the final output.
+    format() {
+        return this.r.map((r) => ({
+            floor: r.floor.floor,
+            price: r.price,
+            number: r.number,
+        }));
+    }
 }
 ```
 
@@ -255,25 +255,25 @@ The controller is the entry point from the web. Its only job is to parse incomin
 
 ```ts
 // controller/room.controller.ts
-import { Request, Response } from 'express';
-import { createContainer } from '../container/container';
-import { RoomPresenterJson } from './presenter/room-presenter.json';
+import { Request, Response } from "express";
+import { createContainer } from "../container/container";
+import { RoomPresenterJson } from "./presenter/room-presenter.json";
 
-const express = require('express');
+const express = require("express");
 const app = express();
 
 const container = createContainer();
 
-app.put('/rooms', async (req: Request, res: Response) => {
-  // 1. Create a new presenter for this request.
-  const roomPresenterJson = new RoomPresenterJson();
-  // 2. Get the use case from our container and execute it.
-  await container.UpdateRoomPrice(200, roomPresenterJson);
-  // 3. Send the formatted result from the presenter.
-  res.send(roomPresenterJson.format());
+app.put("/rooms", async (req: Request, res: Response) => {
+    // 1. Create a new presenter for this request.
+    const roomPresenterJson = new RoomPresenterJson();
+    // 2. Get the use case from our container and execute it.
+    await container.UpdateRoomPrice(200, roomPresenterJson);
+    // 3. Send the formatted result from the presenter.
+    res.send(roomPresenterJson.format());
 });
 
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
 ```
 
 Look how clean that is. The controller orchestrates the flow but contains zero business logic.
@@ -286,26 +286,26 @@ This is where it all comes together. The container is the single place where we 
 
 ```ts
 // container/container.ts
-import { UpdateRoomPrice, updateRoomPriceFactory } from '../business/use-cases/update-room-price';
-import { RoomRepository } from '../controller/gateway/room.repository';
+import { UpdateRoomPrice, updateRoomPriceFactory } from "../business/use-cases/update-room-price";
+import { RoomRepository } from "../controller/gateway/room.repository";
 
 interface Container {
-  UpdateRoomPrice: UpdateRoomPrice;
+    UpdateRoomPrice: UpdateRoomPrice;
 }
 
 export const createContainer = (): Container => {
-  return {
-    // Create the use case, injecting the concrete repository.
-    UpdateRoomPrice: updateRoomPriceFactory(
-      new RoomRepository([
-        // Initial data for our in-memory repo.
-        { floor: 0, number: 1, price: 0 },
-        { floor: 1, number: 2, price: 0 },
-        { floor: 2, number: 3, price: 0 },
-        { floor: 3, number: 4, price: 0 },
-      ]),
-    ),
-  };
+    return {
+        // Create the use case, injecting the concrete repository.
+        UpdateRoomPrice: updateRoomPriceFactory(
+            new RoomRepository([
+                // Initial data for our in-memory repo.
+                { floor: 0, number: 1, price: 0 },
+                { floor: 1, number: 2, price: 0 },
+                { floor: 2, number: 3, price: 0 },
+                { floor: 3, number: 4, price: 0 },
+            ])
+        ),
+    };
 };
 ```
 
@@ -317,29 +317,29 @@ And now for the best part: look how easy it is to test our core business logic.
 
 ```ts
 // tests/update-price.test.ts
-import assert from 'assert';
-import { describe, test } from 'mocha';
-import { createContainer } from '../container/container';
-import { RoomPresenterJson } from '../controller/presenter/room-presenter.json';
+import assert from "assert";
+import { describe, test } from "mocha";
+import { createContainer } from "../container/container";
+import { RoomPresenterJson } from "../controller/presenter/room-presenter.json";
 
-describe('Update Room Price', () => {
-  test('Update all room prices based on a base price of 100', async () => {
-    // Given
-    const container = createContainer();
-    const presenter = new RoomPresenterJson();
+describe("Update Room Price", () => {
+    test("Update all room prices based on a base price of 100", async () => {
+        // Given
+        const container = createContainer();
+        const presenter = new RoomPresenterJson();
 
-    // When we run the use case
-    await container.UpdateRoomPrice(100, presenter);
+        // When we run the use case
+        await container.UpdateRoomPrice(100, presenter);
 
-    // Then we check the output from the presenter
-    const value = presenter.format();
-    assert.deepStrictEqual(value, [
-      { number: 1, price: 100, floor: 0 }, // 100 * 1
-      { number: 2, price: 107, floor: 1 }, // 100 * 1.07
-      { number: 3, price: 122, floor: 2 }, // 100 * 1.22
-      { number: 4, price: 133, floor: 3 }, // 100 * 1.33
-    ]);
-  });
+        // Then we check the output from the presenter
+        const value = presenter.format();
+        assert.deepStrictEqual(value, [
+            { number: 1, price: 100, floor: 0 }, // 100 * 1
+            { number: 2, price: 107, floor: 1 }, // 100 * 1.07
+            { number: 3, price: 122, floor: 2 }, // 100 * 1.22
+            { number: 4, price: 133, floor: 3 }, // 100 * 1.33
+        ]);
+    });
 });
 ```
 
@@ -353,15 +353,7 @@ The lesson behind Clean Architecture is simple but profound: **put your business
 
 Frameworks will change. Databases will be replaced. User interfaces will be redesigned. But your core business rules are what provide lasting value. Clean Architecture isn't just a pattern; it's a philosophy that forces you to protect that value.
 
-It demands discipline and a bit more thought upfront, but the reward is a system that is testable, maintainable, flexible, and understandable, one that can evolve _with_ the business, not hold it back.
+It demands discipline and a bit more thought upfront, but the reward is a system that is testable, maintainable, flexible, and understandable, one that can evolve *with* the business, not hold it back.
 
 Now go build something great. 🚀
 
----
-
-### Read more in this series
-
-1.  [Application design: building software that lasts](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
-2.  [Application design: mastering the flow of dependencies](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
-3.  [Application design: separating business from technology](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
-4.  **Application design: a journey into clean architecture**

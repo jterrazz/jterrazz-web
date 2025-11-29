@@ -284,9 +284,9 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
             <div className="max-w-6xl mx-auto px-4 md:px-6 mb-12">
                 <div className="flex items-center justify-center">
                     <div className="flex items-center gap-2 overflow-x-auto p-4 -m-4 no-scrollbar">
-                    {['All', 'Experiment', 'Insight'].map((f) => (
-                        <button
-                            className={`
+                        {['All', 'Experiment', 'Insight'].map((f) => (
+                            <button
+                                className={`
                                 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap
                                 ${
                                     filter === f
@@ -294,15 +294,13 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                                         : 'bg-zinc-100 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200'
                                 }
                             `}
-                            key={f}
-                            onClick={() =>
-                                setFilter(f as 'All' | 'Experiment' | 'Insight')
-                            }
-                            type="button"
-                        >
-                            {f}
-                        </button>
-                    ))}
+                                key={f}
+                                onClick={() => setFilter(f as 'All' | 'Experiment' | 'Insight')}
+                                type="button"
+                            >
+                                {f}
+                            </button>
+                        ))}
                     </div>
                 </div>
             </div>

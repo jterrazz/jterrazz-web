@@ -17,7 +17,6 @@ Une information est rarement noire ou blanche. Le même événement peut être c
 Ce projet repose lourdement sur l'Intelligence Artificielle, pas juste comme une fonctionnalité, mais comme l'infrastructure centrale qui le rend scalable.
 
 L'IA agit comme une salle de rédaction automatisée, permettant à la plateforme de :
-
 - **Générer des scénarios infinis :** Créer du contenu de quiz unique basé sur les tendances en temps réel assure que le jeu ne semble jamais périmé.
 - **Analyser de multiples perspectives :** Le système scanne des articles de divers points de vue pour souligner comment différents médias tournent les mêmes faits.
 - **Synthétiser la clarté :** Elle distille des histoires géopolitiques complexes en faits vérifiables et digestes.
@@ -45,3 +44,4 @@ Au lieu de fouiller dans des onglets et de recouper les sources manuellement, no
 L'application est une invitation à construire une communauté plus intelligente et plus curieuse. C'est un gymnase numérique pour l'esprit critique.
 
 [Téléchargez l'application ici](https://jterrazz.com/link/applications/fake-news)
+

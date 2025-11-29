@@ -1,6 +1,6 @@
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import crypto from 'node:crypto';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 const PUBLIC_CONTENT_DIR = path.join(process.cwd(), 'public', 'content');
@@ -46,12 +46,12 @@ function main() {
 
     walkDir(CONTENT_DIR, (filePath) => {
         const ext = path.extname(filePath).toLowerCase();
-        
+
         // Only process asset files
         if (ASSET_EXTENSIONS.includes(ext)) {
             const relativePath = path.relative(CONTENT_DIR, filePath);
             const destPath = path.join(PUBLIC_CONTENT_DIR, relativePath);
-            
+
             // Ensure dest dir exists
             ensureDir(path.dirname(destPath));
 
@@ -60,7 +60,7 @@ function main() {
 
             // Compute hash
             const hash = computeHash(filePath);
-            
+
             // Store in map (normalize path separators for Windows compatibility if needed)
             // Key: "2019-06-01 Malloc/assets/thumbnail.jpg"
             hashMap[relativePath.replace(/\\/g, '/')] = hash;
@@ -69,10 +69,9 @@ function main() {
 
     // Write hash map
     fs.writeFileSync(HASH_MAP_FILE, JSON.stringify(hashMap, null, 2));
-    
+
     console.log(`✅ Synced ${Object.keys(hashMap).length} assets to public/content`);
     console.log(`📝 Wrote hash map to ${HASH_MAP_FILE}`);
 }
 
 main();
-

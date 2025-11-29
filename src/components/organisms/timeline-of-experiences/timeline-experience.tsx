@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { Briefcase, GraduationCap, Plus, ArrowUpRight, MapPin, Building2 } from 'lucide-react';
+import { ArrowUpRight, Briefcase, Building2, GraduationCap, MapPin, Plus } from 'lucide-react';
 import Link from 'next/link';
 
 // Domain
@@ -76,8 +76,8 @@ export const TimelineExperience: React.FC<TimelineEventProps> = ({
                 className={cn(
                     'relative group',
                     'pl-16', // Mobile padding for all items to make room for the line/dot on left
-                    isEven 
-                        ? 'md:text-right md:pr-16 md:pl-0' 
+                    isEven
+                        ? 'md:text-right md:pr-16 md:pl-0'
                         : 'md:col-start-2 md:pl-16 md:text-left',
                 )}
             >
@@ -109,9 +109,9 @@ export const TimelineExperience: React.FC<TimelineEventProps> = ({
                 <motion.div
                     className={cn(
                         'relative p-6 rounded-2xl border transition-all duration-300 cursor-pointer group/card overflow-hidden text-left',
-                        isOpen 
-                            ? 'bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-700 shadow-xl ring-1 ring-zinc-200 dark:ring-zinc-800' 
-                            : 'bg-white/50 dark:bg-zinc-900/50 border-zinc-200/50 dark:border-zinc-800/50 hover:bg-white dark:hover:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-lg hover:-translate-y-1'
+                        isOpen
+                            ? 'bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-700 shadow-xl ring-1 ring-zinc-200 dark:ring-zinc-800'
+                            : 'bg-white/50 dark:bg-zinc-900/50 border-zinc-200/50 dark:border-zinc-800/50 hover:bg-white dark:hover:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-lg hover:-translate-y-1',
                     )}
                     layout
                     onClick={() => setIsOpen(!isOpen)}
@@ -125,21 +125,23 @@ export const TimelineExperience: React.FC<TimelineEventProps> = ({
                                         {experience.title}
                                     </h3>
                                     <motion.div
-                                        animate={{ 
+                                        animate={{
                                             rotate: isOpen ? 45 : 0,
-                                            backgroundColor: isOpen ? 'rgba(24, 24, 27, 0.1)' : 'rgba(24, 24, 27, 0)'
+                                            backgroundColor: isOpen
+                                                ? 'rgba(24, 24, 27, 0.1)'
+                                                : 'rgba(24, 24, 27, 0)',
                                         }}
                                         className="p-1.5 rounded-full text-zinc-400 group-hover/card:text-zinc-900 dark:group-hover/card:text-zinc-100 transition-colors"
                                     >
                                         <Plus size={18} />
                                     </motion.div>
                                 </div>
-                                
+
                                 <div
                                     className={cn(
                                         'flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-500 dark:text-zinc-400',
                                         // Removed text alignment classes to keep everything left-aligned
-                                        'justify-start' 
+                                        'justify-start',
                                     )}
                                 >
                                     <Link
@@ -148,11 +150,19 @@ export const TimelineExperience: React.FC<TimelineEventProps> = ({
                                         onClick={(e) => e.stopPropagation()}
                                         target="_blank"
                                     >
-                                        <Building2 size={14} className="text-zinc-400 group-hover/link:text-zinc-600 dark:text-zinc-500 dark:group-hover/link:text-zinc-400" />
-                                        <span className="font-medium">{experience.organization}</span>
+                                        <Building2
+                                            className="text-zinc-400 group-hover/link:text-zinc-600 dark:text-zinc-500 dark:group-hover/link:text-zinc-400"
+                                            size={14}
+                                        />
+                                        <span className="font-medium">
+                                            {experience.organization}
+                                        </span>
                                     </Link>
                                     <div className="flex items-center gap-1.5">
-                                        <MapPin size={14} className="text-zinc-400 dark:text-zinc-500" />
+                                        <MapPin
+                                            className="text-zinc-400 dark:text-zinc-500"
+                                            size={14}
+                                        />
                                         <span>{experience.location}</span>
                                     </div>
                                 </div>

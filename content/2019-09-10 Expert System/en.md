@@ -31,7 +31,7 @@ The core of this whole thing is a set of **rules**. I like to think of them as l
 
 ![Inference Truth Table](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*aZ-xKiHeAcPBCnP2bgcOTQ.png)
 
-To make sense of it all, we need a cheat sheet. This truth table is our compass for logic. It shows how the connectors work. Look at `p => q`. If `p` is `false`, `q` can be anything, a real wild card. But if `p` is `true`, `q` _must_ also be `true`. This simple principle is the engine of our deduction.
+To make sense of it all, we need a cheat sheet. This truth table is our compass for logic. It shows how the connectors work. Look at `p => q`. If `p` is `false`, `q` can be anything, a real wild card. But if `p` is `true`, `q` *must* also be `true`. This simple principle is the engine of our deduction.
 
 ### Facts and queries: the inputs and outputs
 
@@ -47,7 +47,7 @@ Now for the inputs and outputs.
 
 ### Forward vs. backward chaining: choose your path
 
-Okay, so how do we actually _solve_ something? There are two main ways to go about it:
+Okay, so how do we actually *solve* something? There are two main ways to go about it:
 
 1. **Forward chaining**: Start with what you know (the facts) and see where the rules take you. It's like starting a maze at the beginning.
 2. **Backward chaining**: Start with what you want to prove (the query) and work backward to see if the facts support it. It's like starting a maze from the end and finding your way back.
@@ -63,7 +63,7 @@ To build this, I needed a solid data structure. I started with a generic `Node` 
 ```python
 class Node:
   def __init__(self):
-    self.children = [] # In A => B, => is child of B
+    self.children = [] # In A => B, => is child of B 
     self.visited = False # When recursively parsing the Graph, it avoids infinite loop
     self.state = False # Saves if the result is True
 ```
@@ -96,7 +96,7 @@ class ConnectorNode(Node):
 
 ### Step 1: create a unique list of atoms
 
-First things first, I parse the input and create a single list of all the unique atoms. This is key. It ensures that every time the system sees the letter 'A' in the rules, it's pointing to the _exact same_ `AtomNode` object. It's our single source of truth for each fact.
+First things first, I parse the input and create a single list of all the unique atoms. This is key. It ensures that every time the system sees the letter 'A' in the rules, it's pointing to the *exact same* `AtomNode` object. It's our single source of truth for each fact.
 
 ### Step 2: the magic of RPN
 
@@ -148,13 +148,13 @@ And now, the moment of truth. To solve a query, I built a recursive function tha
 def resolve(nodeX):
   if nodeX is True:
     return True
-
+  
   for child in nodeX.children:
     res = resolve(child)
     if res is True:
       # Only need one of the children to be True for deducing the current is True
       return True
-
+    
   if Node is Connector: # AND OR XOR IMPLY
     op_results = []
     for op in nodeX.operands:
@@ -167,7 +167,7 @@ It starts at the query node and works backward through its children. If a child 
 
 ## Final thoughts: your turn to build
 
-And that's pretty much it! We've walked through the core logic of building a backward-chaining expert system. From simple rules, we created a system that can actually _reason_.
+And that's pretty much it! We've walked through the core logic of building a backward-chaining expert system. From simple rules, we created a system that can actually *reason*.
 
 It's a potent concept, and we've only just scratched the surface. What we've built is a foundation. If you want to take it further, you could try implementing forward chaining or adding support for more complex logic. The possibilities are huge.
 

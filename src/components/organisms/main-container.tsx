@@ -20,9 +20,5 @@ export const MainContainer: React.FC<MainContainerProps> = ({
         className,
     );
 
-    return (
-        <main className={generatedClassName}>
-            {children}
-        </main>
-    );
+    return <main className={generatedClassName}>{children}</main>;
 };

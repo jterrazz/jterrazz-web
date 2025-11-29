@@ -9,8 +9,8 @@ import { type Experiment } from '../../domain/experiment';
 
 // Infrastructure
 import { FeaturedId } from '../../infrastructure/repositories/data/features.data';
-import { FeatureInMemoryRepository } from '../../infrastructure/repositories/feature-in-memory.repository';
 import { ExperimentInMemoryRepository } from '../../infrastructure/repositories/experiment-in-memory.repository';
+import { FeatureInMemoryRepository } from '../../infrastructure/repositories/feature-in-memory.repository';
 
 // Force static generation for this page
 export const dynamic = 'force-static';

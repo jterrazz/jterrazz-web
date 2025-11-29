@@ -8,7 +8,7 @@ import { type ExperimentComponent } from '../../../domain/experiment';
 // Utils
 import { cn } from '../../../lib/utils';
 
-import { Badge } from '../../atoms/status/badge';
+import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge';
 
 import { experimentStatusToDescription } from './table-row-experiment-component-view-model';
 

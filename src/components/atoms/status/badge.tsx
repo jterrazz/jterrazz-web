@@ -70,4 +70,3 @@ export const Badge: React.FC<StatusBadgeProps> = ({
         </span>
     );
 };
-

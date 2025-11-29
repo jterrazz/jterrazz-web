@@ -12,7 +12,6 @@ import { usePathname } from 'next/navigation';
 import { cn } from '../../../lib/utils';
 
 import AnimatedBackground from '../../molecules/cards/animated-backgrounds';
-import { ThemeToggle } from '../../molecules/theme-toggle';
 
 import { type NavigationPage } from './navigation-page';
 

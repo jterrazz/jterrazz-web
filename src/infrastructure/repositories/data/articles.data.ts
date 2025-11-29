@@ -5,7 +5,6 @@ import { promises as fs } from 'node:fs';
 import { type Article, ArticleCategory, type ArticleLanguage } from '../../../domain/article';
 
 // Generated
-// @ts-ignore - This file is generated at build time
 import contentHashes from '../../../../src/generated/content-hashes.json';
 
 // Configuration structure for each article before being transformed into the Article domain model.
@@ -478,14 +477,11 @@ const getAssetHash = (filename: string, assetPath: string): string => {
 };
 
 const processMarkdownContent = (content: string, filename: string): string => {
-    return content.replace(
-        /!\[([^\]]*)\]\((?:\.\/)?assets\/([^)]+)\)/g,
-        (_match, altText, p1) => {
-            const hash = getAssetHash(filename, p1);
-            // Point to the locally-served image so that <Image> receives an internal URL.
-            return `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)}${hash ? `?v=${hash}` : ''})`;
-        },
-    );
+    return content.replace(/!\[([^\]]*)\]\((?:\.\/)?assets\/([^)]+)\)/g, (_match, altText, p1) => {
+        const hash = getAssetHash(filename, p1);
+        // Point to the locally-served image so that <Image> receives an internal URL.
+        return `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)}${hash ? `?v=${hash}` : ''})`;
+    });
 };
 
 const sanitizeText = (text: string | undefined): string | undefined =>

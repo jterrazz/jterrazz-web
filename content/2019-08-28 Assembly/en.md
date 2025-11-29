@@ -141,7 +141,7 @@ Takes a value and puts it on top of the stack. The stack is a region of memory f
 Takes the top value off the stack and puts it into your destination register or memory location. It's the reverse of `push`.
 
 **`lea`** `<dst>, [<src>]`
-This one is "Load Effective Address." It's a bit different from `mov`. Instead of loading the _value_ at the source address, it loads the _address itself_. Super useful for doing math on pointers.
+This one is "Load Effective Address." It's a bit different from `mov`. Instead of loading the *value* at the source address, it loads the *address itself*. Super useful for doing math on pointers.
 
 ### Doing math
 
@@ -241,7 +241,6 @@ Let's look at a really simple function. This one checks if the input character (
 ![ft_isascii function](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Zeu7RMnWR6HT_7ij3-9kVA.png)
 
 Breaking it down:
-
 1. `xor rax, rax`: This is a fast way to set `rax` to 0. We're assuming the character is not ASCII until proven otherwise.
 2. `cmp rdi, 0`: Compare the input character with 0.
 3. `jl.end`: "Jump if Less." If the character is less than 0, it's not ASCII, so we jump to the end.
@@ -260,6 +259,6 @@ We've only scratched the surface. Understanding how the stack works in detail is
 
 I've put a bunch of my own implementations of standard C library functions in assembly up on a repo. Feel free to check it out and use it as a reference.
 
-Learning assembly is a grind, I won't lie. But the insight it gives you into how computers _actually_ work is a kind of superpower. It'll change the way you write code, even in high-level languages.
+Learning assembly is a grind, I won't lie. But the insight it gives you into how computers *actually* work is a kind of superpower. It'll change the way you write code, even in high-level languages.
 
 Happy coding. May your registers always hold the right values. 🖥️💪

@@ -114,8 +114,10 @@ export default function RootLayout({
         userRepository.getContact(UserContactType.GitHub),
         userRepository.getContact(UserContactType.Medium),
     ].map((contact) => ({
-        ...contact,
+        name: contact.type,
+        type: contact.type,
         url: contact.url.toString(),
+        value: contact.value,
     }));
     const pages = [
         {

@@ -14,22 +14,6 @@ And when a fundamental resource moves from scarce to abundant, everything built 
 
 ---
 
-### **Explore the series**
-
-1. [**Abundant intelligence: a guide to the revolution**](https://medium.com/a-42-journey/navigating-the-ai-revolution-b6694c373ede)
-   _Understanding the exponential shift and what it means for your future._
-
-2. [**Abundant intelligence: a practical playbook**](https://medium.com/a-42-journey/applied-intelligence-in-your-life-d904924b8c99)
-   _A practical guide to using AI tools, adapting your mindset, and thriving in the age of automation._
-
-3. [**Abundant intelligence: when execution collapses**](https://medium.com/a-42-journey/ai-architects-of-inversion-the-collapse-of-execution-5edb32e81920)
-   _Exploring how AI is reshaping value, collapsing execution costs, and shifting human worth to ideas and direction._
-
-4. [**Abundant intelligence: life after the collapse**](https://medium.com/a-42-journey/ai-architects-of-inversion-the-world-that-follows-94f05eb9df14)
-   _A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization._
-
----
-
 ## **The thing you were paid for is becoming free**
 
 For your entire career, the equation was simple: learn to execute difficult work, trade that capability for money and status, repeat.
@@ -282,18 +266,4 @@ The question isn't whether this transformation is happening. It's whether you'll
 
 The tools are here. The shift is underway. What remains is your choice.
 
----
 
-### **Explore the series**
-
-1. [**Abundant intelligence: a guide to the revolution**](https://medium.com/a-42-journey/navigating-the-ai-revolution-b6694c373ede)
-   _Understanding the exponential shift and what it means for your future._
-
-2. [**Abundant intelligence: a practical playbook**](https://medium.com/a-42-journey/applied-intelligence-in-your-life-d904924b8c99)
-   _A practical guide to using AI tools, adapting your mindset, and thriving in the age of automation._
-
-3. [**Abundant intelligence: when execution collapses**](https://medium.com/a-42-journey/ai-architects-of-inversion-the-collapse-of-execution-5edb32e81920)
-   _Exploring how AI is reshaping value, collapsing execution costs, and shifting human worth to ideas and direction._
-
-4. [**Abundant intelligence: life after the collapse**](https://medium.com/a-42-journey/ai-architects-of-inversion-the-world-that-follows-94f05eb9df14)
-   _A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization._

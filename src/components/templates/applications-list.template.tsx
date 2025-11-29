@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import Script from 'next/script';
 
 // Domain
-import { ExperimentCategory, type Experiment } from '../../domain/experiment';
+import { type Experiment, ExperimentCategory } from '../../domain/experiment';
 import { type Feature } from '../../domain/feature';
 import { UserContactType } from '../../domain/user';
 
@@ -103,8 +103,8 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                             className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
                             initial="hidden"
                             variants={containerVariants}
+                            viewport={{ margin: '-100px', once: true }}
                             whileInView="show"
-                            viewport={{ once: true, margin: '-100px' }}
                         >
                             {apps.map((experiment) => (
                                 <motion.div key={experiment.name} variants={itemVariants}>
@@ -125,8 +125,8 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
                             initial="hidden"
                             variants={containerVariants}
+                            viewport={{ margin: '-50px', once: true }}
                             whileInView="show"
-                            viewport={{ once: true, margin: '-50px' }}
                         >
                             {libs.map((experiment) => (
                                 <motion.div key={experiment.name} variants={itemVariants}>
@@ -147,8 +147,8 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6"
                             initial="hidden"
                             variants={containerVariants}
+                            viewport={{ margin: '-50px', once: true }}
                             whileInView="show"
-                            viewport={{ once: true, margin: '-50px' }}
                         >
                             {system.map((experiment) => (
                                 <motion.div key={experiment.name} variants={itemVariants}>

@@ -5,7 +5,6 @@
 Imaginez vous réveiller avec une notification :
 
 > **Mise à jour Système :**
->
 > - Vulnérabilité de dépendance identifiée dans `lodash`.
 > - Branche isolée créée.
 > - Dépendance mise à jour.
@@ -18,7 +17,7 @@ Ceci définit les **systèmes autonomes**. Le changement par rapport à la direc
 
 Diriger implique la supervision ; l'autonomie implique l'architecture. La question change de "Comment je décris ce que je veux ?" à "Combien d'autonomie ce système peut-il avoir, et sous quelles contraintes ?"
 
----
+***
 
 ## Des tâches aux flux de travail
 
@@ -26,7 +25,6 @@ Quand vous dirigez des agents, vous êtes dans la boucle : vous promptez, l'IA g
 Avec les agents autonomes, vous sortez de la boucle. Le système tourne de manière asynchrone.
 
 C'est particulièrement précieux pour les tâches de **maintenance et d'hygiène** — le travail important qui est souvent dépriorisé en faveur de nouvelles fonctionnalités :
-
 - **Gestion des dépendances :** Garder les bibliothèques à jour.
 - **Documentation :** Détecter quand les changements de code s'éloignent de la documentation et rédiger des mises à jour.
 - **Couverture de tests :** Identifier les chemins de code non testés et générer des cas de tests.
@@ -34,7 +32,7 @@ C'est particulièrement précieux pour les tâches de **maintenance et d'hygièn
 
 L'agent agit comme un gardien numérique, s'assurant que la base de code reste propre et sécurisée sans requérir votre attention constante.
 
----
+***
 
 ## L'architecture de la confiance
 
@@ -45,9 +43,8 @@ Un agent autonome n'est utile que si vous pouvez lui faire confiance pour ne pas
 ### 1. Déclencheurs clairs
 
 Le système a besoin de règles non ambiguës pour savoir quand agir.
-
-- _Mauvais :_ "Vérifie si le code a l'air désordonné."
-- _Bon :_ "Déclenche quand une dépendance a >2 versions de retard" ou "Déclenche quand une fonction a 0% de couverture de test."
+- *Mauvais :* "Vérifie si le code a l'air désordonné."
+- *Bon :* "Déclenche quand une dépendance a >2 versions de retard" ou "Déclenche quand une fonction a 0% de couverture de test."
 
 ### 2. Exécution en bac à sable (Sandboxed)
 
@@ -59,7 +56,7 @@ L'exécution autonome ne signifie pas "entièrement automatique". Cela signifie 
 
 Le but est de vous présenter une **décision**, pas une tâche. Réviser une PR préparée prend 5 minutes ; faire le travail en prend 50.
 
----
+***
 
 ## Construire le système
 
@@ -74,7 +71,7 @@ Permettez au script de créer une branche et une Pull Request brouillon. Il touc
 **Étape 3 : L'Assistant.**
 Une fois que le rédacteur est fiable, vous l'intégrez dans votre flux de travail. Il tourne la nuit, et vous commencez votre journée en révisant ses propositions.
 
----
+***
 
 ## La valeur du travail de fond
 
@@ -84,13 +81,8 @@ Un système autonome ne s'ennuie pas. Il applique le même standard d'hygiène c
 
 En déchargeant cette charge cognitive, vous préservez votre énergie pour le travail qui requiert un contexte profond et de la créativité — architecturer de nouvelles fonctionnalités et résoudre des problèmes utilisateur complexes.
 
----
+***
 
-_Ensuite, nous regardons les systèmes intelligents : intégrer cette intelligence directement dans les produits que nous construisons pour les utilisateurs._
+*Ensuite, nous regardons les systèmes intelligents : intégrer cette intelligence directement dans les produits que nous construisons pour les utilisateurs.*
 
----
 
-1. [Les quatre niveaux d'intégration de l'IA](https://jterrazz.com/articles/20-the-four-levels-of-ai)
-2. [Diriger les agents IA](https://jterrazz.com/articles/21-guided-ai-for-developers)
-3. [**Agents IA autonomes**](https://jterrazz.com/articles/22-autonomous-ai-agents)
-4. [Programmer des systèmes intelligents](https://jterrazz.com/articles/23-programming-intelligence)

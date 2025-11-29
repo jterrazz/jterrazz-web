@@ -18,7 +18,7 @@ Cela ressemble à un tour de magie, mais c'est purement logique.
 
 ## La Théorie : Comment ça marche
 
-Le problème central est une régression infinie. Si vous voulez imprimer le code, vous avez besoin d'une instruction d'impression (comme `print` ou `printf`). Mais cette instruction fait _partie_ du code, donc vous devez imprimer l'instruction d'impression. Et ensuite, vous devez imprimer le code qui imprime l'instruction d'impression.
+Le problème central est une régression infinie. Si vous voulez imprimer le code, vous avez besoin d'une instruction d'impression (comme `print` ou `printf`). Mais cette instruction fait *partie* du code, donc vous devez imprimer l'instruction d'impression. Et ensuite, vous devez imprimer le code qui imprime l'instruction d'impression.
 
 On a l'impression de se tenir entre deux miroirs.
 
@@ -26,10 +26,10 @@ On a l'impression de se tenir entre deux miroirs.
 
 L'astuce pour résoudre cela est de séparer le programme en deux parties :
 
-1.  **Le Modèle (Données) :** Une chaîne contenant la _structure_ du code.
+1.  **Le Modèle (Données) :** Une chaîne contenant la *structure* du code.
 2.  **L'Acteur (Code) :** La logique qui imprime le modèle et remplit les pièces manquantes.
 
-En C, cela ressemble souvent à une instruction `printf` qui prend une chaîne comme format, puis passe _cette même chaîne_ comme argument pour se remplir elle-même.
+En C, cela ressemble souvent à une instruction `printf` qui prend une chaîne comme format, puis passe *cette même chaîne* comme argument pour se remplir elle-même.
 
 ## Une Solution en C
 
@@ -60,20 +60,19 @@ int main(void)
 ### Déconstruction de la Magie
 
 1.  **La Chaîne :** `get_str()` renvoie le code source entier comme une seule chaîne, mais avec des espaces réservés (placeholders).
-    - `%1$c` est un espace réservé pour un saut de ligne (ASCII 10).
-    - `%4$s` est un espace réservé pour la chaîne elle-même.
+    *   `%1$c` est un espace réservé pour un saut de ligne (ASCII 10).
+    *   `%4$s` est un espace réservé pour la chaîne elle-même.
 2.  **L'Impression :** Dans `main`, nous appelons `printf(str, 10, 9, 34, str)`.
-    - Nous passons les codes ASCII pour le saut de ligne (`10`), la tabulation (`9`), et les guillemets (`34`) pour corriger le formatage.
-    - De manière cruciale, nous passons `str` _dans elle-même_ pour remplir l'espace réservé `%4$s`.
+    *   Nous passons les codes ASCII pour le saut de ligne (`10`), la tabulation (`9`), et les guillemets (`34`) pour corriger le formatage.
+    *   De manière cruciale, nous passons `str` *dans elle-même* pour remplir l'espace réservé `%4$s`.
 
 Le programme utilise la chaîne à la fois comme **instructions** (le format) et comme **données** (le contenu).
 
 ## Pourquoi "Quine" ?
 
-Le terme a été inventé par Douglas Hofstadter dans _Gödel, Escher, Bach_. Il l'a nommé d'après le philosophe **Willard Van Orman Quine**, qui a étudié la logique de l'autoréférence.
+Le terme a été inventé par Douglas Hofstadter dans *Gödel, Escher, Bach*. Il l'a nommé d'après le philosophe **Willard Van Orman Quine**, qui a étudié la logique de l'autoréférence.
 
 Quine (le philosophe) a célèbrement formulé ce paradoxe :
-
 > "produit une fausseté lorsqu'il est précédé par sa citation" produit une fausseté lorsqu'il est précédé par sa citation.
 
 C'est une phrase qui parle d'elle-même, tout comme notre programme.
@@ -84,8 +83,9 @@ Au-delà d'être un tour de passe-passe astucieux, les quines enseignent un conc
 
 C'est le même mécanisme qui permet :
 
-- **Les Compilateurs** (des programmes qui lisent du code pour écrire du code).
-- **Les Virus** (des programmes qui se copient eux-mêmes dans d'autres fichiers).
-- **L'ADN** (des données biologiques qui encodent les instructions pour construire l'organisme qui les porte).
+*   **Les Compilateurs** (des programmes qui lisent du code pour écrire du code).
+*   **Les Virus** (des programmes qui se copient eux-mêmes dans d'autres fichiers).
+*   **L'ADN** (des données biologiques qui encodent les instructions pour construire l'organisme qui les porte).
 
 Cela change complètement la façon dont vous voyez un fichier source. Ce n'est pas juste un ensemble d'instructions ; c'est un motif capable de se reproduire lui-même.
+

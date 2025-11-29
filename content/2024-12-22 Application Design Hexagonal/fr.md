@@ -6,7 +6,7 @@
 
 Alors, comment organisez-vous un projet ? C'est l'une des questions les plus fondamentales auxquelles nous faisons face en tant que développeurs. Réussissez-le, et votre application peut grandir et s'adapter pendant des années. Ratez-le, et vous signez pour un monde de douleur.
 
-Dans ce chapitre, je vais vous guider à travers l'évolution de la façon dont nous structurons le code. Nous commencerons avec les approches classiques, verrons où elles échouent, et ensuite nous plongerons dans une bien meilleure façon de penser : l'**architecture hexagonale**. C'est un changement radical pour isoler ce que votre application _fait_ de la technologie qu'elle _utilise_.
+Dans ce chapitre, je vais vous guider à travers l'évolution de la façon dont nous structurons le code. Nous commencerons avec les approches classiques, verrons où elles échouent, et ensuite nous plongerons dans une bien meilleure façon de penser : l'**architecture hexagonale**. C'est un changement radical pour isoler ce que votre application *fait* de la technologie qu'elle *utilise*.
 
 ---
 
@@ -48,7 +48,7 @@ La couche Présentation parle à la couche Application, qui parle au Domaine, qu
 En surface, ça a l'air propre. Mais il y a un défaut fatal.
 
 - **La règle de dépendance est un piège** : Les couches dépendent directement des couches en dessous d'elles. Cela signifie que votre logique métier (Domaine) finit par dépendre de détails techniques (Persistance). Vos règles centrales sont maintenant enchaînées à votre base de données.
-- **Focus technique, pas métier** : Le code est groupé par _ce qu'il est_ (UI, code base de données) plutôt que par _ce qu'il fait_ pour le métier.
+- **Focus technique, pas métier** : Le code est groupé par *ce qu'il est* (UI, code base de données) plutôt que par *ce qu'il fait* pour le métier.
 
 Ce couplage entre la logique métier et la base de données est là où tout commence à mal tourner. Cela rend les tests plus difficiles et changer votre base de données devient un projet massif et douloureux.
 
@@ -87,13 +87,12 @@ L'hexagone représente visuellement votre logique métier au centre, protégée 
 
 > **ℹ️ Qu'y a-t-il dans un nom ?**
 > Les gens utilisent différents termes pour les deux côtés de l'hexagone :
->
 > 1. Gauche/Droite (Left/Right)
 > 2. Pilotant/Piloté (Driving/Driven)
 > 3. Primaire/Secondaire (Primary/Secondary)
 > 4. Côté Utilisateur/Côté Serveur (User Side/Server Side)
 >
-> Honnêtement, les noms importent moins que le concept. Choisissez-en un et soyez cohérent. J'aime personnellement **pilotant/piloté (driving/driven)** parce que cela sépare clairement ce qui _initie une action_ de ce qui _remplit une requête_.
+> Honnêtement, les noms importent moins que le concept. Choisissez-en un et soyez cohérent. J'aime personnellement **pilotant/piloté (driving/driven)** parce que cela sépare clairement ce qui *initie une action* de ce qui *remplit une requête*.
 
 ---
 
@@ -123,28 +122,28 @@ Au centre, nous avons nos règles métier, complètement indépendantes de toute
 ```ts
 // C'est une interface pour quelque chose qui va *piloter* notre application.
 export interface OrderInputPort {
-  processOrder(order: Order): void; // Un port "pilotant" côté gauche
+   processOrder(order: Order): void; // Un port "pilotant" côté gauche
 }
 
 // C'est une interface pour un service par lequel notre application sera *pilotée*.
 export interface OrderOutputPort {
-  saveOrder(order: Order): void; // Un port "piloté" côté droit
+   saveOrder(order: Order): void; // Un port "piloté" côté droit
 }
 
 // C'est notre logique métier centrale.
 export class OrderService implements OrderInputPort {
-  // Il dépend d'une *abstraction* (le port), pas d'une base de données concrète.
-  constructor(private outputPort: OrderOutputPort) {}
+   // Il dépend d'une *abstraction* (le port), pas d'une base de données concrète.
+   constructor(private outputPort: OrderOutputPort) {}
 
-  processOrder(order: Order): void {
-    if (!order.isValid()) {
-      throw new Error('Order is invalid');
-    }
+   processOrder(order: Order): void {
+      if (!order.isValid()) {
+         throw new Error("Order is invalid");
+      }
 
-    console.log('Processing order:', order);
-    // Il appelle le port de sortie pour faire le job.
-    this.outputPort.saveOrder(order);
-  }
+      console.log("Processing order:", order);
+      // Il appelle le port de sortie pour faire le job.
+      this.outputPort.saveOrder(order);
+   }
 }
 ```
 
@@ -161,23 +160,23 @@ export class OrderService implements OrderInputPort {
 C'est le code qui traduit une requête entrante (du web, d'une CLI, etc.) en un appel sur le port d'entrée de notre application.
 
 ```ts
-import express from 'express';
+import express from "express";
 
 // C'est un "adaptateur" qui connecte le monde extérieur (HTTP) à notre application.
 export class OrderController {
-  constructor(private orderInputPort: OrderInputPort) {}
+   constructor(private orderInputPort: OrderInputPort) {}
 
-  handleRequest(req: express.Request, res: express.Response): void {
-    const order = req.body;
+   handleRequest(req: express.Request, res: express.Response): void {
+      const order = req.body;
 
-    try {
-      // Le seul job du contrôleur est de traduire et déléguer.
-      this.orderInputPort.processOrder(order); // Il appelle le domaine via le port.
-      res.status(200).send('Order processed successfully!');
-    } catch (err) {
-      res.status(400).send(err.message);
-    }
-  }
+      try {
+         // Le seul job du contrôleur est de traduire et déléguer.
+         this.orderInputPort.processOrder(order); // Il appelle le domaine via le port.
+         res.status(200).send("Order processed successfully!");
+      } catch (err) {
+         res.status(400).send(err.message);
+      }
+   }
 }
 ```
 
@@ -192,10 +191,10 @@ C'est l'implémentation concrète de notre port de sortie. C'est là que vivent 
 ```ts
 // Cet adaptateur implémente notre port de sortie avec une technologie spécifique (ex: une DB).
 export class DatabaseAdapter implements OrderOutputPort {
-  saveOrder(order: Order): void {
-    // Ici vous auriez votre logique de base de données réelle.
-    console.log('Saving order to database:', order);
-  }
+   saveOrder(order: Order): void {
+      // Ici vous auriez votre logique de base de données réelle.
+      console.log("Saving order to database:", order);
+   }
 }
 ```
 
@@ -208,7 +207,7 @@ Cette classe concerne uniquement la base de données. Elle ne sait rien des règ
 Enfin, quelque part tout au bord de notre application (comme `index.ts`), nous câblons tout.
 
 ```ts
-import express from 'express';
+import express from "express";
 
 // 1. Créer les adaptateurs concrets.
 const databaseAdapter = new DatabaseAdapter(); // Côté Piloté
@@ -223,9 +222,9 @@ const orderController = new OrderController(orderService); // Côté Pilotant
 const app = express();
 app.use(express.json());
 
-app.post('/orders', (req, res) => orderController.handleRequest(req, res));
+app.post("/orders", (req, res) => orderController.handleRequest(req, res));
 
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
 ```
 
 C'est le seul endroit où la logique de domaine et les détails techniques se rencontrent. Les dépendances sont "injectées" de l'extérieur vers l'intérieur, protégeant le cœur.
@@ -258,11 +257,4 @@ Chaque pièce peut être testée indépendamment. Plus de tests de bout en bout 
 
 L'architecture hexagonale est une avancée massive par rapport aux simples couches. Elle vous force à mettre votre logique métier en premier et à traiter la technologie comme un détail. En isolant le domaine central, vous construisez des systèmes qui sont plus testables, flexibles et résilients au changement technologique. C'est un pattern puissant pour créer des logiciels qui durent.
 
----
 
-### Lire la suite de cette série
-
-1. [Conception d'application : construire des logiciels qui durent](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
-2. [Conception d'application : maîtriser le flux des dépendances](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
-3. **Conception d'application : séparer le métier de la technologie**
-4. [Conception d'application : un voyage dans la clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)

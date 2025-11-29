@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation';
 
-import { ExperimentDetailTemplate } from '../../../components/templates/experiment-detail.template';
+// Infrastructure
 import { ExperimentInMemoryRepository } from '../../../infrastructure/repositories/experiment-in-memory.repository';
+
+import { ExperimentDetailTemplate } from '../../../components/templates/experiment-detail.template';
 
 type Props = {
     params: Promise<{

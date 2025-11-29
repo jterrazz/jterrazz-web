@@ -9,14 +9,12 @@ However, there is a hidden cost to this efficiency. We have largely traded the d
 ## The Problem: Commerce is Stuck in the "TV Station" Era
 
 To understand the issue, look at how the internet transformed media.
-
 - **Before:** A few major TV stations and newspapers controlled the narrative (Centralized).
 - **After:** Blogs, YouTube, and social media allowed anyone to broadcast to the world (Decentralized).
 
 Media became democratic. **Commerce did not.**
 
 Today, merchants face a binary choice:
-
 1.  **The Lonely Island:** Build your own website and struggle to get anyone to visit.
 2.  **The Walled Garden:** Rent space from a giant platform (like Amazon) that controls the rules, takes a significant cut (often 30%+), and hides your customer data.
 
@@ -44,7 +42,6 @@ This isn't just philosophy; it's a technical opportunity.
 Currently, innovation in shopping is bottlenecked by a few large companies. If you want a better search engine or a faster delivery network, you have to wait for the giants to build it.
 
 By moving to a **decentralized protocol**, we unlock "innovation at the edges." Since the data is open and standardized, independent developers can build on top of it:
-
 - **Specialized Interfaces:** A developer could build a boutique app just for vintage cameras that pulls from the global inventory but offers specific filtering tools the giants ignore.
 - **Hyper-local Logistics:** A local courier service could plug into the protocol to offer eco-friendly delivery in just one city, without needing a global partnership.
 - **Community Curation:** Instead of ads driving discovery, communities could build their own curated feeds of trusted products.

@@ -20,8 +20,8 @@ export const AIBanner = ({ className }: { className?: string }) => {
                 <Sparkles className="w-4 h-4" />
             </div>
             <span className="leading-relaxed">
-                Final text polished by AI for readability. The underlying concepts & architecture are
-                my own.
+                Final text polished by AI for readability. The underlying concepts & architecture
+                are my own.
             </span>
         </div>
     );

@@ -191,3 +191,4 @@ La correction fut une astuce binaire simple mais puissante : `size = (size + 15)
 Et voilà l'aventure ! Nous sommes passés de l'appel `mmap` du noyau jusqu'à une bibliothèque `malloc` fonctionnelle et testée. Pour moi, ce projet n'était pas juste écrire du code ; c'était démystifier une partie fondamentale du fonctionnement de nos machines.
 
 C'était un rappel puissant que la pratique est tout. Si vous voulez creuser plus loin, je vous encourage à jeter un œil à l'[implémentation complète sur mon GitHub](https://github.com/jterrazz/42-malloc). Forkez-le, cassez-le, et améliorez-le. Quand vous comprenez vraiment les fondations, vous gagnez le pouvoir de construire n'importe quoi par-dessus. Bon code.
+

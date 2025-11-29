@@ -14,22 +14,6 @@ Ceci est votre manuel pratique pour faire ce changement avant que le fossé ne d
 
 ---
 
-### **Explorez la série**
-
-1. [**Intelligence abondante : un guide pour la révolution**](https://medium.com/a-42-journey/navigating-the-ai-revolution-b6694c373ede)
-   _Comprendre le changement exponentiel et ce qu'il signifie pour votre futur._
-
-2. [**Intelligence abondante : un manuel pratique**](https://medium.com/a-42-journey/applied-intelligence-in-your-life-d904924b8c99)
-   _Un guide pratique pour utiliser les outils d'IA, adapter votre état d'esprit et prospérer à l'ère de l'automatisation._
-
-3. [**Intelligence abondante : quand l'exécution s'effondre**](https://medium.com/a-42-journey/ai-architects-of-inversion-the-collapse-of-execution-5edb32e81920)
-   _Explorer comment l'IA redéfinit la valeur, effondre les coûts d'exécution et déplace la valeur humaine vers les idées et la direction._
-
-4. [**Intelligence abondante : la vie après l'effondrement**](https://medium.com/a-42-journey/ai-architects-of-inversion-the-world-that-follows-94f05eb9df14)
-   _Une plongée profonde dans la façon dont l'intelligence abondante transforme le travail, la société, l'espace et la forme de la civilisation._
-
----
-
 ## **Arrêtez de penser outil. Commencez à penser équipe.**
 
 La façon la plus rapide de prendre du retard n'est pas de refuser d'utiliser l'IA. C'est de l'utiliser mal, de la traiter comme un chatbot que vous consultez occasionnellement quand vous êtes coincé plutôt que comme une extension permanente de vos capacités.
@@ -224,18 +208,4 @@ Les outils sont prêts. La capacité existe. La seule question ouverte est si vo
 
 Commencez cette semaine. Pas un jour. Cette semaine.
 
----
 
-### **Explorez la série**
-
-1. [**Intelligence abondante : un guide pour la révolution**](https://medium.com/a-42-journey/navigating-the-ai-revolution-b6694c373ede)
-   _Comprendre le changement exponentiel et ce qu'il signifie pour votre futur._
-
-2. [**Intelligence abondante : un manuel pratique**](https://medium.com/a-42-journey/applied-intelligence-in-your-life-d904924b8c99)
-   _Un guide pratique pour utiliser les outils d'IA, adapter votre état d'esprit et prospérer à l'ère de l'automatisation._
-
-3. [**Intelligence abondante : quand l'exécution s'effondre**](https://medium.com/a-42-journey/ai-architects-of-inversion-the-collapse-of-execution-5edb32e81920)
-   _Explorer comment l'IA redéfinit la valeur, effondre les coûts d'exécution et déplace la valeur humaine vers les idées et la direction._
-
-4. [**Intelligence abondante : la vie après l'effondrement**](https://medium.com/a-42-journey/ai-architects-of-inversion-the-world-that-follows-94f05eb9df14)
-   _Une plongée profonde dans la façon dont l'intelligence abondante transforme le travail, la société, l'espace et la forme de la civilisation._

@@ -141,7 +141,7 @@ Prend une valeur et la met au sommet de la pile. La pile est une région de mém
 Prend la valeur au sommet de la pile et la met dans votre registre ou emplacement mémoire de destination. C'est l'inverse de `push`.
 
 **`lea`** `<dst>, [<src>]`
-Celle-ci est "Load Effective Address" (Charger l'Adresse Effective). C'est un peu différent de `mov`. Au lieu de charger la _valeur_ à l'adresse source, elle charge l'_adresse elle-même_. Super utile pour faire des maths sur les pointeurs.
+Celle-ci est "Load Effective Address" (Charger l'Adresse Effective). C'est un peu différent de `mov`. Au lieu de charger la *valeur* à l'adresse source, elle charge l'*adresse elle-même*. Super utile pour faire des maths sur les pointeurs.
 
 ### Faire des maths
 
@@ -241,7 +241,6 @@ Regardons une fonction vraiment simple. Celle-ci vérifie si le caractère d'ent
 ![Fonction ft_isascii](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Zeu7RMnWR6HT_7ij3-9kVA.png)
 
 En décomposant :
-
 1. `xor rax, rax` : C'est une manière rapide de mettre `rax` à 0. On suppose que le caractère n'est pas ASCII jusqu'à preuve du contraire.
 2. `cmp rdi, 0` : Comparer le caractère d'entrée avec 0.
 3. `jl.end` : "Jump if Less" (Saut si Plus Petit). Si le caractère est plus petit que 0, ce n'est pas de l'ASCII, donc on saute à la fin.
@@ -260,6 +259,7 @@ Nous n'avons fait qu'effleurer la surface. Comprendre comment la pile fonctionne
 
 J'ai mis un tas de mes propres implémentations des fonctions de la bibliothèque standard C en assembleur sur un dépôt. N'hésitez pas à y jeter un œil et à l'utiliser comme référence.
 
-Apprendre l'assembleur est un labeur, je ne vais pas mentir. Mais l'aperçu que cela vous donne sur comment les ordinateurs fonctionnent _réellement_ est une sorte de super-pouvoir. Cela changera la façon dont vous écrivez du code, même dans des langages de haut niveau.
+Apprendre l'assembleur est un labeur, je ne vais pas mentir. Mais l'aperçu que cela vous donne sur comment les ordinateurs fonctionnent *réellement* est une sorte de super-pouvoir. Cela changera la façon dont vous écrivez du code, même dans des langages de haut niveau.
 
 Bon code. Que vos registres contiennent toujours les bonnes valeurs. 🖥️💪
+

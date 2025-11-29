@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { type JSX, type ReactNode } from 'react';
 
 import Markdown from 'markdown-to-jsx';
 import Image from 'next/image';
@@ -80,7 +80,13 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                             },
                         },
                         code: {
-                            component: ({ children, className }) => {
+                            component: ({
+                                children,
+                                className,
+                            }: {
+                                children: ReactNode;
+                                className?: string;
+                            }) => {
                                 if (className?.includes('inline')) {
                                     return (
                                         <code className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded-md text-[0.9em] font-mono text-pink-600 dark:text-pink-400">
@@ -135,23 +141,23 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                                 return (
                                     <span className="block my-10">
                                         <span className="block rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-                                        <Image
+                                            <Image
                                                 alt={altText}
-                                            className="w-full h-auto"
-                                            height={0}
-                                            loading="lazy"
-                                            sizes="(max-width: 768px) 100vw, 800px"
-                                            src={src as string}
-                                            style={{ height: 'auto', width: '100%' }}
-                                            width={0}
-                                            {...props}
-                                        />
+                                                className="w-full h-auto"
+                                                height={0}
+                                                loading="lazy"
+                                                sizes="(max-width: 768px) 100vw, 800px"
+                                                src={src as string}
+                                                style={{ height: 'auto', width: '100%' }}
+                                                width={0}
+                                                {...props}
+                                            />
                                         </span>
                                         {altText && (
                                             <span className="block text-center text-sm text-zinc-500 dark:text-zinc-400 mt-3 font-sans">
                                                 {altText}
                                             </span>
-                                    )}
+                                        )}
                                     </span>
                                 );
                             },
@@ -172,7 +178,7 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                             },
                         },
                         pre: {
-                            component: ({ children }) => {
+                            component: ({ children }: { children: JSX.Element }) => {
                                 const language =
                                     children?.props?.className?.split('-')[1] || 'typescript';
 

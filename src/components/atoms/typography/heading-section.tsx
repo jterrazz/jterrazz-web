@@ -1,8 +1,9 @@
 import React from 'react';
 
 // Utils
-import { slugify } from '../../../lib/slugify';
 import { cn, getTextFromChildren } from '../../../lib/utils';
+
+import { slugify } from '../../../lib/slugify';
 
 export type TitleSectionProps = {
     children: React.ReactNode;

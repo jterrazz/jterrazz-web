@@ -1,21 +1,23 @@
+import React, { type ReactElement, type ReactNode } from 'react';
+
 import { type ClassValue, clsx } from 'clsx';
-import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
-export function getTextFromChildren(children: React.ReactNode): string {
+export function getTextFromChildren(children: ReactNode): string {
     if (!children) return '';
     if (typeof children === 'string') return children;
     if (typeof children === 'number') return children.toString();
     if (Array.isArray(children)) return children.map(getTextFromChildren).join('');
-    
+
     // Handle React elements
     if (React.isValidElement(children)) {
-        return getTextFromChildren(children.props.children);
+        const element = children as ReactElement<{ children?: ReactNode }>;
+        return getTextFromChildren(element.props.children);
     }
-    
+
     return '';
 }

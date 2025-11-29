@@ -6,7 +6,7 @@
 
 So, how do you organize a project? It's one of the most fundamental questions we face as developers. Get it right, and your application can grow and adapt for years. Get it wrong, and you're signing up for a world of pain.
 
-In this chapter, I'll walk you through the evolution of how we structure code. We'll start with the classic approaches, see where they fall short, and then dive into a much better way of thinking: **hexagonal architecture**. It's a game-changer for isolating what your application _does_ from the technology it _uses_.
+In this chapter, I'll walk you through the evolution of how we structure code. We'll start with the classic approaches, see where they fall short, and then dive into a much better way of thinking: **hexagonal architecture**. It's a game-changer for isolating what your application *does* from the technology it *uses*.
 
 ---
 
@@ -48,7 +48,7 @@ The Presentation layer talks to the Application layer, which talks to the Domain
 On the surface, it looks clean. But there's a fatal flaw.
 
 - **The dependency rule is a trap**: The layers depend directly on the layers below them. This means your business logic (Domain) ends up depending on technical details (Persistence). Your core rules are now shackled to your database.
-- **Technical, not business, focus**: The code is grouped by _what it is_ (UI, database code) rather than _what it does_ for the business.
+- **Technical, not business, focus**: The code is grouped by *what it is* (UI, database code) rather than *what it does* for the business.
 
 This coupling between business logic and the database is where everything starts to go wrong. It makes testing harder and changing your database a massive, painful project.
 
@@ -87,13 +87,12 @@ The hexagon visually represents your business logic at the center, protected fro
 
 > **ℹ️ What's in a name?**
 > People use different terms for the two sides of the hexagon:
->
 > 1. Left/Right
 > 2. Driving/Driven
 > 3. Primary/Secondary
 > 4. User Side/Server Side
 >
-> Honestly, the names don't matter as much as the concept. Just pick one and be consistent. I personally like **driving/driven** because it clearly separates what _initiates an action_ from what _fulfills a request_.
+> Honestly, the names don't matter as much as the concept. Just pick one and be consistent. I personally like **driving/driven** because it clearly separates what *initiates an action* from what *fulfills a request*.
 
 ---
 
@@ -123,28 +122,28 @@ At the center, we have our business rules, completely independent of any technol
 ```ts
 // This is an interface for something that will *drive* our application.
 export interface OrderInputPort {
-  processOrder(order: Order): void; // A left-side "driving" port
+   processOrder(order: Order): void; // A left-side "driving" port
 }
 
 // This is an interface for a service our application will *be driven by*.
 export interface OrderOutputPort {
-  saveOrder(order: Order): void; // A right-side "driven" port
+   saveOrder(order: Order): void; // A right-side "driven" port
 }
 
 // This is our core business logic.
 export class OrderService implements OrderInputPort {
-  // It depends on an *abstraction* (the port), not a concrete database.
-  constructor(private outputPort: OrderOutputPort) {}
+   // It depends on an *abstraction* (the port), not a concrete database.
+   constructor(private outputPort: OrderOutputPort) {}
 
-  processOrder(order: Order): void {
-    if (!order.isValid()) {
-      throw new Error('Order is invalid');
-    }
+   processOrder(order: Order): void {
+      if (!order.isValid()) {
+         throw new Error("Order is invalid");
+      }
 
-    console.log('Processing order:', order);
-    // It calls the output port to get the job done.
-    this.outputPort.saveOrder(order);
-  }
+      console.log("Processing order:", order);
+      // It calls the output port to get the job done.
+      this.outputPort.saveOrder(order);
+   }
 }
 ```
 
@@ -161,23 +160,23 @@ export class OrderService implements OrderInputPort {
 This is the code that translates an incoming request (from the web, a CLI, etc.) into a call on our application's input port.
 
 ```ts
-import express from 'express';
+import express from "express";
 
 // This is an "adapter" that connects the outside world (HTTP) to our application.
 export class OrderController {
-  constructor(private orderInputPort: OrderInputPort) {}
+   constructor(private orderInputPort: OrderInputPort) {}
 
-  handleRequest(req: express.Request, res: express.Response): void {
-    const order = req.body;
+   handleRequest(req: express.Request, res: express.Response): void {
+      const order = req.body;
 
-    try {
-      // The controller's only job is to translate and delegate.
-      this.orderInputPort.processOrder(order); // It calls the domain via the port.
-      res.status(200).send('Order processed successfully!');
-    } catch (err) {
-      res.status(400).send(err.message);
-    }
-  }
+      try {
+         // The controller's only job is to translate and delegate.
+         this.orderInputPort.processOrder(order); // It calls the domain via the port.
+         res.status(200).send("Order processed successfully!");
+      } catch (err) {
+         res.status(400).send(err.message);
+      }
+   }
 }
 ```
 
@@ -192,10 +191,10 @@ This is the concrete implementation of our output port. This is where the techni
 ```ts
 // This adapter implements our output port with a specific technology (e.g., a database).
 export class DatabaseAdapter implements OrderOutputPort {
-  saveOrder(order: Order): void {
-    // Here you would have your actual database logic.
-    console.log('Saving order to database:', order);
-  }
+   saveOrder(order: Order): void {
+      // Here you would have your actual database logic.
+      console.log("Saving order to database:", order);
+   }
 }
 ```
 
@@ -208,7 +207,7 @@ This class is all about the database. It knows nothing about the business rules 
 Finally, somewhere at the very edge of our application (like `index.ts`), we wire everything up.
 
 ```ts
-import express from 'express';
+import express from "express";
 
 // 1. Create the concrete adapters.
 const databaseAdapter = new DatabaseAdapter(); // Driven Side
@@ -223,9 +222,9 @@ const orderController = new OrderController(orderService); // Driving Side
 const app = express();
 app.use(express.json());
 
-app.post('/orders', (req, res) => orderController.handleRequest(req, res));
+app.post("/orders", (req, res) => orderController.handleRequest(req, res));
 
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
 ```
 
 This is the only place where the domain logic and the technical details meet. The dependencies are "injected" from the outside in, protecting the core.
@@ -258,11 +257,3 @@ Each piece can be tested independently. No more fragile, end-to-end tests that f
 
 Hexagonal architecture is a massive step up from simple layering. It forces you to put your business logic first and to treat technology as a detail. By isolating the core domain, you build systems that are more testable, flexible, and resilient to technological change. It's a powerful pattern for creating software that lasts.
 
----
-
-### Read more in this series
-
-1. [Application design: building software that lasts](https://www.jterrazz.com/articles/9-software-design-0-why-architecture-matters)
-2. [Application design: mastering the flow of dependencies](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
-3. **Application design: separating business from technology**
-4. [Application design: a journey into clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)
