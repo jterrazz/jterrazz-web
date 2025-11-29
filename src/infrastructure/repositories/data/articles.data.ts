@@ -4,6 +4,10 @@ import { promises as fs } from 'node:fs';
 // Domain
 import { type Article, ArticleCategory, type ArticleLanguage } from '../../../domain/article';
 
+// Generated
+// @ts-ignore - This file is generated at build time
+import contentHashes from '../../../../src/generated/content-hashes.json';
+
 // Configuration structure for each article before being transformed into the Article domain model.
 type ArticleConfig = {
     filename: string;
@@ -30,6 +34,10 @@ type TranslatedString = Record<ArticleLanguage, string>;
 // This avoids relying on an external CDN and allows Next.js to optimise the files via its built-in <Image> component.
 const CDN_BASE_URL = '/content';
 const DEFAULT_PREVIEW_IMAGE_JPG = 'thumbnail.jpg';
+
+// Type for our generated hash map
+type ContentHashes = Record<string, string>;
+const hashes = contentHashes as ContentHashes;
 
 const ARTICLES_CONFIG: ArticleConfig[] = [
     {
@@ -464,12 +472,19 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     },
 ];
 
-const processMarkdownContent = (content: string, filename: string, cacheKey: string): string => {
+const getAssetHash = (filename: string, assetPath: string): string => {
+    const relativePath = `${filename}/assets/${assetPath}`;
+    return hashes[relativePath] || '';
+};
+
+const processMarkdownContent = (content: string, filename: string): string => {
     return content.replace(
         /!\[([^\]]*)\]\((?:\.\/)?assets\/([^)]+)\)/g,
-        (_match, altText, p1) =>
+        (_match, altText, p1) => {
+            const hash = getAssetHash(filename, p1);
             // Point to the locally-served image so that <Image> receives an internal URL.
-            `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)}?v=${cacheKey})`,
+            return `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)}${hash ? `?v=${hash}` : ''})`;
+        },
     );
 };
 
@@ -480,14 +495,13 @@ const readMarkdownFile = async (
     articlesDirectory: string,
     filename: string,
     language: ArticleLanguage,
-    cacheKey: string,
 ): Promise<string | undefined> => {
     try {
         const content = await fs.readFile(
             `${articlesDirectory}/${filename}/${language}.md`,
             'utf8',
         );
-        return processMarkdownContent(content, filename, cacheKey);
+        return processMarkdownContent(content, filename);
     } catch {
         return undefined;
     }
@@ -499,12 +513,11 @@ export const readMarkdownArticles = async (): Promise<Article[]> => {
     return await Promise.all(
         ARTICLES_CONFIG.map(async ({ filename, previewImage, ...articleConfig }) => {
             const content: { [key in ArticleLanguage]?: string } = {};
-            const cacheKey = articleConfig.metadata.dateModified.replace(/-/g, '');
 
             // Try to read both language versions
             const [enContent, frContent] = await Promise.all([
-                readMarkdownFile(articlesDirectory, filename, 'en', cacheKey),
-                readMarkdownFile(articlesDirectory, filename, 'fr', cacheKey),
+                readMarkdownFile(articlesDirectory, filename, 'en'),
+                readMarkdownFile(articlesDirectory, filename, 'fr'),
             ]);
 
             if (enContent) content.en = sanitizeText(enContent) ?? enContent;
@@ -515,9 +528,11 @@ export const readMarkdownArticles = async (): Promise<Article[]> => {
                 throw new Error(`No content found for article ${filename}`);
             }
 
-            const imageUrl = previewImage
-                ? `${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${previewImage}?v=${cacheKey}`
-                : '';
+            let imageUrl = '';
+            if (previewImage) {
+                const hash = getAssetHash(filename, previewImage);
+                imageUrl = `${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${previewImage}${hash ? `?v=${hash}` : ''}`;
+            }
 
             // Localise title and description for each available language (defaulting to English if none provided)
             const sanitizeRecord = (record: TranslatedString): TranslatedString => ({

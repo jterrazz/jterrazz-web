@@ -126,22 +126,22 @@ export const TableRowExperimentComponent: React.FC<TableRowExperimentComponentPr
 
                             {/* Full Tech Stack */}
                             {allTags.length > 0 && (
-                                <div>
-                                    <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">
+                            <div>
+                                <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">
                                         Architecture
-                                    </span>
-                                    <div className="flex flex-wrap gap-2">
-                                        {allTags.map((tag) => (
-                                            <Badge
-                                                color={BadgeColor.Gray}
-                                                filled={false}
-                                                key={tag}
-                                                size={DotPulseSize.Small}
-                                                value={tag}
-                                            />
-                                        ))}
-                                    </div>
+                                </span>
+                                <div className="flex flex-wrap gap-2">
+                                    {allTags.map((tag) => (
+                                        <Badge
+                                            color={BadgeColor.Gray}
+                                            filled={false}
+                                            key={tag}
+                                            size={DotPulseSize.Small}
+                                            value={tag}
+                                        />
+                                    ))}
                                 </div>
+                            </div>
                             )}
 
                             {/* Action Buttons */}

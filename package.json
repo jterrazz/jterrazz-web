@@ -8,9 +8,9 @@
     "node": "22.x.x"
   },
   "scripts": {
-    "build": "next build",
+    "build": "node scripts/sync-content.mjs && next build",
     "start": "next start",
-    "dev": "next dev",
+    "dev": "node scripts/sync-content.mjs && next dev",
     "test": "vitest",
     "lint": "quality",
     "clean": "rm -rf .next && rm -rf node_modules"

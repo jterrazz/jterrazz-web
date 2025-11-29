@@ -139,7 +139,7 @@ export const TimelineExperience: React.FC<TimelineEventProps> = ({
                                     className={cn(
                                         'flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-500 dark:text-zinc-400',
                                         // Removed text alignment classes to keep everything left-aligned
-                                        'justify-start'
+                                        'justify-start' 
                                     )}
                                 >
                                     <Link

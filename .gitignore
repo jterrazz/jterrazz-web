@@ -20,3 +20,7 @@ npm-debug.log*
 # Temporary
 /.next/
 next-env.d.ts
+
+# Generated
+src/generated/
+public/content/
