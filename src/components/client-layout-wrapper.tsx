@@ -21,14 +21,6 @@ const SpeedInsights = dynamic(
     },
 );
 
-const ClientProviders = dynamic(
-    () => import('./client-providers').then((mod) => ({ default: mod.ClientProviders })),
-    {
-        loading: () => null,
-        ssr: false,
-    },
-);
-
 interface ClientLayoutWrapperProps {
     children: React.ReactNode;
 }
@@ -38,7 +30,7 @@ export function ClientLayoutWrapper({ children }: ClientLayoutWrapperProps) {
         <ThemeProvider>
             <SpeedInsights sampleRate={1} />
             <Analytics />
-            <ClientProviders>{children}</ClientProviders>
+            {children}
         </ThemeProvider>
     );
 }

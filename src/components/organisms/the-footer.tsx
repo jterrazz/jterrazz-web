@@ -68,6 +68,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                 <div className="flex items-center justify-between">
                     <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 truncate">
                         {title}
+                        <span className="sr-only"> (opens in a new tab)</span>
                     </h3>
                     <ArrowUpRight
                         className="opacity-0 group-hover:opacity-100 text-zinc-400 transition-all duration-200 -translate-x-2 group-hover:translate-x-0"
@@ -102,6 +103,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
             <div className="flex flex-col">
                 <span className="text-xs font-medium text-zinc-900 dark:text-zinc-200">
                     {label}
+                    <span className="sr-only"> (opens in a new tab)</span>
                 </span>
                 <span className="text-[10px] text-zinc-500 dark:text-zinc-500">{username}</span>
             </div>
@@ -191,7 +193,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                                 </div>
 
                                 <div className="hidden md:flex items-center justify-between gap-4">
-                                    <p className="text-xs text-zinc-400 dark:text-zinc-600 font-medium">
+                                    <p className="text-xs text-zinc-500 dark:text-zinc-600 font-medium">
                                         © {new Date().getFullYear()} All rights reserved.
                                     </p>
                                     <ThemeToggle />
@@ -202,7 +204,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                             <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12">
                                 {/* Socials */}
                                 <div className="flex flex-col gap-3">
-                                    <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mb-1">
+                                    <span className="text-xs font-semibold text-zinc-500 dark:text-zinc-500 uppercase tracking-wider mb-1">
                                         Connect
                                     </span>
                                     <SocialLink
@@ -233,7 +235,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
 
                                 {/* Experiments */}
                                 <div className="flex flex-col gap-3">
-                                    <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mb-1">
+                                    <span className="text-xs font-semibold text-zinc-500 dark:text-zinc-500 uppercase tracking-wider mb-1">
                                         Featured Work
                                     </span>
                                     {applications.map((app) => (
@@ -244,7 +246,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
 
                             {/* Mobile Copyright */}
                             <div className="md:hidden col-span-1 pt-4 border-t border-zinc-100 dark:border-zinc-800">
-                                <p className="text-xs text-center text-zinc-400 dark:text-zinc-600 font-medium">
+                                <p className="text-xs text-center text-zinc-500 dark:text-zinc-600 font-medium">
                                     © {new Date().getFullYear()} Jean-Baptiste Terrazzoni. All
                                     rights reserved.
                                 </p>

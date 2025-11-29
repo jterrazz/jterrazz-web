@@ -45,6 +45,7 @@ const NavigationTabItem: React.FC<NavigationTabItemProps> = ({
                 title={title}
             >
                 {content}
+                <span className="sr-only"> (opens in a new tab)</span>
             </a>
         );
     }
@@ -173,6 +174,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             target="_blank"
                         >
                             <span>Get App</span>
+                            <span className="sr-only"> (opens in a new tab)</span>
                             <Download size={14} />
                         </a>
                     </div>
@@ -242,6 +244,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                                     >
                                         {getContactIcon(contact.name) || <Monitor size={20} />}
                                         <span className="text-sm font-medium">{contact.name}</span>
+                                        <span className="sr-only"> (opens in a new tab)</span>
                                     </a>
                                 ))}
                             </div>
@@ -253,6 +256,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                                 target="_blank"
                             >
                                 <span>Download App</span>
+                                <span className="sr-only"> (opens in a new tab)</span>
                                 <Download size={16} />
                             </a>
                         </motion.div>

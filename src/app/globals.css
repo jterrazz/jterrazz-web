@@ -69,6 +69,12 @@
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
     }
+
+    /* Accessibility Focus Styles */
+    :focus-visible {
+        outline: 2px solid hsl(var(--ring));
+        outline-offset: 2px;
+    }
 }
 /*---break---*/
 @layer base {

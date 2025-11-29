@@ -33,7 +33,8 @@ export const LinkButton: React.FC<LinkButtonProps> = ({ className, link }) => {
             target="_blank"
         >
             <p className="text-xs font-semibold">
-                {link.title} {'>'}
+                {link.title} <span aria-hidden="true">{'>'}</span>
+                <span className="sr-only"> (opens in a new tab)</span>
             </p>
         </a>
     );

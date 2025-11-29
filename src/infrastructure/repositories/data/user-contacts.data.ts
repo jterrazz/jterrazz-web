@@ -22,6 +22,11 @@ export const userContactsData: Record<UserContactType, UserContact> = {
         url: new URL('https://medium.com/@jterrazz'),
         value: '@jterrazz',
     },
+    [UserContactType.Pexels]: {
+        type: UserContactType.Pexels,
+        url: new URL('https://www.pexels.com/@jterrazz'),
+        value: '@jterrazz',
+    },
     [UserContactType.Phone]: {
         type: UserContactType.Phone,
         url: new URL('tel:+33600000000'),

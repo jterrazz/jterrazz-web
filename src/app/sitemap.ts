@@ -2,13 +2,17 @@ import { type MetadataRoute } from 'next';
 
 // Infrastructure
 import { ArticleInMemoryRepository } from '../infrastructure/repositories/article-in-memory.repository';
+import { ExperimentInMemoryRepository } from '../infrastructure/repositories/experiment-in-memory.repository';
 
 import { buildArticleSlug } from '../lib/slugify';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
     const articlesRepository = new ArticleInMemoryRepository();
+    const experimentsRepository = new ExperimentInMemoryRepository();
+
     const articles = await articlesRepository.getArticles();
+    const experiments = experimentsRepository.getExperiments();
 
     const articleUrls = articles.flatMap((article) => {
         const languages = Object.keys(article.content);
@@ -19,6 +23,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             url: `${baseUrl}/articles/${buildArticleSlug(article.publicIndex, article.metadata.title.en)}/${lang}`,
         }));
     });
+
+    const experimentUrls = experiments.map((experiment) => ({
+        changeFrequency: 'monthly' as const,
+        lastModified: new Date(), // Ideally this should come from experiment data
+        priority: 0.8,
+        url: `${baseUrl}/experiments/${experiment.slug}`,
+    }));
 
     // Add main pages
     const mainPages = [
@@ -48,5 +59,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
     ];
 
-    return [...mainPages, ...articleUrls];
+    return [...mainPages, ...articleUrls, ...experimentUrls];
 }

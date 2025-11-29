@@ -50,7 +50,9 @@ export default async function ArticlePage(props: ArticlePageProps) {
             currentLanguage={lang}
             dateModified={article.metadata.dateModified}
             datePublished={article.metadata.datePublished}
+            description={article.metadata.description[lang]}
             features={features}
+            imageUrl={article.imageUrl}
             title={article.metadata.title[lang]}
         />
     );
@@ -106,6 +108,14 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
             url: `${baseUrl}/articles/${slugId}/${lang}`,
         },
         title: `${article.metadata.title[lang]} ~ Jterrazz`,
+        twitter: {
+            card: 'summary_large_image',
+            creator: '@j_terrazz',
+            description: article.metadata.description[lang],
+            images: [thumbnailUrl],
+            site: '@j_terrazz',
+            title: article.metadata.title[lang],
+        },
     };
 }
 

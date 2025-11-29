@@ -3,6 +3,7 @@ export enum UserContactType {
     GitHub = 'github',
     LinkedIn = 'linkedin',
     Medium = 'medium',
+    Pexels = 'pexels',
     Phone = 'phone',
     Twitter = 'twitter',
     Website = 'website',

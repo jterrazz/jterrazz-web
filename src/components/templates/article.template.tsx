@@ -22,7 +22,9 @@ type ArticleTemplateProps = {
     currentLanguage: ArticleLanguage;
     dateModified: string;
     datePublished: string;
+    description: string;
     features: Feature[];
+    imageUrl?: string;
     title: string;
 };
 
@@ -36,6 +38,8 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     currentLanguage,
     dateModified,
     datePublished,
+    description,
+    imageUrl,
     title,
 }) => {
     // Find the current article to get its series info
@@ -71,10 +75,23 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
+        author: {
+            '@type': 'Person',
+            name: 'Jean-Baptiste Terrazzoni',
+            url: 'https://jterrazz.com',
+        },
         dateModified: new Date(dateModified).toISOString(),
         datePublished: new Date(datePublished).toISOString(),
+        description: description,
         headline: title,
+        image: imageUrl
+            ? [`${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}${imageUrl}`]
+            : [],
         inLanguage: currentLanguage,
+        mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles/${articleId}`,
+        },
         ...(availableLanguages.length > 1 && {
             inLanguage: availableLanguages,
         }),

@@ -23,9 +23,13 @@ import './globals.css';
 // const inter = Inter({ subsets: ['latin'] });
 
 const APPLE_TOUCH_ICON = 'apple-touch-icon';
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
+
 export const metadata: Metadata = {
+    authors: [{ name: 'Jean-Baptiste Terrazzoni', url: 'https://jterrazz.com' }],
+    creator: 'Jean-Baptiste Terrazzoni',
     description:
-        "Discover game-changing apps and coding insights at jterrazz.com! Join a dev's journey crafting useful apps, from self-improvement tools to innovative tech solutions. Level up your skills and find your next big idea! 🚀💻'",
+        "Discover game-changing apps and coding insights at jterrazz.com! Join a dev's journey crafting useful apps, from self-improvement tools to innovative tech solutions. Level up your skills and find your next big idea! 🚀💻",
     icons: [
         {
             rel: 'icon',
@@ -100,7 +104,54 @@ export const metadata: Metadata = {
             url: '/favicon/apple-icon-180x180.png?v=6',
         },
     ],
-    title: 'Jean-Baptiste Terrazzoni: App Development, Self-Improvement & Tech Insights',
+    keywords: [
+        'Software Engineering',
+        'Full Stack Development',
+        'React',
+        'Next.js',
+        'TypeScript',
+        'AI Agents',
+        'Clean Architecture',
+        'Mobile Apps',
+    ],
+    metadataBase: new URL(baseUrl),
+    openGraph: {
+        description:
+            "Discover game-changing apps and coding insights at jterrazz.com! Join a dev's journey crafting useful apps, from self-improvement tools to innovative tech solutions. Level up your skills and find your next big idea!",
+        images: [
+            {
+                height: 630,
+                url: '/assets/icons/app-icon.jterrazz.png', // Fallback image
+                width: 1200,
+            },
+        ],
+        locale: 'en_US',
+        siteName: 'Jean-Baptiste Terrazzoni',
+        title: 'Jean-Baptiste Terrazzoni: App Development, Self-Improvement & Tech Insights',
+        type: 'website',
+        url: baseUrl,
+    },
+    robots: {
+        follow: true,
+        googleBot: {
+            follow: true,
+            index: true,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+            'max-video-preview': -1,
+        },
+        index: true,
+    },
+    title: {
+        default: 'Jean-Baptiste Terrazzoni: App Development, Self-Improvement & Tech Insights',
+        template: '%s | Jean-Baptiste Terrazzoni',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        creator: '@jterrazz',
+        site: '@jterrazz',
+        title: 'Jean-Baptiste Terrazzoni',
+    },
 };
 
 export default function RootLayout({
@@ -164,7 +215,7 @@ export default function RootLayout({
                     <div className="sticky top-0 z-[50] pointer-events-none">
                         <TheNavigationBar contacts={contacts} pages={pages} />
                     </div>
-                    <div className="flex-1 flex flex-col overflow-x-hidden w-full">{children}</div>
+                    <main className="flex-1 flex flex-col overflow-x-hidden w-full">{children}</main>
                     <TheFooter />
                 </ClientLayoutWrapper>
             </body>
