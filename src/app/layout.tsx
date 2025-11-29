@@ -127,8 +127,8 @@ export default function RootLayout({
             name: 'Articles',
         },
         {
-            href: '/projects',
-            name: 'Projects',
+            href: '/experiments',
+            name: 'Experiments',
         },
         {
             href: '/photographs',

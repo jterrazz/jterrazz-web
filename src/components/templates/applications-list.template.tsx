@@ -2,42 +2,43 @@
 
 import React from 'react';
 
+import { motion } from 'framer-motion';
 import Script from 'next/script';
 
 // Domain
+import { ExperimentCategory, type Experiment } from '../../domain/experiment';
 import { type Feature } from '../../domain/feature';
-import { type Project } from '../../domain/project';
 import { UserContactType } from '../../domain/user';
 
 // Infrastructure
 import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository';
 
+import { CompactExperimentCard } from '../molecules/cards/compact-experiment-card';
+import { FeaturedExperimentCard } from '../molecules/cards/featured-experiment-card';
 import { SectionDivider } from '../molecules/section-divider';
 import { Highlight } from '../molecules/typography/highlight';
-import { TableRowProject } from '../organisms/table-of-projects/table-row-project';
 
 type ApplicationsListTemplateProps = {
     features: readonly Feature[];
     highlightDescription: string;
     highlightTitle: string;
-    projects: readonly SerializableProject[];
+    experiments: readonly SerializableExperiment[];
 };
 
-type SerializableProject = Omit<Project, 'components' | 'createdAt' | 'url'> & {
+type SerializableExperiment = Omit<Experiment, 'components' | 'url'> & {
+    articleUrl: null | string;
     components: Array<
-        Omit<Project['components'][number], 'articleUrl' | 'sourceUrl'> & {
-            articleUrl: null | string;
+        Omit<Experiment['components'][number], 'sourceUrl'> & {
             sourceUrl: string;
         }
     >;
-    createdAt: null | string;
     url: string;
 };
 
 export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> = ({
     highlightDescription,
     highlightTitle,
-    projects,
+    experiments,
 }) => {
     const button = {
         href: new UserInMemoryRepository().getContact(UserContactType.GitHub).url.toString(),
@@ -52,17 +53,24 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
         url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/applications`,
     };
 
-    const apps = projects.filter((p) => ['Capitaine IO', 'Fake News', 'Jterrazz'].includes(p.name));
-    const libs = projects.filter((p) => p.name === 'Typescript Packages');
-    const academic = projects.filter((p) => p.name === '42 Projects');
+    const apps = experiments.filter((p) => p.category === ExperimentCategory.App);
+    const libs = experiments.filter((p) => p.category === ExperimentCategory.Lib);
+    const system = experiments.filter((p) => p.category === ExperimentCategory.System);
 
-    const renderProjects = (list: typeof projects) => (
-        <div className="flex flex-col gap-24 md:gap-32">
-            {list.map((project) => (
-                <TableRowProject key={project.name} project={project as unknown as Project} />
-            ))}
-        </div>
-    );
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        show: { opacity: 1, y: 0 },
+    };
 
     return (
         <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
@@ -85,29 +93,72 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                 </div>
             </div>
 
-            {/* Projects Content */}
-            <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 space-y-32">
-                {/* Applications */}
+            {/* Experiments Content */}
+            <div className="max-w-7xl mx-auto px-4 md:px-6 py-20 md:py-32 space-y-40">
+                {/* Featured Applications */}
                 {apps.length > 0 && (
                     <section>
-                        <SectionDivider className="mb-16" title="Applications" />
-                        {renderProjects(apps)}
+                        <SectionDivider className="mb-20" title="Featured Applications" />
+                        <motion.div
+                            className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12"
+                            initial="hidden"
+                            variants={containerVariants}
+                            whileInView="show"
+                            viewport={{ once: true, margin: '-100px' }}
+                        >
+                            {apps.map((experiment) => (
+                                <motion.div key={experiment.name} variants={itemVariants}>
+                                    <FeaturedExperimentCard
+                                        className="min-h-[480px]"
+                                        experiment={experiment as unknown as Experiment}
+                                    />
+                                </motion.div>
+                            ))}
+                        </motion.div>
                     </section>
                 )}
 
                 {/* Libraries & Tools */}
                 {libs.length > 0 && (
                     <section>
-                        <SectionDivider className="mb-16" title="Libraries & Tools" />
-                        {renderProjects(libs)}
+                        <SectionDivider className="mb-16" title="Tooling & Libraries" />
+                        <motion.div
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+                            initial="hidden"
+                            variants={containerVariants}
+                            whileInView="show"
+                            viewport={{ once: true, margin: '-50px' }}
+                        >
+                            {libs.map((experiment) => (
+                                <motion.div key={experiment.name} variants={itemVariants}>
+                                    <CompactExperimentCard
+                                        experiment={experiment as unknown as Experiment}
+                                    />
+                                </motion.div>
+                            ))}
+                        </motion.div>
                     </section>
                 )}
 
-                {/* Academic */}
-                {academic.length > 0 && (
+                {/* System & Research */}
+                {system.length > 0 && (
                     <section>
-                        <SectionDivider className="mb-16" title="Projects" />
-                        {renderProjects(academic)}
+                        <SectionDivider className="mb-16" title="System & Research" />
+                        <motion.div
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6"
+                            initial="hidden"
+                            variants={containerVariants}
+                            whileInView="show"
+                            viewport={{ once: true, margin: '-50px' }}
+                        >
+                            {system.map((experiment) => (
+                                <motion.div key={experiment.name} variants={itemVariants}>
+                                    <CompactExperimentCard
+                                        experiment={experiment as unknown as Experiment}
+                                    />
+                                </motion.div>
+                            ))}
+                        </motion.div>
                     </section>
                 )}
             </div>

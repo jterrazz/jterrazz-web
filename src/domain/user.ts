@@ -1,44 +1,44 @@
 export enum UserContactType {
-    Email = 'Email',
-    GitHub = 'GitHub',
-    LinkedIn = 'LinkedIn',
-    Medium = 'Medium',
-    Pexels = 'Pexels',
-    X = 'X',
+    Email = 'email',
+    GitHub = 'github',
+    LinkedIn = 'linkedin',
+    Medium = 'medium',
+    Phone = 'phone',
+    Twitter = 'twitter',
+    Website = 'website',
+    X = 'x',
 }
 
 export type UserContact = {
-    name: string;
+    type: UserContactType;
     url: URL;
+    value: string;
 };
 
 export type UserExperience = {
-    description?: string;
+    company: string;
+    companyUrl?: string;
+    contract: 'cdi' | 'freelance' | 'internship';
+    dateEnd?: Date;
+    dateStart: Date;
+    description: string;
+    experimentUrl?: string;
     location: string;
-    organization: string;
-    organizationUrl: string;
-    projectUrl?: string;
-    timeframe: string;
-    title: string;
-    type: 'Hackathon' | 'Internship' | 'Job' | 'School';
-    year: string;
+    role: string;
+    stack: string[];
 };
 
-export type UserProfile = {
-    age: string;
-    name: string;
-    tagline: string;
-    values: UserValue[];
-};
-
-export type UserRepository = {
-    getContact(contactType: UserContactType): UserContact;
+export interface UserRepository {
+    getContact(type: UserContactType): UserContact;
     getContacts(): UserContact[];
     getExperiences(): UserExperience[];
     getProfile(): UserProfile;
-};
+}
 
-export type UserValue = {
+export type UserProfile = {
     description: string;
-    title: string;
+    headline: string;
+    location: string;
+    name: string;
+    pictureUrl: string;
 };

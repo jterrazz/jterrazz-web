@@ -1,23 +1,23 @@
 import React from 'react';
 
-import { ChevronRight, Code2, ExternalLink, Layers } from 'lucide-react';
+import { ChevronRight, Code2, Layers } from 'lucide-react';
 
 // Domain
-import { type ProjectComponent } from '../../../domain/project';
+import { type ExperimentComponent } from '../../../domain/experiment';
 
 // Utils
 import { cn } from '../../../lib/utils';
 
 import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge';
 
-import { projectStatusToDescription } from './table-row-project-component-view-model';
+import { experimentStatusToDescription } from './table-row-experiment-component-view-model';
 
-export type TableRowProjectDetailsProps = {
+export type TableRowExperimentDetailsProps = {
     className?: string;
-    component: ProjectComponent;
+    component: ExperimentComponent;
 };
 
-export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
+export const TableRowExperimentDetails: React.FC<TableRowExperimentDetailsProps> = ({
     className,
     component,
 }) => {
@@ -67,17 +67,6 @@ export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
             </div>
 
             <div className="flex border-t border-zinc-200 dark:border-zinc-800 divide-x divide-zinc-200 dark:divide-zinc-800">
-                {component.articleUrl && (
-                    <a
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
-                        href={component.articleUrl.toString()}
-                        rel="noreferrer"
-                        target="_blank"
-                    >
-                        <ExternalLink size={14} />
-                        Read Article
-                    </a>
-                )}
                 <a
                     className="flex-1 flex items-center justify-center gap-2 px-4 py-3 text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                     href={component.sourceUrl.toString()}
@@ -85,7 +74,7 @@ export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
                     target="_blank"
                 >
                     <ChevronRight size={14} />
-                    {projectStatusToDescription(component.status)}
+                    {experimentStatusToDescription(component.status)}
                 </a>
             </div>
         </div>

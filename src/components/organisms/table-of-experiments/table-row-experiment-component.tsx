@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowUpRight, ChevronDown, Github } from 'lucide-react';
+import { ChevronDown, Github } from 'lucide-react';
 
 // Domain
-import { type ProjectComponent } from '../../../domain/project';
+import { type ExperimentComponent } from '../../../domain/experiment';
 
 // Utils
 import { cn } from '../../../lib/utils';
@@ -13,16 +13,16 @@ import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge';
 import { DotPulse } from '../../atoms/status/dot-pulse';
 
 import {
-    projectComponentStatusToDoPulseState,
-    projectStatusToDescription,
-} from './table-row-project-component-view-model';
+    experimentComponentStatusToDoPulseState,
+    experimentStatusToDescription,
+} from './table-row-experiment-component-view-model';
 
-type TableRowProjectComponentProps = {
+type TableRowExperimentComponentProps = {
     className?: string;
-    component: ProjectComponent;
+    component: ExperimentComponent;
 };
 
-export const TableRowProjectComponent: React.FC<TableRowProjectComponentProps> = ({
+export const TableRowExperimentComponent: React.FC<TableRowExperimentComponentProps> = ({
     className,
     component,
 }) => {
@@ -60,7 +60,7 @@ export const TableRowProjectComponent: React.FC<TableRowProjectComponentProps> =
                     <h3 className="font-bold text-lg text-zinc-900 dark:text-zinc-100">
                         {component.name}
                     </h3>
-                    <DotPulse color={projectComponentStatusToDoPulseState(component.status)} />
+                    <DotPulse color={experimentComponentStatusToDoPulseState(component.status)} />
                 </div>
 
                 {/* Short Description (truncated) */}
@@ -144,31 +144,18 @@ export const TableRowProjectComponent: React.FC<TableRowProjectComponentProps> =
 
                             {/* Action Buttons */}
                             <div className="flex gap-3 pt-2">
-                                {component.articleUrl && (
-                                    <a
-                                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 rounded-xl hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm hover:shadow-md"
-                                        href={component.articleUrl.toString()}
-                                        rel="noreferrer"
-                                        target="_blank"
-                                    >
-                                        Read Case Study
-                                        <ArrowUpRight size={14} />
-                                    </a>
-                                )}
                                 <a
                                     className={cn(
-                                        'inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all shadow-sm border',
-                                        component.articleUrl
-                                            ? 'bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700'
-                                            : 'flex-1 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 border-transparent hover:bg-zinc-800 dark:hover:bg-zinc-200',
+                                        'flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all shadow-sm border',
+                                        'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 border-transparent hover:bg-zinc-800 dark:hover:bg-zinc-200',
                                     )}
                                     href={component.sourceUrl.toString()}
                                     rel="noreferrer"
                                     target="_blank"
-                                    title={projectStatusToDescription(component.status)}
+                                    title={experimentStatusToDescription(component.status)}
                                 >
                                     <Github size={16} />
-                                    {component.articleUrl ? 'Code' : 'View Source'}
+                                    View Source
                                 </a>
                             </div>
                         </div>

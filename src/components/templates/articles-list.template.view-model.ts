@@ -8,7 +8,7 @@ export interface ArticleRowViewModel {
     category: string;
     description: string;
     imageUrl: string;
-    isProject: boolean;
+    isExperiment: boolean;
     slug: string;
     title: string;
     datePublished: string;
@@ -30,7 +30,7 @@ export interface ArticlesListViewModel {
     series: ArticleSeriesViewModel[];
     standaloneArticles: ArticleRowViewModel[];
     latestArticle: ArticleRowViewModel | null;
-    latestProjectArticle: ArticleRowViewModel | null;
+    latestExperimentArticle: ArticleRowViewModel | null;
     button: ArticlesListButton;
     highlightDescription: string;
     highlightTitle: string;
@@ -101,27 +101,28 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
 
         const latestArticleRawFinal = standaloneSorted.length > 0 ? standaloneSorted[0] : null;
 
-        // Latest Project (Standalone Project category, not the one we just picked)
-        const standaloneProjects = standaloneSorted.filter(
+        // Latest Experiment (Standalone Experiment category, not the one we just picked)
+        const standaloneExperiments = standaloneSorted.filter(
             (a) =>
-                a.metadata.category === 'project' &&
+                a.metadata.category === 'experiment' &&
                 a.publicIndex !== latestArticleRawFinal?.publicIndex,
         );
-        const latestProjectRawFinal = standaloneProjects.length > 0 ? standaloneProjects[0] : null;
+        const latestExperimentRawFinal =
+            standaloneExperiments.length > 0 ? standaloneExperiments[0] : null;
 
         // Final Standalone list (excluding the ones we picked)
         const finalStandaloneArticles = standaloneSorted.filter(
             (a) =>
                 a.publicIndex !== latestArticleRawFinal?.publicIndex &&
-                a.publicIndex !== latestProjectRawFinal?.publicIndex,
+                a.publicIndex !== latestExperimentRawFinal?.publicIndex,
         );
 
         // Map to View Models
         const latestArticle = latestArticleRawFinal
             ? this.mapToViewModel(latestArticleRawFinal)
             : null;
-        const latestProjectArticle = latestProjectRawFinal
-            ? this.mapToViewModel(latestProjectRawFinal)
+        const latestExperimentArticle = latestExperimentRawFinal
+            ? this.mapToViewModel(latestExperimentRawFinal)
             : null;
 
         // Convert series to view models
@@ -172,7 +173,7 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
                 this.mapToViewModel(article),
             ),
             latestArticle: latestArticle ?? null,
-            latestProjectArticle,
+            latestExperimentArticle,
             button,
             highlightDescription: this.highlightDescription,
             highlightTitle: this.highlightTitle,
@@ -192,7 +193,7 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
             category: article.metadata.category,
             description: article.metadata.description.en,
             imageUrl: article.imageUrl,
-            isProject: article.metadata.category === 'project',
+            isExperiment: article.metadata.category === 'experiment',
             slug: buildArticleSlug(article.publicIndex, article.metadata.title.en),
             title: article.metadata.title.en,
             datePublished: new Date(article.metadata.datePublished).toLocaleDateString('en-US', {

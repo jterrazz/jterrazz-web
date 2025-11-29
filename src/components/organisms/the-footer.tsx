@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -114,14 +113,6 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         className,
     );
 
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        offset: ['start end', 'end start'],
-        target: ref,
-    });
-
-    const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
-
     const userRepository = new UserInMemoryRepository();
     const email = userRepository.getContact(UserContactType.Email);
     const linkedin = userRepository.getContact(UserContactType.LinkedIn);
@@ -159,7 +150,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
     };
 
     return (
-        <footer aria-label="Site footer" className={generatedClassName} ref={ref}>
+        <footer aria-label="Site footer" className={generatedClassName}>
             <Script id="footer-json-ld" strategy="beforeInteractive" type="application/ld+json">
                 {JSON.stringify(footerJsonLd)}
             </Script>
@@ -180,7 +171,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
             </div>
 
             <div className="container mx-auto px-4 relative z-10 flex flex-col items-center">
-                <motion.div className="w-full max-w-4xl mx-auto mb-12" style={{ y }}>
+                <div className="w-full max-w-4xl mx-auto mb-12">
                     <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 shadow-xl rounded-[2.5rem] p-8 md:p-12">
                         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
                             {/* Brand Section */}
@@ -240,7 +231,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                                     />
                                 </div>
 
-                                {/* Projects */}
+                                {/* Experiments */}
                                 <div className="flex flex-col gap-3">
                                     <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mb-1">
                                         Featured Work
@@ -260,7 +251,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </div>
             </div>
         </footer>
     );

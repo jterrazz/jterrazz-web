@@ -2,56 +2,53 @@
 import React from 'react';
 
 // Domain
-import { type Project } from '../../../domain/project';
+import { type Experiment } from '../../../domain/experiment';
 
 // Utils
 import { cn } from '../../../lib/utils';
 
 import { Badge } from '../../atoms/status/badge';
 
-import { TableRowProjectComponent } from './table-row-project-component';
-import { projectStatusToStatusBadgeState } from './table-row-project.view-model';
+import { TableRowExperimentComponent } from './table-row-experiment-component';
+import { experimentStatusToStatusBadgeState } from './table-row-experiment.view-model';
 
-export type TableRowProjectHeaderProps = {
+export type TableRowExperimentHeaderProps = {
     className?: string;
-    project: Project;
+    experiment: Experiment;
 };
 
-export const TableRowProject: React.FC<TableRowProjectHeaderProps> = ({ className, project }) => {
-    const year =
-        project.createdAt &&
-        (typeof project.createdAt === 'string'
-            ? new Date(project.createdAt).getFullYear()
-            : project.createdAt.getFullYear());
-
+export const TableRowExperiment: React.FC<TableRowExperimentHeaderProps> = ({
+    className,
+    experiment,
+}) => {
     const activeComponents =
-        project.components?.filter((component) => component.status !== 'archived') || [];
+        experiment.components?.filter((component) => component.status !== 'archived') || [];
 
     return (
         <section className={cn('group', className)}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-                {/* Left Column: Project Info (Sticky) */}
+                {/* Left Column: Experiment Info (Sticky) */}
                 <div className="lg:col-span-4">
                     <div className="lg:sticky lg:top-32 space-y-6">
                         <div className="space-y-4">
                             <div className="flex flex-wrap items-center gap-3">
                                 <Badge
-                                    color={projectStatusToStatusBadgeState(project.status)}
-                                    value={project.status}
+                                    color={experimentStatusToStatusBadgeState(experiment.status)}
+                                    value={experiment.status}
                                 />
-                                {year && (
+                                {experiment.year && (
                                     <span className="text-sm font-medium text-zinc-400 dark:text-zinc-600 font-mono">
-                                        {year}
+                                        {experiment.year}
                                     </span>
                                 )}
                             </div>
 
                             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-                                {project.name}
+                                {experiment.name}
                             </h2>
 
                             <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                                {project.description}
+                                {experiment.description}
                             </p>
                         </div>
                     </div>
@@ -62,7 +59,7 @@ export const TableRowProject: React.FC<TableRowProjectHeaderProps> = ({ classNam
                     {activeComponents.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             {activeComponents.map((component) => (
-                                <TableRowProjectComponent
+                                <TableRowExperimentComponent
                                     component={component}
                                     key={component.name}
                                 />

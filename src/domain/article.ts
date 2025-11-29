@@ -1,7 +1,7 @@
 export enum ArticleCategory {
     Architecture = 'architecture',
     Insight = 'insight',
-    Project = 'project',
+    Experiment = 'experiment',
 }
 
 export interface Article {

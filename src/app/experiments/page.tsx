@@ -5,12 +5,12 @@ import Script from 'next/script';
 import { ApplicationsListTemplate } from '../../components/templates/applications-list.template';
 
 // Domain
-import { type Project } from '../../domain/project';
+import { type Experiment } from '../../domain/experiment';
 
 // Infrastructure
 import { FeaturedId } from '../../infrastructure/repositories/data/features.data';
 import { FeatureInMemoryRepository } from '../../infrastructure/repositories/feature-in-memory.repository';
-import { ProjectInMemoryRepository } from '../../infrastructure/repositories/project-in-memory.repository';
+import { ExperimentInMemoryRepository } from '../../infrastructure/repositories/experiment-in-memory.repository';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -18,12 +18,12 @@ export const revalidate = false;
 
 export const metadata: Metadata = {
     alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/projects`,
+        canonical: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/experiments`,
     },
     description:
-        'Discover projects and tools by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer. Explore AI-powered personal growth platforms and fintech solutions designed to help you grow.',
+        'Discover experiments and tools by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer. Explore AI-powered personal growth platforms and fintech solutions designed to help you grow.',
     keywords: [
-        'AI projects',
+        'AI experiments',
         'fintech tools',
         'personal growth',
         'habit formation',
@@ -34,30 +34,29 @@ export const metadata: Metadata = {
     ],
     openGraph: {
         description:
-            'Discover projects and tools by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer.',
-        title: 'Projects by Jean-Baptiste Terrazzoni: AI & Fintech Tools',
+            'Discover experiments and tools by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer.',
+        title: 'Experiments by Jean-Baptiste Terrazzoni: AI & Fintech Tools',
         type: 'website',
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/projects`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/experiments`,
     },
-    title: 'Projects by Jean-Baptiste Terrazzoni: AI & Fintech Tools',
+    title: 'Experiments by Jean-Baptiste Terrazzoni: AI & Fintech Tools',
 };
 
-export default async function ProjectsPage() {
-    const projectRepository = new ProjectInMemoryRepository();
+export default async function ExperimentsPage() {
+    const experimentRepository = new ExperimentInMemoryRepository();
     const featureRepository = new FeatureInMemoryRepository();
 
-    const projectsDomain: Project[] = projectRepository.getProjects();
+    const experimentsDomain: Experiment[] = experimentRepository.getExperiments();
 
     // Convert URL and Date instances to plain serialisable values for client components
-    const projects = projectsDomain.map((project) => ({
-        ...project,
-        components: project.components.map((component) => ({
+    const experiments = experimentsDomain.map((experiment) => ({
+        ...experiment,
+        articleUrl: experiment.articleUrl ?? null,
+        components: experiment.components.map((component) => ({
             ...component,
-            articleUrl: component.articleUrl ? component.articleUrl.toString() : null,
             sourceUrl: component.sourceUrl.toString(),
         })),
-        createdAt: project.createdAt ? project.createdAt.toISOString() : null,
-        url: project.url.toString(),
+        url: experiment.url ? experiment.url.toString() : '',
     }));
     const features = [
         featureRepository.getFeatureById(FeaturedId.Repository),
@@ -65,7 +64,7 @@ export default async function ProjectsPage() {
         featureRepository.getFeatureById(FeaturedId.Source),
     ];
 
-    const highlightTitle = 'Projects';
+    const highlightTitle = 'Experiments';
     const highlightDescription =
         "The code behind the concepts. A collection of tools and experiments I've built to solve real problems.";
 
@@ -74,8 +73,8 @@ export default async function ProjectsPage() {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
         description:
-            'Discover projects and tools by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer. Explore AI-powered personal growth platforms and fintech solutions designed to help you grow.',
-        hasPart: projects.map((project) => ({
+            'Discover experiments and tools by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer. Explore AI-powered personal growth platforms and fintech solutions designed to help you grow.',
+        hasPart: experiments.map((experiment) => ({
             '@type': 'SoftwareApplication',
             applicationCategory: 'ProductivityApplication',
             author: {
@@ -83,17 +82,17 @@ export default async function ProjectsPage() {
                 name: 'Jean-Baptiste Terrazzoni',
                 url: 'https://jterrazz.com',
             },
-            description: project.description,
-            name: project.name,
-            url: project.url.toString(),
-            ...(project.components.length > 0 && {
-                softwareVersion: project.components
+            description: experiment.description,
+            name: experiment.name,
+            url: experiment.url.toString(),
+            ...(experiment.components.length > 0 && {
+                softwareVersion: experiment.components
                     .flatMap((component) => component.technologies)
                     .join(', '),
             }),
         })),
-        name: 'Projects by Jean-Baptiste Terrazzoni: AI & Fintech Tools',
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/projects`,
+        name: 'Experiments by Jean-Baptiste Terrazzoni: AI & Fintech Tools',
+        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/experiments`,
     };
 
     return (
@@ -106,10 +105,10 @@ export default async function ProjectsPage() {
                 {JSON.stringify(jsonLd)}
             </Script>
             <ApplicationsListTemplate
+                experiments={experiments}
                 features={features}
                 highlightDescription={highlightDescription}
                 highlightTitle={highlightTitle}
-                projects={projects}
             />
         </>
     );

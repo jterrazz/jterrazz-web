@@ -175,16 +175,16 @@ export const TimelineExperience: React.FC<TimelineEventProps> = ({
                                             </p>
                                         )}
 
-                                        {/* Project Link */}
-                                        {experience.projectUrl && (
+                                        {/* Experiment Link */}
+                                        {experience.experimentUrl && (
                                             <div className="mt-4 flex justify-end">
                                                 <Link
                                                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-bold uppercase tracking-wider hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-all shadow-sm hover:shadow-md"
-                                                    href={experience.projectUrl}
+                                                    href={experience.experimentUrl}
                                                     onClick={(e) => e.stopPropagation()}
                                                     target="_blank"
                                                 >
-                                                    View Project
+                                                    View Experiment
                                                     <ArrowUpRight size={14} />
                                                 </Link>
                                             </div>

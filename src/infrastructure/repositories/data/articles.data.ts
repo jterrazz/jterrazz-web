@@ -35,7 +35,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2019-06-01 Malloc',
         metadata: {
-            category: ArticleCategory.Project,
+            category: ArticleCategory.Experiment,
             dateModified: '2025-06-23',
             datePublished: '2019-06-01',
             description: {
@@ -54,7 +54,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2019-06-07 Sha256',
         metadata: {
-            category: ArticleCategory.Project,
+            category: ArticleCategory.Experiment,
             dateModified: '2025-06-24',
             datePublished: '2019-06-07',
             description: {
@@ -73,7 +73,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2019-07-25 Nm Otool',
         metadata: {
-            category: ArticleCategory.Project,
+            category: ArticleCategory.Experiment,
             dateModified: '2025-06-25',
             datePublished: '2019-07-25',
             description: {
@@ -92,7 +92,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2019-08-27 Quine',
         metadata: {
-            category: ArticleCategory.Project,
+            category: ArticleCategory.Experiment,
             dateModified: '2025-06-26',
             datePublished: '2019-08-27',
             description: {
@@ -111,7 +111,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2019-08-28 Assembly',
         metadata: {
-            category: ArticleCategory.Project,
+            category: ArticleCategory.Experiment,
             dateModified: '2025-06-27',
             datePublished: '2019-08-28',
             description: {
@@ -130,7 +130,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2019-09-10 Expert System',
         metadata: {
-            category: ArticleCategory.Project,
+            category: ArticleCategory.Experiment,
             dateModified: '2025-06-28',
             datePublished: '2019-09-10',
             description: {
@@ -149,7 +149,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2020-11-03 Koa',
         metadata: {
-            category: ArticleCategory.Project,
+            category: ArticleCategory.Experiment,
             dateModified: '2025-06-29',
             datePublished: '2020-11-03',
             description: {
@@ -168,7 +168,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2023-07-02 Open Market',
         metadata: {
-            category: ArticleCategory.Project,
+            category: ArticleCategory.Experiment,
             dateModified: '2025-07-01',
             datePublished: '2023-07-02',
             description: {
@@ -267,7 +267,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2025-04-06 Fake News',
         metadata: {
-            category: ArticleCategory.Project,
+            category: ArticleCategory.Experiment,
             dateModified: '2025-07-06',
             datePublished: '2025-04-06',
             description: {

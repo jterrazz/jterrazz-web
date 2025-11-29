@@ -164,7 +164,7 @@ const ArticleSeries: React.FC<{ series: ArticleSeriesViewModel }> = ({ series })
 
 // Simple row for standalone articles
 export const ArticleRow: React.FC<{ article: ArticleRowViewModel }> = ({ article }) => {
-    const color = article.isProject ? BadgeColor.Green : BadgeColor.Blue;
+    const color = article.isExperiment ? BadgeColor.Green : BadgeColor.Blue;
 
     return (
         <article className="group py-4 border-b border-zinc-100 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors rounded-lg px-2 -mx-2">
@@ -192,12 +192,12 @@ type ArticlesListTemplateProps = {
 };
 
 export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ viewModel }) => {
-    const [filter, setFilter] = useState<'AI' | 'All' | 'Architecture' | 'Project'>('All');
+    const [filter, setFilter] = useState<'AI' | 'All' | 'Architecture' | 'Experiment'>('All');
 
     const filterMap: Record<string, ArticleCategory[]> = {
         AI: [ArticleCategory.Insight],
         Architecture: [ArticleCategory.Architecture],
-        Project: [ArticleCategory.Project],
+        Experiment: [ArticleCategory.Experiment],
     };
 
     // Filter Helper
@@ -223,8 +223,8 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
 
     // Latest sections might be hidden if they don't match filter
     const showLatestArticle = viewModel.latestArticle && shouldShow(viewModel.latestArticle);
-    const showLatestProject =
-        viewModel.latestProjectArticle && shouldShow(viewModel.latestProjectArticle);
+    const showLatestExperiment =
+        viewModel.latestExperimentArticle && shouldShow(viewModel.latestExperimentArticle);
 
     const allArticles = [
         ...viewModel.series.flatMap((series) => [
@@ -285,7 +285,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
             <div className="max-w-6xl mx-auto px-4 md:px-6 mb-12">
                 <div className="flex items-center justify-center">
                     <div className="flex items-center gap-2 overflow-x-auto p-4 -m-4 no-scrollbar">
-                    {['All', 'AI', 'Architecture', 'Project'].map((f) => (
+                    {['All', 'AI', 'Architecture', 'Experiment'].map((f) => (
                         <button
                             className={`
                                 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap
@@ -297,7 +297,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                             `}
                             key={f}
                             onClick={() =>
-                                setFilter(f as 'AI' | 'All' | 'Architecture' | 'Project')
+                                setFilter(f as 'AI' | 'All' | 'Architecture' | 'Experiment')
                             }
                             type="button"
                         >
@@ -312,7 +312,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
             <div className="max-w-6xl mx-auto px-4 md:px-6 pb-24">
                 <div className="space-y-16">
                     {/* Latest Updates Section */}
-                    {(showLatestArticle || showLatestProject) && (
+                    {(showLatestArticle || showLatestExperiment) && (
                         <section className="pb-8">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                                 {/* Latest Article */}
@@ -325,13 +325,13 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                                     </div>
                                 )}
 
-                                {/* Latest Project */}
-                                {showLatestProject && viewModel.latestProjectArticle && (
+                                {/* Latest Experiment */}
+                                {showLatestExperiment && viewModel.latestExperimentArticle && (
                                     <div className="flex flex-col gap-8">
-                                        <SectionDivider title="Latest Project" />
+                                        <SectionDivider title="Latest Experiment" />
                                         <div className="h-full">
                                             <GridArticleCard
-                                                article={viewModel.latestProjectArticle}
+                                                article={viewModel.latestExperimentArticle}
                                             />
                                         </div>
                                     </div>

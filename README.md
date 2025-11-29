@@ -1,6 +1,6 @@
 # Jterrazz Web
 
-Personal portfolio: projects, photography, and articles.
+Personal portfolio: experiments, photography, and articles.
 
 ![Node.js Version](https://img.shields.io/badge/node-20.x.x-brightgreen)
 ![Next.js Version](https://img.shields.io/badge/next.js-14.2.3-blue)
