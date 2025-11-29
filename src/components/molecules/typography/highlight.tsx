@@ -18,7 +18,7 @@ export type HighlightProps = {
 
 export const Highlight: React.FC<HighlightProps> = ({ button, className, description, title }) => {
     const generatedClassName = cn(
-        'relative py-24 md:py-32 flex flex-col items-center text-center',
+        'relative py-16 md:py-24 flex flex-col items-center text-center',
         className,
     );
 
@@ -29,11 +29,11 @@ export const Highlight: React.FC<HighlightProps> = ({ button, className, descrip
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-zinc-200/30 dark:bg-zinc-800/20 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-screen" />
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
                 {title}
             </h1>
 
-            <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+            <p className="text-lg md:text-xl text-zinc-700 dark:text-zinc-300 max-w-2xl leading-relaxed">
                 {description}
             </p>
 

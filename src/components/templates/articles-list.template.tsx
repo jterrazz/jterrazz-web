@@ -272,7 +272,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
 
             {/* Hero Section */}
             <div className="w-full">
-                <div className="max-w-7xl mx-auto px-4 md:px-6">
+                <div className="max-w-6xl mx-auto px-4 md:px-6">
                     <Highlight
                         button={viewModel.button}
                         description={viewModel.highlightDescription}
@@ -282,7 +282,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
             </div>
 
             {/* Filters */}
-            <div className="max-w-7xl mx-auto px-4 md:px-6 mb-12">
+            <div className="max-w-6xl mx-auto px-4 md:px-6 mb-12">
                 <div className="flex items-center justify-center">
                     <div className="flex items-center gap-2 overflow-x-auto p-4 -m-4 no-scrollbar">
                     {['All', 'AI', 'Architecture', 'Project'].map((f) => (
@@ -309,8 +309,8 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
             </div>
 
             {/* Articles Content */}
-            <div className="max-w-7xl mx-auto px-4 md:px-6 pb-24">
-                <div className="space-y-20">
+            <div className="max-w-6xl mx-auto px-4 md:px-6 pb-24">
+                <div className="space-y-16">
                     {/* Latest Updates Section */}
                     {(showLatestArticle || showLatestProject) && (
                         <section className="pb-8">

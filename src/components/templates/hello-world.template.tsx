@@ -67,14 +67,15 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
         <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
             {/* Hero Section */}
             <div className="w-full border-b border-zinc-100 dark:border-zinc-900">
-                <div className="max-w-7xl mx-auto px-4 md:px-6">
+                <div className="max-w-6xl mx-auto px-4 md:px-6">
                     <Highlight button={button} description={description} title="Hello, World!" />
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 space-y-32">
+            <div className="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-20 space-y-24">
                 {/* Focus Areas */}
                 <section className="max-w-4xl mx-auto w-full">
+                    <SectionDivider className="mb-12" title="Focus" />
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                         <FocusItem
                             description="Exploring every AI tool to become a better engineer."

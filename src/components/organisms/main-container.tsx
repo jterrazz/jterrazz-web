@@ -15,17 +15,13 @@ export const MainContainer: React.FC<MainContainerProps> = ({
     size = 'medium',
 }) => {
     const generatedClassName = cn(
-        'w-full flex flex-col self-center justify-self-center px-5 my-8 md:my-12',
+        'w-full flex flex-col self-center justify-self-center px-5 my-8 md:my-12 mx-auto',
+        size === 'medium' ? 'max-w-3xl' : 'max-w-5xl',
         className,
     );
 
     return (
-        <main
-            className={generatedClassName}
-            style={{
-                maxWidth: size === 'medium' ? '700px' : '950px',
-            }}
-        >
+        <main className={generatedClassName}>
             {children}
         </main>
     );

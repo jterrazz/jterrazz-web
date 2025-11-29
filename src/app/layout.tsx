@@ -137,7 +137,7 @@ export default function RootLayout({
     ];
 
     const generatedClassName = cn(
-        'min-h-screen flex flex-col text-zinc-900 dark:text-zinc-100 font-sans',
+        'min-h-screen flex flex-col text-zinc-900 dark:text-zinc-100 font-sans antialiased',
         // inter.className, // Commented out due to network restrictions
     );
 
