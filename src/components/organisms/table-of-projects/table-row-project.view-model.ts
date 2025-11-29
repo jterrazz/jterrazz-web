@@ -1,7 +1,7 @@
 // Domain
-import { ProjectStatus } from '../../../domain/project.js';
+import { ProjectStatus } from '../../../domain/project';
 
-import { BadgeColor } from '../../atoms/status/badge.js';
+import { BadgeColor } from '../../atoms/status/badge';
 
 export const projectStatusToStatusBadgeState = (status: ProjectStatus): BadgeColor => {
     switch (status) {

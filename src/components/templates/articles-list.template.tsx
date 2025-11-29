@@ -7,17 +7,17 @@ import Link from 'next/link';
 import Script from 'next/script';
 
 // Domain
-import { ArticleCategory } from '../../domain/article.js';
+import { ArticleCategory } from '../../domain/article';
 
-import { Badge, BadgeColor } from '../atoms/status/badge.jsx';
-import { SectionDivider } from '../molecules/section-divider.js';
-import { Highlight } from '../molecules/typography/highlight.jsx';
+import { Badge, BadgeColor } from '../atoms/status/badge';
+import { SectionDivider } from '../molecules/section-divider';
+import { Highlight } from '../molecules/typography/highlight';
 
 import {
     type ArticleRowViewModel,
     type ArticleSeriesViewModel,
     type ArticlesListViewModel,
-} from './articles-list.template.view-model.js';
+} from './articles-list.template.view-model';
 
 // Featured article component for series
 const FeaturedArticle: React.FC<{ article: ArticleRowViewModel }> = ({ article }) => {

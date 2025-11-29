@@ -6,13 +6,13 @@ import { ArrowRight, Blocks, BrainCircuit, Globe, Workflow } from 'lucide-react'
 import Link from 'next/link';
 
 // Domain
-import { type UserExperience } from '../../domain/user.js';
+import { type UserExperience } from '../../domain/user';
 
-import { ArticlePreviewCard } from '../molecules/cards/article-preview-card.jsx';
-import { SectionDivider } from '../molecules/section-divider.js';
-import { Highlight } from '../molecules/typography/highlight.js';
-import { TimelineExperience } from '../organisms/timeline-of-experiences/timeline-experience.js';
-import { Timeline } from '../organisms/timeline-of-experiences/timeline.js';
+import { ArticlePreviewCard } from '../molecules/cards/article-preview-card';
+import { SectionDivider } from '../molecules/section-divider';
+import { Highlight } from '../molecules/typography/highlight';
+import { Timeline } from '../organisms/timeline-of-experiences/timeline';
+import { TimelineExperience } from '../organisms/timeline-of-experiences/timeline-experience';
 
 interface Article {
     description: string;

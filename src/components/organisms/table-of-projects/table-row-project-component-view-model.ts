@@ -1,7 +1,7 @@
 // Domain
-import { ProjectStatus } from '../../../domain/project.js';
+import { ProjectStatus } from '../../../domain/project';
 
-import { DotPulseColor } from '../../atoms/status/dot-pulse.js';
+import { DotPulseColor } from '../../atoms/status/dot-pulse';
 
 export const projectComponentStatusToDoPulseState = (status: ProjectStatus): DotPulseColor => {
     switch (status) {

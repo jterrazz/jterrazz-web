@@ -4,18 +4,18 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRight, ChevronDown, Github } from 'lucide-react';
 
 // Domain
-import { type ProjectComponent } from '../../../domain/project.js';
+import { type ProjectComponent } from '../../../domain/project';
 
 // Utils
-import { cn } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils';
 
-import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge.js';
-import { DotPulse } from '../../atoms/status/dot-pulse.js';
+import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge';
+import { DotPulse } from '../../atoms/status/dot-pulse';
 
 import {
     projectComponentStatusToDoPulseState,
     projectStatusToDescription,
-} from './table-row-project-component-view-model.js';
+} from './table-row-project-component-view-model';
 
 type TableRowProjectComponentProps = {
     className?: string;

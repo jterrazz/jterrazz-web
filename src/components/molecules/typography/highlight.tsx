@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { ArrowRight } from 'lucide-react';
-import Link from 'next/link.js';
+import Link from 'next/link';
 
 // Utils
-import { cn } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils';
 
 export type HighlightProps = {
     button?: {

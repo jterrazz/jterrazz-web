@@ -1,11 +1,7 @@
 // Domain
-import {
-    type Article,
-    type ArticleLanguage,
-    type ArticleRepository,
-} from '../../domain/article.js';
+import { type Article, type ArticleLanguage, type ArticleRepository } from '../../domain/article';
 
-import { readMarkdownArticles } from './data/articles.data.js';
+import { readMarkdownArticles } from './data/articles.data';
 
 export class ArticleInMemoryRepository implements ArticleRepository {
     private markdownArticles: Article[] | undefined;

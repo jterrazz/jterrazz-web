@@ -9,15 +9,15 @@ import Link from 'next/link';
 import Script from 'next/script';
 
 // Domain
-import { UserContactType } from '../../domain/user.js';
+import { UserContactType } from '../../domain/user';
 
 // Infrastructure
-import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
+import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository';
 
 // Utils
-import { cn } from '../../lib/utils.js';
+import { cn } from '../../lib/utils';
 
-import { HighlightedText } from '../atoms/highlighted-text.js';
+import { HighlightedText } from '../atoms/highlighted-text';
 
 type TheFooterProps = {
     className?: string;

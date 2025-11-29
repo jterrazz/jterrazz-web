@@ -5,13 +5,13 @@ import React from 'react';
 import { ImageGallery } from 'react-image-grid-gallery';
 
 // Domain
-import { type Photograph } from '../../domain/photograph.js';
-import { UserContactType } from '../../domain/user.js';
+import { type Photograph } from '../../domain/photograph';
+import { UserContactType } from '../../domain/user';
 
 // Infrastructure
-import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
+import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository';
 
-import { Highlight } from '../molecules/typography/highlight.js';
+import { Highlight } from '../molecules/typography/highlight';
 
 export type PhotographsGridTemplateProps = {
     highlightDescription: string;

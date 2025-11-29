@@ -3,14 +3,14 @@ import React from 'react';
 import { ChevronRight, Code2, ExternalLink, Layers } from 'lucide-react';
 
 // Domain
-import { type ProjectComponent } from '../../../domain/project.js';
+import { type ProjectComponent } from '../../../domain/project';
 
 // Utils
-import { cn } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils';
 
-import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge.js';
+import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge';
 
-import { projectStatusToDescription } from './table-row-project-component-view-model.js';
+import { projectStatusToDescription } from './table-row-project-component-view-model';
 
 export type TableRowProjectDetailsProps = {
     className?: string;

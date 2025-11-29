@@ -2,15 +2,15 @@
 import React from 'react';
 
 // Domain
-import { type Project } from '../../../domain/project.js';
+import { type Project } from '../../../domain/project';
 
 // Utils
-import { cn } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils';
 
-import { Badge } from '../../atoms/status/badge.js';
+import { Badge } from '../../atoms/status/badge';
 
-import { TableRowProjectComponent } from './table-row-project-component.js';
-import { projectStatusToStatusBadgeState } from './table-row-project.view-model.js';
+import { TableRowProjectComponent } from './table-row-project-component';
+import { projectStatusToStatusBadgeState } from './table-row-project.view-model';
 
 export type TableRowProjectHeaderProps = {
     className?: string;

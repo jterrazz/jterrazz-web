@@ -2,15 +2,15 @@ import { type Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
 // Domain
-import { type ArticleLanguage } from '../../../domain/article.js';
+import { type ArticleLanguage } from '../../../domain/article';
 
 // Infrastructure
-import { ArticleInMemoryRepository } from '../../../infrastructure/repositories/article-in-memory.repository.js';
-import { FeaturedId } from '../../../infrastructure/repositories/data/features.data.js';
-import { FeatureInMemoryRepository } from '../../../infrastructure/repositories/feature-in-memory.repository.js';
+import { ArticleInMemoryRepository } from '../../../infrastructure/repositories/article-in-memory.repository';
+import { FeaturedId } from '../../../infrastructure/repositories/data/features.data';
+import { FeatureInMemoryRepository } from '../../../infrastructure/repositories/feature-in-memory.repository';
 
-import { ArticleTemplate } from '../../../components/templates/article.template.js';
-import { buildArticleSlug } from '../../../lib/slugify.js';
+import { ArticleTemplate } from '../../../components/templates/article.template';
+import { buildArticleSlug } from '../../../lib/slugify';
 
 export const dynamicParams = true;
 

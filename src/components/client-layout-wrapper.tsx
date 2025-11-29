@@ -20,7 +20,7 @@ const SpeedInsights = dynamic(
 );
 
 const ClientProviders = dynamic(
-    () => import('./client-providers.js').then((mod) => ({ default: mod.ClientProviders })),
+    () => import('./client-providers').then((mod) => ({ default: mod.ClientProviders })),
     {
         loading: () => null,
         ssr: false,

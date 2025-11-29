@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Utils
-import { cn } from '../../lib/utils.js';
+import { cn } from '../../lib/utils';
 
 type MainContainerProps = {
     children: React.ReactNode;

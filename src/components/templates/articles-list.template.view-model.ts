@@ -1,8 +1,8 @@
 // Domain
-import { type Article } from '../../domain/article.js';
-import { UserContactType, type UserRepository } from '../../domain/user.js';
+import { type Article } from '../../domain/article';
+import { UserContactType, type UserRepository } from '../../domain/user';
 
-import { buildArticleSlug } from '../../lib/slugify.js';
+import { buildArticleSlug } from '../../lib/slugify';
 
 export interface ArticleRowViewModel {
     category: string;

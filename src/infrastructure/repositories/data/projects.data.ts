@@ -5,43 +5,11 @@ import {
     ProjectCategory,
     ProjectStatus,
     ProjectTechnology,
-} from '../../../domain/project.js';
+} from '../../../domain/project';
 
 const REPOSITORY_BASE_URL = 'https://github.com/jterrazz/';
 
 export const projectsData: Project[] = [
-    // {
-    //     components: [
-    //         {
-    //             architectures: [ProjectArchitecture.Atomic, ProjectArchitecture.Clean],
-    //             description:
-    //                 'A next.js website with server side rendering for mobile and desktop browsers. Built with clean architecture and atomic design principles.',
-    //
-    //             name: 'Website',
-    //             sourceUrl: new URL('https://gogle.com'),
-    //             status: ProjectStatus.Concept,
-    //             technologies: [
-    //                 ProjectTechnology.NextJs,
-    //                 ProjectTechnology.React,
-    //                 ProjectTechnology.TailwindCSS,
-    //             ],
-    //         },
-    //         {
-    //             architectures: [ProjectArchitecture.Clean],
-    //             description:
-    //                 'A typescript api server with prisma with a postgres database. Built with clean architecture.',
-    //             name: 'API',
-    //             sourceUrl: new URL(REPOSITORY_BASE_URL + 'capitaine-api'),
-    //             status: ProjectStatus.Concept,
-    //             technologies: [
-    //                 ProjectTechnology.NodeJs,
-    //                 ProjectTechnology.Express,
-    //                 ProjectTechnology.Prisma,
-    //                 ProjectTechnology.Postgres,
-    //             ],
-    //         },
-    //     ],
-    // },
     {
         components: [
             {

@@ -5,10 +5,10 @@ import Image from 'next/image';
 import { Highlight, themes } from 'prism-react-renderer';
 
 // Utils
-import { cn } from '../../lib/utils.js';
+import { cn } from '../../lib/utils';
 
-import { HeadingMain } from '../atoms/typography/heading-main.jsx';
-import { HeadingSection } from '../atoms/typography/heading-section.jsx';
+import { HeadingMain } from '../atoms/typography/heading-main';
+import { HeadingSection } from '../atoms/typography/heading-section';
 
 type ArticleInMarkdownProps = {
     className?: string;

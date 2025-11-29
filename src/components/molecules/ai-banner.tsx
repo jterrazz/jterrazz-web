@@ -3,7 +3,7 @@
 import { Sparkles } from 'lucide-react';
 
 // Utils
-import { cn } from '../../lib/utils.js';
+import { cn } from '../../lib/utils';
 
 export const AIBanner = ({ className }: { className?: string }) => {
     return (

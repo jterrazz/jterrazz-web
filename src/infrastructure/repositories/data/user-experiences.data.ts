@@ -1,5 +1,5 @@
 // Domain
-import { type UserExperience } from '../../../domain/user.js';
+import { type UserExperience } from '../../../domain/user';
 
 const PARIS = 'Paris, France';
 export const userExperiencesData: UserExperience[] = [

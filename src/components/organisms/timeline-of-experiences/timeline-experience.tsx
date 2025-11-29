@@ -7,10 +7,10 @@ import { Briefcase, GraduationCap } from 'lucide-react';
 import Link from 'next/link';
 
 // Domain
-import { type UserExperience } from '../../../domain/user.js';
+import { type UserExperience } from '../../../domain/user';
 
 // Utils
-import { cn } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils';
 
 export type TimelineEventProps = {
     className?: string;

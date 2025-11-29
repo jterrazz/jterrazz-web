@@ -2,15 +2,15 @@ import { type Metadata } from 'next';
 import Script from 'next/script';
 
 // Application
-import { ApplicationsListTemplate } from '../../components/templates/applications-list.template.js';
+import { ApplicationsListTemplate } from '../../components/templates/applications-list.template';
 
 // Domain
-import { type Project } from '../../domain/project.js';
+import { type Project } from '../../domain/project';
 
 // Infrastructure
-import { FeaturedId } from '../../infrastructure/repositories/data/features.data.js';
-import { FeatureInMemoryRepository } from '../../infrastructure/repositories/feature-in-memory.repository.js';
-import { ProjectInMemoryRepository } from '../../infrastructure/repositories/project-in-memory.repository.js';
+import { FeaturedId } from '../../infrastructure/repositories/data/features.data';
+import { FeatureInMemoryRepository } from '../../infrastructure/repositories/feature-in-memory.repository';
+import { ProjectInMemoryRepository } from '../../infrastructure/repositories/project-in-memory.repository';
 
 // Force static generation for this page
 export const dynamic = 'force-static';

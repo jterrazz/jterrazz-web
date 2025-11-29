@@ -1,5 +1,5 @@
 // Domain
-import { type UserProfile } from '../../../domain/user.js';
+import { type UserProfile } from '../../../domain/user';
 
 export const userProfileData: UserProfile = {
     age: '28',

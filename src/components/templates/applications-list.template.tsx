@@ -5,16 +5,16 @@ import React from 'react';
 import Script from 'next/script';
 
 // Domain
-import { type Feature } from '../../domain/feature.js';
-import { type Project } from '../../domain/project.js';
-import { UserContactType } from '../../domain/user.js';
+import { type Feature } from '../../domain/feature';
+import { type Project } from '../../domain/project';
+import { UserContactType } from '../../domain/user';
 
 // Infrastructure
-import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
+import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository';
 
-import { SectionDivider } from '../molecules/section-divider.js';
-import { Highlight } from '../molecules/typography/highlight.jsx';
-import { TableRowProject } from '../organisms/table-of-projects/table-row-project.js';
+import { SectionDivider } from '../molecules/section-divider';
+import { Highlight } from '../molecules/typography/highlight';
+import { TableRowProject } from '../organisms/table-of-projects/table-row-project';
 
 type ApplicationsListTemplateProps = {
     features: readonly Feature[];

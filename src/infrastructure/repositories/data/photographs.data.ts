@@ -1,5 +1,5 @@
 // Domain
-import { type Photograph } from '../../../domain/photograph.js';
+import { type Photograph } from '../../../domain/photograph';
 
 export const photographsData: Photograph[] = [
     {

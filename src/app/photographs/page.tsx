@@ -1,9 +1,9 @@
 import { type Metadata } from 'next';
 
 // Infrastructure
-import { PhotographInMemoryRepository } from '../../infrastructure/repositories/photograph-in-memory.repository.js';
+import { PhotographInMemoryRepository } from '../../infrastructure/repositories/photograph-in-memory.repository';
 
-import { PhotographsGridTemplate } from '../../components/templates/photographs-grid.template.js';
+import { PhotographsGridTemplate } from '../../components/templates/photographs-grid.template';
 
 // Force static generation for this page
 export const dynamic = 'force-static';

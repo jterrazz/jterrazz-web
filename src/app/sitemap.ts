@@ -1,9 +1,9 @@
 import { type MetadataRoute } from 'next';
 
 // Infrastructure
-import { ArticleInMemoryRepository } from '../infrastructure/repositories/article-in-memory.repository.js';
+import { ArticleInMemoryRepository } from '../infrastructure/repositories/article-in-memory.repository';
 
-import { buildArticleSlug } from '../lib/slugify.js';
+import { buildArticleSlug } from '../lib/slugify';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';

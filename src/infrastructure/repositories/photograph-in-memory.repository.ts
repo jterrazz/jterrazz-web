@@ -1,7 +1,7 @@
 // Domain
-import { type Photograph, type PhotographRepository } from '../../domain/photograph.js';
+import { type Photograph, type PhotographRepository } from '../../domain/photograph';
 
-import { photographsData } from './data/photographs.data.js';
+import { photographsData } from './data/photographs.data';
 
 export class PhotographInMemoryRepository implements PhotographRepository {
     private readonly photographsData: Photograph[];

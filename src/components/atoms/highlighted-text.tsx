@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Utils
-import { cn } from '../../lib/utils.js'; // Import the CSS file
+import { cn } from '../../lib/utils'; // Import the CSS file
 
 import styles from './highlighted-text.module.scss';
 

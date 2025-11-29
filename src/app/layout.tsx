@@ -5,17 +5,17 @@ import type { Metadata } from 'next';
 // import { Inter } from 'next/font/google';
 
 // Domain
-import { UserContactType } from '../domain/user.js';
+import { UserContactType } from '../domain/user';
 
 // Infrastructure
-import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-memory.repository.js';
+import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-memory.repository';
 
 // Utils
-import { cn } from '../lib/utils.js';
+import { cn } from '../lib/utils';
 
-import { ClientLayoutWrapper } from '../components/client-layout-wrapper.js';
-import { TheFooter } from '../components/organisms/the-footer.js';
-import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the-navigation-bar.js';
+import { ClientLayoutWrapper } from '../components/client-layout-wrapper';
+import { TheFooter } from '../components/organisms/the-footer';
+import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the-navigation-bar';
 
 import './globals.css';
 

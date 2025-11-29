@@ -4,6 +4,7 @@ const nextConfig = {
     experimental: {
         optimizePackageImports: ['@vercel/analytics', '@vercel/speed-insights', 'posthog-js'],
     },
+    turbopack: {},
     images: {
         remotePatterns: [
             {
@@ -85,14 +86,6 @@ const nextConfig = {
     },
     typescript: {
         tsconfigPath: './node_modules/@jterrazz/typescript/tsconfig/next.json',
-    },
-    webpack: (config) => {
-        config.resolve.extensionAlias = {
-            '.js': ['.ts', '.js', '.tsx', '.jsx'],
-            '.jsx': ['.tsx', '.jsx'],
-        };
-
-        return config;
     },
 };
 

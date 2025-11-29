@@ -5,11 +5,11 @@ import {
     type UserExperience,
     type UserProfile,
     type UserRepository,
-} from '../../domain/user.js';
+} from '../../domain/user';
 
-import { userContactsData } from './data/user-contacts.data.js';
-import { userExperiencesData } from './data/user-experiences.data.js';
-import { userProfileData } from './data/user-profile.data.js';
+import { userContactsData } from './data/user-contacts.data';
+import { userExperiencesData } from './data/user-experiences.data';
+import { userProfileData } from './data/user-profile.data';
 
 export class UserInMemoryRepository implements UserRepository {
     private readonly userContactsData: Record<UserContactType, UserContact>;

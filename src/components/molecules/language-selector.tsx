@@ -5,9 +5,9 @@ import React from 'react';
 import Link from 'next/link';
 
 // Utils
-import { cn } from '../../lib/utils.js';
+import { cn } from '../../lib/utils';
 
-import AnimatedBackground from './cards/animated-backgrounds.jsx';
+import AnimatedBackground from './cards/animated-backgrounds';
 
 type LanguageSelectorProps = {
     articleId: string;

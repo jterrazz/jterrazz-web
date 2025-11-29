@@ -9,11 +9,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 // Utils
-import { cn } from '../../../lib/utils.js';
+import { cn } from '../../../lib/utils';
 
-import AnimatedBackground from '../../molecules/cards/animated-backgrounds.jsx';
+import AnimatedBackground from '../../molecules/cards/animated-backgrounds';
 
-import { type NavigationPage } from './navigation-page.js';
+import { type NavigationPage } from './navigation-page';
 
 export type NavigationTabItemProps = {
     children: React.ReactNode;

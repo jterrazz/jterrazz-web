@@ -3,13 +3,13 @@ import React from 'react';
 import Script from 'next/script';
 
 // Domain
-import { type Article, type ArticleLanguage } from '../../domain/article.js';
-import { type Feature } from '../../domain/feature.js';
+import { type Article, type ArticleLanguage } from '../../domain/article';
+import { type Feature } from '../../domain/feature';
 
-import { AIBanner } from '../molecules/ai-banner.js';
-import { LanguageSelector } from '../molecules/language-selector.js';
-import { ArticleInMarkdown } from '../organisms/article-in-markdown.js';
-import { MainContainer } from '../organisms/main-container.jsx';
+import { AIBanner } from '../molecules/ai-banner';
+import { LanguageSelector } from '../molecules/language-selector';
+import { ArticleInMarkdown } from '../organisms/article-in-markdown';
+import { MainContainer } from '../organisms/main-container';
 
 type ArticleTemplateProps = {
     articleId: string;
