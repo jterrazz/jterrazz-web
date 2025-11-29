@@ -238,7 +238,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ contentInMarkd
                                                 if (element) {
                                                     window.scrollTo({
                                                         behavior: 'smooth',
-                                                        top: element.getBoundingClientRect().top + window.scrollY - 80,
+                                                        top: element.getBoundingClientRect().top + window.scrollY - 120,
                                                     });
                                                 }
                                             }}
