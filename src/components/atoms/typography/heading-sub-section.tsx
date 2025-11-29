@@ -1,17 +1,20 @@
 import React from 'react';
 
 // Utils
-import { cn } from '../../../lib/utils';
+import { slugify } from '../../../lib/slugify';
+import { cn, getTextFromChildren } from '../../../lib/utils';
 
 export type HeadingSubSectionProps = {
-    children: string;
+    children: React.ReactNode;
     className?: string;
+    id?: string;
     size?: 'large' | 'medium' | 'small';
 };
 
 export const HeadingSubSection: React.FC<HeadingSubSectionProps> = ({
     children,
     className = '',
+    id,
     size = 'medium',
 }) => {
     let generatedClassName = className;
@@ -28,5 +31,11 @@ export const HeadingSubSection: React.FC<HeadingSubSectionProps> = ({
             break;
     }
 
-    return <h3 className={generatedClassName}>{children}</h3>;
+    const headingId = id || slugify(getTextFromChildren(children));
+
+    return (
+        <h3 className={generatedClassName} id={headingId}>
+            {children}
+        </h3>
+    );
 };

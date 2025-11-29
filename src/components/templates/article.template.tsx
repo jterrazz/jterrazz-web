@@ -8,6 +8,7 @@ import { type Feature } from '../../domain/feature';
 
 import { buildArticleSlug } from '../../lib/slugify';
 import { LanguageSelector } from '../molecules/language-selector';
+import { TableOfContents } from '../molecules/table-of-contents';
 import { ArticleFooter } from '../organisms/article-footer';
 import { ArticleInMarkdown } from '../organisms/article-in-markdown';
 import { MainContainer } from '../organisms/main-container';
@@ -80,10 +81,12 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     };
 
     return (
-        <MainContainer className="mt-8 md:mt-16">
+        <MainContainer className="mt-8 md:mt-16 relative">
             <Script id="json-ld" strategy="beforeInteractive" type="application/ld+json">
                 {JSON.stringify(jsonLd)}
             </Script>
+
+            <TableOfContents contentInMarkdown={contentInMarkdown} />
 
             <LanguageSelector
                 articleId={articleId}

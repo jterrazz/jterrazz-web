@@ -97,7 +97,7 @@ export const ArticlePreviewCard = ({
                 <article className="grid grid-cols-1 sm:grid-cols-12 gap-6 py-6 border-b border-zinc-200/60 dark:border-zinc-800 last:border-0 items-start">
                     {/* Image Container */}
                     <div className="sm:col-span-4 md:col-span-3">
-                        <div className="relative w-full aspect-[16/10] overflow-hidden bg-zinc-100 dark:bg-zinc-800 rounded-xl">
+                        <div className="relative w-full aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-800 rounded-xl">
                             <Image
                                 alt={title}
                                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
@@ -158,19 +158,15 @@ export const ArticlePreviewCard = ({
     return (
         <Link className={cn('block group h-full', className)} href={`/articles/${slug}`}>
             <motion.article
-                className={cn(
-                    'relative overflow-hidden bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200/50 dark:border-zinc-800 transition-all duration-500',
-                    'hover:bg-white dark:hover:bg-zinc-900 hover:border-zinc-300/50 dark:hover:border-zinc-700',
-                    'rounded-3xl flex flex-col h-full p-2',
-                )}
+                className="flex flex-col h-full"
                 initial={false}
                 whileHover="hover"
             >
                 {/* Image Container */}
-                <div className="relative overflow-hidden rounded-2xl bg-zinc-200 dark:bg-zinc-800 w-full aspect-[4/3] mb-4">
+                <div className="relative w-full aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-900 rounded-2xl mb-4">
                     <Image
                         alt={title}
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 33vw"
                         src={imageUrl}
@@ -179,18 +175,14 @@ export const ArticlePreviewCard = ({
                 </div>
 
                 {/* Content */}
-                <div className="flex flex-col flex-1 min-w-0 px-2 pb-4">
+                <div className="flex flex-col flex-1 min-w-0">
                     {/* Metadata */}
                     {(category || datePublished) && (
-                        <div className="flex items-center gap-3 mb-3 text-xs font-medium tracking-wide text-zinc-500 dark:text-zinc-400">
+                        <div className="flex items-center gap-2 mb-3 text-xs font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
                             {category && (
-                                <span className="uppercase tracking-wider text-zinc-900 dark:text-zinc-200 font-semibold">
-                                    {category}
-                                </span>
+                                <span className="text-zinc-900 dark:text-zinc-100">{category}</span>
                             )}
-                            {category && datePublished && (
-                                <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
-                            )}
+                            {category && datePublished && <span>•</span>}
                             {datePublished && (
                                 <time dateTime={datePublished}>
                                     {new Date(datePublished).toLocaleDateString(undefined, {
@@ -203,18 +195,18 @@ export const ArticlePreviewCard = ({
                         </div>
                     )}
 
-                    <h3 className="text-lg md:text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-3 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        {title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-3 mb-4">
-                        {description}
-                    </p>
+                    <h3 className="text-lg md:text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-2 leading-snug group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+                            {title}
+                        </h3>
+                    <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-2 mb-4 flex-1">
+                            {description}
+                        </p>
 
                     {/* Read More Link */}
-                    <div className="mt-auto flex items-center gap-2 text-sm font-medium text-zinc-900 dark:text-zinc-200 group-hover:translate-x-1 transition-transform duration-300">
+                    <div className="mt-auto flex items-center gap-2 text-xs font-medium text-zinc-900 dark:text-zinc-200 group-hover:translate-x-1 transition-transform duration-300">
                         Read article
                         <svg
-                            className="w-4 h-4"
+                            className="w-3.5 h-3.5"
                             fill="none"
                             stroke="currentColor"
                             strokeWidth="2"

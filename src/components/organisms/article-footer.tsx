@@ -51,7 +51,7 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
                 {/* AI Disclaimer */}
                 <AIBanner />
 
-                {/* Unified Author & Context Card */}
+            {/* Unified Author & Context Card */}
                 <div className="relative overflow-hidden rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200/60 dark:border-zinc-800 p-8 md:p-10">
                 {/* Background decoration */}
                 <div className="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-zinc-100 dark:bg-zinc-800 rounded-full blur-3xl opacity-50 pointer-events-none" />
@@ -127,8 +127,8 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
                             </p>
                         </div>
                     </div>
+                    </div>
                 </div>
-            </div>
             </div>
 
             {/* Related Articles / Series */}
@@ -138,17 +138,17 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
                         {seriesTitle ? (
                             <SectionDivider title={`${seriesTitle} Series`} />
                         ) : (
-                            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-                                Read Next
-                            </h2>
+                        <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+                            Read Next
+                        </h2>
                         )}
                         {!seriesTitle && (
-                            <Link
-                                className="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
-                                href="/articles"
-                            >
-                                View all articles →
-                            </Link>
+                        <Link
+                            className="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+                            href="/articles"
+                        >
+                            View all articles →
+                        </Link>
                         )}
                     </div>
                     <div className="flex flex-col border-t border-zinc-200/60 dark:border-zinc-800">
@@ -158,17 +158,17 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
 
                             return (
                                 <div key={article.metadata.title.en} className={cn(isCurrent && "opacity-50 pointer-events-none grayscale")}>
-                                    <ArticlePreviewCard
+                            <ArticlePreviewCard
                                         category={article.metadata.category}
                                         datePublished={article.metadata.datePublished}
-                                        description={article.metadata.description.en}
-                                        imageUrl={article.imageUrl}
-                                        position={index}
+                                description={article.metadata.description.en}
+                                imageUrl={article.imageUrl}
+                                position={index}
                                         slug={slug}
-                                        title={article.metadata.title.en}
+                                title={article.metadata.title.en}
                                         total={relatedArticles.length}
                                         variant={seriesTitle ? 'compact' : 'horizontal'}
-                                    />
+                            />
                                 </div>
                             );
                         })}

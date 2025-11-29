@@ -130,11 +130,13 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                             },
                         },
                         img: {
-                            component: ({ alt, src, ...props }) => (
-                                <figure className="my-10">
-                                    <div className="rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900">
+                            component: ({ alt, src, ...props }) => {
+                                const altText = (alt as string) || '';
+                                return (
+                                    <span className="block my-10">
+                                        <span className="block rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900">
                                         <Image
-                                            alt={alt as string}
+                                                alt={altText}
                                             className="w-full h-auto"
                                             height={0}
                                             loading="lazy"
@@ -144,14 +146,15 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                                             width={0}
                                             {...props}
                                         />
-                                    </div>
-                                    {alt && (
-                                        <figcaption className="text-center text-sm text-zinc-500 dark:text-zinc-400 mt-3 font-sans">
-                                            {alt}
-                                        </figcaption>
+                                        </span>
+                                        {altText && (
+                                            <span className="block text-center text-sm text-zinc-500 dark:text-zinc-400 mt-3 font-sans">
+                                                {altText}
+                                            </span>
                                     )}
-                                </figure>
-                            ),
+                                    </span>
+                                );
+                            },
                         },
                         li: {
                             props: {

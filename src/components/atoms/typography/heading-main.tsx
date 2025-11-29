@@ -1,15 +1,22 @@
 import React from 'react';
 
 // Utils
-import { cn } from '../../../lib/utils';
+import { slugify } from '../../../lib/slugify';
+import { cn, getTextFromChildren } from '../../../lib/utils';
 
 export type HeadingMainProps = {
-    children: string;
+    children: React.ReactNode;
     className?: string;
+    id?: string;
 };
 
-export const HeadingMain: React.FC<HeadingMainProps> = ({ children, className = '' }) => {
+export const HeadingMain: React.FC<HeadingMainProps> = ({ children, className = '', id }) => {
     const generatedClassName = cn('text-4xl font-black mb-4 tracking-tight', className);
+    const headingId = id || slugify(getTextFromChildren(children));
 
-    return <h1 className={generatedClassName}>{children}</h1>;
+    return (
+        <h1 className={generatedClassName} id={headingId}>
+            {children}
+        </h1>
+    );
 };

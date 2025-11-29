@@ -283,7 +283,8 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
 
             {/* Filters */}
             <div className="max-w-7xl mx-auto px-4 md:px-6 mb-12">
-                <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 md:pb-0 no-scrollbar">
+                <div className="flex items-center justify-center">
+                    <div className="flex items-center gap-2 overflow-x-auto p-4 -m-4 no-scrollbar">
                     {['All', 'AI', 'Architecture', 'Project'].map((f) => (
                         <button
                             className={`
@@ -303,6 +304,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                             {f}
                         </button>
                     ))}
+                    </div>
                 </div>
             </div>
 

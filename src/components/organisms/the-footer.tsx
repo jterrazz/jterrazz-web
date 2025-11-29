@@ -18,6 +18,7 @@ import { UserInMemoryRepository } from '../../infrastructure/repositories/user-i
 import { cn } from '../../lib/utils';
 
 import { HighlightedText } from '../atoms/highlighted-text';
+import { ThemeToggle } from '../molecules/theme-toggle';
 
 type TheFooterProps = {
     className?: string;
@@ -26,7 +27,7 @@ type TheFooterProps = {
 export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
     const applications = [
         {
-            description: 'Gallery',
+            description: 'Me',
             href: 'https://jterrazz.com',
             imageSrc: '/assets/icons/app-icon.jterrazz.png',
             title: 'Jterrazz',
@@ -198,10 +199,11 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                                     </p>
                                 </div>
 
-                                <div className="hidden md:block">
+                                <div className="hidden md:flex items-center justify-between gap-4">
                                     <p className="text-xs text-zinc-400 dark:text-zinc-600 font-medium">
                                         © {new Date().getFullYear()} All rights reserved.
                                     </p>
+                                    <ThemeToggle />
                                 </div>
                             </div>
 

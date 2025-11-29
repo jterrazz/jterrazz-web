@@ -98,14 +98,14 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
             >
                 <div
                     className={cn(
-                        'pointer-events-auto relative flex items-center justify-between w-full md:w-auto md:min-w-[640px] lg:min-w-[720px]',
+                        'pointer-events-auto relative flex items-center justify-between w-full md:w-auto md:min-w-[720px] lg:min-w-[800px]',
                         'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl',
                         'border border-zinc-200 dark:border-zinc-800 shadow-sm',
-                        'rounded-2xl md:rounded-full pl-6 pr-2 py-2 transition-all duration-300',
+                        'rounded-2xl md:rounded-full pl-5 pr-2 py-2 transition-all duration-300',
                     )}
                 >
                     {/* Logo */}
-                    <Link className="flex-shrink-0 mr-4 md:mr-8" href="/" onClick={closeMenu}>
+                    <Link className="flex-shrink-0 mr-6 md:mr-10" href="/" onClick={closeMenu}>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                             <Image
                                 alt="Jterrazz"
@@ -164,8 +164,6 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                                 )}
                             </NavigationTabItem>
                         ))}
-
-                        <ThemeToggle />
 
                         <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-800 mx-2" />
 
@@ -234,8 +232,6 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             initial={{ opacity: 0 }}
                             transition={{ delay: 0.3 }}
                         >
-                            <ThemeToggle />
-
                             <div className="flex gap-6">
                                 {contacts.map((contact) => (
                                     <a
