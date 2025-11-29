@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { BookOpen, Github, Menu, Monitor, X } from 'lucide-react';
+import { BookOpen, Download, Github, Menu, Monitor, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -33,7 +33,7 @@ const NavigationTabItem: React.FC<NavigationTabItemProps> = ({
     title,
 }) => {
     const content = (
-        <span className={cn('flex items-center gap-2', className)}>{children}</span>
+        <span className="flex items-center gap-2">{children}</span>
     );
 
     if (newTab) {
@@ -99,10 +99,10 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
             >
                 <div
                     className={cn(
-                        'pointer-events-auto relative flex items-center justify-between w-full md:w-auto md:min-w-[600px]',
+                        'pointer-events-auto relative flex items-center justify-between w-full md:w-auto md:min-w-[640px] lg:min-w-[720px]',
                         'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl',
                         'border border-zinc-200 dark:border-zinc-800 shadow-sm',
-                        'rounded-2xl md:rounded-full px-4 py-2 transition-all duration-300',
+                        'rounded-2xl md:rounded-full pl-6 pr-2 py-2 transition-all duration-300',
                     )}
                 >
                     {/* Logo */}
@@ -172,6 +172,17 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                                 )}
                             </NavigationTabItem>
                         ))}
+                        
+                        <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-800 mx-2" />
+
+                        <a
+                            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm hover:shadow-md"
+                            href="/link/applications/fake-news"
+                            target="_blank"
+                        >
+                            <span>Get App</span>
+                            <Download size={14} />
+                        </a>
                     </div>
 
                     {/* Mobile Menu Toggle */}
@@ -223,7 +234,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
 
                         <motion.div
                             animate={{ opacity: 1 }}
-                            className="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800"
+                            className="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-col items-center gap-6"
                             initial={{ opacity: 0 }}
                             transition={{ delay: 0.3 }}
                         >
@@ -243,6 +254,15 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                                     </a>
                                 ))}
                             </div>
+
+                            <a
+                                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all w-full justify-center"
+                                href="/link/applications/fake-news"
+                                target="_blank"
+                            >
+                                <span>Download App</span>
+                                <Download size={16} />
+                            </a>
                         </motion.div>
                     </motion.div>
                 )}

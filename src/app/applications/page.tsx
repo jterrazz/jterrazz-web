@@ -69,7 +69,7 @@ export default async function ApplicationsPage() {
 
     const highlightTitle = 'Applications';
     const highlightDescription =
-        'Welcome to my personal collection of projects. My focus is on creating tools that help you grow.';
+        'The code behind the concepts. A collection of tools and experiments I\'ve built to solve real problems.';
 
     // Structured data for better SEO
     const jsonLd = {

@@ -6,9 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 
-import { HighlightedText } from '../atoms/highlighted-text.jsx';
 import { Badge, BadgeColor } from '../atoms/status/badge.jsx';
-import { HeadingSection } from '../atoms/typography/heading-section.jsx';
+import { SectionDivider } from '../molecules/section-divider.js';
 import { Highlight } from '../molecules/typography/highlight.jsx';
 
 import {
@@ -25,10 +24,10 @@ const FeaturedArticle: React.FC<{ article: ArticleRowViewModel }> = ({ article }
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 items-center">
                     {/* Large image on the left */}
                     <div className="col-span-12 md:col-span-7">
-                        <div className="relative w-full h-48 sm:h-64 md:h-[22rem] lg:h-[26rem] overflow-hidden bg-gray-100">
+                        <div className="relative w-full h-48 sm:h-64 md:h-[22rem] lg:h-[26rem] overflow-hidden bg-zinc-100 dark:bg-zinc-900 rounded-2xl">
                             <Image
                                 alt={article.title}
-                                className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                                 fill
                                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 60vw, 60vw"
                                 src={article.imageUrl}
@@ -36,15 +35,20 @@ const FeaturedArticle: React.FC<{ article: ArticleRowViewModel }> = ({ article }
                         </div>
                     </div>
                     {/* Text on the right */}
-                    <div className="col-span-12 md:col-span-5 flex flex-col justify-center min-w-0 md:pt-1 space-y-3 md:space-y-4">
-                        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 line-clamp-3">{article.title}</h2>
-                        <p className="text-base md:text-lg text-gray-600 leading-7 line-clamp-2 md:line-clamp-3 max-w-[48ch]">
+                    <div className="col-span-12 md:col-span-5 flex flex-col justify-center min-w-0 md:pt-1 space-y-4">
+                        <div className="flex items-center gap-3 text-xs font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
+                            <span className="text-zinc-900 dark:text-zinc-100">{article.category}</span>
+                            <span>•</span>
+                            <span>{article.datePublished}</span>
+                        </div>
+                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 line-clamp-3 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+                            {article.title}
+                        </h2>
+                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-3 max-w-[48ch]">
                             {article.description}
                         </p>
-                        <div className="flex items-center gap-3 text-xs md:text-sm text-gray-500">
-                            <span>{article.datePublished}</span>
-                            <span>•</span>
-                            <span>{article.readingTime}</span>
+                        <div className="text-xs font-medium text-zinc-400 dark:text-zinc-500">
+                            {article.readingTime}
                         </div>
                     </div>
                 </div>
@@ -56,30 +60,33 @@ const FeaturedArticle: React.FC<{ article: ArticleRowViewModel }> = ({ article }
 // Series grid article component (image on top, then content)
 const SeriesArticleCard: React.FC<{ article: ArticleRowViewModel }> = ({ article }) => {
     return (
-        <Link className="block group" href={`/articles/${article.slug}`}>
-            <article className="transition-colors duration-200">
-                {/* Top image without borders/box */}
-                <div className="relative w-full h-40 sm:h-44 md:h-48 bg-gray-100">
+        <Link className="block group h-full" href={`/articles/${article.slug}`}>
+            <article className="flex flex-col h-full transition-colors duration-200">
+                {/* Top image */}
+                <div className="relative w-full h-48 sm:h-56 overflow-hidden bg-zinc-100 dark:bg-zinc-900 rounded-2xl mb-4">
                     <Image
                         alt={article.title}
-                        className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 33vw"
                         src={article.imageUrl}
                     />
                 </div>
                 {/* Content */}
-                <div className="pt-3 md:pt-4">
-                    <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-1 leading-snug line-clamp-2 group-hover:text-black">
+                <div className="flex flex-col flex-1">
+                    <div className="flex items-center gap-2 mb-3 text-xs font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
+                        <span className="text-zinc-900 dark:text-zinc-100">{article.category}</span>
+                        <span>•</span>
+                        <span>{article.datePublished}</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50 mb-2 leading-snug line-clamp-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
                         {article.title}
                     </h3>
-                    <p className="text-sm md:text-[15px] text-gray-600 mb-2 leading-6 line-clamp-2 max-w-[55ch]">
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2 mb-4 flex-1">
                         {article.description}
                     </p>
-                    <div className="mt-1 flex items-center gap-2 text-[11px] md:text-[12px] text-gray-500">
-                        <span>{article.datePublished}</span>
-                        <span>•</span>
-                        <span>{article.readingTime}</span>
+                    <div className="text-xs font-medium text-zinc-400 dark:text-zinc-500 mt-auto">
+                        {article.readingTime}
                     </div>
                 </div>
             </article>
@@ -88,18 +95,22 @@ const SeriesArticleCard: React.FC<{ article: ArticleRowViewModel }> = ({ article
 };
 
 // Series component
-const ArticleSeries: React.FC<{ series: ArticleSeriesViewModel; isFirst?: boolean }> = ({ series, isFirst = false }) => {
+const ArticleSeries: React.FC<{ isFirst?: boolean; series: ArticleSeriesViewModel }> = ({
+    isFirst = false,
+    series,
+}) => {
     return (
-        <section className="pb-10">
-            {!isFirst && <div className="h-px bg-gray-200 mb-8 md:mb-10" />}
-            <h2 className="text-xs md:text-sm font-semibold tracking-wider text-gray-600 mb-3 md:mb-4">{series.seriesTitle}</h2>
+        <section className="pb-16 md:pb-24">
+            <SectionDivider className="mb-12 md:mb-16" title={series.seriesTitle} />
             
             {/* Featured Article */}
-            <FeaturedArticle article={series.featuredArticle} />
+            <div className="mb-12 md:mb-16">
+                <FeaturedArticle article={series.featuredArticle} />
+            </div>
             
             {/* Related Articles Grid */}
             {series.relatedArticles.length > 0 && (
-                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
                     {series.relatedArticles.map((article) => (
                         <SeriesArticleCard article={article} key={article.slug} />
                     ))}
@@ -114,13 +125,20 @@ export const ArticleRow: React.FC<{ article: ArticleRowViewModel }> = ({ article
     const color = article.isCodeCategory ? BadgeColor.Green : BadgeColor.Blue;
 
     return (
-        <article className="border-b border-black-and-white py-2.5 md:py-3 hover:bg-gray-50">
+        <article className="group py-4 border-b border-zinc-100 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors rounded-lg px-2 -mx-2">
             <Link
                 aria-label={`Read article: ${article.title} - ${article.category}`}
-                className="flex items-center justify-between transition-colors duration-200"
+                className="flex items-center justify-between"
                 href={`/articles/${article.slug}`}
             >
-                <h3 className="font-medium text-left">{article.title}</h3>
+                <div className="flex flex-col gap-1">
+                    <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+                        {article.title}
+                    </h3>
+                    <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                        {article.datePublished} • {article.readingTime}
+                    </span>
+                </div>
                 <Badge color={color} value={article.category} />
             </Link>
         </article>
@@ -132,41 +150,42 @@ type ArticlesListTemplateProps = {
 };
 
 export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ viewModel }) => {
-    // Structured data for articles list
-        // Flatten all articles for JSON-LD
-        const allArticles = [
-            ...viewModel.series.flatMap(series => [series.featuredArticle, ...series.relatedArticles]),
-            ...viewModel.standaloneArticles
-        ];
+    const allArticles = [
+        ...viewModel.series.flatMap((series) => [
+            series.featuredArticle,
+            ...series.relatedArticles,
+        ]),
+        ...viewModel.standaloneArticles,
+    ];
 
-        const articlesListJsonLd = {
-            '@context': 'https://schema.org',
-            '@type': 'CollectionPage',
+    const articlesListJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        author: {
+            '@type': 'Person',
+            jobTitle: 'AI Agent Developer, Fintech Engineer',
+            name: 'Jean-Baptiste Terrazzoni',
+            url: 'https://jterrazz.com',
+        },
+        description:
+            'A collection of articles on AI, fintech, coding, and personal growth by Jean-Baptiste Terrazzoni - AI Agent Developer and Fintech Engineer.',
+        hasPart: allArticles.map((article) => ({
+            '@type': 'BlogPosting',
+            about: article.category,
             author: {
                 '@type': 'Person',
-                jobTitle: 'AI Agent Developer, Fintech Engineer',
                 name: 'Jean-Baptiste Terrazzoni',
                 url: 'https://jterrazz.com',
             },
-            description:
-                'A collection of articles on AI, fintech, coding, and personal growth by Jean-Baptiste Terrazzoni - AI Agent Developer and Fintech Engineer.',
-            hasPart: allArticles.map((article) => ({
-                '@type': 'BlogPosting',
-                about: article.category,
-                author: {
-                    '@type': 'Person',
-                    name: 'Jean-Baptiste Terrazzoni',
-                    url: 'https://jterrazz.com',
-                },
-                name: article.title,
-                url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles/${article.slug}`,
-            })),
-            name: 'Articles by Jean-Baptiste Terrazzoni',
-            url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
-        };
+            name: article.title,
+            url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles/${article.slug}`,
+        })),
+        name: 'Articles by Jean-Baptiste Terrazzoni',
+        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
+    };
 
     return (
-        <div className="w-full min-h-screen bg-white">
+        <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
             <Script
                 id="articles-list-json-ld"
                 strategy="beforeInteractive"
@@ -176,8 +195,8 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
             </Script>
 
             {/* Hero Section */}
-            <div className="bg-white">
-                <div className="max-w-7xl mx-auto px-6 pt-6 pb-8 md:pt-10 md:pb-12">
+            <div className="w-full">
+                <div className="max-w-7xl mx-auto px-4 md:px-6">
                     <Highlight
                         button={viewModel.button}
                         description={viewModel.highlightDescription}
@@ -187,22 +206,23 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
             </div>
 
             {/* Articles Content */}
-            <div className="max-w-7xl mx-auto px-6 py-12">
-                <div className="space-y-12">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 pb-24">
+                <div className="space-y-20">
                     {/* Article Series */}
                     {viewModel.series.map((series, index) => (
-                        <ArticleSeries isFirst={index === 0} key={`series-${index}`} series={series} />
+                        <ArticleSeries
+                            isFirst={index === 0}
+                            key={`series-${index}`}
+                            series={series}
+                        />
                     ))}
-                    
+
                     {/* Standalone Articles */}
                     {viewModel.standaloneArticles.length > 0 && (
                         <section aria-label="Other articles">
-                            <div className="h-px bg-gray-200 mb-10" />
-                            <HeadingSection>
-                                <HighlightedText className="pr-2 text-sm font-semibold tracking-wide text-gray-600">Other posts</HighlightedText>
-                            </HeadingSection>
+                            <SectionDivider className="mb-12" title="Other Posts" />
 
-                            <nav aria-label="Article navigation">
+                            <nav aria-label="Article navigation" className="max-w-3xl">
                                 {viewModel.standaloneArticles.map((article) => (
                                     <ArticleRow article={article} key={article.slug} />
                                 ))}

@@ -45,7 +45,7 @@ export const metadata: Metadata = {
             {
                 alt: 'Jean-Baptiste Terrazzoni - Developer Portfolio',
                 height: 630,
-                url: '/assets/images/footer.jpg',
+                url: '/assets/icons/app-icon.jterrazz.png',
                 width: 1200,
             },
         ],
@@ -62,7 +62,7 @@ export default async function HomePage() {
     const articlesRepository = new ArticleInMemoryRepository();
     const userExperiences: UserExperience[] = userRepository.getExperiences();
     const topArticles: Article[] = await articlesRepository.getArticles();
-    const description = 'Engineering tomorrow\'s intelligent systems with AI agents, clean architecture, and decentralized solutions. Building where execution meets direction.';
+    const description = 'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.';
 
     // Structured data for better SEO
     const jsonLd = {
@@ -79,7 +79,7 @@ export default async function HomePage() {
                 'Engineering tomorrow\'s intelligent systems with AI agents, clean architecture, and decentralized solutions. Building where execution meets direction.',
             name: 'Software Developer',
         },
-        image: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/assets/images/footer.jpg`,
+        image: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/assets/icons/app-icon.jterrazz.png`,
         jobTitle: 'AI, Apps, Learn',
         knowsAbout: [
             'AI Agent Development',

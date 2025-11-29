@@ -4,15 +4,11 @@ import React from 'react';
 
 import { ImageGallery } from 'react-image-grid-gallery';
 
-// Domain
+import { Highlight } from '../molecules/typography/highlight.js';
+
 import { type Photograph } from '../../domain/photograph.js';
 import { UserContactType } from '../../domain/user.js';
-
-// Infrastructure
 import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
-
-import { Highlight } from '../molecules/typography/highlight.js';
-import { MainContainer } from '../organisms/main-container.jsx';
 
 export type PhotographsGridTemplateProps = {
     highlightDescription: string;
@@ -33,13 +29,32 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
     }));
     const button = {
         href: new UserInMemoryRepository().getContact(UserContactType.Pexels).url.toString(),
-        text: 'Check me on Pexels',
+        text: 'View Pexels',
     };
 
     return (
-        <MainContainer size="full">
-            <Highlight button={button} description={highlightDescription} title={highlightTitle} />
-            <ImageGallery columnCount={3} gapSize={20} imagesInfoArray={images} />
-        </MainContainer>
+        <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
+            {/* Hero Section */}
+            <div className="w-full border-b border-zinc-100 dark:border-zinc-900 mb-12">
+                <div className="max-w-7xl mx-auto px-4 md:px-6">
+                    <Highlight
+                        button={button}
+                        description={highlightDescription}
+                        title={highlightTitle}
+                    />
+                </div>
+            </div>
+
+            {/* Gallery Content */}
+            <div className="max-w-7xl mx-auto px-4 md:px-6 pb-24">
+                <div className="grayscale hover:grayscale-0 transition-all duration-700">
+                    <ImageGallery
+                        columnCount={3}
+                        gapSize={24}
+                        imagesInfoArray={images}
+                    />
+                </div>
+            </div>
+        </div>
     );
 };

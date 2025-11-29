@@ -77,7 +77,7 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
     const thumbnailUrl = article.imageUrl
         ? `${baseUrl}${article.imageUrl}`
-        : `${baseUrl}/assets/images/footer.jpg`;
+        : `${baseUrl}/assets/icons/app-icon.jterrazz.png`;
 
     // Generate hreflang links
     const alternates: Record<string, string> = {};

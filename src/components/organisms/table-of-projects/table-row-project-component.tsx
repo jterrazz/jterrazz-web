@@ -1,15 +1,16 @@
 import React from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { AlignLeft } from 'react-feather';
+import { ArrowUpRight, ChevronDown, Github, Info } from 'lucide-react';
 
-// Domain
 import { type ProjectComponent } from '../../../domain/project.js';
-
+import { cn } from '../../../lib/utils.js';
+import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge.js';
 import { DotPulse } from '../../atoms/status/dot-pulse.js';
-
-import { projectComponentStatusToDoPulseState } from './table-row-project-component-view-model.js';
-import { TableRowProjectDetails } from './table-row-project-details.js';
+import {
+    projectComponentStatusToDoPulseState,
+    projectStatusToDescription,
+} from './table-row-project-component-view-model.js';
 
 type TableRowProjectComponentProps = {
     className?: string;
@@ -20,33 +21,140 @@ export const TableRowProjectComponent: React.FC<TableRowProjectComponentProps> =
     className,
     component,
 }) => {
-    const [projectDetailIsVisible, setProjectDetailIsVisible] = React.useState(false);
+    const [isExpanded, setIsExpanded] = React.useState(false);
+
+    // Combine all tags
+    const allTags = [...component.technologies, ...component.architectures];
+    // Show only first 2 tags initially to reduce noise
+    const visibleTags = allTags.slice(0, 2);
+    const hiddenTagsCount = allTags.length - 2;
 
     return (
-        <div className={className} key={component.name}>
+        <div
+            className={cn(
+                'flex flex-col rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 transition-all duration-300 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-zinc-900/50',
+                className,
+            )}
+        >
+            {/* Main Card Content - Clickable Area */}
             <div
-                className="flex items-center py-1 px-0 cursor-pointer text-storm-cloud text-storm-cloud-accent-hover"
-                onClick={() => setProjectDetailIsVisible(!projectDetailIsVisible)}
+                className="p-5 flex flex-col h-full cursor-pointer"
+                onClick={() => setIsExpanded(!isExpanded)}
             >
-                <DotPulse color={projectComponentStatusToDoPulseState(component.status)} />
-                <h4 className="text-sm ml-3">{component.name}</h4>
-                {component.articleUrl && <AlignLeft className="ml-2" size={16} />}
+                {/* Header */}
+                <div className="flex items-start justify-between mb-3">
+                    <h3 className="font-bold text-lg text-zinc-900 dark:text-zinc-100">
+                        {component.name}
+                    </h3>
+                    <DotPulse color={projectComponentStatusToDoPulseState(component.status)} />
+                </div>
+
+                {/* Short Description (truncated) */}
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 line-clamp-2">
+                    {component.description}
+                </p>
+
+                {/* Mini Footer */}
+                <div className="mt-auto pt-4 flex items-center justify-between border-t border-zinc-100 dark:border-zinc-800/50">
+                    {/* Quick Tags Preview */}
+                    <div className="flex items-center gap-1.5">
+                        {visibleTags.map((tag) => (
+                            <span
+                                className="inline-block px-2 py-0.5 text-[10px] font-medium text-zinc-500 bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-400 rounded-full"
+                                key={tag}
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                        {hiddenTagsCount > 0 && (
+                            <span className="text-[10px] text-zinc-400 font-medium ml-1">
+                                +{hiddenTagsCount}
+                            </span>
+                        )}
+                    </div>
+
+                    {/* Expand Toggle */}
+                    <button
+                        aria-label={isExpanded ? 'Collapse details' : 'Expand details'}
+                        className="p-1.5 -mr-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors"
+                        onClick={() => setIsExpanded(!isExpanded)}
+                    >
+                        <ChevronDown
+                            className={cn('w-4 h-4 transition-transform duration-300', {
+                                'rotate-180': isExpanded,
+                            })}
+                        />
+                    </button>
+                </div>
             </div>
 
+            {/* Expanded Details Section */}
             <AnimatePresence>
-                {projectDetailIsVisible && (
+                {isExpanded && (
                     <motion.div
-                        animate={{ marginTop: 0, opacity: 1, scale: 1 }}
-                        exit={{ marginTop: -50, opacity: 0, scale: 0.7 }}
-                        initial={{ marginTop: -50, opacity: 0, scale: 0.8 }}
-                        transition={{
-                            ease: 'anticipate',
-                            marginTop: { duration: 0.2 },
-                            opacity: { duration: 0.3 },
-                            scale: { duration: 0.2 },
-                        }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        className="overflow-hidden border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 rounded-b-2xl"
+                        exit={{ height: 0, opacity: 0 }}
+                        initial={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2, ease: 'easeInOut' }}
                     >
-                        <TableRowProjectDetails component={component} />
+                        <div className="p-5 space-y-5">
+                            {/* Full Description */}
+                            <div>
+                                <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">
+                                    About
+                                </span>
+                                <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                                    {component.description}
+                                </p>
+                            </div>
+
+                            {/* Full Tech Stack */}
+                            <div>
+                                <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">
+                                    Tech Stack
+                                </span>
+                                <div className="flex flex-wrap gap-2">
+                                    {allTags.map((tag) => (
+                                        <Badge
+                                            color={BadgeColor.Gray}
+                                            filled={false}
+                                            key={tag}
+                                            size={DotPulseSize.Small}
+                                            value={tag}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="flex gap-3 pt-2">
+                                {component.articleUrl && (
+                                    <a
+                                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 rounded-xl hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm hover:shadow-md"
+                                        href={component.articleUrl.toString()}
+                                        target="_blank"
+                                    >
+                                        Read Case Study
+                                        <ArrowUpRight size={14} />
+                                    </a>
+                                )}
+                                <a
+                                    className={cn(
+                                        'inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all shadow-sm border',
+                                        component.articleUrl
+                                            ? 'bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700'
+                                            : 'flex-1 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 border-transparent hover:bg-zinc-800 dark:hover:bg-zinc-200',
+                                    )}
+                                    href={component.sourceUrl.toString()}
+                                    target="_blank"
+                                    title={projectStatusToDescription(component.status)}
+                                >
+                                    <Github size={16} />
+                                    {component.articleUrl ? 'Code' : 'View Source'}
+                                </a>
+                            </div>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

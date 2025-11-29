@@ -7,6 +7,8 @@ import Script from 'next/script';
 import { type Article, type ArticleLanguage } from '../../domain/article.js';
 import { type Feature } from '../../domain/feature.js';
 
+import { AIBanner } from '../molecules/ai-banner.js';
+import { LanguageSelector } from '../molecules/language-selector.js';
 import { ArticleInMarkdown } from '../organisms/article-in-markdown.js';
 import { MainContainer } from '../organisms/main-container.jsx';
 
@@ -49,45 +51,18 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     return (
         <MainContainer className="my-6 md:my-6">
             <aside aria-label="Article metadata" className="flex justify-center mb-8">
-                <div className="rounded-lg bg-white border border-black/10 px-6 py-2 text-xs text-black/70 shadow-sm font-medium max-w-2xl w-full text-center">
-                    Final text polished by AI for readability. The underlying concepts &
-                    architecture are my own.
-                </div>
+                <AIBanner />
             </aside>
             <Script id="json-ld" strategy="beforeInteractive" type="application/ld+json">
                 {JSON.stringify(jsonLd)}
             </Script>
 
-            {availableLanguages.length > 1 && (
-                <div className="flex justify-center">
-                    <div
-                        aria-label="Language selection"
-                        className="inline-flex border border-black/10 hover:border-black/20 transition-colors duration-300 rounded-full overflow-hidden"
-                        role="navigation"
-                    >
-                        {availableLanguages.map((lang) => (
-                            <Link
-                                aria-current={currentLanguage === lang ? 'page' : undefined}
-                                className={`
-                                    px-6 py-2.5 text-[11px] font-medium tracking-[0.2em]
-                                    transition-all duration-300 ease-out
-                                    ${
-                                        currentLanguage === lang
-                                            ? 'bg-black text-white'
-                                            : 'text-black/70 hover:text-black'
-                                    }
-                                `}
-                                href={`/articles/${articleId}/${lang}`}
-                                hrefLang={lang}
-                                key={lang}
-                                rel={currentLanguage === lang ? 'canonical' : 'alternate'}
-                            >
-                                {lang.toUpperCase()}
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            )}
+            <LanguageSelector
+                articleId={articleId}
+                availableLanguages={availableLanguages}
+                className="mb-8"
+                currentLanguage={currentLanguage}
+            />
 
             <ArticleInMarkdown className="mb-6" contentInMarkdown={contentInMarkdown} />
             <p className="text-center text-storm-cloud text-sm mt-4 italic">

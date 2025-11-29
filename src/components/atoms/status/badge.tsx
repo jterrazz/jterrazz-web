@@ -4,8 +4,7 @@ import React from 'react';
 import { cn } from '../../../lib/utils.js';
 
 /**
- * Available badge color variants. Order does not matter but keeping a stable
- * enum for exhaustive switch-case fallbacks across the codebase.
+ * Available badge color variants.
  */
 export enum BadgeColor {
     Green,
@@ -21,73 +20,53 @@ export enum DotPulseSize {
 }
 
 export type StatusBadgeProps = {
-    /**
-     * Optional extra classes forwarded by the parent component.
-     */
     className?: string;
-    /**
-     * Badge color variant.
-     */
     color: BadgeColor;
-    /**
-     * When `true` the badge has a filled background, otherwise it falls back to
-     * a minimalist outlined style.
-     * @default true
-     */
     filled?: boolean;
-    /**
-     * Pre-defined sizing (padding + font-size).
-     */
     size?: DotPulseSize;
-    /**
-     * Rendered text value.
-     */
     value: string;
 };
 
-// Tailwind colour utilities with good contrast ratios. Keeping the palette
-// minimalistic greatly simplifies visual consistency across light / dark
-// themes.
-const filledColorMap: Record<BadgeColor, string> = {
-    [BadgeColor.Green]: 'bg-olive-note text-olive-note-accent',
-    [BadgeColor.Yellow]: 'bg-vanilla-punch text-vanilla-punch-accent',
-    [BadgeColor.Orange]: 'bg-apricot-sunset text-apricot-sunset-accent',
-    [BadgeColor.Gray]: 'bg-storm-cloud text-storm-cloud-accent',
-    // Blue palette relies on existing custom utility classes.
-    [BadgeColor.Blue]: 'blue-grey blue-grey-accent',
+// Map colors to specific Tailwind classes for the dot
+const dotColorMap: Record<BadgeColor, string> = {
+    [BadgeColor.Green]: 'bg-emerald-500 dark:bg-emerald-400',
+    [BadgeColor.Yellow]: 'bg-amber-500 dark:bg-amber-400',
+    [BadgeColor.Orange]: 'bg-orange-500 dark:bg-orange-400',
+    [BadgeColor.Gray]: 'bg-zinc-500 dark:bg-zinc-400',
+    [BadgeColor.Blue]: 'bg-blue-500 dark:bg-blue-400',
 };
 
-const outlineColorMap: Record<BadgeColor, string> = {
-    [BadgeColor.Green]: 'text-olive-note border-olive-note',
-    [BadgeColor.Yellow]: 'text-vanilla-punch-accent border-vanilla-punch',
-    [BadgeColor.Orange]: 'text-apricot-sunset-accent border-apricot-sunset',
-    [BadgeColor.Gray]: 'text-storm-cloud-accent border-storm-cloud',
-    [BadgeColor.Blue]: 'blue-grey-accent border-blue-grey', // assuming util class exists
+// Map colors to specific Tailwind classes for the text
+const textColorMap: Record<BadgeColor, string> = {
+    [BadgeColor.Green]: 'text-emerald-700 dark:text-emerald-300',
+    [BadgeColor.Yellow]: 'text-amber-700 dark:text-amber-300',
+    [BadgeColor.Orange]: 'text-orange-700 dark:text-orange-300',
+    [BadgeColor.Gray]: 'text-zinc-600 dark:text-zinc-400',
+    [BadgeColor.Blue]: 'text-blue-700 dark:text-blue-300',
 };
 
-// More compact spacing to better align with minimalist design.
 const sizeMap: Record<DotPulseSize, string> = {
-    [DotPulseSize.Small]: 'px-2.5 py-0.5 text-xs',
-    [DotPulseSize.Medium]: 'px-3 py-1 text-sm',
+    [DotPulseSize.Small]: 'text-[10px] gap-1.5',
+    [DotPulseSize.Medium]: 'text-xs gap-2',
 };
 
 export const Badge: React.FC<StatusBadgeProps> = ({
     className,
     color,
-    filled = true,
     size = DotPulseSize.Medium,
     value,
 }) => {
-    const classes = cn(
-        // base
-        'inline-flex items-center rounded-md whitespace-nowrap font-semibold tracking-wide',
-        // size
-        sizeMap[size],
-        // color styles
-        filled ? filledColorMap[color] : cn('border', outlineColorMap[color]),
-        // consumer overrides
-        className,
+    return (
+        <span
+            className={cn(
+                'inline-flex items-center font-semibold tracking-wide uppercase transition-colors',
+                sizeMap[size],
+                textColorMap[color],
+                className,
+            )}
+        >
+            <span className={cn('w-1.5 h-1.5 rounded-full', dotColorMap[color])} />
+            {value}
+        </span>
     );
-
-    return <span className={classes}>{value}</span>;
 };

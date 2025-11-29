@@ -80,7 +80,7 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
 
     const thumbnailUrl = article.imageUrl
         ? `${baseUrl}${article.imageUrl}`
-        : `${baseUrl}/assets/images/footer.jpg`;
+        : `${baseUrl}/assets/icons/app-icon.jterrazz.png`;
 
     // Generate hreflang links for all available languages
     const alternates: Record<string, string> = {};

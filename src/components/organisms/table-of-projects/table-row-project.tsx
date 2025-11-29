@@ -1,14 +1,9 @@
 'use client';
 import React from 'react';
 
-// Domain
 import { type Project } from '../../../domain/project.js';
-
-// Utils
 import { cn } from '../../../lib/utils.js';
-
 import { Badge } from '../../atoms/status/badge.js';
-
 import { TableRowProjectComponent } from './table-row-project-component.js';
 import { projectStatusToStatusBadgeState } from './table-row-project.view-model.js';
 
@@ -17,52 +12,66 @@ export type TableRowProjectHeaderProps = {
     project: Project;
 };
 
-const ProjectHeader: React.FC<TableRowProjectHeaderProps> = ({ project }) => {
-    return (
-        <div className="flex flex-row items-center">
-            <h2 className="font-medium">
-                {project.name}{' '}
-                <span className="text-storm-cloud">
-                    {(() => {
-                        if (!project.createdAt) return '';
-                        const year =
-                            typeof project.createdAt === 'string'
-                                ? new Date(project.createdAt).getFullYear()
-                                : project.createdAt.getFullYear();
-                        return `~ ${year}`;
-                    })()}
-                </span>
-            </h2>
-
-            <div className="border-black-and-white border-t flex-1 w-full mx-5"></div>
-
-            <Badge
-                className="ml-2"
-                color={projectStatusToStatusBadgeState(project.status)}
-                value={project.status}
-            />
-        </div>
-    );
-};
-
 export const TableRowProject: React.FC<TableRowProjectHeaderProps> = ({ className, project }) => {
-    const generatedClassName = cn('flex flex-col my-3', className);
+    const year =
+        project.createdAt &&
+        (typeof project.createdAt === 'string'
+            ? new Date(project.createdAt).getFullYear()
+            : project.createdAt.getFullYear());
+
+    const activeComponents =
+        project.components?.filter((component) => component.status !== 'archived') || [];
 
     return (
-        <li className={generatedClassName} key={project.name}>
-            <ProjectHeader project={project} />
-
-            <p className="text-xs text-storm-cloud mt-2 italic">{project.description}</p>
-
-            {project.components.length > 0 && (
-                <div className="mt-3">
-                    {project.components
-                        ?.filter((component) => component.status !== 'archived') // TODO Move to view model
-                        .map((component) => (
-                            <TableRowProjectComponent component={component} key={component.name} />
-                        ))}
+        <section className={cn('group', className)}>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+                {/* Left Column: Project Info (Sticky) */}
+                <div className="lg:col-span-4">
+                    <div className="lg:sticky lg:top-32 space-y-6">
+                        <div className="space-y-4">
+                            <div className="flex flex-wrap items-center gap-3">
+                                <Badge
+                                    color={projectStatusToStatusBadgeState(project.status)}
+                                    value={project.status}
+                                />
+                                {year && (
+                                    <span className="text-sm font-medium text-zinc-400 dark:text-zinc-600 font-mono">
+                                        {year}
+                                    </span>
+                                )}
+                            </div>
+                            
+                            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+                                {project.name}
+                            </h2>
+                            
+                            <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                                {project.description}
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            )}
-        </li>
+
+                {/* Right Column: Components Grid */}
+                <div className="lg:col-span-8">
+                    {activeComponents.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            {activeComponents.map((component) => (
+                                <TableRowProjectComponent
+                                    component={component}
+                                    key={component.name}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="p-8 rounded-2xl border border-dashed border-zinc-200 dark:border-zinc-800 text-center">
+                            <p className="text-zinc-500 dark:text-zinc-500">
+                                No active components visible.
+                            </p>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </section>
     );
 };

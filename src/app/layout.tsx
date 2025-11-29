@@ -14,7 +14,6 @@ import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-m
 import { cn } from '../lib/utils.js';
 
 import { ClientLayoutWrapper } from '../components/client-layout-wrapper.js';
-import { NotificationBanner } from '../components/notification-banner.jsx';
 import { TheFooter } from '../components/organisms/the-footer.js';
 import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the-navigation-bar.js';
 
@@ -147,11 +146,6 @@ export default function RootLayout({
             <body className={generatedClassName}>
                 <ClientLayoutWrapper>
                     <div className="sticky top-0 z-[50] pointer-events-none">
-                        <NotificationBanner
-                            className="border-b border-white/10"
-                            href="/link/applications/fake-news"
-                            message="Download my new app from the App Store!"
-                        />
                         <TheNavigationBar contacts={contacts} pages={pages} />
                     </div>
                     <div className="flex-1 flex flex-col overflow-x-hidden w-full">

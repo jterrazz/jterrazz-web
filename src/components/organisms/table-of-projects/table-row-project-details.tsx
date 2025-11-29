@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ChevronRight, Code2, ExternalLink, Layers, Radio } from 'lucide-react';
+
 // Domain
 import { type ProjectComponent } from '../../../domain/project.js';
 
@@ -7,7 +9,6 @@ import { type ProjectComponent } from '../../../domain/project.js';
 import { cn } from '../../../lib/utils.js';
 
 import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge.js';
-import { HeadingSubSection } from '../../atoms/typography/heading-sub-section.js';
 
 import { projectStatusToDescription } from './table-row-project-component-view-model.js';
 
@@ -21,66 +22,68 @@ export const TableRowProjectDetails: React.FC<TableRowProjectDetailsProps> = ({
     component,
 }) => {
     const generalClassName = cn(
-        'my-2 border-black-and-white border mb-4 rounded-lg text-storm-cloud-accent overflow-hidden',
+        'mt-4 mb-6 ml-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/30 overflow-hidden',
         className,
     );
 
     return (
         <div className={generalClassName}>
-            <div className="px-4 py-4 pb-5 bg-black-and-white">
-                <p className="text-sm">{component.description}</p>
+            <div className="p-5">
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                    {component.description}
+                </p>
 
-                <HeadingSubSection className="mt-6" size="small">
-                    Technologies
-                </HeadingSubSection>
-                <ul className="flex mt-2">
-                    {component.technologies.map((technology) => (
-                        <Badge
-                            className="mr-2"
-                            color={BadgeColor.Gray}
-                            filled={false}
-                            key={technology}
-                            size={DotPulseSize.Small}
-                            value={technology}
-                        />
-                    ))}
-                </ul>
-
-                {component.architectures.length > 0 && (
-                    <>
-                        <HeadingSubSection className="mt-6" size="small">
-                            Architectures
-                        </HeadingSubSection>
-                        <ul className="flex mt-2">
-                            {component.architectures.map((architecture) => (
+                <div className="mt-6 flex flex-col gap-4">
+                    <div className="flex items-start gap-3">
+                        <Code2 className="w-4 h-4 text-zinc-400 mt-0.5" />
+                        <div className="flex flex-wrap gap-2">
+                            {component.technologies.map((technology) => (
                                 <Badge
-                                    className="mr-2"
                                     color={BadgeColor.Gray}
-                                    filled={false}
-                                    key={architecture}
+                                    key={technology}
                                     size={DotPulseSize.Small}
-                                    value={architecture}
+                                    value={technology}
                                 />
                             ))}
-                        </ul>
-                    </>
-                )}
+                        </div>
+                    </div>
+
+                    {component.architectures.length > 0 && (
+                        <div className="flex items-start gap-3">
+                            <Layers className="w-4 h-4 text-zinc-400 mt-0.5" />
+                            <div className="flex flex-wrap gap-2">
+                                {component.architectures.map((architecture) => (
+                                    <Badge
+                                        color={BadgeColor.Gray}
+                                        key={architecture}
+                                        size={DotPulseSize.Small}
+                                        value={architecture}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex border-t border-zinc-200 dark:border-zinc-800 divide-x divide-zinc-200 dark:divide-zinc-800">
                 {component.articleUrl && (
-                    <a className="text-sm" href={component.articleUrl.toString()} target="_blank">
-                        <div className="flex justify-between border-t border-black-and-white px-4 py-3 text-storm-cloud bg-black-and-white bg-black-and-white-hover cursor-pointer">
-                            <p className="text-sm">Read the article</p>
-                            <span>Learn more</span>
-                        </div>
+                    <a
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                        href={component.articleUrl.toString()}
+                        target="_blank"
+                    >
+                        <ExternalLink size={14} />
+                        Read Article
                     </a>
                 )}
-                <a className="text-sm" href={component.sourceUrl.toString()} target="_blank">
-                    <div className="flex justify-between border-t border-black-and-white px-4 py-3 text-storm-cloud bg-black-and-white bg-black-and-white-hover cursor-pointer">
-                        <p className="text-sm">{projectStatusToDescription(component.status)}</p>
-                        <span>Open source</span>
-                    </div>
+                <a
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                    href={component.sourceUrl.toString()}
+                    target="_blank"
+                >
+                    <ChevronRight size={14} />
+                    {projectStatusToDescription(component.status)}
                 </a>
             </div>
         </div>
