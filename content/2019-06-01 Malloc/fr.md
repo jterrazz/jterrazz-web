@@ -1,10 +1,10 @@
 ![](assets/thumbnail.jpg)
 
-# Maîtriser la gestion de la mémoire, le jour où j'ai codé mon `malloc`
+# Maîtriser la gestion de la mémoire : j'ai codé mon propre malloc, et vous devriez essayer
 
-Vous êtes-vous déjà demandé comment votre ordinateur jongle avec des milliards d'octets chaque seconde? 🤹‍♂️ C'est une question qui m'a toujours fasciné. J'ai donc décidé de soulever le capot pour explorer l'une des pièces maîtresses de cette mécanique: **l'allocation dynamique de la mémoire**.
+Vous êtes-vous déjà demandé comment votre ordinateur jongle avec des milliers de milliards d'octets chaque seconde ? 🤹‍♂️ C'est une question qui m'a toujours fasciné. J'ai donc décidé de soulever le capot et de plonger dans l'un des éléments les plus fondamentaux du puzzle : **l'allocation dynamique de mémoire**.
 
-Dans cet article, je vous guide à travers la raison d'être de `malloc`, ses rouages internes, et le récit de la création de ma propre version, de A à Z, en m'appuyant sur l'appel système `mmap`. Si l'idée vous intimide, n'ayez crainte: je vais tout décomposer, en repartant des fondations. Pour moi, percer ces mystères fut une révélation. Et pour ceux qui aiment mettre les mains dans le cambouis, [mon projet final est disponible sur GitHub](https://github.com/jterrazz/42-malloc). Embarquons. 🚀
+Dans cet article, je vais vous expliquer pourquoi `malloc` existe, comment il fonctionne en profondeur, et comment j'ai construit ma propre version de zéro en utilisant l'appel système `mmap`. Si cela semble complexe, ne vous inquiétez pas. Je vais tout déconstruire à partir des premiers principes. Pour moi, comprendre cela a été un véritable déclic. Et si vous voulez mettre les mains dans le cambouis, mon [projet complet est sur GitHub](https://github.com/jterrazz/42-malloc). C'est parti. 🚀
 
 ```c
 // Voici les fonctions que nous allons construire.
@@ -13,34 +13,34 @@ void  free(void* ptr);
 void  realloc(void* ptr, size_t size);
 void  calloc(size_t count, size_t size);
 
-// C'est ainsi que nous demanderons de la mémoire au système d'exploitation.
+// C'est ainsi que nous demanderons de la mémoire à l'OS.
 #include <sys/mman.h>
 
 void* mmap(void* addr, size_t len, int prot, int flags, int fd, off_t offset);
 int   munmap(void* addr, size_t len);
 
-// Et ceci nous aidera à définir quelques règles de base.
+// Et ceci nous aide à fixer quelques règles de base.
 #include <sys/resource.h>
 
 int   getrlimit(int resource, struct rlimit* rlp);
 int   setrlimit(int resource, const struct rlimit* rlp);
 ```
 
-## Les trois visages de la mémoire: statique, sur la pile et dynamique
+## La mémoire : le rigide, l'éphémère et l'à la demande
 
-Revenons un instant aux fondamentaux: comment le C gère-t-il la mémoire par défaut? C'est un système plutôt rigide.
+Touchons rapidement un mot sur la façon dont le C gère normalement la mémoire. C'est un système assez rigide.
 
-- **Variables statiques et globales**: Elles sont figées dans le marbre à la compilation. Leur place est réservée pour toute la durée de vie du programme, au même titre que le code exécutable lui-même.
-- **Variables automatiques**: Celles que l'on déclare au sein des fonctions. Elles naissent sur la " stack " (la pile) à l'appel d'une fonction et s'évanouissent dès que celle-ci se termine.
+- **Variables statiques et globales** : Elles sont gravées dans le marbre lors de la compilation. Elles existent du moment où le programme démarre jusqu'à la seconde où il s'arrête, vivant aux côtés du code lui-même.
+- **Variables automatiques** : Ce sont celles à l'intérieur des fonctions. Elles sont créées sur la "stack" (pile) lorsqu'une fonction est appelée et disparaissent dès que la fonction se termine.
 
-Ce système fonctionne, mais il bute sur deux limitations majeures:
+Cela fonctionne, mais avec deux limites majeures :
 
-1. **La taille de toutes les données doit être connue à l'avance.** Impossible, donc, de créer un tableau dont la taille serait décidée en cours de route.
-2. **La durée de vie est immuable.** La mémoire persiste soit pour toute l'exécution du programme, soit le temps d'un appel de fonction. Pas d'entre-deux.
+1. **Vous devez connaître la taille de tout à l'avance.** Impossible de créer un tableau et de décider de sa taille plus tard.
+2. **Vous êtes coincé avec une durée de vie fixe.** La mémoire dure soit pour toujours, soit le temps d'un appel de fonction. Rien entre les deux.
 
-C'est ici qu'entre en scène l'allocation dynamique, conçue pour toutes les situations où l'on ne connaît ni le " quoi " ni le " quand " au moment de la compilation.
+C'est pourquoi nous avons besoin de l'allocation dynamique. C'est pour toutes les situations où vous ne connaissez ni le "quoi" ni le "quand" au moment de la compilation.
 
-### `mmap`: le dialogue direct avec le noyau
+### L'outil puissant du noyau : `mmap`
 
 ```c
 #include <sys/mman.h>
@@ -48,43 +48,43 @@ C'est ici qu'entre en scène l'allocation dynamique, conçue pour toutes les sit
 void* mmap(void* addr, size_t len, int prot, int flags, int fd, off_t offset);
 ```
 
-Comment donc obtenir de la mémoire à la demande? Il faut la solliciter auprès du système d'exploitation. Le noyau met à notre disposition un outil puissant pour cela: un **appel système** (*system call*). Celui sur lequel je me suis concentré est `mmap()`. Imaginez une ligne directe avec le noyau, lui demandant de réserver une parcelle de mémoire physique et de la " mapper " à une adresse virtuelle dans notre programme. C'est notre source première de mémoire brute. 🌌
+Alors, comment obtenir de la mémoire à la demande ? Nous devons demander au système d'exploitation. Le noyau fournit un outil puissant pour cela appelé un **appel système**. Celui sur lequel je me suis concentré est `mmap()`. Voyez-le comme une ligne directe vers l'OS, lui demandant de réserver un morceau de mémoire physique et de le mapper à une adresse virtuelle dans notre programme. C'est la source ultime de mémoire. 🌌
 
-Il existe un autre outil, `sbrk`, mais pour ce projet, `mmap` est notre arme de prédilection. Sa souplesse pour manipuler des régions mémoire est sans égale.
+Il existe un autre outil appelé `sbrk`, mais pour ce projet, `mmap` est notre arme de choix. Il est incroyablement flexible pour gérer les régions mémoire.
 
-### Si `mmap` est la source, pourquoi s'encombrer de `malloc`?
+### Si `mmap` est la source, pourquoi s'embêter avec `malloc` ?
 
-Ce fut ma première grande interrogation. Si `mmap` nous fournit la mémoire, pourquoi ne pas simplement l'appeler chaque fois que nous en avons besoin?
+C'était ma première grande interrogation. Si `mmap` nous donne de la mémoire, pourquoi ne pas simplement l'appeler chaque fois que nous avons besoin d'une nouvelle variable ?
 
-La réponse tient en un mot: performance. Les appels système sont coûteux. Chaque appel implique un changement de contexte (*context switch*) entre votre programme et le noyau, une opération particulièrement coûteuse en temps. La plupart des applications demandent et libèrent de petites quantités de mémoire des milliers de fois par seconde. Si chacune de ces requêtes était un appel système à part entière, les performances de nos applications s'effondreraient.
+La réponse est la performance. Les appels système sont coûteux. Ils nécessitent un changement de contexte de votre programme vers le noyau, ce qui est une opération lente. La plupart des applications demandent et libèrent de petits bouts de mémoire des milliers de fois par seconde. Si chacune de ces demandes était un appel système complet, nos programmes seraient incroyablement lents.
 
-C'est là que `malloc` entre en jeu. Il joue le rôle d'un gestionnaire avisé. Au lieu que vous ne sollicitiez le noyau pour chaque broutille, `malloc` demande au système *une seule fois* un vaste territoire de mémoire, qu'il se charge ensuite de morceler pour vous. Lorsque vous demandez un peu de mémoire, `malloc` se contente de découper une tranche du segment qu'il détient déjà. Certes, cela ajoute une légère surcouche de gestion (*overhead*), mais le gain en vitesse est colossal. C'est un compromis d'ingénierie des plus classiques.
+C'est là que `malloc` intervient. C'est un intermédiaire astucieux. Au lieu d'aller voir le noyau pour chaque petite chose, `malloc` y va une fois et demande un énorme bloc de mémoire. Ensuite, il gère ce bloc pour vous. Quand vous demandez un peu de mémoire, `malloc` découpe simplement une tranche du bloc qu'il détient déjà. Oui, cela ajoute un peu de surcharge (la bibliothèque `malloc` elle-même utilise de la mémoire), mais le gain de vitesse est énorme. C'est un compromis d'ingénierie classique.
 
-## Passons à la construction: mon implémentation
+## Construisons la chose : mon implémentation
 
-### La bibliothèque: la boîte à outils mémoire
+### La bibliothèque : la boîte à outils mémoire
 
-Ma bibliothèque `malloc` fournit le trio classique:
+Ma bibliothèque `malloc` fournit le trio classique :
 
-- `malloc`: Demande un bloc de mémoire et retourne un pointeur vers celui-ci.
-- `free`: Récupère ce pointeur lorsque vous avez terminé et marque la mémoire comme de nouveau disponible.
-- `realloc`: Permet de redimensionner un bloc de mémoire déjà alloué, tout en préservant les données qu'il contient.
+- `malloc` : Demande un bloc de mémoire et renvoie un pointeur vers celui-ci.
+- `free` : Reprend ce pointeur quand vous avez fini et marque la mémoire comme disponible.
+- `realloc` : Vous permet de redimensionner un bloc de mémoire déjà alloué, en conservant les données d'origine.
 
-### La structure des données: l'anatomie de ma mémoire
+### La structure de données : mon organisation de la mémoire
 
-Pour que cela fonctionne, je devais savoir à tout instant où se trouvait chaque allocation. Mon approche repose sur une hiérarchie à deux niveaux:
+Pour faire fonctionner cela, je devais décider comment garder une trace de tout. J'ai opté pour une hiérarchie à deux niveaux :
 
-- **Heap** (ou tas): Une large région de mémoire que je demande au système d'exploitation via `mmap`.
-- **Bloc**: Un plus petit morceau d'un *heap* que je distribue à chaque appel à `malloc`.
+- **Heap (Tas)** : Une grande région de mémoire que je demande à l'OS via `mmap`.
+- **Block (Bloc)** : Un morceau plus petit d'un tas que je distribue quand `malloc` est appelé.
 
-Ces deux entités nécessitent des métadonnées. J'ai donc placé un petit en-tête (*header*) juste avant chaque *heap* et chaque *bloc* pour y stocker des informations cruciales. Après un simple appel à `malloc`, la carte mémoire ressemble à ceci:
+Les deux ont besoin de métadonnées. Je place un petit en-tête au début de chaque tas et de chaque bloc pour stocker des informations. Après un seul appel `malloc`, la carte mémoire ressemble à ceci :
 
-![Heap and Block Structure](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*iXHfrEUza03cFe5IXEvs0Q.png)
+![Structure Heap et Block](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*iXHfrEUza03cFe5IXEvs0Q.png)
 
-Voici les `structs` C que j'ai définies pour ces métadonnées:
+Voici les `structs` C que j'ai définies pour ces métadonnées :
 
 ```c
-// Métadonnées pour une région entière mappée par mmap
+// Métadonnées pour toute une région mmap'ée
 typedef struct s_heap {
   struct s_heap   *prev;
   struct s_heap   *next;
@@ -103,72 +103,72 @@ typedef struct s_block {
 } t_block;
 ```
 
-En dotant chaque bloc de pointeurs `next` et `prev`, j'ai de fait créé une liste doublement chaînée. Cette chaîne me permet de traverser le *heap* pour dénicher un espace libre ou pour identifier les voisins d'un bloc que je souhaite libérer.
+En donnant à chaque bloc des pointeurs `next` et `prev`, j'ai effectivement créé une liste chaînée. Cela me permet de parcourir le tas pour trouver des espaces libres ou pour trouver les voisins d'un bloc que je veux libérer (`free`).
 
-Ces petites macros m'ont servi de raccourcis pour naviguer rapidement du début d'un *heap* ou d'un *bloc* à la zone de données utilisable par l'utilisateur.
+Ces petites macros servaient d'aides pour sauter rapidement du début d'un tas ou d'un bloc vers la zone de données utilisateur.
 
 ```c
 #define HEAP_SHIFT(start)   ((void*)start + sizeof(t_heap))
 #define BLOCK_SHIFT(start)  ((void*)start + sizeof(t_block))
 ```
 
-### Stratégie de performance: toutes les allocations ne naissent pas égales
+### Stratégie de performance : toutes les allocations ne se valent pas
 
-J'ai vite compris que traiter une allocation de 10 octets de la même manière qu'une de 10 mégaoctets relevait du non-sens. Pour optimiser, j'ai créé trois catégories: `TINY`, `SMALL` et `LARGE`. Ma stratégie: pré-allouer des pages mémoire pour les requêtes `TINY` et `SMALL`, avec pour objectif de pouvoir y loger au moins 100 blocs. Les allocations `LARGE` sont une exception; elles sont gérées au cas par cas, sans pré-allocation, car elles sont bien plus rares.
+J'ai vite réalisé que traiter une allocation de 10 octets de la même manière qu'une de 10 mégaoctets était une mauvaise idée. Pour optimiser, j'ai créé trois catégories : `TINY`, `SMALL` et `LARGE`. Ma stratégie était de pré-allouer des pages mémoire pour les requêtes `TINY` et `SMALL`, en visant à faire tenir au moins 100 blocs dans chaque tas. Les blocs `LARGE` sont l'exception ; ils sont alloués au coup par coup sans pré-allocation car ils sont généralement rares.
 
-Une astuce d'initié, apprise sur le tas: il est bien plus efficace de choisir des tailles de *heap* qui soient des multiples de la taille de page système. On peut l'obtenir avec `getpagesize()` (ou `getconf PAGE_SIZE` dans le terminal). Sur ma machine, c'est 4096 octets.
+Une petite astuce de pro que j'ai apprise : il est bien plus efficace de dimensionner vos tas comme un multiple de la taille de page du système. Vous pouvez l'obtenir avec `getpagesize()` (ou `getconf PAGE_SIZE` dans le terminal). Sur ma machine, c'est 4096 octets.
 
-J'ai donc fait quelques calculs pour définir les tailles de mes *heaps*:
+J'ai donc fait quelques calculs pour définir les tailles de mes tas :
 
 ```c
-// Une page peut contenir 128 blocs "tiny"
+// Une page peut contenir 128 blocs minuscules (tiny)
 #define  TINY_HEAP_ALLOCATION_SIZE   (4 * getpagesize())
 #define  TINY_BLOCK_SIZE             (TINY_HEAP_ALLOCATION_SIZE / 128)
 
-// Quatre pages peuvent contenir 128 blocs "small"
+// Quatre pages peuvent contenir 128 petits blocs (small)
 #define  SMALL_HEAP_ALLOCATION_SIZE  (16 * getpagesize())
 #define  SMALL_BLOCK_SIZE            (SMALL_HEAP_ALLOCATION_SIZE / 128)
 ```
 
-### L'algorithme de `malloc`: trouver un foyer pour les données
+### L'algorithme `malloc` : trouver une place pour les données
 
-Lorsqu'un appel à `malloc` survient, voici la logique que suit mon code:
+Quand un appel `malloc` arrive, voici la logique que mon code suit :
 
-1. Il consulte d'abord un pointeur global pour voir si des *heaps* existent déjà.
-2. Il parcourt ensuite la liste des *heaps*, à la recherche d'un bloc libre suffisamment grand. J'ai opté pour une stratégie **first-fit** (*premier ajustement*): prendre le premier qui convient. C'est simple et généralement rapide.
-3. S'il arrive à la fin d'un *heap* où il reste de l'espace, il y greffe simplement un nouveau bloc.
-4. Si tous les *heaps* existants sont pleins, il est temps de demander plus de " terrain " au système d'exploitation en appelant `mmap`.
+1. Il regarde d'abord un pointeur global pour voir si des tas existent déjà.
+2. Il parcourt ensuite la liste des tas, cherchant un bloc libre assez grand. J'ai utilisé la stratégie du **first-fit** (premier adapté) : prendre le premier qui convient. C'est simple et rapide.
+3. S'il arrive à la fin d'un tas et qu'il reste de la place, il y ajoute simplement un nouveau bloc.
+4. Si le dernier tas est totalement plein, il est temps de demander plus de terrain à l'OS en appelant `mmap`.
 
 ```c
-// L'appel système pour créer un nouveau heap.
+// L'appel système pour créer un nouveau tas.
 void *heap = (t_heap *)mmap(NULL, heap_size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
 ```
 
-### `free` et le spectre de la fragmentation
+### `free` et le problème de la fragmentation
 
-![Memory Fragmentation](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Y7xikxHO1Yoyv1eZm7l6aA.png)
+![Fragmentation Mémoire](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Y7xikxHO1Yoyv1eZm7l6aA.png)
 
-Quand `free` est appelé, marquer un bloc comme " disponible " est simple. Mais cela crée un problème redoutable: la **fragmentation**. On se retrouve alors avec une mémoire mitée de petits trous inutilisables, tel un gruyère ou une partie de Tetris qui aurait viré au cauchemar.
+Quand `free` est appelé, marquer simplement un bloc comme "disponible" est facile, mais cela crée un problème appelé **fragmentation**. Vous vous retrouvez avec plein de petits trous inutiles dans votre mémoire, comme une partie de Tetris qui a mal tourné.
 
-Pour contrer ce phénomène, j'ai mis en œuvre deux stratégies clés:
+Pour combattre cela, j'ai implémenté quelques stratégies clés :
 
-- **La fusion (*coalescing*)**: Lorsqu'un bloc est libéré, je vérifie si ses voisins immédiats sont eux aussi libres. Si oui, je les fusionne pour former un seul grand bloc disponible.
-- **La restitution de la mémoire**: Si le bloc en cours de libération est le tout dernier d'un *heap* et que d'autres *heaps* sont encore actifs, je libère l'intégralité du *heap* devenu vide en le retournant au système d'exploitation via `munmap`. Inutile de conserver de la mémoire inoccupée.
+- **Fusion (Coalescing) :** Quand un bloc est libéré, je vérifie si ses voisins sont aussi libres. Si c'est le cas, je les fusionne en un seul bloc libre plus grand.
+- **Rendre la mémoire :** Si le bloc libéré est le tout dernier d'un tas, et que j'ai d'autres tas disponibles, je relâche simplement le tas vide entier à l'OS avec `munmap`. Aucun intérêt à garder de la mémoire vide.
 
 ```c
 // Rendre la mémoire au noyau.
 munmap(heap, heap->total_size);
 ```
 
-### `realloc`: le polymorphe
+### `realloc` : le métamorphe
 
-`realloc` n'est, au fond, qu'une chorégraphie bien huilée: allouer un nouveau bloc plus grand avec `malloc`, copier les données de l'ancien bloc vers le nouveau avec `memcpy`, puis libérer l'ancien avec `free`.
+`realloc` se résume souvent à une recette simple : `malloc` un nouveau bloc de la taille désirée, `memcpy` les données de l'ancien bloc vers le nouveau, puis `free` l'ancien bloc.
 
-Il y a un cas limite à connaître: `realloc(ptr, 0)`. Le comportement attendu peut varier. J'ai adopté une approche " paresseuse " en retournant simplement le pointeur original. Cependant, certaines normes stipulent que cela devrait être équivalent à `free(ptr)`. Mon conseil: n'utilisez pas `realloc` pour libérer de la mémoire. À chaque outil sa fonction.
+Un cas particulier à connaître est `realloc(ptr, 0)`. Le comportement ici peut varier. J'ai adopté une approche "paresseuse" en renvoyant simplement le pointeur d'origine. Sachez cependant que certains standards disent que cela devrait équivaloir à `free(ptr)`. Mon conseil : n'utilisez pas `realloc` pour `free` de la mémoire. Utilisez le bon outil pour le job.
 
-## L'épreuve du feu
+## Mise à l'épreuve
 
-La partie la plus gratifiante fut de voir mon `malloc` faire tourner de vrais programmes. J'ai écrit un petit script pour forcer l'éditeur de liens dynamique (*dynamic linker*) à charger ma bibliothèque à la place de celle du système.
+La partie la plus gratifiante a été de voir mon `malloc` faire tourner des programmes réels. J'ai écrit un petit script pour forcer le linker dynamique à charger ma bibliothèque au lieu de celle standard du système.
 
 ```sh
 #!/bin/sh
@@ -178,16 +178,17 @@ export DYLD_FORCE_FLAT_NAMESPACE=1
 $@
 ```
 
-En sauvegardant ce fichier sous le nom `run.sh`, je pouvais lancer des commandes comme `sh run.sh ls -l` ou `sh run.sh vim` et observer le comportement.
+Sauvegarder ceci en `run.sh` m'a permis de faire des choses comme `sh run.sh ls -l` ou `sh run.sh vim` et de voir si ça marchait.
 
 ### Le crash de `vim` et la leçon sur l'alignement
 
-Évidemment, le succès ne fut pas immédiat. Si `ls` se lançait sans broncher, `vim`, lui, provoquait une erreur de segmentation fatale. Que se passait-il?
+Et bien sûr, tout n'a pas marché du premier coup. `ls` passait, mais lancer `vim` causait immédiatement une "segmentation fault". Que se passait-il ?
 
-Le coupable: **l'alignement mémoire** (*memory alignment*). J'ai découvert que le `malloc` standard de macOS (où je faisais mes tests) ne se contente pas de retourner un pointeur. Il garantit que l'adresse fournie est un multiple de 16. Certains programmes et certaines instructions en dépendent pour des raisons de performance. Mon `malloc` ne respectait pas cette contrainte, et `vim` plantait.
+Le coupable était **l'alignement mémoire**. Il s'est avéré que le `malloc` standard sur macOS (où je testais) ne renvoie pas n'importe quel pointeur. Il garantit que l'adresse est un multiple de 16. Certains programmes et instructions comptent là-dessus pour la performance. Mon `malloc` ne le faisait pas, et `vim` plantait.
 
-La solution tenait en une ligne, une astuce binaire (*bitwise*) aussi simple qu'efficace: `size = (size + 15) & ~15;`. Cette unique ligne de code assure que la taille allouée est systématiquement un multiple de 16, et que l'adresse retournée sera donc correctement alignée. Une leçon capitale, apprise à la dure.
+La correction fut une astuce binaire simple mais puissante : `size = (size + 15) & ~15;`. Cette seule ligne assure que la taille est toujours un multiple de 16, et donc que l'adresse retournée sera correctement alignée. Une leçon cruciale.
 
-Ainsi s'achève notre périple. Partis d'un simple appel système au noyau, `mmap`, nous avons abouti à une bibliothèque `malloc` complète et éprouvée. Pour moi, ce projet n'était pas seulement une question de code; le véritable enjeu était de démystifier une mécanique au cœur de nos machines.
+Et voilà l'aventure ! Nous sommes passés de l'appel `mmap` du noyau jusqu'à une bibliothèque `malloc` fonctionnelle et testée. Pour moi, ce projet n'était pas juste écrire du code ; c'était démystifier une partie fondamentale du fonctionnement de nos machines.
 
-Rien ne vaut la pratique. Si vous souhaitez creuser le sujet, n'hésitez pas à consulter [l'implémentation complète sur mon GitHub](https://github.com/jterrazz/42-malloc). Forkez-le, cassez-le, améliorez-le. Car comprendre les fondations, c'est se donner le pouvoir de tout construire. Bon code à tous.
+C'était un rappel puissant que la pratique est tout. Si vous voulez creuser plus loin, je vous encourage à jeter un œil à l'[implémentation complète sur mon GitHub](https://github.com/jterrazz/42-malloc). Forkez-le, cassez-le, et améliorez-le. Quand vous comprenez vraiment les fondations, vous gagnez le pouvoir de construire n'importe quoi par-dessus. Bon code.
+

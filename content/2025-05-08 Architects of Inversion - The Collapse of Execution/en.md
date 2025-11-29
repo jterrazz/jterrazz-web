@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **Abundant intelligence: when execution collapses**
+# **When execution collapses**
 
 _Your entire career was built on a scarcity that just ended._
 

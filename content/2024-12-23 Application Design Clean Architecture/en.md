@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Application design: a journey into clean architecture
+# A journey into clean architecture
 
 ## Getting to the heart of what matters
 

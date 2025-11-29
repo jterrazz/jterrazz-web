@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **Abundant intelligence: a practical playbook**
+# **A practical playbook to AI**
 
 _You already have more cognitive leverage than most executives commanded a decade ago. The gap between you and the people thriving in this shift isn't capability. It's whether you've made AI your default._
 

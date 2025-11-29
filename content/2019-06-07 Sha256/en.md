@@ -6,9 +6,9 @@ Ever wonder what keeps your online world safe? From your bank transactions to yo
 
 I've even dropped a link to a GitHub repo with the full implementation. Ready to level up your crypto game? Let's get into it.
 
-[🔗 Explore the magical realm of hash functions in our GitHub repository](https://github.com/jterrazz/42-ssl-md5?source=post_page-----78c17e657794--------------------------------)
+[Explore the magical realm of hash functions in our GitHub repository](https://github.com/jterrazz/42-ssl-md5?source=post_page-----78c17e657794--------------------------------)
 
-## 🔐 Cryptographic functions: the silent guardians of your digital life
+## Cryptographic functions: the silent guardians of your digital life
 
 Think of cryptographic functions as the invisible force field of the digital universe. They're constantly working behind the scenes to:
 
@@ -127,7 +127,7 @@ Before we go further, a quick word on endianness. It's all about the order of by
 - **Little-endian**: The least significant byte is stored first.
 - **Big-endian**: The most significant byte comes first.
 
-[🔗 Dive deeper into the endianness rabbit hole](https://medium.com/@nonuruzun/little-big-endian-dc9abe36270?source=post_page-----78c17e657794--------------------------------)
+[Dive deeper into the endianness rabbit hole](https://medium.com/@nonuruzun/little-big-endian-dc9abe36270?source=post_page-----78c17e657794--------------------------------)
 
 To flip between them, we can use a byte-swapping function:
 
@@ -157,8 +157,8 @@ These buffers are initialized with specific values and then updated through a se
 
 For those who want to see the guts of the algorithms:
 
-- [🔗 MD5 Algorithm Deep Dive](https://en.wikipedia.org/wiki/MD5?source=post_page-----78c17e657794--------------------------------#Pseudocode)
-- [🔗 SHA-256 Algorithm Explained](https://en.wikipedia.org/wiki/SHA-2?source=post_page-----78c17e657794--------------------------------#Pseudocode)
+- [MD5 Algorithm Deep Dive](https://en.wikipedia.org/wiki/MD5?source=post_page-----78c17e657794--------------------------------#Pseudocode)
+- [SHA-256 Algorithm Explained](https://en.wikipedia.org/wiki/SHA-2?source=post_page-----78c17e657794--------------------------------#Pseudocode)
 
 Or, check out the C code directly:
 
@@ -212,7 +212,7 @@ uint32_t ft_bswap_uint32(uint32_t x)
 
 If the details of SHA-256 feel a little dense, don't worry. I found this awesome step-by-step guide that breaks it all down.
 
-- [🔗 SHA-256 Step-by-Step Guide](https://docs.google.com/spreadsheets/d/1mOTrqckdetCoRxY5QkVcyQ7Z0gcYIH-Dc0tu7t9f7tw/edit?source=post_page-----78c17e657794--------------------------------#gid=2107569783)
+- [SHA-256 Step-by-Step Guide](https://docs.google.com/spreadsheets/d/1mOTrqckdetCoRxY5QkVcyQ7Z0gcYIH-Dc0tu7t9f7tw/edit?source=post_page-----78c17e657794--------------------------------#gid=2107569783)
 
 ## Wrapping it up
 

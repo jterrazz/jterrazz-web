@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **Abundant intelligence: a guide to the revolution**
+# **A guide to the AI revolution**
 
 _You grew up in a world where being smart and capable was an edge. That edge is disappearing faster than most people realize._
 

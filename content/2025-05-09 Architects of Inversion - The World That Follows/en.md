@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **Abundant intelligence: life after the collapse**
+# **Life after the collapse**
 
 _The infrastructure of civilization is being rewritten. Your choices in the next few years will determine which side of that rewrite you're on._
 

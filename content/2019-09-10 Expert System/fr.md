@@ -1,78 +1,78 @@
 ![](assets/thumbnail.jpg)
 
-# Mon aventure au cœur des systèmes experts avec Python
+# Mon voyage dans les systèmes experts avec Python
 
-La manière dont nous raisonnons m'a toujours fasciné. Comment notre esprit parvient-il à tisser des liens, à remonter le fil d'une logique, à résoudre une énigme? Il se trouve que nous pouvons enseigner aux ordinateurs un processus très similaire. C'est précisément là qu'interviennent les **systèmes experts**.
+J'ai toujours été fasciné par notre façon de raisonner. Comment relions-nous les points, suivons-nous une piste logique et assemblons-nous un puzzle ? Il s'avère que nous pouvons apprendre aux ordinateurs à faire quelque chose de remarquablement similaire. C'est là que les **systèmes experts** entrent en jeu.
 
-Ce sont, en somme, de petits cerveaux d'intelligence artificielle que nous pouvons façonner pour dénouer des problèmes complexes, du diagnostic médical à la gestion financière. Ce sont les véritables artisans de l'ombre de nombreuses applications d'IA, œuvrant discrètement en coulisses.
+Ce sont essentiellement de petits cerveaux d'IA que nous pouvons construire pour résoudre des problèmes complexes, du diagnostic de maladies à la gestion des finances. Ce sont les travailleurs de l'ombre derrière d'innombrables applications d'IA, faisant tranquillement leur travail.
 
-Dans cet article, je vais vous guider pas à pas dans la création de mon propre système expert, conçu de A à Z en Python. Pas de tour de passe-passe, juste de la logique pure. À la fin de cette lecture, vous aurez toutes les clés en main pour bâtir le vôtre. 🧠💻
+Dans cet article, je vais lever le voile et vous montrer comment j'en ai construit un de zéro en utilisant Python. Pas de magie, juste de la logique. À la fin, vous aurez ce qu'il faut pour construire le vôtre. 🧠💻
 
-## Qu'est-ce qu'un système expert, au juste?
+## Alors, qu'est-ce qu'un système expert exactement ?
 
-Imaginez-le comme un Sherlock Holmes numérique. Il s'appuie sur un ensemble de **faits (`facts`) et de règles (`rules`)** pour forger ses déductions. C'est une pure machine à raisonner, idéale lorsqu'il faut prouver une hypothèse ou trancher dans une situation délicate. Pour moi, c'est une pièce maîtresse du grand puzzle de l'IA.
+Voyez-le comme un Sherlock Holmes numérique. Il prend une collection de **faits et de règles** et les utilise pour déduire des réponses. C'est une machine à déduction, parfaite quand vous devez prouver une hypothèse ou prendre une décision difficile. Pour moi, c'est une pièce fondamentale de tout le puzzle de l'IA.
 
-![Composants d'un système expert](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*OQEJ09LSoMy5favPdGmRtQ.png)
+![Composants d'un Système Expert](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*OQEJ09LSoMy5favPdGmRtQ.png)
 
-## Les fondations de mon système
+## Les briques de construction de mon système
 
-### Les règles: des briques de Lego logiques
+### Règles : les briques Lego logiques
 
-![Visualisation des règles](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*3618kjRpRPZ8yUwjTEa9SA.png)
+![Visualisation des Règles](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*3618kjRpRPZ8yUwjTEa9SA.png)
 
-Le cœur de ce projet bat au rythme d'un ensemble de **règles**. J'aime les imaginer comme des briques de Lego logiques. En les assemblant, nous pouvons construire des raisonnements d'une complexité surprenante. Ces règles ne sont que de simples équations qui relient des `facts` (que nous représenterons par des lettres majuscules) à l'aide de quelques `connectors` essentiels:
+Le cœur de tout cela est un ensemble de **règles**. J'aime les voir comme des briques Lego logiques. Nous pouvons les emboîter pour construire des lignes de raisonnement assez complexes. Ces règles sont juste de simples équations qui lient des `faits` (que nous représenterons par des lettres majuscules) en utilisant quelques `connecteurs` clés :
 
-- `&`: **AND (ET)**–Le connecteur le plus strict. Tous les faits liés doivent être `True`. Aucune exception.
-- `|`: **OR (OU)**–Le plus flexible. Il suffit qu'un seul des faits soit `True` pour que la condition soit remplie.
-- `^`: **XOR (OU EXCLUSIF)**–Le pointilleux. Un seul fait doit être `True`, mais pas les deux.
-- `=>`: **IMPLY (IMPLIQUE)**–Le grand classique " si… alors… ". Si la partie gauche est `True`, la partie droite doit impérativement l'être aussi.
+- `&` : **ET**–Le connecteur sans détour. Tous les faits connectés doivent être `Vrai` (True). Pas d'exceptions.
+- `|` : **OU**–Super cool. Juste un des faits a besoin d'être `Vrai`.
+- `^` : **XOR** (OU exclusif)–Le difficile. Un fait doit être `Vrai`, mais pas les deux.
+- `=>` : **IMPLIQUE**–Le classique "si-alors". Si le côté gauche est `Vrai`, le côté droit doit être `Vrai` aussi.
 
-### La table de vérité: notre aide-mémoire logique
+### La table de vérité d'inférence : notre antisèche logique
 
-![Table de vérité des inférences](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*aZ-xKiHeAcPBCnP2bgcOTQ.png)
+![Table de Vérité d'Inférence](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*aZ-xKiHeAcPBCnP2bgcOTQ.png)
 
-Pour donner un sens à tout cela, il nous faut un aide-mémoire. Cette table de vérité est notre boussole logique; elle illustre le fonctionnement de chaque connecteur. Prenons `p => q`. Si `p` est `false`, `q` peut prendre n'importe quelle valeur–un véritable joker. Mais si `p` est `true`, alors `q` *doit* obligatoirement être `true` également. Ce principe simple est le moteur de toute notre machine à déduction.
+Pour donner du sens à tout ça, nous avons besoin d'une antisèche. Cette table de vérité est notre boussole pour la logique. Elle montre comment les connecteurs fonctionnent. Regardez `p => q`. Si `p` est `faux`, `q` peut être n'importe quoi, un vrai joker. Mais si `p` est `vrai`, `q` *doit* aussi être `vrai`. Ce principe simple est le moteur de notre déduction.
 
-### Faits et requêtes: les entrées et les sorties
+### Faits et requêtes : les entrées et sorties
 
-![Faits et requêtes](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*qr7VSqmln95Si329hAIX4A.png)
+![Faits et Requêtes](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*qr7VSqmln95Si329hAIX4A.png)
 
-Passons maintenant aux données d'entrée et de sortie.
+Maintenant, pour les entrées et les sorties.
 
-Les **faits (`Facts`)** sont nos vérités de départ, représentées par des lettres majuscules. Par défaut, je définis tout à `false`: le système part d'une feuille blanche, sans aucune connaissance. Un fait ne devient `true` que si nous le déclarons comme tel au départ (`=ABC`) ou si le système parvient à le prouver lui-même grâce aux règles.
+Les **Faits** sont nos vérités de départ, représentées par des lettres majuscules. Par défaut, je mets tout à `faux`, le système commence sans rien savoir. Un fait devient `vrai` seulement si nous le déclarons comme un fait initial (`=ABC`) ou si le système le prouve en utilisant les règles.
 
-Les **requêtes (`Queries`, `?XYZ`)** sont tout simplement les questions auxquelles nous souhaitons que notre système réponde.
+Les **Requêtes** (`?XYZ`) sont simplement les questions auxquelles nous voulons que notre système réponde.
 
-## Comment construire le solveur
+## Comment construire le résolveur
 
-### Chaînage avant ou arrière: choisir sa stratégie
+### Chaînage avant vs arrière : choisissez votre voie
 
-Très bien, mais comment *résoudre* concrètement un problème? Il existe deux grandes stratégies:
+Ok, alors comment on *résout* vraiment quelque chose ? Il y a deux façons principales de procéder :
 
-1. **Le chaînage avant (forward chaining)**: On part de ce que l'on sait (les faits) et on observe où les règles nous mènent. C'est comme aborder un labyrinthe par l'entrée.
-2. **Le chaînage arrière (backward chaining)**: On part de ce que l'on veut prouver (la requête) et on remonte le fil pour voir si les faits confirment l'hypothèse. C'est comme aborder un labyrinthe par la sortie pour retrouver le chemin de l'entrée.
+1. **Chaînage avant (Forward chaining)** : Commencez avec ce que vous savez (les faits) et voyez où les règles vous mènent. C'est comme commencer un labyrinthe par le début.
+2. **Chaînage arrière (Backward chaining)** : Commencez avec ce que vous voulez prouver (la requête) et travaillez à rebours pour voir si les faits le soutiennent. C'est comme commencer un labyrinthe par la fin et trouver votre chemin vers le retour.
 
-Pour ce projet, j'ai opté pour le chaînage arrière. L'approche me semble plus intuitive, un peu comme résoudre une enquête en partant du suspect pour remonter jusqu'aux indices qui l'incriminent.
+Pour ce projet, j'ai choisi le chaînage arrière. Cela me semble plus intuitif, comme résoudre un mystère en commençant par le suspect et en cherchant des indices.
 
-## La structure des données: l'assemblage du jeu de Lego
+## La structure de données : assembler le set Lego
 
-### La classe `Node`: le composant universel
+### La classe Node : le composant universel
 
-Pour bâtir ce système, il me fallait une structure de données robuste. J'ai donc commencé par une classe générique `Node`.
+Pour construire ceci, j'avais besoin d'une structure de données solide. J'ai commencé avec une classe `Node` générique.
 
 ```python
 class Node:
   def __init__(self):
-    self.children = [] # Dans A => B, => est un enfant de B 
-    self.visited = False # Évite les boucles infinies lors du parcours récursif du graphe
+    self.children = [] # Dans A => B, => est enfant de B 
+    self.visited = False # Lors du parcours récursif du Graphe, évite la boucle infinie
     self.state = False # Sauvegarde si le résultat est True
 ```
 
-Voyez-la comme une brique de base universelle. Elle détient un état (`true`/`false`), une trace de sa visite (pour éviter de se perdre dans des boucles infinies) et des connexions vers d'autres nœuds. Dans la règle `A => B`, par exemple, `A` est un enfant de `=>`, qui est lui-même un enfant de `B`. C'est une manière élégante de construire une chaîne logique.
+Voyez-le comme la brique de construction universelle. Elle contient un état (`vrai`/`faux`), suit si nous l'avons visitée (pour éviter de rester coincé dans des boucles infinies), et se connecte à d'autres nœuds. Dans une règle comme `A => B`, par exemple, `A` devient un enfant du nœud `=>`, qui est lui-même un enfant du nœud `B`. C'est une manière simple mais efficace de cartographier une chaîne logique.
 
-### `AtomNode` et `ConnectorNode`: les outils spécialisés
+### AtomNode et ConnectorNode : outils spécialisés
 
-À partir de cette base, j'ai créé deux types de nœuds spécialisés qui en héritent.
+De là, j'ai créé deux nœuds spécialisés qui héritent de la classe de base.
 
 ```python
 class AtomNode(Node):
@@ -86,27 +86,27 @@ class ConnectorNode(Node):
   def __init__(self, connector_type):
     super(ConnectorNode, self).__init__(tree)
     self.type = connector_type
-    self.operands = [] # Par exemple, dans A + B, A et B sont les opérandes de +
+    self.operands = [] # Par exemple, dans A + B, A et B sont opérandes de +
     self.state = None
 ```
 
-`AtomNode` prend en charge nos faits (A, B, C), tandis que `ConnectorNode` gère nos opérateurs logiques (AND, XOR, OR, IMPLY). Cette séparation des rôles permet de conserver un code propre et bien organisé.
+`AtomNode` gère nos faits (A, B, C), et `ConnectorNode` gère nos opérateurs logiques (AND, XOR, OR, IMPLY). Cette approche garde le code propre et organisé.
 
-## Le solveur: apprenons-lui à penser
+## Le résolveur : le faire penser
 
-### Étape 1: Créer une liste unique d'atomes
+### Étape 1 : créer une liste unique d'atomes
 
-Avant toute chose, j'analyse les données d'entrée pour créer une liste unique de tous les atomes. C'est une étape cruciale. Elle garantit que chaque fois que le système rencontre la lettre 'A' dans les règles, il pointe vers le *même et unique* objet `AtomNode`. C'est notre seule et unique source de vérité pour chaque fait.
+Première chose, je parse l'entrée et je crée une liste unique de tous les atomes uniques. C'est la clé. Cela assure que chaque fois que le système voit la lettre 'A' dans les règles, elle pointe vers le *même objet* `AtomNode`. C'est notre source unique de vérité pour chaque fait.
 
-### Étape 2: La magie de la Notation Polonaise Inversée (NPI)
+### Étape 2 : la magie de la NPI
 
-![Représentation en NPI](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*m27ch2wzXuwq6C0FLKAlqw.png)
+![Représentation NPI](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*m27ch2wzXuwq6C0FLKAlqw.png)
 
-Place maintenant à la Notation Polonaise Inversée (NPI), ou *Reverse Polish Notation* (RPN). Si vous avez déjà utilisé une vieille calculatrice HP, le concept vous est familier. Au lieu d'écrire `A + B`, on écrit `A B +`. Aussi étrange que cela puisse paraître, pour un ordinateur, c'est une véritable révolution. L'ordre des opérations devient d'une clarté limpide, et l'analyse syntaxique (le *parsing*) est incroyablement simplifiée. On lit de gauche à droite, et à mesure que les opérandes sont utilisés, ils sont "consommés" et remplacés par le résultat. D'une efficacité redoutable.
+Ensuite, la Notation Polonaise Inverse (NPI, ou RPN en anglais). Si vous avez déjà utilisé une vieille calculatrice HP, vous savez ce que c'est. Au lieu d'écrire `A + B`, vous écrivez `A B +`. Ça semble bizarre, mais pour un ordinateur, ça change la donne. Cela rend l'ordre des opérations parfaitement clair et simplifie énormément le parsing. Nous lisons juste de gauche à droite, et au fur et à mesure que nous utilisons des opérandes, ils sont consommés et remplacés par le résultat. Super efficace.
 
-### Étape 3: Tisser la toile logique
+### Étape 3 : relier les points
 
-Mes règles étant prêtes au format NPI, il est temps de construire le réseau. Je parcours l'expression NPI et je connecte les nœuds entre eux.
+Avec nos règles NPI prêtes, il est temps de construire le réseau. Je boucle à travers l'expression NPI et je connecte les nœuds.
 
 ```python
 stack = []
@@ -117,7 +117,7 @@ for x in npi_rule:
   else:
     pop0 = stack.pop()
     pop1 = stack.pop()
-    # Si l'un des éléments dépilés est le même connecteur que celui que nous allons créer (AND, OR, XOR)
+    # Si un des éléments dépilés est le même connecteur que nous allons créer (AND, OR, XOR)
     if isinstance(pop0, ConnectorNode) and pop0.type is LST_OP[x]:
       pop0.add_operand(pop1)
       new_connector = pop0
@@ -136,11 +136,11 @@ for x in npi_rule:
 return stack.pop()
 ```
 
-Quand je tombe sur un atome, je l'empile sur une pile. Quand je tombe sur un opérateur, je dépile les atomes nécessaires, je les lie comme opérandes au nouveau nœud connecteur, et je rempile cette nouvelle structure. C'est ainsi que notre château de Lego logique se construit, brique par brique.
+Quand je tombe sur un atome, je le pousse sur une pile. Quand je tombe sur un opérateur, je dépile les atomes dont il a besoin, je les lie comme opérandes au nouveau nœud connecteur, et je pousse toute la nouvelle structure sur la pile. C'est comme ça que le château Lego logique se construit, pièce par pièce.
 
-### Étape 4: Le bouquet final–la résolution des requêtes
+### Étape 4 : le grand final, résoudre les requêtes
 
-Et maintenant, le moment de vérité. Pour résoudre une requête, j'ai mis au point une fonction récursive qui plonge au cœur du graphe logique.
+Et maintenant, le moment de vérité. Pour résoudre une requête, j'ai construit une fonction récursive qui plonge dans le graphe logique.
 
 ```python
 # Pseudocode
@@ -152,25 +152,26 @@ def resolve(nodeX):
   for child in nodeX.children:
     res = resolve(child)
     if res is True:
-      # On n'a besoin que d'un seul enfant True pour déduire que le nœud actuel l'est aussi
+      # Besoin que d'un seul enfant soit Vrai pour déduire que le courant est Vrai
       return True
     
-  if Node is Connector: # AND, OR, XOR, IMPLY
+  if Node is Connector: # AND OR XOR IMPLY
     op_results = []
     for op in nodeX.operands:
       op_results.append(resolve(op))
     self.set_state_from_operands(op_results)
-    # Exemple : pour AND, tous les éléments de op_results doivent être True
+    # Exemple : pour un nœud AND, tous les éléments dans op_results doivent être Vrai
 ```
 
-Elle part du nœud de la requête et remonte le fil de ses dépendances (ses enfants). Si un enfant peut être prouvé `True`, l'information est propagée vers le haut. Pour un connecteur comme `AND`, la fonction vérifie si tous ses opérandes peuvent être résolus à `True`. Pour `OR`, un seul suffit. Elle s'appuie sur la logique de notre table de vérité pour faire émerger une réponse finale. C'est un spectacle vraiment gratifiant à observer.
+Cela commence au nœud de la requête et travaille à rebours à travers ses enfants. Si un enfant peut être prouvé `Vrai`, il le signale en remontant. Pour un nœud connecteur comme `AND`, il vérifie si tous ses opérandes peuvent être résolus à `Vrai`. Pour `OR`, il en a juste besoin d'un. La fonction utilise la logique de la table de vérité que nous avons vue plus tôt pour faire remonter une réponse finale jusqu'au sommet. C'est vraiment satisfaisant de le voir fonctionner.
 
-## Le mot de la fin: à vous de jouer
+## Dernières pensées : à vous de construire
 
-Et voilà, le tour est joué. Nous avons exploré les mécanismes fondamentaux qui animent un système expert à chaînage arrière. À partir de quelques règles simples, nous avons donné vie à un système capable de *raisonner*.
+Et c'est à peu près tout ! Nous avons parcouru la logique centrale de la construction d'un système expert à chaînage arrière. À partir de règles simples, nous avons créé un système qui peut réellement *raisonner*.
 
-C'est un concept d'une grande puissance, et nous n'avons fait qu'en effleurer la surface. Ce que nous avons bâti est une fondation solide. Si l'envie vous prend d'aller plus loin, vous pourriez implémenter le chaînage avant ou intégrer des logiques plus complexes. Les possibilités sont immenses.
+C'est un concept puissant, et nous n'avons fait qu'effleurer la surface. Ce que nous avons construit est une fondation. Si vous voulez aller plus loin, vous pourriez essayer d'implémenter le chaînage avant ou d'ajouter le support pour une logique plus complexe. Les possibilités sont énormes.
 
-Pour tous ceux qui souhaitent mettre les mains dans le cambouis, j'ai rendu le projet Python complet disponible sur [mon GitHub](https://github.com/jterrazz/42-expert-system). N'hésitez pas à y jeter un œil, à jouer avec, à le pousser dans ses retranchements et, bien sûr, à l'améliorer.
+Pour quiconque veut mettre les mains dans le code, j'ai mis le projet Python complet sur [mon GitHub](https://github.com/jterrazz/42-expert-system). Allez voir, jouez avec, cassez-le, et construisez par-dessus.
 
-Bon code! 🚀🧠
+Bon code ! 🚀🧠
+

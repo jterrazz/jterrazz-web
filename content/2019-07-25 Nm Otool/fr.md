@@ -1,30 +1,30 @@
 ![](assets/thumbnail.jpg)
 
-# Décrypter la magie, mon aventure au cœur de `nm` et `otool`
+# Décoder la magie : mon aventure pour recréer `nm` et `otool`
 
-Vous êtes-vous déjà demandé comment votre ordinateur *comprend* réellement un fichier binaire? Je veux dire, au plus profond de ses circuits. Si cette curiosité vous anime, alors vous êtes au bon endroit. J'ai récemment plongé dans les abysses de l'implémentation des commandes `nm` et `otool`, en repartant de zéro avec le langage C. Ce fut une véritable odyssée, et j'en suis ressorti avec une compréhension bien plus intime du fonctionnement des binaires et des systèmes Unix. C'est un monde fascinant que celui de la programmation de bas niveau.
+Vous êtes-vous déjà demandé comment votre ordinateur comprend *réellement* un fichier binaire ? Je veux dire, jusqu'au dernier octet. Si cette curiosité résonne en vous, accrochez-vous. Je me suis récemment lancé dans l'aventure d'implémenter les commandes `nm` et `otool` de zéro en C. Ce fut tout un voyage. J'en suis ressorti avec une intuition bien plus profonde sur la façon dont les binaires et les systèmes de type Unix fonctionnent, un monde fascinant et de bas niveau.
 
-Dans cet article, je vais vous guider pas à pas pour que vous puissiez créer vos propres versions de ces outils. Mais permettez-moi un conseil d'ami: essayez d'abord par vous-même. Vraiment. L'expérience de fouiller dans les **man pages** et les **fichiers d'en-tête** système vous apportera un niveau de compréhension qu'aucun tutoriel ne pourra jamais égaler.
+Ici, je vais retracer mes pas et partager une feuille de route pour construire vos propres versions de ces outils. Mais laissez-moi vous donner un conseil d'emblée : essayez de le construire vous-même d'abord. Sérieusement. L'expérience de fouiller dans les **man pages** et les **fichiers d'en-tête** (headers) du système vous donnera un niveau de compréhension qu'aucun article ne peut reproduire.
 
-> **Petite précision**: Mon implémentation se concentre exclusivement sur le format **Mach-O**, qui est le format d'exécutable de prédilection d'Apple pour macOS et iOS. Cependant, même si vous travaillez sur un autre système d'exploitation, les concepts fondamentaux restent universels.
+> **Note** : Mon implémentation se concentre sur **Mach-O**, qui est le format exécutable de choix d'Apple pour macOS et iOS. Mais même si vous êtes sur un OS différent, les idées centrales sont pratiquement universelles.
 
-Pour celles et ceux qui souhaitent plonger directement dans le code, [le projet GitHub complet est disponible ici](https://github.com/jterrazz/42-nm-otool?source=post_page-----7d4fef3d7507--------------------------------).
+Pour ceux qui veulent aller directement au code, [voici le projet complet sur GitHub](https://github.com/jterrazz/42-nm-otool?source=post_page-----7d4fef3d7507--------------------------------).
 
-## Au fond, qu'est-ce qu'un fichier exécutable?
+## Qu'est-ce qu'un fichier exécutable exactement ?
 
-Lorsqu'un système d'exploitation lance un programme, il s'attend à ce que le fichier soit structuré d'une manière bien précise. Imaginez cela comme une poignée de main secrète. Chaque système a ses propres conventions:
+Quand un système d'exploitation lance un programme, il a besoin que le fichier soit agencé d'une manière très spécifique. Voyez ça comme une poignée de main secrète. Chaque OS a sa propre préférence :
 
 - **macOS** utilise `Mach-O`
 - **Linux** utilise principalement `ELF`
-- **Windows** opte pour le format `PE`
+- **Windows** opte pour `PE`
 
-Il existe une multitude d'autres formats. Si le sujet vous passionne, vous pouvez consulter cette [impressionnante liste de formats de fichiers exécutables](https://en.wikipedia.org/wiki/Comparison_of_executable_file_formats).
+Il existe des tonnes d'autres formats. Si vous êtes curieux, vous pouvez consulter cette [grande liste de formats de fichiers exécutables](https://en.wikipedia.org/wiki/Comparison_of_executable_file_formats).
 
-Pour une exploration en profondeur du format Mach-O, [ce document est une véritable carte au trésor](https://github.com/aidansteele/osx-abi-macho-file-format-reference?source=post_page-----7d4fef3d7507--------------------------------).
+Pour une plongée approfondie dans le format Mach-O, [ce document est essentiellement une carte au trésor](https://github.com/aidansteele/osx-abi-macho-file-format-reference?source=post_page-----7d4fef3d7507--------------------------------).
 
-### Étape 1: S'assurer qu'il s'agit bien d'un fichier Mach-O
+### Étape 1 : S'assurer que c'est un fichier Mach-O
 
-Chaque type de fichier possède une sorte d'identité secrète, une séquence d'octets située à son tout début, appelée **magic number**. C'est en quelque sorte l'empreinte digitale du fichier. Pour les fichiers Mach-O, il existe quatre possibilités:
+Chaque type de fichier a une identité secrète, une séquence d'octets tout au début appelée un **nombre magique** (magic number). C'est comme l'empreinte digitale d'un fichier. Pour les fichiers Mach-O, il y a quatre possibilités :
 
 ```c
 // Ceci est défini dans <mach-o/loader.h>
@@ -35,39 +35,39 @@ Chaque type de fichier possède une sorte d'identité secrète, une séquence d'
 #define  MH_CIGAM_64    NXSwapInt(MH_MAGIC_64)
 ```
 
-Les différences se résument à deux aspects:
+Les différences se résument à deux choses :
 
-1. **L'architecture**: 32 bits ou 64 bits.
-2. **L'endianness** (ou boutisme): L'ordre dans lequel les octets sont stockés.
+1. **Architecture** : 32-bit ou 64-bit.
+2. **Endianness (boutisme)** : L'ordre dans lequel les octets sont arrangés.
 
-> **Pour la petite histoire**: " CIGAM " n'est autre que " MAGIC " épelé à l'envers. Plutôt malin, n'est-ce pas?
+> **Fait amusant** : "CIGAM" est juste "MAGIC" épelé à l'envers. Plutôt malin, non ?
 
-Si le concept d'endianness est nouveau pour vous, cet [article sur le big-endian et le little-endian](https://medium.com/worldsensing-techblog/big-endian-or-little-endian-37c3ed008c94?source=post_page-----7d4fef3d7507--------------------------------) l'explique très clairement.
+Si l'endianness est un nouveau concept pour vous, cet [article sur big vs. little endian](https://medium.com/worldsensing-techblog/big-endian-or-little-endian-37c3ed008c94?source=post_page-----7d4fef3d7507--------------------------------) est une excellente explication.
 
-## Alors, pourquoi recréer `nm` et `otool`?
+## Alors, pourquoi construire `nm` et `otool` ?
 
-Ces outils sont de véritables lunettes à rayons X pour les fichiers Mach-O. Ils vous permettent de:
+Ces outils sont comme des lunettes à rayons X pour les fichiers Mach-O, vous permettant de :
 
 1. **Parser** la structure du fichier.
-2. **Analyser** ce qu'il contient.
-3. **Afficher** le tout d'une manière lisible pour un humain.
+2. **Analyser** ce qu'il y a dedans.
+3. **Afficher** le tout dans un format lisible par un humain.
 
-Voici la répartition des rôles:
+Voici le détail :
 
-- **`nm`**: Affiche une liste de **symboles** (comme les noms de fonctions et de variables) présents dans le fichier.
-- **`otool`**: Affiche le **contenu hexadécimal** d'une section spécifique du fichier, généralement celle contenant le code.
+- **`nm`** : Affiche une liste de **symboles** (comme les noms de fonctions et de variables) dans le fichier.
+- **`otool`** : Affiche le **contenu hexadécimal** d'une partie spécifique du fichier, appelée un segment.
 
-![Example output of nm and otool](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*LyO3kfs-lQvJ-KmaKmyb9g.png)
+![Exemple de sortie de nm et otool](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*LyO3kfs-lQvJ-KmaKmyb9g.png)
 
-## Plongée dans la structure Mach-O
+## Entrer dans la structure Mach-O
 
-Imaginez un fichier Mach-O comme une série de poupées russes. Chaque couche que vous ouvrez révèle de nouveaux détails.
+Imaginez un fichier Mach-O comme une de ces poupées russes. Chaque couche que vous ouvrez révèle plus de détails.
 
-![Mach-O file structure diagram](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*gMKkvCSZXsGeVC0tH6PQ6w.png)
+![Diagramme de structure de fichier Mach-O](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*gMKkvCSZXsGeVC0tH6PQ6w.png)
 
-### Accéder au contenu du fichier
+### Obtenir l'accès au fichier
 
-Commençons par le commencement: nous devons lire le contenu du fichier et le charger en mémoire. J'ai utilisé le trio classique `open`, `fstat`, et `mmap` pour obtenir un pointeur vers le début des données du fichier.
+Première chose : nous devons lire le contenu du fichier en mémoire. J'ai utilisé le combo classique `open`, `fstat`, et `mmap` pour obtenir un pointeur vers le début des données du fichier.
 
 ```c
 struct stat buf;
@@ -81,10 +81,10 @@ if (buf.st_size == 0)
 if ((file_start = mmap(NULL, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
       return FAILURE;
 
-handle_file(file_start);
+handle_file(file_start)
 ```
 
-Une fois le fichier en mémoire, il est temps de vérifier ce fameux *magic number*.
+Avec le fichier en mémoire, il est temps de vérifier ce nombre magique.
 
 ```c
 #include <mach-o/loader.h>
@@ -95,9 +95,9 @@ if (magic == MH_MAGIC || magic == MH_CIGAM || magic == MH_MAGIC_64 || magic == M
   handle_macho_file();
 ```
 
-### L'en-tête Mach-O (Header)
+### L'en-tête Mach-O
 
-Chaque fichier Mach-O débute par un en-tête. Considérez-le comme la table des matières de l'exécutable.
+Tout fichier Mach-O démarre avec un en-tête (header). C'est comme la table des matières de l'exécutable.
 
 ```c
 struct mach_header {
@@ -108,22 +108,22 @@ struct mach_header {
   uint32_t	ncmds;		/* number of load commands */
   uint32_t	sizeofcmds;	/* the size of all the load commands */
   uint32_t	flags;		/* flags */
-};
+  };
 ```
 
-Cette structure regorge d'informations précieuses, comme:
+Cette structure est une mine d'or, avec :
 
-- `cpu_type`: Quels processeurs peuvent exécuter ce fichier.
-- `filetype`: S'agit-il d'un exécutable, d'une bibliothèque, ou autre chose?
+- `cpu_type` : Quels processeurs peuvent exécuter ce fichier.
+- `filetype` : Est-ce un exécutable, une bibliothèque, ou autre chose ?
 
-### Les Load Commands: la feuille de route du binaire
+### Commandes de chargement : la feuille de route du binaire
 
-Juste après l'en-tête se trouvent les *load commands*. Voyez-les comme des instructions qui expliquent au système d'exploitation comment charger le programme en mémoire. Vous trouverez la liste complète des types de commandes dans le fichier d'en-tête `loader.h`.
+Juste après l'en-tête, vous trouverez les commandes de chargement (load commands). Voyez-les comme des instructions qui disent à l'OS comment charger le programme en mémoire. Vous pouvez trouver la liste complète des types de commandes dans le fichier d'en-tête `loader.h`.
 
-Pour mon projet, je me suis concentré sur deux commandes principales:
+Pour ces outils, deux commandes de chargement sont particulièrement importantes :
 
-1. `LC_SYMTAB`: Pointeur vers les informations sur les symboles.
-2. `LC_SEGMENT`: Définition des différents segments du binaire.
+1. `LC_SYMTAB` : Pointe vers les informations des symboles.
+2. `LC_SEGMENT` : Définit les différents segments du binaire.
 
 ```c
 struct load_command {
@@ -132,7 +132,7 @@ struct load_command {
 };
 ```
 
-Les parcourir est assez direct. On commence juste après l'en-tête et on saute de l'une à l'autre en utilisant `cmdsize`.
+Les parcourir est assez simple. Vous commencez juste après l'en-tête et vous sautez simplement de l'une à l'autre en utilisant `cmdsize`.
 
 ```c
 uint32_t ncmds = ((struct mach_header *)file_start)->ncmds;
@@ -140,14 +140,14 @@ uint32_t ncmds = ((struct mach_header *)file_start)->ncmds;
 lc = (struct load_command *)(file_start + sizeof(struct mach_header);
 
 while (ncmds--) {
-  parse_load_command(lc);
-  lc = (void *)lc + lc->cmdsize;
+  parse_load_command(lc)
+  lc = (void *)lc +lc->cmdsize;
 }
 ```
 
-#### `LC_SEGMENT`: Les briques de construction
+#### `LC_SEGMENT` : les briques de construction
 
-Les commandes de segment sont le véritable cœur du fichier. Elles définissent de larges sections du binaire, comme le segment `__TEXT` (où réside le code) et le segment `__DATA` (pour les variables globales).
+Les commandes de segment sont la vraie substance du fichier. Elles définissent de gros morceaux du binaire, comme le segment `__TEXT` (où vit le code) et le segment `__DATA` (pour les variables globales).
 
 ```c
 struct segment_command {        /* for 32-bit architectures */
@@ -162,10 +162,10 @@ struct segment_command {        /* for 32-bit architectures */
 	vm_prot_t	initprot;	    /* initial VM protection */
 	uint32_t	nsects;	        /* number of sections in segment */
 	uint32_t	flags;	        /* flags */
-};
+}
 ```
 
-Chaque segment est lui-même subdivisé en sections.
+Chaque segment est divisé davantage en sections.
 
 ```c
 struct section {                /* for 32-bit architectures */
@@ -180,10 +180,10 @@ struct section {                /* for 32-bit architectures */
 	uint32_t	flags;		    /* flags (section type and attributes)*/
 	uint32_t    reserved1;		/* reserved (for offset or index)*/
 	uint32_t    reserved2;		/* reserved (for count or sizeof)*/
-};
+}
 ```
 
-Pour `otool`, notre mission est de trouver la section `__text` à l'intérieur du segment `__TEXT` et d'afficher son contenu sous forme de dump hexadécimal. Pour `nm`, j'ai dû sauvegarder les informations de chaque section pour les faire correspondre plus tard avec les symboles.
+Pour `otool`, le but est de trouver la section `__text` à l'intérieur du segment `__TEXT` et d'afficher son contenu sous forme de dump hexadécimal. Pour `nm`, j'avais besoin de sauvegarder les infos de la section pour les faire correspondre avec les symboles plus tard.
 
 ```c
 int	parse_mach_segment(void *segment_command) {
@@ -194,20 +194,20 @@ int	parse_mach_segment(void *segment_command) {
 	nsects = ((struct segment_command *) segment_command)->nsects;
 
 	while (nsects--) {
-		// Traiter chaque section
+		// Faire des trucs avec chaque section
 		if (bin == OTOOL) {
-		    // Si la section est __text, afficher les données en hexadécimal
+		    // Si la section est __text, hexdump les données
 		} else if (bin == NM) {
-		    // Sauvegarder la section en mémoire pour la faire correspondre plus tard avec SYMTAB
+		    // Sauvegarder la section en mémoire pour matcher plus tard avec la SYMTAB
 		}
 		section += sizeof(struct s_section);
 	}
 }
 ```
 
-### `LC_SYMTAB`: La table des symboles
+### `LC_SYMTAB` : la table des symboles
 
-La commande de table des symboles, `LC_SYMTAB`, pointe vers l'index de notre exécutable. Elle nous indique où trouver la liste des symboles (des structures `nlist`) et la table des chaînes de caractères (`strtab`) qui contient leurs noms.
+La commande de table des symboles, `LC_SYMTAB`, pointe vers l'index de notre exécutable. Elle nous dit où trouver la liste des symboles (structures `nlist`) et la table des chaînes (`strtab`) utilisée pour obtenir leurs noms.
 
 ```c
 struct symtab_command {
@@ -233,7 +233,7 @@ struct nlist {
 };
 ```
 
-Pour récupérer le nom d'un symbole, on utilise la valeur `n_strx` comme un décalage (offset) dans la table des chaînes de caractères.
+Pour obtenir le nom d'un symbole, vous utilisez la valeur `n_strx` comme un décalage (offset) dans la table des chaînes.
 
 ```c
 int parse_mach_symtab(struct symtab_command *symtab_command)
@@ -250,23 +250,23 @@ int parse_mach_symtab(struct symtab_command *symtab_command)
 		// Nom du symbole
 		char *symbol_name = strtab + ((struct nlist *)symtab + i)->n_un.n_strx;
 		
-		// Ajouter à une liste pour usage ultérieur
+		// Ajouter à la liste pour usage ultérieur
 		handle_symbol(symbol_data, symbol_name);
 		i++;
 	}
 }
 ```
 
-![More symbol information](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Ib35tK7AbIyH_YPS6QhmJw.png)
+![Plus d'informations sur les symboles](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Ib35tK7AbIyH_YPS6QhmJw.png)
 
-Pour `nm`, le gros du travail consiste à afficher une ligne pour chaque symbole, indiquant son adresse et une lettre représentant son type (par exemple, `T` pour une fonction dans la section de texte, `U` pour un symbole non défini/externe).
+Pour `nm`, la tâche principale est d'imprimer une ligne pour chaque symbole montrant son adresse et une lettre représentant son type (par ex., `T` pour une fonction dans la section text, `U` pour indéfini/externe).
 
-[Vous trouverez une liste complète des types de symboles sur la page de man de nm](https://linux.die.net/man/1/nm?source=post_page-----7d4fef3d7507--------------------------------).
+[Vous pouvez trouver une liste complète des types de symboles sur la page man de nm](https://linux.die.net/man/1/nm?source=post_page-----7d4fef3d7507--------------------------------).
 
-Pour déterminer la bonne lettre, il faut inspecter le champ `n_type` du symbole.
+Trouver la bonne lettre implique de vérifier le champ `n_type` du symbole.
 
 ```c
-// Ces constantes sont définies dans <mach-o/nlist.h>
+// Ceux-ci sont définis dans <mach-o/nlist.h>
 #define	N_UNDF	0x0		/* undefined, n_sect == NO_SECT */
 #define N_ABS 0x2  /* absolute, n_sect == NO_SECT */
 #define N_SECT 0xe  /* defined in section number n_sect */
@@ -280,25 +280,25 @@ Pour déterminer la bonne lettre, il faut inspecter le champ `n_type` du symbole
 
 char get_symbol_letter(sym) {
   if (N_STAB & sym->type)
-    return '-'; // Symbole de débogage
+    return '-'; // Debugging symbol
   else if ((N_TYPE & sym->type) == N_UNDF) {
-    if (sym->name_not_found) // C'est une vérification que j'ai ajoutée
-     return 'C'; // Symbole commun (Common)
+    if (sym->name_not_found) // This is a custom check I added
+     return 'C'; // Common symbol
     else if (sym->type & N_EXT)
-     return = 'U'; // Non défini (Undefined)
+     return 'U'; // Undefined
     else
-     return = '?';
+     return '?';
   } else if ((N_TYPE & sym->type) == N_SECT) {
-    return match_symbol_section(saved_sections, sym); // À faire correspondre avec une section sauvegardée
+    return match_symbol_section(saved_sections, sym); // Match with a saved section
   } else if ((N_TYPE & sym->type) == N_ABS) {
-    return = 'A'; // Absolu
+    return 'A'; // Absolute
   } else if ((N_TYPE & sym->type) == N_INDR) {
-    return = 'I'; // Indirect
+    return 'I'; // Indirect
   }
 }
 ```
 
-Si le type d'un symbole est `N_SECT`, il faut alors examiner la section à laquelle il appartient.
+Si le type d'un symbole est `N_SECT`, vous devez regarder la section à laquelle il appartient.
 
 ```c
 char match_symbol_section(saved_sections, symbol)
@@ -314,35 +314,36 @@ char match_symbol_section(saved_sections, symbol)
     else
       ret = 'S';
 
-    // Si le symbole n'est pas externe, la lettre est en minuscule
+    // If the symbol is not external, make the letter lowercase
     if (!(mysym->type & N_EXT))
        ret += 'a' - 'A';
   }
 }
 ```
 
-## Passer au niveau supérieur: les prochains défis
+## Monter en niveau : les prochains défis
 
-Une fois les bases acquises, vous disposez d'une fondation solide pour vos propres versions de `nm` et `otool`. Si vous cherchez à aller plus loin, voici quelques défis stimulants à relever.
+Une fois que vous avez les bases, vous avez une fondation solide pour votre propre `nm` et `otool`. Si vous cherchez à pousser plus loin, voici quelques défis avancés à relever.
 
-### 1. Gérer les archives et les fichiers "fat"
+### 1. Gérer les archives et les fat files
 
-Un "fat binary" est essentiellement une enveloppe contenant plusieurs fichiers Mach-O, chacun destiné à une architecture de processeur différente. Pour les gérer, vous devrez vous plonger dans les fichiers d'en-tête `<mach-o/fat.h>` et `<ar.h>`. La logique de parsing est similaire, avec simplement une couche d'analyse supplémentaire.
+Un "fat binary" est essentiellement une enveloppe qui contient plusieurs fichiers Mach-O, chacun pour une architecture de processeur différente. Pour gérer cela, vous devrez creuser dans les fichiers d'en-tête `<mach-o/fat.h>` et `<ar.h>`. La logique de parsing est similaire, juste avec une couche supplémentaire par-dessus.
 
-### 2. Gérer l'endianness
+### 2. Supporter l'endianness
 
-Vous vous souvenez du big-endian et du little-endian? Vous tomberez parfois sur un fichier dont l'ordre des octets est inversé par rapport à celui de votre machine. Cela signifie que vous devrez inverser les octets pour toutes les valeurs entières que vous lisez dans les en-têtes. C'est un fascinant casse-tête de jonglage d'octets.
+Vous vous souvenez du big et little endian ? Parfois, vous recevrez un fichier avec un ordre d'octets différent de celui de votre machine. Cela signifie que vous devrez intervertir l'ordre des octets pour toutes les valeurs entières que vous lisez des en-têtes. C'est comme un petit puzzle de jonglage d'octets amusant.
 
-### 3. Gérer à la fois le 32-bit et le 64-bit
+### 3. Supporter à la fois le 32-bit et le 64-bit
 
-Votre code doit être capable de traiter les binaires 32-bit et 64-bit. C'est comme être bilingue dans le monde des exécutables, et cela implique principalement d'utiliser les structures de données appropriées pour chaque cas.
+Votre code devrait être capable de gérer à la fois les binaires 32-bit et 64-bit. C'est comme être bilingue dans le monde des exécutables, et cela implique principalement d'utiliser les structures de données correctes pour chacun.
 
 ### 4. Se prémunir contre les fichiers corrompus 🏴‍☠️
 
-Tous les binaires que l'on trouve dans la nature ne sont pas bien élevés. Un fichier corrompu peut contenir des tailles ou des décalages qui pointent vers des zones aléatoires de la mémoire. Ajoutez systématiquement des vérifications pour vous assurer que vos pointeurs et offsets restent dans les limites réelles du fichier. C'est comme installer des garde-fous pour sécuriser votre exploration.
+Tous les binaires dans la nature ne sont pas bien élevés. Un fichier corrompu pourrait avoir des valeurs de taille ou des offsets qui pointent vers des endroits aléatoires en mémoire. Ajoutez toujours des vérifications pour vous assurer que vos pointeurs et offsets restent dans les limites réelles du fichier. Voyez ça comme installer des garde-fous sur votre exploration.
 
-## Le mot de la fin
+## Pour conclure
 
-Développer mes propres `nm` et `otool`, c'était comme acquérir une vision à rayons X pour les exécutables. C'est un projet qui vous force à comprendre le fonctionnement de nos ordinateurs à un niveau bien plus profond. Mon conseil est donc simple: retroussez vos manches, ouvrez votre éditeur de code préféré, et commencez à creuser dans le monde incroyable de l'analyse binaire.
+Construire mon propre `nm` et `otool` était comme obtenir une paire de lunettes à rayons X pour les exécutables. C'est un projet qui vous force à confronter le fonctionnement des ordinateurs à un niveau profondément plus bas. Alors, mon conseil est le suivant : retroussez vos manches, ouvrez votre éditeur préféré, et commencez à creuser dans le monde incroyable de l'analyse binaire.
 
-La clé est d'être patient et curieux. N'ayez pas peur d'expérimenter et gardez les *man pages* à portée de main. Bon code! 🖥️🔍
+La clé est d'être patient et curieux. N'ayez pas peur d'expérimenter, et gardez ces man pages à portée de main. Bon code ! 🖥️🔍
+

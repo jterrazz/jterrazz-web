@@ -57,21 +57,6 @@ Here's the breakdown:
 - **`nm`**: Shows a list of **symbols** (like function and variable names) in the file.
 - **`otool`**: Dumps the **hexadecimal content** of a specific part of the file, called a segment.
 
-```c
-struct stat buf;
-
-if ((fd = open(filename, O_RDONLY)) < 0)
-      return FAILURE;
-if (fstat(fd, &buf) < 0)
-      return FAILURE;
-if (buf.st_size == 0)
-      return FAILURE;
-if ((file_start = mmap(NULL, buf.st_size, PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
-      return FAILURE;
-
-handle_file(file_start);
-```
-
 ![Example output of nm and otool](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*LyO3kfs-lQvJ-KmaKmyb9g.png)
 
 ## Getting into the Mach-O structure

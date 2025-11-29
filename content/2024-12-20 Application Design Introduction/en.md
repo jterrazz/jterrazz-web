@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Application design: building software that lasts
+# Building software that lasts
 
 ## About software architecture
 
