@@ -31,19 +31,19 @@ Prêt à construire quelque chose de cool ? Posons les fondations. 💪
 D'abord, vous aurez besoin de Node.js et npm prêts à l'emploi sur votre machine.
 
 1. **Initialisez votre projet** :
-    Je commence toujours par `npm init -y`. Cette commande échafaude rapidement un fichier `package.json`. Voyez-le comme le passeport de votre projet, il contient toutes les statistiques vitales et les infos de dépendances.
+   Je commence toujours par `npm init -y`. Cette commande échafaude rapidement un fichier `package.json`. Voyez-le comme le passeport de votre projet, il contient toutes les statistiques vitales et les infos de dépendances.
 
 2. **Installez les essentiels** :
-    Avec le projet initialisé, il est temps de récupérer nos outils principaux. Nous avons besoin des paquets eux-mêmes et de leurs définitions de type TypeScript correspondantes.
+   Avec le projet initialisé, il est temps de récupérer nos outils principaux. Nous avons besoin des paquets eux-mêmes et de leurs définitions de type TypeScript correspondantes.
 
-    ```sh
-    # Installer TypeScript et son compagnon d'exécution
-    npm install --save typescript ts-node
-    # Installer nos outils de serveur web
-    npm install --save koa @types/koa koa-router @types/koa-router
-    ```
+   ```sh
+   # Installer TypeScript et son compagnon d'exécution
+   npm install --save typescript ts-node
+   # Installer nos outils de serveur web
+   npm install --save koa @types/koa koa-router @types/koa-router
+   ```
 
-    Ces paquets `@types/` sont cruciaux. C'est ce qui apprend à TypeScript comment comprendre la structure de ces bibliothèques JavaScript, permettant cette douce, douce vérification de type.
+   Ces paquets `@types/` sont cruciaux. C'est ce qui apprend à TypeScript comment comprendre la structure de ces bibliothèques JavaScript, permettant cette douce, douce vérification de type.
 
 ## Faire parler TypeScript et Node.js
 
@@ -113,10 +113,10 @@ const router = new Router();
 
 // C'est la logique pour notre route
 const helloWorldController: Middleware = async (ctx) => {
-    console.log('A request came in!');
-    ctx.body = {
-        message: 'Hello World!',
-    };
+  console.log('A request came in!');
+  ctx.body = {
+    message: 'Hello World!',
+  };
 };
 
 router.get('/', helloWorldController);
@@ -126,7 +126,7 @@ app.use(router.routes()).use(router.allowedMethods());
 
 // Et enfin, nous démarrons le serveur
 app.listen(PORT, () => {
-    console.log(`🚀 Server is running on port ${PORT}`);
+  console.log(`🚀 Server is running on port ${PORT}`);
 });
 ```
 
@@ -175,18 +175,18 @@ import Koa from 'koa';
 const app = new Koa();
 
 app.use(async (ctx) => {
-    // Accéder aux données de la requête
-    console.log(ctx.request.url);      // L'URL demandée
-    console.log(ctx.request.query);    // Query string parsée
-    console.log(ctx.request.body);     // Nécessite un middleware body-parser
+  // Accéder aux données de la requête
+  console.log(ctx.request.url); // L'URL demandée
+  console.log(ctx.request.query); // Query string parsée
+  console.log(ctx.request.body); // Nécessite un middleware body-parser
 
-    // Définir la réponse
-    ctx.body = 'Hello, World!';        // Le corps de la réponse
-    ctx.status = 200;                  // Code de statut HTTP
-    ctx.type = 'text/plain';           // Header Content-Type
+  // Définir la réponse
+  ctx.body = 'Hello, World!'; // Le corps de la réponse
+  ctx.status = 200; // Code de statut HTTP
+  ctx.type = 'text/plain'; // Header Content-Type
 
-    // Partager des données entre middlewares
-    ctx.state.user = { id: 1, name: 'John Doe' };
+  // Partager des données entre middlewares
+  ctx.state.user = { id: 1, name: 'John Doe' };
 });
 
 app.listen(3000);
@@ -222,27 +222,27 @@ import { Context } from 'koa';
 import * as userService from '../services/userService';
 
 export const getUsers = async (ctx: Context) => {
-    ctx.body = await userService.getAllUsers();
+  ctx.body = await userService.getAllUsers();
 };
 
 export const createUser = async (ctx: Context) => {
-    // Suppose qu'un middleware body parser est utilisé
-    const userData = ctx.request.body;
-    ctx.status = 201; // Created
-    ctx.body = await userService.createUser(userData);
+  // Suppose qu'un middleware body parser est utilisé
+  const userData = ctx.request.body;
+  ctx.status = 201; // Created
+  ctx.body = await userService.createUser(userData);
 };
 
 // --- services/userService.ts ---
 import { User } from '../models/User';
 
 export const getAllUsers = async () => {
-    // Imaginez que c'est un appel base de données
-    return User.findAll();
+  // Imaginez que c'est un appel base de données
+  return User.findAll();
 };
 
 export const createUser = async (userData: any) => {
-    // Imaginez que cela sauvegarde dans une base de données
-    return User.create(userData);
+  // Imaginez que cela sauvegarde dans une base de données
+  return User.create(userData);
 };
 ```
 
@@ -260,18 +260,18 @@ const app = new Koa();
 
 // Mon middleware de gestion d'erreurs générique. Je le place tout en haut.
 app.use(async (ctx, next) => {
-    try {
-        await next();
-    } catch (err) {
-        ctx.status = err.status || 500;
-        ctx.body = {
-            message: err.message,
-            // Je montre la stack seulement en développement
-            stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
-        };
-        // Logguer aussi l'erreur dans la console
-        ctx.app.emit('error', err, ctx);
-    }
+  try {
+    await next();
+  } catch (err) {
+    ctx.status = err.status || 500;
+    ctx.body = {
+      message: err.message,
+      // Je montre la stack seulement en développement
+      stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+    };
+    // Logguer aussi l'erreur dans la console
+    ctx.app.emit('error', err, ctx);
+  }
 });
 
 // Middleware de logging pour les requêtes
@@ -279,7 +279,7 @@ app.use(logger());
 
 // Écouteur d'erreur central
 app.on('error', (err, ctx) => {
-    console.error('Server Error:', err.message, { url: ctx.url });
+  console.error('Server Error:', err.message, { url: ctx.url });
 });
 
 // Vos routes et autres middlewares iraient ici...
@@ -296,4 +296,3 @@ Et voilà l'essentiel ! Nous avons voyagé d'un dossier vide à un serveur fonct
 Continuez d'apprendre, continuez de construire, et créez quelque chose d'incroyable. 🌟
 
 Bon code !
-

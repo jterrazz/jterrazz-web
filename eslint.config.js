@@ -1,3 +1,8 @@
 import { node } from '@jterrazz/quality';
 
-export default node;
+export default [
+    {
+        ignores: ['.next/**', 'next-env.d.ts'],
+    },
+    ...node,
+];

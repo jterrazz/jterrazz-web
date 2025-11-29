@@ -74,9 +74,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                         size={14}
                     />
                 </div>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400 truncate">
-                    {description}
-                </p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 truncate">{description}</p>
             </div>
         </Link>
     );
@@ -105,9 +103,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                 <span className="text-xs font-medium text-zinc-900 dark:text-zinc-200">
                     {label}
                 </span>
-                <span className="text-[10px] text-zinc-500 dark:text-zinc-500">
-                    {username}
-                </span>
+                <span className="text-[10px] text-zinc-500 dark:text-zinc-500">{username}</span>
             </div>
         </a>
     );
@@ -122,7 +118,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         offset: ['start end', 'end start'],
         target: ref,
     });
-    
+
     const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
     const userRepository = new UserInMemoryRepository();
@@ -180,21 +176,17 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                 <div className="absolute top-[10%] -right-[10%] w-[60%] h-[60%] rounded-full bg-zinc-300/50 dark:bg-zinc-800/30 blur-3xl opacity-60 mix-blend-multiply dark:mix-blend-overlay animate-blob animation-delay-2000" />
                 {/* Abstract Gradient Blob 3 */}
                 <div className="absolute -bottom-[20%] left-[20%] w-[60%] h-[60%] rounded-full bg-zinc-200/50 dark:bg-zinc-800/30 blur-3xl opacity-60 mix-blend-multiply dark:mix-blend-overlay animate-blob animation-delay-4000" />
-                
+
                 {/* Grid overlay for texture */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
-                
+
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-zinc-950 dark:via-transparent dark:to-transparent" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10 flex flex-col items-center">
-                <motion.div
-                    className="w-full max-w-4xl mx-auto mb-12"
-                    style={{ y }}
-                >
+                <motion.div className="w-full max-w-4xl mx-auto mb-12" style={{ y }}>
                     <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 shadow-xl rounded-[2.5rem] p-8 md:p-12">
                         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
-                            
                             {/* Brand Section */}
                             <div className="md:col-span-5 flex flex-col justify-between gap-6">
                                 <div>
@@ -202,12 +194,15 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                                         Jean-Baptiste Terrazzoni
                                     </h2>
                                     <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-xs">
-                                        <HighlightedText>Building, learning, and sharing.</HighlightedText>
+                                        <HighlightedText>
+                                            Building, learning, and sharing.
+                                        </HighlightedText>
                                         <br />
-                                        Exploring the frontiers of AI, architecture, and decentralization.
+                                        Exploring the frontiers of AI, architecture, and
+                                        decentralization.
                                     </p>
                                 </div>
-                                
+
                                 <div className="hidden md:block">
                                     <p className="text-xs text-zinc-400 dark:text-zinc-600 font-medium">
                                         © {new Date().getFullYear()} All rights reserved.
@@ -262,7 +257,8 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                             {/* Mobile Copyright */}
                             <div className="md:hidden col-span-1 pt-4 border-t border-zinc-100 dark:border-zinc-800">
                                 <p className="text-xs text-center text-zinc-400 dark:text-zinc-600 font-medium">
-                                    © {new Date().getFullYear()} Jean-Baptiste Terrazzoni. All rights reserved.
+                                    © {new Date().getFullYear()} Jean-Baptiste Terrazzoni. All
+                                    rights reserved.
                                 </p>
                             </div>
                         </div>

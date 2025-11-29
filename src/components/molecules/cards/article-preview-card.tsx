@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
+// Utils
 import { cn } from '../../../lib/utils.js';
 
 interface ArticlePreviewProps {
@@ -29,8 +30,8 @@ export const ArticlePreviewCard = ({
         <Link className={cn('block group h-full', className)} href={`/articles/${slug}`}>
             <motion.article
                 className="flex flex-col h-full p-6 rounded-3xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800 transition-all duration-300 hover:bg-white dark:hover:bg-zinc-900 hover:shadow-lg hover:shadow-zinc-200/10 dark:hover:shadow-zinc-900/20"
-                whileHover={{ y: -4 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
+                whileHover={{ y: -4 }}
             >
                 {/* Image Container */}
                 <div className="relative w-full h-48 overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800 mb-6 shadow-sm border border-zinc-200/50 dark:border-zinc-800/50">

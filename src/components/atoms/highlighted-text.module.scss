@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 //$highlight-color-hover: rgba(154, 95, 250, 0.5);
 //$highlight-color: rgb(221, 202, 252);
 
@@ -27,17 +29,23 @@ $highlight-color: rgb(191, 200, 201);
     &:hover {
         background: linear-gradient(
             transparent 30%,
-            lighten($highlight-color-hover, 10%) 70%,
+            color.adjust($highlight-color-hover, $lightness: 10%) 70%,
             transparent 100%
         ); // Lighten the color on hover
         &::before {
             transform: scale(1.12) skewY(-3deg) rotate(2deg); // Slightly scale up the highlight
-            background: lighten($highlight-color-hover, 10%); // Lighten the color on hover
+            background: color.adjust(
+                $highlight-color-hover,
+                $lightness: 10%
+            ); // Lighten the color on hover
         }
 
         &::after {
             transform: scale(1.12) skewY(-2deg) rotate(2deg); // Slightly scale up the highlight
-            background: lighten($highlight-color-hover, 20%); // Lighten the color on hover
+            background: color.adjust(
+                $highlight-color-hover,
+                $lightness: 20%
+            ); // Lighten the color on hover
         }
     }
 }

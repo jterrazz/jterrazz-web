@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ChevronRight, Code2, ExternalLink, Layers, Radio } from 'lucide-react';
+import { ChevronRight, Code2, ExternalLink, Layers } from 'lucide-react';
 
 // Domain
 import { type ProjectComponent } from '../../../domain/project.js';

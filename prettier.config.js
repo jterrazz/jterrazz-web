@@ -1,3 +1,3 @@
-import { prettierConfig } from '@jterrazz/quality';
+import { prettier } from '@jterrazz/quality';
 
-export default prettierConfig;
+export default prettier;

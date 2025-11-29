@@ -10,7 +10,7 @@ Mastering dependencies is what allows us to build software that is flexible, eas
 
 ---
 
-# So what *is* a dependency?
+# So what _is_ a dependency?
 
 It's simple: a dependency exists whenever a change in one piece of code forces a change in another. Think of it like this: **Code A depends on Code B if breaking B also breaks A.**
 
@@ -18,8 +18,8 @@ Let's look at a super basic TypeScript example:
 
 ```ts
 function hello() {
-	const instance = new Something(); // Right here. This is a dependency.
-	// …
+  const instance = new Something(); // Right here. This is a dependency.
+  // …
 }
 ```
 
@@ -43,10 +43,10 @@ Here are the main types:
 
 ## Category 1: Doubles that **return values**
 
-1. **Dummy**:
-		A placeholder you pass just to make the code run. It's not actually used.
+1.  **Dummy**:
+    A placeholder you pass just to make the code run. It's not actually used.
 
-		*Example:* A function needs a `User` object, but you don't care which one.
+        *Example:* A function needs a `User` object, but you don't care which one.
 
 ```ts
 function greet(user: User) {
@@ -58,19 +58,19 @@ greet(new DummyUser());
 ```
 
 1. **Fake**:
-		A simplified, working implementation of a dependency. The classic example is an in-memory database that you use for tests instead of a real one. It works, but it's not for production.
+   A simplified, working implementation of a dependency. The classic example is an in-memory database that you use for tests instead of a real one. It works, but it's not for production.
 
 2. **Stub**:
-		An object that just returns hardcoded values. You use it when your test needs a specific answer from a dependency to proceed.
+   An object that just returns hardcoded values. You use it when your test needs a specific answer from a dependency to proceed.
 
-*Example:*
+_Example:_
 
 ```ts
 class StubUserService {
-    getUser() {
-        // Always returns the same thing.
-        return { id: 1, name: "Test User" };
-    }
+  getUser() {
+    // Always returns the same thing.
+    return { id: 1, name: 'Test User' };
+  }
 }
 const userService = new StubUserService();
 ```
@@ -78,28 +78,28 @@ const userService = new StubUserService();
 ## Category 2: Doubles that **check behavior**
 
 1. **Spy**:
-		A spy is a wrapper that watches how a dependency is used. It records all the calls so you can check them after your test runs. "Did my function call `logger.log` three times?" A spy can tell you.
+   A spy is a wrapper that watches how a dependency is used. It records all the calls so you can check them after your test runs. "Did my function call `logger.log` three times?" A spy can tell you.
 
-*Example:*
+_Example:_
 
 ```ts
 class SpyLogger {
-    logs: string[] = [];
-    log(message: string) {
-        this.logs.push(message);
+  logs: string[] = [];
+  log(message: string) {
+    this.logs.push(message);
   }
 }
 ```
 
 1. **Mock**:
-		A mock is like a spy, but smarter. You tell it *beforehand* what to expect. It knows which methods should be called, with what arguments, and in what order. The test passes only if the mock's expectations are met.
+   A mock is like a spy, but smarter. You tell it _beforehand_ what to expect. It knows which methods should be called, with what arguments, and in what order. The test passes only if the mock's expectations are met.
 
-*Example:*
+_Example:_
 
 ```ts
 // Using a library like Jest
 const mockLogger = { log: jest.fn() };
-mockLogger.log("Test log");
+mockLogger.log('Test log');
 // Now you can assert that mockLogger.log was called correctly.
 ```
 
@@ -116,19 +116,19 @@ In simple terms, your core business logic shouldn't depend on technical details 
 These five principles are the foundation of good object-oriented design.
 
 1. **S - Single Responsibility Principle (SRP):**
-		A class should only have one job, one reason to change. Don't mix your business rules with your database code. Keep it clean.
+   A class should only have one job, one reason to change. Don't mix your business rules with your database code. Keep it clean.
 
 2. **O - Open/Closed Principle (OCP):**
-		Your code should be **open for extension** but **closed for modification**. You should be able to add new functionality without rewriting existing, working code. Think plugins.
+   Your code should be **open for extension** but **closed for modification**. You should be able to add new functionality without rewriting existing, working code. Think plugins.
 
 3. **L - Liskov Substitution Principle (LSP):**
-		If you have a class `Square` that inherits from `Rectangle`, you should be able to use `Square` anywhere you use `Rectangle` without breaking anything. It ensures inheritance makes sense.
+   If you have a class `Square` that inherits from `Rectangle`, you should be able to use `Square` anywhere you use `Rectangle` without breaking anything. It ensures inheritance makes sense.
 
 4. **I - Interface Segregation Principle (ISP):**
-		Don't force classes to implement methods they don't need. Keep your interfaces small and focused. A `Bird` interface shouldn't have a `swim()` method.
+   Don't force classes to implement methods they don't need. Keep your interfaces small and focused. A `Bird` interface shouldn't have a `swim()` method.
 
 5. **D - Dependency Inversion Principle (DIP):**
-		As we've covered: depend on abstractions, not on concrete, low-level details. This decouples your core logic from its technical plumbing, making it far easier to test and change.
+   As we've covered: depend on abstractions, not on concrete, low-level details. This decouples your core logic from its technical plumbing, making it far easier to test and change.
 
 ---
 
@@ -146,16 +146,16 @@ Here, my `HelloService` is directly responsible for creating its own `Database` 
 
 ```ts
 class HelloService {
-	private db: Database;
+  private db: Database;
 
-	constructor() {
-		// My service is creating its own dependency. Bad idea.
-		this.db = new Database(); // Tight coupling
-	}
+  constructor() {
+    // My service is creating its own dependency. Bad idea.
+    this.db = new Database(); // Tight coupling
+  }
 
-	sayHello() {
-		return this.db.getGreeting();
-	}
+  sayHello() {
+    return this.db.getGreeting();
+  }
 }
 ```
 
@@ -165,16 +165,17 @@ Now, `HelloService` just asks for a `Database` in its constructor. It doesn't kn
 
 ```ts
 class HelloService {
-	private db: Database;
+  private db: Database;
 
-	// The dependency is "injected" from the outside.
-	constructor(db: Database) { // Dependency injection
-		this.db = db;
-	}
+  // The dependency is "injected" from the outside.
+  constructor(db: Database) {
+    // Dependency injection
+    this.db = db;
+  }
 
-	sayHello() {
-		return this.db.getGreeting();
-	}
+  sayHello() {
+    return this.db.getGreeting();
+  }
 }
 ```
 

@@ -66,17 +66,17 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
         // Note: These variables are used in logic but we need to define them before use or restructure.
         // Actually, we refactored the logic below to avoid circular dependency on these vars.
         // We can remove this helper block as it is no longer used in the new flow.
-        
+
         // Group articles by series (Using the "Series takes priority" logic)
         // We only exclude an article from Series if it is NOT in a series.
         // If it IS in a series, it stays in the series, and we pick another one for "Latest" if needed.
         // HOWEVER, the requirement is: "latest article must not be one in the serie or application"
         // AND "serie thing takes the priority"
-        
+
         // Correct Logic:
         // 1. Separate Series vs Standalone
         // 2. "Latest" must come from Standalone only.
-        
+
         const seriesMap = new Map<string, Article[]>();
         const potentialStandaloneArticles: Article[] = [];
 
@@ -94,44 +94,59 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
 
         // Now pick Latest from Standalone
         const standaloneSorted = potentialStandaloneArticles.sort(
-            (a, b) => new Date(b.metadata.datePublished).getTime() - new Date(a.metadata.datePublished).getTime()
+            (a, b) =>
+                new Date(b.metadata.datePublished).getTime() -
+                new Date(a.metadata.datePublished).getTime(),
         );
 
         const latestArticleRawFinal = standaloneSorted.length > 0 ? standaloneSorted[0] : null;
-        
+
         // Latest Project (Standalone Project category, not the one we just picked)
         const standaloneProjects = standaloneSorted.filter(
-            a => a.metadata.category === 'project' && a.publicIndex !== latestArticleRawFinal?.publicIndex
+            (a) =>
+                a.metadata.category === 'project' &&
+                a.publicIndex !== latestArticleRawFinal?.publicIndex,
         );
         const latestProjectRawFinal = standaloneProjects.length > 0 ? standaloneProjects[0] : null;
 
         // Final Standalone list (excluding the ones we picked)
         const finalStandaloneArticles = standaloneSorted.filter(
-            a => a.publicIndex !== latestArticleRawFinal?.publicIndex && a.publicIndex !== latestProjectRawFinal?.publicIndex
+            (a) =>
+                a.publicIndex !== latestArticleRawFinal?.publicIndex &&
+                a.publicIndex !== latestProjectRawFinal?.publicIndex,
         );
 
         // Map to View Models
-        const latestArticle = latestArticleRawFinal ? this.mapToViewModel(latestArticleRawFinal) : null;
-        const latestProjectArticle = latestProjectRawFinal ? this.mapToViewModel(latestProjectRawFinal) : null;
+        const latestArticle = latestArticleRawFinal
+            ? this.mapToViewModel(latestArticleRawFinal)
+            : null;
+        const latestProjectArticle = latestProjectRawFinal
+            ? this.mapToViewModel(latestProjectRawFinal)
+            : null;
 
         // Convert series to view models
         const series: ArticleSeriesViewModel[] = [];
         seriesMap.forEach((articles, seriesTitle) => {
-            if (articles.length > 1) { // Only create series for multiple articles
+            if (articles.length > 1) {
+                // Only create series for multiple articles
                 const sortedSeriesArticles = articles.sort(
-                    (a, b) => new Date(a.metadata.datePublished).getTime() - new Date(b.metadata.datePublished).getTime()
+                    (a, b) =>
+                        new Date(a.metadata.datePublished).getTime() -
+                        new Date(b.metadata.datePublished).getTime(),
                 );
-                
+
                 const featuredArticle = this.mapToViewModel(sortedSeriesArticles[0]);
-                const relatedArticles = sortedSeriesArticles.slice(1).map(article => this.mapToViewModel(article));
-                
+                const relatedArticles = sortedSeriesArticles
+                    .slice(1)
+                    .map((article) => this.mapToViewModel(article));
+
                 series.push({
                     seriesTitle,
                     featuredArticle,
                     relatedArticles,
                 });
             } else {
-                // This should ideally not happen given our data, but if it does, 
+                // This should ideally not happen given our data, but if it does,
                 // single items go back to standalone (if we hadn't already filtered them)
                 // For now, let's just map them to series to avoid losing them, or ignore if strict.
                 // Given the logic, let's assume series are valid.
@@ -142,18 +157,20 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
         series.sort((a, b) => {
             const aLatestDate = Math.max(
                 new Date(a.featuredArticle.datePublished).getTime(),
-                ...a.relatedArticles.map(article => new Date(article.datePublished).getTime())
+                ...a.relatedArticles.map((article) => new Date(article.datePublished).getTime()),
             );
             const bLatestDate = Math.max(
                 new Date(b.featuredArticle.datePublished).getTime(),
-                ...b.relatedArticles.map(article => new Date(article.datePublished).getTime())
+                ...b.relatedArticles.map((article) => new Date(article.datePublished).getTime()),
             );
             return bLatestDate - aLatestDate;
         });
 
         return {
             series,
-            standaloneArticles: finalStandaloneArticles.map(article => this.mapToViewModel(article)),
+            standaloneArticles: finalStandaloneArticles.map((article) =>
+                this.mapToViewModel(article),
+            ),
             latestArticle: latestArticle!, // Non-null assertion as fallback if empty is unlikely
             latestProjectArticle,
             button,
@@ -181,7 +198,7 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
             datePublished: new Date(article.metadata.datePublished).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'short',
-                day: 'numeric'
+                day: 'numeric',
             }),
             readingTime: this.calculateReadingTime(content),
         };

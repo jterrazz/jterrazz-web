@@ -4,14 +4,17 @@ import React from 'react';
 
 import Script from 'next/script';
 
-import { Highlight } from '../molecules/typography/highlight.jsx';
-import { TableRowProject } from '../organisms/table-of-projects/table-row-project.js';
-
+// Domain
 import { type Feature } from '../../domain/feature.js';
 import { type Project } from '../../domain/project.js';
 import { UserContactType } from '../../domain/user.js';
+
+// Infrastructure
 import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
+
 import { SectionDivider } from '../molecules/section-divider.js';
+import { Highlight } from '../molecules/typography/highlight.jsx';
+import { TableRowProject } from '../organisms/table-of-projects/table-row-project.js';
 
 type ApplicationsListTemplateProps = {
     features: readonly Feature[];
@@ -49,17 +52,14 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
         url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/applications`,
     };
 
-    const apps = projects.filter((p) => ['Fake News', 'Capitaine IO', 'Jterrazz'].includes(p.name));
+    const apps = projects.filter((p) => ['Capitaine IO', 'Fake News', 'Jterrazz'].includes(p.name));
     const libs = projects.filter((p) => p.name === 'Typescript Packages');
     const academic = projects.filter((p) => p.name === '42 Projects');
 
     const renderProjects = (list: typeof projects) => (
         <div className="flex flex-col gap-24 md:gap-32">
             {list.map((project) => (
-                <TableRowProject
-                    key={project.name}
-                    project={project as unknown as Project}
-                />
+                <TableRowProject key={project.name} project={project as unknown as Project} />
             ))}
         </div>
     );
@@ -87,7 +87,6 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
 
             {/* Projects Content */}
             <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 space-y-32">
-                
                 {/* Applications */}
                 {apps.length > 0 && (
                     <section>

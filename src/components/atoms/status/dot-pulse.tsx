@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Utils
 import { cn } from '../../../lib/utils.js';
 
 export enum DotPulseColor {
@@ -55,9 +56,7 @@ export const DotPulse: React.FC<DotPulseProps> = ({ className, color }) => {
                     styles.pulse,
                 )}
             />
-            <span
-                className={cn('relative inline-flex rounded-full h-2.5 w-2.5', styles.bg)}
-            />
+            <span className={cn('relative inline-flex rounded-full h-2.5 w-2.5', styles.bg)} />
         </span>
     );
 };

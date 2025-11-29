@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
     content: ['./src/**/*.{jsx,tsx}'],
-    darkMode: ['class'],
+    darkMode: 'class',
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     plugins: [require('tailwindcss-animate'), require('@tailwindcss/line-clamp')],
     theme: {

@@ -4,6 +4,7 @@ import React from 'react';
 
 import Link from 'next/link';
 
+// Utils
 import { cn } from '../../lib/utils.js';
 
 import AnimatedBackground from './cards/animated-backgrounds.jsx';
@@ -58,4 +59,3 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         </div>
     );
 };
-

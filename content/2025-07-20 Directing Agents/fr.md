@@ -8,13 +8,14 @@ Dans le flux de travail traditionnel, comprendre ces exigences prend une fractio
 
 **Diriger des agents** change fondamentalement ce ratio. En utilisant des agents IA qui peuvent lire votre base de code et comprendre vos patterns, la tâche principale passe de l'écriture de code à la **spécification de l'intention**.
 
-***
+---
 
 ## Séparer la décision de la traduction
 
 ![](assets/split-thread.jpg)
 
 Le développement logiciel implique deux activités distinctes :
+
 1. **Prise de Décision :** Déterminer comment la fonctionnalité devrait se comporter, quels compromis accepter, et comment elle s'intègre dans l'architecture existante.
 2. **Traduction :** Convertir ces décisions en code valide.
 
@@ -24,7 +25,7 @@ Les agents dirigés vous obligent à recâbler cette habitude. Vous pouvez maint
 
 Vous itérez toujours, mais la boucle change. Vous définissez l'intention, l'agent gère la traduction, et vous révisez le résultat. Cela vous permet de rester dans l'état d'esprit d'"architecte" plus longtemps, évaluant les implications structurelles du code sans être constamment tiré vers le bas dans la mécanique de son écriture.
 
-***
+---
 
 ## L'art de la spécification
 
@@ -37,30 +38,27 @@ Une des façons les plus efficaces de spécifier l'intention est à travers les 
 ```typescript
 test('newsletter subscription flow', async () => {
   // 1. La requête
-  const response = await request(app)
-    .post('/api/subscribe')
-    .send({ email: 'user@example.com' });
+  const response = await request(app).post('/api/subscribe').send({ email: 'user@example.com' });
 
   // 2. Le résultat attendu
   expect(response.status).toBe(200);
   expect(response.body).toEqual({ success: true });
-  
+
   // 3. L'effet de bord (changement d'état)
-  const subscriber = await db.query(
-    'SELECT * FROM subscribers WHERE email = ?',
-    ['user@example.com']
-  );
+  const subscriber = await db.query('SELECT * FROM subscribers WHERE email = ?', [
+    'user@example.com',
+  ]);
   expect(subscriber).toBeDefined();
 });
 ```
 
-Ce code décrit le *quoi* sans dicter le *comment*. Il définit l'interface et le changement d'état attendu.
+Ce code décrit le _quoi_ sans dicter le _comment_. Il définit l'interface et le changement d'état attendu.
 
-Vous pouvez alors instruire l'agent : *"Implémente la logique pour faire passer ce test, en suivant nos patterns existants pour les contrôleurs et les services."*
+Vous pouvez alors instruire l'agent : _"Implémente la logique pour faire passer ce test, en suivant nos patterns existants pour les contrôleurs et les services."_
 
 L'agent gère le travail mécanique — créer les fichiers, importer les dépendances, écrire le boilerplate — pendant que vous vous concentrez sur la révision de la logique.
 
-***
+---
 
 ## Réviser, pas relire
 
@@ -72,7 +70,7 @@ Le processus de révision lors de la direction d'agents est critique. Vous ne v�
 
 L'agent est un travailleur infatigable, mais il manque de jugement. Il écrira joyeusement du code non sécurisé ou inefficace si cela correspond au prompt. Votre valeur réside dans votre capacité à repérer ces défauts architecturaux.
 
-***
+---
 
 ## Le piège de la complaisance
 
@@ -80,7 +78,7 @@ Le danger de la génération dirigée est le syndrome du "ça m'a l'air bon". Qu
 
 Cependant, le code généré par IA devrait être traité avec le même scepticisme que le code écrit par un développeur junior. Il nécessite une validation. Si vous arrêtez de lire le code que vous committez, vous ne dirigez plus ; vous jouez.
 
-***
+---
 
 ## Développer la compétence de direction
 
@@ -92,9 +90,9 @@ Maîtriser ce flux de travail nécessite un changement de compétences :
 
 En déchargeant la couche de traduction, vous gagnez la capacité de vous concentrer sur la conception du système et la qualité. Vous construisez plus vite non pas parce que vous tapez plus vite, mais parce que vous dépensez votre énergie sur les problèmes qui requièrent réellement l'intelligence humaine.
 
-***
+---
 
-*Ensuite : Nous explorons les systèmes autonomes, où nous passons de la direction d'agents en temps réel à la conception de systèmes autonomes qui travaillent en arrière-plan.*
+_Ensuite : Nous explorons les systèmes autonomes, où nous passons de la direction d'agents en temps réel à la conception de systèmes autonomes qui travaillent en arrière-plan._
 
 ---
 
@@ -102,4 +100,3 @@ En déchargeant la couche de traduction, vous gagnez la capacité de vous concen
 2. [**Diriger les agents IA**](https://jterrazz.com/articles/21-guided-ai-for-developers)
 3. [Agents IA autonomes](https://jterrazz.com/articles/22-autonomous-ai-agents)
 4. [Programmer des systèmes intelligents](https://jterrazz.com/articles/23-programming-intelligence)
-

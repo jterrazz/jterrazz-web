@@ -2,7 +2,7 @@
 
 # Décoder la magie : mon aventure pour recréer `nm` et `otool`
 
-Vous êtes-vous déjà demandé comment votre ordinateur comprend *réellement* un fichier binaire ? Je veux dire, jusqu'au dernier octet. Si cette curiosité résonne en vous, accrochez-vous. Je me suis récemment lancé dans l'aventure d'implémenter les commandes `nm` et `otool` de zéro en C. Ce fut tout un voyage. J'en suis ressorti avec une intuition bien plus profonde sur la façon dont les binaires et les systèmes de type Unix fonctionnent, un monde fascinant et de bas niveau.
+Vous êtes-vous déjà demandé comment votre ordinateur comprend _réellement_ un fichier binaire ? Je veux dire, jusqu'au dernier octet. Si cette curiosité résonne en vous, accrochez-vous. Je me suis récemment lancé dans l'aventure d'implémenter les commandes `nm` et `otool` de zéro en C. Ce fut tout un voyage. J'en suis ressorti avec une intuition bien plus profonde sur la façon dont les binaires et les systèmes de type Unix fonctionnent, un monde fascinant et de bas niveau.
 
 Ici, je vais retracer mes pas et partager une feuille de route pour construire vos propres versions de ces outils. Mais laissez-moi vous donner un conseil d'emblée : essayez de le construire vous-même d'abord. Sérieusement. L'expérience de fouiller dans les **man pages** et les **fichiers d'en-tête** (headers) du système vous donnera un niveau de compréhension qu'aucun article ne peut reproduire.
 
@@ -246,10 +246,10 @@ int parse_mach_symtab(struct symtab_command *symtab_command)
 	while (i < nsyms) {
 		// Données du symbole ici
 		struct nlist *symbol_data = (nlist *)symtab + i;
-		
+
 		// Nom du symbole
 		char *symbol_name = strtab + ((struct nlist *)symtab + i)->n_un.n_strx;
-		
+
 		// Ajouter à la liste pour usage ultérieur
 		handle_symbol(symbol_data, symbol_name);
 		i++;
@@ -346,4 +346,3 @@ Tous les binaires dans la nature ne sont pas bien élevés. Un fichier corrompu 
 Construire mon propre `nm` et `otool` était comme obtenir une paire de lunettes à rayons X pour les exécutables. C'est un projet qui vous force à confronter le fonctionnement des ordinateurs à un niveau profondément plus bas. Alors, mon conseil est le suivant : retroussez vos manches, ouvrez votre éditeur préféré, et commencez à creuser dans le monde incroyable de l'analyse binaire.
 
 La clé est d'être patient et curieux. N'ayez pas peur d'expérimenter, et gardez ces man pages à portée de main. Bon code ! 🖥️🔍
-

@@ -11,7 +11,7 @@ It is often assumed that using AI is a binary choice: you either adopt it or you
 
 Understanding these levels is crucial because each one shifts the bottleneck of your work to a new location. The question is not "Should I use AI?", but "Which level does this problem require?"
 
-***
+---
 
 ## Level 1: The predictive accelerator
 
@@ -25,13 +25,13 @@ The primary benefit is **flow**. When the tool handles the rote details—syntax
 
 **The risk:** Passive acceptance. If you accept every prediction without scrutiny, your output drifts toward the average—competent but generic. The goal is to use this acceleration to free up mental energy for critical thinking, not to replace thinking with auto-completion.
 
-***
+---
 
 ## Level 2: The director
 
 ![](assets/blueprint-hand.jpg)
 
-Level 2 represents a shift from *assistance* to *delegation*. Instead of typing code line-by-line with AI help, you describe the desired outcome and let the AI construct the implementation.
+Level 2 represents a shift from _assistance_ to _delegation_. Instead of typing code line-by-line with AI help, you describe the desired outcome and let the AI construct the implementation.
 
 Imagine a feature that typically takes two hours to code. At Level 2, you might spend twenty minutes defining the requirements and edge cases, one minute generating the code, and fifteen minutes reviewing the result.
 
@@ -39,7 +39,7 @@ Imagine a feature that typically takes two hours to code. At Level 2, you might 
 
 This level allows for rapid prototyping and exploration. You can generate three different architectural approaches to a problem in the time it used to take to write one. The bottleneck moves from "how fast can I type?" to "how clearly can I define the problem?"
 
-***
+---
 
 ## Level 3: The architect
 
@@ -48,6 +48,7 @@ This level allows for rapid prototyping and exploration. You can generate three 
 Directed agents (Level 2) stop working when you stop directing. Level 3 involves designing systems that run **asynchronously**, independent of your presence.
 
 These are background processes that monitor, maintain, and optimize. Examples include:
+
 - A system that watches for library updates, runs your test suite against the new versions, and prepares a pull request if everything passes.
 - An agent that monitors logs for anomalies and drafts a debugging report when an error spikes.
 
@@ -55,7 +56,7 @@ These are background processes that monitor, maintain, and optimize. Examples in
 
 Trust is the central challenge here. Because these systems run without constant supervision, they require robust "guardrails"—strict limits on what they can and cannot do. You generally start them in a "read-only" mode, then "draft" mode, and only grant "execute" permissions once reliability is proven.
 
-***
+---
 
 ## Level 4: The systems designer
 
@@ -64,14 +65,15 @@ Trust is the central challenge here. Because these systems run without constant 
 At Level 4, AI ceases to be just a developer tool and becomes a component of the software itself. You are architecting products where deterministic code and probabilistic AI work in tandem.
 
 Consider a modern educational platform.
+
 - **Traditional code** manages the curriculum structure, tracks progress, and handles billing.
 - **AI** generates personalized explanations, analogies, and practice problems based on the student's current confusion.
 
-The traditional code provides the *structure* and *rules*; the AI provides the *flexibility* and *content*.
+The traditional code provides the _structure_ and _rules_; the AI provides the _flexibility_ and _content_.
 
 **The pattern is hybrid.** Code handles the hard constraints (permissions, data integrity), while AI handles the ambiguity (natural language, image analysis). Designing these systems requires a new mental model where software components are not just logical, but "intelligent" and occasionally unpredictable, requiring validation layers.
 
-***
+---
 
 ## The progression
 
@@ -86,9 +88,9 @@ The most effective engineers and product builders move fluidly between these lev
 
 The path forward is not just about adopting tools, but about recognizing which level of leverage is appropriate for the task at hand.
 
-***
+---
 
-*This series explores each level in depth. Next, we examine Level 2: how developers are shifting from writing code to directing the agents that write it.*
+_This series explores each level in depth. Next, we examine Level 2: how developers are shifting from writing code to directing the agents that write it._
 
 ---
 

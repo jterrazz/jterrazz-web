@@ -32,7 +32,7 @@ export const Highlight: React.FC<HighlightProps> = ({ button, className, descrip
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
                 {title}
             </h1>
-            
+
             <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
                 {description}
             </p>

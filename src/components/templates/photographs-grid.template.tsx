@@ -4,11 +4,14 @@ import React from 'react';
 
 import { ImageGallery } from 'react-image-grid-gallery';
 
-import { Highlight } from '../molecules/typography/highlight.js';
-
+// Domain
 import { type Photograph } from '../../domain/photograph.js';
 import { UserContactType } from '../../domain/user.js';
+
+// Infrastructure
 import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository.js';
+
+import { Highlight } from '../molecules/typography/highlight.js';
 
 export type PhotographsGridTemplateProps = {
     highlightDescription: string;
@@ -48,11 +51,7 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
             {/* Gallery Content */}
             <div className="max-w-7xl mx-auto px-4 md:px-6 pb-24">
                 <div className="grayscale hover:grayscale-0 transition-all duration-700">
-                    <ImageGallery
-                        columnCount={3}
-                        gapSize={24}
-                        imagesInfoArray={images}
-                    />
+                    <ImageGallery columnCount={3} gapSize={24} imagesInfoArray={images} />
                 </div>
             </div>
         </div>

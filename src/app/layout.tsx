@@ -148,9 +148,7 @@ export default function RootLayout({
                     <div className="sticky top-0 z-[50] pointer-events-none">
                         <TheNavigationBar contacts={contacts} pages={pages} />
                     </div>
-                    <div className="flex-1 flex flex-col overflow-x-hidden w-full">
-                        {children}
-                    </div>
+                    <div className="flex-1 flex flex-col overflow-x-hidden w-full">{children}</div>
                     <TheFooter />
                 </ClientLayoutWrapper>
             </body>

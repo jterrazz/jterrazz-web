@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 
+// Domain
 import { ArticleCategory } from '../../domain/article.js';
 
 import { Badge, BadgeColor } from '../atoms/status/badge.jsx';
@@ -39,7 +40,9 @@ const FeaturedArticle: React.FC<{ article: ArticleRowViewModel }> = ({ article }
                     {/* Text on the right */}
                     <div className="col-span-12 md:col-span-5 flex flex-col justify-center min-w-0 md:pt-1 space-y-4">
                         <div className="flex items-center gap-3 text-xs font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
-                            <span className="text-zinc-900 dark:text-zinc-100">{article.category}</span>
+                            <span className="text-zinc-900 dark:text-zinc-100">
+                                {article.category}
+                            </span>
                             <span>•</span>
                             <span>{article.datePublished}</span>
                         </div>
@@ -113,7 +116,7 @@ const CompactArticleCard: React.FC<{ article: ArticleRowViewModel }> = ({ articl
                         />
                     </div>
                 </div>
-                
+
                 {/* Content */}
                 <div className="sm:col-span-8 md:col-span-9 flex flex-col h-full justify-center">
                     <div className="flex items-center gap-2 mb-2 text-xs font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
@@ -137,19 +140,16 @@ const CompactArticleCard: React.FC<{ article: ArticleRowViewModel }> = ({ articl
 };
 
 // Series component
-const ArticleSeries: React.FC<{ isFirst?: boolean; series: ArticleSeriesViewModel }> = ({
-    isFirst = false,
-    series,
-}) => {
+const ArticleSeries: React.FC<{ series: ArticleSeriesViewModel }> = ({ series }) => {
     return (
         <section className="pb-16 md:pb-24">
             <SectionDivider className="mb-12 md:mb-16" title={`${series.seriesTitle} Series`} />
-            
+
             {/* Featured Article */}
             <div className="mb-12 md:mb-16">
                 <FeaturedArticle article={series.featuredArticle} />
             </div>
-            
+
             {/* Related Articles Grid */}
             {series.relatedArticles.length > 0 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
@@ -192,36 +192,39 @@ type ArticlesListTemplateProps = {
 };
 
 export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ viewModel }) => {
-    const [filter, setFilter] = useState<'All' | 'AI' | 'Architecture' | 'Project'>('All');
+    const [filter, setFilter] = useState<'AI' | 'All' | 'Architecture' | 'Project'>('All');
 
     const filterMap: Record<string, ArticleCategory[]> = {
-        'AI': [ArticleCategory.Insight],
-        'Architecture': [ArticleCategory.Architecture],
-        'Project': [ArticleCategory.Project],
+        AI: [ArticleCategory.Insight],
+        Architecture: [ArticleCategory.Architecture],
+        Project: [ArticleCategory.Project],
     };
 
     // Filter Helper
     const shouldShow = (article: ArticleRowViewModel): boolean => {
         if (filter === 'All') return true;
-        // Convert view model category string back to ArticleCategory if needed, 
+        // Convert view model category string back to ArticleCategory if needed,
         // but our view model category is just the string value.
         // ArticleCategory values are 'insight', 'code', 'build'.
         // We need to check if the article.category matches the allowed categories for the current filter.
         const allowedCategories = filterMap[filter];
-        return allowedCategories ? allowedCategories.includes(article.category as ArticleCategory) : true;
+        return allowedCategories
+            ? allowedCategories.includes(article.category as ArticleCategory)
+            : true;
     };
 
     // Filter content
-    const filteredSeries = viewModel.series.filter(s => 
+    const filteredSeries = viewModel.series.filter((s) =>
         // A series is shown if its featured article (representative of the series) matches
-        shouldShow(s.featuredArticle)
+        shouldShow(s.featuredArticle),
     );
 
     const filteredStandalone = viewModel.standaloneArticles.filter(shouldShow);
-    
+
     // Latest sections might be hidden if they don't match filter
     const showLatestArticle = viewModel.latestArticle && shouldShow(viewModel.latestArticle);
-    const showLatestProject = viewModel.latestProjectArticle && shouldShow(viewModel.latestProjectArticle);
+    const showLatestProject =
+        viewModel.latestProjectArticle && shouldShow(viewModel.latestProjectArticle);
 
     const allArticles = [
         ...viewModel.series.flatMap((series) => [
@@ -283,15 +286,18 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                 <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 md:pb-0 no-scrollbar">
                     {['All', 'AI', 'Architecture', 'Project'].map((f) => (
                         <button
-                            key={f}
-                            onClick={() => setFilter(f as any)}
                             className={`
                                 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap
-                                ${filter === f 
-                                    ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 shadow-lg shadow-zinc-900/20 dark:shadow-zinc-100/20' 
-                                    : 'bg-zinc-100 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200'
+                                ${
+                                    filter === f
+                                        ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 shadow-lg shadow-zinc-900/20 dark:shadow-zinc-100/20'
+                                        : 'bg-zinc-100 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200'
                                 }
                             `}
+                            key={f}
+                            onClick={() =>
+                                setFilter(f as 'AI' | 'All' | 'Architecture' | 'Project')
+                            }
                         >
                             {f}
                         </button>
@@ -302,7 +308,6 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
             {/* Articles Content */}
             <div className="max-w-7xl mx-auto px-4 md:px-6 pb-24">
                 <div className="space-y-20">
-                    
                     {/* Latest Updates Section */}
                     {(showLatestArticle || showLatestProject) && (
                         <section className="pb-8">
@@ -322,7 +327,9 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                                     <div className="flex flex-col gap-8">
                                         <SectionDivider title="Latest Project" />
                                         <div className="h-full">
-                                            <GridArticleCard article={viewModel.latestProjectArticle} />
+                                            <GridArticleCard
+                                                article={viewModel.latestProjectArticle}
+                                            />
                                         </div>
                                     </div>
                                 )}
@@ -332,11 +339,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
 
                     {/* Article Series */}
                     {filteredSeries.map((series, index) => (
-                        <ArticleSeries
-                            isFirst={index === 0}
-                            key={`series-${index}`}
-                            series={series}
-                        />
+                        <ArticleSeries key={`series-${index}`} series={series} />
                     ))}
 
                     {/* Standalone Articles */}

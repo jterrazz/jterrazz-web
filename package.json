@@ -12,7 +12,7 @@
     "start": "next start",
     "dev": "next dev",
     "test": "vitest",
-    "lint": "code-standards",
+    "lint": "quality",
     "clean": "rm -rf .next && rm -rf node_modules"
   },
   "dependencies": {

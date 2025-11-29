@@ -17,6 +17,7 @@ A news story is rarely black and white. The same event can be framed as a "liber
 This project relies heavily on Artificial Intelligence, not just as a feature, but as the core infrastructure that makes it scalable.
 
 AI acts as an automated editorial room, enabling the platform to:
+
 - **Generate infinite scenarios:** Creating unique quiz content based on real-time trends ensures the game never feels stale.
 - **Analyze multiple perspectives:** The system scans articles from various viewpoints to highlight how different outlets spin the same facts.
 - **Synthesize clarity:** It distills complex geopolitical stories into bite-sized, verifiable facts.

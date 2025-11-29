@@ -19,7 +19,8 @@ export const metadata: Metadata = {
     alternates: {
         canonical: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
     },
-    description: 'Read articles by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer. Deep dives into AI, fintech, and building intelligent systems for personal and financial growth.',
+    description:
+        'Read articles by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer. Deep dives into AI, fintech, and building intelligent systems for personal and financial growth.',
     keywords: [
         'AI articles',
         'fintech insights',
@@ -30,7 +31,8 @@ export const metadata: Metadata = {
         'Fintech Engineer',
     ],
     openGraph: {
-        description: 'Read articles by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer.',
+        description:
+            'Read articles by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer.',
         title: 'Articles by Jean-Baptiste Terrazzoni: AI & Fintech Insights',
         type: 'website',
         url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
@@ -59,7 +61,8 @@ export default async function ArticlesPage() {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
-        description: 'Read articles by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer. Deep dives into AI, fintech, and building intelligent systems for personal and financial growth.',
+        description:
+            'Read articles by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer. Deep dives into AI, fintech, and building intelligent systems for personal and financial growth.',
         hasPart: articles
             .filter((article) => article.published)
             .map((article) => ({

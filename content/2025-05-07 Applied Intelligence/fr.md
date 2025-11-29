@@ -239,4 +239,3 @@ Commencez cette semaine. Pas un jour. Cette semaine.
 
 4. [**Intelligence abondante : la vie après l'effondrement**](https://medium.com/a-42-journey/ai-architects-of-inversion-the-world-that-follows-94f05eb9df14)
    _Une plongée profonde dans la façon dont l'intelligence abondante transforme le travail, la société, l'espace et la forme de la civilisation._
-

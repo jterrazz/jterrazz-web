@@ -11,7 +11,7 @@ On suppose souvent qu'utiliser l'IA est un choix binaire : soit vous l'adoptez, 
 
 Comprendre ces niveaux est crucial car chacun déplace le goulot d'étranglement de votre travail vers un nouvel endroit. La question n'est pas "Devrais-je utiliser l'IA ?", mais "Quel niveau ce problème requiert-il ?"
 
-***
+---
 
 ## Niveau 1 : L'accélérateur prédictif
 
@@ -25,13 +25,13 @@ Le bénéfice principal est le **flow**. Quand l'outil gère les détails répé
 
 **Le risque :** L'acceptation passive. Si vous acceptez chaque prédiction sans examen, votre production dérive vers la moyenne — compétente mais générique. Le but est d'utiliser cette accélération pour libérer de l'énergie mentale pour la pensée critique, pas pour remplacer la pensée par l'autocomplétion.
 
-***
+---
 
 ## Niveau 2 : Le directeur
 
 ![](assets/blueprint-hand.jpg)
 
-Le Niveau 2 représente un passage de l'*assistance* à la *délégation*. Au lieu de taper du code ligne par ligne avec l'aide de l'IA, vous décrivez le résultat désiré et laissez l'IA construire l'implémentation.
+Le Niveau 2 représente un passage de l'_assistance_ à la _délégation_. Au lieu de taper du code ligne par ligne avec l'aide de l'IA, vous décrivez le résultat désiré et laissez l'IA construire l'implémentation.
 
 Imaginez une fonctionnalité qui prend typiquement deux heures à coder. Au Niveau 2, vous pourriez passer vingt minutes à définir les exigences et les cas limites, une minute à générer le code, et quinze minutes à réviser le résultat.
 
@@ -39,7 +39,7 @@ Imaginez une fonctionnalité qui prend typiquement deux heures à coder. Au Nive
 
 Ce niveau permet un prototypage et une exploration rapides. Vous pouvez générer trois approches architecturales différentes pour un problème dans le temps qu'il fallait pour en écrire une. Le goulot d'étranglement passe de "à quelle vitesse puis-je taper ?" à "à quel point puis-je définir clairement le problème ?"
 
-***
+---
 
 ## Niveau 3 : L'architecte
 
@@ -48,6 +48,7 @@ Ce niveau permet un prototypage et une exploration rapides. Vous pouvez génére
 Les agents dirigés (Niveau 2) s'arrêtent de travailler quand vous arrêtez de diriger. Le Niveau 3 implique de concevoir des systèmes qui fonctionnent **de manière asynchrone**, indépendamment de votre présence.
 
 Ce sont des processus d'arrière-plan qui surveillent, maintiennent et optimisent. Des exemples incluent :
+
 - Un système qui surveille les mises à jour de bibliothèques, lance votre suite de tests contre les nouvelles versions, et prépare une pull request si tout passe.
 - Un agent qui surveille les logs pour des anomalies et rédige un rapport de débogage quand une erreur atteint un pic.
 
@@ -55,7 +56,7 @@ Ce sont des processus d'arrière-plan qui surveillent, maintiennent et optimisen
 
 La confiance est le défi central ici. Parce que ces systèmes tournent sans supervision constante, ils requièrent des "garde-fous" robustes — des limites strictes sur ce qu'ils peuvent et ne peuvent pas faire. Vous les démarrez généralement en mode "lecture seule", puis en mode "brouillon", et n'accordez les permissions d'"exécution" qu'une fois la fiabilité prouvée.
 
-***
+---
 
 ## Niveau 4 : Le concepteur de systèmes
 
@@ -64,14 +65,15 @@ La confiance est le défi central ici. Parce que ces systèmes tournent sans sup
 Au Niveau 4, l'IA cesse d'être juste un outil de développeur et devient un composant du logiciel lui-même. Vous architecturez des produits où le code déterministe et l'IA probabiliste travaillent en tandem.
 
 Considérez une plateforme éducative moderne.
+
 - **Le code traditionnel** gère la structure du curriculum, suit les progrès, et gère la facturation.
 - **L'IA** génère des explications personnalisées, des analogies, et des problèmes pratiques basés sur la confusion actuelle de l'étudiant.
 
-Le code traditionnel fournit la *structure* et les *règles* ; l'IA fournit la *flexibilité* et le *contenu*.
+Le code traditionnel fournit la _structure_ et les _règles_ ; l'IA fournit la _flexibilité_ et le _contenu_.
 
 **Le modèle est hybride.** Le code gère les contraintes dures (permissions, intégrité des données), tandis que l'IA gère l'ambiguïté (langage naturel, analyse d'image). Concevoir ces systèmes requiert un nouveau modèle mental où les composants logiciels ne sont pas juste logiques, mais "intelligents" et occasionnellement imprévisibles, nécessitant des couches de validation.
 
-***
+---
 
 ## La progression
 
@@ -86,9 +88,9 @@ Les ingénieurs et bâtisseurs de produits les plus efficaces bougent fluidement
 
 Le chemin à suivre n'est pas seulement d'adopter des outils, mais de reconnaître quel niveau de levier est approprié pour la tâche en main.
 
-***
+---
 
-*Cette série explore chaque niveau en profondeur. Ensuite, nous examinons le Niveau 2 : comment les développeurs passent de l'écriture de code à la direction des agents qui l'écrivent.*
+_Cette série explore chaque niveau en profondeur. Ensuite, nous examinons le Niveau 2 : comment les développeurs passent de l'écriture de code à la direction des agents qui l'écrivent._
 
 ---
 
@@ -96,4 +98,3 @@ Le chemin à suivre n'est pas seulement d'adopter des outils, mais de reconnaît
 2. [Diriger les agents IA](https://jterrazz.com/articles/21-guided-ai-for-developers)
 3. [Agents IA autonomes](https://jterrazz.com/articles/22-autonomous-ai-agents)
 4. [Programmer des systèmes intelligents](https://jterrazz.com/articles/23-programming-intelligence)
-

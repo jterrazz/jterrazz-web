@@ -40,7 +40,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2019-06-01',
             description: {
                 en: 'Build your own malloc in C, learn mmap, buckets, first-fit, coalescing, alignment fixes to master dynamic memory.',
-                fr: 'Construisez votre propre malloc en C, apprenez mmap, buckets, first-fit, coalescence et correctifs d\'alignement pour maîtriser la mémoire dynamique.',
+                fr: "Construisez votre propre malloc en C, apprenez mmap, buckets, first-fit, coalescence et correctifs d'alignement pour maîtriser la mémoire dynamique.",
             },
             title: {
                 en: 'Master memory management, I built my own malloc, and you should too',
@@ -78,7 +78,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2019-07-25',
             description: {
                 en: 'A guide to Mach-O analysis: decode symbol tables, headers, sections, and build your own nm/otool utilities in C.',
-                fr: 'Guide de l\'analyse Mach-O : décodez tables de symboles, en-têtes, sections et construisez vos propres utilitaires nm/otool en C.',
+                fr: "Guide de l'analyse Mach-O : décodez tables de symboles, en-têtes, sections et construisez vos propres utilitaires nm/otool en C.",
             },
             title: {
                 en: 'Decoding the magic, my journey building nm and otool',
@@ -97,7 +97,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2019-08-27',
             description: {
                 en: 'Craft self-replicating quine programs in multiple languages, understand theory, and master code that prints itself.',
-                fr: 'Créez des programmes quines auto-répliquants dans plusieurs langages, comprenez la théorie et maîtrisez le code qui s\'imprime lui-même.',
+                fr: "Créez des programmes quines auto-répliquants dans plusieurs langages, comprenez la théorie et maîtrisez le code qui s'imprime lui-même.",
             },
             title: {
                 en: 'Building a program that writes itself (a quine)',
@@ -116,7 +116,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2019-08-28',
             description: {
                 en: 'Set up toolchain, grasp registers & calling conventions, and code/link your first assembly functions.',
-                fr: 'Installez la toolchain, maîtrisez registres et conventions d\'appel, codez et linkez vos premières fonctions assembleur.',
+                fr: "Installez la toolchain, maîtrisez registres et conventions d'appel, codez et linkez vos premières fonctions assembleur.",
             },
             title: {
                 en: "Let's dive into assembly and build our first functions (Intel x86-64)",
@@ -135,7 +135,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2019-09-10',
             description: {
                 en: 'Guide to expert systems: code a backward-chaining inference engine in Python, with rules and facts.',
-                fr: 'Guide des systèmes experts : codez un moteur d\'inférence à chaînage arrière en Python, avec règles et faits.',
+                fr: "Guide des systèmes experts : codez un moteur d'inférence à chaînage arrière en Python, avec règles et faits.",
             },
             title: {
                 en: 'My journey into expert systems with Python',
@@ -252,7 +252,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2024-12-23',
             description: {
                 en: 'Layer entities, use cases, adapters and drivers; decouple business logic from tech details.',
-                fr: 'Organisez entités, cas d\'usage, adaptateurs et drivers ; découplez la logique métier des détails techniques.',
+                fr: "Organisez entités, cas d'usage, adaptateurs et drivers ; découplez la logique métier des détails techniques.",
             },
             series: 'Application Design',
             title: {
@@ -311,12 +311,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2025-05-07',
             description: {
                 en: 'Integrate AI tools, delegate cognitive work, and adopt mindsets for balance and future-proof skills.',
-                fr: 'Intégrez les outils IA, déléguez le travail cognitif et adoptez les bons mindsets pour un équilibre et des compétences d\'avenir.',
+                fr: "Intégrez les outils IA, déléguez le travail cognitif et adoptez les bons mindsets pour un équilibre et des compétences d'avenir.",
             },
             series: 'Using AI',
             title: {
                 en: 'A practical playbook to AI',
-                fr: 'Un guide pratique de l\'IA',
+                fr: "Un guide pratique de l'IA",
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
@@ -331,12 +331,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2025-05-08',
             description: {
                 en: 'Abundant AI collapses execution costs, inverts value hierarchies, and moves human work up.',
-                fr: 'L\'IA abondante effondre les coûts d\'exécution, inverse les hiérarchies de valeur et élève le travail humain.',
+                fr: "L'IA abondante effondre les coûts d'exécution, inverse les hiérarchies de valeur et élève le travail humain.",
             },
             series: 'Using AI',
             title: {
                 en: 'When execution collapses',
-                fr: 'Quand l\'exécution s\'effondre',
+                fr: "Quand l'exécution s'effondre",
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
@@ -351,12 +351,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2025-05-09',
             description: {
                 en: 'Abundant AI reimagines society into purpose-driven, post-physical communities.',
-                fr: 'L\'IA abondante réimagine la société en communautés post-physiques guidées par le sens.',
+                fr: "L'IA abondante réimagine la société en communautés post-physiques guidées par le sens.",
             },
             series: 'Using AI',
             title: {
                 en: 'Life after the collapse',
-                fr: 'La vie après l\'effondrement',
+                fr: "La vie après l'effondrement",
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
@@ -390,12 +390,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2025-07-19',
             description: {
                 en: 'A framework for AI integration in any field, from assistant to programmable intelligence.',
-                fr: 'Un cadre d\'intégration de l\'IA dans tous les domaines, de l\'assistant à l\'intelligence programmable.',
+                fr: "Un cadre d'intégration de l'IA dans tous les domaines, de l'assistant à l'intelligence programmable.",
             },
             series: 'Abundant Intelligence',
             title: {
                 en: 'The four levels of AI integration',
-                fr: 'Les quatre niveaux d\'intégration de l\'IA',
+                fr: "Les quatre niveaux d'intégration de l'IA",
             },
         },
         previewImage: 'thumbnail.jpg',
@@ -410,7 +410,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2025-07-20',
             description: {
                 en: 'Guide for developers to direct AI as guided agent, transforming coding into orchestration.',
-                fr: 'Guide pour développeurs : diriger l\'IA comme agent guidé, transformer le codage en orchestration.',
+                fr: "Guide pour développeurs : diriger l'IA comme agent guidé, transformer le codage en orchestration.",
             },
             series: 'Abundant Intelligence',
             title: {

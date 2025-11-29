@@ -13,8 +13,14 @@ import { AnimatePresence, motion, type Transition } from 'framer-motion';
 // Utils
 import { cn } from '../../../lib/utils.js';
 
+type ChildProps = {
+    children?: React.ReactNode;
+    className?: string;
+    'data-id': string;
+};
+
 type AnimatedBackgroundProps = {
-    children: ReactElement<{ 'data-id': string }> | ReactElement<{ 'data-id': string }>[];
+    children: ReactElement<ChildProps> | ReactElement<ChildProps>[];
     className?: string;
     defaultValue?: string;
     enableHover?: boolean;
@@ -47,7 +53,7 @@ export default function AnimatedBackground({
         }
     }, [defaultValue]);
 
-    return Children.map(children, (child: React.ReactElement, index) => {
+    return Children.map(children, (child: ReactElement<ChildProps>, index) => {
         const id = child.props['data-id'];
 
         const interactionProps = enableHover
@@ -59,15 +65,17 @@ export default function AnimatedBackground({
                   onClick: () => handleSetActiveId(id),
               };
 
+        const newProps = {
+            'aria-selected': activeId === id,
+            className: cn('relative inline-flex', child.props.className),
+            'data-checked': activeId === id ? 'true' : 'false',
+            key: index,
+            ...interactionProps,
+        };
+
         return cloneElement(
             child,
-            {
-                'aria-selected': activeId === id,
-                className: cn('relative inline-flex', child.props.className),
-                'data-checked': activeId === id ? 'true' : 'false',
-                key: index,
-                ...interactionProps,
-            },
+            newProps as unknown as Partial<ChildProps>,
             <>
                 <AnimatePresence initial={false}>
                     {activeId === id && (

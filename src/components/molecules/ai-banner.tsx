@@ -4,6 +4,7 @@ import React from 'react';
 
 import { Sparkles } from 'lucide-react';
 
+// Utils
 import { cn } from '../../lib/utils.js';
 
 export const AIBanner = ({ className }: { className?: string }) => {
@@ -19,10 +20,9 @@ export const AIBanner = ({ className }: { className?: string }) => {
         >
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
             <span>
-                Final text polished by AI for readability. The underlying concepts & architecture are
-                my own.
+                Final text polished by AI for readability. The underlying concepts & architecture
+                are my own.
             </span>
         </div>
     );
 };
-

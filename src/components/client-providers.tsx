@@ -15,4 +15,4 @@ if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
 
 export function ClientProviders({ children }: { children: React.ReactNode }) {
     return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
-} 
+}

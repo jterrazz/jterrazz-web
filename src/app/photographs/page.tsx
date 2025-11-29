@@ -21,7 +21,8 @@ export default function PhotographsPage() {
     const photographs = photographsRepository.getPhotographs();
 
     const highlightTitle = 'Photographs';
-    const highlightDescription = 'The world as I see it. A simple collection of moments and places that caught my eye.';
+    const highlightDescription =
+        'The world as I see it. A simple collection of moments and places that caught my eye.';
 
     return (
         <PhotographsGridTemplate

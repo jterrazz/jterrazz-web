@@ -32,29 +32,27 @@ const NavigationTabItem: React.FC<NavigationTabItemProps> = ({
     onClick,
     title,
 }) => {
-    const content = (
-        <span className="flex items-center gap-2">{children}</span>
-    );
+    const content = <span className="flex items-center gap-2">{children}</span>;
 
     if (newTab) {
-    return (
+        return (
             <a
                 className={className}
-                    href={href}
-                    onClick={onClick}
+                href={href}
+                onClick={onClick}
                 rel="noopener noreferrer"
                 target="_blank"
                 title={title}
-                >
-                    {content}
+            >
+                {content}
             </a>
-    );
+        );
     }
 
     return (
         <Link className={className} href={href} onClick={onClick} title={title}>
             {content}
-                                </Link>
+        </Link>
     );
 };
 
@@ -107,10 +105,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                 >
                     {/* Logo */}
                     <Link className="flex-shrink-0 mr-4 md:mr-8" href="/" onClick={closeMenu}>
-                        <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                             <Image
                                 alt="Jterrazz"
                                 className="rounded-full"
@@ -135,11 +130,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             {pages.map((page) => {
                                 const isSelected = pathname === page.href;
                                 return (
-                                    <div
-                                        className="px-1"
-                                        data-id={page.href}
-                                        key={page.href}
-                                    >
+                                    <div className="px-1" data-id={page.href} key={page.href}>
                                         <Link
                                             className={cn(
                                                 'relative px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 block',
@@ -160,10 +151,10 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                     {/* Desktop Contacts */}
                     <div className="hidden md:flex items-center gap-2 ml-4 md:ml-8">
                         {contacts.map((contact) => (
-                        <NavigationTabItem
+                            <NavigationTabItem
                                 className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors p-2"
-                            href={contact.url}
-                            key={contact.name}
+                                href={contact.url}
+                                key={contact.name}
                                 newTab
                                 title={contact.name}
                             >
@@ -172,7 +163,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                                 )}
                             </NavigationTabItem>
                         ))}
-                        
+
                         <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-800 mx-2" />
 
                         <a
@@ -183,19 +174,19 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             <span>Get App</span>
                             <Download size={14} />
                         </a>
-                </div>
+                    </div>
 
                     {/* Mobile Menu Toggle */}
                     <div className="md:hidden flex items-center ml-auto">
-                    <button
-                        aria-label="Toggle menu"
+                        <button
+                            aria-label="Toggle menu"
                             className="p-2 text-zinc-600 dark:text-zinc-300"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
+                        </button>
+                    </div>
                 </div>
-            </div>
             </nav>
 
             {/* Mobile Menu Overlay */}
@@ -210,12 +201,12 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                     >
                         <div className="flex flex-col gap-6">
                             {pages.map((page, index) => (
-                        <motion.div
+                                <motion.div
                                     animate={{ opacity: 1, x: 0 }}
                                     initial={{ opacity: 0, x: -20 }}
                                     key={page.href}
                                     transition={{ delay: index * 0.05 + 0.1 }}
-                        >
+                                >
                                     <Link
                                         className={cn(
                                             'text-2xl font-semibold tracking-tight block',
@@ -228,7 +219,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                                     >
                                         {page.name}
                                     </Link>
-                        </motion.div>
+                                </motion.div>
                             ))}
                         </div>
 
@@ -248,9 +239,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                                         target="_blank"
                                     >
                                         {getContactIcon(contact.name) || <Monitor size={20} />}
-                                        <span className="text-sm font-medium">
-                                            {contact.name}
-                                        </span>
+                                        <span className="text-sm font-medium">{contact.name}</span>
                                     </a>
                                 ))}
                             </div>

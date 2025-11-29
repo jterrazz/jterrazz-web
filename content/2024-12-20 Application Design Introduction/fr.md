@@ -39,13 +39,13 @@ Le but est simple : créer des applications qui sont **maintenables** (faciles �
 Construire un logiciel est une bataille contre la complexité. La première étape pour gagner est de connaître votre ennemi. Je le vois sous trois formes principales :
 
 1. **La complexité essentielle**
-    C'est la complexité que vous ne pouvez pas éviter, la difficulté inhérente au problème que vous résolvez. Si vous construisez une appli bancaire, vous devez gérer les calculs d'intérêts et les règles de transaction. C'est le job. C'est essentiel.
+   C'est la complexité que vous ne pouvez pas éviter, la difficulté inhérente au problème que vous résolvez. Si vous construisez une appli bancaire, vous devez gérer les calculs d'intérêts et les règles de transaction. C'est le job. C'est essentiel.
 
 2. **La complexité technique**
-    Celle-ci vient de vos outils : les bases de données, les frameworks et les serveurs requis pour faire tourner votre logiciel. C'est une partie nécessaire de l'équation, mais elle doit être gérée pour ne pas détourner le projet.
+   Celle-ci vient de vos outils : les bases de données, les frameworks et les serveurs requis pour faire tourner votre logiciel. C'est une partie nécessaire de l'équation, mais elle doit être gérée pour ne pas détourner le projet.
 
 3. **La complexité accidentelle**
-    C'est la blessure auto-infligée, le désordre que nous créons par de mauvais choix de conception. Pensez au code spaghetti, à l'utilisation d'un framework pour tout juste parce qu'on peut, ou à l'absence totale de documentation. Contrairement aux autres, cette complexité est entièrement optionnelle. Nous pouvons, et devons, l'éliminer.
+   C'est la blessure auto-infligée, le désordre que nous créons par de mauvais choix de conception. Pensez au code spaghetti, à l'utilisation d'un framework pour tout juste parce qu'on peut, ou à l'absence totale de documentation. Contrairement aux autres, cette complexité est entièrement optionnelle. Nous pouvons, et devons, l'éliminer.
 
 ![](assets/complexity-levels.svg)
 
@@ -58,11 +58,11 @@ Une bonne conception d'application consiste à minimiser la complexité accident
 Pour comprendre la conception d'application aujourd'hui, il est utile de voir d'où l'on vient. Le voyage a été rapide.
 
 - **Avant 2000 : Le Far West.**
-    Le logiciel était souvent construit à l'instinct. Les architectures étaient désordonnées, et la plupart des tests, s'ils existaient, étaient faits à la main. C'était le chaos.
+  Le logiciel était souvent construit à l'instinct. Les architectures étaient désordonnées, et la plupart des tests, s'ils existaient, étaient faits à la main. C'était le chaos.
 - **Les années 2000 : La structure émerge.**
-    Les frameworks, les conceptions en couches et les méthodologies Agiles ont commencé à apporter de l'ordre. La pyramide des tests automatisés a émergé, mettant l'accent sur les tests unitaires. Les équipes ont commencé à reconnaître la valeur d'une approche plus disciplinée.
+  Les frameworks, les conceptions en couches et les méthodologies Agiles ont commencé à apporter de l'ordre. La pyramide des tests automatisés a émergé, mettant l'accent sur les tests unitaires. Les équipes ont commencé à reconnaître la valeur d'une approche plus disciplinée.
 - **Post-2015 : L'ère moderne.**
-    C'est là que les choses ont vraiment cliqué. Des pratiques comme le **Test-Driven Development (TDD)** et le **Domain-Driven Design (DDD)** sont devenues courantes. Des architectures comme l'**hexagonale** et la **clean architecture** nous ont appris à séparer véritablement les responsabilités. Le **déploiement continu** est devenu la norme, intégrant la qualité dans le processus de développement lui-même.
+  C'est là que les choses ont vraiment cliqué. Des pratiques comme le **Test-Driven Development (TDD)** et le **Domain-Driven Design (DDD)** sont devenues courantes. Des architectures comme l'**hexagonale** et la **clean architecture** nous ont appris à séparer véritablement les responsabilités. Le **déploiement continu** est devenu la norme, intégrant la qualité dans le processus de développement lui-même.
 
 ---
 
@@ -71,18 +71,18 @@ Pour comprendre la conception d'application aujourd'hui, il est utile de voir d'
 La conception d'application n'est pas apparue de nulle part. Elle repose sur les épaules de deux manifestes fondateurs qui ont changé notre façon de penser la construction de logiciels.
 
 1. **Le Manifeste Agile (2001)**
-    Ce fut une révolution. Il nous a rappelé de valoriser :
-    - **Des logiciels opérationnels** plus que d'énormes documentations.
-    - **L'adaptation au changement** plus que le suivi d'un plan.
-    - **Les individus et leurs interactions** plus que les processus rigides.
-    - **La collaboration avec les clients** plus que la négociation contractuelle.
+   Ce fut une révolution. Il nous a rappelé de valoriser :
+   - **Des logiciels opérationnels** plus que d'énormes documentations.
+   - **L'adaptation au changement** plus que le suivi d'un plan.
+   - **Les individus et leurs interactions** plus que les processus rigides.
+   - **La collaboration avec les clients** plus que la négociation contractuelle.
 
 2. **Le Manifeste de l'Artisanat Logiciel (Software Craftsmanship)**
-    Cela a poussé l'Agile un pas plus loin. C'est une question de fierté professionnelle et de qualité, mettant l'accent sur :
-    - **Des logiciels bien conçus**, pas seulement des logiciels qui fonctionnent.
-    - **L'ajout constant de valeur** pour les utilisateurs.
-    - Une **communauté de professionnels** qui s'entraident pour grandir.
-    - **Des partenariats productifs**, pas seulement des obligations contractuelles.
+   Cela a poussé l'Agile un pas plus loin. C'est une question de fierté professionnelle et de qualité, mettant l'accent sur :
+   - **Des logiciels bien conçus**, pas seulement des logiciels qui fonctionnent.
+   - **L'ajout constant de valeur** pour les utilisateurs.
+   - Une **communauté de professionnels** qui s'entraident pour grandir.
+   - **Des partenariats productifs**, pas seulement des obligations contractuelles.
 
 ---
 
@@ -96,4 +96,3 @@ La conception d'application n'est pas apparue de nulle part. Elle repose sur les
 2. [Conception d'application : maîtriser le flux des dépendances](https://www.jterrazz.com/articles/10-software-design-1-mastering-dependencies)
 3. [Conception d'application : séparer le métier de la technologie](https://www.jterrazz.com/articles/11-software-design-2-hexagonal-architecture)
 4. [Conception d'application : un voyage dans la clean architecture](https://www.jterrazz.com/articles/12-software-design-3-clean-architecture-in-practice)
-

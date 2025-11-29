@@ -1,12 +1,17 @@
 import React from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowUpRight, ChevronDown, Github, Info } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, Github } from 'lucide-react';
 
+// Domain
 import { type ProjectComponent } from '../../../domain/project.js';
+
+// Utils
 import { cn } from '../../../lib/utils.js';
+
 import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge.js';
 import { DotPulse } from '../../atoms/status/dot-pulse.js';
+
 import {
     projectComponentStatusToDoPulseState,
     projectStatusToDescription,

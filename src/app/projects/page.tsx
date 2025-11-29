@@ -69,7 +69,7 @@ export default async function ProjectsPage() {
 
     const highlightTitle = 'Projects';
     const highlightDescription =
-        'The code behind the concepts. A collection of tools and experiments I\'ve built to solve real problems.';
+        "The code behind the concepts. A collection of tools and experiments I've built to solve real problems.";
 
     // Structured data for better SEO
     const jsonLd = {

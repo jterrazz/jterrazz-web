@@ -2,7 +2,6 @@
 
 import React from 'react';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Blocks, BrainCircuit, Globe, Workflow } from 'lucide-react';
 import Link from 'next/link';
 
@@ -41,9 +40,11 @@ const FocusItem = ({
         <div className="flex flex-col h-full">
             <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-2xl bg-white dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-700 flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
-                    <Icon size={24} className="text-zinc-900 dark:text-zinc-100" />
+                    <Icon className="text-zinc-900 dark:text-zinc-100" size={24} />
                 </div>
-                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-tight">{title}</h3>
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-tight">
+                    {title}
+                </h3>
             </div>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 {description}
@@ -67,16 +68,11 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
             {/* Hero Section */}
             <div className="w-full border-b border-zinc-100 dark:border-zinc-900">
                 <div className="max-w-7xl mx-auto px-4 md:px-6">
-                    <Highlight
-                        button={button}
-                        description={description}
-                        title="Hello, World!"
-                    />
+                    <Highlight button={button} description={description} title="Hello, World!" />
                 </div>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 space-y-32">
-                
                 {/* Focus Areas */}
                 <section className="max-w-4xl mx-auto w-full">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
@@ -107,7 +103,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                 <section>
                     <div className="flex items-center justify-between mb-12">
                         <SectionDivider className="flex-1" title="Latest Writing" />
-                        <Link 
+                        <Link
                             className="hidden md:flex items-center gap-2 text-sm font-bold tracking-wide uppercase text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors ml-8 whitespace-nowrap"
                             href="/articles"
                         >

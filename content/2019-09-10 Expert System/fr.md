@@ -31,7 +31,7 @@ Le cœur de tout cela est un ensemble de **règles**. J'aime les voir comme des 
 
 ![Table de Vérité d'Inférence](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*aZ-xKiHeAcPBCnP2bgcOTQ.png)
 
-Pour donner du sens à tout ça, nous avons besoin d'une antisèche. Cette table de vérité est notre boussole pour la logique. Elle montre comment les connecteurs fonctionnent. Regardez `p => q`. Si `p` est `faux`, `q` peut être n'importe quoi, un vrai joker. Mais si `p` est `vrai`, `q` *doit* aussi être `vrai`. Ce principe simple est le moteur de notre déduction.
+Pour donner du sens à tout ça, nous avons besoin d'une antisèche. Cette table de vérité est notre boussole pour la logique. Elle montre comment les connecteurs fonctionnent. Regardez `p => q`. Si `p` est `faux`, `q` peut être n'importe quoi, un vrai joker. Mais si `p` est `vrai`, `q` _doit_ aussi être `vrai`. Ce principe simple est le moteur de notre déduction.
 
 ### Faits et requêtes : les entrées et sorties
 
@@ -47,7 +47,7 @@ Les **Requêtes** (`?XYZ`) sont simplement les questions auxquelles nous voulons
 
 ### Chaînage avant vs arrière : choisissez votre voie
 
-Ok, alors comment on *résout* vraiment quelque chose ? Il y a deux façons principales de procéder :
+Ok, alors comment on _résout_ vraiment quelque chose ? Il y a deux façons principales de procéder :
 
 1. **Chaînage avant (Forward chaining)** : Commencez avec ce que vous savez (les faits) et voyez où les règles vous mènent. C'est comme commencer un labyrinthe par le début.
 2. **Chaînage arrière (Backward chaining)** : Commencez avec ce que vous voulez prouver (la requête) et travaillez à rebours pour voir si les faits le soutiennent. C'est comme commencer un labyrinthe par la fin et trouver votre chemin vers le retour.
@@ -63,7 +63,7 @@ Pour construire ceci, j'avais besoin d'une structure de données solide. J'ai co
 ```python
 class Node:
   def __init__(self):
-    self.children = [] # Dans A => B, => est enfant de B 
+    self.children = [] # Dans A => B, => est enfant de B
     self.visited = False # Lors du parcours récursif du Graphe, évite la boucle infinie
     self.state = False # Sauvegarde si le résultat est True
 ```
@@ -96,7 +96,7 @@ class ConnectorNode(Node):
 
 ### Étape 1 : créer une liste unique d'atomes
 
-Première chose, je parse l'entrée et je crée une liste unique de tous les atomes uniques. C'est la clé. Cela assure que chaque fois que le système voit la lettre 'A' dans les règles, elle pointe vers le *même objet* `AtomNode`. C'est notre source unique de vérité pour chaque fait.
+Première chose, je parse l'entrée et je crée une liste unique de tous les atomes uniques. C'est la clé. Cela assure que chaque fois que le système voit la lettre 'A' dans les règles, elle pointe vers le _même objet_ `AtomNode`. C'est notre source unique de vérité pour chaque fait.
 
 ### Étape 2 : la magie de la NPI
 
@@ -148,13 +148,13 @@ Et maintenant, le moment de vérité. Pour résoudre une requête, j'ai construi
 def resolve(nodeX):
   if nodeX is True:
     return True
-  
+
   for child in nodeX.children:
     res = resolve(child)
     if res is True:
       # Besoin que d'un seul enfant soit Vrai pour déduire que le courant est Vrai
       return True
-    
+
   if Node is Connector: # AND OR XOR IMPLY
     op_results = []
     for op in nodeX.operands:
@@ -167,11 +167,10 @@ Cela commence au nœud de la requête et travaille à rebours à travers ses enf
 
 ## Dernières pensées : à vous de construire
 
-Et c'est à peu près tout ! Nous avons parcouru la logique centrale de la construction d'un système expert à chaînage arrière. À partir de règles simples, nous avons créé un système qui peut réellement *raisonner*.
+Et c'est à peu près tout ! Nous avons parcouru la logique centrale de la construction d'un système expert à chaînage arrière. À partir de règles simples, nous avons créé un système qui peut réellement _raisonner_.
 
 C'est un concept puissant, et nous n'avons fait qu'effleurer la surface. Ce que nous avons construit est une fondation. Si vous voulez aller plus loin, vous pourriez essayer d'implémenter le chaînage avant ou d'ajouter le support pour une logique plus complexe. Les possibilités sont énormes.
 
 Pour quiconque veut mettre les mains dans le code, j'ai mis le projet Python complet sur [mon GitHub](https://github.com/jterrazz/42-expert-system). Allez voir, jouez avec, cassez-le, et construisez par-dessus.
 
 Bon code ! 🚀🧠
-

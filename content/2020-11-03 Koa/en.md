@@ -31,19 +31,19 @@ Ready to build something cool? Let's lay the foundation. 💪
 First, you'll need Node.js and npm ready to go on your machine.
 
 1. **Initialize your project**:
-    I always start with `npm init -y`. This command quickly scaffolds a `package.json` file. Think of it as your project's passport, it holds all the vital stats and dependency info.
+   I always start with `npm init -y`. This command quickly scaffolds a `package.json` file. Think of it as your project's passport, it holds all the vital stats and dependency info.
 
 2. **Install the essentials**:
-    With the project initialized, it's time to pull in our core tools. We need the packages themselves and their corresponding TypeScript type definitions.
+   With the project initialized, it's time to pull in our core tools. We need the packages themselves and their corresponding TypeScript type definitions.
 
-    ```sh
-    # Install TypeScript and its runtime buddy
-    npm install --save typescript ts-node
-    # Install our web server tools
-    npm install --save koa @types/koa koa-router @types/koa-router
-    ```
+   ```sh
+   # Install TypeScript and its runtime buddy
+   npm install --save typescript ts-node
+   # Install our web server tools
+   npm install --save koa @types/koa koa-router @types/koa-router
+   ```
 
-    Those `@types/` packages are crucial. They're what teach TypeScript how to understand the structure of these JavaScript libraries, enabling that sweet, sweet type-checking.
+   Those `@types/` packages are crucial. They're what teach TypeScript how to understand the structure of these JavaScript libraries, enabling that sweet, sweet type-checking.
 
 ## Making TypeScript and Node.js talk
 
@@ -113,10 +113,10 @@ const router = new Router();
 
 // This is the logic for our route
 const helloWorldController: Middleware = async (ctx) => {
-    console.log('A request came in!');
-    ctx.body = {
-        message: 'Hello World!',
-    };
+  console.log('A request came in!');
+  ctx.body = {
+    message: 'Hello World!',
+  };
 };
 
 router.get('/', helloWorldController);
@@ -126,7 +126,7 @@ app.use(router.routes()).use(router.allowedMethods());
 
 // And finally, we start the server
 app.listen(PORT, () => {
-    console.log(`🚀 Server is running on port ${PORT}`);
+  console.log(`🚀 Server is running on port ${PORT}`);
 });
 ```
 
@@ -175,18 +175,18 @@ import Koa from 'koa';
 const app = new Koa();
 
 app.use(async (ctx) => {
-    // Accessing request data
-    console.log(ctx.request.url);      // The URL requested
-    console.log(ctx.request.query);    // Parsed query string
-    console.log(ctx.request.body);     // Needs a body-parser middleware
+  // Accessing request data
+  console.log(ctx.request.url); // The URL requested
+  console.log(ctx.request.query); // Parsed query string
+  console.log(ctx.request.body); // Needs a body-parser middleware
 
-    // Setting the response
-    ctx.body = 'Hello, World!';        // The response body
-    ctx.status = 200;                  // HTTP status code
-    ctx.type = 'text/plain';           // Content-Type header
+  // Setting the response
+  ctx.body = 'Hello, World!'; // The response body
+  ctx.status = 200; // HTTP status code
+  ctx.type = 'text/plain'; // Content-Type header
 
-    // Sharing data between middleware
-    ctx.state.user = { id: 1, name: 'John Doe' };
+  // Sharing data between middleware
+  ctx.state.user = { id: 1, name: 'John Doe' };
 });
 
 app.listen(3000);
@@ -222,27 +222,27 @@ import { Context } from 'koa';
 import * as userService from '../services/userService';
 
 export const getUsers = async (ctx: Context) => {
-    ctx.body = await userService.getAllUsers();
+  ctx.body = await userService.getAllUsers();
 };
 
 export const createUser = async (ctx: Context) => {
-    // Assumes a body parser middleware is used
-    const userData = ctx.request.body;
-    ctx.status = 201; // Created
-    ctx.body = await userService.createUser(userData);
+  // Assumes a body parser middleware is used
+  const userData = ctx.request.body;
+  ctx.status = 201; // Created
+  ctx.body = await userService.createUser(userData);
 };
 
 // --- services/userService.ts ---
 import { User } from '../models/User';
 
 export const getAllUsers = async () => {
-    // Pretend this is a database call
-    return User.findAll();
+  // Pretend this is a database call
+  return User.findAll();
 };
 
 export const createUser = async (userData: any) => {
-    // Pretend this saves to a database
-    return User.create(userData);
+  // Pretend this saves to a database
+  return User.create(userData);
 };
 ```
 
@@ -260,18 +260,18 @@ const app = new Koa();
 
 // My generic error handling middleware. I place this at the top.
 app.use(async (ctx, next) => {
-    try {
-        await next();
-    } catch (err) {
-        ctx.status = err.status || 500;
-        ctx.body = {
-            message: err.message,
-            // I only show the stack in development
-            stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
-        };
-        // Also log the error to the console
-        ctx.app.emit('error', err, ctx);
-    }
+  try {
+    await next();
+  } catch (err) {
+    ctx.status = err.status || 500;
+    ctx.body = {
+      message: err.message,
+      // I only show the stack in development
+      stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+    };
+    // Also log the error to the console
+    ctx.app.emit('error', err, ctx);
+  }
 });
 
 // Logging middleware for requests
@@ -279,7 +279,7 @@ app.use(logger());
 
 // Central error listener
 app.on('error', (err, ctx) => {
-    console.error('Server Error:', err.message, { url: ctx.url });
+  console.error('Server Error:', err.message, { url: ctx.url });
 });
 
 // Your routes and other middleware would go here…

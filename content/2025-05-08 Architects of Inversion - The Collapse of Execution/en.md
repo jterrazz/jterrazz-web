@@ -297,4 +297,3 @@ The tools are here. The shift is underway. What remains is your choice.
 
 4. [**Abundant intelligence: life after the collapse**](https://medium.com/a-42-journey/ai-architects-of-inversion-the-world-that-follows-94f05eb9df14)
    _A deep dive into how abundant intelligence transforms work, society, space, and the shape of civilization._
-

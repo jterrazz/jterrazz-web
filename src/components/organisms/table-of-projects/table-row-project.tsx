@@ -1,9 +1,14 @@
 'use client';
 import React from 'react';
 
+// Domain
 import { type Project } from '../../../domain/project.js';
+
+// Utils
 import { cn } from '../../../lib/utils.js';
+
 import { Badge } from '../../atoms/status/badge.js';
+
 import { TableRowProjectComponent } from './table-row-project-component.js';
 import { projectStatusToStatusBadgeState } from './table-row-project.view-model.js';
 
@@ -40,11 +45,11 @@ export const TableRowProject: React.FC<TableRowProjectHeaderProps> = ({ classNam
                                     </span>
                                 )}
                             </div>
-                            
+
                             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
                                 {project.name}
                             </h2>
-                            
+
                             <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
                                 {project.description}
                             </p>

@@ -1,3 +1,8 @@
 {
-  "extends": "@jterrazz/typescript/tsconfig/next.json"
+  "extends": "@jterrazz/typescript/tsconfig/next.json",
+  "compilerOptions": {
+    "moduleResolution": "bundler"
+  },
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

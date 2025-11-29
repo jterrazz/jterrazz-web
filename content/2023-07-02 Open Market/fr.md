@@ -9,12 +9,14 @@ Cependant, cette efficacité a un coût caché. Nous avons largement troqué la 
 ## Le Problème : Le commerce est coincé à l'ère de la "Chaîne TV"
 
 Pour comprendre le problème, regardez comment internet a transformé les médias.
+
 - **Avant :** Quelques grandes chaînes de télé et journaux contrôlaient le récit (Centralisé).
 - **Après :** Les blogs, YouTube et les réseaux sociaux ont permis à quiconque de diffuser au monde entier (Décentralisé).
 
 Les médias sont devenus démocratiques. **Le commerce ne l'a pas fait.**
 
 Aujourd'hui, les marchands font face à un choix binaire :
+
 1.  **L'Île Déserte :** Construire votre propre site web et lutter pour que quiconque le visite.
 2.  **Le Jardin Clos :** Louer un espace à une plateforme géante (comme Amazon) qui contrôle les règles, prend une commission significative (souvent 30%+), et cache vos données clients.
 
@@ -42,6 +44,7 @@ Ce n'est pas juste de la philosophie ; c'est une opportunité technique.
 Actuellement, l'innovation dans le shopping est goulotée par quelques grandes entreprises. Si vous voulez un meilleur moteur de recherche ou un réseau de livraison plus rapide, vous devez attendre que les géants le construisent.
 
 En passant à un **protocole décentralisé**, nous débloquons "l'innovation en périphérie". Puisque les données sont ouvertes et standardisées, les développeurs indépendants peuvent construire par-dessus :
+
 - **Interfaces Spécialisées :** Un développeur pourrait construire une application boutique juste pour les appareils photo vintage qui puise dans l'inventaire global mais offre des outils de filtrage spécifiques que les géants ignorent.
 - **Logistique Hyper-locale :** Un service de coursier local pourrait se brancher au protocole pour offrir une livraison éco-responsable dans une seule ville, sans avoir besoin d'un partenariat mondial.
 - **Curation Communautaire :** Au lieu que les pubs dirigent la découverte, les communautés pourraient construire leurs propres flux de produits de confiance.
@@ -59,4 +62,3 @@ Une approche basée sur un protocole vise un futur où le shopping en ligne gard
 C'est un défi complexe, mais le futur du shopping n'a pas à être limité à un seul bouton "acheter" possédé par un géant.
 
 Construisons quelque chose de mieux. 🚀
-

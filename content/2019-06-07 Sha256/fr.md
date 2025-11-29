@@ -176,7 +176,7 @@ char *build_hash(uint32_t *buffers, size_t buffer_count, bool is_little_endian)
   char      *hash_tmp;
   size_t    buffer_i;
   uint32_t  buffer;
-  
+
   buffer_i = 0;
 
   if (!(hash = ft_strnew(buffer_count * 8)))
@@ -192,7 +192,7 @@ char *build_hash(uint32_t *buffers, size_t buffer_count, bool is_little_endian)
     free(hash_tmp);
     buffer_i++;
   }
-  
+
   return (hash);
 }
 ```
@@ -203,7 +203,7 @@ Une dernière bizarrerie pour MD5 : ses tampons sont au format little-endian, il
 uint32_t ft_bswap_uint32(uint32_t x)
 {
   x = ((x << 8) & 0xFF00FF00) | ((x >> 8) & 0x00FF00FF);
-  
+
   return (x << 16) | (x >> 16);
 }
 ```
@@ -223,4 +223,3 @@ Le monde de la cryptographie ne s'arrête jamais. Ce qui est sûr aujourd'hui po
 Et n'oubliez pas de jouer avec le code dans le dépôt GitHub. Il n'y a pas de meilleure façon d'apprendre qu'en faisant.
 
 Bon hachage !
-
