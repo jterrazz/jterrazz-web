@@ -2,9 +2,9 @@
 import { type Feature, FeatureState } from '../../../domain/feature.js';
 
 export enum FeaturedId {
-    Repository,
-    Source,
-    Capitaine,
+    Repository = 0,
+    Source = 1,
+    Capitaine = 2,
 }
 
 export const featuresData: Feature[] = [

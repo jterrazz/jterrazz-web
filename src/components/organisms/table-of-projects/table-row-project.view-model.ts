@@ -11,7 +11,6 @@ export const projectStatusToStatusBadgeState = (status: ProjectStatus): BadgeCol
             return BadgeColor.Blue;
         case ProjectStatus.Concept:
             return BadgeColor.Orange;
-        case ProjectStatus.Archived:
         default:
             return BadgeColor.Gray;
     }

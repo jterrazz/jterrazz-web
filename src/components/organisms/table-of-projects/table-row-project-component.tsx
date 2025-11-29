@@ -45,6 +45,15 @@ export const TableRowProjectComponent: React.FC<TableRowProjectComponentProps> =
             <div
                 className="p-5 flex flex-col h-full cursor-pointer"
                 onClick={() => setIsExpanded(!isExpanded)}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setIsExpanded(!isExpanded);
+                    }
+                }}
+                // biome-ignore lint/a11y/useSemanticElements: Using div for complex card layout
+                role="button"
+                tabIndex={0}
             >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-3">
@@ -83,6 +92,7 @@ export const TableRowProjectComponent: React.FC<TableRowProjectComponentProps> =
                         aria-label={isExpanded ? 'Collapse details' : 'Expand details'}
                         className="p-1.5 -mr-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors"
                         onClick={() => setIsExpanded(!isExpanded)}
+                        type="button"
                     >
                         <ChevronDown
                             className={cn('w-4 h-4 transition-transform duration-300', {
@@ -138,6 +148,7 @@ export const TableRowProjectComponent: React.FC<TableRowProjectComponentProps> =
                                     <a
                                         className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 rounded-xl hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm hover:shadow-md"
                                         href={component.articleUrl.toString()}
+                                        rel="noreferrer"
                                         target="_blank"
                                     >
                                         Read Case Study
@@ -152,6 +163,7 @@ export const TableRowProjectComponent: React.FC<TableRowProjectComponentProps> =
                                             : 'flex-1 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 border-transparent hover:bg-zinc-800 dark:hover:bg-zinc-200',
                                     )}
                                     href={component.sourceUrl.toString()}
+                                    rel="noreferrer"
                                     target="_blank"
                                     title={projectStatusToDescription(component.status)}
                                 >

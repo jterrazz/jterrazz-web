@@ -158,12 +158,7 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
     };
 
     return (
-        <footer
-            aria-label="Site footer"
-            className={generatedClassName}
-            ref={ref}
-            role="contentinfo"
-        >
+        <footer aria-label="Site footer" className={generatedClassName} ref={ref}>
             <Script id="footer-json-ld" strategy="beforeInteractive" type="application/ld+json">
                 {JSON.stringify(footerJsonLd)}
             </Script>

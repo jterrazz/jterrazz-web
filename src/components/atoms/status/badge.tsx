@@ -7,16 +7,16 @@ import { cn } from '../../../lib/utils.js';
  * Available badge color variants.
  */
 export enum BadgeColor {
-    Green,
-    Yellow,
-    Orange,
-    Gray,
-    Blue,
+    Green = 0,
+    Yellow = 1,
+    Orange = 2,
+    Gray = 3,
+    Blue = 4,
 }
 
 export enum DotPulseSize {
-    Small,
-    Medium,
+    Small = 0,
+    Medium = 1,
 }
 
 export type StatusBadgeProps = {

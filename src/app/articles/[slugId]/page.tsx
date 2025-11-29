@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { type Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
@@ -50,12 +48,12 @@ export default async function ArticlePage(props: ArticlePageProps) {
             articleId={slugId}
             articles={articles.filter((a) => a.publicIndex !== article.publicIndex)}
             availableLanguages={Object.keys(article.content) as ArticleLanguage[]}
-            contentInMarkdown={article.content['en']!}
+            contentInMarkdown={article.content.en ?? ''}
             currentLanguage={'en'}
             dateModified={article.metadata.dateModified}
             datePublished={article.metadata.datePublished}
             features={features}
-            title={article.metadata.title['en']}
+            title={article.metadata.title.en}
         />
     );
 }
@@ -84,32 +82,32 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
 
     // Generate hreflang links for all available languages
     const alternates: Record<string, string> = {};
-    availableLanguages.forEach((language) => {
+    for (const language of availableLanguages) {
         alternates[language] = `${baseUrl}/articles/${slugId}/${language}`;
-    });
+    }
 
     return {
         alternates: {
             canonical: `${baseUrl}/articles/${slugId}/en`, // Default to English
             languages: alternates,
         },
-        description: article.metadata.description['en'],
+        description: article.metadata.description.en,
         openGraph: {
             alternateLocale: availableLanguages.filter((l) => l !== 'en'),
-            description: article.metadata.description['en'],
+            description: article.metadata.description.en,
             images: [
                 {
-                    alt: article.metadata.title['en'],
+                    alt: article.metadata.title.en,
                     height: 630,
                     url: thumbnailUrl,
                     width: 1200,
                 },
             ],
             locale: 'en',
-            title: article.metadata.title['en'],
+            title: article.metadata.title.en,
             url: `${baseUrl}/articles/${slugId}/en`,
         },
-        title: `${article.metadata.title['en']} ~ Jterrazz`,
+        title: `${article.metadata.title.en} ~ Jterrazz`,
     };
 }
 

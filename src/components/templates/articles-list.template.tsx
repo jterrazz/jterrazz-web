@@ -298,6 +298,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                             onClick={() =>
                                 setFilter(f as 'AI' | 'All' | 'Architecture' | 'Project')
                             }
+                            type="button"
                         >
                             {f}
                         </button>
@@ -338,8 +339,8 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                     )}
 
                     {/* Article Series */}
-                    {filteredSeries.map((series, index) => (
-                        <ArticleSeries key={`series-${index}`} series={series} />
+                    {filteredSeries.map((series) => (
+                        <ArticleSeries key={series.seriesTitle} series={series} />
                     ))}
 
                     {/* Standalone Articles */}

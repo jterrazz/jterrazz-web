@@ -19,7 +19,7 @@ const getMimeType = (filePath: string): string => {
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(request: Request, context: { params: Promise<{ path: string[] }> }) {
+export async function GET(_request: Request, context: { params: Promise<{ path: string[] }> }) {
     const params = await context.params;
     const { path } = params;
 

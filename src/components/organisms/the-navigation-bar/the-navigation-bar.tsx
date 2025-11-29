@@ -169,6 +169,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                         <a
                             className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm hover:shadow-md"
                             href="/link/applications/fake-news"
+                            rel="noreferrer"
                             target="_blank"
                         >
                             <span>Get App</span>
@@ -182,6 +183,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             aria-label="Toggle menu"
                             className="p-2 text-zinc-600 dark:text-zinc-300"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            type="button"
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
@@ -247,6 +249,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             <a
                                 className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all w-full justify-center"
                                 href="/link/applications/fake-news"
+                                rel="noreferrer"
                                 target="_blank"
                             >
                                 <span>Download App</span>

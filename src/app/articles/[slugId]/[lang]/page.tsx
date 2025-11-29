@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { type Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
@@ -47,7 +45,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
             articleId={slugId}
             articles={articles.filter((a) => a.publicIndex !== article.publicIndex)}
             availableLanguages={Object.keys(article.content) as ArticleLanguage[]}
-            contentInMarkdown={article.content[lang]!}
+            contentInMarkdown={article.content[lang] ?? ''}
             currentLanguage={lang}
             dateModified={article.metadata.dateModified}
             datePublished={article.metadata.datePublished}
@@ -81,9 +79,9 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
 
     // Generate hreflang links
     const alternates: Record<string, string> = {};
-    availableLanguages.forEach((language) => {
+    for (const language of availableLanguages) {
         alternates[language] = `${baseUrl}/articles/${slugId}/${language}`;
-    });
+    }
 
     return {
         alternates: {

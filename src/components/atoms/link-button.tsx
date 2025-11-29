@@ -25,7 +25,13 @@ export const LinkButton: React.FC<LinkButtonProps> = ({ className, link }) => {
     );
 
     return (
-        <a className={generatedClassName} href={link.url} key={link.title} target="_blank">
+        <a
+            className={generatedClassName}
+            href={link.url}
+            key={link.title}
+            rel="noreferrer"
+            target="_blank"
+        >
             <p className="text-xs font-semibold">
                 {link.title} {'>'}
             </p>

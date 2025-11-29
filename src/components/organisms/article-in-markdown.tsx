@@ -30,12 +30,14 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
                         }}
                     >
                         {tokens.map((line, i) => (
+                            // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
                             <div key={i} {...getLineProps({ line })}>
                                 <span className="inline-block w-6 select-none text-zinc-300 dark:text-zinc-700 text-[11px] text-right mr-3 opacity-50">
                                     {i + 1}
                                 </span>
-                                {line.map((token, key) => (
-                                    <span key={key} {...getTokenProps({ token })} />
+                                {line.map((token, tokenIndex) => (
+                                    // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
+                                    <span key={tokenIndex} {...getTokenProps({ token })} />
                                 ))}
                             </div>
                         ))}

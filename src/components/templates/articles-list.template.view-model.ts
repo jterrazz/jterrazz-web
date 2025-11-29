@@ -80,17 +80,17 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
         const seriesMap = new Map<string, Article[]>();
         const potentialStandaloneArticles: Article[] = [];
 
-        publishedArticles.forEach((article) => {
+        for (const article of publishedArticles) {
             const seriesName = article.metadata.series;
             if (seriesName) {
                 if (!seriesMap.has(seriesName)) {
                     seriesMap.set(seriesName, []);
                 }
-                seriesMap.get(seriesName)!.push(article);
+                seriesMap.get(seriesName)?.push(article);
             } else {
                 potentialStandaloneArticles.push(article);
             }
-        });
+        }
 
         // Now pick Latest from Standalone
         const standaloneSorted = potentialStandaloneArticles.sort(
@@ -171,7 +171,7 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
             standaloneArticles: finalStandaloneArticles.map((article) =>
                 this.mapToViewModel(article),
             ),
-            latestArticle: latestArticle!, // Non-null assertion as fallback if empty is unlikely
+            latestArticle: latestArticle ?? null,
             latestProjectArticle,
             button,
             highlightDescription: this.highlightDescription,

@@ -467,7 +467,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
 const processMarkdownContent = (content: string, filename: string, cacheKey: string): string => {
     return content.replace(
         /!\[([^\]]*)\]\((?:\.\/)?assets\/([^)]+)\)/g,
-        (match, altText, p1) =>
+        (_match, altText, p1) =>
             // Point to the locally-served image so that <Image> receives an internal URL.
             `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)}?v=${cacheKey})`,
     );
@@ -507,8 +507,8 @@ export const readMarkdownArticles = async (): Promise<Article[]> => {
                 readMarkdownFile(articlesDirectory, filename, 'fr', cacheKey),
             ]);
 
-            if (enContent) content.en = sanitizeText(enContent)!;
-            if (frContent) content.fr = sanitizeText(frContent)!;
+            if (enContent) content.en = sanitizeText(enContent) ?? enContent;
+            if (frContent) content.fr = sanitizeText(frContent) ?? frContent;
 
             // If no content was found, throw error
             if (!Object.keys(content).length) {
