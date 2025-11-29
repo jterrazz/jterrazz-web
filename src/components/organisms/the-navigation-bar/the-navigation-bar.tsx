@@ -37,24 +37,24 @@ const NavigationTabItem: React.FC<NavigationTabItemProps> = ({
     );
 
     if (newTab) {
-        return (
+    return (
             <a
                 className={className}
-                href={href}
-                onClick={onClick}
+                    href={href}
+                    onClick={onClick}
                 rel="noopener noreferrer"
                 target="_blank"
                 title={title}
-            >
-                {content}
+                >
+                    {content}
             </a>
-        );
+    );
     }
 
     return (
         <Link className={className} href={href} onClick={onClick} title={title}>
             {content}
-        </Link>
+                                </Link>
     );
 };
 
@@ -160,10 +160,10 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                     {/* Desktop Contacts */}
                     <div className="hidden md:flex items-center gap-2 ml-4 md:ml-8">
                         {contacts.map((contact) => (
-                            <NavigationTabItem
+                        <NavigationTabItem
                                 className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors p-2"
-                                href={contact.url}
-                                key={contact.name}
+                            href={contact.url}
+                            key={contact.name}
                                 newTab
                                 title={contact.name}
                             >
@@ -183,19 +183,19 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                             <span>Get App</span>
                             <Download size={14} />
                         </a>
-                    </div>
+                </div>
 
                     {/* Mobile Menu Toggle */}
                     <div className="md:hidden flex items-center ml-auto">
-                        <button
-                            aria-label="Toggle menu"
+                    <button
+                        aria-label="Toggle menu"
                             className="p-2 text-zinc-600 dark:text-zinc-300"
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
-                    </div>
+                    </button>
                 </div>
+            </div>
             </nav>
 
             {/* Mobile Menu Overlay */}
@@ -210,12 +210,12 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                     >
                         <div className="flex flex-col gap-6">
                             {pages.map((page, index) => (
-                                <motion.div
+                        <motion.div
                                     animate={{ opacity: 1, x: 0 }}
                                     initial={{ opacity: 0, x: -20 }}
                                     key={page.href}
                                     transition={{ delay: index * 0.05 + 0.1 }}
-                                >
+                        >
                                     <Link
                                         className={cn(
                                             'text-2xl font-semibold tracking-tight block',
@@ -228,7 +228,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                                     >
                                         {page.name}
                                     </Link>
-                                </motion.div>
+                        </motion.div>
                             ))}
                         </div>
 

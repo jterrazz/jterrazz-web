@@ -1,7 +1,7 @@
 export enum ArticleCategory {
-    Build = 'build',
-    Code = 'code',
+    Architecture = 'architecture',
     Insight = 'insight',
+    Project = 'project',
 }
 
 export interface Article {
@@ -14,6 +14,7 @@ export interface Article {
         dateModified: string;
         datePublished: string;
         description: Record<ArticleLanguage, string>;
+        series?: string;
         title: Record<ArticleLanguage, string>;
     };
     publicIndex: number;

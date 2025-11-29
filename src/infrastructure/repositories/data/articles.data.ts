@@ -19,6 +19,7 @@ type ArticleMetadataConfig = {
     dateModified: string;
     datePublished: string;
     description: TranslatedString;
+    series?: string;
     title: TranslatedString;
 };
 
@@ -34,7 +35,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2019-06-01 Malloc',
         metadata: {
-            category: ArticleCategory.Code,
+            category: ArticleCategory.Project,
             dateModified: '2025-06-23',
             datePublished: '2019-06-01',
             description: {
@@ -53,7 +54,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2019-06-07 Sha256',
         metadata: {
-            category: ArticleCategory.Code,
+            category: ArticleCategory.Project,
             dateModified: '2025-06-24',
             datePublished: '2019-06-07',
             description: {
@@ -72,7 +73,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2019-07-25 Nm Otool',
         metadata: {
-            category: ArticleCategory.Code,
+            category: ArticleCategory.Project,
             dateModified: '2025-06-25',
             datePublished: '2019-07-25',
             description: {
@@ -91,7 +92,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2019-08-27 Quine',
         metadata: {
-            category: ArticleCategory.Code,
+            category: ArticleCategory.Project,
             dateModified: '2025-06-26',
             datePublished: '2019-08-27',
             description: {
@@ -110,7 +111,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2019-08-28 Assembly',
         metadata: {
-            category: ArticleCategory.Code,
+            category: ArticleCategory.Project,
             dateModified: '2025-06-27',
             datePublished: '2019-08-28',
             description: {
@@ -129,7 +130,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2019-09-10 Expert System',
         metadata: {
-            category: ArticleCategory.Code,
+            category: ArticleCategory.Project,
             dateModified: '2025-06-28',
             datePublished: '2019-09-10',
             description: {
@@ -148,7 +149,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2020-11-03 Koa',
         metadata: {
-            category: ArticleCategory.Code,
+            category: ArticleCategory.Project,
             dateModified: '2025-06-29',
             datePublished: '2020-11-03',
             description: {
@@ -167,7 +168,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2023-07-02 Open Market',
         metadata: {
-            category: ArticleCategory.Build,
+            category: ArticleCategory.Project,
             dateModified: '2025-07-01',
             datePublished: '2023-07-02',
             description: {
@@ -186,13 +187,14 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2024-12-20 Application Design Introduction',
         metadata: {
-            category: ArticleCategory.Code, // TODO: change to Architecture
+            category: ArticleCategory.Architecture,
             dateModified: '2025-07-02',
             datePublished: '2024-12-20',
             description: {
                 en: 'Learn application design essentials.',
                 fr: 'Apprenez les essentiels de la conception applicative.',
             },
+            series: 'Application Design',
             title: {
                 en: 'Building software that lasts',
                 fr: 'Bâtir des logiciels qui durent',
@@ -205,13 +207,14 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2024-12-21 Application Design Dependencies',
         metadata: {
-            category: ArticleCategory.Code, // TODO: change to Architecture
+            category: ArticleCategory.Architecture,
             dateModified: '2025-07-03',
             datePublished: '2024-12-21',
             description: {
                 en: 'Principles for sustainable architecture, maintainable code, and growth-ready scalable apps.',
                 fr: 'Principes pour une architecture durable, du code maintenable et des apps évolutives.',
             },
+            series: 'Application Design',
             title: {
                 en: 'Mastering the flow of dependencies',
                 fr: 'Maîtriser le flux des dépendances',
@@ -224,13 +227,14 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2024-12-22 Application Design Hexagonal',
         metadata: {
-            category: ArticleCategory.Code, // TODO: change to Architecture
+            category: ArticleCategory.Architecture,
             dateModified: '2025-07-04',
             datePublished: '2024-12-22',
             description: {
                 en: 'Align strategy, capabilities, and tech layers to deliver scalable, value-driven systems.',
                 fr: 'Alignez stratégie, capacités et couches tech pour livrer des systèmes évolutifs et créateurs de valeur.',
             },
+            series: 'Application Design',
             title: {
                 en: 'Separating business from technology',
                 fr: 'Séparer le métier de la technologie',
@@ -243,13 +247,14 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2024-12-23 Application Design Clean Architecture',
         metadata: {
-            category: ArticleCategory.Code, // TODO: change to Architecture
+            category: ArticleCategory.Architecture,
             dateModified: '2025-07-05',
             datePublished: '2024-12-23',
             description: {
                 en: 'Layer entities, use cases, adapters and drivers; decouple business logic from tech details.',
                 fr: 'Organisez entités, cas d\'usage, adaptateurs et drivers ; découplez la logique métier des détails techniques.',
             },
+            series: 'Application Design',
             title: {
                 en: 'A journey into clean architecture',
                 fr: 'Voyage au cœur de la Clean Architecture',
@@ -262,7 +267,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2025-04-06 Fake News',
         metadata: {
-            category: ArticleCategory.Build,
+            category: ArticleCategory.Project,
             dateModified: '2025-07-06',
             datePublished: '2025-04-06',
             description: {
@@ -288,6 +293,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Practical insights on trends, tools, and mindset shifts.',
                 fr: 'Insights pratiques sur les tendances, outils et changements de mindset.',
             },
+            series: 'Using AI',
             title: {
                 en: 'A guide to the AI revolution',
                 fr: 'Guide de la révolution IA',
@@ -307,6 +313,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Integrate AI tools, delegate cognitive work, and adopt mindsets for balance and future-proof skills.',
                 fr: 'Intégrez les outils IA, déléguez le travail cognitif et adoptez les bons mindsets pour un équilibre et des compétences d\'avenir.',
             },
+            series: 'Using AI',
             title: {
                 en: 'A practical playbook to AI',
                 fr: 'Un guide pratique de l\'IA',
@@ -326,6 +333,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Abundant AI collapses execution costs, inverts value hierarchies, and moves human work up.',
                 fr: 'L\'IA abondante effondre les coûts d\'exécution, inverse les hiérarchies de valeur et élève le travail humain.',
             },
+            series: 'Using AI',
             title: {
                 en: 'When execution collapses',
                 fr: 'Quand l\'exécution s\'effondre',
@@ -345,6 +353,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Abundant AI reimagines society into purpose-driven, post-physical communities.',
                 fr: 'L\'IA abondante réimagine la société en communautés post-physiques guidées par le sens.',
             },
+            series: 'Using AI',
             title: {
                 en: 'Life after the collapse',
                 fr: 'La vie après l\'effondrement',
@@ -383,6 +392,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'A framework for AI integration in any field, from assistant to programmable intelligence.',
                 fr: 'Un cadre d\'intégration de l\'IA dans tous les domaines, de l\'assistant à l\'intelligence programmable.',
             },
+            series: 'Abundant Intelligence',
             title: {
                 en: 'The four levels of AI integration',
                 fr: 'Les quatre niveaux d\'intégration de l\'IA',
@@ -402,6 +412,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Guide for developers to direct AI as guided agent, transforming coding into orchestration.',
                 fr: 'Guide pour développeurs : diriger l\'IA comme agent guidé, transformer le codage en orchestration.',
             },
+            series: 'Abundant Intelligence',
             title: {
                 en: 'Directing AI agents',
                 fr: 'Diriger les agents IA',
@@ -421,6 +432,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Explore how to delegate workflows to autonomous ai agents.',
                 fr: 'Explorez comment déléguer les flux de travail aux agents IA autonomes.',
             },
+            series: 'Abundant Intelligence',
             title: {
                 en: 'Autonomous AI agents',
                 fr: 'Agents IA autonomes',
@@ -440,6 +452,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Deep dive into designing intelligent systems blending code and ai reasoning.',
                 fr: 'Plongée au cœur de la conception de systèmes intelligents alliant code et raisonnement IA.',
             },
+            series: 'Abundant Intelligence',
             title: {
                 en: 'Programming intelligent systems',
                 fr: 'Programmer des systèmes intelligents',
@@ -523,6 +536,7 @@ export const readMarkdownArticles = async (): Promise<Article[]> => {
                     dateModified: articleConfig.metadata.dateModified,
                     datePublished: articleConfig.metadata.datePublished,
                     description: descriptionByLang,
+                    series: articleConfig.metadata.series,
                     title: titleByLang,
                 },
                 publicIndex: articleConfig.publicIndex,

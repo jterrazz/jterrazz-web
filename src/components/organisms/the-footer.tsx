@@ -202,8 +202,9 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
                                         Jean-Baptiste Terrazzoni
                                     </h2>
                                     <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-xs">
-                                        On a mission to <HighlightedText>craft what matters</HighlightedText>.
-                                        Building intelligent systems for the future of web.
+                                        <HighlightedText>Building, learning, and sharing.</HighlightedText>
+                                        <br />
+                                        Exploring the frontiers of AI, architecture, and decentralization.
                                     </p>
                                 </div>
                                 
