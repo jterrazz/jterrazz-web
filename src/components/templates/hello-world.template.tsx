@@ -150,7 +150,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                             title="AI Agents"
                         />
                         <FocusItem
-                            description="Crafting scalable, maintainable software using Domain-Driven Design."
+                            description="Crafting scalable, maintainable software using architectures adapted to each project."
                             icon={Blocks}
                             title="Architecture"
                         />

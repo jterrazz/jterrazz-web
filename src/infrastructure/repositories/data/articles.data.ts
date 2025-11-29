@@ -300,7 +300,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Practical insights on trends, tools, and mindset shifts.',
                 fr: 'Insights pratiques sur les tendances, outils et changements de mindset.',
             },
-            series: 'Using AI',
+            series: 'Abundant Intelligence',
             title: {
                 en: 'A guide to the AI revolution',
                 fr: 'Guide de la révolution IA',
@@ -320,7 +320,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Integrate AI tools, delegate cognitive work, and adopt mindsets for balance and future-proof skills.',
                 fr: "Intégrez les outils IA, déléguez le travail cognitif et adoptez les bons mindsets pour un équilibre et des compétences d'avenir.",
             },
-            series: 'Using AI',
+            series: 'Abundant Intelligence',
             title: {
                 en: 'A practical playbook to AI',
                 fr: "Un guide pratique de l'IA",
@@ -340,7 +340,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Abundant AI collapses execution costs, inverts value hierarchies, and moves human work up.',
                 fr: "L'IA abondante effondre les coûts d'exécution, inverse les hiérarchies de valeur et élève le travail humain.",
             },
-            series: 'Using AI',
+            series: 'Abundant Intelligence',
             title: {
                 en: 'When execution collapses',
                 fr: "Quand l'exécution s'effondre",
@@ -360,7 +360,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Abundant AI reimagines society into purpose-driven, post-physical communities.',
                 fr: "L'IA abondante réimagine la société en communautés post-physiques guidées par le sens.",
             },
-            series: 'Using AI',
+            series: 'Abundant Intelligence',
             title: {
                 en: 'Life after the collapse',
                 fr: "La vie après l'effondrement",
@@ -399,7 +399,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'A framework for AI integration in any field, from assistant to programmable intelligence.',
                 fr: "Un cadre d'intégration de l'IA dans tous les domaines, de l'assistant à l'intelligence programmable.",
             },
-            series: 'Abundant Intelligence',
+            series: 'Using AI',
             title: {
                 en: 'The four levels of AI integration',
                 fr: "Les quatre niveaux d'intégration de l'IA",
@@ -419,7 +419,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Guide for developers to direct AI as guided agent, transforming coding into orchestration.',
                 fr: "Guide pour développeurs : diriger l'IA comme agent guidé, transformer le codage en orchestration.",
             },
-            series: 'Abundant Intelligence',
+            series: 'Using AI',
             title: {
                 en: 'Directing AI agents',
                 fr: 'Diriger les agents IA',
@@ -439,7 +439,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Explore how to delegate workflows to autonomous ai agents.',
                 fr: 'Explorez comment déléguer les flux de travail aux agents IA autonomes.',
             },
-            series: 'Abundant Intelligence',
+            series: 'Using AI',
             title: {
                 en: 'Autonomous AI agents',
                 fr: 'Agents IA autonomes',
@@ -459,7 +459,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 en: 'Deep dive into designing intelligent systems blending code and ai reasoning.',
                 fr: 'Plongée au cœur de la conception de systèmes intelligents alliant code et raisonnement IA.',
             },
-            series: 'Abundant Intelligence',
+            series: 'Using AI',
             title: {
                 en: 'Programming intelligent systems',
                 fr: 'Programmer des systèmes intelligents',
@@ -516,8 +516,9 @@ export const readMarkdownArticles = async (): Promise<Article[]> => {
                 readMarkdownFile(articlesDirectory, filename, 'fr'),
             ]);
 
-            if (enContent) content.en = sanitizeText(enContent) ?? enContent;
-            if (frContent) content.fr = sanitizeText(frContent) ?? frContent;
+            // Don't sanitize markdown content - it would strip whitespace from code blocks
+            if (enContent) content.en = enContent;
+            if (frContent) content.fr = frContent;
 
             // If no content was found, throw error
             if (!Object.keys(content).length) {

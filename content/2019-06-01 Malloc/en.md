@@ -86,20 +86,20 @@ Here are the C `structs` I defined for that metadata:
 ```c
 // Metadata for a whole mmap'd region
 typedef struct s_heap {
-  struct s_heap   *prev;
-  struct s_heap   *next;
-  t_heap_group    group; // TINY, SMALL, or LARGE
-  size_t          total_size;
-  size_t          free_size;
-  size_t          block_count;
+    struct s_heap   *prev;
+    struct s_heap   *next;
+    t_heap_group    group;         // TINY, SMALL, or LARGE
+    size_t          total_size;
+    size_t          free_size;
+    size_t          block_count;
 } t_heap;
 
 // Metadata for a single allocated block
 typedef struct s_block {
-  struct s_block  *prev;
-  struct s_block  *next;
-  size_t          data_size;
-  bool            freed;
+    struct s_block  *prev;
+    struct s_block  *next;
+    size_t          data_size;
+    bool            freed;
 } t_block;
 ```
 

@@ -86,20 +86,20 @@ Voici les `structs` C que j'ai définies pour ces métadonnées :
 ```c
 // Métadonnées pour toute une région mmap'ée
 typedef struct s_heap {
-  struct s_heap   *prev;
-  struct s_heap   *next;
-  t_heap_group    group; // TINY, SMALL, ou LARGE
-  size_t          total_size;
-  size_t          free_size;
-  size_t          block_count;
+    struct s_heap   *prev;
+    struct s_heap   *next;
+    t_heap_group    group;         // TINY, SMALL, ou LARGE
+    size_t          total_size;
+    size_t          free_size;
+    size_t          block_count;
 } t_heap;
 
 // Métadonnées pour un seul bloc alloué
 typedef struct s_block {
-  struct s_block  *prev;
-  struct s_block  *next;
-  size_t          data_size;
-  bool            freed;
+    struct s_block  *prev;
+    struct s_block  *next;
+    size_t          data_size;
+    bool            freed;
 } t_block;
 ```
 

@@ -36,21 +36,21 @@ One of the most effective ways to specify intent is through **tests**. A test ca
 
 ```typescript
 test('newsletter subscription flow', async () => {
-  // 1. The request
-  const response = await request(app)
-    .post('/api/subscribe')
-    .send({ email: 'user@example.com' });
+    // 1. The request
+    const response = await request(app)
+        .post('/api/subscribe')
+        .send({ email: 'user@example.com' });
 
-  // 2. The expected outcome
-  expect(response.status).toBe(200);
-  expect(response.body).toEqual({ success: true });
-  
-  // 3. The side effect (state change)
-  const subscriber = await db.query(
-    'SELECT * FROM subscribers WHERE email = ?',
-    ['user@example.com']
-  );
-  expect(subscriber).toBeDefined();
+    // 2. The expected outcome
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ success: true });
+
+    // 3. The side effect (state change)
+    const subscriber = await db.query(
+        'SELECT * FROM subscribers WHERE email = ?',
+        ['user@example.com']
+    );
+    expect(subscriber).toBeDefined();
 });
 ```
 

@@ -101,13 +101,13 @@ Every Mach-O file kicks off with a header. It's like the table of contents for t
 
 ```c
 struct mach_header {
-  uint32_t	magic;		/* mach magic number identifier */
-  cpu_type_t	cputype;	/* cpu specifier */
-  cpu_subtype_t	cpusubtype;	/* machine specifier */
-  uint32_t	filetype;	/* type of file */
-  uint32_t	ncmds;		/* number of load commands */
-  uint32_t	sizeofcmds;	/* the size of all the load commands */
-  uint32_t	flags;		/* flags */
+    uint32_t       magic;       /* mach magic number identifier     */
+    cpu_type_t     cputype;     /* cpu specifier                    */
+    cpu_subtype_t  cpusubtype;  /* machine specifier                */
+    uint32_t       filetype;    /* type of file                     */
+    uint32_t       ncmds;       /* number of load commands          */
+    uint32_t       sizeofcmds;  /* the size of all the load commands*/
+    uint32_t       flags;       /* flags                            */
 };
 ```
 
@@ -127,8 +127,8 @@ For these tools, two load commands are especially important:
 
 ```c
 struct load_command {
-  uint32_t cmd;		/* type of load command */
-  uint32_t cmdsize;	/* total size of command in bytes */
+    uint32_t  cmd;      /* type of load command             */
+    uint32_t  cmdsize;  /* total size of command in bytes   */
 };
 ```
 
@@ -140,8 +140,8 @@ uint32_t ncmds = ((struct mach_header *)file_start)->ncmds;
 lc = (struct load_command *)(file_start + sizeof(struct mach_header);
 
 while (ncmds--) {
-  parse_load_command(lc)
-  lc = (void *)lc +lc->cmdsize;
+    parse_load_command(lc)
+    lc = (void *)lc + lc->cmdsize;
 }
 ```
 
@@ -150,58 +150,58 @@ while (ncmds--) {
 Segment commands are the real meat of the file. They define big chunks of the binary, like the `__TEXT` segment (where the code lives) and the `__DATA` segment (for global variables).
 
 ```c
-struct segment_command {        /* for 32-bit architectures */
-	uint32_t	cmd;	     	/* LC_SEGMENT */
-	uint32_t	cmdsize;	    /* includes sizeof section structs */
-	char		segname[16];	/* segment name */
-	uint32_t	vmaddr;		    /* memory address of this segment */
-	uint32_t	vmsize;		    /* memory size of this segment */
-	uint32_t	fileoff;	    /* file offset of this segment */
-	uint32_t	filesize;	    /* amount to map from the file */
-	vm_prot_t	maxprot;	    /* maximum VM protection */
-	vm_prot_t	initprot;	    /* initial VM protection */
-	uint32_t	nsects;	        /* number of sections in segment */
-	uint32_t	flags;	        /* flags */
+struct segment_command {            /* for 32-bit architectures         */
+    uint32_t   cmd;                 /* LC_SEGMENT                        */
+    uint32_t   cmdsize;             /* includes sizeof section structs   */
+    char       segname[16];         /* segment name                      */
+    uint32_t   vmaddr;              /* memory address of this segment    */
+    uint32_t   vmsize;              /* memory size of this segment       */
+    uint32_t   fileoff;             /* file offset of this segment       */
+    uint32_t   filesize;            /* amount to map from the file       */
+    vm_prot_t  maxprot;             /* maximum VM protection             */
+    vm_prot_t  initprot;            /* initial VM protection             */
+    uint32_t   nsects;              /* number of sections in segment     */
+    uint32_t   flags;               /* flags                             */
 }
 ```
 
 Each segment is broken down further into sections.
 
 ```c
-struct section {                /* for 32-bit architectures */
-	char		sectname[16];	/* name of this section */
-	char		segname[16];	/* segment this section goes in */
-	uint32_t	addr;		    /* memory address of this section */
-	uint32_t	size;		    /* size in bytes of this section */
-	uint32_t	offset;		    /* file offset of this section */
-	uint32_t	align;		    /* section alignment (power of 2) */
-	uint32_t	reloff;		    /* file offset of relocation entries */
-	uint32_t	nreloc;		    /* number of relocation entries */
-	uint32_t	flags;		    /* flags (section type and attributes)*/
-	uint32_t    reserved1;		/* reserved (for offset or index)*/
-	uint32_t    reserved2;		/* reserved (for count or sizeof)*/
+struct section {                    /* for 32-bit architectures          */
+    char       sectname[16];        /* name of this section              */
+    char       segname[16];         /* segment this section goes in      */
+    uint32_t   addr;                /* memory address of this section    */
+    uint32_t   size;                /* size in bytes of this section     */
+    uint32_t   offset;              /* file offset of this section       */
+    uint32_t   align;               /* section alignment (power of 2)    */
+    uint32_t   reloff;              /* file offset of relocation entries */
+    uint32_t   nreloc;              /* number of relocation entries      */
+    uint32_t   flags;               /* flags (section type and attributes)*/
+    uint32_t   reserved1;           /* reserved (for offset or index)    */
+    uint32_t   reserved2;           /* reserved (for count or sizeof)    */
 }
 ```
 
 For `otool`, the goal is to find the `__text` section inside the `__TEXT` segment and print its contents as a hex dump. For `nm`, I needed to save the section info to match it up with symbols later.
 
 ```c
-int	parse_mach_segment(void *segment_command) {
-	uint32_t nsects;
-	void *section;
+int parse_mach_segment(void *segment_command) {
+    uint32_t  nsects;
+    void      *section;
 
-	section = segment_command + sizeof(struct segment_command);
-	nsects = ((struct segment_command *) segment_command)->nsects;
+    section = segment_command + sizeof(struct segment_command);
+    nsects = ((struct segment_command *) segment_command)->nsects;
 
-	while (nsects--) {
-		// Do stuff with each section
-		if (bin == OTOOL) {
-		    // If section is __text, hexdump the data
-		} else if (bin == NM) {
-		    // Save the section in memory to match later with the SYMTAB
-		}
-		section += sizeof(struct s_section);
-	}
+    while (nsects--) {
+        // Do stuff with each section
+        if (bin == OTOOL) {
+            // If section is __text, hexdump the data
+        } else if (bin == NM) {
+            // Save the section in memory to match later with the SYMTAB
+        }
+        section += sizeof(struct s_section);
+    }
 }
 ```
 
@@ -211,25 +211,25 @@ The symbol table command, `LC_SYMTAB`, points to the index of our executable. It
 
 ```c
 struct symtab_command {
-	uint32_t	cmd;		/* LC_SYMTAB */
-	uint32_t	cmdsize;	/* sizeof(struct symtab_command) */
-	uint32_t	symoff;		/* symbol table offset */
-	uint32_t	nsyms;		/* number of symbol table entries */
-	uint32_t	stroff;		/* string table offset */
-	uint32_t	strsize;	/* string table size in bytes */
+    uint32_t  cmd;      /* LC_SYMTAB                        */
+    uint32_t  cmdsize;  /* sizeof(struct symtab_command)    */
+    uint32_t  symoff;   /* symbol table offset              */
+    uint32_t  nsyms;    /* number of symbol table entries   */
+    uint32_t  stroff;   /* string table offset              */
+    uint32_t  strsize;  /* string table size in bytes       */
 };
 ```
 
 ```c
 struct nlist {
-	union {
-		char *n_name;	/* for use when in-core */
-		long  n_strx;	/* index into the string table */
-	} n_un;
-	unsigned char n_type;	/* type flag, see below */
-	unsigned char n_sect;	/* section number or NO_SECT */
-	short	      n_desc;	/* see <mach-o/stab.h> */
-	unsigned long n_value;	/* value of this symbol (or stab offset) */
+    union {
+        char  *n_name;   /* for use when in-core              */
+        long  n_strx;    /* index into the string table       */
+    } n_un;
+    unsigned char  n_type;   /* type flag, see below              */
+    unsigned char  n_sect;   /* section number or NO_SECT         */
+    short          n_desc;   /* see <mach-o/stab.h>               */
+    unsigned long  n_value;  /* value of this symbol (or stab offset) */
 };
 ```
 
@@ -238,22 +238,22 @@ To get a symbol's name, you use the `n_strx` value as an offset into the string 
 ```c
 int parse_mach_symtab(struct symtab_command *symtab_command)
 {
-	void *strtab = file_start + symtab_command->stroff;
-	void *symtab = file_start + symtab_command->symoff;
-	uint32_t nsyms = symtab_command->nsyms;
-	uint32_t i = 0;
+    void      *strtab = file_start + symtab_command->stroff;
+    void      *symtab = file_start + symtab_command->symoff;
+    uint32_t  nsyms = symtab_command->nsyms;
+    uint32_t  i = 0;
 
-	while (i < nsyms) {
-		// Symbol data here
-		struct nlist *symbol_data = (nlist *)symtab + i;
-		
-		// Symbol name
-		char *symbol_name = strtab + ((struct nlist *)symtab + i)->n_un.n_strx;
-		
-		// Add to list for later use
-		handle_symbol(symbol_data, symbol_name);
-		i++;
-	}
+    while (i < nsyms) {
+        // Symbol data here
+        struct nlist *symbol_data = (nlist *)symtab + i;
+
+        // Symbol name
+        char *symbol_name = strtab + ((struct nlist *)symtab + i)->n_un.n_strx;
+
+        // Add to list for later use
+        handle_symbol(symbol_data, symbol_name);
+        i++;
+    }
 }
 ```
 
@@ -267,34 +267,34 @@ Figuring out the right letter involves checking the symbol's `n_type` field.
 
 ```c
 // These are defined in <mach-o/nlist.h>
-#define	N_UNDF	0x0		/* undefined, n_sect == NO_SECT */
-#define N_ABS 0x2  /* absolute, n_sect == NO_SECT */
-#define N_SECT 0xe  /* defined in section number n_sect */
-#define N_PBUD 0xc  /* prebound undefined (defined in a dylib) */
-#define N_INDR 0xa
+#define  N_UNDF  0x0   /* undefined, n_sect == NO_SECT                         */
+#define  N_ABS   0x2   /* absolute, n_sect == NO_SECT                          */
+#define  N_SECT  0xe   /* defined in section number n_sect                     */
+#define  N_PBUD  0xc   /* prebound undefined (defined in a dylib)              */
+#define  N_INDR  0xa
 
-#define N_STAB 0xe0  /* if any of these bits set, a symbolic debugging entry */
-#define N_PEXT 0x10  /* private external symbol bit */
-#define N_TYPE 0x0e  /* mask for the type bits */
-#define N_EXT 0x01  /* external symbol bit, set for external symbols */
+#define  N_STAB  0xe0  /* if any of these bits set, a symbolic debugging entry */
+#define  N_PEXT  0x10  /* private external symbol bit                          */
+#define  N_TYPE  0x0e  /* mask for the type bits                               */
+#define  N_EXT   0x01  /* external symbol bit, set for external symbols        */
 
 char get_symbol_letter(sym) {
-  if (N_STAB & sym->type)
-    return '-'; // Debugging symbol
-  else if ((N_TYPE & sym->type) == N_UNDF) {
-    if (sym->name_not_found) // This is a custom check I added
-     return 'C'; // Common symbol
-    else if (sym->type & N_EXT)
-     return 'U'; // Undefined
-    else
-     return '?';
-  } else if ((N_TYPE & sym->type) == N_SECT) {
-    return match_symbol_section(saved_sections, sym); // Match with a saved section
-  } else if ((N_TYPE & sym->type) == N_ABS) {
-    return 'A'; // Absolute
-  } else if ((N_TYPE & sym->type) == N_INDR) {
-    return 'I'; // Indirect
-  }
+    if (N_STAB & sym->type)
+        return '-'; // Debugging symbol
+    else if ((N_TYPE & sym->type) == N_UNDF) {
+        if (sym->name_not_found) // This is a custom check I added
+            return 'C'; // Common symbol
+        else if (sym->type & N_EXT)
+            return 'U'; // Undefined
+        else
+            return '?';
+    } else if ((N_TYPE & sym->type) == N_SECT) {
+        return match_symbol_section(saved_sections, sym); // Match with a saved section
+    } else if ((N_TYPE & sym->type) == N_ABS) {
+        return 'A'; // Absolute
+    } else if ((N_TYPE & sym->type) == N_INDR) {
+        return 'I'; // Indirect
+    }
 }
 ```
 
@@ -303,21 +303,21 @@ If a symbol's type is `N_SECT`, you have to look at the section it belongs to.
 ```c
 char match_symbol_section(saved_sections, symbol)
 {
-  if (sect = find_mysection(saved_sections, symbol->n_sect))
-  {
-    if (!ft_strcmp(sect->name, SECT_TEXT))
-      ret = 'T';
-    else if (!ft_strcmp(sect->name, SECT_DATA))
-      ret = 'D';
-    else if (!ft_strcmp(sect->name, SECT_BSS))
-      ret = 'B';
-    else
-      ret = 'S';
+    if (sect = find_mysection(saved_sections, symbol->n_sect))
+    {
+        if (!ft_strcmp(sect->name, SECT_TEXT))
+            ret = 'T';
+        else if (!ft_strcmp(sect->name, SECT_DATA))
+            ret = 'D';
+        else if (!ft_strcmp(sect->name, SECT_BSS))
+            ret = 'B';
+        else
+            ret = 'S';
 
-    // If the symbol is not external, make the letter lowercase
-    if (!(mysym->type & N_EXT))
-       ret += 'a' - 'A';
-  }
+        // If the symbol is not external, make the letter lowercase
+        if (!(mysym->type & N_EXT))
+            ret += 'a' - 'A';
+    }
 }
 ```
 

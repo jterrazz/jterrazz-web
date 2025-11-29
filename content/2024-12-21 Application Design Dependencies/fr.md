@@ -18,8 +18,8 @@ Regardons un exemple TypeScript super basique :
 
 ```ts
 function hello() {
-	const instance = new Something(); // Juste ici. C'est une dépendance.
-	// …
+    const instance = new Something(); // Juste ici. C'est une dépendance.
+    // …
 }
 ```
 
@@ -43,10 +43,10 @@ Voici les principaux types :
 
 ## Catégorie 1 : Doublures qui **renvoient des valeurs**
 
-1. **Dummy (Fantôme)** :
-		Un espace réservé que vous passez juste pour faire tourner le code. Il n'est pas réellement utilisé.
+**Dummy (Fantôme) :**
+Un espace réservé que vous passez juste pour faire tourner le code. Il n'est pas réellement utilisé.
 
-		*Exemple :* Une fonction a besoin d'un objet `User`, mais vous vous fichez duquel.
+*Exemple :* Une fonction a besoin d'un objet `User`, mais vous vous fichez duquel.
 
 ```ts
 function greet(user: User) {
@@ -57,11 +57,11 @@ function greet(user: User) {
 greet(new DummyUser());
 ```
 
-2. **Fake (Faux)** :
-		Une implémentation simplifiée et fonctionnelle d'une dépendance. L'exemple classique est une base de données en mémoire que vous utilisez pour les tests au lieu d'une vraie. Ça marche, mais ce n'est pas pour la production.
+**Fake (Faux) :**
+Une implémentation simplifiée et fonctionnelle d'une dépendance. L'exemple classique est une base de données en mémoire que vous utilisez pour les tests au lieu d'une vraie. Ça marche, mais ce n'est pas pour la production.
 
-3. **Stub (Bouchon)** :
-		Un objet qui renvoie juste des valeurs codées en dur. Vous l'utilisez quand votre test a besoin d'une réponse spécifique d'une dépendance pour continuer.
+**Stub (Bouchon) :**
+Un objet qui renvoie juste des valeurs codées en dur. Vous l'utilisez quand votre test a besoin d'une réponse spécifique d'une dépendance pour continuer.
 
 *Exemple :*
 
@@ -77,8 +77,8 @@ const userService = new StubUserService();
 
 ## Catégorie 2 : Doublures qui **vérifient le comportement**
 
-1. **Spy (Espion)** :
-		Un espion est une enveloppe qui surveille comment une dépendance est utilisée. Il enregistre tous les appels pour que vous puissiez les vérifier après l'exécution de votre test. "Est-ce que ma fonction a appelé `logger.log` trois fois ?" Un espion peut vous le dire.
+**Spy (Espion) :**
+Un espion est une enveloppe qui surveille comment une dépendance est utilisée. Il enregistre tous les appels pour que vous puissiez les vérifier après l'exécution de votre test. "Est-ce que ma fonction a appelé `logger.log` trois fois ?" Un espion peut vous le dire.
 
 *Exemple :*
 
@@ -91,8 +91,8 @@ class SpyLogger {
 }
 ```
 
-2. **Mock (Simulacre)** :
-		Un mock est comme un espion, mais plus intelligent. Vous lui dites *à l'avance* à quoi s'attendre. Il sait quelles méthodes doivent être appelées, avec quels arguments, et dans quel ordre. Le test ne passe que si les attentes du mock sont satisfaites.
+**Mock (Simulacre) :**
+Un mock est comme un espion, mais plus intelligent. Vous lui dites *à l'avance* à quoi s'attendre. Il sait quelles méthodes doivent être appelées, avec quels arguments, et dans quel ordre. Le test ne passe que si les attentes du mock sont satisfaites.
 
 *Exemple :*
 
@@ -116,19 +116,19 @@ En termes simples, votre logique métier centrale ne devrait pas dépendre de d�
 Ces cinq principes sont la fondation d'une bonne conception orientée objet.
 
 1. **S - Principe de Responsabilité Unique (SRP) :**
-		Une classe ne devrait avoir qu'un seul job, une seule raison de changer. Ne mélangez pas vos règles métier avec votre code de base de données. Gardez ça propre.
+    Une classe ne devrait avoir qu'un seul job, une seule raison de changer. Ne mélangez pas vos règles métier avec votre code de base de données. Gardez ça propre.
 
 2. **O - Principe Ouvert/Fermé (OCP) :**
-		Votre code devrait être **ouvert à l'extension** mais **fermé à la modification**. Vous devriez pouvoir ajouter de nouvelles fonctionnalités sans réécrire le code existant qui fonctionne. Pensez aux plugins.
+    Votre code devrait être **ouvert à l'extension** mais **fermé à la modification**. Vous devriez pouvoir ajouter de nouvelles fonctionnalités sans réécrire le code existant qui fonctionne. Pensez aux plugins.
 
 3. **L - Principe de Substitution de Liskov (LSP) :**
-		Si vous avez une classe `Carré` qui hérite de `Rectangle`, vous devriez pouvoir utiliser `Carré` partout où vous utilisez `Rectangle` sans rien casser. Cela assure que l'héritage a du sens.
+    Si vous avez une classe `Carré` qui hérite de `Rectangle`, vous devriez pouvoir utiliser `Carré` partout où vous utilisez `Rectangle` sans rien casser. Cela assure que l'héritage a du sens.
 
 4. **I - Principe de Ségrégation des Interfaces (ISP) :**
-		Ne forcez pas les classes à implémenter des méthodes dont elles n'ont pas besoin. Gardez vos interfaces petites et focalisées. Une interface `Oiseau` ne devrait pas avoir une méthode `nager()`.
+    Ne forcez pas les classes à implémenter des méthodes dont elles n'ont pas besoin. Gardez vos interfaces petites et focalisées. Une interface `Oiseau` ne devrait pas avoir une méthode `nager()`.
 
 5. **D - Principe d'Inversion des Dépendances (DIP) :**
-		Comme nous l'avons couvert : dépendez d'abstractions, pas de détails concrets et bas niveau. Cela découple votre logique centrale de sa tuyauterie technique, rendant le tout bien plus facile à tester et à changer.
+    Comme nous l'avons couvert : dépendez d'abstractions, pas de détails concrets et bas niveau. Cela découple votre logique centrale de sa tuyauterie technique, rendant le tout bien plus facile à tester et à changer.
 
 ---
 
@@ -146,16 +146,16 @@ Ici, mon `HelloService` est directement responsable de la création de sa propre
 
 ```ts
 class HelloService {
-	private db: Database;
+    private db: Database;
 
-	constructor() {
-		// Mon service crée sa propre dépendance. Mauvaise idée.
-		this.db = new Database(); // Couplage fort
-	}
+    constructor() {
+        // Mon service crée sa propre dépendance. Mauvaise idée.
+        this.db = new Database(); // Couplage fort
+    }
 
-	sayHello() {
-		return this.db.getGreeting();
-	}
+    sayHello() {
+        return this.db.getGreeting();
+    }
 }
 ```
 
@@ -165,16 +165,16 @@ Maintenant, `HelloService` demande juste une `Database` dans son constructeur. I
 
 ```ts
 class HelloService {
-	private db: Database;
+    private db: Database;
 
-	// La dépendance est "injectée" depuis l'extérieur.
-	constructor(db: Database) { // Injection de dépendance
-		this.db = db;
-	}
+    // La dépendance est "injectée" depuis l'extérieur.
+    constructor(db: Database) { // Injection de dépendance
+        this.db = db;
+    }
 
-	sayHello() {
-		return this.db.getGreeting();
-	}
+    sayHello() {
+        return this.db.getGreeting();
+    }
 }
 ```
 

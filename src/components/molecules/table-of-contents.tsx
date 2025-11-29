@@ -101,7 +101,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ contentInMarkd
             {isVisible && (
                 <motion.nav
                     animate={{ opacity: 0.6, x: 0 }}
-                    className="hidden 2xl:block fixed left-[max(2rem,calc(50%-720px))] top-64 w-64 max-h-[calc(100vh-16rem)] overflow-y-auto p-4"
+                    className="hidden 2xl:block fixed left-[max(2rem,calc(50%-720px))] top-32 w-64 max-h-[calc(100vh-12rem)] overflow-y-auto p-4"
                     exit={{ opacity: 0, x: -20 }}
                     initial={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.4, ease: 'easeOut' }}

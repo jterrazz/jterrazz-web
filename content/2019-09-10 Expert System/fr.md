@@ -62,10 +62,10 @@ Pour construire ceci, j'avais besoin d'une structure de données solide. J'ai co
 
 ```python
 class Node:
-  def __init__(self):
-    self.children = [] # Dans A => B, => est enfant de B 
-    self.visited = False # Lors du parcours récursif du Graphe, évite la boucle infinie
-    self.state = False # Sauvegarde si le résultat est True
+    def __init__(self):
+        self.children = []     # Dans A => B, => est enfant de B
+        self.visited = False   # Lors du parcours récursif du Graphe, évite la boucle infinie
+        self.state = False     # Sauvegarde si le résultat est True
 ```
 
 Voyez-le comme la brique de construction universelle. Elle contient un état (`vrai`/`faux`), suit si nous l'avons visitée (pour éviter de rester coincé dans des boucles infinies), et se connecte à d'autres nœuds. Dans une règle comme `A => B`, par exemple, `A` devient un enfant du nœud `=>`, qui est lui-même un enfant du nœud `B`. C'est une manière simple mais efficace de cartographier une chaîne logique.
@@ -76,18 +76,18 @@ De là, j'ai créé deux nœuds spécialisés qui héritent de la classe de base
 
 ```python
 class AtomNode(Node):
-  def __init__(self, name):
-    super(AtomNode, self).__init__()
-    self.name = name
+    def __init__(self, name):
+        super(AtomNode, self).__init__()
+        self.name = name
 ```
 
 ```python
 class ConnectorNode(Node):
-  def __init__(self, connector_type):
-    super(ConnectorNode, self).__init__(tree)
-    self.type = connector_type
-    self.operands = [] # Par exemple, dans A + B, A et B sont opérandes de +
-    self.state = None
+    def __init__(self, connector_type):
+        super(ConnectorNode, self).__init__(tree)
+        self.type = connector_type
+        self.operands = []     # Par exemple, dans A + B, A et B sont opérandes de +
+        self.state = None
 ```
 
 `AtomNode` gère nos faits (A, B, C), et `ConnectorNode` gère nos opérateurs logiques (AND, XOR, OR, IMPLY). Cette approche garde le code propre et organisé.
@@ -112,26 +112,26 @@ Avec nos règles NPI prêtes, il est temps de construire le réseau. Je boucle �
 stack = []
 
 for x in npi_rule:
-  if x not in OPERATORS:
-    stack.append(self.atoms[x])
-  else:
-    pop0 = stack.pop()
-    pop1 = stack.pop()
-    # Si un des éléments dépilés est le même connecteur que nous allons créer (AND, OR, XOR)
-    if isinstance(pop0, ConnectorNode) and pop0.type is LST_OP[x]:
-      pop0.add_operand(pop1)
-      new_connector = pop0
-      self.connectors.pop()
-    elif isinstance(pop1, ConnectorNode) and pop1.type is LST_OP[x]:
-      pop1.add_operand(pop0)
-      new_connector = pop1
-      self.connectors.pop()
+    if x not in OPERATORS:
+        stack.append(self.atoms[x])
     else:
-      connector_x = self.create_connector(LST_OP[x])
-      connector_x.add_operands([pop0, pop1])
-      new_connector = connector_x
-    self.connectors.append(new_connector)
-    stack.append(new_connector)
+        pop0 = stack.pop()
+        pop1 = stack.pop()
+        # Si un des éléments dépilés est le même connecteur que nous allons créer (AND, OR, XOR)
+        if isinstance(pop0, ConnectorNode) and pop0.type is LST_OP[x]:
+            pop0.add_operand(pop1)
+            new_connector = pop0
+            self.connectors.pop()
+        elif isinstance(pop1, ConnectorNode) and pop1.type is LST_OP[x]:
+            pop1.add_operand(pop0)
+            new_connector = pop1
+            self.connectors.pop()
+        else:
+            connector_x = self.create_connector(LST_OP[x])
+            connector_x.add_operands([pop0, pop1])
+            new_connector = connector_x
+        self.connectors.append(new_connector)
+        stack.append(new_connector)
 
 return stack.pop()
 ```
@@ -146,21 +146,21 @@ Et maintenant, le moment de vérité. Pour résoudre une requête, j'ai construi
 # Pseudocode
 
 def resolve(nodeX):
-  if nodeX is True:
-    return True
-  
-  for child in nodeX.children:
-    res = resolve(child)
-    if res is True:
-      # Besoin que d'un seul enfant soit Vrai pour déduire que le courant est Vrai
-      return True
-    
-  if Node is Connector: # AND OR XOR IMPLY
-    op_results = []
-    for op in nodeX.operands:
-      op_results.append(resolve(op))
-    self.set_state_from_operands(op_results)
-    # Exemple : pour un nœud AND, tous les éléments dans op_results doivent être Vrai
+    if nodeX is True:
+        return True
+
+    for child in nodeX.children:
+        res = resolve(child)
+        if res is True:
+            # Besoin que d'un seul enfant soit Vrai pour déduire que le courant est Vrai
+            return True
+
+    if Node is Connector:  # AND OR XOR IMPLY
+        op_results = []
+        for op in nodeX.operands:
+            op_results.append(resolve(op))
+        self.set_state_from_operands(op_results)
+        # Exemple : pour un nœud AND, tous les éléments dans op_results doivent être Vrai
 ```
 
 Cela commence au nœud de la requête et travaille à rebours à travers ses enfants. Si un enfant peut être prouvé `Vrai`, il le signale en remontant. Pour un nœud connecteur comme `AND`, il vérifie si tous ses opérandes peuvent être résolus à `Vrai`. Pour `OR`, il en a juste besoin d'un. La fonction utilise la logique de la table de vérité que nous avons vue plus tôt pour faire remonter une réponse finale jusqu'au sommet. C'est vraiment satisfaisant de le voir fonctionner.

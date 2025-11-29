@@ -49,23 +49,23 @@ First, let's look at the project structure. This is what Robert C. Martin calls 
 ```sh
 src/
 ├── business/
-│ ├── entity/
-│ │ └── floor.ts
-│ │ └── room.ts
-│ ├── gateway/
-│ │ └── room.gateway.ts
-│ ├── use-cases/
-│ │ └── update-room-price.ts
+│   ├── entity/
+│   │   └── floor.ts
+│   │   └── room.ts
+│   ├── gateway/
+│   │   └── room.gateway.ts
+│   ├── use-cases/
+│   │   └── update-room-price.ts
 ├── container/
-│ └── container.ts
+│   └── container.ts
 ├── controller/
-│ ├── gateway/
-│ │ └── room.repository.ts
-│ ├── presenter/
-│ │ └── room-presenter.json.ts
-│ └── room.controller.ts
+│   ├── gateway/
+│   │   └── room.repository.ts
+│   ├── presenter/
+│   │   └── room-presenter.json.ts
+│   └── room.controller.ts
 └── tests/
-		└── update-price.test.ts
+    └── update-price.test.ts
 ```
 
 - `business/`: This is the heart of our application. All pure business logic lives here. It has zero dependencies on the outside world.
@@ -82,7 +82,7 @@ Entities are not just dumb data containers. They embody the most fundamental bus
 ```ts
 // business/entity/floor.ts
 export class Floor {
-		constructor(public floor: number) {}
+    constructor(public floor: number) {}
 
     // This is a core business rule.
     getFactor() {
@@ -99,14 +99,14 @@ export class Floor {
 import { Floor } from "./floor";
 
 export class Room {
-		public floor: Floor;
-		constructor(
-				floorNumber: number,
-				public number: number,
-				public price: number,
-		) {
-				this.floor = new Floor(floorNumber);
-		}
+    public floor: Floor;
+    constructor(
+        floorNumber: number,
+        public number: number,
+        public price: number,
+    ) {
+        this.floor = new Floor(floorNumber);
+    }
 
     // Another core business rule.
     setPrice(basePrice: number) {
@@ -127,15 +127,15 @@ The gateway is an interface, a contract defined by the business layer that says,
 ```ts
 // business/gateway/room.gateway.ts
 export interface RoomDTO {
-		floor: number;
-		number: number;
-		price: number;
+    floor: number;
+    number: number;
+    price: number;
 }
 
 // This is the contract.
 export interface RoomGateway {
-		updateRoomPrice(roomNumber: number, newPrice: number): Promise<void>;
-		getRooms(): Promise<Array<RoomDTO>>;
+    updateRoomPrice(roomNumber: number, newPrice: number): Promise<void>;
+    getRooms(): Promise<Array<RoomDTO>>;
 }
 ```
 

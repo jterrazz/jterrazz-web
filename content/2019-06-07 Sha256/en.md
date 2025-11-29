@@ -77,23 +77,23 @@ Here's a look at how you might build that formatted message in C:
 ```c
 unsigned char *build_msg(const char *msg, size_t msg_len, size_t formatted_msg_len, bool is_little_endian)
 {
-  unsigned char  *formatted_msg;
-  size_t         cursor;
+    unsigned char  *formatted_msg;
+    size_t         cursor;
 
-  if (!(formatted_msg = malloc(formatted_msg_len)))
-    return (NULL);
+    if (!(formatted_msg = malloc(formatted_msg_len)))
+        return (NULL);
 
-  ft_memcpy(formatted_msg, msg, msg_len);
-  formatted_msg[msg_len] = 0b10000000;
-  cursor = msg_len + 1;
+    ft_memcpy(formatted_msg, msg, msg_len);
+    formatted_msg[msg_len] = 0b10000000;
+    cursor = msg_len + 1;
 
-  while (cursor < formatted_msg_len - 8)
-    formatted_msg[cursor++] = 0;
+    while (cursor < formatted_msg_len - 8)
+        formatted_msg[cursor++] = 0;
 
-  *(uint64_t *)(formatted_msg + formatted_msg_len - 8) =
-    is_little_endian ? (8 * msg_len) : ft_bswap_uint64(8 * msg_len);
+    *(uint64_t *)(formatted_msg + formatted_msg_len - 8) =
+        is_little_endian ? (8 * msg_len) : ft_bswap_uint64(8 * msg_len);
 
-  return (formatted_msg);
+    return (formatted_msg);
 }
 ```
 
@@ -134,11 +134,11 @@ To flip between them, we can use a byte-swapping function:
 ```c
 uint64_t  ft_bswap_uint64(uint64_t x)
 {
-  x = ((x << 8) & 0xFF00FF00FF00FF00ULL) | ((x >> 8) & 0x00FF00FF00FF00FFULL);
-  x = ((x << 16) & 0xFFFF0000FFFF0000ULL) | ((x >> 16) &
-0x0000FFFF0000FFFFULL);
+    x = ((x << 8) & 0xFF00FF00FF00FF00ULL) | ((x >> 8) & 0x00FF00FF00FF00FFULL);
+    x = ((x << 16) & 0xFFFF0000FFFF0000ULL) | ((x >> 16) &
+        0x0000FFFF0000FFFFULL);
 
-  return (x << 32) | (x >> 32);
+    return (x << 32) | (x >> 32);
 }
 ```
 
@@ -172,28 +172,28 @@ After every chunk has been processed, the final values in the buffers are concat
 ```c
 char *build_hash(uint32_t *buffers, size_t buffer_count, bool is_little_endian)
 {
-  char      *hash;
-  char      *hash_tmp;
-  size_t    buffer_i;
-  uint32_t  buffer;
-  
-  buffer_i = 0;
+    char      *hash;
+    char      *hash_tmp;
+    size_t    buffer_i;
+    uint32_t  buffer;
 
-  if (!(hash = ft_strnew(buffer_count * 8)))
-    return (NULL);
+    buffer_i = 0;
 
-  while (buffer_i < buffer_count) {
-    buffer = is_little_endian ? ft_bswap_uint32(buffers[buffer_i]) : buffers[buffer_i];
+    if (!(hash = ft_strnew(buffer_count * 8)))
+        return (NULL);
 
-    if (!(hash_tmp = ft_uitoa_base_len(buffer, 16, 'a', 8)))
-      return (NULL);
+    while (buffer_i < buffer_count) {
+        buffer = is_little_endian ? ft_bswap_uint32(buffers[buffer_i]) : buffers[buffer_i];
 
-    ft_strncpy(hash + (buffer_i * 8), hash_tmp, 8);
-    free(hash_tmp);
-    buffer_i++;
-  }
-  
-  return (hash);
+        if (!(hash_tmp = ft_uitoa_base_len(buffer, 16, 'a', 8)))
+            return (NULL);
+
+        ft_strncpy(hash + (buffer_i * 8), hash_tmp, 8);
+        free(hash_tmp);
+        buffer_i++;
+    }
+
+    return (hash);
 }
 ```
 
@@ -202,9 +202,9 @@ One final quirk for MD5: its buffers are in little-endian format, so they need t
 ```c
 uint32_t ft_bswap_uint32(uint32_t x)
 {
-  x = ((x << 8) & 0xFF00FF00) | ((x >> 8) & 0x00FF00FF);
-  
-  return (x << 16) | (x >> 16);
+    x = ((x << 8) & 0xFF00FF00) | ((x >> 8) & 0x00FF00FF);
+
+    return (x << 16) | (x >> 16);
 }
 ```
 

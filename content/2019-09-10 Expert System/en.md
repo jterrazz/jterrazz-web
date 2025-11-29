@@ -62,10 +62,10 @@ To build this, I needed a solid data structure. I started with a generic `Node` 
 
 ```python
 class Node:
-  def __init__(self):
-    self.children = [] # In A => B, => is child of B 
-    self.visited = False # When recursively parsing the Graph, it avoids infinite loop
-    self.state = False # Saves if the result is True
+    def __init__(self):
+        self.children = []     # In A => B, => is child of B
+        self.visited = False   # When recursively parsing the Graph, it avoids infinite loop
+        self.state = False     # Saves if the result is True
 ```
 
 Think of it as the universal building block. It holds a state (`true`/`false`), tracks if we've visited it (to avoid getting stuck in infinite loops), and connects to other nodes. In a rule like `A => B`, for instance, `A` becomes a child of the `=>` node, which itself is a child of the `B` node. It's a simple but effective way to map out a logical chain.
@@ -76,18 +76,18 @@ From there, I created two specialized nodes that inherit from the base class.
 
 ```python
 class AtomNode(Node):
-  def __init__(self, name):
-    super(AtomNode, self).__init__()
-    self.name = name
+    def __init__(self, name):
+        super(AtomNode, self).__init__()
+        self.name = name
 ```
 
 ```python
 class ConnectorNode(Node):
-  def __init__(self, connector_type):
-    super(ConnectorNode, self).__init__(tree)
-    self.type = connector_type
-    self.operands = [] # For example, in A + B, A and B are operands of +
-    self.state = None
+    def __init__(self, connector_type):
+        super(ConnectorNode, self).__init__(tree)
+        self.type = connector_type
+        self.operands = []     # For example, in A + B, A and B are operands of +
+        self.state = None
 ```
 
 `AtomNode` handles our facts (A, B, C), and `ConnectorNode` handles our logical operators (AND, XOR, OR, IMPLY). This approach keeps the code clean and organized.
@@ -112,26 +112,26 @@ With our RPN rules ready, it's time to build the network. I loop through the RPN
 stack = []
 
 for x in npi_rule:
-  if x not in OPERATORS:
-    stack.append(self.atoms[x])
-  else:
-    pop0 = stack.pop()
-    pop1 = stack.pop()
-    # If one of the popped element is the same connector that we will create (AND, OR, XOR)
-    if isinstance(pop0, ConnectorNode) and pop0.type is LST_OP[x]:
-      pop0.add_operand(pop1)
-      new_connector = pop0
-      self.connectors.pop()
-    elif isinstance(pop1, ConnectorNode) and pop1.type is LST_OP[x]:
-      pop1.add_operand(pop0)
-      new_connector = pop1
-      self.connectors.pop()
+    if x not in OPERATORS:
+        stack.append(self.atoms[x])
     else:
-      connector_x = self.create_connector(LST_OP[x])
-      connector_x.add_operands([pop0, pop1])
-      new_connector = connector_x
-    self.connectors.append(new_connector)
-    stack.append(new_connector)
+        pop0 = stack.pop()
+        pop1 = stack.pop()
+        # If one of the popped element is the same connector that we will create (AND, OR, XOR)
+        if isinstance(pop0, ConnectorNode) and pop0.type is LST_OP[x]:
+            pop0.add_operand(pop1)
+            new_connector = pop0
+            self.connectors.pop()
+        elif isinstance(pop1, ConnectorNode) and pop1.type is LST_OP[x]:
+            pop1.add_operand(pop0)
+            new_connector = pop1
+            self.connectors.pop()
+        else:
+            connector_x = self.create_connector(LST_OP[x])
+            connector_x.add_operands([pop0, pop1])
+            new_connector = connector_x
+        self.connectors.append(new_connector)
+        stack.append(new_connector)
 
 return stack.pop()
 ```
@@ -146,21 +146,21 @@ And now, the moment of truth. To solve a query, I built a recursive function tha
 # Pseudocode
 
 def resolve(nodeX):
-  if nodeX is True:
-    return True
-  
-  for child in nodeX.children:
-    res = resolve(child)
-    if res is True:
-      # Only need one of the children to be True for deducing the current is True
-      return True
-    
-  if Node is Connector: # AND OR XOR IMPLY
-    op_results = []
-    for op in nodeX.operands:
-      op_results.append(resolve(op))
-    self.set_state_from_operands(op_results)
-    # Example: for an AND node, all elements in op_results must be True
+    if nodeX is True:
+        return True
+
+    for child in nodeX.children:
+        res = resolve(child)
+        if res is True:
+            # Only need one of the children to be True for deducing the current is True
+            return True
+
+    if Node is Connector:  # AND OR XOR IMPLY
+        op_results = []
+        for op in nodeX.operands:
+            op_results.append(resolve(op))
+        self.set_state_from_operands(op_results)
+        # Example: for an AND node, all elements in op_results must be True
 ```
 
 It starts at the query node and works backward through its children. If a child can be proven `True`, it reports back up. For a connector node like `AND`, it checks if all its operands can be resolved to `True`. For `OR`, it just needs one. The function uses the truth table logic we saw earlier to bubble a final answer up to the top. It's truly satisfying to see it work.

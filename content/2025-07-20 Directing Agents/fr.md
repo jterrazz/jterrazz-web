@@ -36,21 +36,21 @@ Une des façons les plus efficaces de spécifier l'intention est à travers les 
 
 ```typescript
 test('newsletter subscription flow', async () => {
-  // 1. La requête
-  const response = await request(app)
-    .post('/api/subscribe')
-    .send({ email: 'user@example.com' });
+    // 1. La requête
+    const response = await request(app)
+        .post('/api/subscribe')
+        .send({ email: 'user@example.com' });
 
-  // 2. Le résultat attendu
-  expect(response.status).toBe(200);
-  expect(response.body).toEqual({ success: true });
-  
-  // 3. L'effet de bord (changement d'état)
-  const subscriber = await db.query(
-    'SELECT * FROM subscribers WHERE email = ?',
-    ['user@example.com']
-  );
-  expect(subscriber).toBeDefined();
+    // 2. Le résultat attendu
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ success: true });
+
+    // 3. L'effet de bord (changement d'état)
+    const subscriber = await db.query(
+        'SELECT * FROM subscribers WHERE email = ?',
+        ['user@example.com']
+    );
+    expect(subscriber).toBeDefined();
 });
 ```
 

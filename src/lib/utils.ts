@@ -16,6 +16,7 @@ export function getTextFromChildren(children: ReactNode): string {
     // Handle React elements
     if (React.isValidElement(children)) {
         const element = children as ReactElement<{ children?: ReactNode }>;
+        if (element.type === 'br') return '\n';
         return getTextFromChildren(element.props.children);
     }
 
