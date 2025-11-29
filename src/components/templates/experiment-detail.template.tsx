@@ -102,7 +102,8 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                 </div>
             </div>
 
-            <div className="max-w-5xl mx-auto px-4 md:px-6 pt-20 space-y-24">
+            <div className="px-4 md:px-6 pt-20">
+                <div className="max-w-5xl mx-auto space-y-24">
                 {/* Screenshots (Showcase) */}
                 {experiment.images?.screenshots && experiment.images.screenshots.length > 0 && (
                     <section className="overflow-hidden">
@@ -162,6 +163,14 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                                         </span>
                                     </div>
                                 </div>
+                                {experiment.hasPrivacyPolicy && (
+                                    <a
+                                        className="text-xs text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 underline underline-offset-2 transition-colors"
+                                        href={`/experiments/${experiment.slug}/privacy`}
+                                    >
+                                        Privacy Policy
+                                    </a>
+                                )}
                             </div>
                         </div>
                         <div className="md:col-span-8">
@@ -186,6 +195,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                         </div>
                     </section>
                 )}
+                </div>
             </div>
         </div>
     );

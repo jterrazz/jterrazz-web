@@ -51,20 +51,20 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
                         {tokens.map((line, i) => {
                             const { style: lineStyle, ...lineProps } = getLineProps({ line });
                             return (
-                                // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
+                            // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
                                 <div
                                     key={i}
                                     {...lineProps}
                                     style={{ ...lineStyle, whiteSpace: 'pre' }}
                                 >
-                                    <span className="inline-block w-6 select-none text-zinc-300 dark:text-zinc-700 text-[11px] text-right mr-3 opacity-50">
-                                        {i + 1}
-                                    </span>
-                                    {line.map((token, tokenIndex) => (
-                                        // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
-                                        <span key={tokenIndex} {...getTokenProps({ token })} />
-                                    ))}
-                                </div>
+                                <span className="inline-block w-6 select-none text-zinc-300 dark:text-zinc-700 text-[11px] text-right mr-3 opacity-50">
+                                    {i + 1}
+                                </span>
+                                {line.map((token, tokenIndex) => (
+                                    // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
+                                    <span key={tokenIndex} {...getTokenProps({ token })} />
+                                ))}
+                            </div>
                             );
                         })}
                     </pre>

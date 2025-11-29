@@ -312,16 +312,6 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                     {(showLatestArticle || showLatestExperiment) && (
                         <section className="pb-8">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-                                {/* Latest Article */}
-                                {showLatestArticle && viewModel.latestArticle && (
-                                    <div className="flex flex-col gap-8">
-                                        <SectionDivider title="Latest Insight" />
-                                        <div className="h-full">
-                                            <GridArticleCard article={viewModel.latestArticle} />
-                                        </div>
-                                    </div>
-                                )}
-
                                 {/* Latest Experiment */}
                                 {showLatestExperiment && viewModel.latestExperimentArticle && (
                                     <div className="flex flex-col gap-8">
@@ -330,6 +320,16 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                                             <GridArticleCard
                                                 article={viewModel.latestExperimentArticle}
                                             />
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Latest Article */}
+                                {showLatestArticle && viewModel.latestArticle && (
+                                    <div className="flex flex-col gap-8">
+                                        <SectionDivider title="Latest Insight" />
+                                        <div className="h-full">
+                                            <GridArticleCard article={viewModel.latestArticle} />
                                         </div>
                                     </div>
                                 )}

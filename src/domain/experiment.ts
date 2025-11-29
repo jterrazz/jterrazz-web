@@ -48,6 +48,7 @@ export type Experiment = {
         playStore?: string;
         web?: string;
     };
+    hasPrivacyPolicy?: boolean;
 
     name: string;
     slug: string;
