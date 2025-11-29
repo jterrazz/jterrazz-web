@@ -46,8 +46,9 @@ export default async function ArticlePage(props: ArticlePageProps) {
     return (
         <ArticleTemplate
             articleId={slugId}
-            articles={articles.filter((a) => a.publicIndex !== article.publicIndex)}
+            articles={articles}
             availableLanguages={Object.keys(article.content) as ArticleLanguage[]}
+            category={article.metadata.category}
             contentInMarkdown={article.content.en ?? ''}
             currentLanguage={'en'}
             dateModified={article.metadata.dateModified}

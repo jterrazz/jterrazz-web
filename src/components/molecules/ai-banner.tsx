@@ -9,17 +9,19 @@ export const AIBanner = ({ className }: { className?: string }) => {
     return (
         <div
             className={cn(
-                'inline-flex items-center gap-2.5 px-4 py-2 rounded-full',
-                'bg-zinc-50/80 dark:bg-zinc-900/80 backdrop-blur-md',
-                'border border-zinc-200/50 dark:border-zinc-800/50 shadow-sm',
-                'text-xs font-medium text-zinc-600 dark:text-zinc-300',
+                'flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 rounded-2xl',
+                'bg-zinc-50 dark:bg-zinc-900/50',
+                'border border-zinc-200/60 dark:border-zinc-800',
+                'text-sm text-zinc-500 dark:text-zinc-400',
                 className,
             )}
         >
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            <span>
-                Final text polished by AI for readability. The underlying concepts & architecture
-                are my own.
+            <div className="shrink-0 p-2 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-700 shadow-sm text-amber-500">
+                <Sparkles className="w-4 h-4" />
+            </div>
+            <span className="leading-relaxed">
+                Final text polished by AI for readability. The underlying concepts & architecture are
+                my own.
             </span>
         </div>
     );

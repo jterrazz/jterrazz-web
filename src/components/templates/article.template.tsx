@@ -6,8 +6,9 @@ import Script from 'next/script';
 import { type Article, type ArticleLanguage } from '../../domain/article';
 import { type Feature } from '../../domain/feature';
 
-import { AIBanner } from '../molecules/ai-banner';
+import { buildArticleSlug } from '../../lib/slugify';
 import { LanguageSelector } from '../molecules/language-selector';
+import { ArticleFooter } from '../organisms/article-footer';
 import { ArticleInMarkdown } from '../organisms/article-in-markdown';
 import { MainContainer } from '../organisms/main-container';
 
@@ -15,6 +16,7 @@ type ArticleTemplateProps = {
     articleId: string;
     articles: Article[];
     availableLanguages: ArticleLanguage[];
+    category: string;
     contentInMarkdown: string;
     currentLanguage: ArticleLanguage;
     dateModified: string;
@@ -28,13 +30,43 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     articleId,
     articles,
     availableLanguages,
+    category,
     contentInMarkdown,
     currentLanguage,
     dateModified,
     datePublished,
     title,
 }) => {
-    const _filteredArticles = articles.filter((article) => article.published).slice(0, 5);
+    // Find the current article to get its series info
+    const currentArticle = articles.find((a) => {
+        const slug = buildArticleSlug(a.publicIndex, a.metadata.title.en);
+        return slug === articleId || a.publicIndex.toString() === articleId.split('-')[0];
+    });
+    const seriesName = currentArticle?.metadata.series;
+
+    // Filter logic:
+    // 1. If part of a series, show other articles from that series
+    // 2. Otherwise, show latest published articles (excluding current one)
+    const relatedArticles = seriesName
+        ? articles
+              .filter((a) => a.metadata.series === seriesName)
+              .sort(
+                  (a, b) =>
+                      new Date(a.metadata.datePublished).getTime() -
+                      new Date(b.metadata.datePublished).getTime(),
+              )
+        : articles
+              .filter(
+                  (article) =>
+                      article.published && article.publicIndex !== currentArticle?.publicIndex,
+              )
+              .sort(
+                  (a, b) =>
+                      new Date(b.metadata.datePublished).getTime() -
+                      new Date(a.metadata.datePublished).getTime(),
+              )
+              .slice(0, 3);
+
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
@@ -48,10 +80,7 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     };
 
     return (
-        <MainContainer className="my-6 md:my-6">
-            <aside aria-label="Article metadata" className="flex justify-center mb-8">
-                <AIBanner />
-            </aside>
+        <MainContainer className="mt-8 md:mt-16">
             <Script id="json-ld" strategy="beforeInteractive" type="application/ld+json">
                 {JSON.stringify(jsonLd)}
             </Script>
@@ -59,17 +88,21 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
             <LanguageSelector
                 articleId={articleId}
                 availableLanguages={availableLanguages}
-                className="mb-8"
+                className="mb-12"
                 currentLanguage={currentLanguage}
             />
 
             <ArticleInMarkdown className="mb-6" contentInMarkdown={contentInMarkdown} />
-            <p className="text-center text-zinc-500 dark:text-zinc-400 text-sm mt-4 italic">
-                Last updated on {new Date(dateModified).toLocaleDateString()}
-            </p>
-            <p className="text-center text-zinc-500 dark:text-zinc-400 text-sm mt-2 italic">
-                Published on {new Date(datePublished).toLocaleDateString()}
-            </p>
+
+            <ArticleFooter
+                category={category}
+                className="mt-16"
+                currentArticleId={articleId}
+                dateModified={dateModified}
+                datePublished={datePublished}
+                relatedArticles={relatedArticles}
+                seriesTitle={seriesName}
+            />
         </MainContainer>
     );
 };

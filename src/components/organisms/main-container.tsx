@@ -15,7 +15,7 @@ export const MainContainer: React.FC<MainContainerProps> = ({
     size = 'medium',
 }) => {
     const generatedClassName = cn(
-        'w-full flex flex-col self-center justify-self-center px-5 my-6 md:my-20',
+        'w-full flex flex-col self-center justify-self-center px-5 my-8 md:my-12',
         className,
     );
 
