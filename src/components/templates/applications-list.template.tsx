@@ -94,13 +94,13 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
             </div>
 
             {/* Experiments Content */}
-            <div className="max-w-7xl mx-auto px-4 md:px-6 py-20 md:py-32 space-y-40">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 py-20 md:py-32 space-y-32">
                 {/* Featured Applications */}
                 {apps.length > 0 && (
                     <section>
-                        <SectionDivider className="mb-20" title="Featured Applications" />
+                        <SectionDivider className="mb-12" title="Applications" />
                         <motion.div
-                            className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12"
+                            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
                             initial="hidden"
                             variants={containerVariants}
                             whileInView="show"
@@ -109,7 +109,6 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                             {apps.map((experiment) => (
                                 <motion.div key={experiment.name} variants={itemVariants}>
                                     <FeaturedExperimentCard
-                                        className="min-h-[480px]"
                                         experiment={experiment as unknown as Experiment}
                                     />
                                 </motion.div>
@@ -121,7 +120,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                 {/* Libraries & Tools */}
                 {libs.length > 0 && (
                     <section>
-                        <SectionDivider className="mb-16" title="Tooling & Libraries" />
+                        <SectionDivider className="mb-16" title="Tooling" />
                         <motion.div
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
                             initial="hidden"
@@ -143,7 +142,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                 {/* System & Research */}
                 {system.length > 0 && (
                     <section>
-                        <SectionDivider className="mb-16" title="System & Research" />
+                        <SectionDivider className="mb-16" title="Systems" />
                         <motion.div
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6"
                             initial="hidden"

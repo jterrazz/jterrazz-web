@@ -85,11 +85,6 @@ export default async function ExperimentsPage() {
             description: experiment.description,
             name: experiment.name,
             url: experiment.url.toString(),
-            ...(experiment.components.length > 0 && {
-                softwareVersion: experiment.components
-                    .flatMap((component) => component.technologies)
-                    .join(', '),
-            }),
         })),
         name: 'Experiments by Jean-Baptiste Terrazzoni: AI & Fintech Tools',
         url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/experiments`,

@@ -5,8 +5,19 @@ const PARIS = 'Paris, France';
 export const userExperiencesData: UserExperience[] = [
     {
         description:
-            'Innovated core banking services with a strong focus on security and user privacy. ' +
-            'Mastered Node.js & TypeScript, and led legacy system modernization with TDD, Docker, and integration tests.',
+            'Released my first mobile app, "AI News", to the App Store. A playful tool to challenge critical thinking by spotting AI-generated headlines.',
+        location: 'Personal Project',
+        organization: 'AI News',
+        organizationUrl: 'https://apps.apple.com/us/app/ai-news-smart-world-news/id6742116038',
+        experimentUrl: '/experiments/ai-news',
+        timeframe: 'April 2025',
+        title: 'Mobile App Release',
+        type: 'Job',
+        year: '2025',
+    },
+    {
+        description:
+            'Engineering secure core banking infrastructure. Modernizing legacy systems with Node.js, TypeScript, and rigorous TDD practices.',
         location: 'France',
         organization: 'Bankin / BridgeApi',
         organizationUrl: 'https://bankin.com/',
@@ -17,43 +28,42 @@ export const userExperiencesData: UserExperience[] = [
     },
     {
         description:
-            'Built a synthetic asset platform leveraging Chainlink oracles and smart contracts for real-time pricing. ' +
-            'Enhanced my skills in blockchain integration and decentralized finance (DeFi).',
+            'Built a synthetic asset platform using Chainlink oracles for real-time pricing. Secured 4 bounties for innovation in DeFi.',
         location: 'Waterloo, Ontario, Canada',
         organization: 'ETHWaterloo',
         organizationUrl: 'https://ethwaterloo.com/',
-        experimentUrl: 'https://devpost.com/software/defy-dy',
+        experimentUrl: '/experiments/defy-dy',
         timeframe: 'Nov 2019',
-        title: 'Recipient of 4 bounties for the ETHWaterloo hackathon',
+        title: 'Hackathon Winner',
         type: 'Hackathon',
         year: '2019',
     },
     {
         description:
-            'Co-created a blockchain-based crowdfunding platform using CVT tokens. ' +
-            'Strengthened my expertise in smart contracts and decentralized applications.',
+            'Developed a blockchain crowdfunding platform powered by CVT tokens. Awarded a bounty for smart contract implementation.',
         location: PARIS,
         organization: 'ETHParis',
         organizationUrl: 'https://ethparis.com/',
-        experimentUrl: 'https://devpost.com/software/ethparis',
+        experimentUrl: '/experiments/cvt-crowdfunding',
         timeframe: 'Mar 2019',
-        title: 'Recipient of 1 bounty for the ETHParis hackathon',
+        title: 'Hackathon Winner',
         type: 'Hackathon',
         year: '2019',
     },
     {
         description:
-            'Refined APIs and optimized a NuxtJS site, boosting SEO and third-party integrations like Stripe. ' +
-            'Developed a customizable B2B product, focusing on secure and scalable development.',
+            'Optimized B2B products with NuxtJS and Stripe integrations. Enhanced API performance and led SEO improvements.',
         location: PARIS,
         organization: 'Dalia Solutions',
         organizationUrl: 'https://www.linkedin.com/company/dalia-solutions/',
         timeframe: 'Aug 2018 - Jan 2019',
-        title: 'Fullstack developer',
+        title: 'Fullstack Developer',
         type: 'Job',
         year: '2018',
     },
     {
+        description:
+            'Studied C, C++, Assembly, and system architecture through peer-to-peer learning.',
         location: PARIS,
         organization: '42',
         organizationUrl: 'https://www.42.fr/',
@@ -64,16 +74,17 @@ export const userExperiencesData: UserExperience[] = [
     },
     {
         description:
-            'Deepened my understanding of accounting principles, with hands-on experience in legal and social missions.',
+            'Assisted with legal and social auditing missions, gaining practical insight into corporate accounting.',
         location: 'Ajaccio, France',
         organization: "Cabinet d'expertise comptable Mazzoni",
         organizationUrl: 'https://fr.kompass.com/c/m-francois-mazzoni/fr0599365/',
         timeframe: 'Apr 2016',
-        title: 'Chartered accountant',
+        title: 'Accounting Intern',
         type: 'Internship',
         year: '2016',
     },
     {
+        description: 'Specialization in Economics and Management.',
         location: 'Aix en Provence, France',
         organization: 'Aix Marseille University',
         organizationUrl: 'https://www.univ-amu.fr/',

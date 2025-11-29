@@ -9,7 +9,7 @@ import { type ExperimentComponent } from '../../../domain/experiment';
 // Utils
 import { cn } from '../../../lib/utils';
 
-import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge';
+import { Badge } from '../../atoms/status/badge';
 import { DotPulse } from '../../atoms/status/dot-pulse';
 
 import {
@@ -29,7 +29,7 @@ export const TableRowExperimentComponent: React.FC<TableRowExperimentComponentPr
     const [isExpanded, setIsExpanded] = React.useState(false);
 
     // Combine all tags
-    const allTags = [...component.technologies, ...component.architectures];
+    const allTags = [...component.architectures];
     // Show only first 2 tags initially to reduce noise
     const visibleTags = allTags.slice(0, 2);
     const hiddenTagsCount = allTags.length - 2;
@@ -125,22 +125,24 @@ export const TableRowExperimentComponent: React.FC<TableRowExperimentComponentPr
                             </div>
 
                             {/* Full Tech Stack */}
-                            <div>
-                                <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">
-                                    Tech Stack
-                                </span>
-                                <div className="flex flex-wrap gap-2">
-                                    {allTags.map((tag) => (
-                                        <Badge
-                                            color={BadgeColor.Gray}
-                                            filled={false}
-                                            key={tag}
-                                            size={DotPulseSize.Small}
-                                            value={tag}
-                                        />
-                                    ))}
+                            {allTags.length > 0 && (
+                                <div>
+                                    <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 block">
+                                        Architecture
+                                    </span>
+                                    <div className="flex flex-wrap gap-2">
+                                        {allTags.map((tag) => (
+                                            <Badge
+                                                color={BadgeColor.Gray}
+                                                filled={false}
+                                                key={tag}
+                                                size={DotPulseSize.Small}
+                                                value={tag}
+                                            />
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
                             {/* Action Buttons */}
                             <div className="flex gap-3 pt-2">

@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { ArrowRight, ArrowUpRight, Github, Globe, Layers } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Download, Github, Globe, Layers } from 'lucide-react';
 
 // Domain
 import {
@@ -14,8 +14,8 @@ import {
 // Utils
 import { cn } from '../../lib/utils';
 
-import { Badge, BadgeColor } from '../atoms/status/badge';
-import { experimentStatusToStatusBadgeState } from '../molecules/cards/featured-experiment-card';
+import { Badge } from '../atoms/status/badge';
+import { ExperimentStatusBadge } from '../atoms/status/experiment-status-badge';
 import { SectionDivider } from '../molecules/section-divider';
 
 type ExperimentDetailTemplateProps = {
@@ -46,10 +46,6 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
             {icon}
             <span>{label}</span>
         </a>
-    );
-
-    const technologies = Array.from(
-        new Set(experiment.components.flatMap((c) => c.technologies)),
     );
 
     return (
@@ -86,6 +82,12 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                                     experiment.storeLinks.web,
                                     'Visit Website',
                                     <Globe size={18} />,
+                                )}
+                            {experiment.storeLinks?.appStore &&
+                                renderStoreButton(
+                                    experiment.storeLinks.appStore,
+                                    'App Store',
+                                    <Download size={18} />,
                                 )}
                             {experiment.url &&
                                 !experiment.storeLinks?.web &&
@@ -142,18 +144,22 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                                 <div className="h-1 w-12 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
                             </div>
 
-                            <div className="flex flex-col items-start gap-4">
-                                <Badge
-                                    color={experimentStatusToStatusBadgeState(experiment.status)}
-                                    value={experiment.status}
+                            <div className="flex flex-col items-start gap-6">
+                                <ExperimentStatusBadge
+                                    className="border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800"
+                                    status={experiment.status}
                                 />
-                                <div className="flex flex-wrap gap-2">
-                                    <span className="px-3 py-1 text-xs font-mono font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 rounded-full border border-zinc-200 dark:border-zinc-700">
-                                        {experiment.year}
-                                    </span>
-                                    <span className="px-3 py-1 text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 rounded-full border border-zinc-200 dark:border-zinc-700">
-                                        {experiment.context}
-                                    </span>
+                                <div className="flex flex-col gap-3">
+                                    <div className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
+                                        <span className="font-mono uppercase tracking-wider text-xs">Year</span>
+                                        <span className="h-px w-8 bg-zinc-200 dark:bg-zinc-800" />
+                                        <span className="font-medium text-zinc-900 dark:text-zinc-100">{experiment.year}</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
+                                        <span className="font-mono uppercase tracking-wider text-xs">Context</span>
+                                        <span className="h-px w-8 bg-zinc-200 dark:bg-zinc-800" />
+                                        <span className="font-medium text-zinc-900 dark:text-zinc-100">{experiment.context}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -164,32 +170,6 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                         </div>
                     </div>
                 </section>
-
-                {/* Tech Stack */}
-                {technologies.length > 0 && (
-                    <section>
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-                            <div className="md:col-span-4">
-                                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-2">
-                                    Technology
-                                </h3>
-                                <div className="h-1 w-12 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
-                            </div>
-                            <div className="md:col-span-8">
-                                <div className="flex flex-wrap gap-3">
-                                    {technologies.map((tech) => (
-                                        <span
-                                            className="px-4 py-2 text-sm font-medium rounded-lg bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-800"
-                                            key={tech}
-                                        >
-                                            {tech}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                )}
 
                 {/* Components (If applicable) */}
                 {experiment.components && experiment.components.length > 0 && (
@@ -213,36 +193,22 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
 // Sub-component for architecture parts
 const ExperimentComponentCard: React.FC<{ component: ExperimentComponent }> = ({ component }) => {
     return (
-        <div className="group p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all">
+        <div className="group relative p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div className="flex-1 space-y-3">
+                <div className="flex-1 space-y-3 pr-12">
                     <div className="flex items-center gap-3">
                         <Layers className="text-zinc-400" size={20} />
                         <h4 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
                             {component.name}
                         </h4>
-                        <Badge
-                            color={experimentStatusToStatusBadgeState(component.status)}
-                            size="small"
-                            value={component.status}
-                        />
                     </div>
                     <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
                         {component.description}
                     </p>
-                    <div className="flex flex-wrap gap-2 pt-2">
-                        {component.technologies.slice(0, 4).map((tech) => (
-                            <span
-                                className="text-xs font-mono text-zinc-500 dark:text-zinc-500 bg-white dark:bg-zinc-800 px-2 py-1 rounded border border-zinc-200 dark:border-zinc-700/50"
-                                key={tech}
-                            >
-                                {tech}
-                            </span>
-                        ))}
-                    </div>
                 </div>
 
-                <div className="flex items-center gap-3 shrink-0">
+                <div className="flex flex-col items-end gap-4 shrink-0 pt-2 md:pt-0">
+                    <ExperimentStatusBadge status={component.status} />
                     <a
                         className="flex items-center justify-center w-10 h-10 rounded-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
                         href={component.sourceUrl.toString()}

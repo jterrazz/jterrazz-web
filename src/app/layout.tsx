@@ -123,12 +123,12 @@ export default function RootLayout({
             name: 'Hello',
         },
         {
-            href: '/articles',
-            name: 'Articles',
-        },
-        {
             href: '/experiments',
             name: 'Experiments',
+        },
+        {
+            href: '/articles',
+            name: 'Articles',
         },
         {
             href: '/photographs',

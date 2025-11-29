@@ -3,10 +3,12 @@ import Script from 'next/script';
 
 // Domain
 import { type Article } from '../domain/article';
+import { type Experiment } from '../domain/experiment';
 import { type UserExperience } from '../domain/user';
 
 // Infrastructure
 import { ArticleInMemoryRepository } from '../infrastructure/repositories/article-in-memory.repository';
+import { ExperimentInMemoryRepository } from '../infrastructure/repositories/experiment-in-memory.repository';
 import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-memory.repository';
 
 import { HelloWorldTemplate } from '../components/templates/hello-world.template';
@@ -60,8 +62,14 @@ export const metadata: Metadata = {
 export default async function HomePage() {
     const userRepository = new UserInMemoryRepository();
     const articlesRepository = new ArticleInMemoryRepository();
+    const experimentRepository = new ExperimentInMemoryRepository();
+
     const userExperiences: UserExperience[] = userRepository.getExperiences();
     const topArticles: Article[] = await articlesRepository.getArticles();
+    const latestExperiments: Experiment[] = experimentRepository
+        .getExperiments()
+        .slice(0, 2);
+
     const description =
         'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.';
 
@@ -113,6 +121,7 @@ export default async function HomePage() {
             <HelloWorldTemplate
                 description={description}
                 experiences={userExperiences}
+                latestExperiments={latestExperiments}
                 topArticles={topArticles.map((article) => ({
                     description: article.metadata.description.en,
                     imageUrl: article.imageUrl ?? '',

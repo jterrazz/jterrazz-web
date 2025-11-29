@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ChevronRight, Code2, Layers } from 'lucide-react';
+import { ChevronRight, Layers } from 'lucide-react';
 
 // Domain
 import { type ExperimentComponent } from '../../../domain/experiment';
@@ -8,7 +8,7 @@ import { type ExperimentComponent } from '../../../domain/experiment';
 // Utils
 import { cn } from '../../../lib/utils';
 
-import { Badge, BadgeColor, DotPulseSize } from '../../atoms/status/badge';
+import { Badge } from '../../atoms/status/badge';
 
 import { experimentStatusToDescription } from './table-row-experiment-component-view-model';
 
@@ -34,20 +34,6 @@ export const TableRowExperimentDetails: React.FC<TableRowExperimentDetailsProps>
                 </p>
 
                 <div className="mt-6 flex flex-col gap-4">
-                    <div className="flex items-start gap-3">
-                        <Code2 className="w-4 h-4 text-zinc-400 mt-0.5" />
-                        <div className="flex flex-wrap gap-2">
-                            {component.technologies.map((technology) => (
-                                <Badge
-                                    color={BadgeColor.Gray}
-                                    key={technology}
-                                    size={DotPulseSize.Small}
-                                    value={technology}
-                                />
-                            ))}
-                        </div>
-                    </div>
-
                     {component.architectures.length > 0 && (
                         <div className="flex items-start gap-3">
                             <Layers className="w-4 h-4 text-zinc-400 mt-0.5" />

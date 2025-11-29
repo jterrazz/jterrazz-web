@@ -1,5 +1,4 @@
 export enum ArticleCategory {
-    Architecture = 'architecture',
     Insight = 'insight',
     Experiment = 'experiment',
 }

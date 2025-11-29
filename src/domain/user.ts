@@ -16,16 +16,15 @@ export type UserContact = {
 };
 
 export type UserExperience = {
-    company: string;
-    companyUrl?: string;
-    contract: 'cdi' | 'freelance' | 'internship';
-    dateEnd?: Date;
-    dateStart: Date;
     description: string;
     experimentUrl?: string;
     location: string;
-    role: string;
-    stack: string[];
+    organization: string;
+    organizationUrl?: string;
+    timeframe: string;
+    title: string;
+    type: 'Job' | 'Hackathon' | 'School' | 'Internship';
+    year: string;
 };
 
 export interface UserRepository {

@@ -108,7 +108,7 @@ export const TimelineExperience: React.FC<TimelineEventProps> = ({
                 {/* Main Content - Minimal Card */}
                 <motion.div
                     className={cn(
-                        'relative p-6 rounded-2xl border transition-all duration-300 cursor-pointer group/card overflow-hidden',
+                        'relative p-6 rounded-2xl border transition-all duration-300 cursor-pointer group/card overflow-hidden text-left',
                         isOpen 
                             ? 'bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-700 shadow-xl ring-1 ring-zinc-200 dark:ring-zinc-800' 
                             : 'bg-white/50 dark:bg-zinc-900/50 border-zinc-200/50 dark:border-zinc-800/50 hover:bg-white dark:hover:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-lg hover:-translate-y-1'
@@ -138,8 +138,8 @@ export const TimelineExperience: React.FC<TimelineEventProps> = ({
                                 <div
                                     className={cn(
                                         'flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-500 dark:text-zinc-400',
-                                        isEven ? 'md:justify-end' : 'md:justify-start',
-                                        'justify-start' 
+                                        // Removed text alignment classes to keep everything left-aligned
+                                        'justify-start'
                                     )}
                                 >
                                     <Link

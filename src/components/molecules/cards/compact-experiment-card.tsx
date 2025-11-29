@@ -20,10 +20,6 @@ export const CompactExperimentCard: React.FC<CompactExperimentCardProps> = ({
     className,
     experiment,
 }) => {
-    const technologies = Array.from(
-        new Set(experiment.components.flatMap((c) => c.technologies)),
-    );
-
     return (
         <Link
             className={cn(
@@ -62,17 +58,7 @@ export const CompactExperimentCard: React.FC<CompactExperimentCardProps> = ({
             </p>
 
             {/* Footer */}
-            <div className="flex items-center justify-between mt-auto pt-4 border-t border-zinc-100 dark:border-zinc-800/50">
-                <div className="flex items-center gap-2 overflow-hidden">
-                    {technologies.slice(0, 3).map((tech) => (
-                        <div className="flex items-center gap-1.5" key={tech}>
-                            <div className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
-                            <span className="text-[10px] font-mono font-medium text-zinc-500 dark:text-zinc-400 whitespace-nowrap">
-                                {tech}
-                            </span>
-                        </div>
-                    ))}
-                </div>
+            <div className="flex items-center justify-end mt-auto pt-4 border-t border-zinc-100 dark:border-zinc-800/50">
                 <span className="text-[10px] font-mono text-zinc-300 dark:text-zinc-600 shrink-0 ml-2 group-hover:text-zinc-500 dark:group-hover:text-zinc-400 transition-colors">
                     {experiment.year}
                 </span>

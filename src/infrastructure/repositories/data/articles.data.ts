@@ -187,7 +187,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2024-12-20 Application Design Introduction',
         metadata: {
-            category: ArticleCategory.Architecture,
+            category: ArticleCategory.Insight,
             dateModified: '2025-07-02',
             datePublished: '2024-12-20',
             description: {
@@ -207,7 +207,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2024-12-21 Application Design Dependencies',
         metadata: {
-            category: ArticleCategory.Architecture,
+            category: ArticleCategory.Insight,
             dateModified: '2025-07-03',
             datePublished: '2024-12-21',
             description: {
@@ -227,7 +227,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2024-12-22 Application Design Hexagonal',
         metadata: {
-            category: ArticleCategory.Architecture,
+            category: ArticleCategory.Insight,
             dateModified: '2025-07-04',
             datePublished: '2024-12-22',
             description: {
@@ -247,7 +247,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     {
         filename: '2024-12-23 Application Design Clean Architecture',
         metadata: {
-            category: ArticleCategory.Architecture,
+            category: ArticleCategory.Insight,
             dateModified: '2025-07-05',
             datePublished: '2024-12-23',
             description: {

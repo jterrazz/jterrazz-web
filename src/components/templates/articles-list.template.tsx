@@ -192,11 +192,10 @@ type ArticlesListTemplateProps = {
 };
 
 export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ viewModel }) => {
-    const [filter, setFilter] = useState<'AI' | 'All' | 'Architecture' | 'Experiment'>('All');
+    const [filter, setFilter] = useState<'All' | 'Experiment' | 'Insight'>('All');
 
     const filterMap: Record<string, ArticleCategory[]> = {
-        AI: [ArticleCategory.Insight],
-        Architecture: [ArticleCategory.Architecture],
+        Insight: [ArticleCategory.Insight],
         Experiment: [ArticleCategory.Experiment],
     };
 
@@ -285,7 +284,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
             <div className="max-w-6xl mx-auto px-4 md:px-6 mb-12">
                 <div className="flex items-center justify-center">
                     <div className="flex items-center gap-2 overflow-x-auto p-4 -m-4 no-scrollbar">
-                    {['All', 'AI', 'Architecture', 'Experiment'].map((f) => (
+                    {['All', 'Experiment', 'Insight'].map((f) => (
                         <button
                             className={`
                                 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap
@@ -297,7 +296,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                             `}
                             key={f}
                             onClick={() =>
-                                setFilter(f as 'AI' | 'All' | 'Architecture' | 'Experiment')
+                                setFilter(f as 'All' | 'Experiment' | 'Insight')
                             }
                             type="button"
                         >
@@ -318,7 +317,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                                 {/* Latest Article */}
                                 {showLatestArticle && viewModel.latestArticle && (
                                     <div className="flex flex-col gap-8">
-                                        <SectionDivider title="Latest Article" />
+                                        <SectionDivider title="Latest Insight" />
                                         <div className="h-full">
                                             <GridArticleCard article={viewModel.latestArticle} />
                                         </div>

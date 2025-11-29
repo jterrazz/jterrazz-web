@@ -30,39 +30,6 @@ export enum ExperimentStatus {
     Concept = 'concept',
 }
 
-export enum ExperimentTechnology {
-    Assembly = 'Assembly',
-    // Languages
-    C = 'C',
-    Express = 'Express',
-    Gdb = 'GDB',
-    Hono = 'Hono',
-
-    Koa = 'Koa',
-    MongoDB = 'MongoDB',
-    // Frontend
-    NextJs = 'Next.js',
-    // Backend
-    NodeJs = 'Node.js',
-    // Database
-    Postgres = 'Postgres',
-
-    Prisma = 'Prisma',
-    Python = 'Python',
-    // Tools
-    Radare2 = 'Radare2',
-
-    React = 'React',
-
-    ReactNative = 'React Native',
-    Sass = 'Sass',
-    Sqlite = 'SQLite',
-
-    TailwindCSS = 'TailwindCSS',
-    // TypeScript
-    Typescript = 'Typescript',
-}
-
 export type Experiment = {
     category: ExperimentCategory;
     components: Array<ExperimentComponent>; // Can be empty for simple experiments
@@ -95,7 +62,6 @@ export type ExperimentComponent = {
     name: string;
     sourceUrl: URL;
     status: ExperimentStatus;
-    technologies: Array<ExperimentTechnology>;
 };
 
 export interface ExperimentRepository {

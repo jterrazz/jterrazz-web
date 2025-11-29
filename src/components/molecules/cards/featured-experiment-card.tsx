@@ -11,20 +11,7 @@ import { type Experiment, ExperimentStatus } from '../../../domain/experiment';
 // Utils
 import { cn } from '../../../lib/utils';
 
-import { Badge, BadgeColor } from '../../atoms/status/badge';
-
-export const experimentStatusToStatusBadgeState = (status: ExperimentStatus): BadgeColor => {
-    switch (status) {
-        case ExperimentStatus.Active:
-            return BadgeColor.Green;
-        case ExperimentStatus.Building:
-            return BadgeColor.Blue;
-        case ExperimentStatus.Concept:
-            return BadgeColor.Orange;
-        default:
-            return BadgeColor.Gray;
-    }
-};
+import { ExperimentStatusBadge } from '../../atoms/status/experiment-status-badge';
 
 export type FeaturedExperimentCardProps = {
     className?: string;
@@ -35,84 +22,62 @@ export const FeaturedExperimentCard: React.FC<FeaturedExperimentCardProps> = ({
     className,
     experiment,
 }) => {
-    const technologies = Array.from(
-        new Set(experiment.components.flatMap((c) => c.technologies)),
-    );
-
     return (
         <Link
             className={cn(
-                'group block relative h-full overflow-hidden rounded-3xl transition-all duration-500',
-                'bg-zinc-50 dark:bg-zinc-900',
+                'group flex flex-col h-full p-6 sm:p-8 rounded-xl transition-all duration-300',
+                'bg-white dark:bg-zinc-950',
                 'border border-zinc-200 dark:border-zinc-800',
+                'hover:shadow-xl hover:shadow-zinc-200/40 dark:hover:shadow-black/40 hover:-translate-y-1',
                 'hover:border-zinc-300 dark:hover:border-zinc-700',
-                'hover:shadow-2xl hover:shadow-zinc-200/50 dark:hover:shadow-zinc-900/50',
+                'relative overflow-hidden',
                 className,
             )}
             href={`/experiments/${experiment.slug}`}
         >
-            {/* Background Texture/Gradient */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-zinc-100/50 via-transparent to-transparent dark:from-zinc-800/20" />
+            {/* Subtle gradient on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-transparent to-transparent dark:from-zinc-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-            <div className="relative p-8 md:p-10 flex flex-col h-full z-10">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-8">
-                    <div className="flex flex-col gap-4">
-                        <div className="flex items-center gap-3">
-                            <Badge
-                                color={experimentStatusToStatusBadgeState(experiment.status)}
-                                value={experiment.status}
-                            />
-                            <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">
-                                {experiment.year}
-                            </span>
-                        </div>
-                        <h3 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors duration-300">
-                            {experiment.name}
-                        </h3>
-                    </div>
-                    <div className="p-4 rounded-full bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 opacity-0 -translate-y-4 translate-x-4 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-500 shadow-lg border border-zinc-100 dark:border-zinc-700">
-                        <ArrowRight size={24} />
-                    </div>
+            <div className="relative flex flex-col h-full z-10">
+                {/* Header: Title & Status */}
+                <div className="flex items-start justify-between gap-4 mb-4">
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors">
+                        {experiment.name}
+                    </h3>
+                    <ExperimentStatusBadge className="shrink-0" status={experiment.status} />
                 </div>
 
-                {/* Description */}
-                <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-3xl mb-12 font-light">
-                    {experiment.description}
-                </p>
+                {/* Content */}
+                <div className="flex-1 mb-8">
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed line-clamp-3 font-normal">
+                        {experiment.description}
+                    </p>
+                </div>
 
-                {/* Footer / Tech Stack */}
-                <div className="mt-auto pt-8 border-t border-zinc-200/50 dark:border-zinc-800/50 flex items-center justify-between">
-                    <div className="flex flex-wrap gap-2">
-                        {technologies.slice(0, 4).map((tech) => (
-                            <span
-                                className="px-3 py-1.5 text-xs font-medium font-mono rounded-lg bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700 shadow-sm"
-                                key={tech}
-                            >
-                                {tech}
-                            </span>
-                        ))}
-                        {technologies.length > 4 && (
-                            <span className="px-3 py-1.5 text-xs font-medium font-mono rounded-lg bg-transparent text-zinc-400 dark:text-zinc-600">
-                                +{technologies.length - 4}
-                            </span>
-                        )}
+                {/* Footer: Meta info */}
+                <div className="flex items-center justify-between pt-6 border-t border-zinc-100/80 dark:border-zinc-800/60 mt-auto">
+                    <div className="flex items-center gap-3 text-xs text-zinc-400 dark:text-zinc-500 font-mono uppercase tracking-wider">
+                        <span>{experiment.year}</span>
+                        <span className="w-0.5 h-0.5 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+                        <span>{experiment.context}</span>
                     </div>
 
-                    {/* Direct Link (Optional) */}
-                    {experiment.url && (
-                        <div
-                            className="flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors z-20 cursor-pointer"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                window.open(experiment.url?.toString(), '_blank');
-                            }}
-                        >
-                            <span>Live</span>
-                            <ExternalLink size={16} />
-                        </div>
-                    )}
+                    <div
+                        className={cn(
+                            'flex items-center gap-2 text-xs font-medium transition-all duration-300',
+                            'text-zinc-400 dark:text-zinc-500',
+                            'group-hover:text-zinc-900 dark:group-hover:text-zinc-100 group-hover:translate-x-1',
+                        )}
+                    >
+                        {experiment.url ? (
+                            <>
+                                <span>View Project</span>
+                                <ArrowRight size={14} />
+                            </>
+                        ) : (
+                            <span>Read More</span>
+                        )}
+                    </div>
                 </div>
             </div>
         </Link>
