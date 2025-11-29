@@ -120,15 +120,15 @@ export default function RootLayout({
     const pages = [
         {
             href: '/',
-            name: 'Hello World',
-        },
-        {
-            href: '/applications',
-            name: 'Applications',
+            name: 'Hello',
         },
         {
             href: '/articles',
             name: 'Articles',
+        },
+        {
+            href: '/projects',
+            name: 'Projects',
         },
         {
             href: '/photographs',

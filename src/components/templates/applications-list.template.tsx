@@ -49,6 +49,21 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
         url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/applications`,
     };
 
+    const apps = projects.filter((p) => ['Fake News', 'Capitaine IO', 'Jterrazz'].includes(p.name));
+    const libs = projects.filter((p) => p.name === 'Typescript Packages');
+    const academic = projects.filter((p) => p.name === '42 Projects');
+
+    const renderProjects = (list: typeof projects) => (
+        <div className="flex flex-col gap-24 md:gap-32">
+            {list.map((project) => (
+                <TableRowProject
+                    key={project.name}
+                    project={project as unknown as Project}
+                />
+            ))}
+        </div>
+    );
+
     return (
         <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
             <Script
@@ -71,16 +86,31 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
             </div>
 
             {/* Projects Content */}
-            <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
-                <SectionDivider className="mb-16" title="Selected Projects" />
-                <div className="flex flex-col gap-24 md:gap-32">
-                    {projects.map((project) => (
-                        <TableRowProject
-                            key={project.name}
-                            project={project as unknown as Project}
-                        />
-                    ))}
-                </div>
+            <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 space-y-32">
+                
+                {/* Applications */}
+                {apps.length > 0 && (
+                    <section>
+                        <SectionDivider className="mb-16" title="Applications" />
+                        {renderProjects(apps)}
+                    </section>
+                )}
+
+                {/* Libraries & Tools */}
+                {libs.length > 0 && (
+                    <section>
+                        <SectionDivider className="mb-16" title="Libraries & Tools" />
+                        {renderProjects(libs)}
+                    </section>
+                )}
+
+                {/* Academic */}
+                {academic.length > 0 && (
+                    <section>
+                        <SectionDivider className="mb-16" title="Projects" />
+                        {renderProjects(academic)}
+                    </section>
+                )}
             </div>
         </div>
     );

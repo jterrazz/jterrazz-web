@@ -203,7 +203,7 @@ export const TheNavigationBar: React.FC<TheNavigationBarProps> = ({
                 {isMenuOpen && (
                     <motion.div
                         animate={{ opacity: 1, y: 0 }}
-                        className="fixed inset-0 z-[40] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md flex flex-col pt-32 px-8 md:hidden"
+                        className="fixed inset-0 z-[40] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md flex flex-col pt-32 px-8 md:hidden pointer-events-auto"
                         exit={{ opacity: 0, y: 20 }}
                         initial={{ opacity: 0, y: 20 }}
                         transition={{ duration: 0.2 }}

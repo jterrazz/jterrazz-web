@@ -20,7 +20,7 @@ export const revalidate = false;
 
 export const metadata: Metadata = {
     alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/applications`,
+        canonical: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/projects`,
     },
     description:
         'Discover projects and tools by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer. Explore AI-powered personal growth platforms and fintech solutions designed to help you grow.',
@@ -39,12 +39,12 @@ export const metadata: Metadata = {
             'Discover projects and tools by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer.',
         title: 'Projects by Jean-Baptiste Terrazzoni: AI & Fintech Tools',
         type: 'website',
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/applications`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/projects`,
     },
     title: 'Projects by Jean-Baptiste Terrazzoni: AI & Fintech Tools',
 };
 
-export default async function ApplicationsPage() {
+export default async function ProjectsPage() {
     const projectRepository = new ProjectInMemoryRepository();
     const featureRepository = new FeatureInMemoryRepository();
 
@@ -95,7 +95,7 @@ export default async function ApplicationsPage() {
             }),
         })),
         name: 'Projects by Jean-Baptiste Terrazzoni: AI & Fintech Tools',
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/applications`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/projects`,
     };
 
     return (
