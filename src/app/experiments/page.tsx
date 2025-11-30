@@ -21,7 +21,7 @@ export const metadata: Metadata = {
         canonical: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/experiments`,
     },
     description:
-        "The code behind the concepts. A collection of tools, apps, and open-source libraries built to solve problems and test new ideas.",
+        'The code behind the concepts. A collection of tools, apps, and open-source libraries built to solve problems and test new ideas.',
     keywords: [
         'AI experiments',
         'fintech tools',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     ],
     openGraph: {
         description:
-            "The code behind the concepts. A collection of tools, apps, and open-source libraries built to solve problems and test new ideas.",
+            'The code behind the concepts. A collection of tools, apps, and open-source libraries built to solve problems and test new ideas.',
         title: 'The Lab: Projects, Tools & Proofs of Concept',
         type: 'website',
         url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/experiments`,
@@ -73,7 +73,7 @@ export default async function ExperimentsPage() {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
         description:
-            "The code behind the concepts. A collection of tools, apps, and open-source libraries built to solve problems and test new ideas.",
+            'The code behind the concepts. A collection of tools, apps, and open-source libraries built to solve problems and test new ideas.',
         hasPart: experiments.map((experiment) => ({
             '@type': 'SoftwareApplication',
             applicationCategory: 'ProductivityApplication',
