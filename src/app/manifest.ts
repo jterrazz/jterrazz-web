@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
     return {
         background_color: '#FFFFFF',
         description:
-            "Discover game-changing apps and coding insights at jterrazz.com! Join a dev's journey crafting useful apps, from self-improvement tools to innovative tech solutions. Level up your skills and find your next big idea! 🚀💻",
+            'The engineering portfolio of Jean-Baptiste Terrazzoni. Building, learning, and sharing my journey through software engineering.',
         display: 'standalone',
         icons: [
             {
@@ -38,7 +38,7 @@ export default function manifest(): MetadataRoute.Manifest {
                 type: 'image/png',
             },
         ],
-        name: 'Jean-Baptiste Terrazzoni: App Development, Self-Improvement & Tech Insights',
+        name: 'Jean-Baptiste Terrazzoni: Building & Learning',
         short_name: 'Jterrazz',
         start_url: '/',
         theme_color: '#FFFFFF',

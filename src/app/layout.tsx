@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     authors: [{ name: 'Jean-Baptiste Terrazzoni', url: 'https://jterrazz.com' }],
     creator: 'Jean-Baptiste Terrazzoni',
     description:
-        "Discover game-changing apps and coding insights at jterrazz.com! Join a dev's journey crafting useful apps, from self-improvement tools to innovative tech solutions. Level up your skills and find your next big idea! 🚀💻",
+        'The engineering portfolio of Jean-Baptiste Terrazzoni. Building, learning, and sharing my journey through software engineering and intelligent systems.',
     icons: [
         {
             rel: 'icon',
@@ -117,7 +117,7 @@ export const metadata: Metadata = {
     metadataBase: new URL(baseUrl),
     openGraph: {
         description:
-            "Discover game-changing apps and coding insights at jterrazz.com! Join a dev's journey crafting useful apps, from self-improvement tools to innovative tech solutions. Level up your skills and find your next big idea!",
+            'The engineering portfolio of Jean-Baptiste Terrazzoni. Building, learning, and sharing my journey through software engineering and intelligent systems.',
         images: [
             {
                 height: 630,
@@ -127,7 +127,7 @@ export const metadata: Metadata = {
         ],
         locale: 'en_US',
         siteName: 'Jean-Baptiste Terrazzoni',
-        title: 'Jean-Baptiste Terrazzoni: App Development, Self-Improvement & Tech Insights',
+        title: 'Jean-Baptiste Terrazzoni: Engineering AI Agents & Fintech Solutions',
         type: 'website',
         url: baseUrl,
     },
@@ -143,7 +143,7 @@ export const metadata: Metadata = {
         index: true,
     },
     title: {
-        default: 'Jean-Baptiste Terrazzoni: App Development, Self-Improvement & Tech Insights',
+        default: 'Jean-Baptiste Terrazzoni: Building & Learning',
         template: '%s | Jean-Baptiste Terrazzoni',
     },
     twitter: {

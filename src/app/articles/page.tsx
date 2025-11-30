@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         canonical: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
     },
     description:
-        'Read articles by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer. Deep dives into AI, fintech, and building intelligent systems for personal and financial growth.',
+        'My personal knowledge base. Notes on engineering, architecture, and the things I learn while building software.',
     keywords: [
         'AI articles',
         'fintech insights',
@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     ],
     openGraph: {
         description:
-            'Read articles by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer.',
-        title: 'Articles by Jean-Baptiste Terrazzoni: AI & Fintech Insights',
+            'My personal knowledge base. Notes on engineering, architecture, and the things I learn while building software.',
+        title: 'Engineering Journal: Notes on Architecture & Systems',
         type: 'website',
         url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
     },
-    title: 'Articles by Jean-Baptiste Terrazzoni: AI & Fintech Insights',
+    title: 'Engineering Journal: Notes on Architecture & Systems',
 };
 
 export default async function ArticlesPage() {
@@ -60,7 +60,7 @@ export default async function ArticlesPage() {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
         description:
-            'Read articles by Jean-Baptiste Terrazzoni—AI Agent Developer and Fintech Engineer. Deep dives into AI, fintech, and building intelligent systems for personal and financial growth.',
+            'My personal knowledge base. Notes on engineering, architecture, and the things I learn while building software.',
         hasPart: articles
             .filter((article) => article.published)
             .map((article) => ({
@@ -77,7 +77,7 @@ export default async function ArticlesPage() {
                 name: article.metadata.title.en,
                 url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles/${buildArticleSlug(article.publicIndex, article.metadata.title.en)}`,
             })),
-        name: 'Articles by Jean-Baptiste Terrazzoni: AI & Fintech Insights',
+        name: 'Engineering Journal: Notes on Architecture & Systems',
         url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
     };
 

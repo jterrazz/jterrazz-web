@@ -17,7 +17,7 @@ export const metadata: Metadata = {
         canonical: `${baseUrl}/photographs`,
     },
     description:
-        'A collection of photographs taken by Jean-Baptiste Terrazzoni. A simple collection of moments and places that caught my eye.',
+        'Capturing the world as I see it. A simple, authentic collection of moments from my travels and daily life.',
     keywords: [
         'Photography',
         'Travel Photography',
@@ -27,17 +27,17 @@ export const metadata: Metadata = {
     ],
     openGraph: {
         description:
-            'A collection of photographs taken by Jean-Baptiste Terrazzoni. A simple collection of moments and places that caught my eye.',
-        title: 'Photographs by Jean-Baptiste Terrazzoni',
+            'Capturing the world as I see it. A simple, authentic collection of moments from my travels and daily life.',
+        title: 'Through My Lens: A Visual Journal',
         type: 'website',
         url: `${baseUrl}/photographs`,
     },
-    title: 'Photographs by Jean-Baptiste Terrazzoni',
+    title: 'Through My Lens: A Visual Journal',
     twitter: {
         card: 'summary_large_image',
         description:
-            'A collection of photographs taken by Jean-Baptiste Terrazzoni. A simple collection of moments and places that caught my eye.',
-        title: 'Photographs by Jean-Baptiste Terrazzoni',
+            'Capturing the world as I see it. A simple, authentic collection of moments from my travels and daily life.',
+        title: 'Through My Lens: A Visual Journal',
     },
 };
 
@@ -54,7 +54,7 @@ export default function PhotographsPage() {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
         description:
-            'A collection of photographs taken by Jean-Baptiste Terrazzoni. A simple collection of moments and places that caught my eye.',
+            'Capturing the world as I see it. A simple, authentic collection of moments from my travels and daily life.',
         hasPart: photographs.map((photo) => ({
             '@type': 'ImageObject',
             author: {
@@ -67,7 +67,7 @@ export default function PhotographsPage() {
             name: photo.metadata.description,
             thumbnailUrl: photo.contentUrl,
         })),
-        name: 'Photographs by Jean-Baptiste Terrazzoni',
+        name: 'Through My Lens: A Visual Journal',
         url: `${baseUrl}/photographs`,
     };
 

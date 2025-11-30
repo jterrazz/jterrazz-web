@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         canonical: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
     },
     description:
-        "Engineering tomorrow's intelligent systems with AI agents, clean architecture, and decentralized solutions. Building where execution meets direction.",
+        'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.',
     keywords: [
         'Jean-Baptiste Terrazzoni',
         'AI Agent Developer',
@@ -42,21 +42,21 @@ export const metadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'),
     openGraph: {
         description:
-            "Engineering tomorrow's intelligent systems with AI agents, clean architecture, and decentralized solutions. Building where execution meets direction.",
+            'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.',
         images: [
             {
-                alt: 'Jean-Baptiste Terrazzoni - Developer Portfolio',
+                alt: 'Jean-Baptiste Terrazzoni - Building & Learning',
                 height: 630,
                 url: '/assets/icons/app-icon.jterrazz.png',
                 width: 1200,
             },
         ],
         siteName: 'Jterrazz',
-        title: 'Jean-Baptiste Terrazzoni: AI, Apps, Learn',
+        title: 'Jean-Baptiste Terrazzoni: Building & Learning',
         type: 'website',
         url: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
     },
-    title: 'Jean-Baptiste Terrazzoni: AI, Apps, Learn',
+    title: 'Jean-Baptiste Terrazzoni: Building & Learning',
 };
 
 export default async function HomePage() {
@@ -83,11 +83,11 @@ export default async function HomePage() {
         hasOccupation: {
             '@type': 'Occupation',
             description:
-                "Engineering tomorrow's intelligent systems with AI agents, clean architecture, and decentralized solutions. Building where execution meets direction.",
+                'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.',
             name: 'Software Developer',
         },
         image: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/assets/icons/app-icon.jterrazz.png`,
-        jobTitle: 'AI, Apps, Learn',
+        jobTitle: 'Software Engineer',
         knowsAbout: [
             'AI Agent Development',
             'Fintech Engineering',
