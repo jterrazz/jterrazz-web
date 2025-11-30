@@ -12,7 +12,10 @@ export type HeadingMainProps = {
 };
 
 export const HeadingMain: React.FC<HeadingMainProps> = ({ children, className = '', id }) => {
-    const generatedClassName = cn('text-4xl font-black mb-4 tracking-tight', className);
+    const generatedClassName = cn(
+        'text-3xl md:text-4xl lg:text-5xl font-black mb-4 tracking-tight',
+        className,
+    );
     const headingId = id || slugify(getTextFromChildren(children));
 
     return (

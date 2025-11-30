@@ -22,13 +22,13 @@ export const HeadingSubSection: React.FC<HeadingSubSectionProps> = ({
 
     switch (size) {
         case 'large':
-            generatedClassName = cn(generatedClassName, 'text-lg font-bold mb-4');
+            generatedClassName = cn(generatedClassName, 'text-lg md:text-xl font-bold mb-4');
             break;
         case 'medium':
-            generatedClassName = cn(generatedClassName, 'text-md font-bold mb-2');
+            generatedClassName = cn(generatedClassName, 'text-base md:text-lg font-bold mb-2');
             break;
         case 'small':
-            generatedClassName = cn(generatedClassName, 'text-sm font-bold mb-1');
+            generatedClassName = cn(generatedClassName, 'text-sm md:text-base font-bold mb-1');
             break;
     }
 

@@ -41,7 +41,7 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
             <Highlight code={code} language={language} theme={codeTheme}>
                 {({ getLineProps, getTokenProps, style, tokens }) => (
                     <pre
-                        className="p-4 overflow-x-auto text-[13px] font-mono leading-normal"
+                        className="p-4 overflow-x-auto text-xs md:text-sm font-mono leading-normal"
                         style={{
                             ...style,
                             backgroundColor: 'transparent',
@@ -51,20 +51,20 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
                         {tokens.map((line, i) => {
                             const { style: lineStyle, ...lineProps } = getLineProps({ line });
                             return (
-                            // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
+                                // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
                                 <div
                                     key={i}
                                     {...lineProps}
                                     style={{ ...lineStyle, whiteSpace: 'pre' }}
                                 >
-                                <span className="inline-block w-6 select-none text-zinc-300 dark:text-zinc-700 text-[11px] text-right mr-3 opacity-50">
-                                    {i + 1}
-                                </span>
-                                {line.map((token, tokenIndex) => (
-                                    // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
-                                    <span key={tokenIndex} {...getTokenProps({ token })} />
-                                ))}
-                            </div>
+                                    <span className="inline-block w-6 select-none text-zinc-300 dark:text-zinc-700 text-[10px] md:text-xs text-right mr-3 opacity-50">
+                                        {i + 1}
+                                    </span>
+                                    {line.map((token, tokenIndex) => (
+                                        // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
+                                        <span key={tokenIndex} {...getTokenProps({ token })} />
+                                    ))}
+                                </div>
                             );
                         })}
                     </pre>
@@ -80,7 +80,7 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
 }) => {
     // Using a serif font stack that mimics Medium/standard publishing typography
     const baseClassName =
-        'font-serif text-[19px] leading-[1.58] text-zinc-900 dark:text-zinc-100 antialiased';
+        'font-serif text-lg md:text-xl leading-relaxed text-zinc-900 dark:text-zinc-100 antialiased';
     const generatedClassName = cn(baseClassName, className);
 
     return (
@@ -95,7 +95,7 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                     ),
                     blockquote: ({ node, ...props }) => (
                         <blockquote
-                            className="pl-6 border-l-[3px] border-zinc-900 dark:border-zinc-100 italic text-xl text-zinc-700 dark:text-zinc-300 my-10 leading-relaxed"
+                            className="pl-6 border-l-[3px] border-zinc-900 dark:border-zinc-100 italic text-lg md:text-xl text-zinc-700 dark:text-zinc-300 my-10 leading-relaxed"
                             {...props}
                         />
                     ),
@@ -126,25 +126,25 @@ export const ArticleInMarkdown: React.FC<ArticleInMarkdownProps> = ({
                     ),
                     h1: ({ node, ...props }) => (
                         <HeadingMain
-                            className="text-4xl md:text-5xl font-sans font-bold tracking-tight mb-8 mt-0 text-zinc-900 dark:text-zinc-50"
+                            className="text-3xl md:text-4xl lg:text-5xl font-sans font-bold tracking-tight mb-8 mt-0 text-zinc-900 dark:text-zinc-50"
                             {...props}
                         />
                     ),
                     h2: ({ node, ...props }) => (
                         <HeadingSection
-                            className="text-2xl md:text-3xl font-sans font-bold tracking-tight mb-4 mt-12 text-zinc-900 dark:text-zinc-50"
+                            className="text-2xl md:text-3xl lg:text-4xl font-sans font-bold tracking-tight mb-4 mt-12 text-zinc-900 dark:text-zinc-50"
                             {...props}
                         />
                     ),
                     h3: ({ node, ...props }) => (
                         <HeadingSection
-                            className="text-xl md:text-2xl font-sans font-bold tracking-tight mb-3 mt-8 text-zinc-900 dark:text-zinc-50"
+                            className="text-xl md:text-2xl lg:text-3xl font-sans font-bold tracking-tight mb-3 mt-8 text-zinc-900 dark:text-zinc-50"
                             {...props}
                         />
                     ),
                     h4: ({ node, ...props }) => (
                         <h4
-                            className="text-lg md:text-xl font-sans font-bold mb-2 mt-6 text-zinc-900 dark:text-zinc-50"
+                            className="text-lg md:text-xl lg:text-2xl font-sans font-bold mb-2 mt-6 text-zinc-900 dark:text-zinc-50"
                             {...props}
                         />
                     ),

@@ -12,7 +12,10 @@ export type TitleSectionProps = {
 };
 
 export const HeadingSection: React.FC<TitleSectionProps> = ({ children, className, id }) => {
-    const generatedClassName = cn('text-2xl font-extrabold mb-6', className);
+    const generatedClassName = cn(
+        'text-2xl md:text-3xl lg:text-4xl font-extrabold mb-6',
+        className,
+    );
     const headingId = id || slugify(getTextFromChildren(children));
 
     return (
