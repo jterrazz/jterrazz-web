@@ -1,0 +1,260 @@
+---
+description: Comprehensive Clean Architecture & Development Rules for Web
+alwaysApply: true
+---
+
+# 🏗️ Perfect Web Architecture
+
+These rules codify how this Next.js project is structured to ensure code remains **predictable, scalable, and testable**.
+
+> "UI is just a function of state – keep state clean and the UI will follow." – Rule #0
+
+---
+
+## 1. Architecture Overview
+
+### 1.1 Directory Organization
+
+We follow a pragmatic **Clean Architecture** split into four main layers, plus root configuration and injection.
+
+```
+src/
+├── config/                             # ⚙️ Global Configuration
+│   └── env.ts                          #    (Environment variables, API URLs)
+│
+├── domain/                             # 🔴 INNERMOST: Pure Business Logic
+│   ├── entities/                       #    (Mutable domain objects with identity)
+│   ├── value-objects/                  #    (Immutable domain attributes)
+│   └── errors/                         #    (Domain-specific errors)
+│
+├── application/                        # 🟡 INNER: Application Orchestration
+│   ├── ports/                          # 🔌 The Contracts (Interfaces)
+│   │   ├── {feature}-repository.port.ts
+│   │   └── {service}.port.ts
+│   └── use-cases/                      # ⚡️ The Actions (Class-based)
+│       └── {feature}/
+│           ├── {verb}-{noun}.use-case.ts
+│           └── {verb}-{noun}.dto.ts
+│
+├── infrastructure/                     # 🟢 OUTER: Adapters & Implementations
+│   ├── repositories/                   # 💾 Persistence Adapters (Implement Ports)
+│   ├── api/                            # 🌐 Network Adapters (Fetch/Axios)
+│   ├── stores/                         # 📦 Local State Definitions (Zustand)
+│   ├── persistence/                    # 💾 Low-level Storage (localStorage, cookies)
+│   └── internationalization/           # 🌍 I18n logic & locales
+│
+├── presentation/                       # 🔵 OUTERMOST: UI & Interaction
+│   ├── theme/                          # 🎨 Design System (Tokens, Providers)
+│   ├── ui/                             # 🧱 Dumb Components (Atomic Design)
+│   │   ├── atoms/                      #    (Single responsibility primitives)
+│   │   ├── molecules/                  #    (Composition of atoms)
+│   │   └── organisms/                  #    (Complex standalone sections)
+│   ├── templates/                      # 📄 Page layouts (compose organisms)
+│   └── hooks/                          # ⚓️ Global Presentation Hooks
+│
+├── app/                                # 📱 Next.js App Router
+│   ├── (routes)/                       #    (Route groups & pages)
+│   ├── api/                            #    (API routes / Route Handlers)
+│   ├── layout.tsx                      #    (Root layout)
+│   └── page.tsx                        #    (Home page)
+│
+└── di/                                 # 💉 Dependency Injection
+    └── container.ts                    #    (Wiring: Ports → Implementations)
+```
+
+### 1.2 File Naming Conventions
+
+| Layer | Type | Filename Pattern | Export Pattern |
+| :--- | :--- | :--- | :--- |
+| **Domain** | Entity | `{name}.entity.ts` | `{Name}` |
+| | Value Object | `{name}.vo.ts` | `{Name}` |
+| **App** | Port | `{name}.port.ts` | `{Name}Port` |
+| | Use Case | `{verb}-{noun}.use-case.ts` | `{Verb}{Noun}UseCase` |
+| **Infra** | Repository | `{name}.repository.ts` | `{Name}Repository` |
+| | API Adapter | `{name}.api.ts` | `{Name}Api` |
+| | Store | `{name}.store.ts` | `use{Name}Store` |
+| **UI** | Component | `{name}.tsx` | `{Name}` |
+| | Sub-component | `{parent}-{child}.tsx` | `{Parent}{Child}` |
+| | Hook | `use-{hook-name}.ts` | `use{HookName}` |
+| | Context | `{name}-context.tsx` | `{Name}Context`, `use{Name}` |
+
+---
+
+## 2. Dependency Rules
+
+Strict unidirectional data flow. Inner layers **never** know about outer layers.
+
+```mermaid
+graph TD
+    Presentation --> Application
+    Infrastructure --> Application
+    Application --> Domain
+    Domain --> Nothing
+```
+
+*   **Presentation**: Imports `Application` (Use Cases) and `Domain` (Types). NEVER imports `Infrastructure`.
+*   **Infrastructure**: Imports `Application` (Ports) and `Domain`.
+*   **Application**: Imports `Domain`. Defines Ports implemented by Infrastructure.
+*   **Domain**: Pure TypeScript. No framework dependencies.
+
+---
+
+## 3. Presentation Layer Guidelines
+
+The presentation layer is strictly organized to separate **visuals** from **behavior**.
+
+### 3.1 Atomic Design (`src/presentation/ui`)
+Reusable, feature-agnostic components located in the `ui/` folder.
+*   **Atoms**: Basic building blocks (Text, Button, Icon). No logic.
+*   **Molecules**: Groups of atoms (InputGroup, UserRow). UI logic only.
+*   **Organisms**: Complex UI sections (Navbar, ArticleList). Can have local state.
+
+### 3.2 Templates (`src/presentation/templates`)
+Page layouts that compose organisms. Used by `app/` routes.
+
+### 3.3 UI Component Naming
+
+**Use primitive names** — name by WHAT it is, not HOW it behaves.
+
+| ❌ Avoid | ✅ Prefer | Reason |
+| :--- | :--- | :--- |
+| `expandable-navbar` | `navbar` | Behavior is implementation detail |
+| `animated-card` | `card` | Document behavior in JSDoc |
+| `collapsible-header` | `header` | Findability: devs search "header" |
+
+**Rules:**
+*   Name components by their **UI primitive** (Button, Card, Modal, Navbar)
+*   Document behavior in JSDoc: `@description Expandable navbar with gesture support`
+*   Only add behavior prefix if you have **multiple variants**: `simple-navbar` vs `rich-navbar`
+
+**Sub-component naming:** `{parent}-{child}.tsx`
+```
+navbar/
+├── navbar.tsx              # Main component
+├── navbar-tab.tsx          # Sub-component
+├── navbar-menu.tsx         # Sub-component
+├── navbar-menu-item.tsx    # Sub-component
+└── use-navbar-gesture.ts   # Hook
+```
+
+### 3.4 Component Anatomy & Co-location
+
+**Principle: Co-locate until you need to share.**
+
+Each component is **self-contained** with styles, constants, and helpers inline:
+
+```tsx
+// navbar-tab.tsx (self-contained component)
+import { cn } from '@/lib/utils';
+
+// 1. Constants (if needed)
+const ANIMATION_DURATION = 300;
+
+// 2. Types
+interface NavbarTabProps { ... }
+
+// 3. Component
+export function NavbarTab({ className, ...props }: NavbarTabProps) {
+  return (
+    <div className={cn('flex items-center', className)} {...props}>
+      ...
+    </div>
+  );
+}
+```
+
+**Folder structure for complex components:**
+
+```
+navbar/
+├── navbar.tsx                 # Main orchestrator (thin)
+├── navbar-tab.tsx             # Sub-component (self-contained)
+├── navbar-menu.tsx            # Expanded menu container
+├── navbar-menu-item.tsx       # Sub-component (self-contained)
+├── navbar-expand-trigger.tsx  # The "more" button
+├── use-navbar-gesture.ts      # Hook (stateful logic)
+└── __tests__/
+```
+
+**When to extract:**
+
+| Extract to... | When... |
+| :--- | :--- |
+| **Separate hook** (`use-*.ts`) | Stateful logic with `useState`/`useRef`/`useCallback` |
+| **Separate file** | Used by 3+ components in same folder |
+| **Keep inline** | Small helpers, single-use configs |
+
+**❌ DON'T create:**
+*   `{name}.styles.ts` — use Tailwind classes inline
+*   `{name}.constants.ts` — constants go inside component file
+*   Shared styles files — each sub-component owns its styles
+
+### 3.5 Theme & Design System (`src/presentation/theme`)
+Contains theme types, providers, and design tokens.
+*   **Tokens**: Colors, Spacing, Typography defined in Tailwind config.
+*   **Usage**: Never hardcode hex codes or pixels. Use Tailwind classes.
+    *   ✅ `className="text-zinc-900 dark:text-zinc-100"`
+    *   ❌ `style={{ color: '#F00' }}`
+
+---
+
+## 4. Implementation Guidelines
+
+### 4.1 Coding Style
+1.  **Functional & Declarative**: Use React Functional Components and Hooks.
+2.  **Early Returns**: Avoid deep nesting. Guard clauses first.
+3.  **Props**: Define `interface {Name}Props` inside the `.tsx` file. Avoid "Props drilling" > 2 levels.
+4.  **No Barrel Exports**: Do not use `index.ts` files. Import directly from specific files to avoid circular dependencies and tree-shaking issues.
+
+### 4.2 Server vs Client Components
+1.  **Server Components (default)**: Data fetching, heavy computation, sensitive logic.
+2.  **Client Components (`'use client'`)**: Interactivity, browser APIs, hooks with state.
+3.  **Rule**: Keep client boundary as low as possible in the component tree.
+
+### 4.3 State Management
+1.  **Local State**: `useState` for ephemeral UI state (isMenuOpen).
+2.  **Feature State**: `useReducer` or Custom Hooks for complex local logic.
+3.  **Global State**: **Zustand** stores located in `infrastructure/stores`.
+    *   Access strictly via Repositories in Use Cases (Logic).
+    *   Access via Hooks in UI (Reading data).
+4.  **Server State**: Prefer Server Components for data fetching when possible.
+
+### 4.4 Error Handling
+*   **Domain/App**: Throw typed Errors (e.g., `ArticleNotFoundError`).
+*   **UI**: Handle errors in Custom Hooks or strictly typed `Result` objects.
+*   **Global**: Use Error Boundaries and Next.js `error.tsx` for crashes.
+
+---
+
+## 5. Testing Strategy
+
+*   **Unit Tests**: Colocated `__tests__` folder.
+    *   `{name}.test.ts` for logic/classes.
+    *   `{name}.test.tsx` for components (Testing Library).
+*   **Focus**: Test **behavior**, not implementation details.
+*   **Mocks**: Mock external dependencies (Ports) when testing Use Cases.
+
+---
+
+## 6. Best Practices Checklist
+
+### ✅ DO
+*   Validate external data (API, Storage) with **Zod** at the Infrastructure boundary.
+*   Use **Dependency Injection** for all Use Cases and Repositories.
+*   Keep UI components "dumb" — pass data in, get events out.
+*   **Co-locate** styles, constants, and helpers inside component files.
+*   Make each sub-component **self-contained** and portable.
+*   Use `useCallback` / `useMemo` for referenced functions/values in `useEffect`.
+*   Use **kebab-case** for all filenames: `navigation-bar-tab.tsx`.
+*   Prefer **Server Components** for data fetching and static content.
+
+### ❌ DON'T
+*   Import `infrastructure` files directly into `presentation`.
+*   Put business logic (calculations, filtering) in UI components.
+*   Create generic `utils/` folders. Name them by domain (e.g., `date-utils`, `string-utils`).
+*   Leave `console.log` in production code.
+*   Create new documentation files unless requested.
+*   Use `index.ts` files for barrel exports.
+*   Create separate `.styles.ts` or `.constants.ts` files — co-locate instead.
+*   Use dot notation in filenames (`component.tab.tsx`) — use kebab-case (`component-tab.tsx`).
+*   Add `'use client'` unnecessarily — keep client boundaries minimal.

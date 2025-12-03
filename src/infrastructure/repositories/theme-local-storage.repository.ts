@@ -4,7 +4,7 @@ import {
     type ResolvedTheme,
     type Theme,
     THEME_STORAGE_KEY,
-} from '../../domain/theme';
+} from '../../presentation/theme/theme';
 
 export interface ThemeRepository {
     getStoredTheme(): Theme;

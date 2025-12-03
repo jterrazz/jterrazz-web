@@ -1,8 +1,8 @@
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
-import { PhotographsGridTemplate } from '../../components/templates/photographs-grid.template';
-import { photographsDataAccess } from '../../data/photographs.data';
+import { PhotographsGridTemplate } from '../../presentation/templates/photographs-grid.template';
+import { photographsRepository } from '../../infrastructure/repositories/photographs.repository';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 };
 
 export default function PhotographsPage() {
-    const photographs = photographsDataAccess.getAll();
+    const photographs = photographsRepository.getAll();
 
     const highlightTitle = 'Photographs';
     const highlightDescription =

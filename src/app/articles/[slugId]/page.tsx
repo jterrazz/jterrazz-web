@@ -1,11 +1,14 @@
 import { type Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
-import { ArticleTemplate } from '../../../components/templates/article.template';
-import { articlesDataAccess } from '../../../data/articles.data';
-import { featuresDataAccess, FeatureId } from '../../../data/features.data';
+import { ArticleTemplate } from '../../../presentation/templates/article.template';
+import { articlesRepository } from '../../../infrastructure/repositories/articles.repository';
+import {
+    featuresRepository,
+    FeatureId,
+} from '../../../infrastructure/repositories/features.repository';
 import { type ArticleLanguage } from '../../../domain/article';
-import { buildArticleSlug } from '../../../lib/slugify';
+import { buildArticleSlug } from '../../../domain/utils/slugify';
 
 export const dynamicParams = true;
 
@@ -20,7 +23,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
     // Extract the numeric id prefix before the first dash
     const id = slugId.split('-')[0];
 
-    const article = articlesDataAccess.getByIndex(id);
+    const article = articlesRepository.getByIndex(id);
 
     if (!article) {
         return notFound();
@@ -32,8 +35,8 @@ export default async function ArticlePage(props: ArticlePageProps) {
         return redirect(`/articles/${canonicalSlug}`);
     }
 
-    const articles = articlesDataAccess.getAll();
-    const features = [featuresDataAccess.getById(FeatureId.Source)];
+    const articles = articlesRepository.getAll();
+    const features = [featuresRepository.getById(FeatureId.Source)];
 
     return (
         <ArticleTemplate
@@ -58,7 +61,7 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
 
-    const article = articlesDataAccess.getByIndex(id);
+    const article = articlesRepository.getByIndex(id);
 
     if (!article) {
         return {
@@ -104,7 +107,7 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
 }
 
 export function generateStaticParams() {
-    const articles = articlesDataAccess.getAll();
+    const articles = articlesRepository.getAll();
 
     return articles.flatMap((article) => [
         { slugId: buildArticleSlug(article.publicIndex, article.metadata.title.en) },

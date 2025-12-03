@@ -1,14 +1,14 @@
 import { type MetadataRoute } from 'next';
 
-import { articlesDataAccess } from '../data/articles.data';
-import { experimentsDataAccess } from '../data/experiments.data';
-import { buildArticleSlug } from '../lib/slugify';
+import { articlesRepository } from '../infrastructure/repositories/articles.repository';
+import { experimentsRepository } from '../infrastructure/repositories/experiments.repository';
+import { buildArticleSlug } from '../domain/utils/slugify';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
 
-    const articles = articlesDataAccess.getAll();
-    const experiments = experimentsDataAccess.getAll();
+    const articles = articlesRepository.getAll();
+    const experiments = experimentsRepository.getAll();
 
     const articleUrls = articles.flatMap((article) => {
         const languages = Object.keys(article.content);

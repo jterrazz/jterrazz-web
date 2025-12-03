@@ -1,10 +1,10 @@
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
-import { ArticlesListTemplate } from '../../components/templates/articles-list.template';
-import { ArticlesListViewModelImpl } from '../../components/templates/articles-list.template.view-model';
-import { articlesDataAccess } from '../../data/articles.data';
-import { buildArticleSlug } from '../../lib/slugify';
+import { ArticlesListTemplate } from '../../presentation/templates/articles-list.template';
+import { ArticlesListViewModelImpl } from '../../presentation/templates/articles-list-template-view-model';
+import { articlesRepository } from '../../infrastructure/repositories/articles.repository';
+import { buildArticleSlug } from '../../domain/utils/slugify';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 };
 
 export default function ArticlesPage() {
-    const articles = articlesDataAccess.getAll();
+    const articles = articlesRepository.getAll();
 
     // TODO: Move to template directly
     const highlightTitle = 'Articles';

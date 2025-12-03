@@ -1,11 +1,11 @@
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
-import { HelloWorldTemplate } from '../components/templates/hello-world.template';
-import { articlesDataAccess } from '../data/articles.data';
-import { experimentsDataAccess } from '../data/experiments.data';
-import { userDataAccess } from '../data/user.data';
-import { buildArticleSlug } from '../lib/slugify';
+import { HelloWorldTemplate } from '../presentation/templates/hello-world.template';
+import { articlesRepository } from '../infrastructure/repositories/articles.repository';
+import { experimentsRepository } from '../infrastructure/repositories/experiments.repository';
+import { userRepository } from '../infrastructure/repositories/user.repository';
+import { buildArticleSlug } from '../domain/utils/slugify';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-    const userExperiences = userDataAccess.getExperiences();
-    const topArticles = articlesDataAccess.getAll();
-    const latestExperiments = experimentsDataAccess.getAll().slice(0, 2);
+    const userExperiences = userRepository.getExperiences();
+    const topArticles = articlesRepository.getAll();
+    const latestExperiments = experimentsRepository.getAll().slice(0, 2);
 
     const description =
         'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.';

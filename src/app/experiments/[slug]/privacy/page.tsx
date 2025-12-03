@@ -1,14 +1,14 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { experimentsDataAccess } from '../../../../data/experiments.data';
+import { experimentsRepository } from '../../../../infrastructure/repositories/experiments.repository';
 
 type Props = {
     params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-    const experiments = experimentsDataAccess.getAll();
+    const experiments = experimentsRepository.getAll();
 
     return experiments
         .filter((experiment) => experiment.hasPrivacyPolicy)
@@ -17,7 +17,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
     const params = await props.params;
-    const experiment = experimentsDataAccess.getBySlug(params.slug);
+    const experiment = experimentsRepository.getBySlug(params.slug);
 
     return {
         description: `Privacy policy for ${experiment?.name || 'this application'}.`,
@@ -27,7 +27,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export default async function ExperimentPrivacyPage(props: Props) {
     const params = await props.params;
-    const experiment = experimentsDataAccess.getBySlug(params.slug);
+    const experiment = experimentsRepository.getBySlug(params.slug);
 
     if (!experiment || !experiment.hasPrivacyPolicy) {
         notFound();

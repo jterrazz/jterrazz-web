@@ -1,9 +1,12 @@
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
-import { ApplicationsListTemplate } from '../../components/templates/applications-list.template';
-import { experimentsDataAccess } from '../../data/experiments.data';
-import { featuresDataAccess, FeatureId } from '../../data/features.data';
+import { ApplicationsListTemplate } from '../../presentation/templates/applications-list.template';
+import { experimentsRepository } from '../../infrastructure/repositories/experiments.repository';
+import {
+    featuresRepository,
+    FeatureId,
+} from '../../infrastructure/repositories/features.repository';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -36,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 export default function ExperimentsPage() {
-    const experimentsDomain = experimentsDataAccess.getAll();
+    const experimentsDomain = experimentsRepository.getAll();
 
     // Convert URL and Date instances to plain serialisable values for client components
     const experiments = experimentsDomain.map((experiment) => ({
@@ -49,9 +52,9 @@ export default function ExperimentsPage() {
         url: experiment.url ? experiment.url.toString() : '',
     }));
     const features = [
-        featuresDataAccess.getById(FeatureId.Repository),
-        featuresDataAccess.getById(FeatureId.Capitaine),
-        featuresDataAccess.getById(FeatureId.Source),
+        featuresRepository.getById(FeatureId.Repository),
+        featuresRepository.getById(FeatureId.Capitaine),
+        featuresRepository.getById(FeatureId.Source),
     ];
 
     const highlightTitle = 'Experiments';

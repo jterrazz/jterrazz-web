@@ -4,13 +4,13 @@ import type { Metadata } from 'next';
 // Google Fonts temporarily disabled due to network restrictions in build environment
 // import { Inter } from 'next/font/google';
 
-import { userDataAccess } from '../data/user.data';
+import { userRepository } from '../infrastructure/repositories/user.repository';
 import { UserContactType } from '../domain/user';
-import { cn } from '../lib/utils';
+import { cn } from '../presentation/utils';
 
-import { ClientLayoutWrapper } from '../components/client-layout-wrapper';
-import { TheFooter } from '../components/organisms/the-footer';
-import { TheNavigationBar } from '../components/organisms/the-navigation-bar/the-navigation-bar';
+import { ClientLayoutWrapper } from '../presentation/client-layout-wrapper';
+import { Footer } from '../presentation/ui/organisms/footer';
+import { NavigationBar } from '../presentation/ui/organisms/navigation-bar/navigation-bar';
 
 import './globals.css';
 
@@ -156,8 +156,8 @@ export default function RootLayout({
 }>) {
     // Convert `URL` instances to plain strings to safely pass to the client navigation bar.
     const contacts = [
-        userDataAccess.getContact(UserContactType.GitHub),
-        userDataAccess.getContact(UserContactType.Medium),
+        userRepository.getContact(UserContactType.GitHub),
+        userRepository.getContact(UserContactType.Medium),
     ].map((contact) => ({
         name: contact.type,
         type: contact.type,
@@ -207,12 +207,12 @@ export default function RootLayout({
             <body className={generatedClassName}>
                 <ClientLayoutWrapper>
                     <div className="sticky top-0 z-[50] pointer-events-none">
-                        <TheNavigationBar contacts={contacts} pages={pages} />
+                        <NavigationBar contacts={contacts} pages={pages} />
                     </div>
                     <main className="flex-1 flex flex-col overflow-x-hidden w-full">
                         {children}
                     </main>
-                    <TheFooter />
+                    <Footer />
                 </ClientLayoutWrapper>
             </body>
         </html>

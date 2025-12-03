@@ -2,9 +2,9 @@
 
 Personal portfolio: experiments, photography, and articles.
 
-![Node.js Version](https://img.shields.io/badge/node-20.x.x-brightgreen)
-![Next.js Version](https://img.shields.io/badge/next.js-14.2.3-blue)
-![React Version](https://img.shields.io/badge/react-18-blue)
+![Node.js Version](https://img.shields.io/badge/node-22.x.x-brightgreen)
+![Next.js Version](https://img.shields.io/badge/next.js-16-blue)
+![React Version](https://img.shields.io/badge/react-19-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## 🌟 Features
@@ -20,8 +20,7 @@ Personal portfolio: experiments, photography, and articles.
 
 ### Prerequisites
 
-- Node.js 20.x.x
-- Docker (optional, for containerized development)
+- Node.js 22.x.x
 
 ### Installation
 
@@ -55,17 +54,6 @@ Visit `http://localhost:3000` to view the site.
 - `npm run test`: Run tests
 - `npm run lint`: Run linting checks (type, code, and style)
 - `npm run clean`: Clean build artifacts and node_modules
-
-## 🐳 Docker
-
-This project supports Docker for consistent development environments:
-
-- `make build`: Build the Docker image
-- `make start`: Run the container
-- `make dev`: Start the development server in a container
-- `make test`: Run tests in a container
-- `make lint`: Run linting in a container
-- `make clean`: Remove the Docker image and clean the project
 
 ## 🧪 Testing
 
