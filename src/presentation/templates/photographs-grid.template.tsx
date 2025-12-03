@@ -7,7 +7,7 @@ import { ImageGallery } from 'react-image-grid-gallery';
 import { userRepository } from '../../infrastructure/repositories/user.repository';
 import { type Photograph } from '../../domain/photograph';
 import { UserContactType } from '../../domain/user';
-import { Highlight } from '../ui/molecules/typography/highlight';
+import { SectionHero } from '../ui/molecules/section-hero/section-hero';
 
 export type PhotographsGridTemplateProps = {
     highlightDescription: string;
@@ -36,7 +36,7 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
             {/* Hero Section */}
             <div className="w-full border-b border-zinc-100 dark:border-zinc-900 mb-12">
                 <div className="max-w-7xl mx-auto px-4 md:px-6">
-                    <Highlight
+                    <SectionHero
                         button={button}
                         description={highlightDescription}
                         title={highlightTitle}

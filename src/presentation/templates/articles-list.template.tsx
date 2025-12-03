@@ -9,9 +9,9 @@ import Script from 'next/script';
 // Domain
 import { ArticleCategory } from '../../domain/article';
 
-import { Badge, BadgeColor } from '../ui/atoms/status/badge';
-import { SectionDivider } from '../ui/molecules/section-divider';
-import { Highlight } from '../ui/molecules/typography/highlight';
+import { Badge, BadgeColor } from '../ui/atoms/badge/badge';
+import { DividerSection } from '../ui/molecules/divider-section/divider-section';
+import { SectionHero } from '../ui/molecules/section-hero/section-hero';
 
 import {
     type ArticleRowViewModel,
@@ -143,7 +143,7 @@ const CompactArticleCard: React.FC<{ article: ArticleRowViewModel }> = ({ articl
 const ArticleSeries: React.FC<{ series: ArticleSeriesViewModel }> = ({ series }) => {
     return (
         <section className="pb-16 md:pb-24">
-            <SectionDivider className="mb-12 md:mb-16" title={`${series.seriesTitle} Series`} />
+            <DividerSection className="mb-12 md:mb-16" title={`${series.seriesTitle} Series`} />
 
             {/* Featured Article */}
             <div className="mb-12 md:mb-16">
@@ -272,7 +272,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
             {/* Hero Section */}
             <div className="w-full">
                 <div className="max-w-6xl mx-auto px-4 md:px-6">
-                    <Highlight
+                    <SectionHero
                         button={viewModel.button}
                         description={viewModel.highlightDescription}
                         title={viewModel.highlightTitle}
@@ -315,7 +315,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                                 {/* Latest Experiment */}
                                 {showLatestExperiment && viewModel.latestExperimentArticle && (
                                     <div className="flex flex-col gap-8">
-                                        <SectionDivider title="Latest Experiment" />
+                                        <DividerSection title="Latest Experiment" />
                                         <div className="h-full">
                                             <GridArticleCard
                                                 article={viewModel.latestExperimentArticle}
@@ -327,7 +327,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                                 {/* Latest Article */}
                                 {showLatestArticle && viewModel.latestArticle && (
                                     <div className="flex flex-col gap-8">
-                                        <SectionDivider title="Latest Insight" />
+                                        <DividerSection title="Latest Insight" />
                                         <div className="h-full">
                                             <GridArticleCard article={viewModel.latestArticle} />
                                         </div>
@@ -345,7 +345,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                     {/* Standalone Articles */}
                     {filteredStandalone.length > 0 && (
                         <section aria-label="Other articles">
-                            <SectionDivider className="mb-12" title="Other Posts" />
+                            <DividerSection className="mb-12" title="Other Posts" />
 
                             <div className="flex flex-col gap-2 max-w-4xl">
                                 {filteredStandalone.map((article) => (

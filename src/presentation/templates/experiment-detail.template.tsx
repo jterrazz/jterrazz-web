@@ -10,8 +10,8 @@ import { type Experiment, type ExperimentComponent } from '../../domain/experime
 // Utils
 import { cn } from '../utils';
 
-import { ExperimentStatusBadge } from '../ui/atoms/status/experiment-status-badge';
-import { SectionDivider } from '../ui/molecules/section-divider';
+import { BadgeExperimentStatus } from '../ui/molecules/badge-experiment-status/badge-experiment-status';
+import { DividerSection } from '../ui/molecules/divider-section/divider-section';
 
 type ExperimentDetailTemplateProps = {
     experiment: Experiment;
@@ -139,7 +139,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                                 </div>
 
                                 <div className="flex flex-col items-start gap-6">
-                                    <ExperimentStatusBadge
+                                    <BadgeExperimentStatus
                                         className="border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800"
                                         status={experiment.status}
                                     />
@@ -184,7 +184,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                     {/* Components (If applicable) */}
                     {experiment.components && experiment.components.length > 0 && (
                         <section>
-                            <SectionDivider className="mb-12" title="Components" />
+                            <DividerSection className="mb-12" title="Components" />
                             <div className="grid grid-cols-1 gap-6">
                                 {experiment.components.map((component) => (
                                     <ExperimentComponentCard
@@ -219,7 +219,7 @@ const ExperimentComponentCard: React.FC<{ component: ExperimentComponent }> = ({
                 </div>
 
                 <div className="flex flex-col items-end gap-4 shrink-0 pt-2 md:pt-0">
-                    <ExperimentStatusBadge status={component.status} />
+                    <BadgeExperimentStatus status={component.status} />
                     <a
                         className="flex items-center justify-center w-10 h-10 rounded-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
                         href={component.sourceUrl.toString()}

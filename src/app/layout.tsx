@@ -9,8 +9,8 @@ import { UserContactType } from '../domain/user';
 import { cn } from '../presentation/utils';
 
 import { ClientLayoutWrapper } from '../presentation/client-layout-wrapper';
-import { Footer } from '../presentation/ui/organisms/footer';
-import { NavigationBar } from '../presentation/ui/organisms/navigation-bar/navigation-bar';
+import { SiteFooter } from '../presentation/ui/organisms/site-footer/site-footer';
+import { Navbar } from '../presentation/ui/organisms/navbar/navbar';
 
 import './globals.css';
 
@@ -207,12 +207,12 @@ export default function RootLayout({
             <body className={generatedClassName}>
                 <ClientLayoutWrapper>
                     <div className="sticky top-0 z-[50] pointer-events-none">
-                        <NavigationBar contacts={contacts} pages={pages} />
+                        <Navbar contacts={contacts} pages={pages} />
                     </div>
                     <main className="flex-1 flex flex-col overflow-x-hidden w-full">
                         {children}
                     </main>
-                    <Footer />
+                    <SiteFooter />
                 </ClientLayoutWrapper>
             </body>
         </html>

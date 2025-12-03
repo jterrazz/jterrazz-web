@@ -12,12 +12,12 @@ import { type UserExperience } from '../../domain/user';
 // Utils
 import { cn } from '../utils';
 
-import { ArticlePreviewCard } from '../ui/molecules/cards/article-preview-card';
-import { FeaturedExperimentCard } from '../ui/molecules/cards/featured-experiment-card';
-import { SectionDivider } from '../ui/molecules/section-divider';
-import { Highlight } from '../ui/molecules/typography/highlight';
-import { Timeline } from '../ui/organisms/timeline-of-experiences/timeline';
-import { TimelineExperience } from '../ui/organisms/timeline-of-experiences/timeline-experience';
+import { CardArticle } from '../ui/molecules/card-article/card-article';
+import { CardExperimentFeatured } from '../ui/molecules/card-experiment-featured/card-experiment-featured';
+import { DividerSection } from '../ui/molecules/divider-section/divider-section';
+import { SectionHero } from '../ui/molecules/section-hero/section-hero';
+import { Timeline } from '../ui/organisms/timeline/timeline';
+import { TimelineItem } from '../ui/organisms/timeline/timeline-item';
 
 interface Article {
     description: string;
@@ -87,7 +87,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
             {/* Hero Section */}
             <div className="w-full border-b border-zinc-100 dark:border-zinc-900">
                 <div className="max-w-6xl mx-auto px-4 md:px-6">
-                    <Highlight button={button} description={description} title="Hello, World!" />
+                    <SectionHero button={button} description={description} title="Hello, World!" />
                 </div>
             </div>
 
@@ -95,7 +95,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                 {/* Latest Experiments Section */}
                 <section>
                     <div className="flex items-center justify-between mb-12">
-                        <SectionDivider className="flex-1" title="Latest Experiments" />
+                        <DividerSection className="flex-1" title="Latest Experiments" />
                         <Link
                             className="hidden md:flex items-center gap-2 text-sm font-bold tracking-wide uppercase text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors ml-8 whitespace-nowrap"
                             href="/experiments"
@@ -106,7 +106,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                         {latestExperiments.map((experiment) => (
-                            <FeaturedExperimentCard experiment={experiment} key={experiment.name} />
+                            <CardExperimentFeatured experiment={experiment} key={experiment.name} />
                         ))}
                     </div>
                 </section>
@@ -114,7 +114,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                 {/* Latest Articles Section */}
                 <section>
                     <div className="flex items-center justify-between mb-12">
-                        <SectionDivider className="flex-1" title="Latest Articles" />
+                        <DividerSection className="flex-1" title="Latest Articles" />
                         <Link
                             className="hidden md:flex items-center gap-2 text-sm font-bold tracking-wide uppercase text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors ml-8 whitespace-nowrap"
                             href="/articles"
@@ -125,7 +125,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                         {topArticles.slice(0, 6).map((article, index, arr) => (
-                            <ArticlePreviewCard
+                            <CardArticle
                                 key={article.title}
                                 {...article}
                                 position={index}
@@ -137,7 +137,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
 
                 {/* Focus Areas */}
                 <section>
-                    <SectionDivider className="mb-12" title="Focus" />
+                    <DividerSection className="mb-12" title="Focus" />
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                         <FocusItem
                             description="Multiplying deep engineering expertise with AI to build ambitious, boundary-pushing projects."
@@ -164,12 +164,12 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
 
                 {/* Timeline Section */}
                 <section>
-                    <SectionDivider className="mb-20" title="Journey" />
+                    <DividerSection className="mb-20" title="Journey" />
 
                     <div className="max-w-4xl mx-auto w-full">
                         <Timeline>
                             {experiences.map((experience, index) => (
-                                <TimelineExperience
+                                <TimelineItem
                                     experience={experience}
                                     index={index}
                                     key={experience.title}

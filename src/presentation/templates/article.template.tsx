@@ -7,11 +7,11 @@ import { type Article, type ArticleLanguage } from '../../domain/article';
 import { type Feature } from '../../domain/feature';
 
 import { buildArticleSlug } from '../../domain/utils/slugify';
-import { LanguageSelector } from '../ui/molecules/language-selector';
-import { TableOfContents } from '../ui/molecules/table-of-contents';
-import { ArticleFooter } from '../ui/organisms/article-footer';
-import { ArticleInMarkdown } from '../ui/organisms/article-in-markdown';
-import { MainContainer } from '../ui/organisms/main-container';
+import { SelectorLanguage } from '../ui/molecules/selector-language/selector-language';
+import { TableOfContents } from '../ui/molecules/table-of-contents/table-of-contents';
+import { ArticleFooter } from '../ui/organisms/article-footer/article-footer';
+import { MarkdownRenderer } from '../ui/organisms/markdown-renderer/markdown-renderer';
+import { Container } from '../ui/organisms/container/container';
 
 type ArticleTemplateProps = {
     articleId: string;
@@ -98,21 +98,21 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     };
 
     return (
-        <MainContainer className="mt-8 md:mt-16 relative">
+        <Container className="mt-8 md:mt-16 relative">
             <Script id="json-ld" strategy="beforeInteractive" type="application/ld+json">
                 {JSON.stringify(jsonLd)}
             </Script>
 
             <TableOfContents contentInMarkdown={contentInMarkdown} />
 
-            <LanguageSelector
+            <SelectorLanguage
                 articleId={articleId}
                 availableLanguages={availableLanguages}
                 className="mb-12"
                 currentLanguage={currentLanguage}
             />
 
-            <ArticleInMarkdown className="mb-6" contentInMarkdown={contentInMarkdown} />
+            <MarkdownRenderer className="mb-6" content={contentInMarkdown} />
 
             <ArticleFooter
                 category={category}
@@ -123,6 +123,6 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                 relatedArticles={relatedArticles}
                 seriesTitle={seriesName}
             />
-        </MainContainer>
+        </Container>
     );
 };

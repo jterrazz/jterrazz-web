@@ -9,10 +9,10 @@ import { userRepository } from '../../infrastructure/repositories/user.repositor
 import { type Experiment, ExperimentCategory } from '../../domain/experiment';
 import { type Feature } from '../../domain/feature';
 import { UserContactType } from '../../domain/user';
-import { CompactExperimentCard } from '../ui/molecules/cards/compact-experiment-card';
-import { FeaturedExperimentCard } from '../ui/molecules/cards/featured-experiment-card';
-import { SectionDivider } from '../ui/molecules/section-divider';
-import { Highlight } from '../ui/molecules/typography/highlight';
+import { CardExperimentCompact } from '../ui/molecules/card-experiment-compact/card-experiment-compact';
+import { CardExperimentFeatured } from '../ui/molecules/card-experiment-featured/card-experiment-featured';
+import { DividerSection } from '../ui/molecules/divider-section/divider-section';
+import { SectionHero } from '../ui/molecules/section-hero/section-hero';
 
 type ApplicationsListTemplateProps = {
     features: readonly Feature[];
@@ -81,7 +81,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
             {/* Hero Section */}
             <div className="w-full border-b border-zinc-100 dark:border-zinc-900">
                 <div className="max-w-7xl mx-auto px-4 md:px-6">
-                    <Highlight
+                    <SectionHero
                         button={button}
                         description={highlightDescription}
                         title={highlightTitle}
@@ -94,7 +94,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                 {/* Featured Applications */}
                 {apps.length > 0 && (
                     <section>
-                        <SectionDivider className="mb-12" title="Applications" />
+                        <DividerSection className="mb-12" title="Applications" />
                         <motion.div
                             className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
                             initial="hidden"
@@ -104,7 +104,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                         >
                             {apps.map((experiment) => (
                                 <motion.div key={experiment.name} variants={itemVariants}>
-                                    <FeaturedExperimentCard
+                                    <CardExperimentFeatured
                                         experiment={experiment as unknown as Experiment}
                                     />
                                 </motion.div>
@@ -116,7 +116,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                 {/* Libraries & Tools */}
                 {libs.length > 0 && (
                     <section>
-                        <SectionDivider className="mb-16" title="Tooling" />
+                        <DividerSection className="mb-16" title="Tooling" />
                         <motion.div
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
                             initial="hidden"
@@ -126,7 +126,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                         >
                             {libs.map((experiment) => (
                                 <motion.div key={experiment.name} variants={itemVariants}>
-                                    <CompactExperimentCard
+                                    <CardExperimentCompact
                                         experiment={experiment as unknown as Experiment}
                                     />
                                 </motion.div>
@@ -138,7 +138,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                 {/* System & Research */}
                 {system.length > 0 && (
                     <section>
-                        <SectionDivider className="mb-16" title="Systems" />
+                        <DividerSection className="mb-16" title="Systems" />
                         <motion.div
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6"
                             initial="hidden"
@@ -148,7 +148,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
                         >
                             {system.map((experiment) => (
                                 <motion.div key={experiment.name} variants={itemVariants}>
-                                    <CompactExperimentCard
+                                    <CardExperimentCompact
                                         experiment={experiment as unknown as Experiment}
                                     />
                                 </motion.div>

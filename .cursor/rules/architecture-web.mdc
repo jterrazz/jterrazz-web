@@ -73,8 +73,8 @@ src/
 | **Infra** | Repository | `{name}.repository.ts` | `{Name}Repository` |
 | | API Adapter | `{name}.api.ts` | `{Name}Api` |
 | | Store | `{name}.store.ts` | `use{Name}Store` |
-| **UI** | Component | `{name}.tsx` | `{Name}` |
-| | Sub-component | `{parent}-{child}.tsx` | `{Parent}{Child}` |
+| **UI** | Component | `{name}/{name}.tsx` | `{Name}` |
+| | Sub-component | `{parent}/{parent}-{child}.tsx` | `{Parent}{Child}` |
 | | Hook | `use-{hook-name}.ts` | `use{HookName}` |
 | | Context | `{name}-context.tsx` | `{Name}Context`, `use{Name}` |
 
@@ -105,9 +105,27 @@ The presentation layer is strictly organized to separate **visuals** from **beha
 
 ### 3.1 Atomic Design (`src/presentation/ui`)
 Reusable, feature-agnostic components located in the `ui/` folder.
-*   **Atoms**: Basic building blocks (Text, Button, Icon). No logic.
-*   **Molecules**: Groups of atoms (InputGroup, UserRow). UI logic only.
-*   **Organisms**: Complex UI sections (Navbar, ArticleList). Can have local state.
+Each component lives in its **own folder** named after the component.
+
+```
+ui/
+├── atoms/
+│   ├── badge/badge.tsx
+│   ├── button-link/button-link.tsx
+│   └── heading-h1/heading-h1.tsx
+├── molecules/
+│   ├── card-article/card-article.tsx
+│   └── toggle-theme/toggle-theme.tsx
+└── organisms/
+    ├── navbar/
+    │   ├── navbar.tsx
+    │   └── navbar-page.ts
+    └── site-footer/site-footer.tsx
+```
+
+*   **Atoms**: Basic building blocks (Badge, Button, Heading). No logic.
+*   **Molecules**: Groups of atoms (Card, Toggle, Selector). UI logic only.
+*   **Organisms**: Complex UI sections (Navbar, Footer, Table). Can have local state and sub-components.
 
 ### 3.2 Templates (`src/presentation/templates`)
 Page layouts that compose organisms. Used by `app/` routes.
@@ -129,7 +147,7 @@ Page layouts that compose organisms. Used by `app/` routes.
 
 **Sub-component naming:** `{parent}-{child}.tsx`
 ```
-navbar/
+organisms/navbar/
 ├── navbar.tsx              # Main component
 ├── navbar-tab.tsx          # Sub-component
 ├── navbar-menu.tsx         # Sub-component
@@ -166,7 +184,7 @@ export function NavbarTab({ className, ...props }: NavbarTabProps) {
 **Folder structure for complex components:**
 
 ```
-navbar/
+organisms/navbar/
 ├── navbar.tsx                 # Main orchestrator (thin)
 ├── navbar-tab.tsx             # Sub-component (self-contained)
 ├── navbar-menu.tsx            # Expanded menu container
@@ -174,6 +192,13 @@ navbar/
 ├── navbar-expand-trigger.tsx  # The "more" button
 ├── use-navbar-gesture.ts      # Hook (stateful logic)
 └── __tests__/
+
+atoms/button-link/
+└── button-link.tsx            # Simple atom (single file)
+
+molecules/card-article/
+├── card-article.tsx           # Main component
+└── card-article-image.tsx     # Sub-component (if needed)
 ```
 
 **When to extract:**
