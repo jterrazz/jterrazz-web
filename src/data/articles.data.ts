@@ -1,10 +1,10 @@
 import { sanitizeAiText } from 'ai-text-sanitizer';
 import { readFileSync } from 'node:fs';
 
+// Domain
 import { type Article, ArticleCategory, type ArticleLanguage } from '../domain/article';
-import { sanitizeTitle } from '../lib/sanitize-title';
 
-import contentHashes from '../generated/content-hashes.json';
+import { sanitizeTitle } from '../lib/sanitize-title';
 
 // Configuration structure for each article before being transformed into the Article domain model.
 type ArticleConfig = {
@@ -28,13 +28,9 @@ type ArticleMetadataConfig = {
 // Utility type for storing translations directly in the seed file.
 type TranslatedString = Record<ArticleLanguage, string>;
 
-// Serve images directly from the local content route exposed by `src/app/content/[...path]/route.ts`.
-const CDN_BASE_URL = '/content';
-const DEFAULT_PREVIEW_IMAGE_JPG = 'thumbnail.jpg';
-
-// Type for our generated hash map
-type ContentHashes = Record<string, string>;
-const hashes = contentHashes as ContentHashes;
+// Images served via route handler at /content/[...path] with automatic ETag-based cache invalidation
+const CONTENT_BASE_URL = '/content';
+const DEFAULT_PREVIEW_IMAGE = 'thumbnail.jpg';
 
 const ARTICLES_CONFIG: ArticleConfig[] = [
     {
@@ -52,7 +48,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: "Maîtriser la gestion de la mémoire, le jour où j'ai codé mon `malloc`",
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 1,
         published: true,
     },
@@ -71,7 +67,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: "L'art du hachage en C, un duel entre MD5 et SHA-256",
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 2,
         published: true,
     },
@@ -90,7 +86,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: 'Décoder la magie, mon voyage dans la construction de nm et otool',
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 3,
         published: true,
     },
@@ -109,7 +105,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: "Le paradoxe du code, à la découverte du quine, le programme qui s'écrit lui-même",
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 4,
         published: true,
     },
@@ -128,7 +124,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: "Plongeon dans l'assembleur, nos premières fonctions (Intel x86-64)",
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 5,
         published: true,
     },
@@ -147,7 +143,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: 'Mon aventure au cœur des systèmes experts avec Python',
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 6,
         published: true,
     },
@@ -166,7 +162,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: "Comment j'ai créé mon serveur web de référence avec TypeScript et Koa",
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 7,
         published: true,
     },
@@ -185,7 +181,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: 'Et si nous avions tout faux sur le e-commerce?',
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 8,
         published: true,
     },
@@ -205,7 +201,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: 'Bâtir des logiciels qui durent',
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 9,
         published: true,
     },
@@ -225,7 +221,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: 'Maîtriser le flux des dépendances',
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 10,
         published: true,
     },
@@ -245,7 +241,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: 'Séparer le métier de la technologie',
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 11,
         published: true,
     },
@@ -265,7 +261,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: 'Voyage au cœur de la Clean Architecture',
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 12,
         published: true,
     },
@@ -284,7 +280,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: "Questionnons tout, en s'amusant",
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 13,
         published: true,
     },
@@ -304,7 +300,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: 'Guide de la révolution IA',
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 14,
         published: true,
     },
@@ -324,7 +320,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: "Un guide pratique de l'IA",
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 15,
         published: true,
     },
@@ -344,7 +340,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: "Quand l'exécution s'effondre",
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 16,
         published: true,
     },
@@ -364,7 +360,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: "La vie après l'effondrement",
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 17,
         published: true,
     },
@@ -383,7 +379,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
                 fr: 'Cursor : la compression du travail mécanique',
             },
         },
-        previewImage: DEFAULT_PREVIEW_IMAGE_JPG,
+        previewImage: DEFAULT_PREVIEW_IMAGE,
         publicIndex: 19,
         published: true,
     },
@@ -469,16 +465,10 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     },
 ];
 
-// Helper functions
-const getAssetHash = (filename: string, assetPath: string): string => {
-    const relativePath = `${filename}/assets/${assetPath}`;
-    return hashes[relativePath] || '';
-};
-
+// Helper function to transform relative asset paths in markdown to absolute URLs
 const processMarkdownContent = (content: string, filename: string): string => {
     return content.replace(/!\[([^\]]*)\]\((?:\.\/)?assets\/([^)]+)\)/g, (_match, altText, p1) => {
-        const hash = getAssetHash(filename, p1);
-        return `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)}${hash ? `?v=${hash}` : ''})`;
+        return `![${altText}](${CONTENT_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)})`;
     });
 };
 
@@ -521,8 +511,7 @@ const loadArticles = (): Article[] => {
 
         let imageUrl = '';
         if (previewImage) {
-            const hash = getAssetHash(filename, previewImage);
-            imageUrl = `${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${previewImage}${hash ? `?v=${hash}` : ''}`;
+            imageUrl = `${CONTENT_BASE_URL}/${encodeURIComponent(filename)}/assets/${previewImage}`;
         }
 
         const sanitizeRecord = (record: TranslatedString): TranslatedString => ({
