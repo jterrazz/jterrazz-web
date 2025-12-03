@@ -54,7 +54,20 @@ export const metadata: Metadata = {
 export default function HomePage() {
     const userExperiences = userRepository.getExperiences();
     const topArticles = articlesRepository.getAll();
-    const latestExperiments = experimentsRepository.getAll().slice(0, 2);
+
+    // Convert URL instances to plain strings for client components
+    const latestExperiments = experimentsRepository
+        .getAll()
+        .slice(0, 2)
+        .map((experiment) => ({
+            ...experiment,
+            articleUrl: experiment.articleUrl ?? null,
+            components: experiment.components.map((component) => ({
+                ...component,
+                sourceUrl: component.sourceUrl.toString(),
+            })),
+            url: experiment.url ? experiment.url.toString() : '',
+        }));
 
     const description =
         'Software engineer building AI agents, fintech solutions, and clean architecture systems. Discover my projects, articles, and experiments.';

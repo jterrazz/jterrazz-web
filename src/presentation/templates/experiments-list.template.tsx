@@ -10,6 +10,8 @@ import { type Experiment, ExperimentCategory } from '../../domain/experiment';
 import { type Feature } from '../../domain/feature';
 import { UserContactType } from '../../domain/user';
 
+type SerializableFeature = Omit<Feature, 'url'> & { url: string };
+
 // Infrastructure
 import { userRepository } from '../../infrastructure/repositories/user.repository';
 
@@ -19,7 +21,7 @@ import { DividerSection } from '../ui/molecules/divider-section/divider-section'
 import { SectionHero } from '../ui/molecules/section-hero/section-hero';
 
 type ExperimentsListTemplateProps = {
-    features: readonly Feature[];
+    features: readonly SerializableFeature[];
     highlightDescription: string;
     highlightTitle: string;
     experiments: readonly SerializableExperiment[];
@@ -108,9 +110,7 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                         >
                             {apps.map((experiment) => (
                                 <motion.div key={experiment.name} variants={itemVariants}>
-                                    <CardExperimentFeatured
-                                        experiment={experiment as unknown as Experiment}
-                                    />
+                                    <CardExperimentFeatured experiment={experiment} />
                                 </motion.div>
                             ))}
                         </motion.div>
@@ -130,9 +130,7 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                         >
                             {libs.map((experiment) => (
                                 <motion.div key={experiment.name} variants={itemVariants}>
-                                    <CardExperimentCompact
-                                        experiment={experiment as unknown as Experiment}
-                                    />
+                                    <CardExperimentCompact experiment={experiment} />
                                 </motion.div>
                             ))}
                         </motion.div>
@@ -152,9 +150,7 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                         >
                             {system.map((experiment) => (
                                 <motion.div key={experiment.name} variants={itemVariants}>
-                                    <CardExperimentCompact
-                                        experiment={experiment as unknown as Experiment}
-                                    />
+                                    <CardExperimentCompact experiment={experiment} />
                                 </motion.div>
                             ))}
                         </motion.div>

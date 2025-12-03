@@ -9,9 +9,15 @@ import { type Experiment } from '../../../../domain/experiment';
 
 import { cn } from '../../../utils';
 
+// Minimal type for the fields actually used by this component
+// Works with both Experiment and serialized versions
+type ExperimentCardData = Pick<Experiment, 'name' | 'slug' | 'description' | 'year'> & {
+    url?: URL | string;
+};
+
 export type CardExperimentCompactProps = {
     className?: string;
-    experiment: Experiment;
+    experiment: ExperimentCardData;
 };
 
 export const CardExperimentCompact: React.FC<CardExperimentCompactProps> = ({

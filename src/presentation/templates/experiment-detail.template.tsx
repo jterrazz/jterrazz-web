@@ -13,8 +13,19 @@ import { cn } from '../utils';
 import { BadgeExperimentStatus } from '../ui/molecules/badge-experiment-status/badge-experiment-status';
 import { DividerSection } from '../ui/molecules/divider-section/divider-section';
 
+// Serializable version of Experiment for Server → Client transfer
+type SerializableExperiment = Omit<Experiment, 'components' | 'url'> & {
+    articleUrl: null | string;
+    components: Array<
+        Omit<ExperimentComponent, 'sourceUrl'> & {
+            sourceUrl: string;
+        }
+    >;
+    url: string;
+};
+
 type ExperimentDetailTemplateProps = {
-    experiment: Experiment;
+    experiment: SerializableExperiment;
 };
 
 export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> = ({

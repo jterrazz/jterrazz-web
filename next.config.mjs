@@ -47,7 +47,7 @@ const nextConfig = {
                 destination:
                     'https://apps.apple.com/app/apple-store/id6742116038?pt=119085741&ct=Jterrazz%20Website&mt=8',
                 permanent: false,
-                source: '/link/applications/fake-news',
+                source: '/link/applications/n00',
             },
 
             // Legacy articles redirects

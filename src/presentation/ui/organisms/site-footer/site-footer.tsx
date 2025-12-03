@@ -33,9 +33,9 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className }) => {
         },
         {
             description: 'Application',
-            href: 'https://jterrazz.com/link/applications/fake-news',
-            imageSrc: '/assets/icons/app-icon.fake-news.jpg',
-            title: 'News',
+            href: 'https://jterrazz.com/experiments/n00',
+            imageSrc: '/assets/icons/app-icon.n00.jpg',
+            title: 'n00',
         },
     ];
 

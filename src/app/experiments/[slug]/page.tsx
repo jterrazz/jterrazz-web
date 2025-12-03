@@ -67,5 +67,16 @@ export default async function ExperimentDetailPage(props: Props) {
         notFound();
     }
 
-    return <ExperimentDetailTemplate experiment={experiment} />;
+    // Convert URL instances to strings for client components
+    const serializedExperiment = {
+        ...experiment,
+        articleUrl: experiment.articleUrl ?? null,
+        components: experiment.components.map((component) => ({
+            ...component,
+            sourceUrl: component.sourceUrl.toString(),
+        })),
+        url: experiment.url ? experiment.url.toString() : '',
+    };
+
+    return <ExperimentDetailTemplate experiment={serializedExperiment} />;
 }

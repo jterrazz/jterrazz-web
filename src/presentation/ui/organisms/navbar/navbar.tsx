@@ -160,7 +160,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages }) =>
 
                         <a
                             className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm hover:shadow-md"
-                            href="/link/applications/fake-news"
+                            href="/link/applications/n00"
                             rel="noreferrer"
                             target="_blank"
                         >
@@ -242,7 +242,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages }) =>
 
                             <a
                                 className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all w-full justify-center"
-                                href="/link/applications/fake-news"
+                                href="/link/applications/n00"
                                 rel="noreferrer"
                                 target="_blank"
                             >

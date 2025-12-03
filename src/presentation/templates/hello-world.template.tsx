@@ -26,10 +26,20 @@ interface Article {
     title: string;
 }
 
+type SerializableExperiment = Omit<Experiment, 'components' | 'url'> & {
+    articleUrl: null | string;
+    components: Array<
+        Omit<Experiment['components'][number], 'sourceUrl'> & {
+            sourceUrl: string;
+        }
+    >;
+    url: string;
+};
+
 type HelloWorldTemplateProps = {
     description: string;
     experiences: UserExperience[];
-    latestExperiments: Experiment[];
+    latestExperiments: SerializableExperiment[];
     topArticles: Article[];
 };
 
@@ -172,7 +182,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                                 <TimelineItem
                                     experience={experience}
                                     index={index}
-                                    key={experience.title}
+                                    key={`${experience.title}-${experience.year}-${index}`}
                                 />
                             ))}
                         </Timeline>

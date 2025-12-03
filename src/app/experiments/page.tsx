@@ -54,11 +54,15 @@ export default function ExperimentsPage() {
         })),
         url: experiment.url ? experiment.url.toString() : '',
     }));
+    // Convert URL instances to strings for client components
     const features = [
         featuresRepository.getById(FeatureId.Repository),
         featuresRepository.getById(FeatureId.Capitaine),
         featuresRepository.getById(FeatureId.Source),
-    ];
+    ].map((feature) => ({
+        ...feature,
+        url: feature.url.toString(),
+    }));
 
     const highlightTitle = 'Experiments';
     const highlightDescription =
