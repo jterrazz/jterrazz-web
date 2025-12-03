@@ -8,6 +8,7 @@ import {
     createArticle,
     type RawArticleInput,
 } from '../../domain/article';
+import { getContentUrl } from '../content-url';
 
 // Configuration structure for each article before being transformed into the Article domain model.
 type ArticleConfig = {
@@ -31,8 +32,6 @@ type ArticleMetadataConfig = {
 // Utility type for storing translations directly in the seed file.
 type TranslatedString = Record<ArticleLanguage, string>;
 
-// Images served via route handler at /content/[...path] with automatic ETag-based cache invalidation
-const CONTENT_BASE_URL = '/content';
 const DEFAULT_PREVIEW_IMAGE = 'thumbnail.jpg';
 
 const ARTICLES_CONFIG: ArticleConfig[] = [
@@ -468,10 +467,10 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     },
 ];
 
-// Helper function to transform relative asset paths in markdown to absolute URLs
+// Helper function to transform relative asset paths in markdown to versioned URLs
 const processMarkdownContent = (content: string, filename: string): string => {
     return content.replace(/!\[([^\]]*)\]\((?:\.\/)?assets\/([^)]+)\)/g, (_match, altText, p1) => {
-        return `![${altText}](${CONTENT_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)})`;
+        return `![${altText}](${getContentUrl(`${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)}`)})`;
     });
 };
 
@@ -511,7 +510,7 @@ const loadArticles = (): Article[] => {
                 fr: frContent ? cleanAiText(frContent) : undefined,
             },
             imageUrl: previewImage
-                ? `${CONTENT_BASE_URL}/${encodeURIComponent(filename)}/assets/${previewImage}`
+                ? getContentUrl(`${encodeURIComponent(filename)}/assets/${previewImage}`)
                 : '',
             metadata: {
                 category: articleConfig.metadata.category,
