@@ -5,16 +5,20 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Script from 'next/script';
 
-import { userRepository } from '../../infrastructure/repositories/user.repository';
+// Domain
 import { type Experiment, ExperimentCategory } from '../../domain/experiment';
 import { type Feature } from '../../domain/feature';
 import { UserContactType } from '../../domain/user';
+
+// Infrastructure
+import { userRepository } from '../../infrastructure/repositories/user.repository';
+
 import { CardExperimentCompact } from '../ui/molecules/card-experiment-compact/card-experiment-compact';
 import { CardExperimentFeatured } from '../ui/molecules/card-experiment-featured/card-experiment-featured';
 import { DividerSection } from '../ui/molecules/divider-section/divider-section';
 import { SectionHero } from '../ui/molecules/section-hero/section-hero';
 
-type ApplicationsListTemplateProps = {
+type ExperimentsListTemplateProps = {
     features: readonly Feature[];
     highlightDescription: string;
     highlightTitle: string;
@@ -31,7 +35,7 @@ type SerializableExperiment = Omit<Experiment, 'components' | 'url'> & {
     url: string;
 };
 
-export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> = ({
+export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = ({
     highlightDescription,
     highlightTitle,
     experiments,
@@ -46,7 +50,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
         '@type': 'CollectionPage',
         description: highlightDescription,
         name: highlightTitle,
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/applications`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/experiments`,
     };
 
     const apps = experiments.filter((p) => p.category === ExperimentCategory.App);
@@ -71,7 +75,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
     return (
         <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
             <Script
-                id="applications-list-json-ld"
+                id="experiments-list-json-ld"
                 strategy="beforeInteractive"
                 type="application/ld+json"
             >

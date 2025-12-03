@@ -16,7 +16,7 @@ export const metadata: Metadata = {
         canonical: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
     },
     description:
-        'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.',
+        'Software engineer building AI agents, fintech solutions, and clean architecture systems. Discover my projects, articles, and experiments.',
     keywords: [
         'Jean-Baptiste Terrazzoni',
         'AI Agent Developer',
@@ -35,21 +35,20 @@ export const metadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'),
     openGraph: {
         description:
-            'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.',
+            'Software engineer building AI agents, fintech solutions, and clean architecture systems. Discover my projects, articles, and experiments.',
         images: [
             {
-                alt: 'Jean-Baptiste Terrazzoni - Building & Learning',
+                alt: 'Jean-Baptiste Terrazzoni - Software Engineer & AI Developer',
                 height: 630,
                 url: '/assets/icons/app-icon.jterrazz.png',
                 width: 1200,
             },
         ],
-        siteName: 'Jterrazz',
-        title: 'Jean-Baptiste Terrazzoni: Building & Learning',
+        siteName: 'Jean-Baptiste Terrazzoni',
+        title: 'Jean-Baptiste Terrazzoni | Software Engineer & AI Developer',
         type: 'website',
         url: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
     },
-    title: 'Jean-Baptiste Terrazzoni: Building & Learning',
 };
 
 export default function HomePage() {
@@ -58,7 +57,7 @@ export default function HomePage() {
     const latestExperiments = experimentsRepository.getAll().slice(0, 2);
 
     const description =
-        'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.';
+        'Software engineer building AI agents, fintech solutions, and clean architecture systems. Discover my projects, articles, and experiments.';
 
     // Structured data for better SEO
     const jsonLd = {
@@ -72,8 +71,8 @@ export default function HomePage() {
         hasOccupation: {
             '@type': 'Occupation',
             description:
-                'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.',
-            name: 'Software Developer',
+                'Software engineer specializing in AI agents, clean architecture, and fintech solutions.',
+            name: 'Software Engineer',
         },
         image: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/assets/icons/app-icon.jterrazz.png`,
         jobTitle: 'Software Engineer',

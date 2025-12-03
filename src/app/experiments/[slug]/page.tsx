@@ -16,7 +16,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
     if (!experiment) {
         return {
-            title: 'Experiment Not Found ~ Jterrazz',
+            title: 'Experiment Not Found',
         };
     }
 
@@ -27,9 +27,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         alternates: {
             canonical: `${baseUrl}/experiments/${experiment.slug}`,
         },
-        description: experiment.description,
+        description: experiment.longDescription || experiment.description,
         openGraph: {
-            description: experiment.description,
+            description: experiment.longDescription || experiment.description,
             images: [
                 {
                     alt: experiment.name,
@@ -38,15 +38,15 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
                     width: 1200,
                 },
             ],
-            title: `${experiment.name} - Experiment by Jterrazz`,
+            title: `${experiment.name} | Jean-Baptiste Terrazzoni`,
             url: `${baseUrl}/experiments/${experiment.slug}`,
         },
-        title: `${experiment.name} - Experiment ~ Jterrazz`,
+        title: experiment.name,
         twitter: {
             card: 'summary_large_image',
-            description: experiment.description,
+            description: experiment.longDescription || experiment.description,
             images: [imageUrl],
-            title: `${experiment.name} - Experiment by Jterrazz`,
+            title: `${experiment.name} | Jean-Baptiste Terrazzoni`,
         },
     };
 }

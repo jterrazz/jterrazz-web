@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     authors: [{ name: 'Jean-Baptiste Terrazzoni', url: 'https://jterrazz.com' }],
     creator: 'Jean-Baptiste Terrazzoni',
     description:
-        'The engineering portfolio of Jean-Baptiste Terrazzoni. Building, learning, and sharing my journey through software engineering and intelligent systems.',
+        'Software engineer specializing in AI agents, clean architecture, and fintech. Explore my projects, technical articles, and open-source contributions.',
     icons: [
         {
             rel: 'icon',
@@ -112,17 +112,17 @@ export const metadata: Metadata = {
     metadataBase: new URL(baseUrl),
     openGraph: {
         description:
-            'The engineering portfolio of Jean-Baptiste Terrazzoni. Building, learning, and sharing my journey through software engineering and intelligent systems.',
+            'Software engineer specializing in AI agents, clean architecture, and fintech. Explore my projects, technical articles, and open-source contributions.',
         images: [
             {
                 height: 630,
-                url: '/assets/icons/app-icon.jterrazz.png', // Fallback image
+                url: '/assets/icons/app-icon.jterrazz.png',
                 width: 1200,
             },
         ],
         locale: 'en_US',
         siteName: 'Jean-Baptiste Terrazzoni',
-        title: 'Jean-Baptiste Terrazzoni: Engineering AI Agents & Fintech Solutions',
+        title: 'Jean-Baptiste Terrazzoni | Software Engineer & AI Developer',
         type: 'website',
         url: baseUrl,
     },
@@ -138,7 +138,7 @@ export const metadata: Metadata = {
         index: true,
     },
     title: {
-        default: 'Jean-Baptiste Terrazzoni: Building & Learning',
+        default: 'Jean-Baptiste Terrazzoni | Software Engineer & AI Developer',
         template: '%s | Jean-Baptiste Terrazzoni',
     },
     twitter: {

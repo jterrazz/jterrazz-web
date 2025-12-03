@@ -20,8 +20,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     const experiment = experimentsRepository.getBySlug(params.slug);
 
     return {
-        description: `Privacy policy for ${experiment?.name || 'this application'}.`,
-        title: `Privacy Policy - ${experiment?.name || 'App'}`,
+        description: `Privacy policy for ${experiment?.name || 'this application'}. Learn how your data is handled.`,
+        title: `${experiment?.name || 'App'} Privacy Policy`,
     };
 }
 

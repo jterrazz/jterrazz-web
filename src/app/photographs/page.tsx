@@ -15,7 +15,7 @@ export const metadata: Metadata = {
         canonical: `${baseUrl}/photographs`,
     },
     description:
-        'Capturing the world as I see it. A simple, authentic collection of moments from my travels and daily life.',
+        'Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.',
     keywords: [
         'Photography',
         'Travel Photography',
@@ -25,17 +25,17 @@ export const metadata: Metadata = {
     ],
     openGraph: {
         description:
-            'Capturing the world as I see it. A simple, authentic collection of moments from my travels and daily life.',
-        title: 'Through My Lens: A Visual Journal',
+            'Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.',
+        title: 'Photographs | Jean-Baptiste Terrazzoni',
         type: 'website',
         url: `${baseUrl}/photographs`,
     },
-    title: 'Through My Lens: A Visual Journal',
+    title: 'Photographs',
     twitter: {
         card: 'summary_large_image',
         description:
-            'Capturing the world as I see it. A simple, authentic collection of moments from my travels and daily life.',
-        title: 'Through My Lens: A Visual Journal',
+            'Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.',
+        title: 'Photographs | Jean-Baptiste Terrazzoni',
     },
 };
 
@@ -51,7 +51,7 @@ export default function PhotographsPage() {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
         description:
-            'Capturing the world as I see it. A simple, authentic collection of moments from my travels and daily life.',
+            'Photography portfolio featuring travel, street, and everyday moments by Jean-Baptiste Terrazzoni.',
         hasPart: photographs.map((photo) => ({
             '@type': 'ImageObject',
             author: {

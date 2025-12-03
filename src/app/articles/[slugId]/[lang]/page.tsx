@@ -62,7 +62,7 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
 
     if (!article) {
         return {
-            title: 'Article Not Found ~ Jterrazz',
+            title: 'Article Not Found',
         };
     }
 
@@ -101,7 +101,7 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
             title: article.metadata.title[lang],
             url: `${baseUrl}/articles/${slugId}/${lang}`,
         },
-        title: `${article.metadata.title[lang]} ~ Jterrazz`,
+        title: article.metadata.title[lang],
         twitter: {
             card: 'summary_large_image',
             creator: '@j_terrazz',

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
         canonical: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
     },
     description:
-        'My personal knowledge base. Notes on engineering, architecture, and the things I learn while building software.',
+        'Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.',
     keywords: [
         'AI articles',
         'fintech insights',
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
     ],
     openGraph: {
         description:
-            'My personal knowledge base. Notes on engineering, architecture, and the things I learn while building software.',
-        title: 'Engineering Journal: Notes on Architecture & Systems',
+            'Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.',
+        title: 'Articles | Jean-Baptiste Terrazzoni',
         type: 'website',
         url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
     },
-    title: 'Engineering Journal: Notes on Architecture & Systems',
+    title: 'Articles',
 };
 
 export default function ArticlesPage() {
@@ -50,7 +50,7 @@ export default function ArticlesPage() {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
         description:
-            'My personal knowledge base. Notes on engineering, architecture, and the things I learn while building software.',
+            'Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices.',
         hasPart: articles
             .filter((article) => article.published)
             .map((article) => ({
@@ -67,7 +67,7 @@ export default function ArticlesPage() {
                 name: article.metadata.title.en,
                 url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles/${buildArticleSlug(article.publicIndex, article.metadata.title.en)}`,
             })),
-        name: 'Engineering Journal: Notes on Architecture & Systems',
+        name: 'Articles by Jean-Baptiste Terrazzoni',
         url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
     };
 
