@@ -4,7 +4,7 @@ import { Calendar, Clock, Github, Linkedin, Twitter } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { data } from '../../data';
+import { userDataAccess } from '../../data/user.data';
 import { type Article } from '../../domain/article';
 import { UserContactType } from '../../domain/user';
 import { buildArticleSlug } from '../../lib/slugify';
@@ -33,10 +33,10 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
     relatedArticles,
     seriesTitle,
 }) => {
-    const profile = data.user.getProfile();
-    const github = data.user.getContact(UserContactType.GitHub);
-    const linkedin = data.user.getContact(UserContactType.LinkedIn);
-    const twitter = data.user.getContact(UserContactType.X);
+    const profile = userDataAccess.getProfile();
+    const github = userDataAccess.getContact(UserContactType.GitHub);
+    const linkedin = userDataAccess.getContact(UserContactType.LinkedIn);
+    const twitter = userDataAccess.getContact(UserContactType.X);
 
     return (
         <footer className={cn('flex flex-col gap-16 md:gap-24', className)}>

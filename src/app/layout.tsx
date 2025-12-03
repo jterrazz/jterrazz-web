@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 // Google Fonts temporarily disabled due to network restrictions in build environment
 // import { Inter } from 'next/font/google';
 
-import { data } from '../data';
+import { userDataAccess } from '../data/user.data';
 import { UserContactType } from '../domain/user';
 import { cn } from '../lib/utils';
 
@@ -156,8 +156,8 @@ export default function RootLayout({
 }>) {
     // Convert `URL` instances to plain strings to safely pass to the client navigation bar.
     const contacts = [
-        data.user.getContact(UserContactType.GitHub),
-        data.user.getContact(UserContactType.Medium),
+        userDataAccess.getContact(UserContactType.GitHub),
+        userDataAccess.getContact(UserContactType.Medium),
     ].map((contact) => ({
         name: contact.type,
         type: contact.type,

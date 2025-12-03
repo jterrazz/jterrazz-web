@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 
-import { data } from '../../data';
+import { userDataAccess } from '../../data/user.data';
 import { UserContactType } from '../../domain/user';
 import { cn } from '../../lib/utils';
 
@@ -110,10 +110,10 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         className,
     );
 
-    const email = data.user.getContact(UserContactType.Email);
-    const linkedin = data.user.getContact(UserContactType.LinkedIn);
-    const x = data.user.getContact(UserContactType.X);
-    const github = data.user.getContact(UserContactType.GitHub);
+    const email = userDataAccess.getContact(UserContactType.Email);
+    const linkedin = userDataAccess.getContact(UserContactType.LinkedIn);
+    const x = userDataAccess.getContact(UserContactType.X);
+    const github = userDataAccess.getContact(UserContactType.GitHub);
 
     const footerJsonLd = {
         '@context': 'https://schema.org',

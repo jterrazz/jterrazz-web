@@ -2,7 +2,8 @@ import { type Metadata } from 'next';
 import Script from 'next/script';
 
 import { ApplicationsListTemplate } from '../../components/templates/applications-list.template';
-import { data, FeatureId } from '../../data';
+import { experimentsDataAccess } from '../../data/experiments.data';
+import { featuresDataAccess, FeatureId } from '../../data/features.data';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
 };
 
 export default function ExperimentsPage() {
-    const experimentsDomain = data.experiments.getAll();
+    const experimentsDomain = experimentsDataAccess.getAll();
 
     // Convert URL and Date instances to plain serialisable values for client components
     const experiments = experimentsDomain.map((experiment) => ({
@@ -48,9 +49,9 @@ export default function ExperimentsPage() {
         url: experiment.url ? experiment.url.toString() : '',
     }));
     const features = [
-        data.features.getById(FeatureId.Repository),
-        data.features.getById(FeatureId.Capitaine),
-        data.features.getById(FeatureId.Source),
+        featuresDataAccess.getById(FeatureId.Repository),
+        featuresDataAccess.getById(FeatureId.Capitaine),
+        featuresDataAccess.getById(FeatureId.Source),
     ];
 
     const highlightTitle = 'Experiments';

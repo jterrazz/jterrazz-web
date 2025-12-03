@@ -104,97 +104,97 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
 
             <div className="px-4 md:px-6 pt-20">
                 <div className="max-w-5xl mx-auto space-y-24">
-                {/* Screenshots (Showcase) */}
-                {experiment.images?.screenshots && experiment.images.screenshots.length > 0 && (
-                    <section className="overflow-hidden">
-                        <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-8">
-                            Showcase
-                        </h3>
-                        <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] -mx-4 px-4 md:mx-0 md:px-0">
-                            {experiment.images.screenshots.map((screenshot) => (
-                                <div
-                                    className="snap-center shrink-0 relative rounded-2xl overflow-hidden shadow-xl shadow-zinc-200/50 dark:shadow-zinc-900/50 border border-zinc-200 dark:border-zinc-800 w-[280px] md:w-[320px] aspect-[9/19]"
-                                    key={screenshot}
-                                >
-                                    <img
-                                        alt={`${experiment.name} screenshot`}
-                                        className="absolute inset-0 w-full h-full object-cover"
-                                        src={screenshot}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                )}
-
-                {/* About Section */}
-                <section>
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-                        <div className="md:col-span-4 space-y-8">
-                            <div>
-                                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-2">
-                                    About
-                                </h3>
-                                <div className="h-1 w-12 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
-                            </div>
-
-                            <div className="flex flex-col items-start gap-6">
-                                <ExperimentStatusBadge
-                                    className="border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800"
-                                    status={experiment.status}
-                                />
-                                <div className="flex flex-col gap-3">
-                                    <div className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
-                                        <span className="font-mono uppercase tracking-wider text-xs">
-                                            Year
-                                        </span>
-                                        <span className="h-px w-8 bg-zinc-200 dark:bg-zinc-800" />
-                                        <span className="font-medium text-zinc-900 dark:text-zinc-100">
-                                            {experiment.year}
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
-                                        <span className="font-mono uppercase tracking-wider text-xs">
-                                            Context
-                                        </span>
-                                        <span className="h-px w-8 bg-zinc-200 dark:bg-zinc-800" />
-                                        <span className="font-medium text-zinc-900 dark:text-zinc-100">
-                                            {experiment.context}
-                                        </span>
-                                    </div>
-                                </div>
-                                {experiment.hasPrivacyPolicy && (
-                                    <a
-                                        className="text-xs text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 underline underline-offset-2 transition-colors"
-                                        href={`/experiments/${experiment.slug}/privacy`}
+                    {/* Screenshots (Showcase) */}
+                    {experiment.images?.screenshots && experiment.images.screenshots.length > 0 && (
+                        <section className="overflow-hidden">
+                            <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-8">
+                                Showcase
+                            </h3>
+                            <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] -mx-4 px-4 md:mx-0 md:px-0">
+                                {experiment.images.screenshots.map((screenshot) => (
+                                    <div
+                                        className="snap-center shrink-0 relative rounded-2xl overflow-hidden shadow-xl shadow-zinc-200/50 dark:shadow-zinc-900/50 border border-zinc-200 dark:border-zinc-800 w-[280px] md:w-[320px] aspect-[9/19]"
+                                        key={screenshot}
                                     >
-                                        Privacy Policy
-                                    </a>
-                                )}
+                                        <img
+                                            alt={`${experiment.name} screenshot`}
+                                            className="absolute inset-0 w-full h-full object-cover"
+                                            src={screenshot}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    )}
+
+                    {/* About Section */}
+                    <section>
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+                            <div className="md:col-span-4 space-y-8">
+                                <div>
+                                    <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-2">
+                                        About
+                                    </h3>
+                                    <div className="h-1 w-12 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
+                                </div>
+
+                                <div className="flex flex-col items-start gap-6">
+                                    <ExperimentStatusBadge
+                                        className="border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800"
+                                        status={experiment.status}
+                                    />
+                                    <div className="flex flex-col gap-3">
+                                        <div className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
+                                            <span className="font-mono uppercase tracking-wider text-xs">
+                                                Year
+                                            </span>
+                                            <span className="h-px w-8 bg-zinc-200 dark:bg-zinc-800" />
+                                            <span className="font-medium text-zinc-900 dark:text-zinc-100">
+                                                {experiment.year}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
+                                            <span className="font-mono uppercase tracking-wider text-xs">
+                                                Context
+                                            </span>
+                                            <span className="h-px w-8 bg-zinc-200 dark:bg-zinc-800" />
+                                            <span className="font-medium text-zinc-900 dark:text-zinc-100">
+                                                {experiment.context}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {experiment.hasPrivacyPolicy && (
+                                        <a
+                                            className="text-xs text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 underline underline-offset-2 transition-colors"
+                                            href={`/experiments/${experiment.slug}/privacy`}
+                                        >
+                                            Privacy Policy
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="md:col-span-8">
+                                <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line">
+                                    {experiment.longDescription || experiment.description}
+                                </p>
                             </div>
                         </div>
-                        <div className="md:col-span-8">
-                            <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed whitespace-pre-line">
-                                {experiment.longDescription || experiment.description}
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Components (If applicable) */}
-                {experiment.components && experiment.components.length > 0 && (
-                    <section>
-                        <SectionDivider className="mb-12" title="Components" />
-                        <div className="grid grid-cols-1 gap-6">
-                            {experiment.components.map((component) => (
-                                <ExperimentComponentCard
-                                    component={component}
-                                    key={component.name}
-                                />
-                            ))}
-                        </div>
                     </section>
-                )}
+
+                    {/* Components (If applicable) */}
+                    {experiment.components && experiment.components.length > 0 && (
+                        <section>
+                            <SectionDivider className="mb-12" title="Components" />
+                            <div className="grid grid-cols-1 gap-6">
+                                {experiment.components.map((component) => (
+                                    <ExperimentComponentCard
+                                        component={component}
+                                        key={component.name}
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                    )}
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { data } from '../../data';
+import { userDataAccess } from '../../data/user.data';
 import { type Article } from '../../domain/article';
 import { UserContactType } from '../../domain/user';
 import { buildArticleSlug } from '../../lib/slugify';
@@ -48,7 +48,7 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
 
     getViewModel(): ArticlesListViewModel {
         const button = {
-            href: data.user.getContact(UserContactType.Medium).url.toString(),
+            href: userDataAccess.getContact(UserContactType.Medium).url.toString(),
             text: 'View Medium',
         };
 

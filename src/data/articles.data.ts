@@ -2,9 +2,13 @@ import { sanitizeAiText } from 'ai-text-sanitizer';
 import { readFileSync } from 'node:fs';
 
 // Domain
-import { type Article, ArticleCategory, type ArticleLanguage } from '../domain/article';
-
-import { sanitizeTitle } from '../lib/sanitize-title';
+import {
+    type Article,
+    ArticleCategory,
+    type ArticleLanguage,
+    createArticle,
+    type RawArticleInput,
+} from '../domain/article';
 
 // Configuration structure for each article before being transformed into the Article domain model.
 type ArticleConfig = {
@@ -472,11 +476,8 @@ const processMarkdownContent = (content: string, filename: string): string => {
     });
 };
 
-const sanitizeText = (text: string | undefined): string | undefined =>
-    text ? sanitizeAiText(text).cleaned : text;
-
-const sanitizeTitleText = (text: string | undefined): string | undefined =>
-    text ? sanitizeTitle(sanitizeAiText(text).cleaned) : text;
+// Clean AI-generated artifacts from text (before domain sanitization)
+const cleanAiText = (text: string): string => sanitizeAiText(text).cleaned;
 
 const readMarkdownFileSync = (
     articlesDirectory: string,
@@ -496,51 +497,43 @@ const loadArticles = (): Article[] => {
     const articlesDirectory = `${process.cwd()}/content`;
 
     return ARTICLES_CONFIG.map(({ filename, previewImage, ...articleConfig }) => {
-        const content: { [key in ArticleLanguage]?: string } = {};
-
-        // Read both language versions synchronously
+        // Read markdown content for each language
         const enContent = readMarkdownFileSync(articlesDirectory, filename, 'en');
         const frContent = readMarkdownFileSync(articlesDirectory, filename, 'fr');
 
-        if (enContent) content.en = enContent;
-        if (frContent) content.fr = frContent;
-
-        if (!Object.keys(content).length) {
+        if (!enContent && !frContent) {
             throw new Error(`No content found for article ${filename}`);
         }
 
-        let imageUrl = '';
-        if (previewImage) {
-            imageUrl = `${CONTENT_BASE_URL}/${encodeURIComponent(filename)}/assets/${previewImage}`;
-        }
-
-        const sanitizeRecord = (record: TranslatedString): TranslatedString => ({
-            en: sanitizeText(record.en) ?? '',
-            fr: sanitizeText(record.fr) ?? '',
-        });
-
-        const sanitizeTitleRecord = (record: TranslatedString): TranslatedString => ({
-            en: sanitizeTitleText(record.en) ?? '',
-            fr: sanitizeTitleText(record.fr) ?? '',
-        });
-
-        const descriptionByLang = sanitizeRecord(articleConfig.metadata.description);
-        const titleByLang = sanitizeTitleRecord(articleConfig.metadata.title);
-
-        return {
-            content,
-            imageUrl,
+        // Build raw input (with AI text cleaning, before domain sanitization)
+        const rawInput: RawArticleInput = {
+            content: {
+                en: enContent ? cleanAiText(enContent) : undefined,
+                fr: frContent ? cleanAiText(frContent) : undefined,
+            },
+            imageUrl: previewImage
+                ? `${CONTENT_BASE_URL}/${encodeURIComponent(filename)}/assets/${previewImage}`
+                : '',
             metadata: {
                 category: articleConfig.metadata.category,
                 dateModified: articleConfig.metadata.dateModified,
                 datePublished: articleConfig.metadata.datePublished,
-                description: descriptionByLang,
+                description: {
+                    en: cleanAiText(articleConfig.metadata.description.en),
+                    fr: cleanAiText(articleConfig.metadata.description.fr),
+                },
                 series: articleConfig.metadata.series,
-                title: titleByLang,
+                title: {
+                    en: cleanAiText(articleConfig.metadata.title.en),
+                    fr: cleanAiText(articleConfig.metadata.title.fr),
+                },
             },
             publicIndex: articleConfig.publicIndex,
             published: articleConfig.published,
-        } as Article;
+        };
+
+        // Domain factory handles sanitization
+        return createArticle(rawInput);
     });
 };
 

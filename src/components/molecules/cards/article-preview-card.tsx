@@ -68,12 +68,12 @@ export const ArticlePreviewCard = ({
                         <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
                             {title}
                         </h3>
-                        
+
                         <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
                             {description}
                         </p>
                     </div>
-                    
+
                     {/* Arrow (Desktop only) */}
                     <div className="hidden sm:block mt-1 text-zinc-300 dark:text-zinc-600 group-hover:text-zinc-900 dark:group-hover:text-zinc-200 group-hover:translate-x-1 transition-all duration-300">
                         <svg
@@ -200,11 +200,11 @@ export const ArticlePreviewCard = ({
                     )}
 
                     <h3 className="text-lg md:text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-2 leading-snug group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
-                            {title}
-                        </h3>
+                        {title}
+                    </h3>
                     <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-2 mb-4 flex-1">
-                            {description}
-                        </p>
+                        {description}
+                    </p>
 
                     {/* Read More Link */}
                     <div className="mt-auto flex items-center gap-2 text-xs font-medium text-zinc-900 dark:text-zinc-200 group-hover:translate-x-1 transition-transform duration-300">

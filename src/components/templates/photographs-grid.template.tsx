@@ -4,7 +4,7 @@ import React from 'react';
 
 import { ImageGallery } from 'react-image-grid-gallery';
 
-import { data } from '../../data';
+import { userDataAccess } from '../../data/user.data';
 import { type Photograph } from '../../domain/photograph';
 import { UserContactType } from '../../domain/user';
 import { Highlight } from '../molecules/typography/highlight';
@@ -27,7 +27,7 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
         title: photograph.metadata.description,
     }));
     const button = {
-        href: data.user.getContact(UserContactType.Pexels).url.toString(),
+        href: userDataAccess.getContact(UserContactType.Pexels).url.toString(),
         text: 'View Pexels',
     };
 

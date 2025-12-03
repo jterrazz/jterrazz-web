@@ -2,7 +2,7 @@ import { type Metadata } from 'next';
 import Script from 'next/script';
 
 import { PhotographsGridTemplate } from '../../components/templates/photographs-grid.template';
-import { data } from '../../data';
+import { photographsDataAccess } from '../../data/photographs.data';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 };
 
 export default function PhotographsPage() {
-    const photographs = data.photographs.getAll();
+    const photographs = photographsDataAccess.getAll();
 
     const highlightTitle = 'Photographs';
     const highlightDescription =

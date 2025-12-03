@@ -51,8 +51,8 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
                         {tokens.map((line, i) => {
                             const { style: lineStyle, ...lineProps } = getLineProps({ line });
                             return (
-                                // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
                                 <div
+                                    // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
                                     key={i}
                                     {...lineProps}
                                     style={{ ...lineStyle, whiteSpace: 'pre' }}
@@ -61,8 +61,11 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
                                         {i + 1}
                                     </span>
                                     {line.map((token, tokenIndex) => (
-                                        // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
-                                        <span key={tokenIndex} {...getTokenProps({ token })} />
+                                        <span
+                                            // biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
+                                            key={tokenIndex}
+                                            {...getTokenProps({ token })}
+                                        />
                                     ))}
                                 </div>
                             );

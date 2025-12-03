@@ -2,8 +2,9 @@ import { type Metadata } from 'next';
 import Script from 'next/script';
 
 import { HelloWorldTemplate } from '../components/templates/hello-world.template';
-import { data } from '../data';
 import { articlesDataAccess } from '../data/articles.data';
+import { experimentsDataAccess } from '../data/experiments.data';
+import { userDataAccess } from '../data/user.data';
 import { buildArticleSlug } from '../lib/slugify';
 
 // Force static generation for this page
@@ -52,9 +53,9 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-    const userExperiences = data.user.getExperiences();
+    const userExperiences = userDataAccess.getExperiences();
     const topArticles = articlesDataAccess.getAll();
-    const latestExperiments = data.experiments.getAll().slice(0, 2);
+    const latestExperiments = experimentsDataAccess.getAll().slice(0, 2);
 
     const description =
         'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.';

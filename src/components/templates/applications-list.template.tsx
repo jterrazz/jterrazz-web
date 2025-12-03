@@ -5,7 +5,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Script from 'next/script';
 
-import { data } from '../../data';
+import { userDataAccess } from '../../data/user.data';
 import { type Experiment, ExperimentCategory } from '../../domain/experiment';
 import { type Feature } from '../../domain/feature';
 import { UserContactType } from '../../domain/user';
@@ -37,7 +37,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
     experiments,
 }) => {
     const button = {
-        href: data.user.getContact(UserContactType.GitHub).url.toString(),
+        href: userDataAccess.getContact(UserContactType.GitHub).url.toString(),
         text: 'View GitHub',
     };
 

@@ -2,8 +2,8 @@ import { type Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
 import { ArticleTemplate } from '../../../../components/templates/article.template';
-import { data, FeatureId } from '../../../../data';
 import { articlesDataAccess } from '../../../../data/articles.data';
+import { featuresDataAccess, FeatureId } from '../../../../data/features.data';
 import { type ArticleLanguage } from '../../../../domain/article';
 import { buildArticleSlug } from '../../../../lib/slugify';
 
@@ -30,7 +30,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
     }
 
     const articles = articlesDataAccess.getAll();
-    const features = [data.features.getById(FeatureId.Source)];
+    const features = [featuresDataAccess.getById(FeatureId.Source)];
 
     return (
         <ArticleTemplate

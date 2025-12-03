@@ -2,7 +2,7 @@ import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { ExperimentDetailTemplate } from '../../../components/templates/experiment-detail.template';
-import { data } from '../../../data';
+import { experimentsDataAccess } from '../../../data/experiments.data';
 
 type Props = {
     params: Promise<{
@@ -12,7 +12,7 @@ type Props = {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
     const params = await props.params;
-    const experiment = data.experiments.getBySlug(params.slug);
+    const experiment = experimentsDataAccess.getBySlug(params.slug);
 
     if (!experiment) {
         return {
@@ -52,7 +52,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export function generateStaticParams() {
-    const experiments = data.experiments.getAll();
+    const experiments = experimentsDataAccess.getAll();
 
     return experiments.map((experiment) => ({
         slug: experiment.slug,
@@ -61,7 +61,7 @@ export function generateStaticParams() {
 
 export default async function ExperimentDetailPage(props: Props) {
     const params = await props.params;
-    const experiment = data.experiments.getBySlug(params.slug);
+    const experiment = experimentsDataAccess.getBySlug(params.slug);
 
     if (!experiment) {
         notFound();
