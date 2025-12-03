@@ -4,6 +4,9 @@ import { extname, join } from 'node:path';
 
 import { type NextRequest, NextResponse } from 'next/server';
 
+// Force dynamic rendering - content can change between deployments
+export const dynamic = 'force-dynamic';
+
 const MIME_TYPES: Record<string, string> = {
     '.gif': 'image/gif',
     '.jpeg': 'image/jpeg',
@@ -68,7 +71,9 @@ export async function GET(
             return new NextResponse(null, {
                 status: 304,
                 headers: {
-                    'Cache-Control': 'public, max-age=0, must-revalidate',
+                    // s-maxage=0 prevents Vercel CDN caching
+                    'Cache-Control': 'public, s-maxage=0, max-age=0, must-revalidate',
+                    'CDN-Cache-Control': 'no-store',
                     ETag: etag,
                 },
             });
@@ -79,7 +84,9 @@ export async function GET(
 
         return new NextResponse(content, {
             headers: {
-                'Cache-Control': 'public, max-age=0, must-revalidate',
+                // s-maxage=0 prevents Vercel CDN caching
+                'Cache-Control': 'public, s-maxage=0, max-age=0, must-revalidate',
+                'CDN-Cache-Control': 'no-store',
                 'Content-Type': mimeType,
                 ETag: etag,
             },
