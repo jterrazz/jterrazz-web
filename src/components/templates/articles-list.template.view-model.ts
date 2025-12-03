@@ -1,7 +1,6 @@
-// Domain
+import { data } from '../../data';
 import { type Article } from '../../domain/article';
-import { UserContactType, type UserRepository } from '../../domain/user';
-
+import { UserContactType } from '../../domain/user';
 import { buildArticleSlug } from '../../lib/slugify';
 
 export interface ArticleRowViewModel {
@@ -45,12 +44,11 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
         private readonly articles: Article[],
         private readonly highlightTitle: string,
         private readonly highlightDescription: string,
-        private readonly userRepo: UserRepository,
     ) {}
 
     getViewModel(): ArticlesListViewModel {
         const button = {
-            href: this.userRepo.getContact(UserContactType.Medium).url.toString(),
+            href: data.user.getContact(UserContactType.Medium).url.toString(),
             text: 'View Medium',
         };
 

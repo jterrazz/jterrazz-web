@@ -11,8 +11,3 @@ export type Feature = {
     title: string;
     url: URL;
 };
-
-export interface FeatureRepository {
-    getFeatureById(id: number): Feature;
-    getFeatures(): Feature[];
-}

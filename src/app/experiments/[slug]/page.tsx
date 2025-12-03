@@ -1,10 +1,8 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-// Infrastructure
-import { ExperimentInMemoryRepository } from '../../../infrastructure/repositories/experiment-in-memory.repository';
-
 import { ExperimentDetailTemplate } from '../../../components/templates/experiment-detail.template';
+import { data } from '../../../data';
 
 type Props = {
     params: Promise<{
@@ -14,8 +12,7 @@ type Props = {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
     const params = await props.params;
-    const repository = new ExperimentInMemoryRepository();
-    const experiment = repository.getExperimentBySlug(params.slug);
+    const experiment = data.experiments.getBySlug(params.slug);
 
     if (!experiment) {
         return {
@@ -24,8 +21,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     }
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
-    const imageUrl =
-        experiment.images?.icon ?? '/assets/icons/app-icon.jterrazz.png';
+    const imageUrl = experiment.images?.icon ?? '/assets/icons/app-icon.jterrazz.png';
 
     return {
         alternates: {
@@ -55,9 +51,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     };
 }
 
-export async function generateStaticParams() {
-    const repository = new ExperimentInMemoryRepository();
-    const experiments = repository.getExperiments();
+export function generateStaticParams() {
+    const experiments = data.experiments.getAll();
 
     return experiments.map((experiment) => ({
         slug: experiment.slug,
@@ -66,8 +61,7 @@ export async function generateStaticParams() {
 
 export default async function ExperimentDetailPage(props: Props) {
     const params = await props.params;
-    const repository = new ExperimentInMemoryRepository();
-    const experiment = repository.getExperimentBySlug(params.slug);
+    const experiment = data.experiments.getBySlug(params.slug);
 
     if (!experiment) {
         notFound();

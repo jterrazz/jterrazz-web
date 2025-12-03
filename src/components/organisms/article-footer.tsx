@@ -4,17 +4,11 @@ import { Calendar, Clock, Github, Linkedin, Twitter } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Domain
+import { data } from '../../data';
 import { type Article } from '../../domain/article';
 import { UserContactType } from '../../domain/user';
-
-// Infrastructure
-import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository';
-
-// Utils
-import { cn } from '../../lib/utils';
-
 import { buildArticleSlug } from '../../lib/slugify';
+import { cn } from '../../lib/utils';
 import { Badge, BadgeColor } from '../atoms/status/badge';
 import { AIBanner } from '../molecules/ai-banner';
 import { ArticlePreviewCard } from '../molecules/cards/article-preview-card';
@@ -39,11 +33,10 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
     relatedArticles,
     seriesTitle,
 }) => {
-    const userRepository = new UserInMemoryRepository();
-    const profile = userRepository.getProfile();
-    const github = userRepository.getContact(UserContactType.GitHub);
-    const linkedin = userRepository.getContact(UserContactType.LinkedIn);
-    const twitter = userRepository.getContact(UserContactType.X);
+    const profile = data.user.getProfile();
+    const github = data.user.getContact(UserContactType.GitHub);
+    const linkedin = data.user.getContact(UserContactType.LinkedIn);
+    const twitter = data.user.getContact(UserContactType.X);
 
     return (
         <footer className={cn('flex flex-col gap-16 md:gap-24', className)}>

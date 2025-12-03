@@ -1,18 +1,14 @@
 import { type MetadataRoute } from 'next';
 
-// Infrastructure
-import { ArticleInMemoryRepository } from '../infrastructure/repositories/article-in-memory.repository';
-import { ExperimentInMemoryRepository } from '../infrastructure/repositories/experiment-in-memory.repository';
-
+import { data } from '../data';
+import { articlesDataAccess } from '../data/articles.data';
 import { buildArticleSlug } from '../lib/slugify';
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
-    const articlesRepository = new ArticleInMemoryRepository();
-    const experimentsRepository = new ExperimentInMemoryRepository();
 
-    const articles = await articlesRepository.getArticles();
-    const experiments = experimentsRepository.getExperiments();
+    const articles = articlesDataAccess.getAll();
+    const experiments = data.experiments.getAll();
 
     const articleUrls = articles.flatMap((article) => {
         const languages = Object.keys(article.content);

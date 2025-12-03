@@ -1,15 +1,10 @@
 import { type Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
-// Domain
-import { type ArticleLanguage } from '../../../domain/article';
-
-// Infrastructure
-import { ArticleInMemoryRepository } from '../../../infrastructure/repositories/article-in-memory.repository';
-import { FeaturedId } from '../../../infrastructure/repositories/data/features.data';
-import { FeatureInMemoryRepository } from '../../../infrastructure/repositories/feature-in-memory.repository';
-
 import { ArticleTemplate } from '../../../components/templates/article.template';
+import { data, FeatureId } from '../../../data';
+import { articlesDataAccess } from '../../../data/articles.data';
+import { type ArticleLanguage } from '../../../domain/article';
 import { buildArticleSlug } from '../../../lib/slugify';
 
 export const dynamicParams = true;
@@ -25,10 +20,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
     // Extract the numeric id prefix before the first dash
     const id = slugId.split('-')[0];
 
-    const featureRepository = new FeatureInMemoryRepository();
-    const articlesRepository = new ArticleInMemoryRepository();
-
-    const article = await articlesRepository.getArticleByIndex(id);
+    const article = articlesDataAccess.getByIndex(id);
 
     if (!article) {
         return notFound();
@@ -40,8 +32,8 @@ export default async function ArticlePage(props: ArticlePageProps) {
         return redirect(`/articles/${canonicalSlug}`);
     }
 
-    const articles = await articlesRepository.getArticles();
-    const features = [featureRepository.getFeatureById(FeaturedId.Source)];
+    const articles = articlesDataAccess.getAll();
+    const features = [data.features.getById(FeatureId.Source)];
 
     return (
         <ArticleTemplate
@@ -66,8 +58,7 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
 
-    const articlesRepository = new ArticleInMemoryRepository();
-    const article = await articlesRepository.getArticleByIndex(id);
+    const article = articlesDataAccess.getByIndex(id);
 
     if (!article) {
         return {
@@ -112,9 +103,8 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
     };
 }
 
-export async function generateStaticParams() {
-    const articlesRepository = new ArticleInMemoryRepository();
-    const articles = await articlesRepository.getArticles();
+export function generateStaticParams() {
+    const articles = articlesDataAccess.getAll();
 
     return articles.flatMap((article) => [
         { slugId: buildArticleSlug(article.publicIndex, article.metadata.title.en) },

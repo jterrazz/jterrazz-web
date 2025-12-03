@@ -5,14 +5,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Script from 'next/script';
 
-// Domain
+import { data } from '../../data';
 import { type Experiment, ExperimentCategory } from '../../domain/experiment';
 import { type Feature } from '../../domain/feature';
 import { UserContactType } from '../../domain/user';
-
-// Infrastructure
-import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository';
-
 import { CompactExperimentCard } from '../molecules/cards/compact-experiment-card';
 import { FeaturedExperimentCard } from '../molecules/cards/featured-experiment-card';
 import { SectionDivider } from '../molecules/section-divider';
@@ -41,7 +37,7 @@ export const ApplicationsListTemplate: React.FC<ApplicationsListTemplateProps> =
     experiments,
 }) => {
     const button = {
-        href: new UserInMemoryRepository().getContact(UserContactType.GitHub).url.toString(),
+        href: data.user.getContact(UserContactType.GitHub).url.toString(),
         text: 'View GitHub',
     };
 

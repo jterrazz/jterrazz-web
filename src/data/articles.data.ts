@@ -1,11 +1,10 @@
 import { sanitizeAiText } from 'ai-text-sanitizer';
-import { promises as fs } from 'node:fs';
+import { readFileSync } from 'node:fs';
 
-// Domain
-import { type Article, ArticleCategory, type ArticleLanguage } from '../../../domain/article';
+import { type Article, ArticleCategory, type ArticleLanguage } from '../domain/article';
+import { sanitizeTitle } from '../lib/sanitize-title';
 
-// Generated
-import contentHashes from '../../../../src/generated/content-hashes.json';
+import contentHashes from '../generated/content-hashes.json';
 
 // Configuration structure for each article before being transformed into the Article domain model.
 type ArticleConfig = {
@@ -30,7 +29,6 @@ type ArticleMetadataConfig = {
 type TranslatedString = Record<ArticleLanguage, string>;
 
 // Serve images directly from the local content route exposed by `src/app/content/[...path]/route.ts`.
-// This avoids relying on an external CDN and allows Next.js to optimise the files via its built-in <Image> component.
 const CDN_BASE_URL = '/content';
 const DEFAULT_PREVIEW_IMAGE_JPG = 'thumbnail.jpg';
 
@@ -471,6 +469,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     },
 ];
 
+// Helper functions
 const getAssetHash = (filename: string, assetPath: string): string => {
     const relativePath = `${filename}/assets/${assetPath}`;
     return hashes[relativePath] || '';
@@ -479,7 +478,6 @@ const getAssetHash = (filename: string, assetPath: string): string => {
 const processMarkdownContent = (content: string, filename: string): string => {
     return content.replace(/!\[([^\]]*)\]\((?:\.\/)?assets\/([^)]+)\)/g, (_match, altText, p1) => {
         const hash = getAssetHash(filename, p1);
-        // Point to the locally-served image so that <Image> receives an internal URL.
         return `![${altText}](${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)}${hash ? `?v=${hash}` : ''})`;
     });
 };
@@ -487,73 +485,89 @@ const processMarkdownContent = (content: string, filename: string): string => {
 const sanitizeText = (text: string | undefined): string | undefined =>
     text ? sanitizeAiText(text).cleaned : text;
 
-const readMarkdownFile = async (
+const sanitizeTitleText = (text: string | undefined): string | undefined =>
+    text ? sanitizeTitle(sanitizeAiText(text).cleaned) : text;
+
+const readMarkdownFileSync = (
     articlesDirectory: string,
     filename: string,
     language: ArticleLanguage,
-): Promise<string | undefined> => {
+): string | undefined => {
     try {
-        const content = await fs.readFile(
-            `${articlesDirectory}/${filename}/${language}.md`,
-            'utf8',
-        );
+        const content = readFileSync(`${articlesDirectory}/${filename}/${language}.md`, 'utf8');
         return processMarkdownContent(content, filename);
     } catch {
         return undefined;
     }
 };
 
-export const readMarkdownArticles = async (): Promise<Article[]> => {
+// Load all articles synchronously at module initialization
+const loadArticles = (): Article[] => {
     const articlesDirectory = `${process.cwd()}/content`;
 
-    return await Promise.all(
-        ARTICLES_CONFIG.map(async ({ filename, previewImage, ...articleConfig }) => {
-            const content: { [key in ArticleLanguage]?: string } = {};
+    return ARTICLES_CONFIG.map(({ filename, previewImage, ...articleConfig }) => {
+        const content: { [key in ArticleLanguage]?: string } = {};
 
-            // Try to read both language versions
-            const [enContent, frContent] = await Promise.all([
-                readMarkdownFile(articlesDirectory, filename, 'en'),
-                readMarkdownFile(articlesDirectory, filename, 'fr'),
-            ]);
+        // Read both language versions synchronously
+        const enContent = readMarkdownFileSync(articlesDirectory, filename, 'en');
+        const frContent = readMarkdownFileSync(articlesDirectory, filename, 'fr');
 
-            // Don't sanitize markdown content - it would strip whitespace from code blocks
-            if (enContent) content.en = enContent;
-            if (frContent) content.fr = frContent;
+        if (enContent) content.en = enContent;
+        if (frContent) content.fr = frContent;
 
-            // If no content was found, throw error
-            if (!Object.keys(content).length) {
-                throw new Error(`No content found for article ${filename}`);
-            }
+        if (!Object.keys(content).length) {
+            throw new Error(`No content found for article ${filename}`);
+        }
 
-            let imageUrl = '';
-            if (previewImage) {
-                const hash = getAssetHash(filename, previewImage);
-                imageUrl = `${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${previewImage}${hash ? `?v=${hash}` : ''}`;
-            }
+        let imageUrl = '';
+        if (previewImage) {
+            const hash = getAssetHash(filename, previewImage);
+            imageUrl = `${CDN_BASE_URL}/${encodeURIComponent(filename)}/assets/${previewImage}${hash ? `?v=${hash}` : ''}`;
+        }
 
-            // Localise title and description for each available language (defaulting to English if none provided)
-            const sanitizeRecord = (record: TranslatedString): TranslatedString => ({
-                en: sanitizeText(record.en) ?? '',
-                fr: sanitizeText(record.fr) ?? '',
-            });
+        const sanitizeRecord = (record: TranslatedString): TranslatedString => ({
+            en: sanitizeText(record.en) ?? '',
+            fr: sanitizeText(record.fr) ?? '',
+        });
 
-            const descriptionByLang = sanitizeRecord(articleConfig.metadata.description);
-            const titleByLang = sanitizeRecord(articleConfig.metadata.title);
+        const sanitizeTitleRecord = (record: TranslatedString): TranslatedString => ({
+            en: sanitizeTitleText(record.en) ?? '',
+            fr: sanitizeTitleText(record.fr) ?? '',
+        });
 
-            return {
-                content,
-                imageUrl,
-                metadata: {
-                    category: articleConfig.metadata.category,
-                    dateModified: articleConfig.metadata.dateModified,
-                    datePublished: articleConfig.metadata.datePublished,
-                    description: descriptionByLang,
-                    series: articleConfig.metadata.series,
-                    title: titleByLang,
-                },
-                publicIndex: articleConfig.publicIndex,
-                published: articleConfig.published,
-            } as Article;
-        }),
-    );
+        const descriptionByLang = sanitizeRecord(articleConfig.metadata.description);
+        const titleByLang = sanitizeTitleRecord(articleConfig.metadata.title);
+
+        return {
+            content,
+            imageUrl,
+            metadata: {
+                category: articleConfig.metadata.category,
+                dateModified: articleConfig.metadata.dateModified,
+                datePublished: articleConfig.metadata.datePublished,
+                description: descriptionByLang,
+                series: articleConfig.metadata.series,
+                title: titleByLang,
+            },
+            publicIndex: articleConfig.publicIndex,
+            published: articleConfig.published,
+        } as Article;
+    });
+};
+
+// Singleton: articles loaded once at startup
+const articles = loadArticles();
+
+export const articlesDataAccess = {
+    getAll: (): Article[] =>
+        [...articles].sort(
+            (a, b) =>
+                new Date(b.metadata.dateModified).getTime() -
+                new Date(a.metadata.dateModified).getTime(),
+        ),
+    getByIndex: (index: string, language: ArticleLanguage = 'en'): Article | undefined => {
+        const article = articles.find((a) => String(a.publicIndex) === index);
+        if (!article || !article.content[language]) return undefined;
+        return article;
+    },
 };

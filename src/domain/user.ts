@@ -28,13 +28,6 @@ export type UserExperience = {
     year: string;
 };
 
-export interface UserRepository {
-    getContact(type: UserContactType): UserContact;
-    getContacts(): UserContact[];
-    getExperiences(): UserExperience[];
-    getProfile(): UserProfile;
-}
-
 export type UserProfile = {
     description: string;
     headline: string;

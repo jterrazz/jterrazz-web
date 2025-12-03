@@ -1,15 +1,14 @@
-// Domain
 import {
     type Experiment,
     ExperimentArchitecture,
     ExperimentCategory,
     ExperimentContext,
     ExperimentStatus,
-} from '../../../domain/experiment';
+} from '../domain/experiment';
 
 const REPOSITORY_BASE_URL = 'https://github.com/jterrazz/';
 
-export const experimentsData: Experiment[] = [
+const experiments: Experiment[] = [
     {
         category: ExperimentCategory.App,
         components: [
@@ -252,7 +251,7 @@ export const experimentsData: Experiment[] = [
         status: ExperimentStatus.Active,
         year: 2025,
     },
-    // 42 Projects Flattened
+    // 42 Projects
     {
         articleUrl: '/articles/6-my-journey-into-expert-systems-with-python',
         category: ExperimentCategory.System,
@@ -609,3 +608,9 @@ export const experimentsData: Experiment[] = [
         year: 2017,
     },
 ];
+
+export const experimentsDataAccess = {
+    getAll: (): Experiment[] => experiments,
+    getBySlug: (slug: string): Experiment | undefined =>
+        experiments.find((experiment) => experiment.slug === slug),
+};

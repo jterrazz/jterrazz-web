@@ -64,8 +64,3 @@ export type ExperimentComponent = {
     sourceUrl: URL;
     status: ExperimentStatus;
 };
-
-export interface ExperimentRepository {
-    getExperimentBySlug(slug: string): Experiment | undefined;
-    getExperiments(): Experiment[];
-}

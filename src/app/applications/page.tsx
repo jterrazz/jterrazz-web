@@ -1,16 +1,8 @@
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
-// Application
 import { ApplicationsListTemplate } from '../../components/templates/applications-list.template';
-
-// Domain
-import { type Experiment } from '../../domain/experiment';
-
-// Infrastructure
-import { FeaturedId } from '../../infrastructure/repositories/data/features.data';
-import { ExperimentInMemoryRepository } from '../../infrastructure/repositories/experiment-in-memory.repository';
-import { FeatureInMemoryRepository } from '../../infrastructure/repositories/feature-in-memory.repository';
+import { data, FeatureId } from '../../data';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -42,11 +34,8 @@ export const metadata: Metadata = {
     title: 'Experiments by Jean-Baptiste Terrazzoni: AI & Fintech Tools',
 };
 
-export default async function ApplicationsPage() {
-    const experimentRepository = new ExperimentInMemoryRepository();
-    const featureRepository = new FeatureInMemoryRepository();
-
-    const experimentsDomain: Experiment[] = experimentRepository.getExperiments();
+export default function ApplicationsPage() {
+    const experimentsDomain = data.experiments.getAll();
 
     // Convert URL and Date instances to plain serialisable values for client components
     const experiments = experimentsDomain.map((experiment) => ({
@@ -59,9 +48,9 @@ export default async function ApplicationsPage() {
         url: experiment.url ? experiment.url.toString() : '',
     }));
     const features = [
-        featureRepository.getFeatureById(FeaturedId.Repository),
-        featureRepository.getFeatureById(FeaturedId.Capitaine),
-        featureRepository.getFeatureById(FeaturedId.Source),
+        data.features.getById(FeatureId.Repository),
+        data.features.getById(FeatureId.Capitaine),
+        data.features.getById(FeatureId.Source),
     ];
 
     const highlightTitle = 'Experiments';

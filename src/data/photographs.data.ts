@@ -1,7 +1,6 @@
-// Domain
-import { type Photograph } from '../../../domain/photograph';
+import { type Photograph } from '../domain/photograph';
 
-export const photographsData: Photograph[] = [
+const photographs: Photograph[] = [
     {
         contentUrl:
             'https://images.pexels.com/photos/19094327/pexels-photo-19094327/free-photo-of-moon-in-night-sky-over-alley-in-rome-italy.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
@@ -158,3 +157,9 @@ export const photographsData: Photograph[] = [
         },
     },
 ];
+
+export const photographsDataAccess = {
+    getAll: (): Photograph[] => photographs,
+    getByIndex: (index: string): Photograph | undefined =>
+        photographs.find((photograph) => String(photograph.index) === index),
+};

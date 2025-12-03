@@ -21,8 +21,3 @@ export interface Article {
 }
 
 export type ArticleLanguage = 'en' | 'fr';
-
-export interface ArticleRepository {
-    getArticleByIndex(index: string, language?: ArticleLanguage): Promise<Article | undefined>;
-    getArticles(): Promise<Article[]>;
-}

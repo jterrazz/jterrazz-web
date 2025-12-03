@@ -8,8 +8,3 @@ export type Photograph = {
         };
     };
 };
-
-export interface PhotographRepository {
-    getPhotographByIndex(index: string): Photograph | undefined;
-    getPhotographs(): Photograph[];
-}

@@ -1,12 +1,9 @@
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
-// Infrastructure
-import { ArticleInMemoryRepository } from '../../infrastructure/repositories/article-in-memory.repository';
-import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository';
-
 import { ArticlesListTemplate } from '../../components/templates/articles-list.template';
 import { ArticlesListViewModelImpl } from '../../components/templates/articles-list.template.view-model';
+import { articlesDataAccess } from '../../data/articles.data';
 import { buildArticleSlug } from '../../lib/slugify';
 
 // Force static generation for this page
@@ -38,22 +35,15 @@ export const metadata: Metadata = {
     title: 'Engineering Journal: Notes on Architecture & Systems',
 };
 
-export default async function ArticlesPage() {
-    const articlesRepository = new ArticleInMemoryRepository();
-    const userRepository = new UserInMemoryRepository();
-    const articles = await articlesRepository.getArticles();
+export default function ArticlesPage() {
+    const articles = articlesDataAccess.getAll();
 
     // TODO: Move to template directly
     const highlightTitle = 'Articles';
     const highlightDescription =
         'My personal knowledge base. Notes on engineering, architecture, and the things I learn while building software.';
 
-    const viewModel = new ArticlesListViewModelImpl(
-        articles,
-        highlightTitle,
-        highlightDescription,
-        userRepository,
-    );
+    const viewModel = new ArticlesListViewModelImpl(articles, highlightTitle, highlightDescription);
 
     // Structured data for better SEO
     const jsonLd = {

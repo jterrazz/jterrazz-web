@@ -4,13 +4,9 @@ import React from 'react';
 
 import { ImageGallery } from 'react-image-grid-gallery';
 
-// Domain
+import { data } from '../../data';
 import { type Photograph } from '../../domain/photograph';
 import { UserContactType } from '../../domain/user';
-
-// Infrastructure
-import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository';
-
 import { Highlight } from '../molecules/typography/highlight';
 
 export type PhotographsGridTemplateProps = {
@@ -31,7 +27,7 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
         title: photograph.metadata.description,
     }));
     const button = {
-        href: new UserInMemoryRepository().getContact(UserContactType.Pexels).url.toString(),
+        href: data.user.getContact(UserContactType.Pexels).url.toString(),
         text: 'View Pexels',
     };
 

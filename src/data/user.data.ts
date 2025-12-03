@@ -1,15 +1,75 @@
-// Domain
-import { type UserExperience } from '../../../domain/user';
+import {
+    type UserContact,
+    UserContactType,
+    type UserExperience,
+    type UserProfile,
+} from '../domain/user';
+
+const profile: UserProfile = {
+    description: 'Software Engineer specializing in clean architecture and AI agents.',
+    headline: 'AI Agent Developer • Fintech Engineer • Bitcoin Maximalist',
+    location: 'Paris, France',
+    name: 'Jean-Baptiste Terrazzoni',
+    pictureUrl: '/assets/icons/app-icon.jterrazz.png',
+};
+
+const contacts: Record<UserContactType, UserContact> = {
+    [UserContactType.Email]: {
+        type: UserContactType.Email,
+        url: new URL('mailto:jterrazzoni@gmail.com'),
+        value: 'jterrazzoni@gmail.com',
+    },
+    [UserContactType.GitHub]: {
+        type: UserContactType.GitHub,
+        url: new URL('https://github.com/jterrazz'),
+        value: 'jterrazz',
+    },
+    [UserContactType.LinkedIn]: {
+        type: UserContactType.LinkedIn,
+        url: new URL('https://www.linkedin.com/in/jterrazz'),
+        value: 'jterrazz',
+    },
+    [UserContactType.Medium]: {
+        type: UserContactType.Medium,
+        url: new URL('https://medium.com/@jterrazz'),
+        value: '@jterrazz',
+    },
+    [UserContactType.Pexels]: {
+        type: UserContactType.Pexels,
+        url: new URL('https://www.pexels.com/@jterrazz'),
+        value: '@jterrazz',
+    },
+    [UserContactType.Phone]: {
+        type: UserContactType.Phone,
+        url: new URL('tel:+33600000000'),
+        value: '+33 6 00 00 00 00',
+    },
+    [UserContactType.Twitter]: {
+        type: UserContactType.Twitter,
+        url: new URL('https://twitter.com/j_terrazz'),
+        value: '@j_terrazz',
+    },
+    [UserContactType.Website]: {
+        type: UserContactType.Website,
+        url: new URL('https://jterrazz.com'),
+        value: 'jterrazz.com',
+    },
+    [UserContactType.X]: {
+        type: UserContactType.X,
+        url: new URL('https://twitter.com/j_terrazz'),
+        value: '@j_terrazz',
+    },
+};
 
 const PARIS = 'Paris, France';
-export const userExperiencesData: UserExperience[] = [
+const experiences: UserExperience[] = [
     {
         description:
             'Released my first mobile app, "AI News", to the App Store. A playful tool to challenge critical thinking by spotting AI-generated headlines.',
+        experimentUrl: '/experiments/ai-news',
         location: 'Personal Project',
         organization: 'AI News',
         organizationUrl: 'https://apps.apple.com/us/app/ai-news-smart-world-news/id6742116038',
-        experimentUrl: '/experiments/ai-news',
         timeframe: 'April 2025',
         title: 'Mobile App Release',
         type: 'Job',
@@ -29,10 +89,10 @@ export const userExperiencesData: UserExperience[] = [
     {
         description:
             'Built a synthetic asset platform using Chainlink oracles for real-time pricing. Secured 4 bounties for innovation in DeFi.',
+        experimentUrl: '/experiments/defy-dy',
         location: 'Waterloo, Ontario, Canada',
         organization: 'ETHWaterloo',
         organizationUrl: 'https://ethwaterloo.com/',
-        experimentUrl: '/experiments/defy-dy',
         timeframe: 'Nov 2019',
         title: 'Hackathon Winner',
         type: 'Hackathon',
@@ -41,10 +101,10 @@ export const userExperiencesData: UserExperience[] = [
     {
         description:
             'Developed a blockchain crowdfunding platform powered by CVT tokens. Awarded a bounty for smart contract implementation.',
+        experimentUrl: '/experiments/cvt-crowdfunding',
         location: PARIS,
         organization: 'ETHParis',
         organizationUrl: 'https://ethparis.com/',
-        experimentUrl: '/experiments/cvt-crowdfunding',
         timeframe: 'Mar 2019',
         title: 'Hackathon Winner',
         type: 'Hackathon',
@@ -94,3 +154,10 @@ export const userExperiencesData: UserExperience[] = [
         year: '2013',
     },
 ];
+
+export const userDataAccess = {
+    getContact: (type: UserContactType): UserContact => contacts[type],
+    getContacts: (): UserContact[] => Object.values(contacts),
+    getExperiences: (): UserExperience[] => experiences,
+    getProfile: (): UserProfile => profile,
+};

@@ -4,13 +4,8 @@ import type { Metadata } from 'next';
 // Google Fonts temporarily disabled due to network restrictions in build environment
 // import { Inter } from 'next/font/google';
 
-// Domain
+import { data } from '../data';
 import { UserContactType } from '../domain/user';
-
-// Infrastructure
-import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-memory.repository';
-
-// Utils
 import { cn } from '../lib/utils';
 
 import { ClientLayoutWrapper } from '../components/client-layout-wrapper';
@@ -159,11 +154,10 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const userRepository = new UserInMemoryRepository();
     // Convert `URL` instances to plain strings to safely pass to the client navigation bar.
     const contacts = [
-        userRepository.getContact(UserContactType.GitHub),
-        userRepository.getContact(UserContactType.Medium),
+        data.user.getContact(UserContactType.GitHub),
+        data.user.getContact(UserContactType.Medium),
     ].map((contact) => ({
         name: contact.type,
         type: contact.type,
@@ -215,7 +209,9 @@ export default function RootLayout({
                     <div className="sticky top-0 z-[50] pointer-events-none">
                         <TheNavigationBar contacts={contacts} pages={pages} />
                     </div>
-                    <main className="flex-1 flex flex-col overflow-x-hidden w-full">{children}</main>
+                    <main className="flex-1 flex flex-col overflow-x-hidden w-full">
+                        {children}
+                    </main>
                     <TheFooter />
                 </ClientLayoutWrapper>
             </body>

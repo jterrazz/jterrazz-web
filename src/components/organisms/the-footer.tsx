@@ -7,13 +7,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 
-// Domain
+import { data } from '../../data';
 import { UserContactType } from '../../domain/user';
-
-// Infrastructure
-import { UserInMemoryRepository } from '../../infrastructure/repositories/user-in-memory.repository';
-
-// Utils
 import { cn } from '../../lib/utils';
 
 import { HighlightedText } from '../atoms/highlighted-text';
@@ -115,11 +110,10 @@ export const TheFooter: React.FC<TheFooterProps> = ({ className }) => {
         className,
     );
 
-    const userRepository = new UserInMemoryRepository();
-    const email = userRepository.getContact(UserContactType.Email);
-    const linkedin = userRepository.getContact(UserContactType.LinkedIn);
-    const x = userRepository.getContact(UserContactType.X);
-    const github = userRepository.getContact(UserContactType.GitHub);
+    const email = data.user.getContact(UserContactType.Email);
+    const linkedin = data.user.getContact(UserContactType.LinkedIn);
+    const x = data.user.getContact(UserContactType.X);
+    const github = data.user.getContact(UserContactType.GitHub);
 
     const footerJsonLd = {
         '@context': 'https://schema.org',

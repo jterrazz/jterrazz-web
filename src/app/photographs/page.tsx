@@ -1,10 +1,8 @@
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
-// Infrastructure
-import { PhotographInMemoryRepository } from '../../infrastructure/repositories/photograph-in-memory.repository';
-
 import { PhotographsGridTemplate } from '../../components/templates/photographs-grid.template';
+import { data } from '../../data';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -42,8 +40,7 @@ export const metadata: Metadata = {
 };
 
 export default function PhotographsPage() {
-    const photographsRepository = new PhotographInMemoryRepository();
-    const photographs = photographsRepository.getPhotographs();
+    const photographs = data.photographs.getAll();
 
     const highlightTitle = 'Photographs';
     const highlightDescription =

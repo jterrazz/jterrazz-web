@@ -1,17 +1,9 @@
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
-// Domain
-import { type Article } from '../domain/article';
-import { type Experiment } from '../domain/experiment';
-import { type UserExperience } from '../domain/user';
-
-// Infrastructure
-import { ArticleInMemoryRepository } from '../infrastructure/repositories/article-in-memory.repository';
-import { ExperimentInMemoryRepository } from '../infrastructure/repositories/experiment-in-memory.repository';
-import { UserInMemoryRepository } from '../infrastructure/repositories/user-in-memory.repository';
-
 import { HelloWorldTemplate } from '../components/templates/hello-world.template';
+import { data } from '../data';
+import { articlesDataAccess } from '../data/articles.data';
 import { buildArticleSlug } from '../lib/slugify';
 
 // Force static generation for this page
@@ -59,14 +51,10 @@ export const metadata: Metadata = {
     title: 'Jean-Baptiste Terrazzoni: Building & Learning',
 };
 
-export default async function HomePage() {
-    const userRepository = new UserInMemoryRepository();
-    const articlesRepository = new ArticleInMemoryRepository();
-    const experimentRepository = new ExperimentInMemoryRepository();
-
-    const userExperiences: UserExperience[] = userRepository.getExperiences();
-    const topArticles: Article[] = await articlesRepository.getArticles();
-    const latestExperiments: Experiment[] = experimentRepository.getExperiments().slice(0, 2);
+export default function HomePage() {
+    const userExperiences = data.user.getExperiences();
+    const topArticles = articlesDataAccess.getAll();
+    const latestExperiments = data.experiments.getAll().slice(0, 2);
 
     const description =
         'Building, learning, and sharing my journey through software engineering. Exploring the frontiers of AI, architecture, and decentralization.';
