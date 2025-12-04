@@ -42,7 +42,8 @@ export type RawArticleInput = {
 
 function sanitizeEmDashes(text: string): string {
     if (!text) return text;
-    return text.replace(/—/g, ', ');
+    // Handle em dashes (—) and en dashes (–) with any surrounding whitespace
+    return text.replace(/\s*[—–]\s*/g, ', ');
 }
 
 function toSentenceCase(title: string): string {
@@ -68,9 +69,18 @@ function sanitizeTitle(title: string): string {
     return sanitizeEmDashes(toSentenceCase(title));
 }
 
+function sanitizeMarkdownHeadings(content: string): string {
+    if (!content) return content;
+    // Match markdown headings: # at start of line, followed by space and title text
+    return content.replace(/^(#{1,6})\s+(.+)$/gm, (_match, hashes, title) => {
+        return `${hashes} ${toSentenceCase(title)}`;
+    });
+}
+
 function sanitizeContent(content: string): string {
     if (!content) return content;
-    return sanitizeEmDashes(content);
+    const withSanitizedHeadings = sanitizeMarkdownHeadings(content);
+    return sanitizeEmDashes(withSanitizedHeadings);
 }
 
 function sanitizeTranslatedText(
@@ -121,6 +131,7 @@ export function createArticle(raw: RawArticleInput): Article {
 export const __test__ = {
     sanitizeContent,
     sanitizeEmDashes,
+    sanitizeMarkdownHeadings,
     sanitizeTitle,
     toSentenceCase,
 };

@@ -61,8 +61,13 @@ describe('sanitizeEmDashes', () => {
         expect(sanitizeEmDashes('well-known')).toBe('well-known');
     });
 
-    it('should not replace en dashes', () => {
-        expect(sanitizeEmDashes('2020–2024')).toBe('2020–2024');
+    it('should also replace en dashes', () => {
+        expect(sanitizeEmDashes('2020–2024')).toBe('2020, 2024');
+    });
+
+    it('should handle dashes with surrounding whitespace', () => {
+        expect(sanitizeEmDashes('word — word')).toBe('word, word');
+        expect(sanitizeEmDashes('word – word')).toBe('word, word');
     });
 });
 

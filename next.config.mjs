@@ -20,37 +20,62 @@ const nextConfig = {
     },
     async redirects() {
         return [
-            // Permanent redirects
+            // Canonical external redirects (/go/*)
             {
                 destination: 'https://medium.com/@jterrazz',
                 permanent: false,
-                source: '/link/articles',
+                source: '/go/blog',
             },
             {
                 destination: 'https://www.pexels.com/@jterrazz',
                 permanent: false,
-                source: '/link/photographs',
+                source: '/go/photos',
             },
             {
                 destination: 'https://devpost.com/jterrazz',
                 permanent: false,
-                source: '/link/hackathons',
+                source: '/go/hackathons',
             },
             {
                 destination: 'https://gravatar.com/noisilywerewolffa1df1a9cc',
                 permanent: false,
-                source: '/contact',
+                source: '/go/contact',
             },
-
-            // Applications redirects
             {
                 destination:
                     'https://apps.apple.com/app/apple-store/id6742116038?pt=119085741&ct=Jterrazz%20Website&mt=8',
                 permanent: false,
+                source: '/go/n00',
+            },
+
+            // Legacy external redirects (keep old URLs working)
+            {
+                destination: '/go/blog',
+                permanent: true,
+                source: '/link/articles',
+            },
+            {
+                destination: '/go/photos',
+                permanent: true,
+                source: '/link/photographs',
+            },
+            {
+                destination: '/go/hackathons',
+                permanent: true,
+                source: '/link/hackathons',
+            },
+            {
+                destination: '/go/contact',
+                permanent: true,
+                source: '/contact',
+            },
+            {
+                destination: '/go/n00',
+                permanent: true,
                 source: '/link/applications/n00',
             },
 
-            // Legacy articles redirects
+            // Legacy article redirects
             {
                 destination: '/articles/7',
                 permanent: true,
