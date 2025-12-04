@@ -191,11 +191,21 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className }) => {
                                     </p>
                                 </div>
 
-                                <div className="hidden md:flex items-center justify-between gap-4">
-                                    <p className="text-xs text-zinc-500 dark:text-zinc-600 font-medium">
-                                        © {new Date().getFullYear()} All rights reserved.
-                                    </p>
-                                    <ToggleTheme />
+                                <div className="hidden md:flex flex-col gap-2">
+                                    <a
+                                        className="text-xs text-zinc-500 dark:text-zinc-600 font-medium hover:text-zinc-700 dark:hover:text-zinc-400 transition-colors"
+                                        href="https://status.jterrazz.com"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        Status
+                                    </a>
+                                    <div className="flex items-center justify-between gap-4">
+                                        <p className="text-xs text-zinc-500 dark:text-zinc-600 font-medium">
+                                            © {new Date().getFullYear()} All rights reserved.
+                                        </p>
+                                        <ToggleTheme />
+                                    </div>
                                 </div>
                             </div>
 
