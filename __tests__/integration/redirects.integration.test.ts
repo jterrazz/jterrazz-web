@@ -19,6 +19,7 @@ const CANONICAL_REDIRECTS = [
             'https://apps.apple.com/app/apple-store/id6742116038?pt=119085741&ct=Jterrazz Website&mt=8',
         permanent: false,
     },
+    { source: '/go/capitaine', destination: '/experiments/capitaine', permanent: false },
 ];
 
 // Legacy external redirects (old URLs → new canonical URLs)

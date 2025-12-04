@@ -47,6 +47,11 @@ const nextConfig = {
                 permanent: false,
                 source: '/go/n00',
             },
+            {
+                destination: '/experiments/capitaine',
+                permanent: false,
+                source: '/go/capitaine',
+            },
 
             // Legacy external redirects (keep old URLs working)
             {
