@@ -4,7 +4,7 @@
 
 We live in a world where headlines are engineered to trigger reactions rather than encourage thought. Sensationalism sells, and nuance often gets lost in the noise. This dynamic trains us to be reactive, sharing articles based on titles alone without engaging with the content.
 
-This project, **Fake News**, was born from a desire to flip that script. Instead of building another news aggregator, the goal was to build a game—one that uses the addictive mechanics of mobile apps to teach media literacy and critical thinking.
+This project, **n00**, was born from a desire to flip that script. Instead of building another news aggregator, the goal was to build a game—one that uses the addictive mechanics of mobile apps to teach media literacy and critical thinking.
 
 ## Gamifying the Truth
 
@@ -41,6 +41,6 @@ Instead of digging through tabs and cross-referencing sources manually, we can n
 
 ## Join the Experiment
 
-The app is an invitation to build a smarter, more curious community. It’s a digital gym for critical thinking.
+The app is an invitation to build a smarter, more curious community. It's a digital gym for critical thinking.
 
-[Download the app here](https://jterrazz.com/link/applications/fake-news)
+[Download the app here](https://jterrazz.com/link/applications/n00)

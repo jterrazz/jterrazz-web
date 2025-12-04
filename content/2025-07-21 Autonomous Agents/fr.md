@@ -1,88 +1,142 @@
 ![](assets/thumbnail.jpg)
 
-# Agents IA autonomes
+# Architecturer avec l'IA
 
-Imaginez vous réveiller avec une notification :
+Diriger vous mène loin. Mais certaines tâches sont plus grandes que des frappes chirurgicales.
 
-> **Mise à jour Système :**
-> - Vulnérabilité de dépendance identifiée dans `lodash`.
-> - Branche isolée créée.
-> - Dépendance mise à jour.
-> - Suite de tests complète exécutée (Passée).
-> - Pull Request #847 est prête pour révision.
+> "Ajoute l'export CSV au tableau de bord analytique. Suis nos patterns d'export PDF existants."
 
-Vous n'avez pas initié cela. Vous n'avez pas tapé de commande. Le système a observé un déclencheur, exécuté un flux de travail, et préparé le résultat pour votre décision.
+Ce n'est pas un refactoring Cmd+K. C'est une fonctionnalité multi-fichiers : endpoint backend, transformation de données, composant frontend, tests. Des dizaines de décisions en cours de route.
 
-Ceci définit les **systèmes autonomes**. Le changement par rapport à la direction d'agents n'est pas la capacité, mais la **présence**. En dirigeant, vous supervisez en regardant. Avec les systèmes autonomes, vous concevez des systèmes qui opèrent sans vous, agissant sur des déclencheurs que vous avez définis, dans des limites que vous avez fixées.
+J'ai regardé l'agent travailler : il a exploré la codebase pour trouver l'export PDF, analysé le pattern, commencé à implémenter le backend. Puis il a rencontré une ambiguïté — le CSV doit-il inclure toutes les colonnes ou seulement celles visibles ? Il a fait un choix. Je l'ai rattrapé. "Juste les colonnes visibles, et ajoute un paramètre pour inclure tout optionnellement."
 
-Diriger implique la supervision ; l'autonomie implique l'architecture. La question change de "Comment je décris ce que je veux ?" à "Combien d'autonomie ce système peut-il avoir, et sous quelles contraintes ?"
+L'agent s'est ajusté, a continué, généré des tests, les a exécutés, a corrigé un échec, présenté le résultat.
+
+C'est cela **travailler avec l'IA sur des problèmes plus vastes**. Pas commander — collaborer. Vous définissez la direction, regardez l'exécution, corrigez le tir si nécessaire, itérez vers la solution ensemble.
 
 ***
 
-## Des tâches aux flux de travail
+## La boucle collaborative
 
-Quand vous dirigez des agents, vous êtes dans la boucle : vous promptez, l'IA génère, vous révisez. C'est synchrone.
-Avec les agents autonomes, vous sortez de la boucle. Le système tourne de manière asynchrone.
+![](assets/lighthouse-night.jpg)
 
-C'est particulièrement précieux pour les tâches de **maintenance et d'hygiène** — le travail important qui est souvent dépriorisé en faveur de nouvelles fonctionnalités :
-- **Gestion des dépendances :** Garder les bibliothèques à jour.
-- **Documentation :** Détecter quand les changements de code s'éloignent de la documentation et rédiger des mises à jour.
-- **Couverture de tests :** Identifier les chemins de code non testés et générer des cas de tests.
-- **Analyse de logs :** Surveiller les logs de production pour de nouveaux modèles d'erreurs et les grouper pour révision.
+Diriger, c'est commande-réponse. Vous dites quoi faire ; il le fait ; vous revoyez.
 
-L'agent agit comme un gardien numérique, s'assurant que la base de code reste propre et sécurisée sans requérir votre attention constante.
+Architecturer est une conversation. Vous fixez un objectif, l'agent explore et implémente, vous observez et intervenez, il s'ajuste, vous raffinez, répétez.
+
+La boucle ressemble à ça :
+
+1. **Définir la direction.** "Ajoute l'authentification utilisateur avec email/password et OAuth. Suis nos patterns existants."
+2. **Observer.** L'agent commence à explorer, prendre des décisions. Vous voyez où il se dirige.
+3. **Intervenir.** "C'est la mauvaise librairie d'auth — on utilise `next-auth`, pas `passport`."
+4. **Il s'ajuste.** Continue avec la correction appliquée.
+5. **Raffiner.** "Bien, mais extrais la config dans un fichier séparé."
+6. **Répéter.** Jusqu'à ce que la fonctionnalité soit complète.
+
+Vous ne revoyez pas ligne par ligne (ça c'est diriger). Vous revoyez la *direction* — est-ce que ça va là où je veux ?
+
+La réflexion reste vôtre. Vous êtes toujours celui qui comprend l'architecture, les contraintes, les objectifs. Mais au lieu de transcrire chaque décision en code, vous guidez quelque chose qui peut conserver le contexte et exécuter pendant que vous façonnez la direction.
 
 ***
 
-## L'architecture de la confiance
+## Apprendre votre agent
+
+![](assets/scaffolding.jpg)
+
+Plus vous travaillez avec un agent, plus vous apprenez ses patterns.
+
+**Là où il excelle :**
+- Suivre les patterns existants dans votre codebase
+- Changements multi-fichiers fastidieux mais pas nouveaux
+- Fonctionnalités riches en boilerplate (endpoints CRUD, composants de formulaire, suites de tests)
+- Refactoring à l'échelle ("convertis tous les callbacks en async/await")
+
+**Là où il lutte :**
+- Architecture véritablement nouvelle (structures de données personnalisées, patterns inhabituels)
+- Exigences ambiguës (il devinera, souvent mal)
+- Préoccupations transversales qu'il ne peut pas voir (implications de performance, subtilités de sécurité)
+- Vos conventions non écrites (les choses que vous "savez juste")
+
+Connaître ces patterns vous permet de travailler avec l'agent plus efficacement :
+
+**Découpez le travail nouveau en morceaux familiers.** "Conçois un cache personnalisé" pourrait échouer. "Crée un wrapper Map, puis ajoute une expiration TTL, puis ajoute une éviction LRU" lui donne des étapes familières.
+
+**Rendez l'implicite explicite.** Si vous avez des conventions qui ne sont pas dans le code, énoncez-les. "On utilise toujours des retours anticipés (early returns), jamais de if/else imbriqués."
+
+**Montrez des exemples pour les patterns inhabituels.** Écrivez un cas manuellement, puis demandez à l'agent de suivre ce pattern pour le reste.
+
+**Interrompez tôt.** Si vous le voyez partir dans la mauvaise direction, n'attendez pas qu'il finisse. Arrêtez, corrigez, continuez.
+
+L'agent n'est pas une boîte noire. C'est un collaborateur avec lequel vous apprenez à travailler. Mieux vous le connaissez, plus vous pouvez accomplir de choses ensemble.
+
+***
+
+## Confiance au niveau architectural
 
 ![](assets/lock-vault.jpg)
 
-Un agent autonome n'est utile que si vous pouvez lui faire confiance pour ne pas casser les choses. Cela requiert une architecture spécifique conçue pour la sécurité.
+Diriger nécessite une revue ligne par ligne. Architecturer nécessite un type de confiance différent.
 
-### 1. Déclencheurs clairs
+Vous ne vérifiez pas chaque ligne d'un diff de 500 lignes. Vous vérifiez :
 
-Le système a besoin de règles non ambiguës pour savoir quand agir.
-- *Mauvais :* "Vérifie si le code a l'air désordonné."
-- *Bon :* "Déclenche quand une dépendance a >2 versions de retard" ou "Déclenche quand une fonction a 0% de couverture de test."
+- **Est-ce la bonne approche ?** L'architecture globale a-t-elle du sens ?
+- **Suit-il nos patterns ?** Ou a-t-il inventé quelque chose d'incompatible ?
+- **Les décisions clés sont-elles correctes ?** Les endroits où il a dû choisir.
+- **Qu'a-t-il manqué ?** Cas limites, gestion d'erreur, les choses qu'il ne pouvait pas savoir.
 
-### 2. Exécution en bac à sable (Sandboxed)
+Cela nécessite plus de jugement architectural que diriger. Vous devez être capable de lire un gros diff et comprendre la forme de la solution, pas juste la syntaxe.
 
-L'agent doit opérer dans un environnement sûr où les erreurs n'ont pas de conséquences. Il devrait tourner dans un environnement conteneurisé, travaillant sur une branche git temporaire. Il ne devrait jamais avoir d'accès en écriture à la base de données de production ou à la branche `main`.
+Le compromis est explicite : vous gagnez de la vitesse sur les grosses fonctionnalités, mais vous acceptez plus de risque que quelque chose passe au travers. L'atténuation, ce sont les tests — si la fonctionnalité a une bonne couverture de tests, vous pouvez faire plus confiance à l'implémentation et concentrer votre revue sur les choix architecturaux.
 
-### 3. Le point de contrôle humain
+Mon approche :
+1. **Lire la structure de haut niveau d'abord.** Quels fichiers ont été créés ? Quelle est la forme globale ?
+2. **Vérifier les points de décision clés.** Où a-t-il dû faire des choix ?
+3. **Scanner les drapeaux rouges.** Nouvelles dépendances que je n'attendais pas, patterns qui ne correspondent pas aux nôtres, logique suspicieusement complexe.
+4. **Exécuter les tests.** S'ils passent et couvrent les cas qui m'intéressent, je fais plus confiance aux détails.
+5. **Vérifier des points spécifiques.** Choisir quelques chemins critiques et les tracer.
 
-L'exécution autonome ne signifie pas "entièrement automatique". Cela signifie "préparation automatique". L'agent fait la recherche et le travail, mais le commit final requiert généralement une approbation humaine.
-
-Le but est de vous présenter une **décision**, pas une tâche. Réviser une PR préparée prend 5 minutes ; faire le travail en prend 50.
-
-***
-
-## Construire le système
-
-Vous n'avez pas besoin de frameworks complexes pour commencer. Un agent autonome peut être un simple script tournant dans un pipeline CI/CD.
-
-**Étape 1 : L'Observateur.**
-Commencez avec un script qui rapporte simplement. "J'ai trouvé ces 3 bibliothèques obsolètes." Il ne prend aucune action. Cela construit la confiance dans sa logique de détection.
-
-**Étape 2 : Le Rédacteur.**
-Permettez au script de créer une branche et une Pull Request brouillon. Il touche au code, mais ne change rien en production. Vous révisez la qualité de sa production.
-
-**Étape 3 : L'Assistant.**
-Une fois que le rédacteur est fiable, vous l'intégrez dans votre flux de travail. Il tourne la nuit, et vous commencez votre journée en révisant ses propositions.
+C'est plus lent que la revue de direction (petits diffs) mais beaucoup plus rapide que d'implémenter la fonctionnalité moi-même.
 
 ***
 
-## La valeur du travail de fond
+## Quand utiliser chaque mode
 
-Le vrai pouvoir des agents autonomes est la **constance**. Les humains fatiguent, s'ennuient ou sont distraits. Nous sautons l'écriture de tests quand nous nous précipitons pour respecter une date limite. Nous ignorons les avertissements de dépendance jusqu'à ce qu'ils deviennent critiques.
+Toutes les tâches n'ont pas besoin de collaboration architecturale. La compétence est de faire correspondre l'approche à la tâche.
 
-Un système autonome ne s'ennuie pas. Il applique le même standard d'hygiène chaque jour.
+**Utilisez la direction quand :**
+- Le changement est contenu dans un fichier ou une fonction
+- Vous savez exactement ce que vous voulez
+- Le diff sera assez petit pour être revu ligne par ligne
+- La précision compte plus que la vitesse
 
-En déchargeant cette charge cognitive, vous préservez votre énergie pour le travail qui requiert un contexte profond et de la créativité — architecturer de nouvelles fonctionnalités et résoudre des problèmes utilisateur complexes.
+**Utilisez l'architecture quand :**
+- La fonctionnalité s'étend sur plusieurs fichiers
+- Le chemin est connu mais fastidieux (CRUD, boilerplate, patterns que vous avez déjà faits)
+- Vous pouvez décrire l'objectif mais pas chaque étape
+- Vous êtes à l'aise pour revoir au niveau architectural
+
+**Restez "mains dans le cambouis" (hands-on) quand :**
+- Le problème est véritablement nouveau
+- Vous avez besoin de penser en tapant
+- L'architecture est floue et vous avez besoin de la découvrir
+- La sécurité ou la correction est critique et vous ne pouvez pas faire confiance à une revue de haut niveau
+
+La majeure partie de mon travail est de la direction — précision chirurgicale. Mais l'architecture est là où se trouvent les plus gros gains de temps. Une fonctionnalité qui prend une journée à implémenter manuellement pourrait prendre une heure d'itération collaborative.
 
 ***
 
-*Ensuite, nous regardons les systèmes intelligents : intégrer cette intelligence directement dans les produits que nous construisons pour les utilisateurs.*
+## Le rythme
 
+Après des mois à travailler ainsi, j'ai développé un rythme.
 
+Matin : s'attaquer à la grosse fonctionnalité via la collaboration architecturale. Définir la direction, itérer avec l'agent jusqu'à ce que ce soit fait. Revoir les choix architecturaux, exécuter les tests, expédier.
+
+Tout au long de la journée : direction pour tout le reste. Refactors rapides, corrections de bugs, petites améliorations. Cmd+K, revue, accepter.
+
+La combinaison est puissante. L'architecture gère les gros morceaux ; la direction gère les finitions. Ensemble, ils compressent des jours de travail en heures.
+
+La réflexion est toujours mienne. L'architecture est toujours mienne. Les décisions sont toujours miennes. Mais la transcription — le travail mécanique fastidieux de transformer les décisions en syntaxe — est partagée avec quelque chose qui ne se fatigue jamais.
+
+***
+
+*À suivre : Que se passe-t-il quand l'IA cesse d'être un outil de développement et devient une partie du produit lui-même ? Nous explorons les systèmes intelligents — des architectures hybrides où code et IA travaillent ensemble.*

@@ -2,14 +2,26 @@
 
 # Les quatre niveaux d'intégration de l'IA
 
-On suppose souvent qu'utiliser l'IA est un choix binaire : soit vous l'adoptez, soit vous ne le faites pas. Cependant, un examen plus approfondi révèle une progression de niveaux distincts, chacun remodelant notre façon de travailler et là où notre attention doit se porter.
+Quand on imagine travailler avec l'IA, on pense souvent à Tony Stark et Jarvis. Un dialogue fluide avec un assistant omniscient. "Jarvis, construis-moi une nouvelle armure." Et c'est fait. Pas de friction, pas de micro-management, pas d'hallucinations à débugger à 2 heures du matin.
 
-**Niveau 1 : Assistance.** L'IA accélère l'exécution en prédisant votre prochain mouvement.
-**Niveau 2 : Délégation.** Vous définissez le résultat ; l'IA gère l'implémentation sous votre supervision.
-**Niveau 3 : Autonomie.** Les systèmes fonctionnent de manière asynchrone, effectuant maintenance et surveillance sans votre présence directe.
-**Niveau 4 : Intégration.** L'intelligence devient une partie intrinsèque de l'architecture du produit elle-même.
+J'ai passé les deux dernières années à coder aux côtés d'une IA — à expédier des projets perso, refactoriser du code legacy, et parfois débattre avec des modèles pour savoir si mes tests devaient mocker la base de données. La réalité ne ressemble en rien aux films.
 
-Comprendre ces niveaux est crucial car chacun déplace le goulot d'étranglement de votre travail vers un nouvel endroit. La question n'est pas "Devrais-je utiliser l'IA ?", mais "Quel niveau ce problème requiert-il ?"
+Voici ce que j'ai appris : **le fantasme de Jarvis n'est pas faux, il est incomplet.**
+
+L'erreur que commettent la plupart des développeurs est de traiter l'IA comme un outil unique avec un seul mode d'interaction. Soit vous "utilisez l'IA", soit non. Mais c'est comme demander "utilisez-vous l'électricité ?". La question n'est pas de savoir *si* vous l'utilisez, mais *comment*, *quand* et *à quel niveau d'autonomie*.
+
+Après des centaines de prompts, d'expérimentations ratées et de véritables gains de productivité, j'en suis venu à voir l'intégration de l'IA comme un spectre comportant quatre niveaux distincts :
+
+| Niveau | Mode | Votre rôle |
+|-------|------|-----------|
+| **1. Assistance** | L'IA prédit votre prochaine action | Vous exécutez |
+| **2. Direction** | L'IA implémente votre spécification détaillée | Vous guidez étape par étape |
+| **3. Architecture** | L'IA gère l'implémentation à partir d'objectifs de haut niveau | Vous définissez la vision, revoyez les solutions |
+| **4. Intégration** | L'IA devient une partie du produit | Vous concevez des systèmes hybrides |
+
+Chaque niveau déplace le goulot d'étranglement. Chacun requiert un état d'esprit différent, des compétences différentes et un calibrage de la confiance différent. Trompez-vous de niveau, et vous perdrez votre temps à micro-manager une tâche qui aurait pu être autonome, ou vous ferez aveuglément confiance à un système qui nécessitait votre supervision.
+
+Cette série est ma tentative de cartographier ce territoire — non pas à partir de la théorie, mais depuis les tranchées. Commençons par le Niveau 1 : celui qui ressemble le plus à de la magie, et le plus à un piège.
 
 ***
 
@@ -17,13 +29,21 @@ Comprendre ces niveaux est crucial car chacun déplace le goulot d'étranglement
 
 ![](assets/friction-dissolve.jpg)
 
-C'est le niveau qui nous est le plus familier. Il inclut les assistants de codage comme GitHub Copilot, le texte prédictif dans les emails, et les outils de remplissage intelligent dans les logiciels de design. L'IA vit à l'intérieur de votre environnement existant, observant votre contexte et prédisant votre prochain mouvement.
+C'est par là que la plupart d'entre nous ont commencé. GitHub Copilot, ChatGPT dans un onglet de navigateur, l'autocomplétion sous stéroïdes. L'IA observe ce que vous faites et prédit votre prochaine action.
 
-**Le flux de travail reste inchangé, mais la friction diminue.** Que vous écriviez du code, rédigiez un message, ou éditiez une image, l'IA anticipe votre intention et propose de gérer l'exécution mécanique.
+La première fois que Copilot a complété une fonction entière à partir d'un commentaire, j'ai eu l'impression d'avoir découvert un cheat code. Écrire `// valider format email` et voir apparaître vingt lignes de regex. J'avais l'impression que la machine lisait dans mes pensées.
 
-Le bénéfice principal est le **flow**. Quand l'outil gère les détails répétitifs — syntaxe, grammaire, ou alignement de pixels — vous pouvez maintenir votre concentration sur le problème de plus haut niveau. La distance entre avoir une intention et la réaliser rétrécit considérablement.
+**Le workflow ne change pas — la friction disparaît simplement.** Vous gardez le contrôle. Vous décidez toujours quoi construire, où le mettre, comment le structurer. L'IA gère juste la frappe. C'est la différence entre penser "J'ai besoin d'une fonction debounce" et en voir une se matérialiser, versus passer cinq minutes à l'écrire de mémoire (ou, soyons honnêtes, à la copier depuis Stack Overflow).
 
-**Le risque :** L'acceptation passive. Si vous acceptez chaque prédiction sans examen, votre production dérive vers la moyenne — compétente mais générique. Le but est d'utiliser cette accélération pour libérer de l'énergie mentale pour la pensée critique, pas pour remplacer la pensée par l'autocomplétion.
+Le véritable bénéfice est le **flow**. Quand vous ne changez pas de contexte pour chercher une syntaxe ou vous souvenir des signatures d'API, vous restez plus longtemps dans l'espace mental de résolution de problèmes. La distance entre l'intention et l'implémentation diminue.
+
+Mais voici le piège dans lequel je suis tombé.
+
+**Le syndrome "Tab-Tab-Tab".** Vous commencez à accepter les suggestions sans les lire. Le code a l'air correct. Les tests passent. On expédie. Des semaines plus tard, vous déboguez quelque chose et réalisez que vous n'avez aucune idée de comment fonctionne la moitié de votre codebase parce que vous ne l'avez pas vraiment écrite — vous l'avez juste approuvée.
+
+La production dérive vers la moyenne. Copilot a vu un million d'implémentations de cette fonction. Il vous donne la plus probable.
+
+Le Niveau 1 est puissant, mais c'est un piège si vous confondez vitesse et qualité. L'objectif n'est pas de taper plus vite — c'est de libérer de l'énergie mentale pour les décisions qui comptent vraiment.
 
 ***
 
@@ -31,13 +51,17 @@ Le bénéfice principal est le **flow**. Quand l'outil gère les détails répé
 
 ![](assets/blueprint-hand.jpg)
 
-Le Niveau 2 représente un passage de l'*assistance* à la *délégation*. Au lieu de taper du code ligne par ligne avec l'aide de l'IA, vous décrivez le résultat désiré et laissez l'IA construire l'implémentation.
+Le Niveau 2, c'est quand vous commencez à dire aux agents exactement quoi faire.
 
-Imaginez une fonctionnalité qui prend typiquement deux heures à coder. Au Niveau 2, vous pourriez passer vingt minutes à définir les exigences et les cas limites, une minute à générer le code, et quinze minutes à réviser le résultat.
+Sélectionnez du code, appuyez sur Cmd+K : "Refactorise ça pour utiliser async/await." "Ajoute une limitation de débit à 100 req/min." "Gère le cas où l'utilisateur est null." Des frappes chirurgicales. Vous êtes précis, détaillé, étape par étape.
 
-**Le rôle passe de faiseur à réviseur.** La compétence critique devient la **spécification** — la capacité de décrire exactement ce que vous voulez, incluant contraintes et contexte.
+Le temps se compresse car **diriger supprime la couche mécanique, pas la réflexion**. C'est toujours vous qui décidez de l'architecture, définissez les patterns, découvrez les cas limites. L'agent gère la transcription — ouvrir les fichiers, taper la syntaxe, connecter les imports. Mais la construction reste entre vos mains.
 
-Ce niveau permet un prototypage et une exploration rapides. Vous pouvez générer trois approches architecturales différentes pour un problème dans le temps qu'il fallait pour en écrire une. Le goulot d'étranglement passe de "à quelle vitesse puis-je taper ?" à "à quel point puis-je définir clairement le problème ?"
+L'insight clé : l'agent est un collaborateur avec lequel vous apprenez à travailler. Au début, mes prompts étaient vagues et les résultats étaient mauvais. Avec le temps, j'ai appris quand découper les tâches complexes, quand montrer des exemples, quand contraindre ("n'utilise pas de bibliothèques externes"), quand itérer.
+
+La meilleure spécification que j'ai trouvée, ce sont les tests. Écrivez un test qui décrit ce qui doit se passer, puis dites à l'agent : "Fais passer ce test, en suivant nos patterns." Le test est sans ambiguïté. L'agent gère la mécanique. Vous revoyez la logique.
+
+**Le goulot d'étranglement se déplace.** Ce n'est plus "à quelle vitesse je peux taper ?" C'est "avec quelle clarté je peux exprimer mon intention ?" La clarté de la pensée devient plus précieuse que la vitesse de frappe.
 
 ***
 
@@ -45,15 +69,23 @@ Ce niveau permet un prototypage et une exploration rapides. Vous pouvez génére
 
 ![](assets/clockwork-night.jpg)
 
-Les agents dirigés (Niveau 2) s'arrêtent de travailler quand vous arrêtez de diriger. Le Niveau 3 implique de concevoir des systèmes qui fonctionnent **de manière asynchrone**, indépendamment de votre présence.
+Le Niveau 2 concerne des changements précis et contenus. Le Niveau 3 consiste à travailler *avec* l'IA sur des problèmes plus vastes — en avançant collaborativement vers une solution.
 
-Ce sont des processus d'arrière-plan qui surveillent, maintiennent et optimisent. Des exemples incluent :
-- Un système qui surveille les mises à jour de bibliothèques, lance votre suite de tests contre les nouvelles versions, et prépare une pull request si tout passe.
-- Un agent qui surveille les logs pour des anomalies et rédige un rapport de débogage quand une erreur atteint un pic.
+> "Ajoute l'export CSV au tableau de bord analytique. Suis nos patterns d'export PDF existants."
 
-**L'unité de travail passe de tâches à systèmes.** Vous ne faites plus le travail ; vous concevez la machine qui fait le travail.
+L'IA explore, propose une approche, commence à implémenter. Mais vous n'attendez pas juste un résultat final. Vous êtes dans la boucle — à observer, rediriger, itérer. "C'est le mauvais pattern, regarde comment on a fait pour le PDF." "Bien, mais gère le cas d'erreur différemment." "Maintenant ajoute des tests."
 
-La confiance est le défi central ici. Parce que ces systèmes tournent sans supervision constante, ils requièrent des "garde-fous" robustes — des limites strictes sur ce qu'ils peuvent et ne peuvent pas faire. Vous les démarrez généralement en mode "lecture seule", puis en mode "brouillon", et n'accordez les permissions d'"exécution" qu'une fois la fiabilité prouvée.
+C'est une conversation vers une solution, pas un prompt unique suivi d'une revue.
+
+**Votre rôle passe de guider les étapes à façonner la direction.** Vous définissez la vision de haut niveau, mais vous réfléchissez toujours aux côtés de l'IA. Vous voyez où elle se dirige et corrigez le tir. Vous apprenez ses tendances — quand elle sur-complique, quand elle rate des cas limites, quand elle vise juste.
+
+C'est là qu'apprendre à travailler avec votre agent compte vraiment. Vous savez quand le laisser faire et quand l'interrompre. Vous savez comment découper une fonctionnalité complexe pour que chaque morceau soit gérable. Vous développez un rythme : prompt, observation, ajustement, nouveau prompt.
+
+La réflexion reste vôtre — c'est toujours vous qui conceptualisez l'application. Mais au lieu de transcrire chaque décision en syntaxe, vous collaborez avec quelque chose qui peut conserver le contexte et exécuter pendant que vous dirigez la forme.
+
+Le compromis : le Niveau 3 nécessite plus de confiance et plus de compétence pour lire la production de l'IA à un niveau plus élevé. Pas "est-ce que cette ligne est correcte ?" mais "est-ce la bonne approche ?". Vous avez besoin de jugement architectural pour repérer quand l'IA se dirige vers un endroit où vous ne voulez pas aller.
+
+J'utilise le Niveau 2 pour la précision chirurgicale. Le Niveau 3 pour construire des fonctionnalités où je sais ce que je veux mais où le chemin comporte de nombreuses étapes.
 
 ***
 
@@ -61,33 +93,70 @@ La confiance est le défi central ici. Parce que ces systèmes tournent sans sup
 
 ![](assets/woven-intelligence.jpg)
 
-Au Niveau 4, l'IA cesse d'être juste un outil de développeur et devient un composant du logiciel lui-même. Vous architecturez des produits où le code déterministe et l'IA probabiliste travaillent en tandem.
+Les Niveaux 1 à 3 traitent l'IA comme un outil qui *vous* aide à construire des logiciels. Le Niveau 4 est différent. L'IA devient un composant du logiciel *lui-même*.
 
-Considérez une plateforme éducative moderne.
-- **Le code traditionnel** gère la structure du curriculum, suit les progrès, et gère la facturation.
-- **L'IA** génère des explications personnalisées, des analogies, et des problèmes pratiques basés sur la confusion actuelle de l'étudiant.
+C'est là que les choses deviennent philosophiquement intéressantes. Vous n'écrivez plus seulement du code — vous architecturé des systèmes où logique déterministe et raisonnement probabiliste travaillent ensemble.
 
-Le code traditionnel fournit la *structure* et les *règles* ; l'IA fournit la *flexibilité* et le *contenu*.
+Je vais vous donner un exemple concret tiré d'un de mes projets perso : une API d'actualités. Le système ingère des articles de sources d'actualités, les traite et les sert aux utilisateurs. Assez simple — sauf que le pipeline de traitement est là où ça devient intéressant.
 
-**Le modèle est hybride.** Le code gère les contraintes dures (permissions, intégrité des données), tandis que l'IA gère l'ambiguïté (langage naturel, analyse d'image). Concevoir ces systèmes requiert un nouveau modèle mental où les composants logiciels ne sont pas juste logiques, mais "intelligents" et occasionnellement imprévisibles, nécessitant des couches de validation.
+Le pipeline s'exécute toutes les deux heures :
+1. **Ingestion** — Récupérer les actus, filtrer par importance
+2. **Déduplication** — Comparer avec les rapports récents pour éviter les répétitions
+3. **Classification** — Assigner un niveau (Général/Niche/Hors-sujet) et des traits
+4. **Publication** — Transformer les rapports en articles lisibles
+5. **Défi** — Générer des questions de quiz et des variantes d'articles *fabriquées* pour un jeu de "trouver l'intrus"
+
+Une approche purement if/else ne pourrait jamais gérer la déduplication sémantique — est-ce que "La Fed augmente les taux" est la même histoire que "La Réserve fédérale relève les taux d'intérêt face aux inquiétudes sur l'inflation" ? Et la classification nécessite de comprendre un contexte qu'aucun moteur de règles ne pourrait capturer.
+
+Mais une approche purement IA serait le chaos. Et si elle hallucine une classification qui n'existe pas ? Et si elle génère un quiz sans réponse correcte ?
+
+La réponse est une **architecture hybride**. Le code gère les contraintes ; l'IA gère l'ambiguïté.
+
+Voici à quoi cela ressemble en pratique :
+
+```typescript
+// Code : définit les SEULES sorties valides
+static readonly SCHEMA = z.object({
+    classification: z.enum(['GENERAL', 'NICHE', 'OFF_TOPIC']),
+    reason: z.string(),
+    traits: z.object({
+        essential: z.boolean(),
+        positive: z.boolean(),
+    }),
+});
+```
+
+L'IA peut raisonner pour savoir si un article est grand public ou de niche. Mais elle *ne peut pas* renvoyer quoi que ce soit en dehors de ce schéma. La couche de validation Zod garantit que la sortie probabiliste rentre dans les contraintes déterministes.
+
+C'est un sandwich : **Code → IA → Code**
+
+- Le code prépare le contexte (récupérer les données du rapport, formater le prompt)
+- L'IA effectue le raisonnement (classifier, générer, analyser)
+- Le code valide la sortie (application du schéma, objets de valeur du domaine, stockage en base de données)
+
+Le modèle mental change. Les composants logiciels ne sont plus seulement logiques — ils sont "intelligents" et parfois imprévisibles. Vous avez besoin de couches de validation, de comportements de repli (fallback) et de dégradation gracieuse. Vous ne déboguez plus seulement des erreurs de logique ; vous déboguez des erreurs de *raisonnement*.
+
+Votre rôle évolue de l'écriture de la logique à l'orchestration de l'intelligence.
 
 ***
 
-## La progression
+## La carte
 
-Chaque niveau résout un type de problème différent :
+Après deux ans à naviguer dans ce paysage, voici comment je le conçois :
 
-1. **Niveau 1** résout la **friction** dans l'exécution.
-2. **Niveau 2** résout le **levier** dans l'implémentation.
-3. **Niveau 3** résout l'**échelle** dans la maintenance et les opérations.
-4. **Niveau 4** résout la **capacité** dans le produit final.
+| Niveau | Résout | Votre rôle |
+|-------|--------|-----------|
+| **1. Assistance** | Friction | Exécuter avec accélération |
+| **2. Direction** | Précision | Guider étape par étape |
+| **3. Architecture** | Levier | Définir la vision, revoir les solutions |
+| **4. Intégration** | Capacité | Concevoir des systèmes hybrides |
 
-Les ingénieurs et bâtisseurs de produits les plus efficaces bougent fluidement entre ces niveaux. Ils tapent avec assistance, dirigent des agents pour des fonctionnalités, construisent des systèmes autonomes pour la maintenance, et architecturent des solutions hybrides pour leurs utilisateurs.
+Chaque niveau a sa place. Tous les problèmes n'ont pas besoin d'un agent de niveau architecte. Toutes les fonctionnalités ne nécessitent pas d'IA dans le produit. La compétence consiste à reconnaître quel niveau correspond à la tâche.
 
-Le chemin à suivre n'est pas seulement d'adopter des outils, mais de reconnaître quel niveau de levier est approprié pour la tâche en main.
+La majeure partie de mon codage quotidien se situe aux Niveaux 1 et 2. Copilot gère la syntaxe ; Cmd+K gère les refactors chirurgicaux. Le Niveau 3 apparaît pour les fonctionnalités plus importantes — "implémente ceci en suivant nos patterns." Le Niveau 4 est pour les produits qui ont véritablement besoin de l'intelligence comme fonctionnalité.
+
+Le fantasme de Jarvis n'était pas faux — c'était juste un point sur un spectre. Le vrai super-pouvoir n'est pas d'avoir un assistant IA. C'est de savoir quel *type* d'assistance IA le moment présent exige.
 
 ***
 
-*Cette série explore chaque niveau en profondeur. Ensuite, nous examinons le Niveau 2 : comment les développeurs passent de l'écriture de code à la direction des agents qui l'écrivent.*
-
-
+*Cet article est le premier d'une série explorant chaque niveau en profondeur. À suivre : Niveau 2 — comment passer de l'écriture de code à la direction des agents qui l'écrivent.*

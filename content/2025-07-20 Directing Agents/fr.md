@@ -1,99 +1,136 @@
-![](./assets/thumbnail.jpg)
+![](assets/thumbnail.jpg)
 
 # Diriger les agents IA
 
-Quand une demande de nouvelle fonctionnalité arrive — comme ajouter un endpoint d'abonnement à une newsletter — les exigences sont souvent claires : un gestionnaire de route, une logique de validation, une migration de base de données et des tests.
+Diriger, c'est avant tout une question de précision.
 
-Dans le flux de travail traditionnel, comprendre ces exigences prend une fraction du temps. La majorité est passée à la **traduction mécanique** de ces exigences en syntaxe — taper du code passe-partout (boilerplate), chercher des spécificités de bibliothèque, et corriger des erreurs mineures.
+Sélectionnez une fonction. Cmd+K. "Ajoute une gestion d'erreur pour les timeouts réseau." Dix secondes plus tard, des blocs try-catch enveloppent les appels fetch, avec une logique de réessai et des messages d'erreur appropriés.
 
-**Diriger des agents** change fondamentalement ce ratio. En utilisant des agents IA qui peuvent lire votre base de code et comprendre vos patterns, la tâche principale passe de l'écriture de code à la **spécification de l'intention**.
+Sélectionnez un composant. "Convertis ça en TypeScript avec des types stricts." Le JavaScript devient typé, les interfaces apparaissent, le compilateur est content.
+
+Sélectionnez un test. "Ajoute des cas pour les conditions limites — tableau vide, entrée null, longueur maximale." Trois nouveaux cas de test se matérialisent, chacun couvrant une frontière.
+
+Des frappes chirurgicales. Vous pointez quelque chose de spécifique, décrivez exactement ce que vous voulez, et l'agent exécute. Pas d'ambiguïté. Pas d'exploration. Juste une transformation précise.
+
+La puissance ici réside dans **la suppression de la friction pour les changements contenus**. Le genre de modifications qui prennent cinq minutes à taper mais seulement cinq secondes à concevoir.
 
 ***
 
-## Séparer la décision de la traduction
+## Ce qui est réellement compressé
 
 ![](assets/split-thread.jpg)
 
-Le développement logiciel implique deux activités distinctes :
-1. **Prise de Décision :** Déterminer comment la fonctionnalité devrait se comporter, quels compromis accepter, et comment elle s'intègre dans l'architecture existante.
-2. **Traduction :** Convertir ces décisions en code valide.
+Chaque modification comporte deux parties : savoir ce qu'il faut changer, et taper le changement.
 
-Pour les développeurs expérimentés, ces étapes ont historiquement été inséparables. Écrire du code est souvent une forme de pensée — vous écrivez un test qui échoue, implémentez une solution naïve, refactorisez, et découvrez des nuances architecturales à travers l'acte de taper. Le processus d'implémentation lui-même sert de boucle de rétroaction pour votre design.
+"Ajoute des vérifications de null à cette fonction." Je sais exactement où et comment. Mais le taper — trouver chaque référence, ajouter les conditions, m'assurer que la syntaxe est bonne — prend des minutes. La réflexion a pris des secondes.
 
-Les agents dirigés vous obligent à recâbler cette habitude. Vous pouvez maintenant séparer l'intention de la syntaxe, mais cela force un changement dans la façon dont vous "pensez" en code. Au lieu de découvrir le design en luttant avec les détails d'implémentation, vous devez apprendre à penser par la **spécification**.
+"Refactorise ce callback en async/await." Je peux voir la forme du résultat dans ma tête. Mais transformer mécaniquement chaque chaîne `.then()`, gérer les cas d'erreur, mettre à jour les appelants — c'est de la transcription fastidieuse.
 
-Vous itérez toujours, mais la boucle change. Vous définissez l'intention, l'agent gère la traduction, et vous révisez le résultat. Cela vous permet de rester dans l'état d'esprit d'"architecte" plus longtemps, évaluant les implications structurelles du code sans être constamment tiré vers le bas dans la mécanique de son écriture.
+**Diriger compresse la transcription, pas la réflexion.**
+
+La réflexion est toujours la vôtre. Vous décidez *ce qui* doit changer et *pourquoi*. Vous comprenez le contexte, les contraintes, les patterns. L'agent gère l'exécution mécanique — la partie qui est fastidieuse mais pas cognitivement exigeante.
+
+Les premières fois que j'ai essayé, j'ai échoué. Mes prompts étaient vagues parce que ma pensée était vague. "Améliore ça" produisait des déchets. "Ajoute une logique de réessai avec backoff exponentiel, max 3 tentatives, délai de base 1s" produisait exactement ce que je voulais.
+
+Précision en entrée, précision en sortie. Vous ne pouvez pas diriger ce que vous n'avez pas pensé.
 
 ***
 
-## L'art de la spécification
+## La précision par la spécification
 
 ![](assets/architect-table.jpg)
 
-Pour diriger un agent efficacement, vous devez clairement définir à quoi ressemble "fini". Des instructions vagues donnent du code vague. Des spécifications précises donnent des fonctionnalités prêtes pour la production.
+Plus votre spécification est précise, meilleure est la sortie. J'ai trouvé plusieurs moyens d'être précis :
 
-Une des façons les plus efficaces de spécifier l'intention est à travers les **tests**. Un cas de test est une description non ambiguë du comportement.
+**Les tests comme contrats.** Pour les changements de comportement, écrivez le test d'abord :
 
 ```typescript
-test('newsletter subscription flow', async () => {
-    // 1. La requête
-    const response = await request(app)
-        .post('/api/subscribe')
-        .send({ email: 'user@example.com' });
-
-    // 2. Le résultat attendu
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({ success: true });
-
-    // 3. L'effet de bord (changement d'état)
-    const subscriber = await db.query(
-        'SELECT * FROM subscribers WHERE email = ?',
-        ['user@example.com']
-    );
-    expect(subscriber).toBeDefined();
+test('retries failed requests up to 3 times', async () => {
+    const mockFetch = jest.fn()
+        .mockRejectedValueOnce(new Error('timeout'))
+        .mockRejectedValueOnce(new Error('timeout'))
+        .mockResolvedValueOnce({ ok: true });
+    
+    await fetchWithRetry('/api/data', { fetch: mockFetch });
+    
+    expect(mockFetch).toHaveBeenCalledTimes(3);
 });
 ```
 
-Ce code décrit le *quoi* sans dicter le *comment*. Il définit l'interface et le changement d'état attendu.
+Puis : "Fais passer ce test." Le test est la spécification. Pas d'ambiguïté sur ce à quoi ressemble le succès.
 
-Vous pouvez alors instruire l'agent : *"Implémente la logique pour faire passer ce test, en suivant nos patterns existants pour les contrôleurs et les services."*
+**Les exemples comme modèles.** Pour les changements de style, montrez un exemple :
 
-L'agent gère le travail mécanique — créer les fichiers, importer les dépendances, écrire le boilerplate — pendant que vous vous concentrez sur la révision de la logique.
+```typescript
+// Avant : "Convertis la gestion d'erreur pour correspondre à ce pattern"
+if (!user) {
+    throw new NotFoundError('User not found', { userId });
+}
 
-***
+// Ensuite l'agent l'applique au reste du fichier
+```
 
-## Réviser, pas relire
+**Les contraintes comme garde-fous.** Parfois, ce que vous ne voulez *pas* compte le plus :
+- "N'ajoute aucune dépendance externe"
+- "Garde l'API publique inchangée"
+- "Pas plus de 50 lignes"
 
-Le processus de révision lors de la direction d'agents est critique. Vous ne vérifiez pas juste les erreurs de syntaxe ; vous vérifiez la **logique et la sécurité**.
-
-- L'agent a-t-il géré les cas limites (ex: emails en double) ?
-- La validation des entrées est-elle assez stricte ?
-- A-t-il halluciné une méthode de bibliothèque qui n'existe pas ?
-
-L'agent est un travailleur infatigable, mais il manque de jugement. Il écrira joyeusement du code non sécurisé ou inefficace si cela correspond au prompt. Votre valeur réside dans votre capacité à repérer ces défauts architecturaux.
-
-***
-
-## Le piège de la complaisance
-
-Le danger de la génération dirigée est le syndrome du "ça m'a l'air bon". Quand une implémentation complète apparaît en quelques secondes, la tentation de l'accepter sans examen approfondi est forte.
-
-Cependant, le code généré par IA devrait être traité avec le même scepticisme que le code écrit par un développeur junior. Il nécessite une validation. Si vous arrêtez de lire le code que vous committez, vous ne dirigez plus ; vous jouez.
+Chaque technique laisse moins de place à l'agent pour deviner. Moins de devinettes signifie de meilleurs résultats.
 
 ***
 
-## Développer la compétence de direction
+## Revoir chaque diff
 
-Maîtriser ce flux de travail nécessite un changement de compétences :
+Même les changements chirurgicaux nécessitent une vérification. L'agent est rapide, pas infaillible.
 
-1. **Clarté :** Pouvez-vous articuler les exigences si clairement qu'une machine peut les exécuter sans deviner ?
-2. **Reconnaissance de Patterns :** Pouvez-vous scanner rapidement le code généré pour vous assurer qu'il correspond au style architectural de votre projet ?
-3. **Décomposition :** Pouvez-vous décomposer une fonctionnalité complexe en tâches plus petites et isolées qu'un agent peut gérer de manière fiable ?
+Problèmes courants que j'attrape :
+- **Méthodes hallucinées.** Il utilise une fonction de bibliothèque qui n'existe pas, ou utilise la mauvaise signature.
+- **Erreurs de logique subtiles.** Le refactoring a changé le comportement, pas seulement la forme.
+- **Violations de pattern.** Il a résolu le problème différemment du reste de la codebase.
+- **Cas limites manquants.** Le chemin heureux fonctionne ; le cas null plante.
 
-En déchargeant la couche de traduction, vous gagnez la capacité de vous concentrer sur la conception du système et la qualité. Vous construisez plus vite non pas parce que vous tapez plus vite, mais parce que vous dépensez votre énergie sur les problèmes qui requièrent réellement l'intelligence humaine.
+Ce n'est pas rare. Cela arrive régulièrement, surtout avec des bibliothèques moins courantes ou des patterns spécifiques au projet.
+
+L'agent est confiant mais pas prudent. Il produira quelque chose qui a l'air correct mais qui ne l'est pas. Votre travail est de repérer la différence.
 
 ***
 
-*Ensuite : Nous explorons les systèmes autonomes, où nous passons de la direction d'agents en temps réel à la conception de systèmes autonomes qui travaillent en arrière-plan.*
+## Le piège de la vitesse
 
+Le danger de diriger est que c'est *rapide*. Un diff apparaît en quelques secondes. Votre cerveau voit des motifs familiers et fait correspondre le modèle à "ça a l'air bon."
 
+Je me suis surpris à accepter des changements sans vraiment les lire. La structure semblait bonne. Les tests passaient. On expédie.
+
+Ma règle : **si je ne peux pas expliquer ce qui a changé et pourquoi, je ne l'accepte pas.**
+
+C'est plus facile avec des changements dirigés qu'avec de grosses fonctionnalités — la portée est petite, le diff est contenu. Mais "plus facile" ne veut pas dire "automatique". Vous devez toujours le lire. La vitesse sans vérification n'est pas de la productivité ; c'est de la dette technique déguisée.
+
+***
+
+## La compétence de direction
+
+Ce sur quoi je me suis amélioré :
+
+**1. Le scoping.** Savoir ce qui est "dirigé" vs ce qui nécessite une approche plus large. Refactoriser une fonction ? Dirigé. Ajouter une nouvelle fonctionnalité avec plusieurs composants ? Cela nécessite une itération collaborative.
+
+**2. Langage de précision.** Dire exactement ce que je veux dire. "Ajoute une validation" est vague. "Ajoute une validation de schéma zod pour les champs email et mot de passe, renvoie 400 avec des erreurs spécifiques au champ" est précis.
+
+**3. Reconnaissance de patterns.** Scanner un diff de 20 lignes et repérer rapidement ce qui ne va pas — la méthode hallucinée, le cas limite manqué, la violation de style.
+
+**4. Vitesse d'itération.** Quand la première tentative n'est pas bonne, savoir comment ajuster le prompt plutôt que de réécrire manuellement. "C'est proche, mais utilise notre classe AppError au lieu d'une Error brute."
+
+Diriger est une compétence. Plus vous devenez bon, plus votre journée se compresse en modifications précises, rapides et vérifiées.
+
+***
+
+## Quand diriger ne suffit pas
+
+Diriger fonctionne pour des changements contenus. Mais certaines tâches sont plus grandes.
+
+"Ajoute l'export CSV au tableau de bord analytique, en suivant nos patterns d'export PDF." Ce n'est pas une frappe chirurgicale — c'est une fonctionnalité multi-fichiers qui nécessite exploration, prise de décision et itération.
+
+C'est un mode entièrement différent : travailler *avec* l'agent sur des problèmes plus vastes. Vous définissez la direction, l'agent explore et implémente, vous corrigez le tir ensemble. Collaboratif plutôt que commandé.
+
+***
+
+*À suivre : Architecturer avec l'IA — comment travailler avec des agents sur des problèmes plus vastes, en itérant ensemble vers des solutions.*

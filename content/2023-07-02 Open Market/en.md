@@ -15,8 +15,8 @@ To understand the issue, look at how the internet transformed media.
 Media became democratic. **Commerce did not.**
 
 Today, merchants face a binary choice:
-1.  **The Lonely Island:** Build your own website and struggle to get anyone to visit.
-2.  **The Walled Garden:** Rent space from a giant platform (like Amazon) that controls the rules, takes a significant cut (often 30%+), and hides your customer data.
+1. **The Lonely Island:** Build your own website and struggle to get anyone to visit.
+2. **The Walled Garden:** Rent space from a giant platform (like Amazon) that controls the rules, takes a significant cut (often 30%+), and hides your customer data.
 
 The question is: **Why can't we democratize trade the way we democratized publishing?**
 
@@ -29,9 +29,9 @@ A **protocol** is a public standard (like email or the web itself) that anyone c
 
 Imagine an ecosystem that functions as a **public utility for commerce**:
 
-1.  **Permissionless Access:** Just like anyone can send an email without asking Google for permission, any merchant should be able to list products without a gatekeeper.
-2.  **Direct Connection:** The transaction happens directly between buyer and seller. The protocol connects them, but it doesn't stand in the middle.
-3.  **Neutral Infrastructure:** The system provides the plumbing (listings, payments, reputation) but doesn't compete with the merchants. It won't analyze sales data to launch a copycat product.
+1. **Permissionless Access:** Just like anyone can send an email without asking Google for permission, any merchant should be able to list products without a gatekeeper.
+2. **Direct Connection:** The transaction happens directly between buyer and seller. The protocol connects them, but it doesn't stand in the middle.
+3. **Neutral Infrastructure:** The system provides the plumbing (listings, payments, reputation) but doesn't compete with the merchants. It won't analyze sales data to launch a copycat product.
 
 This creates a digital town square where a global brand and a local artisan stand on equal footing, distinguished only by their reputation and product quality.
 

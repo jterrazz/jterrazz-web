@@ -227,4 +227,3 @@ The revolution isn't coming. You're already living in it. You've been living in 
 The only real question left is what you decide to do with the leverage that's now in your hands.
 
 Start this week. Not someday. This week.
-

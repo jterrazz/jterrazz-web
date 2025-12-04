@@ -2,97 +2,135 @@
 
 # Directing AI agents
 
-When a new feature request arrives—like adding a newsletter subscription endpoint—the requirements are often clear: a route handler, validation logic, database migration, and tests.
+Directing is about precision.
 
-In the traditional workflow, understanding these requirements takes a fraction of the time. The majority is spent on the **mechanical translation** of these requirements into syntax—typing out boilerplate, looking up library specifics, and correcting minor errors.
+Select a function. Cmd+K. "Add error handling for network timeouts." Ten seconds later, try-catch blocks wrap the fetch calls, with proper retry logic and error messages.
 
-**Directing agents** fundamentally changes this ratio. By using AI agents that can read your codebase and understand your patterns, the primary task shifts from writing code to **specifying intent**.
+Select a component. "Convert this to TypeScript with strict types." The JavaScript becomes typed, interfaces appear, the compiler is happy.
+
+Select a test. "Add cases for edge conditions—empty array, null input, maximum length." Three new test cases materialize, each covering a boundary.
+
+Surgical strikes. You point at something specific, describe exactly what you want, and the agent executes. No ambiguity. No exploration. Just precise transformation.
+
+The power here is in **removing friction from contained changes**. The kinds of edits that take five minutes to type but only five seconds to conceive.
 
 ***
 
-## Separating decision from translation
+## What actually gets compressed
 
 ![](assets/split-thread.jpg)
 
-Software development involves two distinct activities:
-1. **Decision Making:** Determining how the feature should behave, what tradeoffs to accept, and how it fits into the existing architecture.
-2. **Translation:** Converting those decisions into valid code.
+Every edit has two parts: knowing what to change, and typing the change.
 
-For experienced developers, these steps have historically been inseparable. Writing code is often a form of thinking—you write a failing test, implement a naive solution, refactor, and discover architectural nuance through the act of typing. The implementation process itself serves as a feedback loop for your design.
+"Add null checks to this function." I know exactly where and how. But typing it out—finding each reference, adding the conditions, making sure the syntax is right—takes minutes. The thinking took seconds.
 
-Directed agents require you to rewire this habit. You can now separate the intent from the syntax, but this forces a change in how you "think" in code. Instead of discovering the design by wrestling with implementation details, you must learn to think through **specification**.
+"Refactor this callback to async/await." I can see the shape of the result in my head. But mechanically transforming every `.then()` chain, handling the error cases, updating the callers—that's tedious transcription.
 
-You still iterate, but the loop changes. You define the intent, the agent handles the translation, and you review the result. This allows you to remain in the "architect" mindset for longer, evaluating the structural implications of the code without being constantly pulled down into the mechanics of writing it.
+**Directing compresses the transcription, not the thinking.**
+
+The thinking is still yours. You decide *what* needs to change and *why*. You understand the context, the constraints, the patterns. The agent handles the mechanical execution—the part that's tedious but not cognitively demanding.
+
+The first few times I tried it, I failed. My prompts were vague because my thinking was vague. "Make this better" produced garbage. "Add retry logic with exponential backoff, max 3 attempts, 1s base delay" produced exactly what I wanted.
+
+Precision in, precision out. You can't direct what you haven't thought through.
 
 ***
 
-## The art of specification
+## Precision through specification
 
 ![](assets/architect-table.jpg)
 
-To direct an agent effectively, you must clearly define what "done" looks like. Vague instructions yield vague code. Precise specifications yield production-ready features.
+The more precise your specification, the better the output. I've found several ways to be precise:
 
-One of the most effective ways to specify intent is through **tests**. A test case is an unambiguous description of behavior.
+**Tests as contracts.** For behavior changes, write the test first:
 
 ```typescript
-test('newsletter subscription flow', async () => {
-    // 1. The request
-    const response = await request(app)
-        .post('/api/subscribe')
-        .send({ email: 'user@example.com' });
-
-    // 2. The expected outcome
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({ success: true });
-
-    // 3. The side effect (state change)
-    const subscriber = await db.query(
-        'SELECT * FROM subscribers WHERE email = ?',
-        ['user@example.com']
-    );
-    expect(subscriber).toBeDefined();
+test('retries failed requests up to 3 times', async () => {
+    const mockFetch = jest.fn()
+        .mockRejectedValueOnce(new Error('timeout'))
+        .mockRejectedValueOnce(new Error('timeout'))
+        .mockResolvedValueOnce({ ok: true });
+    
+    await fetchWithRetry('/api/data', { fetch: mockFetch });
+    
+    expect(mockFetch).toHaveBeenCalledTimes(3);
 });
 ```
 
-This code describes the *what* without dictating the *how*. It defines the interface and the expected state change.
+Then: "Make this test pass." The test is the specification. No ambiguity about what success looks like.
 
-You can then instruct the agent: *"Implement the logic to make this test pass, following our existing patterns for controllers and services."*
+**Examples as patterns.** For style changes, show one example:
 
-The agent handles the mechanical work—creating the files, importing dependencies, writing the boilerplate—while you focus on reviewing the logic.
+```typescript
+// Before: "Convert error handling to match this pattern"
+if (!user) {
+    throw new NotFoundError('User not found', { userId });
+}
 
-***
+// Then the agent applies it to the rest of the file
+```
 
-## Reviewing, not proofreading
+**Constraints as guardrails.** Sometimes what you *don't* want matters most:
+- "Don't add any external dependencies"
+- "Keep the public API unchanged"
+- "No more than 50 lines"
 
-The review process when directing agents is critical. You are not just checking for syntax errors; you are verifying **logic and safety**.
-
-- Did the agent handle edge cases (e.g., duplicate emails)?
-- Is the input validation strict enough?
-- Did it hallucinate a library method that doesn't exist?
-
-The agent is a tireless worker, but it lacks judgment. It will happily write insecure or inefficient code if it fits the prompt. Your value lies in your ability to spot these architectural flaws.
-
-***
-
-## The trap of complacency
-
-The danger of directed generation is the "looks good to me" syndrome. When a complete implementation appears in seconds, the temptation to accept it without deep scrutiny is high.
-
-However, code generated by AI should be treated with the same skepticism as code written by a junior developer. It requires validation. If you stop reading the code you commit, you are no longer directing; you are gambling.
+Each technique gives the agent less room to guess. Less guessing means better results.
 
 ***
 
-## Developing the skill of direction
+## Review every diff
 
-Mastering this workflow requires a shift in skills:
+Even surgical changes require verification. The agent is fast, not infallible.
 
-1. **Clarity:** Can you articulate the requirements so clearly that a machine can execute them without guessing?
-2. **Pattern Recognition:** Can you quickly scan generated code to ensure it matches your project's architectural style?
-3. **Decomposition:** Can you break a complex feature down into smaller, isolated tasks that an agent can handle reliably?
+Common issues I catch:
+- **Hallucinated methods.** It uses a library function that doesn't exist, or uses the wrong signature.
+- **Subtle logic errors.** The refactoring changed behavior, not just form.
+- **Pattern violations.** It solved the problem differently than the rest of the codebase.
+- **Missing edge cases.** The happy path works; the null case crashes.
 
-By offloading the translation layer, you gain the capacity to focus on system design and quality. You build faster not because you type faster, but because you are spending your energy on the problems that actually require human intelligence.
+These aren't rare. They happen regularly, especially with less common libraries or project-specific patterns.
+
+The agent is confident but not careful. It will produce something that looks right but isn't. Your job is to catch the difference.
 
 ***
 
-*Next: We explore autonomous systems, where we move from directing agents in real-time to designing autonomous systems that work in the background.*
+## The speed trap
 
+The danger of directing is that it's *fast*. A diff appears in seconds. Your brain sees familiar patterns and pattern-matches to "looks good."
+
+I've caught myself accepting changes without actually reading them. The structure seemed right. The tests passed. Ship it.
+
+My rule: **if I can't explain what changed and why, I don't accept it.**
+
+This is easier with directed changes than with big features—the scope is small, the diff is contained. But "easier" doesn't mean "automatic." You still have to read it. Speed without verification isn't productivity; it's technical debt in disguise.
+
+***
+
+## The directing skill set
+
+What I've gotten better at:
+
+**1. Scoping.** Knowing what's "directed" vs what needs a bigger approach. Refactoring a function? Directed. Adding a new feature with multiple components? That needs collaborative iteration.
+
+**2. Precision language.** Saying exactly what I mean. "Add validation" is vague. "Add zod schema validation for the email and password fields, return 400 with field-specific errors" is precise.
+
+**3. Pattern recognition.** Scanning a 20-line diff and quickly spotting what's wrong—the hallucinated method, the missed edge case, the style violation.
+
+**4. Iteration speed.** When the first attempt isn't right, knowing how to adjust the prompt rather than rewriting manually. "That's close, but use our AppError class instead of a raw Error."
+
+Directing is a skill. The better you get at it, the more of your day compresses into precise, fast, verified edits.
+
+***
+
+## When directing isn't enough
+
+Directing works for contained changes. But some tasks are bigger.
+
+"Add CSV export to the analytics dashboard, following our PDF export patterns." This isn't a surgical strike—it's a multi-file feature that requires exploration, decision-making, and iteration.
+
+That's a different mode entirely: working *with* the agent on larger problems. You set the direction, the agent explores and implements, you course-correct together. Collaborative rather than commanded.
+
+***
+
+*Next: Architecting with AI—how to work with agents on bigger problems, iterating toward solutions together.*
