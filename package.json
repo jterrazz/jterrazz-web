@@ -5,7 +5,7 @@
   "author": "Jean-Baptiste Terrazzoni <contact@jterrazz.com>",
   "type": "module",
   "engines": {
-    "node": "22.x.x"
+    "node": "24.x.x"
   },
   "scripts": {
     "build": "next build",
