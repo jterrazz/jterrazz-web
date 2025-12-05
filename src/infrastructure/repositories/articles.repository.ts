@@ -8,6 +8,9 @@ import {
     createArticle,
     type RawArticleInput,
 } from '../../domain/article';
+
+// Normalize em/en dashes to commas before AI sanitizer converts them to hyphens
+const normalizeEmDashes = (text: string): string => text.replace(/\s*[—–―‒]\s*/g, ', ');
 import { getContentUrl } from '../content-url';
 
 // Configuration structure for each article before being transformed into the Article domain model.
@@ -475,7 +478,8 @@ const processMarkdownContent = (content: string, filename: string): string => {
 };
 
 // Clean AI-generated artifacts from text (before domain sanitization)
-const cleanAiText = (text: string): string => sanitizeAiText(text).cleaned;
+// Note: em/en dashes must be normalized BEFORE ai-text-sanitizer (which converts them to hyphens)
+const cleanAiText = (text: string): string => sanitizeAiText(normalizeEmDashes(text)).cleaned;
 
 const readMarkdownFileSync = (
     articlesDirectory: string,

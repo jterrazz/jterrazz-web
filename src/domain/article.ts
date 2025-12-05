@@ -42,8 +42,9 @@ export type RawArticleInput = {
 
 function sanitizeEmDashes(text: string): string {
     if (!text) return text;
-    // Handle em dashes (—) and en dashes (–) with any surrounding whitespace
-    return text.replace(/\s*[—–]\s*/g, ', ');
+    // Replace various dash characters (em dash, en dash, horizontal bar, figure dash) with commas
+    // Covers: U+2014 (—), U+2013 (–), U+2015 (―), U+2012 (‒)
+    return text.replace(/\s*[—–―‒]\s*/g, ', ');
 }
 
 function toSentenceCase(title: string): string {
