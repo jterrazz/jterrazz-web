@@ -1,6 +1,7 @@
 import { sanitizeAiText } from 'ai-text-sanitizer';
 import { readFileSync } from 'node:fs';
 
+// Domain
 import {
     type Article,
     ArticleCategory,

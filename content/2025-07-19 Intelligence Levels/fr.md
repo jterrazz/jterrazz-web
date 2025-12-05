@@ -2,7 +2,7 @@
 
 # Les quatre niveaux d'intégration de l'IA
 
-Quand on imagine travailler avec l'IA, on pense souvent à Tony Stark et Jarvis. Un dialogue fluide avec un assistant omniscient. "Jarvis, construis-moi une nouvelle armure." Et c'est fait. Pas de friction, pas de micro-management, pas d'hallucinations à débugger à 2 heures du matin.
+Quand on imagine travailler avec l'IA, on pense souvent à Tony Stark et Jarvis. Un dialogue fluide avec un assistant omniscient. "Jarvis, construis-moi une nouvelle armure." Et c'est fait. Pas de friction, pas de micro-management, pas d'hallucinations à débuguer à 2 heures du matin.
 
 J'ai passé les deux dernières années à coder aux côtés d'une IA — à expédier des projets perso, refactoriser du code legacy, et parfois débattre avec des modèles pour savoir si mes tests devaient mocker la base de données. La réalité ne ressemble en rien aux films.
 
@@ -14,7 +14,7 @@ Après des centaines de prompts, d'expérimentations ratées et de véritables g
 
 - **1. Assistance** : L'IA prédit votre prochaine action — Vous exécutez
 - **2. Direction** : L'IA implémente votre spécification détaillée — Vous guidez étape par étape
-- **3. Architecture** : L'IA gère l'implémentation à partir d'objectifs de haut niveau — Vous définissez la vision, revoyez les solutions
+- **3. Architecture** : L'IA gère l'implémentation à partir d'objectifs de haut niveau — Vous définissez la vision, révisez les solutions
 - **4. Intégration** : L'IA devient une partie du produit — Vous concevez des systèmes hybrides
 
 Chaque niveau déplace le goulot d'étranglement. Chacun requiert un état d'esprit différent, des compétences différentes et un calibrage de la confiance différent. Trompez-vous de niveau, et vous perdrez votre temps à micro-manager une tâche qui aurait pu être autonome, ou vous ferez aveuglément confiance à un système qui nécessitait votre supervision.
@@ -57,7 +57,7 @@ Le temps se compresse car **diriger supprime la couche mécanique, pas la réfle
 
 L'insight clé : l'agent est un collaborateur avec lequel vous apprenez à travailler. Au début, mes prompts étaient vagues et les résultats étaient mauvais. Avec le temps, j'ai appris quand découper les tâches complexes, quand montrer des exemples, quand contraindre ("n'utilise pas de bibliothèques externes"), quand itérer.
 
-La meilleure spécification que j'ai trouvée, ce sont les tests. Écrivez un test qui décrit ce qui doit se passer, puis dites à l'agent : "Fais passer ce test, en suivant nos patterns." Le test est sans ambiguïté. L'agent gère la mécanique. Vous revoyez la logique.
+La meilleure spécification que j'ai trouvée, ce sont les tests. Écrivez un test qui décrit ce qui doit se passer, puis dites à l'agent : "Fais passer ce test, en suivant nos patterns." Le test est sans ambiguïté. L'agent gère la mécanique. Vous révisez la logique.
 
 **Le goulot d'étranglement se déplace.** Ce n'est plus "à quelle vitesse je peux taper ?" C'est "avec quelle clarté je peux exprimer mon intention ?" La clarté de la pensée devient plus précieuse que la vitesse de frappe.
 
@@ -144,7 +144,7 @@ Après deux ans à naviguer dans ce paysage, voici comment je le conçois :
 
 - **1. Assistance** : Friction — Exécuter avec accélération
 - **2. Direction** : Précision — Guider étape par étape
-- **3. Architecture** : Levier — Définir la vision, revoir les solutions
+- **3. Architecture** : Levier — Définir la vision, réviser les solutions
 - **4. Intégration** : Capacité — Concevoir des systèmes hybrides
 
 Chaque niveau a sa place. Tous les problèmes n'ont pas besoin d'un agent de niveau architecte. Toutes les fonctionnalités ne nécessitent pas d'IA dans le produit. La compétence consiste à reconnaître quel niveau correspond à la tâche.
@@ -156,4 +156,3 @@ Le fantasme de Jarvis n'était pas faux — c'était juste un point sur un spect
 ***
 
 *Cet article est le premier d'une série explorant chaque niveau en profondeur. À suivre : Niveau 2 — comment passer de l'écriture de code à la direction des agents qui l'écrivent.*
-

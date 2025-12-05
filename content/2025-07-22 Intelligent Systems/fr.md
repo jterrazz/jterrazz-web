@@ -8,9 +8,9 @@ Pour moi, c'est arrivé en construisant une API d'actualités. La fonctionnalit�
 
 C'est là que je me suis heurté au vrai problème : Est-ce que "La Fed augmente les taux" est la même histoire que "La Réserve fédérale relève les taux d'intérêt face aux inquiétudes sur l'inflation" ? Et qu'en est-il de "Powell annonce un changement de politique monétaire" ?
 
-Aucune correspondance de chaînes de caractères ne résout ça. Les histoires sont sémantiquement identiques mais lexicalement différentes. J'avais besoin que le système *comprenne* que ces titres décrivent le même événement sous-jacent.
+Aucune correspondance de chaînes de caractères ne résout cela. Les histoires sont sémantiquement identiques mais lexicalement différentes. J'avais besoin que le système *comprenne* que ces titres décrivent le même événement sous-jacent.
 
-C'est là que l'architecture a changé. L'IA ne m'aidait plus à construire la fonctionnalité. L'IA *était* la fonctionnalité.
+C'est là que l'architecture a basculé. L'IA ne m'aidait plus à construire la fonctionnalité. L'IA *était* la fonctionnalité.
 
 ***
 
@@ -18,7 +18,7 @@ C'est là que l'architecture a changé. L'IA ne m'aidait plus à construire la f
 
 ![](assets/bridge-merge.jpg)
 
-L'erreur que je vois les développeurs faire : traiter l'IA soit comme une solution magique, soit comme un passif dangereux. La vérité est plus nuancée.
+L'erreur que je vois les développeurs commettre : traiter l'IA soit comme une solution magique, soit comme un passif dangereux. La vérité est plus nuancée.
 
 Le **code pur** est prévisible mais rigide. Un système de déduplication if/else attraperait les correspondances exactes mais raterait les doublons sémantiques. Il échouerait dès que les titres utiliseraient une formulation différente.
 
@@ -41,7 +41,7 @@ Voici comment je conçois la répartition :
 - La génération de contenu
 - La reconnaissance de patterns dans les données non structurées
 
-L'objectif est de laisser l'IA faire ce pour quoi elle est douée (raisonner dans l'ambiguïté) tout en laissant le code gérer ce pour quoi il est doué (les garanties déterministes).
+L'objectif est de laisser l'IA faire ce pour quoi elle excelle (raisonner dans l'ambiguïté) tout en laissant le code gérer ce pour quoi il est imbattable (les garanties déterministes).
 
 ***
 
@@ -51,7 +51,7 @@ L'objectif est de laisser l'IA faire ce pour quoi elle est douée (raisonner dan
 
 Chaque appel IA dans mon API d'actualités suit la même structure : **Code → IA → Code**.
 
-Laissez-moi vous montrer avec l'agent de déduplication.
+Laissez-moi illustrer avec l'agent de déduplication.
 
 **Couche 1 : Code (Préparation)**
 
@@ -88,7 +88,7 @@ not surface-level similarities.'
 // Est-ce que "La Fed augmente les taux" est le même événement que "Powell annonce un changement de politique" ?
 ```
 
-L'IA fait ce que je ne peux pas coder en dur : comprendre que deux titres formulés différemment décrivent le même événement du monde réel.
+L'IA accomplit ce que je ne peux pas coder en dur : comprendre que deux titres formulés différemment décrivent le même événement du monde réel.
 
 **Couche 3 : Code (Validation)**
 
@@ -101,7 +101,7 @@ static readonly SCHEMA = z.object({
 });
 ```
 
-L'IA ne peut pas renvoyer "peut-être" ou "probablement un doublon" ou une structure que je n'ai pas anticipée. Soit elle fournit un ID de rapport valide, soit null. Le schéma Zod impose cela au moment de l'exécution.
+L'IA ne peut pas renvoyer "peut-être", "probablement un doublon" ou une structure que je n'ai pas anticipée. Soit elle fournit un ID de rapport valide, soit null. Le schéma Zod impose cela au moment de l'exécution.
 
 Si la validation échoue, le système logue l'erreur et se replie sur le traitement de l'article comme unique. Pas de crash. Pas de comportement indéfini.
 
@@ -109,9 +109,9 @@ Si la validation échoue, le système logue l'erreur et se replie sur le traitem
 
 ## De vrais agents, de vraies contraintes
 
-Laissez-moi vous montrer un autre agent du même système — l'agent de fabrication. Oui, je génère de *fausses* actualités. Exprès.
+Laissez-moi vous présenter un autre agent du même système — l'agent de fabrication. Oui, je génère de *fausses* actualités. Délibérément.
 
-L'application inclut un jeu "trouver l'intrus" où les utilisateurs essaient d'identifier les articles fabriqués parmi les vrais. L'IA génère des histoires convaincantes mais fictives, et les utilisateurs développent leur éducation aux médias en trouvant les indices.
+L'application inclut un jeu "trouver l'intrus" où les utilisateurs essaient d'identifier les articles fabriqués parmi les vrais. L'IA génère des histoires convaincantes mais fictives, et les utilisateurs développent leur esprit critique en repérant les indices.
 
 Voici l'architecture des contraintes :
 
@@ -125,7 +125,7 @@ static readonly SCHEMA = z.object({
 });
 ```
 
-L'IA peut être créative avec le contenu. Elle ne peut pas inventer de catégories. Elle ne peut pas sauter la clarification. Elle ne peut rien sortir qui ne corresponde pas à mon modèle de domaine.
+L'IA peut être créative avec le contenu. Elle ne peut pas inventer de catégories. Elle ne peut pas omettre la clarification. Elle ne peut rien produire qui ne corresponde pas à mon modèle de domaine.
 
 Le prompt inclut des directives détaillées :
 
@@ -136,7 +136,7 @@ Le prompt inclut des directives détaillées :
 **Educational Value**: Demonstrate misinformation techniques clearly
 ```
 
-Mais je ne fais pas *confiance* à l'IA pour suivre ces directives. La couche de validation attrape les violations. La file d'attente de révision humaine existe pour les cas limites. L'architecture suppose que l'IA échouera parfois, et intègre des solutions de repli.
+Mais je ne fais pas *confiance* à l'IA pour suivre ces directives. La couche de validation intercepte les violations. La file d'attente de révision humaine existe pour les cas limites. L'architecture présume que l'IA échouera parfois, et intègre des solutions de repli.
 
 ***
 
@@ -201,14 +201,14 @@ Logiciel traditionnel : les composants sont logiques. Étant donné une entrée 
 
 Systèmes intelligents : certains composants sont probabilistes. Étant donné une entrée X, ils produisent une sortie Y *la plupart du temps*. Parfois, ils vous surprennent.
 
-Cela change votre façon d'architecturer :
+Cela modifie votre façon d'architecturer :
 
 - **Validation partout** : Ne faites jamais confiance à la sortie de l'IA. Validez toujours contre des schémas.
 - **Solutions de repli comme citoyens de première classe** : Que se passe-t-il quand l'IA échoue ? Concevez ce chemin explicitement.
 - **Observabilité** : Loguez les entrées et sorties de l'IA. Vous en aurez besoin pour le débogage.
-- **Barrières humaines** : Certaines décisions nécessitent une approbation humaine, même si l'IA pourrait les prendre.
+- **Barrières humaines** : Certaines décisions nécessitent une approbation humaine, même si l'IA pourrait techniquement les prendre.
 
-Votre rôle évolue de l'écriture de la logique à l'**orchestration de l'intelligence**. Vous êtes le concepteur des frontières — vous assurant que le raisonnement de l'IA crée de la valeur sans créer de chaos.
+Votre rôle évolue de l'écriture de la logique à l'**orchestration de l'intelligence**. Vous êtes le concepteur des frontières — garantissant que le raisonnement de l'IA crée de la valeur sans engendrer le chaos.
 
 ***
 
@@ -225,7 +225,6 @@ La majeure partie de mon travail quotidien vit aux Niveaux 1 et 2. Copilot gère
 
 Le fantasme de Jarvis du premier article n'était pas faux — c'était juste un point sur un spectre. Le vrai super-pouvoir n'est pas d'avoir un assistant IA. C'est de savoir quel *type* d'assistance IA le moment exige.
 
-La technologie évolue vite. De nouveaux modèles tous les quelques mois. De nouvelles capacités toutes les quelques semaines. Mais les principes fondamentaux — frontières claires, couches de validation, dégradation gracieuse, barrières humaines — restent constants.
+La technologie évolue vite. De nouveaux modèles tous les quelques mois. De nouvelles capacités toutes les quelques semaines. Mais les principes fondamentaux — frontières claires, couches de validation, dégradation gracieuse, barrières humaines — demeurent constants.
 
-Construisez des systèmes qui utilisent les forces de l'IA tout en compensant ses faiblesses. C'est le défi d'ingénierie de notre époque. Et honnêtement ? C'est un défi plutôt excitant à relever.
-
+Construisez des systèmes qui exploitent les forces de l'IA tout en compensant ses faiblesses. C'est le défi d'ingénierie de notre époque. Et honnêtement ? C'est un défi plutôt passionnant à relever.

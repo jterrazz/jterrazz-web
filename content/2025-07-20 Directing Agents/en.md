@@ -2,17 +2,13 @@
 
 # Directing AI agents
 
-Directing is about precision.
+Every edit has two parts: knowing what to change, and typing the change. The first takes seconds. The second takes minutes. What if you could skip the second part entirely?
 
-Select a function. Cmd+K. "Add error handling for network timeouts." Ten seconds later, try-catch blocks wrap the fetch calls, with proper retry logic and error messages.
+Select a function. Cmd+K. "Add error handling for network timeouts." Ten seconds later, try-catch blocks wrap the fetch calls, with proper retry logic and error messages. The change you conceived in five seconds now exists in five seconds.
 
-Select a component. "Convert this to TypeScript with strict types." The JavaScript becomes typed, interfaces appear, the compiler is happy.
+This is directing—surgical strikes where you point at something specific, describe exactly what you want, and the agent executes. No ambiguity. No exploration. Just precise transformation.
 
-Select a test. "Add cases for edge conditions—empty array, null input, maximum length." Three new test cases materialize, each covering a boundary.
-
-Surgical strikes. You point at something specific, describe exactly what you want, and the agent executes. No ambiguity. No exploration. Just precise transformation.
-
-The power here is in **removing friction from contained changes**. The kinds of edits that take five minutes to type but only five seconds to conceive.
+But there's a catch. Speed without verification is technical debt in disguise. I've shipped bugs by accepting code I didn't read. The art isn't just in directing—it's in knowing how to verify, when to trust, and how to express intent so precisely that the output matches your vision.
 
 ***
 

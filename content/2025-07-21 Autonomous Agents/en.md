@@ -2,17 +2,13 @@
 
 # Architecting with AI
 
-Directing gets you far. But some tasks are bigger than surgical strikes.
+I gave a single prompt: "Add CSV export to the analytics dashboard. Follow our existing PDF export patterns."
 
-> "Add CSV export to the analytics dashboard. Follow our existing PDF export patterns."
+Then I watched the agent explore my codebase, find the PDF export, analyze the pattern, and start implementing. Backend endpoint, data transformation, frontend component—all from one sentence. When it hit an ambiguity (all columns or just visible ones?), it made a choice. I caught it, corrected it. It adjusted and continued. Generated tests, ran them, fixed a failure, presented the result.
 
-This isn't a Cmd+K refactor. It's a multi-file feature: backend endpoint, data transformation, frontend component, tests. Dozens of decisions along the way.
+The feeling is strange. You're not coding anymore. You're supervising. You're having a conversation toward a solution, intervening when the direction drifts, accepting when it lands.
 
-I watched the agent work: explored the codebase to find the PDF export, analyzed the pattern, started implementing the backend. Then it hit an ambiguity—should the CSV include all columns or just visible ones? It made a choice. I caught it. "Just visible columns, and add a parameter to optionally include all."
-
-The agent adjusted, continued, generated tests, ran them, fixed a failure, presented the result.
-
-This is **working with the AI on bigger problems**. Not commanding—collaborating. You set the direction, watch it execute, course-correct when needed, iterate toward the solution together.
+This is architectural collaboration—working *with* AI on problems too big for surgical strikes. The thinking stays yours. The vision stays yours. But the hours of mechanical implementation? Those compress into minutes of guided iteration.
 
 ***
 
