@@ -140,3 +140,4 @@ La réflexion est toujours mienne. L'architecture est toujours mienne. Les déci
 ***
 
 *À suivre : Que se passe-t-il quand l'IA cesse d'être un outil de développement et devient une partie du produit lui-même ? Nous explorons les systèmes intelligents — des architectures hybrides où code et IA travaillent ensemble.*
+

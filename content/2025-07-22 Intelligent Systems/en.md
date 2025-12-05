@@ -216,12 +216,10 @@ Your role shifts from writing logic to **orchestrating intelligence**. You're th
 
 We've covered four levels of AI integration:
 
-| Level | What AI does | Your role |
-|-------|--------------|-----------|
-| **1. Assistance** | Predicts your next keystroke | Execute with acceleration |
-| **2. Delegation** | Implements your specification | Direct and review |
-| **3. Autonomy** | Operates on triggers without you | Architect systems and trust |
-| **4. Integration** | Becomes part of the product | Design hybrid architectures |
+- **1. Assistance**: Predicts your next keystroke — Execute with acceleration
+- **2. Delegation**: Implements your specification — Direct and review
+- **3. Autonomy**: Operates on triggers without you — Architect systems and trust
+- **4. Integration**: Becomes part of the product — Design hybrid architectures
 
 Most of my daily work lives at Levels 1 and 2. Copilot handles syntax; Claude handles boilerplate features. Level 3 runs in the background, keeping my projects healthy. Level 4 appears when I'm building products that genuinely need intelligence as a feature.
 

@@ -12,12 +12,10 @@ The mistake most developers make is treating AI as a single tool with a single m
 
 After hundreds of prompts, failed experiments, and genuine productivity breakthroughs, I've come to see AI integration as a spectrum with four distinct levels:
 
-| Level | Mode | Your Role |
-|-------|------|-----------|
-| **1. Assistance** | AI predicts your next move | You execute |
-| **2. Direction** | AI implements your detailed specification | You guide step-by-step |
-| **3. Architecture** | AI handles implementation from high-level goals | You set vision, review solutions |
-| **4. Integration** | AI becomes part of the product | You design hybrid systems |
+- **1. Assistance**: AI predicts your next move — You execute
+- **2. Direction**: AI implements your detailed specification — You guide step-by-step
+- **3. Architecture**: AI handles implementation from high-level goals — You set vision, review solutions
+- **4. Integration**: AI becomes part of the product — You design hybrid systems
 
 Each level shifts where the bottleneck lives. Each requires a different mindset, different skills, and different trust calibration. Get the level wrong, and you'll either waste time micromanaging a task that could run autonomously, or blindly trust a system that needed your supervision.
 
@@ -144,12 +142,10 @@ Your role evolves from writing logic to orchestrating intelligence.
 
 After two years of navigating this landscape, here's how I think about it:
 
-| Level | Solves for | Your role |
-|-------|------------|-----------|
-| **1. Assistance** | Friction | Execute with acceleration |
-| **2. Direction** | Precision | Guide step-by-step |
-| **3. Architecture** | Leverage | Set vision, review solutions |
-| **4. Integration** | Capability | Design hybrid systems |
+- **1. Assistance**: Friction — Execute with acceleration
+- **2. Direction**: Precision — Guide step-by-step
+- **3. Architecture**: Leverage — Set vision, review solutions
+- **4. Integration**: Capability — Design hybrid systems
 
 Each level has its place. Not every problem needs an architect-level agent. Not every feature requires AI in the product. The skill is recognizing which level fits the task.
 

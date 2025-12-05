@@ -216,12 +216,10 @@ Votre rôle évolue de l'écriture de la logique à l'**orchestration de l'intel
 
 Nous avons couvert quatre niveaux d'intégration de l'IA :
 
-| Niveau | Ce que fait l'IA | Votre rôle |
-|-------|------------------|-----------|
-| **1. Assistance** | Prédit votre prochaine frappe | Exécuter avec accélération |
-| **2. Délégation** | Implémente votre spécification | Diriger et revoir |
-| **3. Autonomie** | Opère sur des déclencheurs sans vous | Architecturer des systèmes et faire confiance |
-| **4. Intégration** | Devient partie du produit | Concevoir des architectures hybrides |
+- **1. Assistance** : Prédit votre prochaine frappe — Exécuter avec accélération
+- **2. Délégation** : Implémente votre spécification — Diriger et revoir
+- **3. Autonomie** : Opère sur des déclencheurs sans vous — Architecturer des systèmes et faire confiance
+- **4. Intégration** : Devient partie du produit — Concevoir des architectures hybrides
 
 La majeure partie de mon travail quotidien vit aux Niveaux 1 et 2. Copilot gère la syntaxe ; Claude gère les fonctionnalités boilerplate. Le Niveau 3 tourne en arrière-plan, gardant mes projets sains. Le Niveau 4 apparaît quand je construis des produits qui ont véritablement besoin de l'intelligence comme fonctionnalité.
 
@@ -230,3 +228,4 @@ Le fantasme de Jarvis du premier article n'était pas faux — c'était juste un
 La technologie évolue vite. De nouveaux modèles tous les quelques mois. De nouvelles capacités toutes les quelques semaines. Mais les principes fondamentaux — frontières claires, couches de validation, dégradation gracieuse, barrières humaines — restent constants.
 
 Construisez des systèmes qui utilisent les forces de l'IA tout en compensant ses faiblesses. C'est le défi d'ingénierie de notre époque. Et honnêtement ? C'est un défi plutôt excitant à relever.
+

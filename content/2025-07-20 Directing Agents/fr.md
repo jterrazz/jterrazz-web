@@ -134,3 +134,4 @@ C'est un mode entièrement différent : travailler *avec* l'agent sur des probl�
 ***
 
 *À suivre : Architecturer avec l'IA — comment travailler avec des agents sur des problèmes plus vastes, en itérant ensemble vers des solutions.*
+

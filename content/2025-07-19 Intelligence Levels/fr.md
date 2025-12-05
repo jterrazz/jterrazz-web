@@ -12,12 +12,10 @@ L'erreur que commettent la plupart des développeurs est de traiter l'IA comme u
 
 Après des centaines de prompts, d'expérimentations ratées et de véritables gains de productivité, j'en suis venu à voir l'intégration de l'IA comme un spectre comportant quatre niveaux distincts :
 
-| Niveau | Mode | Votre rôle |
-|-------|------|-----------|
-| **1. Assistance** | L'IA prédit votre prochaine action | Vous exécutez |
-| **2. Direction** | L'IA implémente votre spécification détaillée | Vous guidez étape par étape |
-| **3. Architecture** | L'IA gère l'implémentation à partir d'objectifs de haut niveau | Vous définissez la vision, revoyez les solutions |
-| **4. Intégration** | L'IA devient une partie du produit | Vous concevez des systèmes hybrides |
+- **1. Assistance** : L'IA prédit votre prochaine action — Vous exécutez
+- **2. Direction** : L'IA implémente votre spécification détaillée — Vous guidez étape par étape
+- **3. Architecture** : L'IA gère l'implémentation à partir d'objectifs de haut niveau — Vous définissez la vision, revoyez les solutions
+- **4. Intégration** : L'IA devient une partie du produit — Vous concevez des systèmes hybrides
 
 Chaque niveau déplace le goulot d'étranglement. Chacun requiert un état d'esprit différent, des compétences différentes et un calibrage de la confiance différent. Trompez-vous de niveau, et vous perdrez votre temps à micro-manager une tâche qui aurait pu être autonome, ou vous ferez aveuglément confiance à un système qui nécessitait votre supervision.
 
@@ -144,12 +142,10 @@ Votre rôle évolue de l'écriture de la logique à l'orchestration de l'intelli
 
 Après deux ans à naviguer dans ce paysage, voici comment je le conçois :
 
-| Niveau | Résout | Votre rôle |
-|-------|--------|-----------|
-| **1. Assistance** | Friction | Exécuter avec accélération |
-| **2. Direction** | Précision | Guider étape par étape |
-| **3. Architecture** | Levier | Définir la vision, revoir les solutions |
-| **4. Intégration** | Capacité | Concevoir des systèmes hybrides |
+- **1. Assistance** : Friction — Exécuter avec accélération
+- **2. Direction** : Précision — Guider étape par étape
+- **3. Architecture** : Levier — Définir la vision, revoir les solutions
+- **4. Intégration** : Capacité — Concevoir des systèmes hybrides
 
 Chaque niveau a sa place. Tous les problèmes n'ont pas besoin d'un agent de niveau architecte. Toutes les fonctionnalités ne nécessitent pas d'IA dans le produit. La compétence consiste à reconnaître quel niveau correspond à la tâche.
 
@@ -160,3 +156,4 @@ Le fantasme de Jarvis n'était pas faux — c'était juste un point sur un spect
 ***
 
 *Cet article est le premier d'une série explorant chaque niveau en profondeur. À suivre : Niveau 2 — comment passer de l'écriture de code à la direction des agents qui l'écrivent.*
+

@@ -166,3 +166,4 @@ Ma valeur était partiellement définie par la vitesse de frappe et la mémoire 
 Cursor amplifie ces qualités en supprimant les barrières mécaniques entre la pensée et le logiciel. Les idées qui prenaient un week-end prennent maintenant un après-midi. Les prototypes qui prenaient une semaine prennent maintenant un jour.
 
 Utilisez-le pour construire de meilleurs systèmes, pas juste pour construire plus vite. Le travail mécanique est compressé. Ce que vous faites des cycles libérés ne dépend que de vous.
+
