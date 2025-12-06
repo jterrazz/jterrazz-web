@@ -1,10 +1,9 @@
+import next from 'next';
 import type { Server } from 'node:http';
 import { createServer } from 'node:http';
 
-import next from 'next';
-
-let server: Server | null = null;
-let nextApp: ReturnType<typeof next> | null = null;
+let server: null | Server = null;
+let nextApp: null | ReturnType<typeof next> = null;
 
 export const TEST_PORT = 3001;
 export const BASE_URL = `http://localhost:${TEST_PORT}`;
@@ -69,4 +68,3 @@ export async function stopTestServer(): Promise<void> {
         nextApp = null;
     }
 }
-

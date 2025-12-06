@@ -1,11 +1,15 @@
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
-import { HelloWorldTemplate } from '../presentation/templates/hello-world.template';
+// Domain
+import { buildArticleSlug } from '../domain/utils/slugify';
+
+// Infrastructure
 import { articlesRepository } from '../infrastructure/repositories/articles.repository';
 import { experimentsRepository } from '../infrastructure/repositories/experiments.repository';
 import { userRepository } from '../infrastructure/repositories/user.repository';
-import { buildArticleSlug } from '../domain/utils/slugify';
+
+import { HelloWorldTemplate } from '../presentation/templates/hello-world.template';
 
 // Force static generation for this page
 export const dynamic = 'force-static';

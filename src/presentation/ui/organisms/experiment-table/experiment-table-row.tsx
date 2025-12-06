@@ -1,8 +1,10 @@
 'use client';
 import React from 'react';
 
+// Domain
 import { type Experiment } from '../../../../domain/experiment';
 
+// Utils
 import { cn } from '../../../utils';
 
 import { Badge } from '../../atoms/badge/badge';

@@ -12,34 +12,34 @@
     "start": "next start",
     "dev": "next dev",
     "test": "vitest",
-    "lint": "quality",
+    "lint": "ts-check",
+    "lint:fix": "ts-fix",
     "clean": "rm -rf .next && rm -rf node_modules"
   },
   "dependencies": {
-    "@jterrazz/quality": "^4.0.4",
-    "@tailwindcss/postcss": "^4.1.17",
+    "@jterrazz/intelligence": "^3.0.0",
+    "@jterrazz/quality": "^5.0.1",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.3.1",
-    "ai-text-sanitizer": "^0.2.1",
-    "autoprefixer": "^10.4.22",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.25",
-    "lucide-react": "^0.555.0",
+    "lucide-react": "^0.556.0",
     "next": "^16.0.7",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "react-image-grid-gallery": "^3.1.2",
     "react-markdown": "^10.1.0",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.0.0"
   },
   "devDependencies": {
-    "@jterrazz/test": "^3.0.0",
-    "@jterrazz/typescript": "^3.0.0",
+    "@jterrazz/test": "^3.1.0",
+    "@jterrazz/typescript": "^3.1.0",
+    "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.17"
+    "vitest": "^4.0.0"
   }
 }

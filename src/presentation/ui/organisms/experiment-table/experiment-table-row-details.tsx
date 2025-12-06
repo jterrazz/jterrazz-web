@@ -2,8 +2,10 @@ import React from 'react';
 
 import { ChevronRight, Layers } from 'lucide-react';
 
+// Domain
 import { type ExperimentComponent } from '../../../../domain/experiment';
 
+// Utils
 import { cn } from '../../../utils';
 
 import { Badge, BadgeColor, DotPulseSize } from '../../atoms/badge/badge';

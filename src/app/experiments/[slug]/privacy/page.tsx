@@ -1,6 +1,7 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+// Infrastructure
 import { experimentsRepository } from '../../../../infrastructure/repositories/experiments.repository';
 
 type Props = {

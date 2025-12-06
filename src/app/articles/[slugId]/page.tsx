@@ -1,14 +1,18 @@
 import { type Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
-import { ArticleTemplate } from '../../../presentation/templates/article.template';
-import { articlesRepository } from '../../../infrastructure/repositories/articles.repository';
-import {
-    featuresRepository,
-    FeatureId,
-} from '../../../infrastructure/repositories/features.repository';
+// Domain
 import { type ArticleLanguage } from '../../../domain/article';
 import { buildArticleSlug } from '../../../domain/utils/slugify';
+
+// Infrastructure
+import { articlesRepository } from '../../../infrastructure/repositories/articles.repository';
+import {
+    FeatureId,
+    featuresRepository,
+} from '../../../infrastructure/repositories/features.repository';
+
+import { ArticleTemplate } from '../../../presentation/templates/article.template';
 
 export const dynamicParams = true;
 
@@ -48,6 +52,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
             currentLanguage={'en'}
             dateModified={article.metadata.dateModified}
             datePublished={article.metadata.datePublished}
+            description={article.metadata.description.en}
             features={features}
             title={article.metadata.title.en}
         />

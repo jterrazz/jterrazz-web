@@ -1,3 +1,4 @@
+// Domain
 import { ExperimentStatus } from '../../../../domain/experiment';
 
 import { BadgeColor } from '../../atoms/badge/badge';

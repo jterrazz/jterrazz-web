@@ -1,7 +1,10 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "extends": ["./node_modules/@jterrazz/quality/src/biome/index.json"],
-  "files": {
-    "ignore": [".next", "node_modules", "*.md"]
+  "$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+  "extends": ["@jterrazz/quality/biome"],
+  "css": {
+    "parser": {
+      "cssModules": false,
+      "tailwindDirectives": true
+    }
   }
 }

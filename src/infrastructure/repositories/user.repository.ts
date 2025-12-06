@@ -1,3 +1,4 @@
+// Domain
 import {
     type UserContact,
     UserContactType,

@@ -4,11 +4,11 @@ import React from 'react';
 
 import { Monitor, Moon, Sun } from 'lucide-react';
 
-import type { Theme } from '../../../../theme/theme';
-
+// Utils
 import { cn } from '../../../utils';
 
 import { useTheme } from '../../../hooks/use-theme';
+import type { Theme } from '../../../theme/theme';
 
 interface ToggleThemeProps {
     className?: string;

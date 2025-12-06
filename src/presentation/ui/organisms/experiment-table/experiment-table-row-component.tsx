@@ -3,8 +3,10 @@ import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, Github } from 'lucide-react';
 
+// Domain
 import { type ExperimentComponent } from '../../../../domain/experiment';
 
+// Utils
 import { cn } from '../../../utils';
 
 import { Badge, BadgeColor, DotPulseSize } from '../../atoms/badge/badge';

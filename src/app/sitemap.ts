@@ -1,8 +1,11 @@
 import { type MetadataRoute } from 'next';
 
+// Domain
+import { buildArticleSlug } from '../domain/utils/slugify';
+
+// Infrastructure
 import { articlesRepository } from '../infrastructure/repositories/articles.repository';
 import { experimentsRepository } from '../infrastructure/repositories/experiments.repository';
-import { buildArticleSlug } from '../domain/utils/slugify';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';

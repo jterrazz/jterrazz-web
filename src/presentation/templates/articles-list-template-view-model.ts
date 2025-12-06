@@ -1,7 +1,10 @@
-import { userRepository } from '../../infrastructure/repositories/user.repository';
+// Domain
 import { type Article } from '../../domain/article';
 import { UserContactType } from '../../domain/user';
 import { buildArticleSlug } from '../../domain/utils/slugify';
+
+// Infrastructure
+import { userRepository } from '../../infrastructure/repositories/user.repository';
 
 export interface ArticleRowViewModel {
     category: string;

@@ -5,14 +5,16 @@ import React from 'react';
 import { Github } from 'lucide-react';
 import Link from 'next/link';
 
+// Domain
 import { type Experiment } from '../../../../domain/experiment';
 
+// Utils
 import { cn } from '../../../utils';
 
 // Minimal type for the fields actually used by this component
 // Works with both Experiment and serialized versions
-type ExperimentCardData = Pick<Experiment, 'name' | 'slug' | 'description' | 'year'> & {
-    url?: URL | string;
+type ExperimentCardData = Pick<Experiment, 'description' | 'name' | 'slug' | 'year'> & {
+    url?: string | URL;
 };
 
 export type CardExperimentCompactProps = {

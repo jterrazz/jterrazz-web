@@ -1,6 +1,6 @@
-import { describe, expect, it } from '@jterrazz/test';
+import { describe, expect, it } from 'vitest';
 
-import { ArticleCategory, createArticle, type RawArticleInput, __test__ } from '../article';
+import { __test__, ArticleCategory, createArticle, type RawArticleInput } from '../article';
 
 const { toSentenceCase, sanitizeEmDashes, sanitizeTitle, sanitizeContent } = __test__;
 

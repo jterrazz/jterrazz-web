@@ -212,8 +212,15 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
     );
 };
 
+// Serialized version of ExperimentComponent for Server → Client transfer
+type SerializableExperimentComponent = Omit<ExperimentComponent, 'sourceUrl'> & {
+    sourceUrl: string;
+};
+
 // Sub-component for architecture parts
-const ExperimentComponentCard: React.FC<{ component: ExperimentComponent }> = ({ component }) => {
+const ExperimentComponentCard: React.FC<{ component: SerializableExperimentComponent }> = ({
+    component,
+}) => {
     return (
         <div className="group relative p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">

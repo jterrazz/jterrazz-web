@@ -1,7 +1,9 @@
 import React from 'react';
 
+// Domain
 import { ExperimentStatus } from '../../../../domain/experiment';
 
+// Utils
 import { cn } from '../../../utils';
 
 export type BadgeExperimentStatusProps = {

@@ -1,3 +1,4 @@
+// Domain
 import { type Photograph } from '../../domain/photograph';
 
 const photographs: Photograph[] = [

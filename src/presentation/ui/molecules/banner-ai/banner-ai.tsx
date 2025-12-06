@@ -2,6 +2,7 @@
 
 import { Sparkles } from 'lucide-react';
 
+// Utils
 import { cn } from '../../../utils';
 
 export const BannerAi = ({ className }: { className?: string }) => {

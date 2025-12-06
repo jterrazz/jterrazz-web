@@ -1,8 +1,10 @@
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
-import { PhotographsGridTemplate } from '../../presentation/templates/photographs-grid.template';
+// Infrastructure
 import { photographsRepository } from '../../infrastructure/repositories/photographs.repository';
+
+import { PhotographsGridTemplate } from '../../presentation/templates/photographs-grid.template';
 
 // Force static generation for this page
 export const dynamic = 'force-static';

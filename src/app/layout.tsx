@@ -1,16 +1,21 @@
 import React from 'react';
 
 import type { Metadata } from 'next';
+// Domain
 // Google Fonts temporarily disabled due to network restrictions in build environment
 // import { Inter } from 'next/font/google';
 
-import { userRepository } from '../infrastructure/repositories/user.repository';
 import { UserContactType } from '../domain/user';
+
+// Infrastructure
+import { userRepository } from '../infrastructure/repositories/user.repository';
+
+// Utils
 import { cn } from '../presentation/utils';
 
 import { ClientLayoutWrapper } from '../presentation/client-layout-wrapper';
-import { SiteFooter } from '../presentation/ui/organisms/site-footer/site-footer';
 import { Navbar } from '../presentation/ui/organisms/navbar/navbar';
+import { SiteFooter } from '../presentation/ui/organisms/site-footer/site-footer';
 
 import './globals.css';
 

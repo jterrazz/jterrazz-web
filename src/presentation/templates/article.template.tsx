@@ -5,13 +5,13 @@ import Script from 'next/script';
 // Domain
 import { type Article, type ArticleLanguage } from '../../domain/article';
 import { type Feature } from '../../domain/feature';
-
 import { buildArticleSlug } from '../../domain/utils/slugify';
+
 import { SelectorLanguage } from '../ui/molecules/selector-language/selector-language';
 import { TableOfContents } from '../ui/molecules/table-of-contents/table-of-contents';
 import { ArticleFooter } from '../ui/organisms/article-footer/article-footer';
-import { MarkdownRenderer } from '../ui/organisms/markdown-renderer/markdown-renderer';
 import { Container } from '../ui/organisms/container/container';
+import { MarkdownRenderer } from '../ui/organisms/markdown-renderer/markdown-renderer';
 
 type ArticleTemplateProps = {
     articleId: string;

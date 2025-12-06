@@ -7,7 +7,7 @@ import { slugify } from '../../../../domain/utils/slugify';
 import { cn, getTextFromChildren } from '../../../utils';
 
 export type HeadingH2Props = {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     className?: string;
     id?: string;
 };

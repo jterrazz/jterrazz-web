@@ -1,8 +1,10 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { ExperimentDetailTemplate } from '../../../presentation/templates/experiment-detail.template';
+// Infrastructure
 import { experimentsRepository } from '../../../infrastructure/repositories/experiments.repository';
+
+import { ExperimentDetailTemplate } from '../../../presentation/templates/experiment-detail.template';
 
 type Props = {
     params: Promise<{
@@ -21,7 +23,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     }
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
-    const imageUrl = experiment.images?.icon ?? '/assets/icons/app-icon.jterrazz.png';
+    const imageUrl = experiment.images?.thumbnail ?? '/assets/icons/app-icon.jterrazz.png';
 
     return {
         alternates: {

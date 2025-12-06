@@ -1,8 +1,10 @@
 import React from 'react';
 
-import { cn, getTextFromChildren } from '../../../utils';
-
+// Domain
 import { slugify } from '../../../../domain/utils/slugify';
+
+// Utils
+import { cn, getTextFromChildren } from '../../../utils';
 
 export type HeadingH3Props = {
     children: React.ReactNode;

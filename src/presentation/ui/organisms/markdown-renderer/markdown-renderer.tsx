@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Highlight, themes } from 'prism-react-renderer';
 import Markdown from 'react-markdown';
 
+// Utils
 import { cn } from '../../../utils';
 
 import { useTheme } from '../../../hooks/use-theme';
@@ -151,7 +152,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                             {...props}
                         />
                     ),
-                    img: ({ alt, src, ...props }) => {
+                    img: ({ alt, height, src, width, ...props }) => {
                         const altText = (alt as string) || '';
                         return (
                             <span className="block my-10">
@@ -159,12 +160,12 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                                     <Image
                                         alt={altText}
                                         className="w-full h-auto"
-                                        height={0}
+                                        height={typeof height === 'number' ? height : 0}
                                         loading="lazy"
                                         sizes="(max-width: 768px) 100vw, 800px"
                                         src={src as string}
                                         style={{ height: 'auto', width: '100%' }}
-                                        width={0}
+                                        width={typeof width === 'number' ? width : 0}
                                         {...props}
                                     />
                                 </span>

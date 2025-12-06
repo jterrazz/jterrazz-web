@@ -4,10 +4,11 @@ import React, { useEffect, useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
+// Domain
+import { slugify } from '../../../../domain/utils/slugify';
+
 // Utils
 import { cn } from '../../../utils';
-
-import { slugify } from '../../../../domain/utils/slugify';
 
 type Heading = {
     id: string;

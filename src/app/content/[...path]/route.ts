@@ -1,7 +1,6 @@
+import { type NextRequest, NextResponse } from 'next/server';
 import { readFile } from 'node:fs/promises';
 import { extname, join } from 'node:path';
-
-import { type NextRequest, NextResponse } from 'next/server';
 
 const MIME_TYPES: Record<string, string> = {
     '.gif': 'image/gif',

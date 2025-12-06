@@ -1,10 +1,14 @@
 import { type Metadata } from 'next';
 import Script from 'next/script';
 
-import { ArticlesListTemplate } from '../../presentation/templates/articles-list.template';
-import { ArticlesListViewModelImpl } from '../../presentation/templates/articles-list-template-view-model';
-import { articlesRepository } from '../../infrastructure/repositories/articles.repository';
+// Domain
 import { buildArticleSlug } from '../../domain/utils/slugify';
+
+// Infrastructure
+import { articlesRepository } from '../../infrastructure/repositories/articles.repository';
+
+import { ArticlesListViewModelImpl } from '../../presentation/templates/articles-list-template-view-model';
+import { ArticlesListTemplate } from '../../presentation/templates/articles-list.template';
 
 // Force static generation for this page
 export const dynamic = 'force-static';

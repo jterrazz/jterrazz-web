@@ -4,11 +4,17 @@ import { Calendar, Clock, Github, Linkedin, Twitter } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { userRepository } from '../../../../infrastructure/repositories/user.repository';
+// Domain
 import { type Article } from '../../../../domain/article';
 import { UserContactType } from '../../../../domain/user';
 import { buildArticleSlug } from '../../../../domain/utils/slugify';
+
+// Infrastructure
+import { userRepository } from '../../../../infrastructure/repositories/user.repository';
+
+// Utils
 import { cn } from '../../../utils';
+
 import { Badge, BadgeColor } from '../../atoms/badge/badge';
 import { BannerAi } from '../../molecules/banner-ai/banner-ai';
 import { CardArticle } from '../../molecules/card-article/card-article';

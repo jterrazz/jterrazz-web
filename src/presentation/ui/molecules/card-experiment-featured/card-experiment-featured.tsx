@@ -5,22 +5,24 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
+// Domain
 import {
     type Experiment,
     type ExperimentContext,
     type ExperimentStatus,
 } from '../../../../domain/experiment';
 
+// Utils
 import { cn } from '../../../utils';
 
 import { BadgeExperimentStatus } from '../badge-experiment-status/badge-experiment-status';
 
 // Minimal type for the fields actually used by this component
 // Works with both Experiment and serialized versions
-type ExperimentCardData = Pick<Experiment, 'name' | 'slug' | 'description' | 'year'> & {
+type ExperimentCardData = Pick<Experiment, 'description' | 'name' | 'slug' | 'year'> & {
     context: ExperimentContext;
     status: ExperimentStatus;
-    url?: URL | string;
+    url?: string | URL;
 };
 
 export type CardExperimentFeaturedProps = {

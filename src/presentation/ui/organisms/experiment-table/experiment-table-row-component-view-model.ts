@@ -1,3 +1,4 @@
+// Domain
 import { ExperimentStatus } from '../../../../domain/experiment';
 
 import { PulseDotColor } from '../../atoms/pulse-dot/pulse-dot';

@@ -3,6 +3,7 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
+// Utils
 import { cn } from '../../../utils';
 
 export type SectionHeroProps = {

@@ -4,9 +4,13 @@ import React from 'react';
 
 import { ImageGallery } from 'react-image-grid-gallery';
 
-import { userRepository } from '../../infrastructure/repositories/user.repository';
+// Domain
 import { type Photograph } from '../../domain/photograph';
 import { UserContactType } from '../../domain/user';
+
+// Infrastructure
+import { userRepository } from '../../infrastructure/repositories/user.repository';
+
 import { SectionHero } from '../ui/molecules/section-hero/section-hero';
 
 export type PhotographsGridTemplateProps = {

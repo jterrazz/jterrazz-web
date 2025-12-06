@@ -2,9 +2,10 @@
 
 import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 
-import { DEFAULT_THEME, type ResolvedTheme, type Theme } from './theme';
-
+// Infrastructure
 import { ThemeLocalStorageRepository } from '../../infrastructure/repositories/theme-local-storage.repository';
+
+import { DEFAULT_THEME, type ResolvedTheme, type Theme } from './theme';
 
 export interface ThemeContextValue {
     resolvedTheme: ResolvedTheme;

@@ -6,8 +6,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRight, Briefcase, Building2, GraduationCap, MapPin, Plus } from 'lucide-react';
 import Link from 'next/link';
 
+// Domain
 import { type UserExperience } from '../../../../domain/user';
 
+// Utils
 import { cn } from '../../../utils';
 
 export type TimelineItemProps = {

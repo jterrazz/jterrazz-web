@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, it } from '@jterrazz/test';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 import { BASE_URL, startTestServer, stopTestServer } from '../setup/integration-server';
 
