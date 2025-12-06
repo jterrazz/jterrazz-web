@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 // Domain
 // Google Fonts temporarily disabled due to network restrictions in build environment
@@ -13,7 +15,7 @@ import { userRepository } from '../infrastructure/repositories/user.repository';
 // Utils
 import { cn } from '../presentation/utils';
 
-import { ClientLayoutWrapper } from '../presentation/client-layout-wrapper';
+import { ThemeProvider } from '../presentation/theme/theme-provider';
 import { Navbar } from '../presentation/ui/organisms/navbar/navbar';
 import { SiteFooter } from '../presentation/ui/organisms/site-footer/site-footer';
 
@@ -210,7 +212,7 @@ export default function RootLayout({
                 <script dangerouslySetInnerHTML={{ __html: themeScript }} />
             </head>
             <body className={generatedClassName}>
-                <ClientLayoutWrapper>
+                <ThemeProvider>
                     <div className="sticky top-0 z-[50] pointer-events-none">
                         <Navbar contacts={contacts} pages={pages} />
                     </div>
@@ -218,7 +220,9 @@ export default function RootLayout({
                         {children}
                     </main>
                     <SiteFooter />
-                </ClientLayoutWrapper>
+                </ThemeProvider>
+                <Analytics />
+                <SpeedInsights />
             </body>
         </html>
     );
