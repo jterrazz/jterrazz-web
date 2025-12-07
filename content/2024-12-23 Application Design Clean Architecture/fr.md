@@ -1,50 +1,50 @@
 ![](assets/thumbnail.jpg)
 
-# Un voyage dans la clean architecture
+# Un voyage au cœur de la Clean Architecture
 
-## Aller au cœur de ce qui compte
+## Aller à l'essentiel
 
-Voici la grande idée qui a changé la façon dont je construis des logiciels : votre architecture ne devrait pas se soucier de votre base de données. Elle ne devrait pas se soucier de votre framework web. Elle ne devrait pas se soucier de votre UI. La seule chose dont elle devrait se soucier est ce que votre application *fait réellement*.
+Voici la grande idée qui a changé ma façon de construire des logiciels : votre architecture ne devrait pas se soucier de votre base de données. Elle ne devrait pas se soucier de votre framework web. Elle ne devrait pas se soucier de votre interface utilisateur. La seule chose qui devrait l'intéresser, c'est ce que votre application *fait réellement*.
 
-C'est la philosophie derrière la **Clean Architecture**. C'est une approche de conception qui place vos **cas d'utilisation** (use cases), la vraie valeur métier, au cœur même de votre système. Tout le reste n'est qu'un détail, menant à un système testable, maintenable, et indépendant de sa tuyauterie technique.
+C'est la philosophie derrière la **Clean Architecture**. C'est une approche de conception qui place vos **cas d'utilisation**, la vraie valeur métier, au cœur même de votre système. Tout le reste n'est qu'un détail, aboutissant à un système testable, maintenable et indépendant de sa plomberie technique.
 
 ---
 
-# À quoi ressemble la clean architecture en théorie
+# À quoi ressemble la Clean Architecture en théorie
 
-La Clean Architecture consiste à créer des couches indépendantes régies par un ensemble strict de règles sur la façon dont elles peuvent interagir. Imaginez une série de cercles concentriques.
+La Clean Architecture repose entièrement sur la création de couches indépendantes gouvernées par un ensemble strict de règles sur la façon dont elles peuvent interagir. Imaginez une série de cercles concentriques.
 
-1. **Entités** : Au cœur même. Ce sont vos règles métier à l'échelle de l'entreprise. La logique pure et non altérée qui définit votre business.
-2. **Cas d'Utilisation (Use Cases)** : Cette couche entoure les entités. Elle contient les règles métier spécifiques à l'application. Elle orchestre le flux de données vers et depuis les entités pour atteindre un objectif spécifique (ex: "Enregistrer un Utilisateur" ou "Traiter un Paiement").
-3. **Adaptateurs d'Interface** : C'est la couche de traduction. Elle prend les données du format le plus pratique pour les cas d'utilisation et les entités et les convertit au format le plus pratique pour le monde extérieur (comme une base de données ou le web).
-4. **Frameworks et Pilotes (Drivers)** : La couche la plus externe. C'est là que vivent tous les détails : le framework web, la base de données, l'UI, etc. Ces trucs sont les plus susceptibles de changer.
+1. **Entités** : Au cœur même. Ce sont vos règles métier à l'échelle de l'entreprise. La logique pure et intacte qui définit votre business.
+2. **Cas d'utilisation** : Cette couche entoure les entités. Elle contient les règles métier spécifiques à l'application. Elle orchestre le flux de données vers et depuis les entités pour atteindre un objectif précis (par exemple, "Inscrire un Utilisateur" ou "Traiter un Paiement").
+3. **Adaptateurs d'interface** : C'est la couche de traduction. Elle prend les données du format le plus pratique pour les cas d'utilisation et les entités et les convertit dans le format le plus pratique pour le monde extérieur (comme une base de données ou le web).
+4. **Frameworks et Pilotes** : La couche la plus externe. C'est là que vivent tous les détails : le framework web, la base de données, l'UI, etc. Ce sont les éléments les plus susceptibles de changer.
 
-La règle d'or est la **Règle de Dépendance** : toutes les dépendances doivent pointer vers l'intérieur. Votre UI peut dépendre de vos cas d'utilisation, mais vos cas d'utilisation ne savent *rien* de l'UI. Votre logique métier est le roi, et elle n'est jamais, au grand jamais, détrônée par un détail technique.
+La règle d'or est la **Règle de Dépendance** : toutes les dépendances doivent pointer vers l'intérieur. Votre UI peut dépendre de vos cas d'utilisation, mais vos cas d'utilisation ne savent *rien* de l'UI. Votre logique métier est la reine, et elle n'est jamais, jamais détrônée par un détail technique.
 
 ![](assets/clean-architecture.jpg)
 
 ---
 
-# Clean architecture vs. architecture hexagonale
+# Clean Architecture vs Architecture Hexagonale
 
-Alors, comment cela se compare-t-il à l'Architecture Hexagonale dont nous venons de discuter ?
+Alors, comment cela se compare-t-il à l'Architecture Hexagonale dont nous venons de parler ?
 
-Elles sont construites sur exactement la même philosophie : **protéger la logique métier**. Je vois la Clean Architecture comme une version plus spécifique et opinionated (avec des opinions fortes) de l'Architecture Hexagonale.
+Elles sont construites sur exactement la même philosophie : **protéger la logique métier**. Je vois la Clean Architecture comme une version plus spécifique et opiniâtre de l'Architecture Hexagonale.
 
-- L'Architecture Hexagonale vous donne le "quoi" : séparez votre appli en un "intérieur" (domaine) et un "extérieur" (infrastructure) en utilisant des ports et des adaptateurs.
-- La Clean Architecture vous donne un "comment" plus détaillé : elle définit explicitement des couches *au sein* de la partie "intérieure" (Entités et Cas d'Utilisation) et fournit des règles plus strictes régissant leur interaction.
+- L'Architecture Hexagonale vous donne le "quoi" : séparer votre app en un "intérieur" (domaine) et un "extérieur" (infrastructure) via des ports et des adapters.
+- La Clean Architecture vous donne un "comment" plus détaillé : elle définit explicitement des couches *à l'intérieur* de la partie "intérieur" (Entités et Cas d'utilisation) et fournit des règles plus strictes régissant leurs interactions.
 
-Voyez-le comme ça : l'Architecture Hexagonale a dessiné la carte. La Clean Architecture a ajouté les autoroutes et les panneaux de signalisation. Elle rend le chemin plus clair.
+Voyez-le ainsi : l'Architecture Hexagonale a dessiné la carte. La Clean Architecture a ajouté les autoroutes et les panneaux de signalisation. Elle rend le chemin plus clair.
 
 ---
 
 # Construisons-le : un exemple complet
 
-La théorie c'est bien, mais le code c'est mieux. Construisons une petite partie d'une application de gestion d'hôtel. Le but est de mettre à jour les prix des chambres basés sur un nouveau prix de base et un ensemble de règles métier (ex: différents étages ont différents multiplicateurs de prix).
+La théorie c'est bien, mais le code c'est mieux. Construisons une petite partie d'une application de gestion hôtelière. L'objectif est de mettre à jour les prix des chambres en fonction d'un prix de base et d'un ensemble de règles métier (par exemple, différents étages ont différents multiplicateurs de prix).
 
 ## Notre structure de fichiers
 
-D'abord, regardons la structure du projet. C'est ce que Robert C. Martin appelle une "Screaming Architecture" (Architecture Hurlante), une où votre structure de dossiers hurle ce que l'application *fait*, pas quels frameworks elle utilise. Vous voyez `business`, `use-cases`, et `entity`. Vous ne voyez pas `models`, `views`, et `controllers` au niveau supérieur.
+D'abord, regardons la structure du projet. C'est ce que Robert C. Martin appelle une "Screaming Architecture" (architecture qui crie), une structure où vos dossiers crient ce que l'application *fait*, pas quels frameworks elle utilise. Vous voyez `business`, `use-cases` et `entity`. Vous ne voyez pas `models`, `views` et `controllers` au premier niveau.
 
 ```sh
 src/
@@ -68,23 +68,23 @@ src/
     └── update-price.test.ts
 ```
 
-- `business/` : C'est le cœur de notre application. Toute la logique métier pure vit ici. Elle a zéro dépendance vers le monde extérieur.
-- `controller/` : C'est notre couche d'adaptateur d'interface. Elle gère les détails désordonnés de la communication avec le monde extérieur (comme implémenter des passerelles et des présentateurs).
-- `container/` : C'est notre usine d'assemblage. C'est là que nous câblons tout ensemble en utilisant l'injection de dépendance.
-- `tests/` : Tests qui prouvent que notre logique métier fonctionne.
+- `business/` : C'est le cœur de notre application. Toute la logique métier pure vit ici. Elle n'a aucune dépendance vers le monde extérieur.
+- `controller/` : C'est notre couche d'adaptateurs d'interface. Elle gère les détails compliqués de la communication avec le monde extérieur (comme l'implémentation des gateways et des presenters).
+- `container/` : C'est notre usine d'assemblage. C'est là que nous câblons tout ensemble grâce à l'injection de dépendances.
+- `tests/` : Les tests qui prouvent que notre logique métier fonctionne.
 
 ---
 
 ## 1. Les entités : `Floor` & `Room`
 
-Les entités ne sont pas juste des conteneurs de données bêtes. Elles incarnent les règles métier les plus fondamentales, la logique qui reste vraie pour l'entreprise entière, peu importe l'application spécifique qui l'utilise.
+Les entités ne sont pas de simples conteneurs de données stupides. Elles incarnent les règles métier les plus fondamentales — la logique qui reste vraie pour toute l'entreprise, quel que soit l'application spécifique qui l'utilise.
 
 ```ts
 // business/entity/floor.ts
 export class Floor {
     constructor(public floor: number) {}
 
-    // C'est une règle métier centrale.
+    // Ceci est une règle métier centrale.
     getFactor() {
         if (this.floor === 1) return 1.07;
         if (this.floor === 2) return 1.22;
@@ -116,13 +116,13 @@ export class Room {
 }
 ```
 
-**Pourquoi mettre la logique ici ?** Parce que la règle selon laquelle "le prix d'une chambre dépend de son étage" est une vérité fondamentale de notre activité hôtelière. En la mettant dans l'entité, nous nous assurons que cette règle est toujours appliquée, partout. Elle est encapsulée, réutilisable, et suit le Principe de Responsabilité Unique.
+**Pourquoi mettre la logique ici ?** Parce que la règle selon laquelle "le prix d'une chambre dépend de son étage" est une vérité fondamentale de notre activité hôtelière. En la plaçant dans l'entité, nous garantissons que cette règle est toujours appliquée, partout. Elle est encapsulée, réutilisable, et suit le principe de responsabilité unique.
 
 ---
 
-## 2. La passerelle (Gateway) : `RoomGateway`
+## 2. La gateway : `RoomGateway`
 
-La passerelle est une interface, un contrat défini par la couche métier qui dit : "J'ai besoin d'effectuer ces actions avec les chambres, mais je me fiche de *comment* vous le faites." C'est une promesse que les couches externes doivent remplir.
+La gateway est une interface, un contrat défini par la couche métier qui dit : "J'ai besoin d'effectuer ces actions avec les chambres, mais je me fiche de *comment* vous les faites." C'est une promesse que les couches externes doivent tenir.
 
 ```ts
 // business/gateway/room.gateway.ts
@@ -132,20 +132,20 @@ export interface RoomDTO {
     price: number;
 }
 
-// C'est le contrat.
+// Ceci est le contrat.
 export interface RoomGateway {
     updateRoomPrice(roomNumber: number, newPrice: number): Promise<void>;
     getRooms(): Promise<Array<RoomDTO>>;
 }
 ```
 
-Cette interface vit dans la couche `business`, assurant que la dépendance pointe vers l'intérieur. Les cas d'utilisation dépendront de cette abstraction, pas d'une classe de base de données concrète.
+Cette interface vit dans la couche `business`, garantissant que la dépendance pointe vers l'intérieur. Les cas d'utilisation dépendront de cette abstraction, pas d'une classe de base de données concrète.
 
 ---
 
 ## 3. Le cas d'utilisation : `UpdateRoomPrice`
 
-Le cas d'utilisation est la star du spectacle. Il représente une action unique et spécifique que l'application peut effectuer. Il orchestre les entités et utilise les passerelles pour communiquer avec le monde extérieur.
+Le cas d'utilisation est la star du spectacle. Il représente une action unique et spécifique que l'application peut effectuer. Il orchestre les entités et utilise les gateways pour communiquer avec le monde extérieur.
 
 ```ts
 // business/use-cases/update-room-price.ts
@@ -164,13 +164,13 @@ export type UpdateRoomPrice = (basePrice: number, presenter: Presenter) => Promi
 export const updateRoomPriceFactory = (repository: RoomGateway) => {
     return async (basePrice: number, presenter: Presenter) => {
         if (basePrice < 0) {
-            throw new Error("Amount cannot be negative");
+            throw new Error("Le montant ne peut pas être négatif");
         }
         const roomsDto = await repository.getRooms();
         const rooms = roomsDto.map((r) => new Room(r.floor, r.number, r.price));
 
         for (const room of rooms) {
-            room.setPrice(basePrice); // Utilise la logique métier de l'entité.
+            room.setPrice(basePrice); // Utiliser la logique métier de l'entité.
             await repository.updateRoomPrice(room.number, room.price);
         }
 
@@ -178,19 +178,19 @@ export const updateRoomPriceFactory = (repository: RoomGateway) => {
             (r) => new Room(r.floor, r.number, r.price)
         );
         
-        // Passe les résultats au présentateur.
+        // Transmettre les résultats au presenter.
         presenter.set(updatedRooms);
     };
 };
 ```
 
-Ce code est de la pure logique métier. Il récupère les chambres, boucle dessus, dit à chaque chambre de mettre à jour son prix (en utilisant la méthode `setPrice` dans l'entité), et puis les sauvegarde. Il ne connaît rien aux bases de données, HTTP, ou JSON. Il parle juste à des abstractions (`RoomGateway`, `Presenter`).
+Ce code est de la logique métier pure. Il récupère les chambres, les parcourt, demande à chaque chambre de mettre à jour son prix (en utilisant la méthode `setPrice` de l'entité), puis les sauvegarde. Il ne sait rien des bases de données, de HTTP, ou du JSON. Il ne parle qu'à des abstractions (`RoomGateway`, `Presenter`).
 
 ---
 
-## 4. L'implémentation de la passerelle : `RoomRepository`
+## 4. L'implémentation de la gateway : `RoomRepository`
 
-Maintenant nous bougeons vers les couches externes. Le `RoomRepository` est notre implémentation concrète de l'interface `RoomGateway`. C'est là que vit le vrai code de base de données. Pour cet exemple, j'utilise juste un tableau en mémoire, mais c'est là que votre code `Prisma`, `TypeORM`, ou `node-postgres` irait.
+Nous passons maintenant aux couches externes. Le `RoomRepository` est notre implémentation concrète de l'interface `RoomGateway`. C'est là que vit le code de base de données réel. Pour cet exemple, j'utilise juste un tableau en mémoire, mais c'est là que votre code `Prisma`, `TypeORM`, ou `node-postgres` irait.
 
 ```ts
 // controller/gateway/room.repository.ts
@@ -202,7 +202,7 @@ export class RoomRepository implements RoomGateway {
     async updateRoomPrice(roomNumber: number, newPrice: number): Promise<void> {
         const room = this.rooms.find((room) => room.number === roomNumber);
         if (!room) {
-            throw new Error(`Failed to find room ${roomNumber}`);
+            throw new Error(`Impossible de trouver la chambre ${roomNumber}`);
         }
         room.price = newPrice;
         return Promise.resolve();
@@ -214,13 +214,13 @@ export class RoomRepository implements RoomGateway {
 }
 ```
 
-Cette classe remplit la promesse faite par l'interface `RoomGateway`.
+Cette classe tient la promesse faite par l'interface `RoomGateway`.
 
 ---
 
-## 5. L'implémentation du présentateur : `RoomPresenterJson`
+## 5. L'implémentation du presenter : `RoomPresenterJson`
 
-Le job du présentateur est de prendre les objets d'entité purs du cas d'utilisation et de les traduire dans un format pour le monde extérieur. Ici, nous les formatons comme de simples objets JSON.
+Le travail du presenter est de prendre les objets entités purs du cas d'utilisation et de les traduire dans un format pour le monde extérieur. Ici, nous les formatons en simples objets JSON.
 
 ```ts
 // controller/presenter/room-presenter.json.ts
@@ -245,13 +245,13 @@ export class RoomPresenterJson {
 }
 ```
 
-Cela crée une belle séparation. Le cas d'utilisation ne connaît pas JSON. Le contrôleur ne connaît pas les entités `Room`. Le présentateur est le pont.
+Cela crée une belle séparation. Le cas d'utilisation ne connaît pas le JSON. Le contrôleur ne connaît pas les entités `Room`. Le presenter est le pont.
 
 ---
 
 ## 6. Le contrôleur : `RoomController`
 
-Le contrôleur est le point d'entrée depuis le web. Son seul job est de parser les requêtes entrantes, appeler le bon cas d'utilisation, et renvoyer la réponse formatée. C'est une couche fine et simple.
+Le contrôleur est le point d'entrée depuis le web. Son seul travail est de parser les requêtes entrantes, d'appeler le bon cas d'utilisation, et de retourner la réponse formatée. C'est une couche fine et simple.
 
 ```ts
 // controller/room.controller.ts
@@ -265,24 +265,24 @@ const app = express();
 const container = createContainer();
 
 app.put("/rooms", async (req: Request, res: Response) => {
-    // 1. Créer un nouveau présentateur pour cette requête.
+    // 1. Créer un nouveau presenter pour cette requête.
     const roomPresenterJson = new RoomPresenterJson();
-    // 2. Obtenir le cas d'utilisation depuis notre conteneur et l'exécuter.
+    // 2. Récupérer le cas d'utilisation depuis notre container et l'exécuter.
     await container.UpdateRoomPrice(200, roomPresenterJson);
-    // 3. Envoyer le résultat formaté depuis le présentateur.
+    // 3. Envoyer le résultat formaté depuis le presenter.
     res.send(roomPresenterJson.format());
 });
 
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+app.listen(3000, () => console.log("Serveur démarré sur http://localhost:3000"));
 ```
 
-Regardez comme c'est propre. Le contrôleur orchestre le flux mais contient zéro logique métier.
+Regardez comme c'est propre. Le contrôleur orchestre le flux mais ne contient aucune logique métier.
 
 ---
 
-## 7. Le conteneur de dépendances
+## 7. Le container de dépendances
 
-C'est là que tout s'assemble. Le conteneur est l'endroit unique où nous construisons nos objets et injectons leurs dépendances. C'est l'Inversion de Contrôle en action.
+C'est là que tout se rejoint. Le container est l'unique endroit où nous construisons nos objets et injectons leurs dépendances. C'est l'Inversion de Contrôle en action.
 
 ```ts
 // container/container.ts
@@ -311,9 +311,9 @@ export const createContainer = (): Container => {
 
 ---
 
-## 8. Le test : là où tout paye
+## 8. Le test : là où tout se rentabilise
 
-Et maintenant pour la meilleure partie : regardez comme il est facile de tester notre logique métier centrale.
+Et maintenant, la meilleure partie : regardez comme il est facile de tester notre logique métier centrale.
 
 ```ts
 // tests/update-price.test.ts
@@ -322,16 +322,16 @@ import { describe, test } from "mocha";
 import { createContainer } from "../container/container";
 import { RoomPresenterJson } from "../controller/presenter/room-presenter.json";
 
-describe("Update Room Price", () => {
-    test("Update all room prices based on a base price of 100", async () => {
-        // Étant donné (Given)
+describe("Mise à jour du prix des chambres", () => {
+    test("Met à jour tous les prix des chambres avec un prix de base de 100", async () => {
+        // Étant donné
         const container = createContainer();
         const presenter = new RoomPresenterJson();
 
-        // Quand nous lançons le cas d'utilisation (When)
+        // Quand nous exécutons le cas d'utilisation
         await container.UpdateRoomPrice(100, presenter);
 
-        // Alors nous vérifions la sortie du présentateur (Then)
+        // Alors nous vérifions la sortie du presenter
         const value = presenter.format();
         assert.deepStrictEqual(value, [
             { number: 1, price: 100, floor: 0 }, // 100 * 1
@@ -343,18 +343,16 @@ describe("Update Room Price", () => {
 });
 ```
 
-Ce test est rapide comme l'éclair. Il tourne en mémoire. Il n'a pas besoin de base de données ou de serveur web. Il teste notre processus métier entier de bout en bout, prouvant que notre logique est correcte, tout ça parce que nous avons si soigneusement séparé nos préoccupations. C'est la récompense.
+Ce test est ultra-rapide. Il s'exécute en mémoire. Il n'a besoin ni de base de données ni de serveur web. Il teste notre processus métier de bout en bout, prouvant que notre logique est correcte, tout cela parce que nous avons si soigneusement séparé nos préoccupations. C'est la récompense.
 
 ---
 
-# Conclusion : construisez pour le métier, pas la tech
+# Conclusion : construire pour le métier, pas pour la tech
 
 La leçon derrière la Clean Architecture est simple mais profonde : **mettez votre logique métier en premier.**
 
-Les frameworks changeront. Les bases de données seront remplacées. Les interfaces utilisateurs seront redesignées. Mais vos règles métier centrales sont ce qui fournit une valeur durable. La Clean Architecture n'est pas juste un pattern ; c'est une philosophie qui vous force à protéger cette valeur.
+Les frameworks changeront. Les bases de données seront remplacées. Les interfaces utilisateur seront redessinées. Mais vos règles métier centrales sont ce qui apporte une valeur durable. La Clean Architecture n'est pas qu'un pattern ; c'est une philosophie qui vous force à protéger cette valeur.
 
-Elle demande de la discipline et un peu plus de réflexion au début, mais la récompense est un système qui est testable, maintenable, flexible et compréhensible, un qui peut évoluer *avec* le business, pas le retenir.
+Elle demande de la discipline et un peu plus de réflexion en amont, mais la récompense est un système testable, maintenable, flexible et compréhensible — un système qui peut évoluer *avec* le métier, pas le freiner.
 
-Maintenant allez construire quelque chose de grand. 🚀
-
-
+Maintenant, allez construire quelque chose de génial. 🚀

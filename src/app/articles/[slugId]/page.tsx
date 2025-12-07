@@ -47,7 +47,6 @@ export default async function ArticlePage(props: ArticlePageProps) {
             articleId={slugId}
             articles={articles}
             availableLanguages={Object.keys(article.content) as ArticleLanguage[]}
-            category={article.metadata.category}
             contentInMarkdown={article.content.en ?? ''}
             currentLanguage={'en'}
             dateModified={article.metadata.dateModified}

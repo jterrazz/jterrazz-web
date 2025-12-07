@@ -1,46 +1,46 @@
 ![](assets/thumbnail.jpg)
 
-# Remettons tout en question de manière ludique
+# Remettre en question, c'est jouer
 
-Nous vivons dans un monde où les gros titres sont conçus pour déclencher des réactions plutôt que pour encourager la réflexion. Le sensationnalisme fait vendre, et la nuance se perd souvent dans le bruit. Cette dynamique nous entraîne à être réactifs, partageant des articles basés sur les seuls titres sans s'engager avec le contenu.
+Nous vivons dans un monde où les titres sont conçus pour déclencher des réactions plutôt que pour susciter la réflexion. Le sensationnalisme fait vendre, et la nuance se perd souvent dans le bruit ambiant. Cette dynamique nous conditionne à réagir impulsivement, à partager des articles sur la seule base de leurs titres sans jamais les lire.
 
-Ce projet, **n00**, est né d'un désir de renverser ce scénario. Au lieu de construire un autre agrégateur de news, le but était de construire un jeu—un qui utilise les mécaniques addictives des applications mobiles pour enseigner l'éducation aux médias et l'esprit critique.
+Ce projet, **n00**, est né de l'envie d'inverser cette tendance. Plutôt que de créer un énième agrégateur d'actualités, l'objectif était de concevoir un jeu — un jeu qui utilise les mécaniques addictives des applications mobiles pour enseigner l'esprit critique et la littératie médiatique.
 
-## Ludifier la Vérité
+## Transformer la vérité en jeu
 
-Le concept central est simple: peut-on rendre le repérage des biais amusant?
+Le concept de base est simple : peut-on rendre ludique la détection des biais ?
 
-Une information est rarement noire ou blanche. Le même événement peut être cadré comme une "libération" ou une "invasion" selon la source. L'application met les joueurs au défi d'identifier ces changements subtils de perspective, les récompensant pour avoir repéré les biais et compris la nuance. Cela transforme la corvée de la "vérification des faits" en une boucle de jeu dopaminergique.
+Une actualité est rarement toute noire ou toute blanche. Un même événement peut être présenté comme une "libération" ou une "invasion" selon la source. L'application met les joueurs au défi d'identifier ces subtils glissements de perspective, en les récompensant lorsqu'ils repèrent un biais ou comprennent une nuance. Elle transforme la corvée du "fact-checking" en une boucle de jeu dopaminergique.
 
-## L'IA comme Moteur
+## L'IA comme moteur
 
-Ce projet repose lourdement sur l'Intelligence Artificielle, pas juste comme une fonctionnalité, mais comme l'infrastructure centrale qui le rend scalable.
+Ce projet repose massivement sur l'Intelligence Artificielle — non pas comme simple fonctionnalité, mais comme infrastructure centrale qui le rend scalable.
 
-L'IA agit comme une salle de rédaction automatisée, permettant à la plateforme de:
-- **Générer des scénarios infinis:** Créer du contenu de quiz unique basé sur les tendances en temps réel assure que le jeu ne semble jamais périmé.
-- **Analyser de multiples perspectives:** Le système scanne des articles de divers points de vue pour souligner comment différents médias tournent les mêmes faits.
-- **Synthétiser la clarté:** Elle distille des histoires géopolitiques complexes en faits vérifiables et digestes.
+L'IA agit comme une rédaction automatisée, permettant à la plateforme de :
+- **Générer des scénarios infinis :** La création de contenus de quiz uniques basés sur les tendances en temps réel garantit que le jeu ne devient jamais répétitif.
+- **Analyser de multiples perspectives :** Le système parcourt des articles de différents points de vue pour mettre en lumière comment différents médias orientent les mêmes faits.
+- **Synthétiser avec clarté :** Il distille des histoires géopolitiques complexes en faits vérifiables et digestes.
 
 Cette architecture permet à un petit projet de fonctionner avec le volume de contenu d'une organisation bien plus grande.
 
 ![](assets/seed.jpg)
 
-## L'Architecture de la "Vérité"
+## L'architecture de la "vérité"
 
-Construire la technologie est une chose; établir la "vérité" en est une autre. Les modèles d'IA peuvent halluciner ou hériter de biais.
+Construire la technologie est une chose ; établir la "vérité" en est une autre. Les modèles d'IA peuvent halluciner ou hériter de biais.
 
-Pour adresser cela, l'architecture de la plateforme est conçue pour intégrer une couche communautaire où les utilisateurs peuvent signaler des incohérences et voter sur la crédibilité. La vision à long terme est un "modèle Wikipédia" pour la validation des nouvelles—un effort collectif pour maintenir l'exactitude plutôt qu'une décision de boîte noire.
+Pour y remédier, l'architecture de la plateforme est conçue pour intégrer une couche communautaire où les utilisateurs peuvent signaler des incohérences et voter sur la crédibilité. La vision à long terme est un "modèle Wikipédia" pour la validation de l'information — un effort collectif pour maintenir l'exactitude plutôt qu'une boîte noire qui décide seule.
 
-Sous le capot, l'appli est construite avec **React Native et Expo**, assurant une expérience fluide sur iOS et Android. Elle utilise l'**Architecture Hexagonale** pour garder la logique centrale du jeu—scores, règles, et validation de la vérité—complètement isolée des services externes. Cette séparation permet de changer de fournisseur d'IA ou de sources de données sans réécrire l'application, gardant le système robuste et adaptable.
+Sous le capot, l'application est construite avec **React Native et Expo**, garantissant une expérience fluide sur iOS et Android. Elle utilise l'**Architecture Hexagonale** pour garder la logique centrale du jeu — scoring, règles et validation de la vérité — complètement isolée des services externes. Cette séparation permet de changer de fournisseur d'IA ou de sources de données sans réécrire l'application, rendant le système robuste et adaptable.
 
-## Une Nouvelle Interface pour l'Information
+## Une nouvelle interface pour l'information
 
 Ce projet explore un changement plus large dans notre façon de consommer le web. L'IA devient une nouvelle interface pour l'information.
 
-Au lieu de fouiller dans des onglets et de recouper les sources manuellement, nous pouvons maintenant utiliser l'IA pour pré-traiter et empaqueter l'information dans le format qui convient le mieux à l'utilisateur. Cela représente un mouvement vers l'apprentissage personnalisé, où les nouvelles s'adaptent au niveau de curiosité du lecteur.
+Au lieu de fouiller dans des onglets et de recouper manuellement les sources, nous pouvons désormais utiliser l'IA pour pré-traiter et packager l'information dans le format qui convient le mieux à l'utilisateur. Cela représente une évolution vers l'apprentissage personnalisé, où l'actualité s'adapte au niveau de curiosité du lecteur.
 
-## Rejoignez l'Expérience
+## Rejoignez l'expérience
 
-L'application est une invitation à construire une communauté plus intelligente et plus curieuse. C'est un gymnase numérique pour l'esprit critique.
+L'application est une invitation à construire une communauté plus intelligente et plus curieuse. C'est une salle de sport numérique pour l'esprit critique.
 
-[Téléchargez l'application ici](https://jterrazz.com/link/applications/n00)
+[Télécharger l'application ici](https://jterrazz.com/link/applications/n00)

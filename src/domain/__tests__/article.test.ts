@@ -2,41 +2,45 @@ import { describe, expect, it } from 'vitest';
 
 import { __test__, ArticleCategory, createArticle, type RawArticleInput } from '../article';
 
-const { toSentenceCase, sanitizeEmDashes, sanitizeTitle, sanitizeContent } = __test__;
+const { capitalizeFirst, sanitizeEmDashes, sanitizeTitle, sanitizeContent } = __test__;
 
-describe('toSentenceCase', () => {
-    it('should convert title case to sentence case', () => {
-        expect(toSentenceCase('A Super Title')).toBe('A super title');
+describe('capitalizeFirst', () => {
+    it('should capitalize first letter and preserve rest', () => {
+        expect(capitalizeFirst('a guide to the AI revolution')).toBe(
+            'A guide to the AI revolution',
+        );
     });
 
-    it('should preserve capitalization after colon as new sentence', () => {
-        expect(toSentenceCase('A Super: Title Of Something')).toBe('A super: Title of something');
+    it('should preserve capitalization after colon', () => {
+        expect(capitalizeFirst('cursor: The Compression Of Mechanical Work')).toBe(
+            'Cursor: The Compression Of Mechanical Work',
+        );
     });
 
     it('should handle multiple colons', () => {
-        expect(toSentenceCase('First Part: Second Part: Third Part')).toBe(
-            'First part: Second part: Third part',
+        expect(capitalizeFirst('first Part: Second Part: Third Part')).toBe(
+            'First Part: Second Part: Third Part',
         );
     });
 
     it('should handle single word', () => {
-        expect(toSentenceCase('HELLO')).toBe('Hello');
+        expect(capitalizeFirst('hello')).toBe('Hello');
     });
 
     it('should handle empty string', () => {
-        expect(toSentenceCase('')).toBe('');
+        expect(capitalizeFirst('')).toBe('');
     });
 
-    it('should handle already lowercase text', () => {
-        expect(toSentenceCase('already lowercase')).toBe('Already lowercase');
+    it('should handle already capitalized text', () => {
+        expect(capitalizeFirst('Already Capitalized')).toBe('Already Capitalized');
     });
 
-    it('should preserve spacing around colons', () => {
-        expect(toSentenceCase('Part One: Part Two')).toBe('Part one: Part two');
+    it('should preserve acronyms like AI', () => {
+        expect(capitalizeFirst('the AI revolution')).toBe('The AI revolution');
     });
 
     it('should handle colon at end', () => {
-        expect(toSentenceCase('A Title:')).toBe('A title:');
+        expect(capitalizeFirst('a title:')).toBe('A title:');
     });
 });
 
@@ -72,13 +76,13 @@ describe('sanitizeEmDashes', () => {
 });
 
 describe('sanitizeTitle', () => {
-    it('should apply both sentence case and em dash replacement', () => {
-        expect(sanitizeTitle('A Super—Title')).toBe('A super, title');
+    it('should apply capitalize first and em dash replacement', () => {
+        expect(sanitizeTitle('a Super—Title')).toBe('A Super, Title');
     });
 
     it('should handle title with colon and em dash', () => {
-        expect(sanitizeTitle('Part One—Intro: Part Two—Details')).toBe(
-            'Part one, intro: Part two, details',
+        expect(sanitizeTitle('part One—Intro: part Two—Details')).toBe(
+            'Part One, Intro: Part Two, Details',
         );
     });
 
@@ -86,10 +90,8 @@ describe('sanitizeTitle', () => {
         expect(sanitizeTitle('')).toBe('');
     });
 
-    it('should handle real-world example', () => {
-        expect(sanitizeTitle('Cursor: The Compression Of Mechanical Work')).toBe(
-            'Cursor: The compression of mechanical work',
-        );
+    it('should preserve AI and other acronyms', () => {
+        expect(sanitizeTitle('a guide to the AI revolution')).toBe('A guide to the AI revolution');
     });
 });
 
@@ -133,10 +135,10 @@ describe('createArticle', () => {
         published: true,
     };
 
-    it('should sanitize titles with sentence case and em dash replacement', () => {
+    it('should sanitize titles with capitalize first and em dash replacement', () => {
         const article = createArticle(baseInput);
-        expect(article.metadata.title.en).toBe('A super title, here');
-        expect(article.metadata.title.fr).toBe('Un super titre, ici');
+        expect(article.metadata.title.en).toBe('A Super Title, Here');
+        expect(article.metadata.title.fr).toBe('Un Super Titre, Ici');
     });
 
     it('should sanitize descriptions with em dash replacement only', () => {
@@ -157,5 +159,21 @@ describe('createArticle', () => {
         expect(article.publicIndex).toBe(1);
         expect(article.published).toBe(true);
         expect(article.metadata.category).toBe(ArticleCategory.Insight);
+    });
+
+    it('should preserve AI and other acronyms in titles', () => {
+        const input: RawArticleInput = {
+            ...baseInput,
+            metadata: {
+                ...baseInput.metadata,
+                title: {
+                    en: 'A guide to the AI revolution',
+                    fr: 'Guide de la révolution IA',
+                },
+            },
+        };
+        const article = createArticle(input);
+        expect(article.metadata.title.en).toBe('A guide to the AI revolution');
+        expect(article.metadata.title.fr).toBe('Guide de la révolution IA');
     });
 });

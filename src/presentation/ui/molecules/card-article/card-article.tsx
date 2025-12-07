@@ -36,48 +36,18 @@ export const CardArticle = ({
     if (isCompact) {
         return (
             <Link className={cn('block group', className)} href={`/articles/${slug}`}>
-                <article className="flex flex-col sm:flex-row gap-4 sm:gap-6 py-6 border-b border-zinc-100 dark:border-zinc-800/50 last:border-0 items-start">
-                    {/* Image Container */}
-                    <div className="relative w-full sm:w-36 lg:w-40 aspect-[4/3] shrink-0 overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800">
-                        <Image
-                            alt={title}
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                            fill
-                            sizes="(max-width: 640px) 100vw, 160px"
-                            src={imageUrl}
-                        />
-                        <div className="absolute inset-0 ring-1 ring-inset ring-black/5 dark:ring-white/5 rounded-xl" />
-                    </div>
-
+                <article className="flex items-center gap-4 py-3 border-b border-zinc-100 dark:border-zinc-800/50 last:border-0">
                     {/* Content */}
-                    <div className="flex flex-col min-w-0 flex-1 gap-2">
-                        <div className="flex items-center gap-2 text-[10px] font-medium tracking-wider text-zinc-500 dark:text-zinc-400 uppercase">
-                            {category && <span>{category}</span>}
-                            {category && datePublished && <span>•</span>}
-                            {datePublished && (
-                                <time dateTime={datePublished}>
-                                    {new Date(datePublished).toLocaleDateString(undefined, {
-                                        day: 'numeric',
-                                        month: 'short',
-                                        year: 'numeric',
-                                    })}
-                                </time>
-                            )}
-                        </div>
-
-                        <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+                    <div className="flex-1 min-w-0">
+                        <h3 className="text-[15px] font-medium text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors truncate">
                             {title}
                         </h3>
-
-                        <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
-                            {description}
-                        </p>
                     </div>
 
-                    {/* Arrow (Desktop only) */}
-                    <div className="hidden sm:block mt-1 text-zinc-300 dark:text-zinc-600 group-hover:text-zinc-900 dark:group-hover:text-zinc-200 group-hover:translate-x-1 transition-all duration-300">
+                    {/* Arrow */}
+                    <div className="text-zinc-300 dark:text-zinc-600 group-hover:text-zinc-500 dark:group-hover:text-zinc-400 group-hover:translate-x-0.5 transition-all shrink-0">
                         <svg
-                            className="w-5 h-5"
+                            className="w-4 h-4"
                             fill="none"
                             stroke="currentColor"
                             strokeWidth="1.5"

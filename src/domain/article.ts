@@ -47,7 +47,7 @@ function sanitizeEmDashes(text: string): string {
     return text.replace(/\s*[—–―‒]\s*/g, ', ');
 }
 
-function toSentenceCase(title: string): string {
+function capitalizeFirst(title: string): string {
     if (!title) return title;
 
     const segments = title.split(':');
@@ -58,23 +58,24 @@ function toSentenceCase(title: string): string {
             if (!trimmed) return segment;
 
             const leadingSpace = index > 0 && segment.startsWith(' ') ? ' ' : '';
-            const sentenceCased = trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
+            // Only capitalize first letter, preserve rest as-is (keeps "AI", proper nouns, etc.)
+            const capitalized = trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
 
-            return leadingSpace + sentenceCased;
+            return leadingSpace + capitalized;
         })
         .join(':');
 }
 
 function sanitizeTitle(title: string): string {
     if (!title) return title;
-    return sanitizeEmDashes(toSentenceCase(title));
+    return sanitizeEmDashes(capitalizeFirst(title));
 }
 
 function sanitizeMarkdownHeadings(content: string): string {
     if (!content) return content;
     // Match markdown headings: # at start of line, followed by space and title text
     return content.replace(/^(#{1,6})\s+(.+)$/gm, (_match, hashes, title) => {
-        return `${hashes} ${toSentenceCase(title)}`;
+        return `${hashes} ${capitalizeFirst(title)}`;
     });
 }
 
@@ -130,9 +131,9 @@ export function createArticle(raw: RawArticleInput): Article {
 
 // Exported for testing only
 export const __test__ = {
+    capitalizeFirst,
     sanitizeContent,
     sanitizeEmDashes,
     sanitizeMarkdownHeadings,
     sanitizeTitle,
-    toSentenceCase,
 };
