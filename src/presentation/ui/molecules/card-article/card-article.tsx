@@ -92,7 +92,7 @@ export const CardArticle = ({
                                 {category && datePublished && <span>•</span>}
                                 {datePublished && (
                                     <time dateTime={datePublished}>
-                                        {new Date(datePublished).toLocaleDateString(undefined, {
+                                        {new Date(datePublished).toLocaleDateString('en-US', {
                                             day: 'numeric',
                                             month: 'long',
                                             year: 'numeric',
@@ -159,7 +159,7 @@ export const CardArticle = ({
                             {category && datePublished && <span>•</span>}
                             {datePublished && (
                                 <time dateTime={datePublished}>
-                                    {new Date(datePublished).toLocaleDateString(undefined, {
+                                    {new Date(datePublished).toLocaleDateString('en-US', {
                                         day: 'numeric',
                                         month: 'long',
                                         year: 'numeric',
