@@ -190,12 +190,22 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages }) =>
                 {isMenuOpen && (
                     <motion.div
                         animate={{ opacity: 1, y: 0 }}
-                        className="fixed inset-0 z-[40] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md flex flex-col pt-32 px-8 md:hidden pointer-events-auto"
+                        className="fixed inset-0 z-[40] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md flex flex-col pt-20 px-8 md:hidden pointer-events-auto"
                         exit={{ opacity: 0, y: 20 }}
                         initial={{ opacity: 0, y: 20 }}
                         transition={{ duration: 0.2 }}
                     >
-                        <div className="flex flex-col gap-6">
+                        {/* Close Button */}
+                        <button
+                            aria-label="Close menu"
+                            className="absolute top-6 right-6 p-2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                            onClick={closeMenu}
+                            type="button"
+                        >
+                            <X size={28} />
+                        </button>
+
+                        <div className="flex flex-col gap-6 mt-8">
                             {pages.map((page, index) => (
                                 <motion.div
                                     animate={{ opacity: 1, x: 0 }}

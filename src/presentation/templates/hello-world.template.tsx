@@ -136,6 +136,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                         {topArticles.slice(0, 6).map((article, index, arr) => (
                             <CardArticle
+                                className={index >= 3 ? 'hidden sm:block' : ''}
                                 key={article.title}
                                 {...article}
                                 position={index}

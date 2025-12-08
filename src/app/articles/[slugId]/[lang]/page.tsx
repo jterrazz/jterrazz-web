@@ -42,7 +42,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
     return (
         <ArticleTemplate
             articleId={slugId}
-            articles={articles.filter((a) => a.publicIndex !== article.publicIndex)}
+            articles={articles}
             availableLanguages={Object.keys(article.content) as ArticleLanguage[]}
             contentInMarkdown={article.content[lang] ?? ''}
             currentLanguage={lang}
