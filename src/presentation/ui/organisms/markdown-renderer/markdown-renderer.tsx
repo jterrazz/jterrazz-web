@@ -6,10 +6,23 @@ import Image from 'next/image';
 import { Highlight, themes } from 'prism-react-renderer';
 import Markdown from 'react-markdown';
 
+// Domain
+import { slugify } from '../../../../domain/utils/slugify';
+
 // Utils
 import { cn } from '../../../utils';
 
 import { useTheme } from '../../../hooks/use-theme';
+
+// Helper to extract text content from React children
+const getTextContent = (children: React.ReactNode): string => {
+    if (typeof children === 'string') return children;
+    if (Array.isArray(children)) return children.map(getTextContent).join('');
+    if (React.isValidElement(children) && children.props?.children) {
+        return getTextContent(children.props.children);
+    }
+    return '';
+};
 
 type MarkdownRendererProps = {
     className?: string;
@@ -116,30 +129,58 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                         );
                     },
                     em: ({ node, ...props }) => <em className="italic" {...props} />,
-                    h1: ({ node, ...props }) => (
-                        <h1
-                            className="text-[26px] md:text-[32px] lg:text-[36px] font-sans font-bold tracking-[-0.02em] leading-[1.2] mb-5 md:mb-6 mt-0 text-zinc-900 dark:text-zinc-50"
-                            {...props}
-                        />
-                    ),
-                    h2: ({ node, ...props }) => (
-                        <h2
-                            className="text-[21px] md:text-[24px] lg:text-[26px] font-sans font-bold tracking-[-0.015em] leading-[1.25] mb-4 md:mb-5 mt-10 md:mt-14 first:mt-0 text-zinc-900 dark:text-zinc-50"
-                            {...props}
-                        />
-                    ),
-                    h3: ({ node, ...props }) => (
-                        <h3
-                            className="text-[18px] md:text-[20px] lg:text-[22px] font-sans font-semibold tracking-[-0.01em] leading-[1.3] mb-3 md:mb-4 mt-8 md:mt-11 text-zinc-900 dark:text-zinc-50"
-                            {...props}
-                        />
-                    ),
-                    h4: ({ node, ...props }) => (
-                        <h4
-                            className="text-[16px] md:text-[17px] font-sans font-semibold leading-[1.4] mb-2 md:mb-3 mt-6 md:mt-9 text-zinc-900 dark:text-zinc-50"
-                            {...props}
-                        />
-                    ),
+                    h1: ({ node, children, ...props }) => {
+                        const text = getTextContent(children);
+                        const id = slugify(text);
+                        return (
+                            <h1
+                                className="text-[26px] md:text-[32px] lg:text-[36px] font-sans font-bold tracking-[-0.02em] leading-[1.2] mb-5 md:mb-6 mt-0 text-zinc-900 dark:text-zinc-50"
+                                id={id}
+                                {...props}
+                            >
+                                {children}
+                            </h1>
+                        );
+                    },
+                    h2: ({ node, children, ...props }) => {
+                        const text = getTextContent(children);
+                        const id = slugify(text);
+                        return (
+                            <h2
+                                className="text-[21px] md:text-[24px] lg:text-[26px] font-sans font-bold tracking-[-0.015em] leading-[1.25] mb-4 md:mb-5 mt-10 md:mt-14 first:mt-0 text-zinc-900 dark:text-zinc-50"
+                                id={id}
+                                {...props}
+                            >
+                                {children}
+                            </h2>
+                        );
+                    },
+                    h3: ({ node, children, ...props }) => {
+                        const text = getTextContent(children);
+                        const id = slugify(text);
+                        return (
+                            <h3
+                                className="text-[18px] md:text-[20px] lg:text-[22px] font-sans font-semibold tracking-[-0.01em] leading-[1.3] mb-3 md:mb-4 mt-8 md:mt-11 text-zinc-900 dark:text-zinc-50"
+                                id={id}
+                                {...props}
+                            >
+                                {children}
+                            </h3>
+                        );
+                    },
+                    h4: ({ node, children, ...props }) => {
+                        const text = getTextContent(children);
+                        const id = slugify(text);
+                        return (
+                            <h4
+                                className="text-[16px] md:text-[17px] font-sans font-semibold leading-[1.4] mb-2 md:mb-3 mt-6 md:mt-9 text-zinc-900 dark:text-zinc-50"
+                                id={id}
+                                {...props}
+                            >
+                                {children}
+                            </h4>
+                        );
+                    },
                     hr: ({ node, ...props }) => (
                         <hr
                             className="my-9 md:my-12 border-none text-center before:content-['⁕⁕⁕'] before:text-zinc-300 dark:before:text-zinc-600 before:tracking-[0.4em] before:text-[13px]"
