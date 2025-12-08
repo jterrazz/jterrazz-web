@@ -33,7 +33,7 @@ const experiments: Experiment[] = [
         slug: 'capitaine',
         status: ExperimentStatus.Building,
         storeLinks: {
-            web: 'https://capitaine.io',
+            web: 'https://capitaine.app',
         },
         year: 2026,
     },
