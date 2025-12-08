@@ -476,8 +476,11 @@ const processMarkdownContent = (content: string, filename: string): string => {
     });
 };
 
-// Clean AI-generated artifacts from text (before domain sanitization)
-const cleanAiText = (text: string): string => parseText(text);
+// Sanitize em dashes to ", " (must happen before parseText which converts them to hyphens)
+const sanitizeEmDashes = (text: string): string => text.replace(/\s*[—–―‒]\s*/g, ', ');
+
+// Clean AI-generated artifacts from text (em dash sanitization first, then AI cleaning)
+const cleanAiText = (text: string): string => parseText(sanitizeEmDashes(text));
 
 const readMarkdownFileSync = (
     articlesDirectory: string,
