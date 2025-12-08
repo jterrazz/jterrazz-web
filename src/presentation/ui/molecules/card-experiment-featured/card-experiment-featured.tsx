@@ -37,60 +37,45 @@ export const CardExperimentFeatured: React.FC<CardExperimentFeaturedProps> = ({
     return (
         <Link
             className={cn(
-                'group flex flex-col h-full p-6 sm:p-8 rounded-xl transition-all duration-300',
-                'bg-white dark:bg-zinc-950',
+                'group flex flex-col h-full p-5 md:p-6 rounded-2xl transition-colors',
                 'border border-zinc-200 dark:border-zinc-800',
-                'hover:shadow-xl hover:shadow-zinc-200/40 dark:hover:shadow-black/40 hover:-translate-y-1',
                 'hover:border-zinc-300 dark:hover:border-zinc-700',
-                'relative overflow-hidden',
+                'bg-white dark:bg-zinc-950',
                 className,
             )}
             href={`/experiments/${experiment.slug}`}
         >
-            {/* Subtle gradient on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-transparent to-transparent dark:from-zinc-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-            <div className="relative flex flex-col h-full z-10">
-                {/* Header: Title & Status */}
-                <div className="flex items-start justify-between gap-4 mb-4">
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors">
-                        {experiment.name}
-                    </h3>
-                    <BadgeExperimentStatus className="shrink-0" status={experiment.status} />
+            {/* Header: Icon, Title & Status */}
+            <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-zinc-900 dark:bg-zinc-100 flex items-center justify-center shrink-0">
+                    <span className="text-lg font-bold text-white dark:text-zinc-900 select-none">
+                        {experiment.name.charAt(0)}
+                    </span>
                 </div>
-
-                {/* Content */}
-                <div className="flex-1 mb-8">
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed line-clamp-3 font-normal">
-                        {experiment.description}
-                    </p>
-                </div>
-
-                {/* Footer: Meta info */}
-                <div className="flex items-center justify-between pt-6 border-t border-zinc-100/80 dark:border-zinc-800/60 mt-auto">
-                    <div className="flex items-center gap-3 text-xs text-zinc-400 dark:text-zinc-500 font-mono uppercase tracking-wider">
+                <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                        <h3 className="text-base md:text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors truncate">
+                            {experiment.name}
+                        </h3>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
                         <span>{experiment.year}</span>
-                        <span className="w-0.5 h-0.5 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+                        <span>•</span>
                         <span>{experiment.context}</span>
                     </div>
-
-                    <div
-                        className={cn(
-                            'flex items-center gap-2 text-xs font-medium transition-all duration-300',
-                            'text-zinc-400 dark:text-zinc-500',
-                            'group-hover:text-zinc-900 dark:group-hover:text-zinc-100 group-hover:translate-x-1',
-                        )}
-                    >
-                        {experiment.url ? (
-                            <>
-                                <span>View Project</span>
-                                <ArrowRight size={14} />
-                            </>
-                        ) : (
-                            <span>Read More</span>
-                        )}
-                    </div>
                 </div>
+                <BadgeExperimentStatus className="shrink-0" status={experiment.status} />
+            </div>
+
+            {/* Description */}
+            <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-2 mb-4 flex-1">
+                {experiment.description}
+            </p>
+
+            {/* CTA Link */}
+            <div className="mt-auto flex items-center gap-2 text-xs font-medium text-zinc-900 dark:text-zinc-200 group-hover:translate-x-1 transition-transform duration-300">
+                {experiment.url ? 'View project' : 'Read more'}
+                <ArrowRight size={14} />
             </div>
         </Link>
     );

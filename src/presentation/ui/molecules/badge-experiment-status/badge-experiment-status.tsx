@@ -31,16 +31,12 @@ export const BadgeExperimentStatus: React.FC<BadgeExperimentStatusProps> = ({
     return (
         <div
             className={cn(
-                'flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800 shadow-sm',
+                'flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm text-xs font-medium text-zinc-900 dark:text-zinc-100 shadow-sm',
                 className,
             )}
         >
-            <div
-                className={cn('w-1.5 h-1.5 rounded-full animate-pulse', getStatusDotColor(status))}
-            />
-            <span className="text-[10px] font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide">
-                {status}
-            </span>
+            <div className={cn('w-1.5 h-1.5 rounded-full', getStatusDotColor(status))} />
+            <span>{status}</span>
         </div>
     );
 };
