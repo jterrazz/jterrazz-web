@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,12 +9,14 @@ import Link from 'next/link';
 import { cn } from '../../../utils';
 
 interface CardArticleProps {
+    articleCount?: number;
     category?: string;
     className?: string;
     datePublished?: string;
     description: string;
     imageUrl: string;
     position: number;
+    seriesName?: string;
     slug: string;
     title: string;
     total: number;
@@ -21,17 +24,20 @@ interface CardArticleProps {
 }
 
 export const CardArticle = ({
+    articleCount,
     category,
     className,
     datePublished,
     description,
     imageUrl,
+    seriesName,
     slug,
     title,
     variant = 'vertical',
 }: CardArticleProps) => {
     const isHorizontal = variant === 'horizontal';
     const isCompact = variant === 'compact';
+    const isSeries = !!seriesName;
 
     if (isCompact) {
         return (
@@ -146,6 +152,14 @@ export const CardArticle = ({
                         src={imageUrl}
                     />
                     <div className="absolute inset-0 ring-1 ring-inset ring-black/5 dark:ring-white/5 rounded-2xl" />
+
+                    {/* Series Badge */}
+                    {isSeries && (
+                        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm text-xs font-medium text-zinc-900 dark:text-zinc-100 shadow-sm">
+                            <BookOpen size={12} />
+                            <span>{articleCount} parts</span>
+                        </div>
+                    )}
                 </div>
 
                 {/* Content */}
@@ -176,9 +190,9 @@ export const CardArticle = ({
                         {description}
                     </p>
 
-                    {/* Read More Link */}
+                    {/* CTA Link */}
                     <div className="mt-auto flex items-center gap-2 text-xs font-medium text-zinc-900 dark:text-zinc-200 group-hover:translate-x-1 transition-transform duration-300">
-                        Read article
+                        {isSeries ? 'Start series' : 'Read article'}
                         <svg
                             aria-hidden="true"
                             className="w-3.5 h-3.5"

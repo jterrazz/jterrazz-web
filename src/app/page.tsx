@@ -57,7 +57,69 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
     const userExperiences = userRepository.getExperiences();
-    const topArticles = articlesRepository.getAll();
+    const allArticles = articlesRepository.getAll();
+
+    // Group articles: series become single items, standalone articles remain individual
+    const seriesMap = new Map<string, typeof allArticles>();
+    const standaloneArticles: typeof allArticles = [];
+
+    for (const article of allArticles) {
+        if (article.metadata.series) {
+            const existing = seriesMap.get(article.metadata.series) || [];
+            existing.push(article);
+            seriesMap.set(article.metadata.series, existing);
+        } else {
+            standaloneArticles.push(article);
+        }
+    }
+
+    // Build the final list with dates for sorting
+    const topArticlesWithDates: Array<{
+        articleCount?: number;
+        description: string;
+        imageUrl: string;
+        latestDate: Date;
+        seriesName?: string;
+        slug: string;
+        title: string;
+    }> = [];
+
+    // Add series as single items (use latest article date for sorting, first article for link)
+    for (const [seriesName, articles] of seriesMap) {
+        const sortedByDateAsc = articles.sort(
+            (a, b) =>
+                new Date(a.metadata.datePublished).getTime() -
+                new Date(b.metadata.datePublished).getTime(),
+        );
+        const firstArticle = sortedByDateAsc[0];
+        const latestArticle = sortedByDateAsc[sortedByDateAsc.length - 1];
+
+        topArticlesWithDates.push({
+            articleCount: articles.length,
+            description: `${articles.length}-part series exploring ${seriesName.toLowerCase()}.`,
+            imageUrl: firstArticle.imageUrl ?? '',
+            latestDate: new Date(latestArticle.metadata.dateModified),
+            seriesName,
+            slug: buildArticleSlug(firstArticle.publicIndex, firstArticle.metadata.title.en),
+            title: seriesName,
+        });
+    }
+
+    // Add standalone articles
+    for (const article of standaloneArticles) {
+        topArticlesWithDates.push({
+            description: article.metadata.description.en,
+            imageUrl: article.imageUrl ?? '',
+            latestDate: new Date(article.metadata.dateModified),
+            slug: buildArticleSlug(article.publicIndex, article.metadata.title.en),
+            title: article.metadata.title.en,
+        });
+    }
+
+    // Sort by latest date (newest first) and remove the date field
+    const topArticles = topArticlesWithDates
+        .sort((a, b) => b.latestDate.getTime() - a.latestDate.getTime())
+        .map(({ latestDate, ...rest }) => rest);
 
     // Convert URL instances to plain strings for client components
     const latestExperiments = experimentsRepository
@@ -125,12 +187,7 @@ export default function HomePage() {
                 description={description}
                 experiences={userExperiences}
                 latestExperiments={latestExperiments}
-                topArticles={topArticles.map((article) => ({
-                    description: article.metadata.description.en,
-                    imageUrl: article.imageUrl ?? '',
-                    slug: buildArticleSlug(article.publicIndex, article.metadata.title.en),
-                    title: article.metadata.title.en,
-                }))}
+                topArticles={topArticles}
             />
         </>
     );
