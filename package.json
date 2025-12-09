@@ -14,7 +14,8 @@
     "test": "vitest",
     "lint": "ts-check",
     "lint:fix": "ts-fix",
-    "clean": "rm -rf .next && rm -rf node_modules"
+    "clean": "rm -rf .next && rm -rf node_modules",
+    "sync": "rm -rf content/* && cp -r /Users/jterrazz/Documents/Studio/Articles/__LIBRARY__/Publications/@jterrazz/* content/"
   },
   "dependencies": {
     "@jterrazz/intelligence": "^3.0.0",
