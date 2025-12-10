@@ -477,7 +477,8 @@ const processMarkdownContent = (content: string, filename: string): string => {
 };
 
 // Clean AI-generated artifacts from text (before domain sanitization)
-const cleanAiText = (text: string): string => parseText(text);
+// collapseSpaces: false preserves indentation in code blocks
+const cleanAiText = (text: string): string => parseText(text, { collapseSpaces: false });
 
 const readMarkdownFileSync = (
     articlesDirectory: string,
