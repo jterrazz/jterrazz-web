@@ -40,7 +40,8 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     // Enable static rendering
     setRequestLocale(locale);
 
-    const t = await getTranslations({ locale, namespace: 'navbar' });
+    const tNavbar = await getTranslations({ locale, namespace: 'navbar' });
+    const tFooter = await getTranslations({ locale, namespace: 'footer' });
     const routes = createRouteBuilder(locale);
 
     // Convert `URL` instances to plain strings to safely pass to the client navigation bar.
@@ -57,28 +58,35 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     const pages = [
         {
             href: routes.home(),
-            name: t('hello'),
+            name: tNavbar('hello'),
         },
         {
             href: routes.experiments(),
-            name: t('experiments'),
+            name: tNavbar('experiments'),
         },
         {
             href: routes.articles(),
-            name: t('articles'),
+            name: tNavbar('articles'),
         },
         {
             href: routes.photographs(),
-            name: t('photographs'),
+            name: tNavbar('photographs'),
         },
     ];
 
     const navbarTranslations = {
         appStoreLink: ExternalLinks.n00AppStore,
-        downloadApp: t('downloadApp'),
-        getApp: t('getApp'),
+        downloadApp: tNavbar('downloadApp'),
+        getApp: tNavbar('getApp'),
         homeHref: routes.home(),
-        opensInNewTab: t('opensInNewTab'),
+        opensInNewTab: tNavbar('opensInNewTab'),
+    };
+
+    const footerTranslations = {
+        allRightsReserved: tFooter('allRightsReserved'),
+        opensInNewTab: tFooter('opensInNewTab'),
+        status: tFooter('status'),
+        tagline: tFooter('tagline'),
     };
 
     return (
@@ -87,7 +95,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
                 <Navbar contacts={contacts} pages={pages} translations={navbarTranslations} />
             </div>
             <main className="flex-1 flex flex-col overflow-x-hidden w-full">{children}</main>
-            <SiteFooter />
+            <SiteFooter translations={footerTranslations} />
         </LocaleProvider>
     );
 }

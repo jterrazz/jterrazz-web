@@ -39,7 +39,8 @@
     "latestExperiment": "Latest Experiment",
     "latestInsight": "Latest Insight",
     "otherPosts": "Other Posts",
-    "series": "Series"
+    "series": "Series",
+    "viewMedium": "View Medium"
   },
   "experiments": {
     "title": "Experiments",
@@ -97,5 +98,16 @@
     "getApp": "Get App",
     "downloadApp": "Download App",
     "opensInNewTab": "(opens in a new tab)"
+  },
+  "footer": {
+    "tagline": "Building, learning, and sharing.",
+    "description": "Exploring the frontiers of AI, architecture, and decentralization.",
+    "connect": "Connect",
+    "featuredWork": "Featured Work",
+    "status": "Status",
+    "allRightsReserved": "All rights reserved.",
+    "opensInNewTab": "(opens in a new tab)",
+    "me": "Me",
+    "application": "Application"
   }
 }

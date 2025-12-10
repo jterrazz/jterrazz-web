@@ -59,7 +59,13 @@ export default async function ArticlesPage({ params }: Props) {
     const highlightTitle = t('title');
     const highlightDescription = t('highlightDescription');
 
-    const viewModel = new ArticlesListViewModelImpl(articles, highlightTitle, highlightDescription);
+    const viewModel = new ArticlesListViewModelImpl(
+        articles,
+        highlightTitle,
+        highlightDescription,
+        locale as 'en' | 'fr',
+        t('viewMedium'),
+    );
 
     const pageUrl = `${SITE_CONFIG.baseUrl}${locale === 'en' ? '/articles' : `/${locale}/articles`}`;
     const jsonLd = buildCollectionPageJsonLd({

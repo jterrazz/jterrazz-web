@@ -39,7 +39,8 @@
     "latestExperiment": "Dernière expérimentation",
     "latestInsight": "Dernière réflexion",
     "otherPosts": "Autres articles",
-    "series": "Série"
+    "series": "Série",
+    "viewMedium": "Voir Medium"
   },
   "experiments": {
     "title": "Expérimentations",
@@ -97,5 +98,16 @@
     "getApp": "Télécharger",
     "downloadApp": "Télécharger l'app",
     "opensInNewTab": "(ouvre un nouvel onglet)"
+  },
+  "footer": {
+    "tagline": "Construire, apprendre et partager.",
+    "description": "Explorer les frontières de l'IA, de l'architecture et de la décentralisation.",
+    "connect": "Contact",
+    "featuredWork": "Projets phares",
+    "status": "Statut",
+    "allRightsReserved": "Tous droits réservés.",
+    "opensInNewTab": "(ouvre un nouvel onglet)",
+    "me": "Moi",
+    "application": "Application"
   }
 }

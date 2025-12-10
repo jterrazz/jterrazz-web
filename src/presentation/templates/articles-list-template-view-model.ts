@@ -1,9 +1,10 @@
 // Domain
-import { type Article } from '../../domain/article';
+import { type Article, type ArticleLanguage } from '../../domain/article';
 import { UserContactType } from '../../domain/user';
 import { buildArticleSlug } from '../../domain/utils/slugify';
 
 // Infrastructure
+import { type Locale } from '../../i18n/config';
 import { userRepository } from '../../infrastructure/repositories/user.repository';
 
 export interface ArticleRowViewModel {
@@ -47,12 +48,14 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
         private readonly articles: Article[],
         private readonly highlightTitle: string,
         private readonly highlightDescription: string,
+        private readonly locale: Locale = 'en',
+        private readonly viewMediumText: string = 'View Medium',
     ) {}
 
     getViewModel(): ArticlesListViewModel {
         const button = {
             href: userRepository.getContact(UserContactType.Medium).url.toString(),
-            text: 'View Medium',
+            text: this.viewMediumText,
         };
 
         const publishedArticles = this.articles
@@ -189,19 +192,33 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
     }
 
     private mapToViewModel(article: Article): ArticleRowViewModel {
-        const content = article.content.en || article.content.fr || '';
+        const lang = this.locale as ArticleLanguage;
+        const content = article.content[lang] || article.content.en || '';
+        const title = article.metadata.title[this.locale] ?? article.metadata.title.en;
+        const description =
+            article.metadata.description[this.locale] ?? article.metadata.description.en;
+
+        // Date locale mapping
+        const dateLocaleMap: Record<Locale, string> = {
+            en: 'en-US',
+            fr: 'fr-FR',
+        };
+
         return {
             category: article.metadata.category,
-            description: article.metadata.description.en,
+            description,
             imageUrl: article.imageUrl,
             isExperiment: article.metadata.category === 'experiment',
             slug: buildArticleSlug(article.publicIndex, article.metadata.title.en),
-            title: article.metadata.title.en,
-            datePublished: new Date(article.metadata.datePublished).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-            }),
+            title,
+            datePublished: new Date(article.metadata.datePublished).toLocaleDateString(
+                dateLocaleMap[this.locale],
+                {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                },
+            ),
             readingTime: this.calculateReadingTime(content),
         };
     }
