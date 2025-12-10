@@ -227,6 +227,10 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
 
                     {/* Right Section: Actions */}
                     <div className="hidden md:flex justify-end items-center gap-1 lg:gap-2">
+                        <LanguageSwitcher className="px-1" />
+
+                        <div className="hidden lg:block w-px h-4 bg-zinc-200 dark:bg-zinc-700 mx-1" />
+
                         <div className="hidden lg:flex items-center gap-1">
                             {contacts.map((contact) => (
                                 <NavbarTabItem
@@ -242,10 +246,6 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                                 </NavbarTabItem>
                             ))}
                         </div>
-
-                        <div className="hidden lg:block w-px h-4 bg-zinc-200 dark:bg-zinc-700 mx-1" />
-
-                        <LanguageSwitcher className="px-1" />
 
                         <a
                             className="flex items-center gap-2 px-3 lg:px-4 py-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm ml-1"
