@@ -1,4 +1,3 @@
-import { type Metadata } from 'next';
 import Script from 'next/script';
 
 // Infrastructure
@@ -7,6 +6,7 @@ import {
     FeatureId,
     featuresRepository,
 } from '../../infrastructure/repositories/features.repository';
+import { buildMetadata } from '../../infrastructure/seo/build-metadata';
 
 // Presentation
 import { ExperimentsListTemplate } from '../../presentation/templates/experiments-list.template';
@@ -15,12 +15,11 @@ import { ExperimentsListTemplate } from '../../presentation/templates/experiment
 export const dynamic = 'force-static';
 export const revalidate = false;
 
-export const metadata: Metadata = {
-    alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/experiments`,
-    },
-    description:
-        'Open-source projects, apps, and developer tools. AI agents, fintech solutions, TypeScript packages, and system-level experiments.',
+const PAGE_DESCRIPTION =
+    'Open-source projects, apps, and developer tools. AI agents, fintech solutions, TypeScript packages, and system-level experiments.';
+
+export const metadata = buildMetadata({
+    description: PAGE_DESCRIPTION,
     keywords: [
         'AI experiments',
         'fintech tools',
@@ -31,15 +30,9 @@ export const metadata: Metadata = {
         'AI Agent Developer',
         'Fintech Engineer',
     ],
-    openGraph: {
-        description:
-            'Open-source projects, apps, and developer tools. AI agents, fintech solutions, TypeScript packages, and system-level experiments.',
-        title: 'Experiments | Jean-Baptiste Terrazzoni',
-        type: 'website',
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/experiments`,
-    },
+    path: '/experiments',
     title: 'Experiments',
-};
+});
 
 export default function ExperimentsPage() {
     const experimentsDomain = experimentsRepository.getAll();
@@ -72,7 +65,7 @@ export default function ExperimentsPage() {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
-        description: 'Open-source projects, apps, and developer tools by Jean-Baptiste Terrazzoni.',
+        description: PAGE_DESCRIPTION,
         hasPart: experiments.map((experiment) => ({
             '@type': 'SoftwareApplication',
             applicationCategory: 'ProductivityApplication',
@@ -86,7 +79,7 @@ export default function ExperimentsPage() {
             url: experiment.url.toString(),
         })),
         name: 'The Lab: Projects, Tools & Proofs of Concept',
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/experiments`,
+        url: metadata.openGraph?.url,
     };
 
     return (

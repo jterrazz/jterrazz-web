@@ -1,4 +1,4 @@
-import { type Metadata } from 'next';
+import type { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
 // Domain
@@ -11,6 +11,7 @@ import {
     FeatureId,
     featuresRepository,
 } from '../../../../infrastructure/repositories/features.repository';
+import { buildMetadata } from '../../../../infrastructure/seo/build-metadata';
 
 import { ArticleTemplate } from '../../../../presentation/templates/article.template';
 
@@ -64,56 +65,30 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
     const article = articlesRepository.getByIndex(id, lang);
 
     if (!article) {
-        return {
-            title: 'Article Not Found',
-        };
+        return { title: 'Article Not Found' };
     }
 
     const availableLanguages = Object.keys(article.content) as ArticleLanguage[];
 
-    // Determine primary image (thumbnail) for OpenGraph and link previews
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
-    const thumbnailUrl = article.imageUrl
-        ? `${baseUrl}${article.imageUrl}`
-        : `${baseUrl}/assets/icons/app-icon.jterrazz.png`;
-
     // Generate hreflang links
-    const alternates: Record<string, string> = {};
+    const alternateLanguages: Record<string, string> = {};
     for (const language of availableLanguages) {
-        alternates[language] = `${baseUrl}/articles/${slugId}/${language}`;
+        alternateLanguages[language] = `/articles/${slugId}/${language}`;
     }
 
-    return {
-        alternates: {
-            canonical: `${baseUrl}/articles/${slugId}/${lang}`,
-            languages: alternates,
-        },
+    return buildMetadata({
+        alternateLanguages,
         description: article.metadata.description[lang],
-        openGraph: {
-            alternateLocale: availableLanguages.filter((l) => l !== lang),
-            description: article.metadata.description[lang],
-            images: [
-                {
-                    alt: article.metadata.title[lang],
-                    height: 630,
-                    url: thumbnailUrl,
-                    width: 1200,
-                },
-            ],
-            locale: lang,
-            title: article.metadata.title[lang],
-            url: `${baseUrl}/articles/${slugId}/${lang}`,
-        },
+        image: article.imageUrl
+            ? { alt: article.metadata.title[lang], path: article.imageUrl }
+            : undefined,
+        includeTwitterAttribution: true,
+        locale: lang,
+        localeAlternates: availableLanguages.filter((l) => l !== lang),
+        path: `/articles/${slugId}/${lang}`,
         title: article.metadata.title[lang],
-        twitter: {
-            card: 'summary_large_image',
-            creator: '@j_terrazz',
-            description: article.metadata.description[lang],
-            images: [thumbnailUrl],
-            site: '@j_terrazz',
-            title: article.metadata.title[lang],
-        },
-    };
+        type: 'article',
+    });
 }
 
 export function generateStaticParams() {

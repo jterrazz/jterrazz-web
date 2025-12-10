@@ -29,6 +29,7 @@ const LEGACY_EXTERNAL_REDIRECTS = [
     { source: '/link/hackathons', destination: '/go/hackathons', permanent: true },
     { source: '/contact', destination: '/go/contact', permanent: true },
     { source: '/link/applications/n00', destination: '/go/n00', permanent: true },
+    { source: '/link/applications/fake-news', destination: '/go/n00', permanent: true },
 ];
 
 // Legacy article redirects (old blog URLs → new article pages)

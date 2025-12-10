@@ -1,4 +1,4 @@
-import { type Metadata } from 'next';
+import type { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 
 // Domain
@@ -11,6 +11,7 @@ import {
     FeatureId,
     featuresRepository,
 } from '../../../infrastructure/repositories/features.repository';
+import { buildMetadata } from '../../../infrastructure/seo/build-metadata';
 
 import { ArticleTemplate } from '../../../presentation/templates/article.template';
 
@@ -63,51 +64,32 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
     const { slugId } = params;
     const id = slugId.split('-')[0];
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
-
     const article = articlesRepository.getByIndex(id);
 
     if (!article) {
-        return {
-            title: 'Article Not Found',
-        };
+        return { title: 'Article Not Found' };
     }
 
     const availableLanguages = Object.keys(article.content) as ArticleLanguage[];
 
-    const thumbnailUrl = article.imageUrl
-        ? `${baseUrl}${article.imageUrl}`
-        : `${baseUrl}/assets/icons/app-icon.jterrazz.png`;
-
     // Generate hreflang links for all available languages
-    const alternates: Record<string, string> = {};
+    const alternateLanguages: Record<string, string> = {};
     for (const language of availableLanguages) {
-        alternates[language] = `${baseUrl}/articles/${slugId}/${language}`;
+        alternateLanguages[language] = `/articles/${slugId}/${language}`;
     }
 
-    return {
-        alternates: {
-            canonical: `${baseUrl}/articles/${slugId}/en`, // Default to English
-            languages: alternates,
-        },
+    return buildMetadata({
+        alternateLanguages,
         description: article.metadata.description.en,
-        openGraph: {
-            alternateLocale: availableLanguages.filter((l) => l !== 'en'),
-            description: article.metadata.description.en,
-            images: [
-                {
-                    alt: article.metadata.title.en,
-                    height: 630,
-                    url: thumbnailUrl,
-                    width: 1200,
-                },
-            ],
-            locale: 'en',
-            title: article.metadata.title.en,
-            url: `${baseUrl}/articles/${slugId}/en`,
-        },
+        image: article.imageUrl
+            ? { alt: article.metadata.title.en, path: article.imageUrl }
+            : undefined,
+        locale: 'en',
+        localeAlternates: availableLanguages.filter((l) => l !== 'en'),
+        path: `/articles/${slugId}/en`,
         title: article.metadata.title.en,
-    };
+        type: 'article',
+    });
 }
 
 export function generateStaticParams() {

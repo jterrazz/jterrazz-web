@@ -1,8 +1,8 @@
-import { type Metadata } from 'next';
 import Script from 'next/script';
 
 // Infrastructure
 import { photographsRepository } from '../../infrastructure/repositories/photographs.repository';
+import { buildMetadata } from '../../infrastructure/seo/build-metadata';
 
 import { PhotographsGridTemplate } from '../../presentation/templates/photographs-grid.template';
 
@@ -10,14 +10,11 @@ import { PhotographsGridTemplate } from '../../presentation/templates/photograph
 export const dynamic = 'force-static';
 export const revalidate = false;
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
+const PAGE_DESCRIPTION =
+    'Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.';
 
-export const metadata: Metadata = {
-    alternates: {
-        canonical: `${baseUrl}/photographs`,
-    },
-    description:
-        'Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.',
+export const metadata = buildMetadata({
+    description: PAGE_DESCRIPTION,
     keywords: [
         'Photography',
         'Travel Photography',
@@ -25,21 +22,9 @@ export const metadata: Metadata = {
         'Portfolio',
         'Visual Art',
     ],
-    openGraph: {
-        description:
-            'Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.',
-        title: 'Photographs | Jean-Baptiste Terrazzoni',
-        type: 'website',
-        url: `${baseUrl}/photographs`,
-    },
+    path: '/photographs',
     title: 'Photographs',
-    twitter: {
-        card: 'summary_large_image',
-        description:
-            'Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.',
-        title: 'Photographs | Jean-Baptiste Terrazzoni',
-    },
-};
+});
 
 export default function PhotographsPage() {
     const photographs = photographsRepository.getAll();
@@ -52,8 +37,7 @@ export default function PhotographsPage() {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
-        description:
-            'Photography portfolio featuring travel, street, and everyday moments by Jean-Baptiste Terrazzoni.',
+        description: PAGE_DESCRIPTION,
         hasPart: photographs.map((photo) => ({
             '@type': 'ImageObject',
             author: {
@@ -67,7 +51,7 @@ export default function PhotographsPage() {
             thumbnailUrl: photo.contentUrl,
         })),
         name: 'Through My Lens: A Visual Journal',
-        url: `${baseUrl}/photographs`,
+        url: metadata.openGraph?.url,
     };
 
     return (

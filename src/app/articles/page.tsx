@@ -1,4 +1,3 @@
-import { type Metadata } from 'next';
 import Script from 'next/script';
 
 // Domain
@@ -6,6 +5,7 @@ import { buildArticleSlug } from '../../domain/utils/slugify';
 
 // Infrastructure
 import { articlesRepository } from '../../infrastructure/repositories/articles.repository';
+import { buildMetadata } from '../../infrastructure/seo/build-metadata';
 
 import { ArticlesListViewModelImpl } from '../../presentation/templates/articles-list-template-view-model';
 import { ArticlesListTemplate } from '../../presentation/templates/articles-list.template';
@@ -14,12 +14,11 @@ import { ArticlesListTemplate } from '../../presentation/templates/articles-list
 export const dynamic = 'force-static';
 export const revalidate = false;
 
-export const metadata: Metadata = {
-    alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
-    },
-    description:
-        'Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.',
+const PAGE_DESCRIPTION =
+    'Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.';
+
+export const metadata = buildMetadata({
+    description: PAGE_DESCRIPTION,
     keywords: [
         'AI articles',
         'fintech insights',
@@ -29,15 +28,9 @@ export const metadata: Metadata = {
         'AI Agent Developer',
         'Fintech Engineer',
     ],
-    openGraph: {
-        description:
-            'Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.',
-        title: 'Articles | Jean-Baptiste Terrazzoni',
-        type: 'website',
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
-    },
+    path: '/articles',
     title: 'Articles',
-};
+});
 
 export default function ArticlesPage() {
     const articles = articlesRepository.getAll();
@@ -53,8 +46,7 @@ export default function ArticlesPage() {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
-        description:
-            'Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices.',
+        description: PAGE_DESCRIPTION,
         hasPart: articles
             .filter((article) => article.published)
             .map((article) => ({
@@ -69,10 +61,10 @@ export default function ArticlesPage() {
                 description: article.metadata.description.en,
                 inLanguage: Object.keys(article.content),
                 name: article.metadata.title.en,
-                url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles/${buildArticleSlug(article.publicIndex, article.metadata.title.en)}`,
+                url: `${metadata.openGraph?.url}/${buildArticleSlug(article.publicIndex, article.metadata.title.en)}`,
             })),
         name: 'Articles by Jean-Baptiste Terrazzoni',
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
+        url: metadata.openGraph?.url,
     };
 
     return (

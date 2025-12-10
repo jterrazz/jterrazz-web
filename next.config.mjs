@@ -79,6 +79,11 @@ const nextConfig = {
                 permanent: true,
                 source: '/link/applications/n00',
             },
+            {
+                destination: '/go/n00',
+                permanent: true,
+                source: '/link/applications/fake-news',
+            },
 
             // Legacy article redirects
             {

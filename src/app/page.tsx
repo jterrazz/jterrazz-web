@@ -1,4 +1,3 @@
-import { type Metadata } from 'next';
 import Script from 'next/script';
 
 // Domain
@@ -8,19 +7,20 @@ import { buildArticleSlug } from '../domain/utils/slugify';
 import { articlesRepository } from '../infrastructure/repositories/articles.repository';
 import { experimentsRepository } from '../infrastructure/repositories/experiments.repository';
 import { userRepository } from '../infrastructure/repositories/user.repository';
+import { buildMetadata } from '../infrastructure/seo/build-metadata';
 
+import { SITE_CONFIG } from '../config/site';
 import { HelloWorldTemplate } from '../presentation/templates/hello-world.template';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
 export const revalidate = false;
 
-export const metadata: Metadata = {
-    alternates: {
-        canonical: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
-    },
-    description:
-        'Software engineer building AI agents, fintech solutions, and clean architecture systems. Discover my projects, articles, and experiments.',
+const PAGE_DESCRIPTION =
+    'Software engineer building AI agents, fintech solutions, and clean architecture systems. Discover my projects, articles, and experiments.';
+
+export const metadata = buildMetadata({
+    description: PAGE_DESCRIPTION,
     keywords: [
         'Jean-Baptiste Terrazzoni',
         'AI Agent Developer',
@@ -36,24 +36,8 @@ export const metadata: Metadata = {
         'crypto',
         'blockchain',
     ],
-    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'),
-    openGraph: {
-        description:
-            'Software engineer building AI agents, fintech solutions, and clean architecture systems. Discover my projects, articles, and experiments.',
-        images: [
-            {
-                alt: 'Jean-Baptiste Terrazzoni - Software Engineer & AI Developer',
-                height: 630,
-                url: '/assets/icons/app-icon.jterrazz.png',
-                width: 1200,
-            },
-        ],
-        siteName: 'Jean-Baptiste Terrazzoni',
-        title: 'Jean-Baptiste Terrazzoni | Software Engineer & AI Developer',
-        type: 'website',
-        url: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
-    },
-};
+    title: 'Software Engineer & AI Developer',
+});
 
 export default function HomePage() {
     const userExperiences = userRepository.getExperiences();
@@ -135,9 +119,6 @@ export default function HomePage() {
             url: experiment.url ? experiment.url.toString() : '',
         }));
 
-    const description =
-        'Software engineer building AI agents, fintech solutions, and clean architecture systems. Discover my projects, articles, and experiments.';
-
     // Structured data for better SEO
     const jsonLd = {
         '@context': 'https://schema.org',
@@ -146,14 +127,14 @@ export default function HomePage() {
             '@type': 'Organization',
             name: '42 Paris',
         },
-        description: description,
+        description: PAGE_DESCRIPTION,
         hasOccupation: {
             '@type': 'Occupation',
             description:
                 'Software engineer specializing in AI agents, clean architecture, and fintech solutions.',
             name: 'Software Engineer',
         },
-        image: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/assets/icons/app-icon.jterrazz.png`,
+        image: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.defaultImage.path}`,
         jobTitle: 'Software Engineer',
         knowsAbout: [
             'AI Agent Development',
@@ -165,13 +146,9 @@ export default function HomePage() {
             'Solidity',
             'Personal Growth',
         ],
-        name: 'Jean-Baptiste Terrazzoni',
-        sameAs: [
-            'https://github.com/jterrazz',
-            'https://medium.com/@jterrazz',
-            'https://www.pexels.com/@jterrazz',
-        ],
-        url: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
+        name: SITE_CONFIG.author.name,
+        sameAs: [SITE_CONFIG.social.github, SITE_CONFIG.social.medium, SITE_CONFIG.social.pexels],
+        url: SITE_CONFIG.baseUrl,
         worksFor: {
             '@type': 'Organization',
             name: 'Self-Employed',
@@ -184,7 +161,7 @@ export default function HomePage() {
                 {JSON.stringify(jsonLd)}
             </Script>
             <HelloWorldTemplate
-                description={description}
+                description={PAGE_DESCRIPTION}
                 experiences={userExperiences}
                 latestExperiments={latestExperiments}
                 topArticles={topArticles}
