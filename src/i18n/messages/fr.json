@@ -48,7 +48,35 @@
     "viewGitHub": "Voir GitHub",
     "applications": "Applications",
     "tooling": "Outillage",
-    "systems": "Systèmes"
+    "systems": "Systèmes",
+    "viewProject": "Voir le projet",
+    "readMore": "En savoir plus",
+    "context": {
+      "personal": "Projet personnel",
+      "school42": "École 42 Paris",
+      "professional": "Travail professionnel",
+      "hackathon": "Hackathon"
+    },
+    "status": {
+      "active": "Actif",
+      "archived": "Archivé",
+      "building": "En cours",
+      "completed": "Terminé",
+      "concept": "Concept"
+    },
+    "detail": {
+      "readArticle": "Lire l'article",
+      "visitWebsite": "Visiter le site",
+      "appStore": "App Store",
+      "viewProject": "Voir le projet",
+      "sourceCode": "Code source",
+      "showcase": "Aperçu",
+      "about": "À propos",
+      "year": "Année",
+      "components": "Composants",
+      "viewSource": "Voir le code",
+      "privacyPolicy": "Politique de confidentialité"
+    }
   },
   "photographs": {
     "title": "Photographies",
@@ -71,4 +99,3 @@
     "opensInNewTab": "(ouvre un nouvel onglet)"
   }
 }
-

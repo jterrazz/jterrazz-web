@@ -22,9 +22,24 @@ import { SectionHero } from '../ui/molecules/section-hero/section-hero';
 
 type ExperimentsListTranslations = {
     applications: string;
+    context: {
+        hackathon: string;
+        personal: string;
+        professional: string;
+        school42: string;
+    };
+    readMore: string;
+    status: {
+        active: string;
+        archived: string;
+        building: string;
+        completed: string;
+        concept: string;
+    };
     systems: string;
     tooling: string;
     viewGitHub: string;
+    viewProject: string;
 };
 
 type ExperimentsListTemplateProps = {
@@ -119,7 +134,15 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                         >
                             {apps.map((experiment) => (
                                 <motion.div key={experiment.name} variants={itemVariants}>
-                                    <CardExperimentFeatured experiment={experiment} />
+                                    <CardExperimentFeatured
+                                        experiment={experiment}
+                                        translations={{
+                                            context: t.context,
+                                            readMore: t.readMore,
+                                            status: t.status,
+                                            viewProject: t.viewProject,
+                                        }}
+                                    />
                                 </motion.div>
                             ))}
                         </motion.div>

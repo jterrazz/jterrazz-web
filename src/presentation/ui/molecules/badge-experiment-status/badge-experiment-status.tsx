@@ -6,14 +6,44 @@ import { ExperimentStatus } from '../../../../domain/experiment';
 // Utils
 import { cn } from '../../../utils';
 
+type StatusTranslations = {
+    active: string;
+    archived: string;
+    building: string;
+    completed: string;
+    concept: string;
+};
+
 export type BadgeExperimentStatusProps = {
     className?: string;
     status: ExperimentStatus;
+    translations: StatusTranslations;
 };
+
+/**
+ * Get translated status label
+ */
+function getStatusLabel(status: ExperimentStatus, translations: StatusTranslations): string {
+    switch (status) {
+        case ExperimentStatus.Active:
+            return translations.active;
+        case ExperimentStatus.Archived:
+            return translations.archived;
+        case ExperimentStatus.Building:
+            return translations.building;
+        case ExperimentStatus.Completed:
+            return translations.completed;
+        case ExperimentStatus.Concept:
+            return translations.concept;
+        default:
+            return status;
+    }
+}
 
 export const BadgeExperimentStatus: React.FC<BadgeExperimentStatusProps> = ({
     className,
     status,
+    translations,
 }) => {
     const getStatusDotColor = (status: ExperimentStatus) => {
         switch (status) {
@@ -36,7 +66,7 @@ export const BadgeExperimentStatus: React.FC<BadgeExperimentStatusProps> = ({
             )}
         >
             <div className={cn('w-1.5 h-1.5 rounded-full', getStatusDotColor(status))} />
-            <span>{status}</span>
+            <span>{getStatusLabel(status, translations)}</span>
         </div>
     );
 };

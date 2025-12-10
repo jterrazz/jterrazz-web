@@ -39,7 +39,26 @@ type SerializableExperiment = Omit<Experiment, 'components' | 'url'> & {
     url: string;
 };
 
+type ExperimentCardTranslations = {
+    context: {
+        hackathon: string;
+        personal: string;
+        professional: string;
+        school42: string;
+    };
+    readMore: string;
+    status: {
+        active: string;
+        archived: string;
+        building: string;
+        completed: string;
+        concept: string;
+    };
+    viewProject: string;
+};
+
 type HelloWorldTranslations = {
+    experimentCard: ExperimentCardTranslations;
     focus: string;
     focusAreas: {
         aiAgents: { description: string; title: string };
@@ -137,7 +156,11 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                         {latestExperiments.map((experiment) => (
-                            <CardExperimentFeatured experiment={experiment} key={experiment.name} />
+                            <CardExperimentFeatured
+                                experiment={experiment}
+                                key={experiment.name}
+                                translations={t.experimentCard}
+                            />
                         ))}
                     </div>
                 </section>

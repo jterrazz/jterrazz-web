@@ -56,6 +56,7 @@ export default async function HomePage({ params }: Props) {
     setRequestLocale(locale);
 
     const t = await getTranslations({ locale, namespace: 'home' });
+    const tExp = await getTranslations({ locale, namespace: 'experiments' });
 
     const userExperiences = userRepository.getExperiences();
     const allArticles = articlesRepository.getAll();
@@ -144,6 +145,23 @@ export default async function HomePage({ params }: Props) {
 
     // Translations for client component
     const translations = {
+        experimentCard: {
+            context: {
+                hackathon: tExp('context.hackathon'),
+                personal: tExp('context.personal'),
+                professional: tExp('context.professional'),
+                school42: tExp('context.school42'),
+            },
+            readMore: tExp('readMore'),
+            status: {
+                active: tExp('status.active'),
+                archived: tExp('status.archived'),
+                building: tExp('status.building'),
+                completed: tExp('status.completed'),
+                concept: tExp('status.concept'),
+            },
+            viewProject: tExp('viewProject'),
+        },
         focus: t('focus'),
         focusAreas: {
             aiAgents: {

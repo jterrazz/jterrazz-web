@@ -5,7 +5,11 @@ import React from 'react';
 import { ArrowRight, ArrowUpRight, Download, Github, Globe, Layers } from 'lucide-react';
 
 // Domain
-import { type Experiment, type ExperimentComponent } from '../../domain/experiment';
+import {
+    type Experiment,
+    type ExperimentComponent,
+    ExperimentContext,
+} from '../../domain/experiment';
 
 // Utils
 import { cn } from '../utils';
@@ -24,12 +28,64 @@ type SerializableExperiment = Omit<Experiment, 'components' | 'url'> & {
     url: string;
 };
 
+type ExperimentDetailTranslations = {
+    context: {
+        hackathon: string;
+        personal: string;
+        professional: string;
+        school42: string;
+    };
+    detail: {
+        about: string;
+        appStore: string;
+        components: string;
+        privacyPolicy: string;
+        readArticle: string;
+        showcase: string;
+        sourceCode: string;
+        viewProject: string;
+        viewSource: string;
+        visitWebsite: string;
+        year: string;
+    };
+    status: {
+        active: string;
+        archived: string;
+        building: string;
+        completed: string;
+        concept: string;
+    };
+};
+
 type ExperimentDetailTemplateProps = {
     experiment: SerializableExperiment;
+    translations: ExperimentDetailTranslations;
 };
+
+/**
+ * Get translated context label
+ */
+function getContextLabel(
+    context: ExperimentContext,
+    translations: ExperimentDetailTranslations['context'],
+): string {
+    switch (context) {
+        case ExperimentContext.Personal:
+            return translations.personal;
+        case ExperimentContext.School42:
+            return translations.school42;
+        case ExperimentContext.Professional:
+            return translations.professional;
+        case ExperimentContext.Hackathon:
+            return translations.hackathon;
+        default:
+            return context;
+    }
+}
 
 export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> = ({
     experiment,
+    translations: t,
 }) => {
     // Helper to render store buttons
     const renderStoreButton = (
@@ -79,32 +135,32 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                             {experiment.articleUrl &&
                                 renderStoreButton(
                                     experiment.articleUrl,
-                                    'Read Article',
+                                    t.detail.readArticle,
                                     <ArrowRight size={18} />,
                                 )}
                             {experiment.storeLinks?.web &&
                                 renderStoreButton(
                                     experiment.storeLinks.web,
-                                    'Visit Website',
+                                    t.detail.visitWebsite,
                                     <Globe size={18} />,
                                 )}
                             {experiment.storeLinks?.appStore &&
                                 renderStoreButton(
                                     experiment.storeLinks.appStore,
-                                    'App Store',
+                                    t.detail.appStore,
                                     <Download size={18} />,
                                 )}
                             {experiment.url &&
                                 !experiment.storeLinks?.web &&
                                 renderStoreButton(
                                     experiment.url.toString(),
-                                    'View Project',
+                                    t.detail.viewProject,
                                     <ArrowUpRight size={18} />,
                                 )}
                             {experiment.url?.toString().includes('github') &&
                                 renderStoreButton(
                                     experiment.url.toString(),
-                                    'Source Code',
+                                    t.detail.sourceCode,
                                     <Github size={18} />,
                                     'secondary',
                                 )}
@@ -119,7 +175,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                     {experiment.images?.screenshots && experiment.images.screenshots.length > 0 && (
                         <section className="overflow-hidden">
                             <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-8">
-                                Showcase
+                                {t.detail.showcase}
                             </h3>
                             <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] -mx-4 px-4 md:mx-0 md:px-0">
                                 {experiment.images.screenshots.map((screenshot) => (
@@ -144,7 +200,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                             <div className="md:col-span-4 space-y-8">
                                 <div>
                                     <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-2">
-                                        About
+                                        {t.detail.about}
                                     </h3>
                                     <div className="h-1 w-12 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
                                 </div>
@@ -153,11 +209,12 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                                     <BadgeExperimentStatus
                                         className="border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800"
                                         status={experiment.status}
+                                        translations={t.status}
                                     />
                                     <div className="flex flex-col gap-3">
                                         <div className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
                                             <span className="font-mono uppercase tracking-wider text-xs">
-                                                Year
+                                                {t.detail.year}
                                             </span>
                                             <span className="h-px w-8 bg-zinc-200 dark:bg-zinc-800" />
                                             <span className="font-medium text-zinc-900 dark:text-zinc-100">
@@ -170,7 +227,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                                             </span>
                                             <span className="h-px w-8 bg-zinc-200 dark:bg-zinc-800" />
                                             <span className="font-medium text-zinc-900 dark:text-zinc-100">
-                                                {experiment.context}
+                                                {getContextLabel(experiment.context, t.context)}
                                             </span>
                                         </div>
                                     </div>
@@ -179,7 +236,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                                             className="text-xs text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 underline underline-offset-2 transition-colors"
                                             href={`/experiments/${experiment.slug}/privacy`}
                                         >
-                                            Privacy Policy
+                                            {t.detail.privacyPolicy}
                                         </a>
                                     )}
                                 </div>
@@ -195,12 +252,16 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                     {/* Components (If applicable) */}
                     {experiment.components && experiment.components.length > 0 && (
                         <section>
-                            <DividerSection className="mb-12" title="Components" />
+                            <DividerSection className="mb-12" title={t.detail.components} />
                             <div className="grid grid-cols-1 gap-6">
                                 {experiment.components.map((component) => (
                                     <ExperimentComponentCard
                                         component={component}
                                         key={component.name}
+                                        translations={{
+                                            status: t.status,
+                                            viewSource: t.detail.viewSource,
+                                        }}
                                     />
                                 ))}
                             </div>
@@ -217,10 +278,16 @@ type SerializableExperimentComponent = Omit<ExperimentComponent, 'sourceUrl'> & 
     sourceUrl: string;
 };
 
+type ComponentCardTranslations = {
+    status: ExperimentDetailTranslations['status'];
+    viewSource: string;
+};
+
 // Sub-component for architecture parts
-const ExperimentComponentCard: React.FC<{ component: SerializableExperimentComponent }> = ({
-    component,
-}) => {
+const ExperimentComponentCard: React.FC<{
+    component: SerializableExperimentComponent;
+    translations: ComponentCardTranslations;
+}> = ({ component, translations: t }) => {
     return (
         <div className="group relative p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -237,13 +304,13 @@ const ExperimentComponentCard: React.FC<{ component: SerializableExperimentCompo
                 </div>
 
                 <div className="flex flex-col items-end gap-4 shrink-0 pt-2 md:pt-0">
-                    <BadgeExperimentStatus status={component.status} />
+                    <BadgeExperimentStatus status={component.status} translations={t.status} />
                     <a
                         className="flex items-center justify-center w-10 h-10 rounded-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
                         href={component.sourceUrl.toString()}
                         rel="noreferrer"
                         target="_blank"
-                        title="View Source"
+                        title={t.viewSource}
                     >
                         <Github size={18} />
                     </a>

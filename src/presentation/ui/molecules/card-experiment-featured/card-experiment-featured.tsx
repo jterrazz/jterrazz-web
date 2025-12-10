@@ -9,8 +9,8 @@ import { Link } from '../../../../infrastructure/navigation/navigation';
 // Domain
 import {
     type Experiment,
-    type ExperimentContext,
-    type ExperimentStatus,
+    ExperimentContext,
+    ExperimentStatus,
 } from '../../../../domain/experiment';
 
 // Utils
@@ -26,14 +26,55 @@ type ExperimentCardData = Pick<Experiment, 'description' | 'name' | 'slug' | 'ye
     url?: string | URL;
 };
 
+type CardExperimentFeaturedTranslations = {
+    context: {
+        hackathon: string;
+        personal: string;
+        professional: string;
+        school42: string;
+    };
+    readMore: string;
+    status: {
+        active: string;
+        archived: string;
+        building: string;
+        completed: string;
+        concept: string;
+    };
+    viewProject: string;
+};
+
 export type CardExperimentFeaturedProps = {
     className?: string;
     experiment: ExperimentCardData;
+    translations: CardExperimentFeaturedTranslations;
 };
+
+/**
+ * Get translated context label
+ */
+function getContextLabel(
+    context: ExperimentContext,
+    translations: CardExperimentFeaturedTranslations['context'],
+): string {
+    switch (context) {
+        case ExperimentContext.Personal:
+            return translations.personal;
+        case ExperimentContext.School42:
+            return translations.school42;
+        case ExperimentContext.Professional:
+            return translations.professional;
+        case ExperimentContext.Hackathon:
+            return translations.hackathon;
+        default:
+            return context;
+    }
+}
 
 export const CardExperimentFeatured: React.FC<CardExperimentFeaturedProps> = ({
     className,
     experiment,
+    translations: t,
 }) => {
     return (
         <Link
@@ -62,10 +103,14 @@ export const CardExperimentFeatured: React.FC<CardExperimentFeaturedProps> = ({
                     <div className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
                         <span>{experiment.year}</span>
                         <span>•</span>
-                        <span>{experiment.context}</span>
+                        <span>{getContextLabel(experiment.context, t.context)}</span>
                     </div>
                 </div>
-                <BadgeExperimentStatus className="shrink-0" status={experiment.status} />
+                <BadgeExperimentStatus
+                    className="shrink-0"
+                    status={experiment.status}
+                    translations={t.status}
+                />
             </div>
 
             {/* Description */}
@@ -75,7 +120,7 @@ export const CardExperimentFeatured: React.FC<CardExperimentFeaturedProps> = ({
 
             {/* CTA Link */}
             <div className="mt-auto flex items-center gap-2 text-xs font-medium text-zinc-900 dark:text-zinc-200 group-hover:translate-x-1 transition-transform duration-300">
-                {experiment.url ? 'View project' : 'Read more'}
+                {experiment.url ? t.viewProject : t.readMore}
                 <ArrowRight size={14} />
             </div>
         </Link>

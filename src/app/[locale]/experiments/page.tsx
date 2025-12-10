@@ -99,9 +99,24 @@ export default async function ExperimentsPage({ params }: Props) {
     // Translations for client component
     const translations = {
         applications: t('applications'),
+        context: {
+            hackathon: t('context.hackathon'),
+            personal: t('context.personal'),
+            professional: t('context.professional'),
+            school42: t('context.school42'),
+        },
+        readMore: t('readMore'),
+        status: {
+            active: t('status.active'),
+            archived: t('status.archived'),
+            building: t('status.building'),
+            completed: t('status.completed'),
+            concept: t('status.concept'),
+        },
         systems: t('systems'),
         tooling: t('tooling'),
         viewGitHub: t('viewGitHub'),
+        viewProject: t('viewProject'),
     };
 
     return (

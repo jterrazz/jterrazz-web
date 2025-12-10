@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { locales } from '../../../../i18n/config';
 import { experimentsRepository } from '../../../../infrastructure/repositories/experiments.repository';
@@ -64,6 +64,8 @@ export default async function ExperimentDetailPage(props: Props) {
         notFound();
     }
 
+    const t = await getTranslations({ locale, namespace: 'experiments' });
+
     // Convert URL instances to strings for client components
     const serializedExperiment = {
         ...experiment,
@@ -75,6 +77,36 @@ export default async function ExperimentDetailPage(props: Props) {
         url: experiment.url ? experiment.url.toString() : '',
     };
 
-    return <ExperimentDetailTemplate experiment={serializedExperiment} />;
-}
+    const translations = {
+        context: {
+            hackathon: t('context.hackathon'),
+            personal: t('context.personal'),
+            professional: t('context.professional'),
+            school42: t('context.school42'),
+        },
+        detail: {
+            about: t('detail.about'),
+            appStore: t('detail.appStore'),
+            components: t('detail.components'),
+            privacyPolicy: t('detail.privacyPolicy'),
+            readArticle: t('detail.readArticle'),
+            showcase: t('detail.showcase'),
+            sourceCode: t('detail.sourceCode'),
+            viewProject: t('detail.viewProject'),
+            viewSource: t('detail.viewSource'),
+            visitWebsite: t('detail.visitWebsite'),
+            year: t('detail.year'),
+        },
+        status: {
+            active: t('status.active'),
+            archived: t('status.archived'),
+            building: t('status.building'),
+            completed: t('status.completed'),
+            concept: t('status.concept'),
+        },
+    };
 
+    return (
+        <ExperimentDetailTemplate experiment={serializedExperiment} translations={translations} />
+    );
+}

@@ -48,7 +48,35 @@
     "viewGitHub": "View GitHub",
     "applications": "Applications",
     "tooling": "Tooling",
-    "systems": "Systems"
+    "systems": "Systems",
+    "viewProject": "View project",
+    "readMore": "Read more",
+    "context": {
+      "personal": "Personal Project",
+      "school42": "42 Paris School",
+      "professional": "Professional Work",
+      "hackathon": "Hackathon"
+    },
+    "status": {
+      "active": "Active",
+      "archived": "Archived",
+      "building": "Building",
+      "completed": "Completed",
+      "concept": "Concept"
+    },
+    "detail": {
+      "readArticle": "Read Article",
+      "visitWebsite": "Visit Website",
+      "appStore": "App Store",
+      "viewProject": "View Project",
+      "sourceCode": "Source Code",
+      "showcase": "Showcase",
+      "about": "About",
+      "year": "Year",
+      "components": "Components",
+      "viewSource": "View Source",
+      "privacyPolicy": "Privacy Policy"
+    }
   },
   "photographs": {
     "title": "Photographs",
@@ -71,4 +99,3 @@
     "opensInNewTab": "(opens in a new tab)"
   }
 }
-
