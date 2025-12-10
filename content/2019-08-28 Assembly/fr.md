@@ -1,25 +1,25 @@
 ![](assets/thumbnail.jpg)
 
-# Plongeons dans l'assembleur et créons nos premières fonctions (Intel x86-64)
+# Assembleur x86-64 : vos premières fonctions
 
-J'ai toujours été obsédé par ce qui se passe au plus profond d'un ordinateur. On entend souvent dire que le C est un langage "bas niveau", mais franchement, c'est encore une couche d'abstraction confortable. Il masque les instructions brutes et puissantes que votre processeur exécute réellement.
+Ce qui se passe vraiment au cœur d'un ordinateur m'a toujours fasciné. On dit que le C est "bas niveau", mais c'est encore une abstraction confortable. Il cache les instructions brutes que votre processeur exécute.
 
-Si vous voulez parler directement au matériel, vous devez apprendre sa langue maternelle. Cette langue, c'est l'assembleur. 🖥️💓
+Pour parler directement au matériel, il faut apprendre sa langue : l'assembleur. 🖥️💓
 
-Cet article n'est pas que de la théorie. Nous allons construire des choses. Je vais vous guider à travers les outils et les concepts pour que vous puissiez commencer à écrire vos propres fonctions en assembleur dès aujourd'hui. C'est parti. 👷‍♂️🔧
+Pas de théorie pure ici — on va coder. Je vous donne les outils et concepts pour écrire vos premières fonctions en assembleur. C'est parti. 👷‍♂️🔧
 
-## L'environnement : votre terrain de jeu assembleur
+## L'environnement
 
-Tout d'abord, une précision importante : l'assembleur n'est pas un langage unique ; il varie selon l'architecture du processeur. Nous allons nous concentrer sur Intel x86-64, ce qui équipe la plupart des ordinateurs de bureau et portables actuels.
+Précision importante : l'assembleur varie selon l'architecture. On se concentre sur **Intel x86-64**, le standard des PC actuels.
 
-### La boîte à outils : NASM
+### Les outils : NASM
 
-Pas besoin d'un IDE lourd ni d'une chaîne d'outils complexe. Pour moi, il suffit de deux choses :
+Pas besoin d'IDE lourd. Juste :
 
-1. Un éditeur de texte simple (celui avec lequel vous êtes à l'aise ⚔️)
-2. Le compilateur NASM (il transforme notre assembleur lisible par l'homme en code machine 🪄)
+1. Un éditeur de texte (celui que vous maîtrisez ⚔️)
+2. NASM (transforme l'assembleur en code machine 🪄)
 
-Sur Mac, installer NASM se fait en une ligne avec Homebrew.
+Sur Mac, une ligne avec Homebrew :
 
 ```sh
 # Installer nasm sur MacOS
@@ -32,28 +32,28 @@ nasm -f macho64 your_file.s -o your_file.o
 ar rcs libyourstuff.a your_file.o
 ```
 
-> Petite astuce : le flag `-f` est crucial. Il indique à NASM le format du fichier de sortie. `macho64` est ce dont macOS moderne a besoin.
+> Le flag `-f` est crucial : il indique le format de sortie. `macho64` pour macOS moderne.
 
-### Le débogage : votre arme secrète 🕵️‍♂️
+### Le débogage 🕵️‍♂️
 
-Écrire de l'assembleur sans débogueur, c'est comme voler à l'aveugle. Vous ferez des erreurs. Ça plantera. `lldb` (sur macOS) et `gdb` (sur Linux) sont vos meilleurs alliés pour comprendre pourquoi. Ils vous permettent d'avancer dans votre code instruction par instruction et de voir exactement ce qui se passe en mémoire et dans les registres. N'ignorez pas l'apprentissage des bases de ces outils.
+Assembleur sans débogueur = vol à l'aveugle. Vous ferez des erreurs, ça plantera. `lldb` (macOS) ou `gdb` (Linux) vous permettent d'avancer instruction par instruction et de voir ce qui se passe dans les registres. Apprenez les bases.
 
 ## Le langage du processeur
 
-Voyez l'assembleur comme un ensemble d'ordres directs pour votre CPU. Chaque ligne est une commande unique et minuscule.
+L'assembleur, c'est des ordres directs au CPU. Chaque ligne = une commande.
 
 ### Assembleur vs code machine
 
-On utilise souvent "assembleur" et "code machine" de façon interchangeable, mais ce n'est pas la même chose.
+Souvent confondus, mais différents :
 
-- **Code machine :** C'est le binaire brut, les 0 et les 1, que le processeur exécute. C'est totalement illisible pour les humains.
-- **Assembleur :** C'est la version lisible du code machine. On écrit en assembleur, puis un compilateur (comme NASM) le traduit en code machine.
+- **Code machine** : le binaire brut (0 et 1) que le processeur exécute. Illisible.
+- **Assembleur** : la version lisible. On écrit en assembleur, NASM traduit en code machine.
 
-Écrire en assembleur nous donne un énorme avantage par rapport à l'écriture de binaire brut. Cela nous offre une structure : nous pouvons utiliser des labels pour les fonctions, définir des variables et organiser notre logique en sections. C'est la couche d'abstraction la plus fine possible au-dessus du matériel.
+L'assembleur nous donne une structure : labels, variables, sections. C'est l'abstraction la plus fine au-dessus du matériel.
 
-### L'organisation d'un fichier assembleur
+### Structure d'un fichier assembleur
 
-J'organise mes fichiers assembleur (`.s`) en quelques sections standards. Cela garde les choses propres.
+Un fichier `.s` s'organise en sections :
 
 ```asm
 ; SECTION : Données Initialisées
@@ -89,114 +89,103 @@ _start:
     ; Votre code va ici.
 ```
 
-Si vous ne spécifiez pas de section, l'assembleur utilise généralement `.text` par défaut. C'est là que l'action se passe.
+Sans section spécifiée, `.text` est utilisé par défaut.
 
-### Où vivent vos données
+### Où stocker les données
 
-En assembleur, vous déplacez constamment des données. Vous avez trois endroits où les stocker :
+Trois options :
 
-1. **Les registres :** Un petit nombre d'emplacements de stockage ultra-rapides directement dans le CPU. C'est votre premier choix pour les calculs.
-2. **La mémoire (RAM) :** C'est le vaste réservoir de stockage en dehors du CPU. Bien plus grand que les registres, mais aussi bien plus lent d'accès.
-3. **Les constantes :** Des valeurs codées en dur directement dans vos instructions.
+1. **Registres** : stockage ultra-rapide dans le CPU. Premier choix pour les calculs.
+2. **Mémoire (RAM)** : plus vaste, mais plus lente.
+3. **Constantes** : valeurs codées en dur dans les instructions.
 
 ![Types de mémoire](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*N6b1GTJFRIUNdcqCwrHAZA.png)
 
 ### Les registres
 
-Bien connaître les registres est essentiel. Ce sont votre établi. Sur x86-64, les principaux que vous utiliserez sont :
+Essentiel à maîtriser. Votre établi. Sur x86-64 :
 
-#### Registres à usage général
+#### Usage général
 
-Ce sont les chevaux de trait.
+- `rax` : accumulateur. Valeurs de retour, arithmétique.
+- `rbx` : base. Usage général, parfois adressage mémoire.
+- `rcx` : compteur. Souvent pour les boucles.
+- `rdx` : données. Multiplication/division, ou registre de secours.
 
-- `rax` : L'"accumulateur". Souvent utilisé pour les valeurs de retour des fonctions et en arithmétique.
-- `rbx` : Le registre "base". Peut servir à tout, mais parfois utilisé pour l'adressage mémoire.
-- `rcx` : Le "compteur". Souvent utilisé pour les boucles.
-- `rdx` : Le registre "données". Souvent utilisé en multiplication et division, ou simplement comme registre de secours.
+#### Index et pointeurs
 
-#### Registres d'index et de pointeurs
+- `rdi`, `rsi` : index destination/source. Arguments 1 et 2 des fonctions.
+- `rbp` : pointeur de base. Stack frame de la fonction courante.
+- `rsp` : pointeur de pile. Toujours au sommet de la stack.
+- `rip` : pointeur d'instruction. Prochaine instruction à exécuter (non modifiable).
 
-Ceux-ci servent à garder trace des emplacements mémoire.
+Les registres de segment (`CS`, `DS`, etc.) peuvent être ignorés pour commencer.
 
-- `rdi`, `rsi` : Index de Destination et de Source. Très utilisés dans les opérations qui déplacent des blocs de mémoire. Ce sont aussi les deux premiers registres d'arguments dans les appels de fonction.
-- `rbp` : Pointeur de Base. Utilisé pour garder trace du "stack frame" de la fonction courante.
-- `rsp` : Pointeur de Pile (Stack Pointer). Pointe toujours vers le sommet de la pile.
-- `rip` : Pointeur d'Instruction. Pointe vers la prochaine instruction CPU à exécuter. Vous ne pouvez pas le modifier directement.
+## Le jeu d'instructions
 
-Vous pouvez généralement ignorer les Registres de Segment (`CS`, `DS`, etc.) pour les programmes simples.
-
-## Le jeu d'instructions : votre boîte à outils
-
-Un programme assembleur n'est qu'une liste d'instructions. Le format est généralement `INSTRUCTION destination, source`. Voyons les plus courantes.
+Un programme = une liste d'instructions. Format : `INSTRUCTION destination, source`.
 
 ### Déplacer des données
 
 **`mov`** `<dst>, <src>`
-C'est l'instruction la plus fondamentale. Elle copie les données de `src` vers `dst`. La source peut être un registre, une adresse mémoire ou une constante. La destination doit être un registre ou une adresse mémoire. Voyez-la comme l'opérateur `=` de l'assembleur.
+Copie `src` vers `dst`. L'équivalent de `=` en assembleur.
 
 **`push`** `<data>`
-Prend une valeur et la place au sommet de la pile. La pile est une région de mémoire pour le stockage temporaire. `push` est la façon de sauvegarder des choses dont vous aurez besoin plus tard.
+Place une valeur au sommet de la pile (stockage temporaire).
 
 **`pop`** `<dst>`
-Retire la valeur du sommet de la pile et la place dans votre registre ou emplacement mémoire de destination. C'est l'inverse de `push`.
+Retire la valeur du sommet de la pile vers `dst`.
 
 **`lea`** `<dst>, [<src>]`
-Celle-ci est "Load Effective Address" (Charger l'Adresse Effective). Elle diffère un peu de `mov`. Au lieu de charger la *valeur* à l'adresse source, elle charge *l'adresse elle-même*. Très utile pour faire des calculs sur les pointeurs.
+"Load Effective Address". Charge *l'adresse* au lieu de la valeur. Utile pour les pointeurs.
 
-### Faire des calculs
+### Arithmétique
 
-**`add`** `<dst>, <src>`
-`dst = dst + src`.
+**`add`** `<dst>, <src>` → `dst = dst + src`
 
-**`sub`** `<dst>, <src>`
-`dst = dst - src`.
+**`sub`** `<dst>, <src>` → `dst = dst - src`
 
-**`inc`** `<dst>`
-Incrémente la destination de 1. Plus rapide que `add dst, 1`.
+**`inc`** `<dst>` → `dst++` (plus rapide que `add dst, 1`)
 
-**`dec`** `<dst>`
-Décrémente la destination de 1. Plus rapide que `sub dst, 1`.
+**`dec`** `<dst>` → `dst--`
 
-### Contrôler le flux
+### Contrôle de flux
 
 **`call`** `<function_label>`
-Saute vers une fonction, mais d'abord elle `push` l'adresse de l'instruction suivante sur la pile. C'est ainsi que le CPU sait où revenir quand la fonction est terminée.
+Saute vers une fonction après avoir `push` l'adresse de retour sur la pile.
 
 ```asm
-extern malloc ; Dire à l'assembleur qu'on utilise une fonction externe
+extern malloc ; fonction externe
 
 .text
-call malloc  ; Appeler la fonction malloc
-             ; Le résultat (une adresse mémoire) sera dans le registre rax
+call malloc  ; résultat dans rax
 ```
 
 **`jmp`** `<label>`
-Un saut inconditionnel. Il déplace simplement le pointeur d'exécution (`rip`) vers un nouvel emplacement. C'est votre `goto`, la base pour construire des boucles.
+Saut inconditionnel. Votre `goto` pour les boucles.
 
 ```asm
 .text
 section_1:
-    ; ... du code ...
-    jmp section_2 ; Saute immédiatement à section_2
-
-    ; ... ce code est ignoré ...
+    ; ... code ...
+    jmp section_2 ; saute à section_2
 
 section_2:
-    jmp section_1 ; Crée une boucle infinie
+    jmp section_1 ; boucle infinie
 ```
 
 **`j<condition>`** `<label>`
-Un saut conditionnel. C'est le cœur de toute instruction `if`. Il saute uniquement quand certains drapeaux, définis par `cmp` ou `test`, sont activés. Par exemple, `jz` saute si le résultat de la dernière comparaison était zéro.
+Saut conditionnel. Le cœur des `if`. Saute selon les drapeaux définis par `cmp` ou `test`. Ex : `jz` saute si zéro.
 
 ### Comparer et tester
 
 **`cmp`** `<reg1>, <reg2>`
-Compare deux registres en effectuant internement `reg1 - reg2`. Elle ne stocke pas le résultat, mais elle définit des drapeaux d'état (comme le drapeau zéro, le drapeau de signe, etc.). Les instructions de saut conditionnel lisent ensuite ces drapeaux.
+Compare via `reg1 - reg2`. Ne stocke pas le résultat, mais définit les drapeaux (zéro, signe, etc.) que lisent les sauts conditionnels.
 
 **`test`** `<reg1>, <reg2>`
-Effectue un `AND` bit à bit sur les deux opérandes et définit les drapeaux en fonction du résultat. Une astuce courante est `test rax, rax`. Si `rax` est zéro, le résultat du `AND` est zéro, ce qui active le drapeau zéro. C'est une façon très efficace de vérifier si un registre est nul.
+`AND` bit à bit, définit les drapeaux. Astuce : `test rax, rax` vérifie si `rax` est nul.
 
-Voici comment vous pourriez les utiliser pour construire une fonction `_ft_isalnum` (vérifie si un caractère est alphanumérique) :
+Exemple avec `_ft_isalnum` (vérifie si alphanumérique) :
 
 ```asm
 extern ft_isalpha
@@ -222,43 +211,42 @@ is_alnum:
 ```
 
 **`ret`**
-Quand une fonction est terminée, `ret` `pop` l'adresse de retour de la pile et y saute. C'est ainsi que vous terminez une fonction et rendez le contrôle à l'appelant.
+Pop l'adresse de retour et y saute. Fin de fonction.
 
-## Les conventions d'appel : les règles du jeu
+## Les conventions d'appel
 
-Comment une fonction sait-elle comment en appeler une autre ? Comment les arguments sont-ils passés ? Comment les valeurs de retour sont-elles renvoyées ? Tout cela est défini par une "convention d'appel". Si vous ne la respectez pas, les choses cassent spectaculairement.
+Comment passer les arguments ? Renvoyer les valeurs ? Les "conventions d'appel" définissent tout ça. Si vous ne les respectez pas, crash assuré.
 
-Pour x86-64 sur Linux et macOS, les six premiers arguments entiers/pointeurs sont passés dans les registres : `%rdi`, `%rsi`, `%rdx`, `%rcx`, `%r8`, `%r9`. La valeur de retour est attendue dans `%rax`.
+Sur x86-64 (Linux/macOS), les 6 premiers arguments vont dans : `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9`. Valeur de retour dans `rax`.
 
-### Parler à l'OS : les syscalls
+### Les syscalls
 
-Si vous voulez faire quoi que ce soit d'intéressant comme lire un fichier, afficher à l'écran ou ouvrir une connexion réseau, vous devez demander de l'aide au noyau du système d'exploitation. Vous faites cela avec un "syscall". C'est une instruction spéciale qui transfère le contrôle au noyau pour effectuer une opération privilégiée.
+Pour lire un fichier, afficher à l'écran, ouvrir une connexion... il faut demander au noyau. Le syscall transfère le contrôle au kernel pour les opérations privilégiées.
 
-## Mettre tout ensemble : ft_isascii
+## Exemple complet : ft_isascii
 
-Regardons une fonction vraiment simple. Celle-ci vérifie si le caractère en entrée (passé dans `rdi`) est un caractère ASCII valide (c'est-à-dire entre 0 et 127).
+Vérifie si un caractère (dans `rdi`) est ASCII (0-127).
 
-![Fonction ft_isascii](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Zeu7RMnWR6HT_7ij3-9kVA.png)
+![ft_isascii](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Zeu7RMnWR6HT_7ij3-9kVA.png)
 
-Décortiquons :
-1. `xor rax, rax` : C'est une façon rapide de mettre `rax` à 0. On suppose que le caractère n'est pas ASCII jusqu'à preuve du contraire.
-2. `cmp rdi, 0` : Compare le caractère en entrée avec 0.
-3. `jl.end` : "Jump if Less" (Sauter si Inférieur). Si le caractère est inférieur à 0, ce n'est pas ASCII, donc on saute à la fin.
-4. `cmp rdi, 127` : Compare le caractère en entrée avec 127.
-5. `jg.end` : "Jump if Greater" (Sauter si Supérieur). Si le caractère est supérieur à 127, ce n'est pas ASCII, donc on saute à la fin.
-6. `mov rax, 1` : Si on est arrivé jusqu'ici, le caractère est dans la plage. On met notre valeur de retour `rax` à 1.
-7. `.end:` : C'est notre label de sortie.
-8. `ret` : Retourne à l'appelant. La valeur dans `rax` est le résultat.
+Décomposition :
+1. `xor rax, rax` : met `rax` à 0 (on suppose non-ASCII).
+2. `cmp rdi, 0` : compare avec 0.
+3. `jl .end` : si < 0, pas ASCII → sortie.
+4. `cmp rdi, 127` : compare avec 127.
+5. `jg .end` : si > 127, pas ASCII → sortie.
+6. `mov rax, 1` : dans la plage → retourne 1.
+7. `.end:` + `ret` : retour à l'appelant.
 
-## Pour aller plus loin
+## Ressources
 
-Nous n'avons fait qu'effleurer la surface. Comprendre en détail le fonctionnement de la pile est un sujet à part entière. Mais cela devrait suffire pour vous lancer.
+On a juste effleuré la surface. La pile mériterait son propre article.
 
-- [Aide-mémoire x86-64](https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf) : Gardez-le sous la main. C'est une référence rapide inestimable.
-- [Liste des instructions](http://faydoc.tripod.com/cpu/index.htm) : Une liste complète des instructions x86.
+- [Cheatsheet x86-64](https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf)
+- [Liste des instructions](http://faydoc.tripod.com/cpu/index.htm)
 
-J'ai mis en ligne un dépôt avec mes propres implémentations de fonctions de la bibliothèque standard C en assembleur. N'hésitez pas à y jeter un œil et à l'utiliser comme référence.
+J'ai un dépôt avec mes implémentations de la libc en assembleur, jetez-y un œil.
 
-Apprendre l'assembleur est un travail de longue haleine, je ne vais pas mentir. Mais la compréhension qu'il vous donne sur le fonctionnement *réel* des ordinateurs est une sorte de super-pouvoir. Cela changera votre façon d'écrire du code, même dans les langages de haut niveau.
+L'assembleur demande du temps. Mais la compréhension qu'il apporte sur le fonctionnement *réel* des machines est un super-pouvoir. Ça change votre façon de coder, même en haut niveau.
 
-Bon code. Que vos registres contiennent toujours les bonnes valeurs. 🖥️💪
+Bon code. Que vos registres soient toujours justes. 🖥️💪

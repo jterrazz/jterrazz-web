@@ -2,15 +2,15 @@
 
 # Remettre en question, c'est jouer
 
-Nous vivons dans un monde où les titres sont conçus pour déclencher des réactions plutôt que pour susciter la réflexion. Le sensationnalisme fait vendre, et la nuance se perd souvent dans le bruit ambiant. Cette dynamique nous conditionne à réagir impulsivement, à partager des articles sur la seule base de leurs titres sans jamais les lire.
+Un monde où les titres sont conçus pour déclencher des réactions plutôt que susciter la réflexion. Le sensationnalisme vend, la nuance se perd dans le bruit. On réagit impulsivement, on partage sans lire.
 
-Ce projet, **n00**, est né de l'envie d'inverser cette tendance. Plutôt que de créer un énième agrégateur d'actualités, l'objectif était de concevoir un jeu — un jeu qui utilise les mécaniques addictives des applications mobiles pour enseigner l'esprit critique et la littératie médiatique.
+**n00** est né de l'envie d'inverser cette tendance. Pas un énième agrégateur d'actu, mais un jeu — un jeu qui utilise les mécaniques addictives du mobile pour enseigner l'esprit critique et la littératie médiatique.
 
-## Transformer la vérité en jeu
+## La vérité comme jeu
 
-Le concept de base est simple : peut-on rendre ludique la détection des biais ?
+Concept simple : peut-on rendre ludique la détection des biais ?
 
-Une actualité est rarement toute noire ou toute blanche. Un même événement peut être présenté comme une "libération" ou une "invasion" selon la source. L'application met les joueurs au défi d'identifier ces subtils glissements de perspective, en les récompensant lorsqu'ils repèrent un biais ou comprennent une nuance. Elle transforme la corvée du "fact-checking" en une boucle de jeu dopaminergique.
+Une actu est rarement noire ou blanche. Un même événement peut être une "libération" ou une "invasion" selon la source. L'app défie les joueurs d'identifier ces glissements de perspective, récompense quand ils repèrent un biais ou saisissent une nuance. Le fact-checking devient une boucle de jeu dopaminergique.
 
 ## L'IA comme moteur
 

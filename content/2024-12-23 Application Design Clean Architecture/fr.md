@@ -1,12 +1,12 @@
 ![](assets/thumbnail.jpg)
 
-# Un voyage au cœur de la Clean Architecture
+# Clean Architecture
 
-## Aller à l'essentiel
+## L'idée centrale
 
-Voici la grande idée qui a changé ma façon de construire des logiciels : votre architecture ne devrait pas se soucier de votre base de données. Elle ne devrait pas se soucier de votre framework web. Elle ne devrait pas se soucier de votre interface utilisateur. La seule chose qui devrait l'intéresser, c'est ce que votre application *fait réellement*.
+L'idée qui a changé ma façon de construire : votre architecture ne devrait pas se soucier de la base de données. Ni du framework web. Ni de l'UI. Seulement de ce que l'app *fait réellement*.
 
-C'est la philosophie derrière la **Clean Architecture**. C'est une approche de conception qui place vos **cas d'utilisation**, la vraie valeur métier, au cœur même de votre système. Tout le reste n'est qu'un détail, aboutissant à un système testable, maintenable et indépendant de sa plomberie technique.
+C'est la **Clean Architecture**. Les **cas d'utilisation** — la vraie valeur métier — au cœur du système. Le reste n'est qu'un détail. Résultat : testable, maintenable, indépendant de la plomberie technique.
 
 ---
 

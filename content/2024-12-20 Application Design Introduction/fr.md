@@ -2,67 +2,64 @@
 
 # Construire des logiciels qui durent
 
-## À propos de l'architecture logicielle
+## L'architecture, ce n'est pas un diagramme
 
-J'ai travaillé sur des projets où chaque étape ressemblait à un combat. Des modifications simples prenaient des semaines, et corriger un bug en créait trois autres. La cause profonde n'est presque jamais une seule ligne de code défaillante. C'est plus profond. C'est la fondation, l'architecture.
+J'ai bossé sur des projets où chaque modif ressemblait à un combat. Des changements simples prenaient des semaines. Corriger un bug en créait trois autres. Le problème n'est jamais une ligne de code. C'est plus profond : l'architecture.
 
-Pour moi, l'architecture logicielle n'est pas qu'un diagramme technique. C'est l'ensemble des décisions critiques qui déterminent l'avenir d'un projet. Il ne s'agit pas de demander "Où ranger ce fichier ?" La vraie question est : "Comment structurer ce système pour qu'il ne s'effondre pas sous son propre poids dans un an ?"
+L'architecture logicielle, c'est l'ensemble des décisions critiques qui déterminent l'avenir d'un projet. Pas "où ranger ce fichier ?" mais "comment structurer ce système pour qu'il ne s'effondre pas sous son poids dans un an ?"
 
-Ces choix sont l'échafaudage invisible de votre logiciel. Faites-les bien, et vous créez quelque chose capable de grandir, de s'adapter et de rester sain pendant des années. Faites-les mal, et vous ne faites qu'accumuler de la dette technique. C'est tout l'enjeu de la **conception applicative** : l'art pragmatique de construire des logiciels faits pour durer.
+Ces choix sont l'échafaudage invisible. Faites-les bien : un logiciel qui grandit, s'adapte, reste sain. Faites-les mal : de la dette technique qui s'accumule. C'est ça la **conception applicative** — l'art de construire des logiciels faits pour durer.
 
-Cet article décortique ce que signifie vraiment la conception applicative, pourquoi elle est si cruciale, et comment nous sommes arrivés aux bonnes pratiques actuelles. Nous explorerons les principes qui vous permettent de construire des logiciels à la fois **maintenables** et **évolutifs**.
+Cet article décortique ce que ça signifie vraiment, pourquoi c'est crucial, et comment on en est arrivés aux bonnes pratiques actuelles.
 
 ---
 
-# Alors, qu'est-ce que la conception applicative exactement ?
+# C'est quoi la conception applicative ?
 
-## Une solution à un problème que nous rencontrons tous
+## Un problème universel
 
-Imaginez une équipe de développeurs — vous y avez probablement été. Quelqu'un demande : "Où dois-je mettre le code de cette nouvelle fonctionnalité ?" ou "Est-ce la bonne façon de construire ça ? Est-ce que ça marchera encore dans six mois quand on devra le modifier ?"
+Vous y avez été. Quelqu'un demande : "Où je mets ce code ?" ou "C'est la bonne façon de faire ? Ça marchera encore dans six mois ?"
 
-Ce ne sont pas de simples questions quotidiennes ; elles touchent au défi central du développement logiciel. Comment construire quelque chose qui fonctionne maintenant sans créer un cauchemar pour votre futur vous ?
+Ce sont les questions centrales du développement. Comment construire quelque chose qui marche maintenant sans créer un cauchemar pour plus tard ?
 
-La **conception applicative** est la réponse. C'est la discipline qui consiste à prendre des **décisions délibérées** sur :
+La **conception applicative**, c'est ça. Des **décisions délibérées** sur :
 
-- Comment votre code est structuré.
-- Comment les différentes parties sont organisées.
-- Comment ces parties communiquent entre elles.
+- Comment structurer le code.
+- Comment organiser les parties.
+- Comment elles communiquent.
 
-L'objectif est simple : créer des applications **maintenables** (faciles à comprendre, corriger et faire évoluer) et **évolutives** (prêtes à gérer la croissance et les nouvelles demandes).
+L'objectif : des apps **maintenables** (faciles à comprendre, corriger, faire évoluer) et **évolutives** (prêtes pour la croissance).
 
 ![](assets/application-complexity.jpg)
 
 ---
 
-# L'ennemi que nous devons dompter : la complexité
+# L'ennemi : la complexité
 
-Construire un logiciel, c'est une bataille contre la complexité. La première étape pour gagner est de connaître son ennemi. J'en distingue trois formes principales :
+Construire un logiciel = bataille contre la complexité. Première étape : connaître l'ennemi. Trois formes :
 
-1. **La complexité essentielle**
-   C'est la complexité inévitable — la difficulté inhérente au problème que vous résolvez. Si vous construisez une application bancaire, vous devez gérer les calculs d'intérêts et les règles de transaction. C'est le travail. C'est essentiel.
+1. **Complexité essentielle**
+   Inévitable — la difficulté inhérente au problème. App bancaire = calculs d'intérêts, règles de transaction. C'est le travail.
 
-2. **La complexité technique**
-   Elle provient de vos outils : les bases de données, frameworks et serveurs nécessaires pour faire tourner votre logiciel. C'est une partie incontournable de l'équation, mais elle doit être maîtrisée pour ne pas phagocyter le projet.
+2. **Complexité technique**
+   Vos outils : bases de données, frameworks, serveurs. Incontournable, mais à maîtriser.
 
-3. **La complexité accidentelle**
-   C'est la blessure auto-infligée — le désordre que nous créons par de mauvais choix de conception. Pensez au code spaghetti, à l'usage systématique d'un framework pour tout simplement parce qu'on peut, ou à l'absence totale de documentation. Contrairement aux autres, cette complexité est entièrement optionnelle. Nous pouvons, et devons, l'éliminer.
+3. **Complexité accidentelle**
+   Auto-infligée. Code spaghetti, frameworks utilisés "parce qu'on peut", pas de docs. Entièrement optionnelle. À éliminer.
 
 ![](assets/complexity-levels.svg)
 
-Une bonne conception applicative consiste à minimiser la complexité accidentelle, garder la complexité technique sous contrôle, et concentrer votre énergie sur la maîtrise de la complexité essentielle.
+Bonne conception = minimiser l'accidentelle, contrôler la technique, maîtriser l'essentielle.
 
 ---
 
-# Comment en sommes-nous arrivés là : un bref historique
+# Un peu d'histoire
 
-Pour comprendre la conception applicative d'aujourd'hui, il est utile de voir comment nous en sommes arrivés là. Le parcours a été rapide.
+Comment on en est arrivés là :
 
-- **Avant 2000 : Le Far West.**
-  Les logiciels étaient souvent construits à l'instinct. Les architectures étaient chaotiques, et la plupart des tests, s'ils existaient, se faisaient à la main. C'était le chaos.
-- **Les années 2000 : La structure émerge.**
-  Les frameworks, les conceptions en couches et les méthodologies Agile ont commencé à apporter de l'ordre. La pyramide des tests automatisés est apparue, mettant l'accent sur les tests unitaires. Les équipes ont commencé à reconnaître la valeur d'une approche plus disciplinée.
-- **Après 2015 : L'ère moderne.**
-  C'est là que tout s'est vraiment mis en place. Des pratiques comme le **Test-Driven Development (TDD)** et le **Domain-Driven Design (DDD)** se sont généralisées. Des architectures comme l'**hexagonale** et la **clean architecture** nous ont appris à véritablement séparer les responsabilités. Le **déploiement continu** est devenu la norme, intégrant la qualité au cœur même du processus de développement.
+- **Avant 2000 : Far West.** Code à l'instinct, architectures chaotiques, tests manuels. Chaos.
+- **Années 2000 : Structure.** Frameworks, couches, Agile. Pyramide de tests. Discipline.
+- **Après 2015 : Ère moderne.** TDD, DDD, architectures hexagonale et clean. Déploiement continu. Qualité intégrée.
 
 ---
 

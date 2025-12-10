@@ -2,27 +2,26 @@
 
 # Séparer le métier de la technologie
 
-## Structurer votre code
+## Comment structurer un projet
 
-Alors, comment organise-t-on un projet ? C'est l'une des questions les plus fondamentales que nous affrontons en tant que développeurs. Faites-le bien, et votre application pourra grandir et s'adapter pendant des années. Faites-le mal, et vous vous engagez dans un monde de souffrances.
+Une des questions les plus fondamentales. Faites-le bien : l'app grandit et s'adapte pendant des années. Faites-le mal : un monde de souffrances.
 
-Dans ce chapitre, je vais vous guider à travers l'évolution de la façon dont nous structurons le code. Nous commencerons par les approches classiques, verrons où elles échouent, puis plongerons dans une bien meilleure façon de penser : **l'architecture hexagonale**. C'est un changement radical pour isoler ce que votre application *fait* de la technologie qu'elle *utilise*.
+On va voir l'évolution des approches, où elles échouent, puis plonger dans **l'architecture hexagonale** — un changement radical pour isoler ce que l'app *fait* de la technologie qu'elle *utilise*.
 
 ---
 
-# Le point de départ : les architectures classiques
+# Les architectures classiques
 
-## L'architecture spaghetti : l'architecture "sans architecture"
+## L'architecture spaghetti
 
-On l'a tous vue. Certains d'entre nous l'ont même écrite. L'architecture spaghetti, c'est ce qui arrive quand il n'y a pas de règles. Logique métier, appels à la base de données et code d'interface utilisateur — tout est jeté dans un seul amas emmêlé.
+On l'a tous vue. Certains l'ont écrite. Pas de règles = logique métier, appels BDD et UI mélangés dans un amas.
 
-**Le résultat ?**
+**Résultat :**
+- Code illisible.
+- Tests cauchemar.
+- Chaque modif risque de tout casser.
 
-- Le code est impossible à lire.
-- Les tests sont un cauchemar.
-- Chaque modification risque de casser le système entier.
-
-C'est l'issue naturelle quand on avance vite sans plan. C'est le chaos.
+Le chaos naturel quand on code vite sans plan.
 
 ---
 

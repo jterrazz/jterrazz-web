@@ -1,61 +1,61 @@
 ![](assets/thumbnail.jpg)
 
-# Et si nous nous étions trompés sur le e-commerce ?
+# Et si on s'était trompé sur le e-commerce ?
 
-Nous adorons la commodité du commerce en ligne moderne. Deux clics, et un colis arrive le lendemain. C'est presque magique.
+Deux clics, livré demain. Magique.
 
-Cependant, cette efficacité a un coût caché. Nous avons largement troqué la diversité des marchés locaux contre des plateformes centralisées. Ce faisant, l'économie s'est consolidée autour de quelques géants massifs. Quand un seul algorithme détermine ce que des millions de personnes voient et achètent, le marché devient fragile.
+Mais cette efficacité a un coût caché. On a troqué la diversité des marchés locaux contre des plateformes centralisées. L'économie s'est consolidée autour de quelques géants. Quand un seul algorithme décide ce que des millions de gens voient et achètent, le marché devient fragile.
 
-## Le problème : le commerce est resté à l'ère des "chaînes de télévision"
+## Le commerce est resté à l'ère de la télé
 
-Pour comprendre le problème, regardez comment Internet a transformé les médias.
-- **Avant :** Quelques grandes chaînes de télévision et journaux contrôlaient le récit (Centralisé).
-- **Après :** Les blogs, YouTube et les réseaux sociaux ont permis à n'importe qui de diffuser au monde entier (Décentralisé).
+Comparez avec les médias :
+- **Avant :** quelques chaînes et journaux contrôlaient le récit.
+- **Après :** blogs, YouTube, réseaux sociaux — n'importe qui peut diffuser.
 
-Les médias sont devenus démocratiques. **Le commerce, non.**
+Les médias se sont démocratisés. **Le commerce, non.**
 
-Aujourd'hui, les commerçants font face à un choix binaire :
-1. **L'île déserte :** Construire son propre site web et peiner à attirer des visiteurs.
-2. **Le jardin clos :** Louer un espace chez un géant (comme Amazon) qui contrôle les règles, prélève une part significative (souvent 30% ou plus), et garde vos données clients pour lui.
+Les commerçants ont deux options :
+1. **L'île déserte :** créer son site et galérer à attirer du trafic.
+2. **Le jardin clos :** louer chez un géant (Amazon) qui fixe les règles, prend 30%+, et garde vos données clients.
 
-La question est : **Pourquoi ne pouvons-nous pas démocratiser le commerce comme nous avons démocratisé l'édition ?**
+**Pourquoi ne pas démocratiser le commerce comme on a démocratisé l'édition ?**
 
 ## La solution : un protocole, pas une plateforme
 
-La réponse réside dans un changement de perspective : passer des "plateformes" aux "protocoles".
+Changement de perspective : des "plateformes" aux "protocoles".
 
-Une **plateforme** est une entreprise privée (comme un propriétaire de centre commercial) qui possède le bâtiment et fixe le loyer.
-Un **protocole** est un standard public (comme l'email ou le web lui-même) que tout le monde peut utiliser.
+**Plateforme** = entreprise privée qui possède le bâtiment et fixe le loyer.
+**Protocole** = standard public que tout le monde peut utiliser (comme l'email).
 
-Imaginez un écosystème qui fonctionne comme un **service public pour le commerce** :
+Imaginez un **service public pour le commerce** :
 
-1. **Accès sans permission :** Tout comme n'importe qui peut envoyer un email sans demander la permission à Google, n'importe quel commerçant devrait pouvoir lister ses produits sans gardien à l'entrée.
-2. **Connexion directe :** La transaction se fait directement entre acheteur et vendeur. Le protocole les connecte, mais il ne s'interpose pas.
-3. **Infrastructure neutre :** Le système fournit la plomberie (annonces, paiements, réputation) mais ne concurrence pas les commerçants. Il n'analysera pas les données de vente pour lancer un produit concurrent.
+1. **Accès ouvert :** n'importe qui peut lister ses produits, sans gardien.
+2. **Connexion directe :** la transaction se fait entre acheteur et vendeur. Le protocole connecte, mais ne s'interpose pas.
+3. **Infrastructure neutre :** le système fournit la plomberie (annonces, paiements, réputation) sans concurrencer les commerçants.
 
-Cela crée une place de village numérique où une marque mondiale et un artisan local sont sur un pied d'égalité, distingués uniquement par leur réputation et la qualité de leurs produits.
+Une place de village numérique où marques mondiales et artisans locaux sont à égalité — seules la réputation et la qualité comptent.
 
 ## L'innovation en périphérie
 
-Ce n'est pas que de la philosophie ; c'est une opportunité technique.
+Pas juste de la philosophie — une opportunité technique.
 
-Actuellement, l'innovation dans le shopping est verrouillée par quelques grandes entreprises. Si vous voulez un meilleur moteur de recherche ou un réseau de livraison plus rapide, vous devez attendre que les géants le construisent.
+Aujourd'hui, l'innovation shopping est verrouillée par quelques géants. Meilleur moteur de recherche ? Livraison plus rapide ? Il faut attendre qu'ils le construisent.
 
-En passant à un **protocole décentralisé**, nous libérons "l'innovation en périphérie". Puisque les données sont ouvertes et standardisées, des développeurs indépendants peuvent construire par-dessus :
-- **Interfaces spécialisées :** Un développeur pourrait créer une application boutique uniquement pour les appareils photo vintage, qui puise dans l'inventaire mondial mais offre des outils de filtrage spécifiques que les géants ignorent.
-- **Logistique hyper-locale :** Un service de coursiers local pourrait se connecter au protocole pour offrir une livraison écologique dans une seule ville, sans avoir besoin d'un partenariat mondial.
-- **Curation communautaire :** Au lieu que la publicité guide la découverte, les communautés pourraient construire leurs propres flux de produits de confiance.
+Avec un **protocole décentralisé**, on libère l'innovation. Données ouvertes et standardisées = les indépendants peuvent construire par-dessus :
+- **Interfaces spécialisées :** une app dédiée aux appareils photo vintage, puisant dans l'inventaire mondial.
+- **Logistique hyper-locale :** coursiers écolos dans une seule ville, sans partenariat global.
+- **Curation communautaire :** flux de produits de confiance au lieu de pubs.
 
 ## Remettre l'humain au centre
 
-L'objectif n'est pas la technologie pour la technologie. Il s'agit de restaurer l'équilibre dans l'économie.
+L'objectif : restaurer l'équilibre économique.
 
-Une approche basée sur un protocole vise un avenir où le shopping en ligne conserve sa commodité tout en soutenant un écosystème diversifié de créateurs et de commerçants.
+Un protocole permet un shopping pratique *et* un écosystème diversifié de créateurs.
 
-- **Terrain de jeu équitable :** Les petits acteurs accèdent aux mêmes outils que les grands.
-- **Connexion réelle :** Le commerce redevient social et relationnel.
-- **Open source :** Pas de boîtes noires ni d'algorithmes cachés.
+- **Terrain de jeu équitable :** mêmes outils pour petits et grands.
+- **Connexion réelle :** commerce social et relationnel.
+- **Open source :** pas de boîtes noires.
 
-C'est un défi complexe, mais l'avenir du shopping n'a pas à se limiter à un unique bouton "acheter" appartenant à un géant.
+L'avenir du shopping n'a pas à se résumer à un bouton "acheter" appartenant à un géant.
 
-Construisons quelque chose de mieux. 🚀
+Construisons mieux. 🚀

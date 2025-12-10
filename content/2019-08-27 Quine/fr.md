@@ -1,38 +1,36 @@
 ![](assets/thumbnail.jpg)
 
-# Créer un programme qui s'écrit lui-même (un quine)
+# Quine : un programme qui s'écrit lui-même
 
-J'ai toujours été fasciné par une question simple, presque paradoxale : un programme peut-il écrire son propre code ?
+Un programme peut-il afficher son propre code source ? Cette question m'a toujours fasciné. C'est plus qu'une curiosité — c'est un vrai défi de programmation appelé **Quine**.
 
-Ce n'est pas qu'une curiosité philosophique ; c'est un défi de programmation rigoureux connu sous le nom de **Quine**.
+## Les règles du jeu
 
-## Le défi
+Écrire un programme dont la seule sortie est une copie exacte de son code source. Contraintes :
 
-L'objectif est d'écrire un programme dont la seule sortie est une copie exacte de son propre code source. Les règles sont simples mais strictes :
+1. **Auto-réplication** : la sortie doit correspondre au source, octet pour octet.
+2. **Pas de triche** : interdit de lire son propre fichier (`fopen(__FILE__)` = disqualifié).
+3. **Pas d'entrée** : le programme doit être totalement autonome.
 
-1. **Auto-réplication :** La sortie doit correspondre au fichier source octet par octet.
-2. **Pas de triche :** Vous ne pouvez pas ouvrir votre propre fichier source (par exemple, `fopen(__FILE__)` est interdit).
-3. **Pas d'entrée :** Le programme doit être autonome ; aucune donnée externe n'est autorisée.
+Ça ressemble à de la magie, mais c'est de la pure logique.
 
-Cela ressemble à un tour de magie, mais c'est de la pure logique.
+## Le problème
 
-## La théorie : comment ça fonctionne
+Une régression infinie. Pour afficher le code, il faut une instruction d'affichage. Mais cette instruction *fait partie* du code, donc il faut aussi l'afficher. Et ainsi de suite.
 
-Le problème fondamental est une régression à l'infini. Si vous voulez afficher le code, vous avez besoin d'une instruction d'affichage. Mais cette instruction *fait partie* du code, donc vous devez aussi l'afficher. Et ensuite, vous devez afficher le code qui affiche l'instruction d'affichage.
-
-C'est comme se tenir entre deux miroirs face à face.
+C'est comme se tenir entre deux miroirs.
 
 ### La solution : Code = Données
 
-L'astuce pour résoudre ce problème est de séparer le programme en deux parties :
-1. **Le modèle (Données) :** Une chaîne de caractères contenant la *structure* du code.
-2. **L'acteur (Code) :** La logique qui affiche le modèle et comble les pièces manquantes.
+L'astuce : séparer le programme en deux parties :
+1. **Le modèle (Données)** : une chaîne contenant la *structure* du code.
+2. **L'acteur (Code)** : la logique qui affiche le modèle en le complétant.
 
-En C, cela prend souvent la forme d'une instruction `printf` qui utilise une chaîne comme format, puis passe *cette même chaîne* comme argument pour se compléter elle-même.
+En C, ça se traduit souvent par un `printf` qui utilise une chaîne comme format, puis passe *cette même chaîne* comme argument.
 
 ## Une solution en C
 
-Voici un programme C qui résout le défi. Il inclut des commentaires et plusieurs fonctions pour prouver qu'il gère la complexité.
+Un programme qui résout le défi, avec commentaires et plusieurs fonctions pour prouver qu'il gère la complexité :
 
 ```c
 #include <stdio.h>
@@ -56,33 +54,33 @@ int main(void)
 }
 ```
 
-### Déconstruire la magie
+### Décortiquons
 
-1. **La chaîne :** `get_str()` retourne l'intégralité du code source sous forme d'une seule chaîne, mais avec des marqueurs de position.
-   * `%1$c` est un marqueur pour un saut de ligne (ASCII 10).
-   * `%4$s` est un marqueur pour la chaîne elle-même.
-2. **L'affichage :** Dans `main`, nous appelons `printf(str, 10, 9, 34, str)`.
-   * Nous passons les codes ASCII pour le saut de ligne (`10`), la tabulation (`9`) et les guillemets (`34`) pour corriger le formatage.
-   * Point crucial : nous passons `str` *à elle-même* pour remplir le marqueur `%4$s`.
+1. **La chaîne** : `get_str()` retourne tout le code source avec des marqueurs.
+   * `%1$c` → saut de ligne (ASCII 10).
+   * `%4$s` → la chaîne elle-même.
+2. **L'affichage** : `printf(str, 10, 9, 34, str)`.
+   * On passe les codes ASCII : newline (`10`), tab (`9`), guillemet (`34`).
+   * Point clé : `str` est passée *à elle-même* pour remplir `%4$s`.
 
-Le programme utilise la chaîne à la fois comme **instructions** (le format) et comme **données** (le contenu).
+La chaîne sert à la fois de **format** et de **contenu**.
 
 ## Pourquoi "Quine" ?
 
-Le terme a été inventé par Douglas Hofstadter dans *Gödel, Escher, Bach*. Il l'a nommé d'après le philosophe **Willard Van Orman Quine**, qui a étudié la logique de l'auto-référence.
+Le terme vient de Douglas Hofstadter dans *Gödel, Escher, Bach*, en hommage au philosophe **Willard Van Orman Quine** qui étudiait l'auto-référence.
 
-Quine (le philosophe) a formulé ce célèbre paradoxe :
+Son paradoxe célèbre :
 > « produit une fausseté quand on le fait précéder de sa citation » produit une fausseté quand on le fait précéder de sa citation.
 
-C'est une phrase qui parle d'elle-même, tout comme notre programme.
+Une phrase qui parle d'elle-même. Exactement comme notre programme.
 
-## Pourquoi est-ce important ?
+## Pourquoi c'est important ?
 
-Au-delà d'être un tour de passe-passe intellectuel, les quines enseignent un concept fondamental en informatique : **le code et les données sont interchangeables**.
+Au-delà du tour de force intellectuel, les quines illustrent un concept fondamental : **code et données sont interchangeables**.
 
-C'est le même mécanisme qui permet :
-* Les **compilateurs** (des programmes qui lisent du code pour écrire du code).
-* Les **virus** (des programmes qui se copient eux-mêmes dans d'autres fichiers).
-* L'**ADN** (des données biologiques qui encodent les instructions pour construire l'organisme qui les porte).
+C'est le même principe derrière :
+* Les **compilateurs** (du code qui génère du code).
+* Les **virus** (des programmes qui se copient).
+* L'**ADN** (des données qui encodent les instructions pour construire l'organisme qui les porte).
 
-Cela change complètement la façon dont on perçoit un fichier source. Ce n'est pas simplement un ensemble d'instructions ; c'est un motif capable de se reproduire lui-même.
+Un fichier source n'est pas juste des instructions — c'est un motif capable de se reproduire.

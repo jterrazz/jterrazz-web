@@ -1,20 +1,20 @@
 ![](assets/thumbnail.jpg)
 
-# Parlons des dépendances
+# Les dépendances
 
-## Comment votre code est connecté
+## Les fils invisibles de votre code
 
-Les dépendances sont les fils invisibles qui maintiennent toute votre application ensemble. Chaque morceau de code qui communique avec un autre crée une dépendance. Pour moi, comprendre ces connexions est la compétence la plus importante en architecture logicielle. Si vous maîtrisez cela, vous pouvez construire n'importe quoi. Si vous échouez, vous ne faites que créer un futur cauchemar pour vous-même.
+Les dépendances maintiennent votre application ensemble. Chaque morceau de code qui parle à un autre en crée une. Pour moi, comprendre ces connexions est *la* compétence clé en architecture. Maîtrisez ça, et vous pouvez construire n'importe quoi. Échouez, et c'est un cauchemar garanti.
 
-Maîtriser les dépendances est ce qui nous permet de construire des logiciels flexibles, faciles à tester et prêts à évoluer.
+Maîtriser les dépendances = logiciels flexibles, testables, évolutifs.
 
 ---
 
-# Qu'est-ce qu'une dépendance, exactement ?
+# C'est quoi une dépendance ?
 
-C'est simple : une dépendance existe dès qu'un changement dans un morceau de code force un changement dans un autre. Voyez-le ainsi : **Le code A dépend du code B si casser B casse aussi A.**
+Simple : une dépendance existe quand un changement dans un code force un changement dans un autre. **A dépend de B si casser B casse A.**
 
-Regardons un exemple TypeScript très basique :
+Exemple TypeScript basique :
 
 ```ts
 function hello() {
@@ -25,21 +25,21 @@ function hello() {
 
 Dans cet extrait, ma fonction `hello` est directement liée à la classe `Something`. Si je modifie la classe `Something` — disons que son constructeur nécessite maintenant un argument — ma fonction `hello` casse. Elle doit être mise à jour. C'est une dépendance en action.
 
-## Le sens de la dépendance
+## Le sens compte
 
-La direction d'une dépendance est cruciale. Pour la rendre parfaitement claire, je me pose toujours une question : **Si je supprime la connexion entre deux éléments, lequel cesse de fonctionner ?**
+La direction est cruciale. Question clé : **si je supprime la connexion, lequel casse ?**
 
-Dans notre exemple, si je supprime la classe `Something`, la fonction `hello` est morte. Elle ne peut pas s'exécuter. Donc, `hello` dépend de `Something`, pas l'inverse.
+Dans l'exemple, supprimer `Something` tue `hello`. Donc `hello` dépend de `Something`, pas l'inverse.
 
 ---
 
-# Comment dompter les dépendances dans vos tests avec les doublures de test
+# Dompter les dépendances dans les tests
 
-Les dépendances sont une vraie plaie quand il s'agit de tester. On y est tous passés : vous écrivez un test pour une fonction simple, mais il échoue parce qu'il ne peut pas se connecter à la base de données. Le problème n'est pas votre code ; c'est l'environnement. C'est là que les tests deviennent fragiles et inutiles.
+Les dépendances rendent les tests galère. Test qui échoue parce qu'il ne peut pas se connecter à la BDD — le problème n'est pas le code, c'est l'environnement. Tests fragiles, inutiles.
 
-Pour résoudre cela, nous utilisons ce que Martin Fowler appelle les **doublures de test** (test doubles). Ce sont des substituts des vraies dépendances, qui vous permettent de tester votre code de manière isolée.
+Solution : les **doublures de test** (test doubles). Des substituts qui permettent de tester en isolation.
 
-Voici les principaux types :
+Types principaux :
 
 ## Catégorie 1 : Doublures qui **retournent des valeurs**
 
