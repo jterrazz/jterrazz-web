@@ -1,11 +1,20 @@
 import { type MetadataRoute } from 'next';
 
-// Domain
 import { buildArticleSlug } from '../domain/utils/slugify';
 
-// Infrastructure
+import { locales } from '../i18n/config';
 import { articlesRepository } from '../infrastructure/repositories/articles.repository';
 import { experimentsRepository } from '../infrastructure/repositories/experiments.repository';
+
+/**
+ * Build URL with locale prefix (no prefix for English)
+ */
+function buildLocalizedUrl(baseUrl: string, path: string, locale: string): string {
+    if (locale === 'en') {
+        return `${baseUrl}${path}`;
+    }
+    return `${baseUrl}/${locale}${path}`;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
@@ -13,50 +22,60 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const articles = articlesRepository.getAll();
     const experiments = experimentsRepository.getAll();
 
+    // Generate article URLs for all locales where content exists
     const articleUrls = articles.flatMap((article) => {
         const languages = Object.keys(article.content);
-        return languages.map((lang) => ({
-            changeFrequency: 'monthly' as const,
-            lastModified: new Date(article.metadata.dateModified),
-            priority: 0.8,
-            url: `${baseUrl}/articles/${buildArticleSlug(article.publicIndex, article.metadata.title.en)}/${lang}`,
-        }));
+        return languages
+            .filter((lang) => locales.includes(lang as (typeof locales)[number]))
+            .map((lang) => ({
+                changeFrequency: 'monthly' as const,
+                lastModified: new Date(article.metadata.dateModified),
+                priority: 0.8,
+                url: buildLocalizedUrl(
+                    baseUrl,
+                    `/articles/${buildArticleSlug(article.publicIndex, article.metadata.title.en)}`,
+                    lang,
+                ),
+            }));
     });
 
-    const experimentUrls = experiments.map((experiment) => ({
-        changeFrequency: 'monthly' as const,
-        lastModified: new Date(), // Ideally this should come from experiment data
-        priority: 0.8,
-        url: `${baseUrl}/experiments/${experiment.slug}`,
-    }));
+    // Generate experiment URLs for all locales
+    const experimentUrls = experiments.flatMap((experiment) =>
+        locales.map((locale) => ({
+            changeFrequency: 'monthly' as const,
+            lastModified: new Date(),
+            priority: 0.8,
+            url: buildLocalizedUrl(baseUrl, `/experiments/${experiment.slug}`, locale),
+        })),
+    );
 
-    // Add main pages
-    const mainPages = [
+    // Main pages for all locales
+    const mainPages = locales.flatMap((locale) => [
         {
             changeFrequency: 'weekly' as const,
             lastModified: new Date(),
-            priority: 1.0,
-            url: baseUrl,
+            priority: locale === 'en' ? 1.0 : 0.9,
+            url: buildLocalizedUrl(baseUrl, '', locale),
         },
         {
             changeFrequency: 'weekly' as const,
             lastModified: new Date(),
             priority: 0.9,
-            url: `${baseUrl}/articles`,
+            url: buildLocalizedUrl(baseUrl, '/articles', locale),
         },
         {
             changeFrequency: 'monthly' as const,
             lastModified: new Date(),
             priority: 0.7,
-            url: `${baseUrl}/experiments`,
+            url: buildLocalizedUrl(baseUrl, '/experiments', locale),
         },
         {
             changeFrequency: 'monthly' as const,
             lastModified: new Date(),
             priority: 0.6,
-            url: `${baseUrl}/photographs`,
+            url: buildLocalizedUrl(baseUrl, '/photographs', locale),
         },
-    ];
+    ]);
 
     return [...mainPages, ...articleUrls, ...experimentUrls];
 }

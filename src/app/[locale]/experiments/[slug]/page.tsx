@@ -1,21 +1,25 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
 
-// Infrastructure
-import { experimentsRepository } from '../../../infrastructure/repositories/experiments.repository';
-import { buildMetadata } from '../../../infrastructure/seo/build-metadata';
+import { locales } from '../../../../i18n/config';
+import { experimentsRepository } from '../../../../infrastructure/repositories/experiments.repository';
+import { buildMetadata } from '../../../../infrastructure/seo/build-metadata';
 
-import { ExperimentDetailTemplate } from '../../../presentation/templates/experiment-detail.template';
+import { ExperimentDetailTemplate } from '../../../../presentation/templates/experiment-detail.template';
 
 type Props = {
     params: Promise<{
+        locale: string;
         slug: string;
     }>;
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
     const params = await props.params;
-    const experiment = experimentsRepository.getBySlug(params.slug);
+    const { locale, slug } = params;
+
+    const experiment = experimentsRepository.getBySlug(slug);
 
     if (!experiment) {
         return { title: 'Experiment Not Found' };
@@ -23,11 +27,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
     const description = experiment.longDescription || experiment.description;
     const imageUrl = experiment.images?.thumbnail;
+    const path = locale === 'en' ? `/experiments/${slug}` : `/${locale}/experiments/${slug}`;
 
     return buildMetadata({
+        alternateLanguages: {
+            en: `/experiments/${slug}`,
+            fr: `/fr/experiments/${slug}`,
+        },
         description,
         image: imageUrl ? { alt: experiment.name, path: imageUrl } : undefined,
-        path: `/experiments/${experiment.slug}`,
+        locale,
+        path,
         title: experiment.name,
     });
 }
@@ -35,14 +45,20 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 export function generateStaticParams() {
     const experiments = experimentsRepository.getAll();
 
-    return experiments.map((experiment) => ({
-        slug: experiment.slug,
-    }));
+    return experiments.flatMap((experiment) =>
+        locales.map((locale) => ({
+            locale,
+            slug: experiment.slug,
+        })),
+    );
 }
 
 export default async function ExperimentDetailPage(props: Props) {
     const params = await props.params;
-    const experiment = experimentsRepository.getBySlug(params.slug);
+    const { locale, slug } = params;
+    setRequestLocale(locale);
+
+    const experiment = experimentsRepository.getBySlug(slug);
 
     if (!experiment) {
         notFound();
@@ -61,3 +77,4 @@ export default async function ExperimentDetailPage(props: Props) {
 
     return <ExperimentDetailTemplate experiment={serializedExperiment} />;
 }
+

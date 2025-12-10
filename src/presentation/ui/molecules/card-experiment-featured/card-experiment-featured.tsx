@@ -3,7 +3,8 @@
 import React from 'react';
 
 import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+
+import { Link } from '../../../../infrastructure/navigation/navigation';
 
 // Domain
 import {

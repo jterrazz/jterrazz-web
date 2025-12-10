@@ -3,7 +3,8 @@
 import React from 'react';
 
 import { ArrowRight, Blocks, BrainCircuit, Globe, Workflow } from 'lucide-react';
-import Link from 'next/link';
+
+import { Link } from '../../infrastructure/navigation/navigation';
 
 // Domain
 import { type Experiment } from '../../domain/experiment';
@@ -38,11 +39,28 @@ type SerializableExperiment = Omit<Experiment, 'components' | 'url'> & {
     url: string;
 };
 
+type HelloWorldTranslations = {
+    focus: string;
+    focusAreas: {
+        aiAgents: { description: string; title: string };
+        aiEngineering: { description: string; title: string };
+        architecture: { description: string; title: string };
+        decentralization: { description: string; title: string };
+    };
+    journey: string;
+    latestArticles: string;
+    latestExperiments: string;
+    readArticles: string;
+    title: string;
+    viewAll: string;
+};
+
 type HelloWorldTemplateProps = {
     description: string;
     experiences: UserExperience[];
     latestExperiments: SerializableExperiment[];
     topArticles: Article[];
+    translations: HelloWorldTranslations;
 };
 
 const FocusItem = ({
@@ -88,10 +106,11 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
     experiences,
     latestExperiments,
     topArticles,
+    translations: t,
 }) => {
     const button = {
         href: '/articles',
-        text: 'Read Articles',
+        text: t.readArticles,
     };
 
     return (
@@ -99,7 +118,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
             {/* Hero Section */}
             <div className="w-full border-b border-zinc-100 dark:border-zinc-900">
                 <div className="max-w-6xl mx-auto px-4 md:px-6">
-                    <SectionHero button={button} description={description} title="Hello, World!" />
+                    <SectionHero button={button} description={description} title={t.title} />
                 </div>
             </div>
 
@@ -107,12 +126,12 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                 {/* Latest Experiments Section */}
                 <section>
                     <div className="flex items-center justify-between mb-12">
-                        <DividerSection className="flex-1" title="Latest Experiments" />
+                        <DividerSection className="flex-1" title={t.latestExperiments} />
                         <Link
                             className="hidden md:flex items-center gap-2 text-sm font-bold tracking-wide uppercase text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors ml-8 whitespace-nowrap"
                             href="/experiments"
                         >
-                            View all <ArrowRight size={16} />
+                            {t.viewAll} <ArrowRight size={16} />
                         </Link>
                     </div>
 
@@ -126,12 +145,12 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                 {/* Latest Articles Section */}
                 <section>
                     <div className="flex items-center justify-between mb-12">
-                        <DividerSection className="flex-1" title="Latest Articles" />
+                        <DividerSection className="flex-1" title={t.latestArticles} />
                         <Link
                             className="hidden md:flex items-center gap-2 text-sm font-bold tracking-wide uppercase text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors ml-8 whitespace-nowrap"
                             href="/articles"
                         >
-                            View all <ArrowRight size={16} />
+                            {t.viewAll} <ArrowRight size={16} />
                         </Link>
                     </div>
 
@@ -152,34 +171,34 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
 
                 {/* Focus Areas */}
                 <section>
-                    <DividerSection className="mb-12" title="Focus" />
+                    <DividerSection className="mb-12" title={t.focus} />
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                         <FocusItem
-                            description="Multiplying deep engineering expertise with AI to build ambitious, boundary-pushing projects."
+                            description={t.focusAreas.aiEngineering.description}
                             icon={BrainCircuit}
-                            title="AI Engineering"
+                            title={t.focusAreas.aiEngineering.title}
                         />
                         <FocusItem
-                            description="Building autonomous workflows that can plan, execute, and improve themselves."
+                            description={t.focusAreas.aiAgents.description}
                             icon={Workflow}
-                            title="AI Agents"
+                            title={t.focusAreas.aiAgents.title}
                         />
                         <FocusItem
-                            description="Crafting scalable, maintainable software using architectures adapted to each project."
+                            description={t.focusAreas.architecture.description}
                             icon={Blocks}
-                            title="Architecture"
+                            title={t.focusAreas.architecture.title}
                         />
                         <FocusItem
-                            description="Advocating for self-sovereignty and privacy through decentralized technologies."
+                            description={t.focusAreas.decentralization.description}
                             icon={Globe}
-                            title="Decentralization"
+                            title={t.focusAreas.decentralization.title}
                         />
                     </div>
                 </section>
 
                 {/* Timeline Section */}
                 <section>
-                    <DividerSection className="mb-20" title="Journey" />
+                    <DividerSection className="mb-20" title={t.journey} />
 
                     <div className="max-w-4xl mx-auto w-full">
                         <Timeline>

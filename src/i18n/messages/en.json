@@ -1,0 +1,74 @@
+{
+  "home": {
+    "title": "Hello, World!",
+    "description": "Software engineer building AI agents, fintech solutions, and clean architecture systems. Discover my projects, articles, and experiments.",
+    "seoTitle": "Software Engineer & AI Developer",
+    "readArticles": "Read Articles",
+    "latestExperiments": "Latest Experiments",
+    "latestArticles": "Latest Articles",
+    "viewAll": "View all",
+    "focus": "Focus",
+    "journey": "Journey",
+    "seriesDescription": "{count}-part series exploring {name}.",
+    "focusAreas": {
+      "aiEngineering": {
+        "title": "AI Engineering",
+        "description": "Multiplying deep engineering expertise with AI to build ambitious, boundary-pushing projects."
+      },
+      "aiAgents": {
+        "title": "AI Agents",
+        "description": "Building autonomous workflows that can plan, execute, and improve themselves."
+      },
+      "architecture": {
+        "title": "Architecture",
+        "description": "Crafting scalable, maintainable software using architectures adapted to each project."
+      },
+      "decentralization": {
+        "title": "Decentralization",
+        "description": "Advocating for self-sovereignty and privacy through decentralized technologies."
+      }
+    }
+  },
+  "articles": {
+    "title": "Articles",
+    "seoDescription": "Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.",
+    "highlightDescription": "My personal knowledge base. Notes on engineering, architecture, and the things I learn while building software.",
+    "filterAll": "All",
+    "filterExperiment": "Experiment",
+    "filterInsight": "Insight",
+    "latestExperiment": "Latest Experiment",
+    "latestInsight": "Latest Insight",
+    "otherPosts": "Other Posts",
+    "series": "Series"
+  },
+  "experiments": {
+    "title": "Experiments",
+    "seoDescription": "Open-source projects, apps, and developer tools. AI agents, fintech solutions, TypeScript packages, and system-level experiments.",
+    "highlightDescription": "The code behind the concepts. A collection of tools and experiments I've built to solve real problems.",
+    "viewGitHub": "View GitHub",
+    "applications": "Applications",
+    "tooling": "Tooling",
+    "systems": "Systems"
+  },
+  "photographs": {
+    "title": "Photographs",
+    "seoDescription": "Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.",
+    "highlightDescription": "The world as I see it. A simple collection of moments and places that caught my eye.",
+    "viewPexels": "View Pexels"
+  },
+  "common": {
+    "articles": "Articles",
+    "experiments": "Experiments",
+    "photographs": "Photographs"
+  },
+  "navbar": {
+    "hello": "Hello",
+    "experiments": "Experiments",
+    "articles": "Articles",
+    "photographs": "Photographs",
+    "getApp": "Get App",
+    "downloadApp": "Download App",
+    "opensInNewTab": "(opens in a new tab)"
+  }
+}
+

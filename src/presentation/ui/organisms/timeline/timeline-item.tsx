@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUpRight, Briefcase, Building2, GraduationCap, MapPin, Plus } from 'lucide-react';
-import Link from 'next/link';
+
+import { Link } from '../../../../infrastructure/navigation/navigation';
 
 // Domain
 import { type UserExperience } from '../../../../domain/user';

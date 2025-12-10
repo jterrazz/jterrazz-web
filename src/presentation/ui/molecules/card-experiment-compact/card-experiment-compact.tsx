@@ -3,7 +3,8 @@
 import React from 'react';
 
 import { Github } from 'lucide-react';
-import Link from 'next/link';
+
+import { Link } from '../../../../infrastructure/navigation/navigation';
 
 // Domain
 import { type Experiment } from '../../../../domain/experiment';

@@ -3,21 +3,15 @@ import React from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
+import { getLocale } from 'next-intl/server';
 // Domain
 // Google Fonts temporarily disabled due to network restrictions in build environment
 // import { Inter } from 'next/font/google';
-
-import { UserContactType } from '../domain/user';
-
-// Infrastructure
-import { userRepository } from '../infrastructure/repositories/user.repository';
 
 // Utils
 import { cn } from '../presentation/utils';
 
 import { ThemeProvider } from '../presentation/theme/theme-provider';
-import { Navbar } from '../presentation/ui/organisms/navbar/navbar';
-import { SiteFooter } from '../presentation/ui/organisms/site-footer/site-footer';
 
 import './globals.css';
 
@@ -156,39 +150,12 @@ export const metadata: Metadata = {
     },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    // Convert `URL` instances to plain strings to safely pass to the client navigation bar.
-    const contacts = [
-        userRepository.getContact(UserContactType.GitHub),
-        userRepository.getContact(UserContactType.Medium),
-    ].map((contact) => ({
-        name: contact.type,
-        type: contact.type,
-        url: contact.url.toString(),
-        value: contact.value,
-    }));
-    const pages = [
-        {
-            href: '/',
-            name: 'Hello',
-        },
-        {
-            href: '/experiments',
-            name: 'Experiments',
-        },
-        {
-            href: '/articles',
-            name: 'Articles',
-        },
-        {
-            href: '/photographs',
-            name: 'Photographs',
-        },
-    ];
+    const locale = await getLocale();
 
     const generatedClassName = cn(
         'min-h-screen flex flex-col text-zinc-900 dark:text-zinc-100 font-sans antialiased',
@@ -206,21 +173,13 @@ export default function RootLayout({
     `;
 
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang={locale} suppressHydrationWarning>
             <head>
                 {/* biome-ignore lint/security/noDangerouslySetInnerHtml: Required to prevent theme flash before hydration */}
                 <script dangerouslySetInnerHTML={{ __html: themeScript }} />
             </head>
             <body className={generatedClassName}>
-                <ThemeProvider>
-                    <div className="sticky top-0 z-[50] pointer-events-none">
-                        <Navbar contacts={contacts} pages={pages} />
-                    </div>
-                    <main className="flex-1 flex flex-col overflow-x-hidden w-full">
-                        {children}
-                    </main>
-                    <SiteFooter />
-                </ThemeProvider>
+                <ThemeProvider>{children}</ThemeProvider>
                 <Analytics />
                 <SpeedInsights />
             </body>

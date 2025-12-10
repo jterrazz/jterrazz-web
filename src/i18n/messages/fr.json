@@ -1,0 +1,74 @@
+{
+  "home": {
+    "title": "Hello, World!",
+    "description": "Ingénieur logiciel développant des agents IA, des solutions fintech et des systèmes en clean architecture. Découvrez mes projets, articles et expérimentations.",
+    "seoTitle": "Ingénieur Logiciel & Développeur IA",
+    "readArticles": "Lire les articles",
+    "latestExperiments": "Dernières expérimentations",
+    "latestArticles": "Derniers articles",
+    "viewAll": "Voir tout",
+    "focus": "Domaines",
+    "journey": "Parcours",
+    "seriesDescription": "Série en {count} parties explorant {name}.",
+    "focusAreas": {
+      "aiEngineering": {
+        "title": "Ingénierie IA",
+        "description": "Multiplier une expertise technique approfondie avec l'IA pour construire des projets ambitieux et innovants."
+      },
+      "aiAgents": {
+        "title": "Agents IA",
+        "description": "Créer des workflows autonomes capables de planifier, exécuter et s'améliorer eux-mêmes."
+      },
+      "architecture": {
+        "title": "Architecture",
+        "description": "Concevoir des logiciels scalables et maintenables avec des architectures adaptées à chaque projet."
+      },
+      "decentralization": {
+        "title": "Décentralisation",
+        "description": "Promouvoir la souveraineté individuelle et la vie privée grâce aux technologies décentralisées."
+      }
+    }
+  },
+  "articles": {
+    "title": "Articles",
+    "seoDescription": "Articles techniques sur les agents IA, l'architecture logicielle, TypeScript et les bonnes pratiques d'ingénierie. Guides et tutoriels approfondis.",
+    "highlightDescription": "Ma base de connaissances personnelle. Notes sur l'ingénierie, l'architecture et ce que j'apprends en développant des logiciels.",
+    "filterAll": "Tous",
+    "filterExperiment": "Expérimentation",
+    "filterInsight": "Réflexion",
+    "latestExperiment": "Dernière expérimentation",
+    "latestInsight": "Dernière réflexion",
+    "otherPosts": "Autres articles",
+    "series": "Série"
+  },
+  "experiments": {
+    "title": "Expérimentations",
+    "seoDescription": "Projets open-source, applications et outils pour développeurs. Agents IA, solutions fintech, packages TypeScript et expérimentations système.",
+    "highlightDescription": "Le code derrière les concepts. Une collection d'outils et d'expérimentations que j'ai construits pour résoudre de vrais problèmes.",
+    "viewGitHub": "Voir GitHub",
+    "applications": "Applications",
+    "tooling": "Outillage",
+    "systems": "Systèmes"
+  },
+  "photographs": {
+    "title": "Photographies",
+    "seoDescription": "Portfolio photographique présentant des moments de voyage, de rue et du quotidien. Un journal visuel capturant des scènes authentiques du monde entier.",
+    "highlightDescription": "Le monde tel que je le vois. Une simple collection de moments et de lieux qui ont attiré mon regard.",
+    "viewPexels": "Voir Pexels"
+  },
+  "common": {
+    "articles": "Articles",
+    "experiments": "Expérimentations",
+    "photographs": "Photographies"
+  },
+  "navbar": {
+    "hello": "Accueil",
+    "experiments": "Expérimentations",
+    "articles": "Articles",
+    "photographs": "Photographies",
+    "getApp": "Télécharger",
+    "downloadApp": "Télécharger l'app",
+    "opensInNewTab": "(ouvre un nouvel onglet)"
+  }
+}
+

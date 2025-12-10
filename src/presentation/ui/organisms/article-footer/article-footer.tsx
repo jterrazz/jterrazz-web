@@ -2,7 +2,8 @@ import React from 'react';
 
 import { Github, Twitter } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+
+import { Link } from '../../../../infrastructure/navigation/navigation';
 
 // Domain
 import { type Article } from '../../../../domain/article';

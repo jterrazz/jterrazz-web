@@ -1,11 +1,12 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
 
-// Infrastructure
-import { experimentsRepository } from '../../../../infrastructure/repositories/experiments.repository';
+import { locales } from '../../../../../i18n/config';
+import { experimentsRepository } from '../../../../../infrastructure/repositories/experiments.repository';
 
 type Props = {
-    params: Promise<{ slug: string }>;
+    params: Promise<{ locale: string; slug: string }>;
 };
 
 export function generateStaticParams() {
@@ -13,7 +14,12 @@ export function generateStaticParams() {
 
     return experiments
         .filter((experiment) => experiment.hasPrivacyPolicy)
-        .map((experiment) => ({ slug: experiment.slug }));
+        .flatMap((experiment) =>
+            locales.map((locale) => ({
+                locale,
+                slug: experiment.slug,
+            })),
+        );
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
@@ -28,7 +34,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export default async function ExperimentPrivacyPage(props: Props) {
     const params = await props.params;
-    const experiment = experimentsRepository.getBySlug(params.slug);
+    const { locale, slug } = params;
+    setRequestLocale(locale);
+
+    const experiment = experimentsRepository.getBySlug(slug);
 
     if (!experiment || !experiment.hasPrivacyPolicy) {
         notFound();
@@ -85,3 +94,4 @@ export default async function ExperimentPrivacyPage(props: Props) {
         </div>
     );
 }
+

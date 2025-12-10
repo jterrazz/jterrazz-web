@@ -4,8 +4,9 @@ import React from 'react';
 
 import { ArrowUpRight, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import Script from 'next/script';
+
+import { Link } from '../../../../infrastructure/navigation/navigation';
 
 // Domain
 import { UserContactType } from '../../../../domain/user';

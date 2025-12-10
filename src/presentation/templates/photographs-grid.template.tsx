@@ -13,16 +13,22 @@ import { userRepository } from '../../infrastructure/repositories/user.repositor
 
 import { SectionHero } from '../ui/molecules/section-hero/section-hero';
 
+type PhotographsGridTranslations = {
+    viewPexels: string;
+};
+
 export type PhotographsGridTemplateProps = {
     highlightDescription: string;
     highlightTitle: string;
     photographs: Photograph[];
+    translations: PhotographsGridTranslations;
 };
 
 export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = ({
     highlightDescription,
     highlightTitle,
     photographs,
+    translations: t,
 }) => {
     const images = photographs.map((photograph, index) => ({
         alt: photograph.metadata.description,
@@ -32,7 +38,7 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
     }));
     const button = {
         href: userRepository.getContact(UserContactType.Pexels).url.toString(),
-        text: 'View Pexels',
+        text: t.viewPexels,
     };
 
     return (

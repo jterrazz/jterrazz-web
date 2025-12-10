@@ -3,11 +3,13 @@
 import { useState } from 'react';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Script from 'next/script';
 
 // Domain
 import { ArticleCategory } from '../../domain/article';
+
+// Infrastructure
+import { Link } from '../../infrastructure/navigation/navigation';
 
 import { Badge, BadgeColor } from '../ui/atoms/badge/badge';
 import { DividerSection } from '../ui/molecules/divider-section/divider-section';
@@ -140,10 +142,16 @@ const CompactArticleCard: React.FC<{ article: ArticleRowViewModel }> = ({ articl
 };
 
 // Series component
-const ArticleSeries: React.FC<{ series: ArticleSeriesViewModel }> = ({ series }) => {
+const ArticleSeries: React.FC<{ series: ArticleSeriesViewModel; seriesLabel: string }> = ({
+    series,
+    seriesLabel,
+}) => {
     return (
         <section className="pb-16 md:pb-24">
-            <DividerSection className="mb-12 md:mb-16" title={`${series.seriesTitle} Series`} />
+            <DividerSection
+                className="mb-12 md:mb-16"
+                title={`${series.seriesTitle} ${seriesLabel}`}
+            />
 
             {/* Featured Article */}
             <div className="mb-12 md:mb-16">
@@ -187,11 +195,25 @@ export const ArticleRow: React.FC<{ article: ArticleRowViewModel }> = ({ article
     );
 };
 
+type ArticlesListTranslations = {
+    filterAll: string;
+    filterExperiment: string;
+    filterInsight: string;
+    latestExperiment: string;
+    latestInsight: string;
+    otherPosts: string;
+    series: string;
+};
+
 type ArticlesListTemplateProps = {
+    translations: ArticlesListTranslations;
     viewModel: ArticlesListViewModel;
 };
 
-export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ viewModel }) => {
+export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
+    translations: t,
+    viewModel,
+}) => {
     const [filter, setFilter] = useState<'All' | 'Experiment' | 'Insight'>('All');
 
     const filterMap: Record<string, ArticleCategory[]> = {
@@ -284,21 +306,25 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
             <div className="max-w-6xl mx-auto px-4 md:px-6 mb-12">
                 <div className="flex items-center justify-center">
                     <div className="flex items-center gap-2 overflow-x-auto p-4 -m-4 no-scrollbar">
-                        {['All', 'Experiment', 'Insight'].map((f) => (
+                        {[
+                            { key: 'All', label: t.filterAll },
+                            { key: 'Experiment', label: t.filterExperiment },
+                            { key: 'Insight', label: t.filterInsight },
+                        ].map(({ key, label }) => (
                             <button
                                 className={`
                                 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap
                                 ${
-                                    filter === f
+                                    filter === key
                                         ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 shadow-lg shadow-zinc-900/20 dark:shadow-zinc-100/20'
                                         : 'bg-zinc-100 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-200'
                                 }
                             `}
-                                key={f}
-                                onClick={() => setFilter(f as 'All' | 'Experiment' | 'Insight')}
+                                key={key}
+                                onClick={() => setFilter(key as 'All' | 'Experiment' | 'Insight')}
                                 type="button"
                             >
-                                {f}
+                                {label}
                             </button>
                         ))}
                     </div>
@@ -315,7 +341,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                                 {/* Latest Experiment */}
                                 {showLatestExperiment && viewModel.latestExperimentArticle && (
                                     <div className="flex flex-col gap-8">
-                                        <DividerSection title="Latest Experiment" />
+                                        <DividerSection title={t.latestExperiment} />
                                         <div className="h-full">
                                             <GridArticleCard
                                                 article={viewModel.latestExperimentArticle}
@@ -327,7 +353,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
                                 {/* Latest Article */}
                                 {showLatestArticle && viewModel.latestArticle && (
                                     <div className="flex flex-col gap-8">
-                                        <DividerSection title="Latest Insight" />
+                                        <DividerSection title={t.latestInsight} />
                                         <div className="h-full">
                                             <GridArticleCard article={viewModel.latestArticle} />
                                         </div>
@@ -339,13 +365,17 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({ view
 
                     {/* Article Series */}
                     {filteredSeries.map((series) => (
-                        <ArticleSeries key={series.seriesTitle} series={series} />
+                        <ArticleSeries
+                            key={series.seriesTitle}
+                            series={series}
+                            seriesLabel={t.series}
+                        />
                     ))}
 
                     {/* Standalone Articles */}
                     {filteredStandalone.length > 0 && (
                         <section aria-label="Other articles">
-                            <DividerSection className="mb-12" title="Other Posts" />
+                            <DividerSection className="mb-12" title={t.otherPosts} />
 
                             <div className="flex flex-col gap-2 max-w-4xl">
                                 {filteredStandalone.map((article) => (

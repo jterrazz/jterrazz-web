@@ -1,7 +1,8 @@
 import React from 'react';
 
-import Link from 'next/link';
 import Script from 'next/script';
+
+import { Link } from '../../infrastructure/navigation/navigation';
 
 // Domain
 import { type Article, type ArticleLanguage } from '../../domain/article';

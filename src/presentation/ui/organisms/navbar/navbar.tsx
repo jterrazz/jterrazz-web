@@ -5,8 +5,10 @@ import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { BookOpen, Download, Github, Menu, Monitor, X } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
+// Infrastructure
+import { Link } from '../../../../infrastructure/navigation/navigation';
 
 // Utils
 import { cn } from '../../../utils';
@@ -45,7 +47,6 @@ const NavbarTabItem: React.FC<NavbarTabItemProps> = ({
                 title={title}
             >
                 {content}
-                <span className="sr-only"> (opens in a new tab)</span>
             </a>
         );
     }
@@ -62,13 +63,22 @@ type SerializableContact = {
     url: string;
 };
 
+type NavbarTranslations = {
+    appStoreLink: string;
+    downloadApp: string;
+    getApp: string;
+    homeHref: string;
+    opensInNewTab: string;
+};
+
 type NavbarProps = {
     className?: string;
     contacts: SerializableContact[];
     pages: NavbarPage[];
+    translations: NavbarTranslations;
 };
 
-export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages }) => {
+export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, translations: t }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
 
@@ -97,7 +107,11 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages }) =>
                     )}
                 >
                     {/* Logo */}
-                    <Link className="flex-shrink-0 mr-6 md:mr-10" href="/" onClick={closeMenu}>
+                    <Link
+                        className="flex-shrink-0 mr-6 md:mr-10"
+                        href={t.homeHref}
+                        onClick={closeMenu}
+                    >
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                             <Image
                                 alt="Jterrazz"
@@ -161,12 +175,12 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages }) =>
 
                         <a
                             className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm hover:shadow-md"
-                            href="/link/applications/n00"
+                            href={t.appStoreLink}
                             rel="noreferrer"
                             target="_blank"
                         >
-                            <span>Get App</span>
-                            <span className="sr-only"> (opens in a new tab)</span>
+                            <span>{t.getApp}</span>
+                            <span className="sr-only"> {t.opensInNewTab}</span>
                             <Download size={14} />
                         </a>
                     </div>
@@ -246,19 +260,18 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages }) =>
                                     >
                                         {getContactIcon(contact.name) || <Monitor size={20} />}
                                         <span className="text-sm font-medium">{contact.name}</span>
-                                        <span className="sr-only"> (opens in a new tab)</span>
                                     </a>
                                 ))}
                             </div>
 
                             <a
                                 className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all w-full justify-center"
-                                href="/link/applications/n00"
+                                href={t.appStoreLink}
                                 rel="noreferrer"
                                 target="_blank"
                             >
-                                <span>Download App</span>
-                                <span className="sr-only"> (opens in a new tab)</span>
+                                <span>{t.downloadApp}</span>
+                                <span className="sr-only"> {t.opensInNewTab}</span>
                                 <Download size={16} />
                             </a>
                         </motion.div>

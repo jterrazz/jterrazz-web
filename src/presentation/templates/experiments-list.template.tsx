@@ -20,11 +20,19 @@ import { CardExperimentFeatured } from '../ui/molecules/card-experiment-featured
 import { DividerSection } from '../ui/molecules/divider-section/divider-section';
 import { SectionHero } from '../ui/molecules/section-hero/section-hero';
 
+type ExperimentsListTranslations = {
+    applications: string;
+    systems: string;
+    tooling: string;
+    viewGitHub: string;
+};
+
 type ExperimentsListTemplateProps = {
+    experiments: readonly SerializableExperiment[];
     features: readonly SerializableFeature[];
     highlightDescription: string;
     highlightTitle: string;
-    experiments: readonly SerializableExperiment[];
+    translations: ExperimentsListTranslations;
 };
 
 type SerializableExperiment = Omit<Experiment, 'components' | 'url'> & {
@@ -38,13 +46,14 @@ type SerializableExperiment = Omit<Experiment, 'components' | 'url'> & {
 };
 
 export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = ({
+    experiments,
     highlightDescription,
     highlightTitle,
-    experiments,
+    translations: t,
 }) => {
     const button = {
         href: userRepository.getContact(UserContactType.GitHub).url.toString(),
-        text: 'View GitHub',
+        text: t.viewGitHub,
     };
 
     const jsonLd = {
@@ -100,7 +109,7 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                 {/* Featured Applications */}
                 {apps.length > 0 && (
                     <section>
-                        <DividerSection className="mb-12" title="Applications" />
+                        <DividerSection className="mb-12" title={t.applications} />
                         <motion.div
                             className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
                             initial="hidden"
@@ -120,7 +129,7 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                 {/* Libraries & Tools */}
                 {libs.length > 0 && (
                     <section>
-                        <DividerSection className="mb-16" title="Tooling" />
+                        <DividerSection className="mb-16" title={t.tooling} />
                         <motion.div
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
                             initial="hidden"
@@ -140,7 +149,7 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                 {/* System & Research */}
                 {system.length > 0 && (
                     <section>
-                        <DividerSection className="mb-16" title="Systems" />
+                        <DividerSection className="mb-16" title={t.systems} />
                         <motion.div
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6"
                             initial="hidden"

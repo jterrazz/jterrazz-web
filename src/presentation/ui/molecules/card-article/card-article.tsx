@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import { BookOpen } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+
+import { Link } from '../../../../infrastructure/navigation/navigation';
 
 // Utils
 import { cn } from '../../../utils';

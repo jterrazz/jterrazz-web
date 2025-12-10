@@ -1,3 +1,7 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     // Optimize for static generation while maintaining SSR capabilities
@@ -85,6 +89,18 @@ const nextConfig = {
                 source: '/link/applications/fake-news',
             },
 
+            // Legacy article language suffix redirects (old structure → new i18n structure)
+            {
+                destination: '/articles/:slugId',
+                permanent: true,
+                source: '/articles/:slugId/en',
+            },
+            {
+                destination: '/fr/articles/:slugId',
+                permanent: true,
+                source: '/articles/:slugId/fr',
+            },
+
             // Legacy article redirects
             {
                 destination: '/articles/7',
@@ -128,4 +144,4 @@ const nextConfig = {
     },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

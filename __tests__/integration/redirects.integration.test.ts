@@ -32,6 +32,12 @@ const LEGACY_EXTERNAL_REDIRECTS = [
     { source: '/link/applications/fake-news', destination: '/go/n00', permanent: true },
 ];
 
+// i18n article language suffix redirects (old /articles/slug/lang → new i18n structure)
+const I18N_ARTICLE_REDIRECTS = [
+    { source: '/articles/1/en', destination: '/articles/1', permanent: true },
+    { source: '/articles/1/fr', destination: '/fr/articles/1', permanent: true },
+];
+
 // Legacy article redirects (old blog URLs → new article pages)
 const LEGACY_ARTICLE_REDIRECTS = [
     {
@@ -74,6 +80,7 @@ const LEGACY_ARTICLE_REDIRECTS = [
 const ALL_REDIRECTS = [
     ...CANONICAL_REDIRECTS,
     ...LEGACY_EXTERNAL_REDIRECTS,
+    ...I18N_ARTICLE_REDIRECTS,
     ...LEGACY_ARTICLE_REDIRECTS,
 ];
 
@@ -166,6 +173,23 @@ describe('Next.js Redirects', () => {
                     const response = await fetch(url, { redirect: 'manual' });
 
                     // Then - returns permanent redirect (308) with correct location
+                    expect(response.status).toBe(308);
+                    const location = response.headers.get('location');
+                    expect(location).toBe(redirect.destination);
+                });
+            }
+        });
+
+        describe('i18n article language suffix redirects', () => {
+            for (const redirect of I18N_ARTICLE_REDIRECTS) {
+                it(`${redirect.source} → ${redirect.destination}`, async () => {
+                    // Given - an old article URL with language suffix
+                    const url = `${BASE_URL}${redirect.source}`;
+
+                    // When - making a request without following redirects
+                    const response = await fetch(url, { redirect: 'manual' });
+
+                    // Then - returns permanent redirect (308) to new i18n structure
                     expect(response.status).toBe(308);
                     const location = response.headers.get('location');
                     expect(location).toBe(redirect.destination);
