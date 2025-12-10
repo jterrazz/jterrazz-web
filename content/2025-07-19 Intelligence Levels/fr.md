@@ -136,12 +136,10 @@ Votre rôle évolue : de l'écriture de logique vers l'orchestration d'intellige
 
 Après deux ans à arpenter ce terrain, voici ma grille de lecture :
 
-| Niveau | Mode | Votre rôle |
-|--------|------|------------|
-| 1. Assistance | L'IA prédit | Exécuter plus vite |
-| 2. Direction | L'IA implémente | Guider chaque étape |
-| 3. Collaboration | L'IA explore | Donner le cap, itérer |
-| 4. Intégration | L'IA raisonne | Concevoir des systèmes hybrides |
+- **Niveau 1 — Assistance** : L'IA prédit → Exécuter plus vite
+- **Niveau 2 — Direction** : L'IA implémente → Guider chaque étape
+- **Niveau 3 — Collaboration** : L'IA explore → Donner le cap, itérer
+- **Niveau 4 — Intégration** : L'IA raisonne → Concevoir des systèmes hybrides
 
 Chaque niveau a sa place. La vraie compétence, c'est de reconnaître lequel la situation réclame.
 

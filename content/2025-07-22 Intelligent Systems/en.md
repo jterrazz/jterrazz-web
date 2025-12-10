@@ -204,12 +204,10 @@ Your role shifts from writing logic to **orchestrating intelligence**.
 
 ## The series in retrospect
 
-| Level | Mode | Your role |
-|-------|------|-----------|
-| 1. Assistance | AI predicts | Execute faster |
-| 2. Direction | AI implements | Guide each step |
-| 3. Collaboration | AI explores | Set direction, iterate |
-| 4. Integration | AI reasons | Design hybrid systems |
+- **Level 1 — Assistance**: AI predicts → Execute faster
+- **Level 2 — Direction**: AI implements → Guide each step
+- **Level 3 — Collaboration**: AI explores → Set direction, iterate
+- **Level 4 — Integration**: AI reasons → Design hybrid systems
 
 The technology moves fast. But the principles remain constant: clear boundaries, validation layers, graceful degradation, human gates.
 

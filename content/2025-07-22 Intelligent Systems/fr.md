@@ -204,12 +204,10 @@ Votre rôle passe de l'écriture de logique à l'**orchestration d'intelligence*
 
 ## La série en rétrospective
 
-| Niveau | Mode | Votre rôle |
-|--------|------|------------|
-| 1. Assistance | L'IA prédit | Exécuter plus vite |
-| 2. Direction | L'IA implémente | Guider chaque étape |
-| 3. Collaboration | L'IA explore | Donner le cap, itérer |
-| 4. Intégration | L'IA raisonne | Concevoir des systèmes hybrides |
+- **Niveau 1 — Assistance** : L'IA prédit → Exécuter plus vite
+- **Niveau 2 — Direction** : L'IA implémente → Guider chaque étape
+- **Niveau 3 — Collaboration** : L'IA explore → Donner le cap, itérer
+- **Niveau 4 — Intégration** : L'IA raisonne → Concevoir des systèmes hybrides
 
 La technologie évolue vite. Mais les principes restent : frontières claires, couches de validation, dégradation gracieuse, portes humaines.
 
