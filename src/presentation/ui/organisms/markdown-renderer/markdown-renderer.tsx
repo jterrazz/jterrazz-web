@@ -56,6 +56,7 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
                             ...style,
                             backgroundColor: 'transparent',
                             whiteSpace: 'pre',
+                            tabSize: 4,
                         }}
                     >
                         {tokens.map((line, i) => {
