@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { BookOpen, Download, Github, Menu, Monitor, X } from 'lucide-react';
+import { BookOpen, ChevronDown, Download, Github, Menu, Monitor, X } from 'lucide-react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -35,33 +35,67 @@ function buildLocaleUrl(pathname: string, currentLocale: Locale, targetLocale: L
 }
 
 /**
- * Minimal language switcher - just shows "EN · FR" with current highlighted
+ * Language switcher dropdown - shows current language with dropdown to select others
  */
 function LanguageSwitcher({ className, onSwitch }: { className?: string; onSwitch?: () => void }) {
     const { locale } = useLocale();
     const pathname = usePathname();
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const otherLocales = locales.filter((l) => l !== locale);
 
     return (
-        <div className={cn('flex items-center gap-1 text-xs', className)}>
-            {locales.map((l, i) => (
-                <React.Fragment key={l}>
-                    {i > 0 && <span className="text-zinc-300 dark:text-zinc-600">·</span>}
-                    {l === locale ? (
-                        <span className="font-medium text-zinc-900 dark:text-zinc-100">
-                            {l.toUpperCase()}
-                        </span>
-                    ) : (
-                        <NextLink
-                            className="text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-                            href={buildLocaleUrl(pathname, locale, l)}
-                            hrefLang={l}
-                            onClick={onSwitch}
-                        >
-                            {l.toUpperCase()}
-                        </NextLink>
-                    )}
-                </React.Fragment>
-            ))}
+        <div className={cn('relative', className)} ref={dropdownRef}>
+            <button
+                className="flex items-center gap-1 text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                onClick={() => setIsOpen(!isOpen)}
+                type="button"
+            >
+                {locale.toUpperCase()}
+                <ChevronDown
+                    className={cn('transition-transform', isOpen && 'rotate-180')}
+                    size={12}
+                />
+            </button>
+
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        animate={{ opacity: 1, y: 0 }}
+                        className="absolute top-full right-0 mt-2 py-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-lg min-w-[80px] z-50"
+                        exit={{ opacity: 0, y: -4 }}
+                        initial={{ opacity: 0, y: -4 }}
+                        transition={{ duration: 0.15 }}
+                    >
+                        {otherLocales.map((l) => (
+                            <NextLink
+                                className="block px-3 py-1.5 text-xs text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                                href={buildLocaleUrl(pathname, locale, l)}
+                                hrefLang={l}
+                                key={l}
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    onSwitch?.();
+                                }}
+                            >
+                                {l.toUpperCase()}
+                            </NextLink>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

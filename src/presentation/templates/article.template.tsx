@@ -9,7 +9,6 @@ import { type Article, type ArticleLanguage } from '../../domain/article';
 import { type Feature } from '../../domain/feature';
 import { buildArticleSlug } from '../../domain/utils/slugify';
 
-import { SelectorLanguage } from '../ui/molecules/selector-language/selector-language';
 import { TableOfContents } from '../ui/molecules/table-of-contents/table-of-contents';
 import { ArticleFooter } from '../ui/organisms/article-footer/article-footer';
 import { Container } from '../ui/organisms/container/container';
@@ -132,31 +131,33 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                             <span className="text-zinc-900 dark:text-zinc-100">{seriesName}</span>
                         </span>
                         <div className="flex items-center gap-3">
-                            {prevArticle && (
+                            {prevArticle ? (
                                 <Link
                                     className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
                                     href={`/articles/${buildArticleSlug(prevArticle.publicIndex, prevArticle.metadata.title.en)}`}
                                 >
                                     ← Prev
                                 </Link>
+                            ) : (
+                                <span className="text-zinc-300 dark:text-zinc-600 cursor-not-allowed">
+                                    ← Prev
+                                </span>
                             )}
-                            {nextArticle && (
+                            {nextArticle ? (
                                 <Link
                                     className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
                                     href={`/articles/${buildArticleSlug(nextArticle.publicIndex, nextArticle.metadata.title.en)}`}
                                 >
                                     Next →
                                 </Link>
+                            ) : (
+                                <span className="text-zinc-300 dark:text-zinc-600 cursor-not-allowed">
+                                    Next →
+                                </span>
                             )}
                         </div>
                     </div>
                 )}
-
-                <SelectorLanguage
-                    articleId={articleId}
-                    availableLanguages={availableLanguages}
-                    currentLanguage={currentLanguage}
-                />
             </div>
 
             <MarkdownRenderer content={contentInMarkdown} />
