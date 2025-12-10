@@ -1,14 +1,17 @@
-import Script from 'next/script';
-
 // Domain
 import { buildArticleSlug } from '../../domain/utils/slugify';
 
 // Infrastructure
 import { articlesRepository } from '../../infrastructure/repositories/articles.repository';
 import { buildMetadata } from '../../infrastructure/seo/build-metadata';
+import {
+    buildBlogPostingJsonLd,
+    buildCollectionPageJsonLd,
+} from '../../infrastructure/seo/json-ld';
 
 import { ArticlesListViewModelImpl } from '../../presentation/templates/articles-list-template-view-model';
 import { ArticlesListTemplate } from '../../presentation/templates/articles-list.template';
+import { JsonLdScript } from '../../presentation/ui/atoms/json-ld-script/json-ld-script';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -42,36 +45,28 @@ export default function ArticlesPage() {
 
     const viewModel = new ArticlesListViewModelImpl(articles, highlightTitle, highlightDescription);
 
-    // Structured data for better SEO
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'CollectionPage',
+    const pageUrl = metadata.openGraph?.url as string;
+    const jsonLd = buildCollectionPageJsonLd({
         description: PAGE_DESCRIPTION,
-        hasPart: articles
+        items: articles
             .filter((article) => article.published)
-            .map((article) => ({
-                '@type': 'BlogPosting',
-                author: {
-                    '@type': 'Person',
-                    name: 'Jean-Baptiste Terrazzoni',
-                    url: 'https://jterrazz.com',
-                },
-                dateModified: new Date(article.metadata.dateModified).toISOString(),
-                datePublished: new Date(article.metadata.datePublished).toISOString(),
-                description: article.metadata.description.en,
-                inLanguage: Object.keys(article.content),
-                name: article.metadata.title.en,
-                url: `${metadata.openGraph?.url}/${buildArticleSlug(article.publicIndex, article.metadata.title.en)}`,
-            })),
+            .map((article) =>
+                buildBlogPostingJsonLd({
+                    dateModified: new Date(article.metadata.dateModified).toISOString(),
+                    datePublished: new Date(article.metadata.datePublished).toISOString(),
+                    description: article.metadata.description.en,
+                    languages: Object.keys(article.content),
+                    title: article.metadata.title.en,
+                    url: `${pageUrl}/${buildArticleSlug(article.publicIndex, article.metadata.title.en)}`,
+                }),
+            ),
         name: 'Articles by Jean-Baptiste Terrazzoni',
-        url: metadata.openGraph?.url,
-    };
+        url: pageUrl,
+    });
 
     return (
         <>
-            <Script id="articles-json-ld" strategy="beforeInteractive" type="application/ld+json">
-                {JSON.stringify(jsonLd)}
-            </Script>
+            <JsonLdScript data={jsonLd} id="articles-json-ld" />
             <ArticlesListTemplate viewModel={viewModel.getViewModel()} />
         </>
     );

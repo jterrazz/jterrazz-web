@@ -1,5 +1,3 @@
-import Script from 'next/script';
-
 // Domain
 import { buildArticleSlug } from '../domain/utils/slugify';
 
@@ -8,9 +6,10 @@ import { articlesRepository } from '../infrastructure/repositories/articles.repo
 import { experimentsRepository } from '../infrastructure/repositories/experiments.repository';
 import { userRepository } from '../infrastructure/repositories/user.repository';
 import { buildMetadata } from '../infrastructure/seo/build-metadata';
+import { buildPersonJsonLd } from '../infrastructure/seo/json-ld';
 
-import { SITE_CONFIG } from '../config/site';
 import { HelloWorldTemplate } from '../presentation/templates/hello-world.template';
+import { JsonLdScript } from '../presentation/ui/atoms/json-ld-script/json-ld-script';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -119,47 +118,11 @@ export default function HomePage() {
             url: experiment.url ? experiment.url.toString() : '',
         }));
 
-    // Structured data for better SEO
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'Person',
-        alumniOf: {
-            '@type': 'Organization',
-            name: '42 Paris',
-        },
-        description: PAGE_DESCRIPTION,
-        hasOccupation: {
-            '@type': 'Occupation',
-            description:
-                'Software engineer specializing in AI agents, clean architecture, and fintech solutions.',
-            name: 'Software Engineer',
-        },
-        image: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.defaultImage.path}`,
-        jobTitle: 'Software Engineer',
-        knowsAbout: [
-            'AI Agent Development',
-            'Fintech Engineering',
-            'TypeScript',
-            'Node.js',
-            'Next.js',
-            'React',
-            'Solidity',
-            'Personal Growth',
-        ],
-        name: SITE_CONFIG.author.name,
-        sameAs: [SITE_CONFIG.social.github, SITE_CONFIG.social.medium, SITE_CONFIG.social.pexels],
-        url: SITE_CONFIG.baseUrl,
-        worksFor: {
-            '@type': 'Organization',
-            name: 'Self-Employed',
-        },
-    };
+    const jsonLd = buildPersonJsonLd({ description: PAGE_DESCRIPTION });
 
     return (
         <>
-            <Script id="homepage-json-ld" strategy="beforeInteractive" type="application/ld+json">
-                {JSON.stringify(jsonLd)}
-            </Script>
+            <JsonLdScript data={jsonLd} id="homepage-json-ld" />
             <HelloWorldTemplate
                 description={PAGE_DESCRIPTION}
                 experiences={userExperiences}

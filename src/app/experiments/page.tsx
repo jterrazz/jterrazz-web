@@ -1,5 +1,3 @@
-import Script from 'next/script';
-
 // Infrastructure
 import { experimentsRepository } from '../../infrastructure/repositories/experiments.repository';
 import {
@@ -7,9 +5,14 @@ import {
     featuresRepository,
 } from '../../infrastructure/repositories/features.repository';
 import { buildMetadata } from '../../infrastructure/seo/build-metadata';
+import {
+    buildCollectionPageJsonLd,
+    buildSoftwareApplicationJsonLd,
+} from '../../infrastructure/seo/json-ld';
 
 // Presentation
 import { ExperimentsListTemplate } from '../../presentation/templates/experiments-list.template';
+import { JsonLdScript } from '../../presentation/ui/atoms/json-ld-script/json-ld-script';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -61,36 +64,22 @@ export default function ExperimentsPage() {
     const highlightDescription =
         "The code behind the concepts. A collection of tools and experiments I've built to solve real problems.";
 
-    // Structured data for better SEO
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'CollectionPage',
+    const jsonLd = buildCollectionPageJsonLd({
         description: PAGE_DESCRIPTION,
-        hasPart: experiments.map((experiment) => ({
-            '@type': 'SoftwareApplication',
-            applicationCategory: 'ProductivityApplication',
-            author: {
-                '@type': 'Person',
-                name: 'Jean-Baptiste Terrazzoni',
-                url: 'https://jterrazz.com',
-            },
-            description: experiment.description,
-            name: experiment.name,
-            url: experiment.url.toString(),
-        })),
+        items: experiments.map((experiment) =>
+            buildSoftwareApplicationJsonLd({
+                description: experiment.description,
+                name: experiment.name,
+                url: experiment.url,
+            }),
+        ),
         name: 'The Lab: Projects, Tools & Proofs of Concept',
-        url: metadata.openGraph?.url,
-    };
+        url: metadata.openGraph?.url as string,
+    });
 
     return (
         <>
-            <Script
-                id="applications-json-ld"
-                strategy="beforeInteractive"
-                type="application/ld+json"
-            >
-                {JSON.stringify(jsonLd)}
-            </Script>
+            <JsonLdScript data={jsonLd} id="experiments-json-ld" />
             <ExperimentsListTemplate
                 experiments={experiments}
                 features={features}
