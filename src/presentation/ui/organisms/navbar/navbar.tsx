@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { BookOpen, ChevronDown, Download, Github, Menu, Monitor, X } from 'lucide-react';
-import Image from 'next/image';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -183,95 +182,85 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
             >
                 <div
                     className={cn(
-                        'pointer-events-auto relative flex items-center justify-between w-full md:w-auto md:min-w-[720px] lg:min-w-[800px]',
+                        'pointer-events-auto relative',
+                        'flex items-center justify-between w-full',
+                        'md:w-auto md:min-w-[720px] lg:min-w-[900px]',
                         'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl',
                         'border border-zinc-200 dark:border-zinc-800 shadow-sm',
-                        'rounded-2xl md:rounded-full pl-5 pr-2 py-2 transition-all duration-300',
+                        'rounded-2xl md:rounded-full p-1.5 transition-all duration-300',
                     )}
                 >
-                    {/* Logo */}
-                    <Link
-                        className="flex-shrink-0 mr-6 md:mr-10"
-                        href={t.homeHref}
-                        onClick={closeMenu}
-                    >
-                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                            <Image
-                                alt="Jterrazz"
-                                className="rounded-full"
-                                height={32}
-                                src="/assets/icons/app-icon.jterrazz.png"
-                                width={32}
-                            />
-                        </motion.div>
-                    </Link>
-
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center justify-center flex-1">
-                        <SelectionIndicator
-                            className="rounded-full bg-zinc-100 dark:bg-zinc-800"
-                            enableHover
-                            transition={{
-                                type: 'spring',
-                                bounce: 0.2,
-                                duration: 0.3,
-                            }}
-                        >
-                            {pages.map((page) => {
-                                const isSelected = pathname === page.href;
-                                return (
-                                    <div className="px-1" data-id={page.href} key={page.href}>
-                                        <Link
-                                            className={cn(
-                                                'relative px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 block',
-                                                isSelected
-                                                    ? 'text-zinc-900 dark:text-zinc-100'
-                                                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200',
-                                            )}
-                                            href={page.href}
-                                        >
-                                            {page.name}
-                                        </Link>
-                                    </div>
-                                );
-                            })}
-                        </SelectionIndicator>
+                    {/* Left Section: Navigation */}
+                    <div className="flex items-center">
+                        {/* Desktop Navigation */}
+                        <div className="hidden md:block">
+                            <SelectionIndicator
+                                className="rounded-full bg-zinc-100 dark:bg-zinc-800"
+                                enableHover
+                                transition={{
+                                    type: 'spring',
+                                    bounce: 0.2,
+                                    duration: 0.3,
+                                }}
+                            >
+                                {pages.map((page) => {
+                                    const isSelected = pathname === page.href;
+                                    return (
+                                        <div className="px-1" data-id={page.href} key={page.href}>
+                                            <Link
+                                                className={cn(
+                                                    'relative px-3 py-2 rounded-full text-sm font-medium transition-colors duration-200 block',
+                                                    isSelected
+                                                        ? 'text-zinc-900 dark:text-zinc-100'
+                                                        : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200',
+                                                )}
+                                                href={page.href}
+                                            >
+                                                {page.name}
+                                            </Link>
+                                        </div>
+                                    );
+                                })}
+                            </SelectionIndicator>
+                        </div>
                     </div>
 
-                    {/* Desktop Right Section */}
-                    <div className="hidden md:flex items-center gap-1 ml-4">
-                        {contacts.map((contact) => (
-                            <NavbarTabItem
-                                className="text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100 transition-colors p-2"
-                                href={contact.url}
-                                key={contact.name}
-                                newTab
-                                title={contact.name}
-                            >
-                                {getContactIcon(contact.name) || (
-                                    <span className="text-xs font-medium">{contact.name}</span>
-                                )}
-                            </NavbarTabItem>
-                        ))}
+                    {/* Right Section: Actions */}
+                    <div className="hidden md:flex justify-end items-center gap-1 lg:gap-2">
+                        <div className="hidden lg:flex items-center gap-1">
+                            {contacts.map((contact) => (
+                                <NavbarTabItem
+                                    className="text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100 transition-colors p-2"
+                                    href={contact.url}
+                                    key={contact.name}
+                                    newTab
+                                    title={contact.name}
+                                >
+                                    {getContactIcon(contact.name) || (
+                                        <span className="text-xs font-medium">{contact.name}</span>
+                                    )}
+                                </NavbarTabItem>
+                            ))}
+                        </div>
 
-                        <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-700 mx-2" />
+                        <div className="hidden lg:block w-px h-4 bg-zinc-200 dark:bg-zinc-700 mx-1" />
 
-                        <LanguageSwitcher className="px-2" />
+                        <LanguageSwitcher className="px-1" />
 
                         <a
-                            className="flex items-center gap-2 px-4 py-2 ml-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all"
+                            className="flex items-center gap-2 px-3 lg:px-4 py-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm ml-1"
                             href={t.appStoreLink}
                             rel="noreferrer"
                             target="_blank"
                         >
-                            <span>{t.getApp}</span>
+                            <span className="hidden lg:inline">{t.getApp}</span>
                             <span className="sr-only"> {t.opensInNewTab}</span>
                             <Download size={14} />
                         </a>
                     </div>
 
                     {/* Mobile Menu Toggle */}
-                    <div className="md:hidden flex items-center ml-auto">
+                    <div className="md:hidden flex items-center pr-2">
                         <button
                             aria-label="Toggle menu"
                             className="p-2 text-zinc-600 dark:text-zinc-300"
