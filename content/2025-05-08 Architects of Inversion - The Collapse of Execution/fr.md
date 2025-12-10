@@ -8,7 +8,7 @@ Un designer génère des dizaines de concepts de logo en une heure au lieu d'une
 
 Ces exemples deviennent courants. Pas encore universels, mais assez répandus pour indiquer la direction.
 
-Le goulot d'étranglement est passé de « peux-tu faire ça ? » à « devrait-on le faire ? » Comprendre ce changement intellectuellement est différent de saisir ce qu'il signifie dans les industries et les carrières.
+Le goulot d'étranglement est passé de « pouvez-vous faire ça ? » à « devrait-on le faire ? » Comprendre ce changement intellectuellement est différent de saisir ce qu'il signifie dans les industries et les carrières.
 
 **C'est l'inversion en mouvement.**
 
@@ -40,9 +40,9 @@ En haut : l'excellence commande une prime croissante. Un travail façonné par u
 
 Le milieu disparaît. Quand « assez bien » est gratuit, tout ce qui n'est pas exceptionnel peine à justifier son coût.
 
-Ça pose une question que la plupart des pros évitent : **Ta valeur repose-t-elle sur l'exécution ou sur le jugement ?**
+Ça pose une question que la plupart des pros évitent : **Votre valeur repose-t-elle sur l'exécution ou sur le jugement ?**
 
-Si c'est purement l'exécution, ta position s'érode. Si c'est le goût, la perspective, les relations — tu deviens plus précieux chaque jour.
+Si c'est purement l'exécution, votre position s'érode. Si c'est le goût, la perspective, les relations — vous devenez plus précieux chaque jour.
 
 ---
 
@@ -60,7 +60,7 @@ Pendant ce temps, le travail qu'on a sous-évalué reste obstinément humain. R�
 
 **Le travail « qualifié » s'automatise. Le travail « non qualifié » reste irremplaçable.**
 
-Si n'importe qui peut accéder à une réflexion de classe mondiale à la demande, qu'est-ce qui te donne de la valeur ?
+Si n'importe qui peut accéder à une réflexion de classe mondiale à la demande, qu'est-ce qui vous donne de la valeur ?
 
 Pas la capacité — elle devient universelle. La curiosité (remarquer ce que les autres ratent), le goût (choisir ce qui compte), la confiance (les relations bâties par des actions cohérentes). Plus masquées par le bruit de l'exécution.
 
@@ -116,17 +116,17 @@ Cet avantage s'érode.
 
 L'IA ne fait pas qu'accéder à la connaissance — elle l'applique, la synthétise. Une expertise qui prenait des décennies peut être approximée par n'importe qui avec le bon prompt. Pas remplacée, mais commoditisée.
 
-Pense aux partitions de Beethoven. Librement accessibles. Mais toutes les interprétations ne nous émeuvent pas. La valeur n'est pas dans les notes — elle est dans l'interprétation.
+Pensez aux partitions de Beethoven. Librement accessibles. Mais toutes les interprétations ne nous émeuvent pas. La valeur n'est pas dans les notes — elle est dans l'interprétation.
 
-L'IA fait pareil à l'expertise. La connaissance devient gratuite. **Comment tu la joues** compte.
+L'IA fait pareil à l'expertise. La connaissance devient gratuite. **Comment vous la jouez** compte.
 
 Ce qui survit :
 
-**La réputation.** On t'embauche parce qu'on fait confiance à ton jugement — ton historique, ta fiabilité, ta capacité à naviguer l'ambiguïté.
+**La réputation.** On vous embauche parce qu'on fait confiance à votre jugement — votre historique, votre fiabilité, votre capacité à naviguer l'ambiguïté.
 
-**La communauté.** Des gens qui te suivent parce qu'ils croient en ta perspective.
+**La communauté.** Des gens qui vous suivent parce qu'ils croient en votre perspective.
 
-Quand tout le monde a les mêmes outils, le différenciateur est ce que tu veux et ce que tu es prêt à construire.
+Quand tout le monde a les mêmes outils, le différenciateur est ce que vous voulez et ce que vous êtes prêt à construire.
 
 ---
 
@@ -134,13 +134,13 @@ Quand tout le monde a les mêmes outils, le différenciateur est ce que tu veux 
 
 ## **Cette fois, c'est vraiment différent**
 
-Chaque génération croit vivre un changement sans précédent. En général, elle exagère—prise dans l'instant, incapable de voir que l'histoire se répète.
+Chaque génération croit vivre un changement sans précédent. En général, elle exagère — prise dans l'instant, incapable de voir que l'histoire se répète.
 
 Mais certains moments refaçonnent véritablement tout.
 
 L'imprimerie. L'électricité. Internet.
 
-Ce n'étaient pas de simples innovations impressionnantes. C'étaient des changements de phase—transformant ce que signifie être humain, comment la civilisation s'organise, ce qui est possible.
+Ce n'étaient pas de simples innovations impressionnantes. C'étaient des changements de phase — transformant ce que signifie être humain, comment la civilisation s'organise, ce qui est possible.
 
 Ce moment ressemble à l'un de ceux-là. Et la raison n'est pas que l'IA est impressionnante, même si elle l'est. C'est que l'IA change **l'économie fondamentale de l'intelligence elle-même.**
 
@@ -152,7 +152,7 @@ Les révolutions technologiques précédentes, aussi profondes qu'elles aient é
 
 L'IA est différente parce que c'est un **amplificateur généraliste de l'intelligence elle-même.**
 
-Elle ne fait pas qu'une chose plus vite—elle accélère l'amélioration dans tous les domaines cognitifs à la fois. La recherche avance plus vite parce que l'IA aide les scientifiques à explorer des possibilités et analyser des résultats. Le développement avance plus vite parce que l'IA écrit du code et débogue des erreurs. Ça crée une meilleure IA, qui accélère tout davantage, ce qui crée une meilleure IA encore.
+Elle ne fait pas qu'une chose plus vite — elle accélère l'amélioration dans tous les domaines cognitifs à la fois. La recherche avance plus vite parce que l'IA aide les scientifiques à explorer des possibilités et analyser des résultats. Le développement avance plus vite parce que l'IA écrit du code et débogue des erreurs. Ça crée une meilleure IA, qui accélère tout davantage, ce qui crée une meilleure IA encore.
 
 C'est une boucle cumulative. Chaque amélioration accélère la suivante. C'est pourquoi les prédictions sous-estiment systématiquement ce qui arrive. On pense linéairement. La courbe de progrès ne l'est pas. Elle est exponentielle, et on est incapables de saisir ce que ça signifie jusqu'à ce que ça nous ait déjà dépassés.
 
@@ -160,7 +160,7 @@ C'est une boucle cumulative. Chaque amélioration accélère la suivante. C'est 
 
 Voici la vérité inconfortable : la plupart des gens ne remarqueront le changement que quand il sera déjà complet et irréversible.
 
-Le changement exponentiel est trompeur. Il a l'air graduel pendant longtemps. Puis soudain, du jour au lendemain, il est partout. On voit de nouveaux outils se lancer, des industries basculer, des certitudes s'effondrer—mais ça ressemble à des événements déconnectés, pas à un schéma cohérent.
+Le changement exponentiel est trompeur. Il a l'air graduel pendant longtemps. Puis soudain, du jour au lendemain, il est partout. On voit de nouveaux outils se lancer, des industries basculer, des certitudes s'effondrer — mais ça ressemble à des événements déconnectés, pas à un schéma cohérent.
 
 Puis un jour on lève les yeux et on réalise que le monde a changé de forme. Des compétences qui semblaient sûres il y a cinq ans sont commoditisées. Des parcours de carrière qui semblaient stables ont disparu. Les hypothèses sur lesquelles on a construit sa vie professionnelle ne tiennent plus.
 
@@ -174,25 +174,24 @@ On peut attendre et ne s'adapter que quand on y est forcé, se démenant pour tr
 
 ## **Vous êtes désormais un architecte de l'inversion**
 
-Cette inversion est déstabilisante parce qu'elle invalide des hypothèses fondamentales—que l'éducation serait notre rempart, que les compétences techniques resteraient précieuses, que le travail intellectuel était la voie sûre. Plus rien de tout ça ne tient comme avant.
+Cette inversion est déstabilisante parce qu'elle invalide des hypothèses fondamentales — que l'éducation serait notre rempart, que les compétences techniques resteraient précieuses, que le travail intellectuel était la voie sûre. Plus rien de tout ça ne tient comme avant.
 
 Mais elle est aussi libératrice.
 
-On est enfin libres de se concentrer sur ce qui compte vraiment : **décider ce qui vaut la peine d'être fait et qui on veut devenir.** Pas ce qu'on peut faire—la capacité est abondante. Pas ce qu'on sait—la connaissance est accessible. Mais ce qui nous tient à cœur, ce qu'on remarque, ce qu'on choisit, et qui nous fait confiance pour choisir sagement.
+On est enfin libres de se concentrer sur ce qui compte vraiment : **décider ce qui vaut la peine d'être fait et qui on veut devenir.** Pas ce qu'on peut faire — la capacité est abondante. Pas ce qu'on sait — la connaissance est accessible. Mais ce qui nous tient à cœur, ce qu'on remarque, ce qu'on choisit, et qui nous fait confiance pour choisir sagement.
 
 ### **Ce que ça signifie pour vous, maintenant**
 
-Si vous lisez ceci, vous êtes en avance. La plupart des gens ne verront pas ça clairement avant que ce soit déjà terminé—quand l'adaptation sera réactive et désespérée plutôt qu'intentionnelle.
+Si vous lisez ceci, vous êtes en avance. La plupart des gens ne verront pas ça clairement avant que ce soit déjà terminé — quand l'adaptation sera réactive et désespérée plutôt qu'intentionnelle.
 
 Vous avez encore du temps. Pas illimité, mais assez pour poser des questions difficiles et faire des choix délibérés.
 
-Demandez-vous honnêtement : Ma valeur repose-t-elle sur l'exécution ou le jugement ? Est-ce que je construis des compétences que l'IA va commoditiser, ou est-ce que je développe du goût et des relations qui ne peuvent pas être répliqués ? Les gens travaillent-ils avec moi à cause de ce que je sais—ou de qui je suis ?
+Demandez-vous honnêtement : Ma valeur repose-t-elle sur l'exécution ou le jugement ? Est-ce que je construis des compétences que l'IA va commoditiser, ou est-ce que je développe du goût et des relations qui ne peuvent pas être répliqués ? Les gens travaillent-ils avec moi à cause de ce que je sais — ou de qui je suis ?
 
-Le milieu confortable disparaît. Soit on fait un travail exceptionnel façonné par sa perspective unique, soit on est en concurrence avec des algorithmes sur les prix—une course impossible à gagner. La question est quel chemin vous choisirez, et si vous le choisirez consciemment ou y dériverez par défaut.
+Le milieu confortable disparaît. Soit on fait un travail exceptionnel façonné par sa perspective unique, soit on est en concurrence avec des algorithmes sur les prix — une course impossible à gagner. La question est quel chemin vous choisirez, et si vous le choisirez consciemment ou y dériverez par défaut.
 
 ### **L'invitation**
 
-On est tous des architectes maintenant—pas de bâtiments ou de logiciels, mais de nouveaux modèles pour la façon dont la valeur fonctionne quand l'exécution est bon marché et le jugement est tout.
+On est tous des architectes maintenant — pas de bâtiments ou de logiciels, mais de nouveaux modèles pour la façon dont la valeur fonctionne quand l'exécution est bon marché et le jugement est tout.
 
-La question n'est pas de savoir si ça se produit. C'est de savoir si vous le façonnerez ou si vous serez façonné par lui—si vous le verrez comme une menace ou une invitation. Les outils sont là. Le changement est en cours. Ce qui reste, c'est votre choix.
-
+La question n'est pas de savoir si ça se produit. C'est de savoir si vous le façonnerez ou si vous serez façonné par lui — si vous le verrez comme une menace ou une invitation. Les outils sont là. Le changement est en cours. Ce qui reste, c'est votre choix.
