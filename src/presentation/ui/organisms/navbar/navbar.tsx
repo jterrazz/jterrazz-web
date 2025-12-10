@@ -172,6 +172,12 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
         return null;
     };
 
+    const activePage = [...pages]
+        .sort((a, b) => b.href.length - a.href.length)
+        .find((page) => pathname === page.href || pathname.startsWith(page.href));
+
+    const mobileTitle = activePage?.name || 'Jterrazz';
+
     return (
         <>
             <nav
@@ -184,14 +190,19 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                     className={cn(
                         'pointer-events-auto relative',
                         'flex items-center justify-between w-full',
-                        'md:w-auto md:min-w-[720px] lg:min-w-[900px]',
+                        'md:w-auto md:min-w-[720px] lg:min-w-[840px]',
                         'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl',
                         'border border-zinc-200 dark:border-zinc-800 shadow-sm',
-                        'rounded-2xl md:rounded-full p-1.5 transition-all duration-300',
+                        'rounded-full p-1.5 transition-all duration-300',
                     )}
                 >
                     {/* Left Section: Navigation */}
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-2 lg:gap-6 pl-2">
+                        {/* Mobile Title */}
+                        <span className="md:hidden text-sm font-semibold text-zinc-900 dark:text-zinc-100 ml-1">
+                            {mobileTitle}
+                        </span>
+
                         {/* Desktop Navigation */}
                         <div className="hidden md:block">
                             <SelectionIndicator
@@ -248,7 +259,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                         </div>
 
                         <a
-                            className="flex items-center gap-2 px-3 lg:px-4 py-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm ml-1"
+                            className="flex items-center justify-center lg:justify-start gap-2 h-9 w-9 lg:w-auto lg:h-auto lg:px-4 lg:py-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm ml-1"
                             href={t.appStoreLink}
                             rel="noreferrer"
                             target="_blank"
@@ -259,15 +270,24 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                         </a>
                     </div>
 
-                    {/* Mobile Menu Toggle */}
-                    <div className="md:hidden flex items-center pr-2">
+                    {/* Mobile Menu Toggle & Actions */}
+                    <div className="md:hidden flex items-center gap-1 pr-1">
+                        <a
+                            className="flex items-center justify-center w-9 h-9 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm"
+                            href={t.appStoreLink}
+                            rel="noreferrer"
+                            target="_blank"
+                        >
+                            <span className="sr-only">{t.getApp}</span>
+                            <Download size={16} />
+                        </a>
                         <button
                             aria-label="Toggle menu"
-                            className="p-2 text-zinc-600 dark:text-zinc-300"
+                            className="flex items-center justify-center w-9 h-9 rounded-full text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             type="button"
                         >
-                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
                         </button>
                     </div>
                 </div>
