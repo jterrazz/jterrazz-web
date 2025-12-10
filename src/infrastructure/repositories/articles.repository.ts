@@ -45,11 +45,11 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2019-06-01',
             description: {
                 en: 'Build your own malloc in C, learn mmap, buckets, first-fit, coalescing, alignment fixes to master dynamic memory.',
-                fr: "Construisez votre propre malloc en C, apprenez mmap, buckets, first-fit, coalescence et correctifs d'alignement pour maîtriser la mémoire dynamique.",
+                fr: 'Construisez votre propre malloc en C: mmap, allocation first-fit, coalescence et alignement pour maîtriser la mémoire dynamique.',
             },
             title: {
                 en: 'Master memory management, I built my own malloc, and you should too',
-                fr: "Maîtriser la gestion de la mémoire, le jour où j'ai codé mon `malloc`",
+                fr: 'Maîtriser la gestion mémoire en codant son propre malloc',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE,
@@ -64,11 +64,11 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2019-06-07',
             description: {
                 en: 'Implement SHA-256 and MD5 from scratch in C: bitwise ops, message padding, compression loops and test vectors.',
-                fr: 'Implémentez SHA-256 et MD5 from scratch en C : opérations binaires, padding de messages, boucles de compression et vecteurs de test.',
+                fr: 'Implémentez SHA-256 et MD5 de zéro en C: opérations binaires, padding de messages, boucles de compression et vecteurs de test.',
             },
             title: {
                 en: 'Hashing in C, a deep dive into SHA-256 and MD5',
-                fr: "L'art du hachage en C, un duel entre MD5 et SHA-256",
+                fr: 'Le hachage en C, plongée dans SHA-256 et MD5',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE,
@@ -83,11 +83,11 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2019-07-25',
             description: {
                 en: 'A guide to Mach-O analysis: decode symbol tables, headers, sections, and build your own nm/otool utilities in C.',
-                fr: "Guide de l'analyse Mach-O : décodez tables de symboles, en-têtes, sections et construisez vos propres utilitaires nm/otool en C.",
+                fr: "Guide de l'analyse Mach-O: décodez tables de symboles, en-têtes, sections et construisez vos propres utilitaires nm/otool en C.",
             },
             title: {
                 en: 'Decoding the magic, my journey building nm and otool',
-                fr: 'Décoder la magie, mon voyage dans la construction de nm et otool',
+                fr: 'Décoder la magie, reconstruire nm et otool de zéro',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE,
@@ -106,7 +106,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             },
             title: {
                 en: 'Building a program that writes itself (a quine)',
-                fr: "Le paradoxe du code, à la découverte du quine, le programme qui s'écrit lui-même",
+                fr: "Créer un programme qui s'écrit lui-même (un quine)",
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE,
@@ -121,11 +121,11 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2019-08-28',
             description: {
                 en: 'Set up toolchain, grasp registers & calling conventions, and code/link your first assembly functions.',
-                fr: "Installez la toolchain, maîtrisez registres et conventions d'appel, codez et linkez vos premières fonctions assembleur.",
+                fr: "Installez les outils, maîtrisez registres et conventions d'appel, codez et liez vos premières fonctions assembleur.",
             },
             title: {
                 en: "Let's dive into assembly and build our first functions (Intel x86-64)",
-                fr: "Plongeon dans l'assembleur, nos premières fonctions (Intel x86-64)",
+                fr: "Plongeons dans l'assembleur et créons nos premières fonctions (Intel x86-64)",
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE,
@@ -140,7 +140,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2019-09-10',
             description: {
                 en: 'Guide to expert systems: code a backward-chaining inference engine in Python, with rules and facts.',
-                fr: "Guide des systèmes experts : codez un moteur d'inférence à chaînage arrière en Python, avec règles et faits.",
+                fr: "Guide des systèmes experts: codez un moteur d'inférence à chaînage arrière en Python, avec règles et faits.",
             },
             title: {
                 en: 'My journey into expert systems with Python',
@@ -159,11 +159,11 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2020-11-03',
             description: {
                 en: 'Set up a lightweight web server in TypeScript using Koa, routing, middleware and typing in minutes.',
-                fr: 'Montez un serveur web léger en TypeScript avec Koa, routing, middleware et typage en quelques minutes.',
+                fr: 'Montez un serveur web léger en TypeScript avec Koa: routage, middlewares et typage en quelques minutes.',
             },
             title: {
                 en: 'Building my go-to web server with TypeScript and Koa',
-                fr: "Comment j'ai créé mon serveur web de référence avec TypeScript et Koa",
+                fr: 'Créer son serveur web de référence avec TypeScript et Koa',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE,
@@ -178,7 +178,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2023-07-02',
             description: {
                 en: 'Reimagine online shopping: open and decentralized. Reviving community, transparency & competition.',
-                fr: 'Réinventer le e-commerce : ouvert et décentralisé. Raviver communauté, transparence et concurrence.',
+                fr: 'Réinventer le e-commerce: ouvert et décentralisé. Raviver communauté, transparence et concurrence.',
             },
             title: {
                 en: 'What if we got online shopping wrong?',
@@ -197,7 +197,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2024-12-20',
             description: {
                 en: 'Learn application design essentials.',
-                fr: 'Apprenez les essentiels de la conception applicative.',
+                fr: 'Apprenez les fondamentaux de la conception logicielle.',
             },
             series: 'Application Design',
             title: {
@@ -217,7 +217,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2024-12-21',
             description: {
                 en: 'Principles for sustainable architecture, maintainable code, and growth-ready scalable apps.',
-                fr: 'Principes pour une architecture durable, du code maintenable et des apps évolutives.',
+                fr: 'Principes pour une architecture durable, du code maintenable et des applications évolutives.',
             },
             series: 'Application Design',
             title: {
@@ -257,7 +257,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2024-12-23',
             description: {
                 en: 'Layer entities, use cases, adapters and drivers; decouple business logic from tech details.',
-                fr: "Organisez entités, cas d'usage, adaptateurs et drivers ; découplez la logique métier des détails techniques.",
+                fr: "Organisez entités, cas d'usage, adaptateurs et pilotes: découplez la logique métier des détails techniques.",
             },
             series: 'Application Design',
             title: {
@@ -281,7 +281,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             },
             title: {
                 en: "Let's playfully question everything",
-                fr: "Questionnons tout, en s'amusant",
+                fr: 'Questionnons tout, en nous amusant',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE,
@@ -296,12 +296,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2025-05-06',
             description: {
                 en: 'Practical insights on trends, tools, and mindset shifts.',
-                fr: 'Insights pratiques sur les tendances, outils et changements de mindset.',
+                fr: "Conseils pratiques sur les tendances, outils et changements d'état d'esprit.",
             },
             series: 'Abundant Intelligence',
             title: {
                 en: 'A guide to the AI revolution',
-                fr: 'Guide de la révolution IA',
+                fr: 'Un guide de la révolution IA',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE,
@@ -316,7 +316,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2025-05-07',
             description: {
                 en: 'Integrate AI tools, delegate cognitive work, and adopt mindsets for balance and future-proof skills.',
-                fr: "Intégrez les outils IA, déléguez le travail cognitif et adoptez les bons mindsets pour un équilibre et des compétences d'avenir.",
+                fr: "Intégrez les outils IA, déléguez le travail cognitif et adoptez les bons réflexes pour un équilibre et des compétences d'avenir.",
             },
             series: 'Abundant Intelligence',
             title: {
@@ -376,11 +376,11 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2025-05-18',
             description: {
                 en: 'Learn context aware AI coding, agent mode, intent driven development.',
-                fr: 'Apprenez le coding IA contextuel, le mode agent, le développement intentionnel.',
+                fr: "Apprenez le développement assisté par IA, le mode agent et le développement piloté par l'intention.",
             },
             title: {
                 en: 'Cursor: the compression of mechanical work',
-                fr: 'Cursor : la compression du travail mécanique',
+                fr: 'Cursor: la compression du travail mécanique',
             },
         },
         previewImage: DEFAULT_PREVIEW_IMAGE,
@@ -415,7 +415,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             datePublished: '2025-07-20',
             description: {
                 en: 'Guide for developers to direct AI as guided agent, transforming coding into orchestration.',
-                fr: "Guide pour développeurs : diriger l'IA comme agent guidé, transformer le codage en orchestration.",
+                fr: "Guide pour développeurs: diriger l'IA comme agent guidé, transformer le développement en orchestration.",
             },
             series: 'Using AI',
             title: {
@@ -440,7 +440,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
             series: 'Using AI',
             title: {
                 en: 'Autonomous AI agents',
-                fr: 'Agents IA autonomes',
+                fr: 'Les agents IA autonomes',
             },
         },
         previewImage: 'thumbnail.jpg',
