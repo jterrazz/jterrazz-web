@@ -66,4 +66,3 @@ export function createRouteBuilder(locale: string) {
  * Route builder type for use in components
  */
 export type RouteBuilder = ReturnType<typeof createRouteBuilder>;
-

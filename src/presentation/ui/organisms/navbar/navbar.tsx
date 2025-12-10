@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { BookOpen, Download, Github, Menu, Monitor, X } from 'lucide-react';
 import Image from 'next/image';
+import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 
 // Infrastructure
@@ -13,9 +14,57 @@ import { Link } from '../../../../infrastructure/navigation/navigation';
 // Utils
 import { cn } from '../../../utils';
 
+import { defaultLocale, type Locale, locales } from '../../../../i18n/config';
+import { useLocale } from '../../../context/locale-context';
 import { SelectionIndicator } from '../../atoms/selection-indicator/selection-indicator';
 
 import { type NavbarPage } from './navbar-page';
+
+/**
+ * Build the path for a different locale
+ */
+function buildLocaleUrl(pathname: string, currentLocale: Locale, targetLocale: Locale): string {
+    let basePath = pathname;
+    if (currentLocale !== defaultLocale && pathname.startsWith(`/${currentLocale}`)) {
+        basePath = pathname.slice(`/${currentLocale}`.length) || '/';
+    }
+    if (targetLocale === defaultLocale) {
+        return basePath;
+    }
+    return `/${targetLocale}${basePath}`;
+}
+
+/**
+ * Minimal language switcher - just shows "EN · FR" with current highlighted
+ */
+function LanguageSwitcher({ className, onSwitch }: { className?: string; onSwitch?: () => void }) {
+    const { locale } = useLocale();
+    const pathname = usePathname();
+
+    return (
+        <div className={cn('flex items-center gap-1 text-xs', className)}>
+            {locales.map((l, i) => (
+                <React.Fragment key={l}>
+                    {i > 0 && <span className="text-zinc-300 dark:text-zinc-600">·</span>}
+                    {l === locale ? (
+                        <span className="font-medium text-zinc-900 dark:text-zinc-100">
+                            {l.toUpperCase()}
+                        </span>
+                    ) : (
+                        <NextLink
+                            className="text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                            href={buildLocaleUrl(pathname, locale, l)}
+                            hrefLang={l}
+                            onClick={onSwitch}
+                        >
+                            {l.toUpperCase()}
+                        </NextLink>
+                    )}
+                </React.Fragment>
+            ))}
+        </div>
+    );
+}
 
 export type NavbarTabItemProps = {
     children: React.ReactNode;
@@ -155,11 +204,11 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                         </SelectionIndicator>
                     </div>
 
-                    {/* Desktop Contacts */}
-                    <div className="hidden md:flex items-center gap-2 ml-4 md:ml-8">
+                    {/* Desktop Right Section */}
+                    <div className="hidden md:flex items-center gap-1 ml-4">
                         {contacts.map((contact) => (
                             <NavbarTabItem
-                                className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors p-2"
+                                className="text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100 transition-colors p-2"
                                 href={contact.url}
                                 key={contact.name}
                                 newTab
@@ -171,10 +220,12 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                             </NavbarTabItem>
                         ))}
 
-                        <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-800 mx-2" />
+                        <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-700 mx-2" />
+
+                        <LanguageSwitcher className="px-2" />
 
                         <a
-                            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm hover:shadow-md"
+                            className="flex items-center gap-2 px-4 py-2 ml-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all"
                             href={t.appStoreLink}
                             rel="noreferrer"
                             target="_blank"
@@ -245,27 +296,28 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
 
                         <motion.div
                             animate={{ opacity: 1 }}
-                            className="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-col items-center gap-6"
+                            className="mt-auto pb-12 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-col items-center gap-6"
                             initial={{ opacity: 0 }}
                             transition={{ delay: 0.3 }}
                         >
-                            <div className="flex gap-6">
+                            <div className="flex items-center gap-6">
                                 {contacts.map((contact) => (
                                     <a
-                                        className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400"
+                                        className="text-zinc-400 dark:text-zinc-500"
                                         href={contact.url}
                                         key={contact.name}
                                         rel="noopener noreferrer"
                                         target="_blank"
                                     >
                                         {getContactIcon(contact.name) || <Monitor size={20} />}
-                                        <span className="text-sm font-medium">{contact.name}</span>
                                     </a>
                                 ))}
+                                <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-700" />
+                                <LanguageSwitcher onSwitch={closeMenu} />
                             </div>
 
                             <a
-                                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all w-full justify-center"
+                                className="flex items-center gap-2 px-5 py-3 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium w-full justify-center"
                                 href={t.appStoreLink}
                                 rel="noreferrer"
                                 target="_blank"
