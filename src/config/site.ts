@@ -24,7 +24,7 @@ export const SITE_CONFIG = {
     defaultImage: {
         alt: 'Jean-Baptiste Terrazzoni - Software Engineer & AI Developer',
         height: 630,
-        path: '/assets/icons/app-icon.jterrazz.png',
+        path: '/assets/icons/appicon.jterrazz.png',
         width: 1200,
     },
     social: {

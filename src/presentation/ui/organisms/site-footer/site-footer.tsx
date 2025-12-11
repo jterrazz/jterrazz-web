@@ -3,6 +3,7 @@
 import React from 'react';
 
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import Image from 'next/image';
 import Script from 'next/script';
 
 // Domain
@@ -15,6 +16,19 @@ import { userRepository } from '../../../../infrastructure/repositories/user.rep
 import { cn } from '../../../utils';
 
 import { ToggleTheme } from '../../molecules/toggle-theme/toggle-theme';
+
+const featuredApps = [
+    {
+        href: 'https://jterrazz.com',
+        iconUrl: '/assets/icons/appicon-jterrazz.png',
+        name: 'Jterrazz',
+    },
+    {
+        href: 'https://apps.apple.com/us/app/ai-news-smart-world-news/id6742116038',
+        iconUrl: '/assets/icons/appicon-n00.png',
+        name: 'n00',
+    },
+];
 
 type SiteFooterTranslations = {
     allRightsReserved: string;
@@ -83,14 +97,41 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
             </Script>
 
             <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
-                {/* Top Section: Brand + Socials + Apps */}
+                {/* Top Section: Brand + Socials */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
-                    {/* Brand */}
-                    <div className="flex flex-col gap-1">
-                        <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight">
-                            Jean-Baptiste Terrazzoni
-                        </h2>
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400">{t.tagline}</p>
+                    {/* Brand + Featured Apps */}
+                    <div className="flex flex-col gap-3">
+                        <div className="flex flex-col gap-1">
+                            <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight">
+                                Jean-Baptiste Terrazzoni
+                            </h2>
+                            <p className="text-sm text-zinc-500 dark:text-zinc-400">{t.tagline}</p>
+                        </div>
+
+                        {/* Featured Apps */}
+                        <div className="flex items-center gap-2">
+                            {featuredApps.map(({ href, iconUrl, name }) => (
+                                <a
+                                    className="group relative"
+                                    href={href}
+                                    key={name}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                    title={name}
+                                >
+                                    <Image
+                                        alt={name}
+                                        className="rounded-xl shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-700 transition-transform group-hover:scale-105"
+                                        height={40}
+                                        src={iconUrl}
+                                        width={40}
+                                    />
+                                    <span className="sr-only">
+                                        {name} {t.opensInNewTab}
+                                    </span>
+                                </a>
+                            ))}
+                        </div>
                     </div>
 
                     {/* Social Links */}

@@ -11,7 +11,7 @@ const profile: UserProfile = {
     headline: 'AI Agent Developer • Fintech Engineer • Bitcoin Maximalist',
     location: 'Paris, France',
     name: 'Jean-Baptiste Terrazzoni',
-    pictureUrl: '/assets/icons/app-icon.jterrazz.png',
+    pictureUrl: '/assets/icons/appicon.jterrazz.png',
 };
 
 const contacts: Record<UserContactType, UserContact> = {

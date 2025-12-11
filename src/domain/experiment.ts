@@ -38,6 +38,7 @@ export type Experiment = {
 
     // Optional details for rich page
     articleUrl?: string;
+    iconUrl?: string;
     longDescription?: string;
     images?: {
         thumbnail: string;

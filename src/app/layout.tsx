@@ -18,7 +18,6 @@ import './globals.css';
 // Using system fonts due to network restrictions
 // const inter = Inter({ subsets: ['latin'] });
 
-const APPLE_TOUCH_ICON = 'apple-touch-icon';
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
 
 export const metadata: Metadata = {
@@ -30,76 +29,26 @@ export const metadata: Metadata = {
         {
             rel: 'icon',
             type: 'image/x-icon',
-            url: '/favicon/favicon.ico?v=6',
+            url: '/favicon/favicon.ico',
+        },
+        {
+            rel: 'icon',
+            type: 'image/svg+xml',
+            url: '/favicon/favicon.svg',
         },
         {
             rel: 'icon',
             sizes: '96x96',
             type: 'image/png',
-            url: '/favicon/favicon-96x96.png?v=6',
+            url: '/favicon/favicon-96x96.png',
         },
         {
-            rel: 'icon',
-            sizes: '32x32',
-            type: 'image/png',
-            url: '/favicon/favicon-32x32.png?v=6',
-        },
-        {
-            rel: 'icon',
-            sizes: '16x16',
-            type: 'image/png',
-            url: '/favicon/favicon-16x16.png?v=6',
-        },
-        {
-            rel: APPLE_TOUCH_ICON,
-            url: '/favicon/apple-icon.png?v=6',
-        },
-        {
-            rel: APPLE_TOUCH_ICON,
-            sizes: '57x57',
-            url: '/favicon/apple-icon-57x57.png?v=6',
-        },
-        {
-            rel: APPLE_TOUCH_ICON,
-            sizes: '60x60',
-            url: '/favicon/apple-icon-60x60.png?v=6',
-        },
-        {
-            rel: APPLE_TOUCH_ICON,
-            sizes: '72x72',
-            url: '/favicon/apple-icon-72x72.png?v=6',
-        },
-        {
-            rel: APPLE_TOUCH_ICON,
-            sizes: '76x76',
-            url: '/favicon/apple-icon-76x76.png?v=6',
-        },
-        {
-            rel: APPLE_TOUCH_ICON,
-            sizes: '114x114',
-            url: '/favicon/apple-icon-114x114.png?v=6',
-        },
-        {
-            rel: APPLE_TOUCH_ICON,
-            sizes: '120x120',
-            url: '/favicon/apple-icon-120x120.png?v=6',
-        },
-        {
-            rel: APPLE_TOUCH_ICON,
-            sizes: '144x144',
-            url: '/favicon/apple-icon-144x144.png?v=6',
-        },
-        {
-            rel: APPLE_TOUCH_ICON,
-            sizes: '152x152',
-            url: '/favicon/apple-icon-152x152.png?v=6',
-        },
-        {
-            rel: APPLE_TOUCH_ICON,
+            rel: 'apple-touch-icon',
             sizes: '180x180',
-            url: '/favicon/apple-icon-180x180.png?v=6',
+            url: '/favicon/apple-touch-icon.png',
         },
     ],
+    manifest: '/site.webmanifest',
     keywords: [
         'Software Engineering',
         'Full Stack Development',
@@ -117,7 +66,7 @@ export const metadata: Metadata = {
         images: [
             {
                 height: 630,
-                url: '/assets/icons/app-icon.jterrazz.png',
+                url: '/assets/icons/appicon-jterrazz.png',
                 width: 1200,
             },
         ],

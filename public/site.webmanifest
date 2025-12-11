@@ -1,0 +1,23 @@
+{
+  "name": "Jean-Baptiste Terrazzoni: Building & Learning",
+  "short_name": "Jterrazz",
+  "description": "The engineering portfolio of Jean-Baptiste Terrazzoni. Building, learning, and sharing my journey through software engineering.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "/favicon/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
