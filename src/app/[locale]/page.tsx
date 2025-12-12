@@ -56,7 +56,6 @@ export default async function HomePage({ params }: Props) {
     setRequestLocale(locale);
 
     const t = await getTranslations({ locale, namespace: 'home' });
-    const tExp = await getTranslations({ locale, namespace: 'experiments' });
 
     const userExperiences = userRepository.getExperiences();
     const allArticles = articlesRepository.getAll();
@@ -127,10 +126,11 @@ export default async function HomePage({ params }: Props) {
         .sort((a, b) => b.latestDate.getTime() - a.latestDate.getTime())
         .map(({ latestDate, ...rest }) => rest);
 
-    // Convert URL instances to plain strings for client components
-    const latestExperiments = experimentsRepository
-        .getAll()
-        .slice(0, 2)
+    // Featured experiments - specific selection
+    const featuredSlugs = ['capitaine', 'n00', 'jterrazz'];
+    const featuredExperiments = featuredSlugs
+        .map((slug) => experimentsRepository.getBySlug(slug))
+        .filter((exp) => exp !== undefined)
         .map((experiment) => ({
             ...experiment,
             articleUrl: experiment.articleUrl ?? null,
@@ -145,23 +145,6 @@ export default async function HomePage({ params }: Props) {
 
     // Translations for client component
     const translations = {
-        experimentCard: {
-            context: {
-                hackathon: tExp('context.hackathon'),
-                personal: tExp('context.personal'),
-                professional: tExp('context.professional'),
-                school42: tExp('context.school42'),
-            },
-            readMore: tExp('readMore'),
-            status: {
-                active: tExp('status.active'),
-                archived: tExp('status.archived'),
-                building: tExp('status.building'),
-                completed: tExp('status.completed'),
-                concept: tExp('status.concept'),
-            },
-            viewProject: tExp('viewProject'),
-        },
         focus: t('focus'),
         focusAreas: {
             aiAgents: {
@@ -182,8 +165,8 @@ export default async function HomePage({ params }: Props) {
             },
         },
         journey: t('journey'),
+        featuredExperiments: t('featuredExperiments'),
         latestArticles: t('latestArticles'),
-        latestExperiments: t('latestExperiments'),
         readArticles: t('readArticles'),
         title: t('title'),
         viewAll: t('viewAll'),
@@ -195,7 +178,7 @@ export default async function HomePage({ params }: Props) {
             <HelloWorldTemplate
                 description={t('description')}
                 experiences={userExperiences}
-                latestExperiments={latestExperiments}
+                featuredExperiments={featuredExperiments}
                 topArticles={topArticles}
                 translations={translations}
             />

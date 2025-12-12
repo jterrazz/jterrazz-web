@@ -2,7 +2,6 @@
 
 import React from 'react';
 
-import { motion } from 'framer-motion';
 import Script from 'next/script';
 
 // Domain
@@ -15,31 +14,15 @@ type SerializableFeature = Omit<Feature, 'url'> & { url: string };
 // Infrastructure
 import { userRepository } from '../../infrastructure/repositories/user.repository';
 
-import { CardExperimentCompact } from '../ui/molecules/card-experiment-compact/card-experiment-compact';
 import { CardExperimentFeatured } from '../ui/molecules/card-experiment-featured/card-experiment-featured';
 import { DividerSection } from '../ui/molecules/divider-section/divider-section';
 import { SectionHero } from '../ui/molecules/section-hero/section-hero';
 
 type ExperimentsListTranslations = {
     applications: string;
-    context: {
-        hackathon: string;
-        personal: string;
-        professional: string;
-        school42: string;
-    };
-    readMore: string;
-    status: {
-        active: string;
-        archived: string;
-        building: string;
-        completed: string;
-        concept: string;
-    };
     systems: string;
     tooling: string;
     viewGitHub: string;
-    viewProject: string;
 };
 
 type ExperimentsListTemplateProps = {
@@ -83,21 +66,6 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
     const libs = experiments.filter((p) => p.category === ExperimentCategory.Lib);
     const system = experiments.filter((p) => p.category === ExperimentCategory.System);
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-            },
-        },
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        show: { opacity: 1, y: 0 },
-    };
-
     return (
         <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
             <Script
@@ -109,8 +77,8 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
             </Script>
 
             {/* Hero Section */}
-            <div className="w-full border-b border-zinc-100 dark:border-zinc-900">
-                <div className="max-w-7xl mx-auto px-4 md:px-6">
+            <div className="w-full">
+                <div className="max-w-3xl mx-auto px-4 md:px-6">
                     <SectionHero
                         button={button}
                         description={highlightDescription}
@@ -120,72 +88,49 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
             </div>
 
             {/* Experiments Content */}
-            <div className="max-w-7xl mx-auto px-4 md:px-6 py-20 md:py-32 space-y-32">
-                {/* Featured Applications */}
+            <div className="max-w-3xl mx-auto px-4 md:px-6 pb-24 space-y-16">
+                {/* Applications */}
                 {apps.length > 0 && (
                     <section>
-                        <DividerSection className="mb-12" title={t.applications} />
-                        <motion.div
-                            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
-                            initial="hidden"
-                            variants={containerVariants}
-                            viewport={{ margin: '-100px', once: true }}
-                            whileInView="show"
-                        >
+                        <DividerSection className="mb-6" title={t.applications} />
+                        <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                             {apps.map((experiment) => (
-                                <motion.div key={experiment.name} variants={itemVariants}>
-                                    <CardExperimentFeatured
-                                        experiment={experiment}
-                                        translations={{
-                                            context: t.context,
-                                            readMore: t.readMore,
-                                            status: t.status,
-                                            viewProject: t.viewProject,
-                                        }}
-                                    />
-                                </motion.div>
+                                <CardExperimentFeatured
+                                    experiment={experiment}
+                                    key={experiment.name}
+                                />
                             ))}
-                        </motion.div>
+                        </div>
                     </section>
                 )}
 
                 {/* Libraries & Tools */}
                 {libs.length > 0 && (
                     <section>
-                        <DividerSection className="mb-16" title={t.tooling} />
-                        <motion.div
-                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-                            initial="hidden"
-                            variants={containerVariants}
-                            viewport={{ margin: '-50px', once: true }}
-                            whileInView="show"
-                        >
+                        <DividerSection className="mb-6" title={t.tooling} />
+                        <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                             {libs.map((experiment) => (
-                                <motion.div key={experiment.name} variants={itemVariants}>
-                                    <CardExperimentCompact experiment={experiment} />
-                                </motion.div>
+                                <CardExperimentFeatured
+                                    experiment={experiment}
+                                    key={experiment.name}
+                                />
                             ))}
-                        </motion.div>
+                        </div>
                     </section>
                 )}
 
                 {/* System & Research */}
                 {system.length > 0 && (
                     <section>
-                        <DividerSection className="mb-16" title={t.systems} />
-                        <motion.div
-                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6"
-                            initial="hidden"
-                            variants={containerVariants}
-                            viewport={{ margin: '-50px', once: true }}
-                            whileInView="show"
-                        >
+                        <DividerSection className="mb-6" title={t.systems} />
+                        <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                             {system.map((experiment) => (
-                                <motion.div key={experiment.name} variants={itemVariants}>
-                                    <CardExperimentCompact experiment={experiment} />
-                                </motion.div>
+                                <CardExperimentFeatured
+                                    experiment={experiment}
+                                    key={experiment.name}
+                                />
                             ))}
-                        </motion.div>
+                        </div>
                     </section>
                 )}
             </div>

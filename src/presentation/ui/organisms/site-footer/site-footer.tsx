@@ -97,9 +97,9 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
             </Script>
 
             <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
-                {/* Top Section: Brand + Socials */}
+                {/* Top Section: Brand + Apps */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
-                    {/* Brand + Featured Apps */}
+                    {/* Brand + Social Links */}
                     <div className="flex flex-col gap-3">
                         <div className="flex flex-col gap-1">
                             <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight">
@@ -108,46 +108,46 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
                             <p className="text-sm text-zinc-500 dark:text-zinc-400">{t.tagline}</p>
                         </div>
 
-                        {/* Featured Apps */}
-                        <div className="flex items-center gap-2">
-                            {featuredApps.map(({ href, iconUrl, name }) => (
+                        {/* Social Links */}
+                        <div className="flex items-center gap-3">
+                            {socialLinks.map(({ href, icon: Icon, label }) => (
                                 <a
-                                    className="group relative"
+                                    className="text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100 transition-colors"
                                     href={href}
-                                    key={name}
+                                    key={label}
                                     rel="noopener noreferrer"
                                     target="_blank"
-                                    title={name}
+                                    title={label}
                                 >
-                                    <Image
-                                        alt={name}
-                                        className="rounded-xl shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-700 transition-transform group-hover:scale-105"
-                                        height={40}
-                                        src={iconUrl}
-                                        width={40}
-                                    />
+                                    <Icon size={16} />
                                     <span className="sr-only">
-                                        {name} {t.opensInNewTab}
+                                        {label} {t.opensInNewTab}
                                     </span>
                                 </a>
                             ))}
                         </div>
                     </div>
 
-                    {/* Social Links */}
-                    <div className="flex items-center gap-0.5">
-                        {socialLinks.map(({ href, icon: Icon, label }) => (
+                    {/* Featured Apps */}
+                    <div className="flex items-center gap-2">
+                        {featuredApps.map(({ href, iconUrl, name }) => (
                             <a
-                                className="p-2 text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
+                                className="group relative"
                                 href={href}
-                                key={label}
+                                key={name}
                                 rel="noopener noreferrer"
                                 target="_blank"
-                                title={label}
+                                title={name}
                             >
-                                <Icon size={18} />
+                                <Image
+                                    alt={name}
+                                    className="rounded-xl shadow-sm ring-1 ring-zinc-200 dark:ring-zinc-700 transition-transform group-hover:scale-105"
+                                    height={40}
+                                    src={iconUrl}
+                                    width={40}
+                                />
                                 <span className="sr-only">
-                                    {label} {t.opensInNewTab}
+                                    {name} {t.opensInNewTab}
                                 </span>
                             </a>
                         ))}

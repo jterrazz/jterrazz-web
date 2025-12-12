@@ -93,16 +93,8 @@ export default async function ExperimentDetailPage(props: Props) {
             showcase: t('detail.showcase'),
             sourceCode: t('detail.sourceCode'),
             viewProject: t('detail.viewProject'),
-            viewSource: t('detail.viewSource'),
             visitWebsite: t('detail.visitWebsite'),
             year: t('detail.year'),
-        },
-        status: {
-            active: t('status.active'),
-            archived: t('status.archived'),
-            building: t('status.building'),
-            completed: t('status.completed'),
-            concept: t('status.concept'),
         },
     };
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { ArrowRight, ArrowUpRight, Download, Github, Globe, Layers } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Download, Github, Globe } from 'lucide-react';
 
 // Domain
 import {
@@ -44,16 +44,8 @@ type ExperimentDetailTranslations = {
         showcase: string;
         sourceCode: string;
         viewProject: string;
-        viewSource: string;
         visitWebsite: string;
         year: string;
-    };
-    status: {
-        active: string;
-        archived: string;
-        building: string;
-        completed: string;
-        concept: string;
     };
 };
 
@@ -206,11 +198,6 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                                 </div>
 
                                 <div className="flex flex-col items-start gap-6">
-                                    <BadgeExperimentStatus
-                                        className="border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800"
-                                        status={experiment.status}
-                                        translations={t.status}
-                                    />
                                     <div className="flex flex-col gap-3">
                                         <div className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
                                             <span className="font-mono uppercase tracking-wider text-xs">
@@ -252,16 +239,12 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                     {/* Components (If applicable) */}
                     {experiment.components && experiment.components.length > 0 && (
                         <section>
-                            <DividerSection className="mb-12" title={t.detail.components} />
-                            <div className="grid grid-cols-1 gap-6">
+                            <DividerSection className="mb-6" title={t.detail.components} />
+                            <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                                 {experiment.components.map((component) => (
                                     <ExperimentComponentCard
                                         component={component}
                                         key={component.name}
-                                        translations={{
-                                            status: t.status,
-                                            viewSource: t.detail.viewSource,
-                                        }}
                                     />
                                 ))}
                             </div>
@@ -278,44 +261,32 @@ type SerializableExperimentComponent = Omit<ExperimentComponent, 'sourceUrl'> & 
     sourceUrl: string;
 };
 
-type ComponentCardTranslations = {
-    status: ExperimentDetailTranslations['status'];
-    viewSource: string;
-};
-
-// Sub-component for architecture parts
+// Sub-component for architecture parts - minimalist style
 const ExperimentComponentCard: React.FC<{
     component: SerializableExperimentComponent;
-    translations: ComponentCardTranslations;
-}> = ({ component, translations: t }) => {
+}> = ({ component }) => {
     return (
-        <div className="group relative p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div className="flex-1 space-y-3 pr-12">
-                    <div className="flex items-center gap-3">
-                        <Layers className="text-zinc-400" size={20} />
-                        <h4 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
-                            {component.name}
-                        </h4>
-                    </div>
-                    <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                        {component.description}
-                    </p>
+        <a
+            className="group flex items-center justify-between gap-4 py-3"
+            href={component.sourceUrl}
+            rel="noreferrer"
+            target="_blank"
+        >
+            <div className="min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                    <h4 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 group-hover:underline underline-offset-4">
+                        {component.name}
+                    </h4>
+                    <BadgeExperimentStatus status={component.status} />
                 </div>
-
-                <div className="flex flex-col items-end gap-4 shrink-0 pt-2 md:pt-0">
-                    <BadgeExperimentStatus status={component.status} translations={t.status} />
-                    <a
-                        className="flex items-center justify-center w-10 h-10 rounded-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
-                        href={component.sourceUrl.toString()}
-                        rel="noreferrer"
-                        target="_blank"
-                        title={t.viewSource}
-                    >
-                        <Github size={18} />
-                    </a>
-                </div>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-1">
+                    {component.description}
+                </p>
             </div>
-        </div>
+            <Github
+                className="shrink-0 text-zinc-300 dark:text-zinc-600 group-hover:text-zinc-500 dark:group-hover:text-zinc-400 transition-colors"
+                size={16}
+            />
+        </a>
     );
 };

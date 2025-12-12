@@ -10,9 +10,6 @@ import { Link } from '../../infrastructure/navigation/navigation';
 import { type Experiment } from '../../domain/experiment';
 import { type UserExperience } from '../../domain/user';
 
-// Utils
-import { cn } from '../utils';
-
 import { CardArticle } from '../ui/molecules/card-article/card-article';
 import { CardExperimentFeatured } from '../ui/molecules/card-experiment-featured/card-experiment-featured';
 import { DividerSection } from '../ui/molecules/divider-section/divider-section';
@@ -39,26 +36,8 @@ type SerializableExperiment = Omit<Experiment, 'components' | 'url'> & {
     url: string;
 };
 
-type ExperimentCardTranslations = {
-    context: {
-        hackathon: string;
-        personal: string;
-        professional: string;
-        school42: string;
-    };
-    readMore: string;
-    status: {
-        active: string;
-        archived: string;
-        building: string;
-        completed: string;
-        concept: string;
-    };
-    viewProject: string;
-};
-
 type HelloWorldTranslations = {
-    experimentCard: ExperimentCardTranslations;
+    featuredExperiments: string;
     focus: string;
     focusAreas: {
         aiAgents: { description: string; title: string };
@@ -68,7 +47,6 @@ type HelloWorldTranslations = {
     };
     journey: string;
     latestArticles: string;
-    latestExperiments: string;
     readArticles: string;
     title: string;
     viewAll: string;
@@ -77,7 +55,7 @@ type HelloWorldTranslations = {
 type HelloWorldTemplateProps = {
     description: string;
     experiences: UserExperience[];
-    latestExperiments: SerializableExperiment[];
+    featuredExperiments: SerializableExperiment[];
     topArticles: Article[];
     translations: HelloWorldTranslations;
 };
@@ -91,29 +69,13 @@ const FocusItem = ({
     icon: React.ElementType;
     title: string;
 }) => (
-    <div
-        className={cn(
-            'group flex flex-col h-full p-6 sm:p-8 rounded-xl transition-all duration-300',
-            'bg-white dark:bg-zinc-950',
-            'border border-zinc-200 dark:border-zinc-800',
-            'hover:shadow-xl hover:shadow-zinc-200/40 dark:hover:shadow-black/40 hover:-translate-y-1',
-            'hover:border-zinc-300 dark:hover:border-zinc-700',
-            'relative overflow-hidden',
-        )}
-    >
-        {/* Subtle gradient on hover */}
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-transparent to-transparent dark:from-zinc-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-        <div className="relative flex flex-col h-full z-10">
-            <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300">
-                    <Icon className="text-zinc-900 dark:text-zinc-100" size={24} />
-                </div>
-                <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors">
-                    {title}
-                </h3>
-            </div>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed line-clamp-3 font-normal">
+    <div className="flex gap-4 py-4">
+        <Icon className="text-zinc-400 dark:text-zinc-500 shrink-0 mt-0.5" size={20} />
+        <div>
+            <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-1">
+                {title}
+            </h3>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
                 {description}
             </p>
         </div>
@@ -123,7 +85,7 @@ const FocusItem = ({
 export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
     description,
     experiences,
-    latestExperiments,
+    featuredExperiments,
     topArticles,
     translations: t,
 }) => {
@@ -142,10 +104,10 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
             </div>
 
             <div className="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-20 space-y-24">
-                {/* Latest Experiments Section */}
+                {/* Featured Experiments Section */}
                 <section>
-                    <div className="flex items-center justify-between mb-12">
-                        <DividerSection className="flex-1" title={t.latestExperiments} />
+                    <div className="flex items-center justify-between mb-6">
+                        <DividerSection className="flex-1" title={t.featuredExperiments} />
                         <Link
                             className="hidden md:flex items-center gap-2 text-sm font-bold tracking-wide uppercase text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors ml-8 whitespace-nowrap"
                             href="/experiments"
@@ -154,12 +116,12 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                        {latestExperiments.map((experiment) => (
+                    <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
+                        {featuredExperiments.map((experiment) => (
                             <CardExperimentFeatured
                                 experiment={experiment}
                                 key={experiment.name}
-                                translations={t.experimentCard}
+                                showIcon
                             />
                         ))}
                     </div>

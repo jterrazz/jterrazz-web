@@ -6,67 +6,50 @@ import { ExperimentStatus } from '../../../../domain/experiment';
 // Utils
 import { cn } from '../../../utils';
 
-type StatusTranslations = {
-    active: string;
-    archived: string;
-    building: string;
-    completed: string;
-    concept: string;
-};
-
 export type BadgeExperimentStatusProps = {
     className?: string;
     status: ExperimentStatus;
-    translations: StatusTranslations;
 };
-
-/**
- * Get translated status label
- */
-function getStatusLabel(status: ExperimentStatus, translations: StatusTranslations): string {
-    switch (status) {
-        case ExperimentStatus.Active:
-            return translations.active;
-        case ExperimentStatus.Archived:
-            return translations.archived;
-        case ExperimentStatus.Building:
-            return translations.building;
-        case ExperimentStatus.Completed:
-            return translations.completed;
-        case ExperimentStatus.Concept:
-            return translations.concept;
-        default:
-            return status;
-    }
-}
 
 export const BadgeExperimentStatus: React.FC<BadgeExperimentStatusProps> = ({
     className,
     status,
-    translations,
 }) => {
-    const getStatusDotColor = (status: ExperimentStatus) => {
+    const getStatusStyles = (status: ExperimentStatus) => {
         switch (status) {
             case ExperimentStatus.Active:
-                return 'bg-emerald-500';
+                return {
+                    dot: 'bg-emerald-500',
+                    label: 'Active',
+                    text: 'text-emerald-600 dark:text-emerald-400',
+                };
             case ExperimentStatus.Building:
-                return 'bg-blue-500';
+                return {
+                    dot: 'bg-blue-500',
+                    label: 'Building',
+                    text: 'text-blue-600 dark:text-blue-400',
+                };
             case ExperimentStatus.Concept:
-                return 'bg-amber-500';
+                return {
+                    dot: 'bg-amber-500',
+                    label: 'Concept',
+                    text: 'text-amber-600 dark:text-amber-400',
+                };
             default:
-                return 'bg-zinc-500';
+                return null;
         }
     };
 
+    const styles = getStatusStyles(status);
+
+    if (!styles) return null;
+
     return (
-        <div
-            className={cn(
-                'flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm text-xs font-medium text-zinc-900 dark:text-zinc-100 shadow-sm',
-                className,
-            )}
-        >
-            <div className={cn('w-1.5 h-1.5 rounded-full', getStatusDotColor(status))} />
-            <span>{getStatusLabel(status, translations)}</span>
-        </div>
+        <span className={cn('inline-flex items-baseline gap-1.5', className)}>
+            <span
+                className={cn('w-1.5 h-1.5 rounded-full shrink-0 translate-y-[-1px]', styles.dot)}
+            />
+            <span className={cn('text-xs', styles.text)}>{styles.label}</span>
+        </span>
     );
 };
