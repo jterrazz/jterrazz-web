@@ -92,10 +92,11 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                 {/* Applications */}
                 {apps.length > 0 && (
                     <section>
-                        <DividerSection className="mb-6" title={t.applications} />
+                        <DividerSection className="mb-8" title={t.applications} />
                         <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                             {apps.map((experiment) => (
                                 <CardExperimentFeatured
+                                    className="first:pt-0 last:pb-0"
                                     experiment={experiment}
                                     key={experiment.name}
                                 />
@@ -107,10 +108,11 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                 {/* Libraries & Tools */}
                 {libs.length > 0 && (
                     <section>
-                        <DividerSection className="mb-6" title={t.tooling} />
+                        <DividerSection className="mb-8" title={t.tooling} />
                         <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                             {libs.map((experiment) => (
                                 <CardExperimentFeatured
+                                    className="first:pt-0 last:pb-0"
                                     experiment={experiment}
                                     key={experiment.name}
                                 />
@@ -122,10 +124,11 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                 {/* System & Research */}
                 {system.length > 0 && (
                     <section>
-                        <DividerSection className="mb-6" title={t.systems} />
+                        <DividerSection className="mb-8" title={t.systems} />
                         <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                             {system.map((experiment) => (
                                 <CardExperimentFeatured
+                                    className="first:pt-0 last:pb-0"
                                     experiment={experiment}
                                     key={experiment.name}
                                 />

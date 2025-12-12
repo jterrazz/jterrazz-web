@@ -4,11 +4,12 @@ import React from 'react';
 
 import { ArrowRight } from 'lucide-react';
 
-import { Link } from '../../infrastructure/navigation/navigation';
-
 // Domain
 import { type Experiment } from '../../domain/experiment';
 import { type UserExperience } from '../../domain/user';
+
+// Infrastructure
+import { Link } from '../../infrastructure/navigation/navigation';
 
 import { CardArticle } from '../ui/molecules/card-article/card-article';
 import { CardExperimentFeatured } from '../ui/molecules/card-experiment-featured/card-experiment-featured';
@@ -61,7 +62,7 @@ type HelloWorldTemplateProps = {
 };
 
 const FocusItem = ({ description, title }: { description: string; title: string }) => (
-    <div className="py-2 px-4 first:pl-0 last:pr-0">
+    <div className="px-4 first:pl-0 last:pr-0">
         <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-1">{title}</h3>
         <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">{description}</p>
     </div>
@@ -91,7 +92,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
             <div className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-20 space-y-24">
                 {/* Featured Experiments Section */}
                 <section>
-                    <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center justify-between mb-8">
                         <DividerSection className="flex-1" title={t.featuredExperiments} />
                         <Link
                             className="hidden md:flex items-center gap-2 text-sm font-bold tracking-wide uppercase text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors ml-8 whitespace-nowrap"
@@ -104,6 +105,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                     <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                         {featuredExperiments.map((experiment) => (
                             <CardExperimentFeatured
+                                className="first:pt-0 last:pb-0"
                                 experiment={experiment}
                                 key={experiment.name}
                                 showIcon
@@ -114,7 +116,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
 
                 {/* Featured Articles Section */}
                 <section>
-                    <div className="flex items-center justify-between mb-12">
+                    <div className="flex items-center justify-between mb-8">
                         <DividerSection className="flex-1" title={t.featuredArticles} />
                         <Link
                             className="hidden md:flex items-center gap-2 text-sm font-bold tracking-wide uppercase text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors ml-8 whitespace-nowrap"
@@ -140,7 +142,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
 
                 {/* Focus Areas */}
                 <section>
-                    <DividerSection className="mb-6" title={t.focus} />
+                    <DividerSection className="mb-8" title={t.focus} />
                     <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-zinc-100 dark:divide-zinc-800">
                         <FocusItem
                             description={t.focusAreas.aiEngineering.description}
@@ -163,7 +165,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
 
                 {/* Timeline Section */}
                 <section>
-                    <DividerSection className="mb-20" title={t.journey} />
+                    <DividerSection className="mb-8" title={t.journey} />
 
                     <div className="max-w-4xl mx-auto w-full">
                         <Timeline>

@@ -239,7 +239,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                     {/* Components (If applicable) */}
                     {experiment.components && experiment.components.length > 0 && (
                         <section>
-                            <DividerSection className="mb-6" title={t.detail.components} />
+                            <DividerSection className="mb-8" title={t.detail.components} />
                             <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                                 {experiment.components.map((component) => (
                                     <ExperimentComponentCard
@@ -267,7 +267,7 @@ const ExperimentComponentCard: React.FC<{
 }> = ({ component }) => {
     return (
         <a
-            className="group flex items-center justify-between gap-4 py-3"
+            className="group flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0"
             href={component.sourceUrl}
             rel="noreferrer"
             target="_blank"

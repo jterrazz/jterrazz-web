@@ -105,7 +105,7 @@ const GridArticleCard: React.FC<{ article: ArticleRowViewModel }> = ({ article }
 const CompactArticleCard: React.FC<{ article: ArticleRowViewModel }> = ({ article }) => {
     return (
         <Link className="block group" href={`/articles/${article.slug}`}>
-            <article className="grid grid-cols-1 sm:grid-cols-12 gap-6 py-6 border-b border-zinc-100 dark:border-zinc-800 last:border-0 items-start">
+            <article className="grid grid-cols-1 sm:grid-cols-12 gap-6 py-6 first:pt-0 last:pb-0 border-b border-zinc-100 dark:border-zinc-800 last:border-0 items-start">
                 {/* Image (Left on desktop) */}
                 <div className="sm:col-span-4 md:col-span-3">
                     <div className="relative w-full aspect-[16/10] overflow-hidden bg-zinc-100 dark:bg-zinc-900 rounded-xl">
@@ -375,7 +375,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
                     {/* Standalone Articles */}
                     {filteredStandalone.length > 0 && (
                         <section aria-label="Other articles">
-                            <DividerSection className="mb-12" title={t.otherPosts} />
+                            <DividerSection className="mb-8" title={t.otherPosts} />
 
                             <div className="flex flex-col gap-2 max-w-4xl">
                                 {filteredStandalone.map((article) => (
