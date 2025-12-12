@@ -98,7 +98,7 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
                         alt={profile.name}
                         className="object-cover"
                         fill
-                        src="/assets/icons/appicon.jterrazz.png"
+                        src={profile.pictureUrl}
                     />
                 </div>
                 <span className="text-[14px] text-zinc-600 dark:text-zinc-400">

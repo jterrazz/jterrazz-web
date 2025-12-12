@@ -4,27 +4,17 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { getLocale } from 'next-intl/server';
-// Domain
-// Google Fonts temporarily disabled due to network restrictions in build environment
-// import { Inter } from 'next/font/google';
 
-// Utils
+import { SITE_CONFIG } from '../config/site';
 import { cn } from '../presentation/utils';
-
 import { ThemeProvider } from '../presentation/theme/theme-provider';
 
 import './globals.css';
 
-// Using system fonts due to network restrictions
-// const inter = Inter({ subsets: ['latin'] });
-
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
-
 export const metadata: Metadata = {
-    authors: [{ name: 'Jean-Baptiste Terrazzoni', url: 'https://jterrazz.com' }],
-    creator: 'Jean-Baptiste Terrazzoni',
-    description:
-        'Software engineer specializing in AI agents, clean architecture, and fintech. Explore my projects, technical articles, and open-source contributions.',
+    authors: [{ name: SITE_CONFIG.author.name, url: SITE_CONFIG.author.url }],
+    creator: SITE_CONFIG.author.name,
+    description: SITE_CONFIG.description,
     icons: [
         {
             rel: 'icon',
@@ -49,32 +39,22 @@ export const metadata: Metadata = {
         },
     ],
     manifest: '/site.webmanifest',
-    keywords: [
-        'Software Engineering',
-        'Full Stack Development',
-        'React',
-        'Next.js',
-        'TypeScript',
-        'AI Agents',
-        'Clean Architecture',
-        'Mobile Apps',
-    ],
-    metadataBase: new URL(baseUrl),
+    keywords: SITE_CONFIG.author.skills,
+    metadataBase: new URL(SITE_CONFIG.baseUrl),
     openGraph: {
-        description:
-            'Software engineer specializing in AI agents, clean architecture, and fintech. Explore my projects, technical articles, and open-source contributions.',
+        description: SITE_CONFIG.description,
         images: [
             {
-                height: 630,
-                url: '/assets/icons/appicon-jterrazz.png',
-                width: 1200,
+                height: SITE_CONFIG.defaultImage.height,
+                url: SITE_CONFIG.defaultImage.path,
+                width: SITE_CONFIG.defaultImage.width,
             },
         ],
         locale: 'en_US',
-        siteName: 'Jean-Baptiste Terrazzoni',
-        title: 'Jean-Baptiste Terrazzoni | Software Engineer & AI Developer',
+        siteName: SITE_CONFIG.author.name,
+        title: `${SITE_CONFIG.author.name} | ${SITE_CONFIG.author.jobTitle}`,
         type: 'website',
-        url: baseUrl,
+        url: SITE_CONFIG.baseUrl,
     },
     robots: {
         follow: true,
@@ -88,14 +68,14 @@ export const metadata: Metadata = {
         index: true,
     },
     title: {
-        default: 'Jean-Baptiste Terrazzoni | Software Engineer & AI Developer',
-        template: '%s | Jean-Baptiste Terrazzoni',
+        default: `${SITE_CONFIG.author.name} | ${SITE_CONFIG.author.jobTitle}`,
+        template: `%s | ${SITE_CONFIG.author.name}`,
     },
     twitter: {
         card: 'summary_large_image',
-        creator: '@jterrazz',
-        site: '@jterrazz',
-        title: 'Jean-Baptiste Terrazzoni',
+        creator: SITE_CONFIG.social.twitter,
+        site: SITE_CONFIG.social.twitter,
+        title: SITE_CONFIG.author.name,
     },
 };
 

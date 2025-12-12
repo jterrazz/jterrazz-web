@@ -7,11 +7,10 @@ import {
 } from '../../domain/user';
 
 const profile: UserProfile = {
-    description: 'Software Engineer specializing in clean architecture and AI agents.',
-    headline: 'AI Agent Developer • Fintech Engineer • Bitcoin Maximalist',
+    headline: 'AI Engineering • Architecture • Decentralization',
     location: 'Paris, France',
     name: 'Jean-Baptiste Terrazzoni',
-    pictureUrl: '/assets/icons/appicon.jterrazz.png',
+    pictureUrl: '/assets/icons/appicon-jterrazz.png',
 };
 
 const contacts: Record<UserContactType, UserContact> = {

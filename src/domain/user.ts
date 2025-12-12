@@ -29,7 +29,6 @@ export type UserExperience = {
 };
 
 export type UserProfile = {
-    description: string;
     headline: string;
     location: string;
     name: string;
