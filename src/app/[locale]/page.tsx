@@ -60,7 +60,11 @@ export default async function HomePage({ params }: Props) {
     const userExperiences = userRepository.getExperiences();
     const allArticles = articlesRepository.getAll();
 
-    // Group articles: series become single items, standalone articles remain individual
+    // Featured articles - specific selection of series and standalone articles
+    const featuredSeriesNames = ['Using AI', 'Abundant Intelligence', 'Application Design'];
+    const featuredStandaloneIndexes = [13]; // "Let's playfully question everything"
+
+    // Group articles by series
     const seriesMap = new Map<string, typeof allArticles>();
     const standaloneArticles: typeof allArticles = [];
 
@@ -74,8 +78,8 @@ export default async function HomePage({ params }: Props) {
         }
     }
 
-    // Build the final list with dates for sorting
-    const topArticlesWithDates: Array<{
+    // Build featured articles list
+    const featuredArticlesWithDates: Array<{
         articleCount?: number;
         description: string;
         imageUrl: string;
@@ -85,8 +89,11 @@ export default async function HomePage({ params }: Props) {
         title: string;
     }> = [];
 
-    // Add series as single items (use latest article date for sorting, first article for link)
-    for (const [seriesName, articles] of seriesMap) {
+    // Add featured series
+    for (const seriesName of featuredSeriesNames) {
+        const articles = seriesMap.get(seriesName);
+        if (!articles || articles.length === 0) continue;
+
         const sortedByDateAsc = articles.sort(
             (a, b) =>
                 new Date(a.metadata.datePublished).getTime() -
@@ -95,7 +102,7 @@ export default async function HomePage({ params }: Props) {
         const firstArticle = sortedByDateAsc[0];
         const latestArticle = sortedByDateAsc[sortedByDateAsc.length - 1];
 
-        topArticlesWithDates.push({
+        featuredArticlesWithDates.push({
             articleCount: articles.length,
             description: t('seriesDescription', {
                 count: articles.length,
@@ -109,9 +116,12 @@ export default async function HomePage({ params }: Props) {
         });
     }
 
-    // Add standalone articles
-    for (const article of standaloneArticles) {
-        topArticlesWithDates.push({
+    // Add featured standalone articles
+    for (const index of featuredStandaloneIndexes) {
+        const article = standaloneArticles.find((a) => a.publicIndex === index);
+        if (!article) continue;
+
+        featuredArticlesWithDates.push({
             description:
                 article.metadata.description[locale as Locale] ?? article.metadata.description.en,
             imageUrl: article.imageUrl ?? '',
@@ -122,7 +132,7 @@ export default async function HomePage({ params }: Props) {
     }
 
     // Sort by latest date (newest first) and remove the date field
-    const topArticles = topArticlesWithDates
+    const featuredArticles = featuredArticlesWithDates
         .sort((a, b) => b.latestDate.getTime() - a.latestDate.getTime())
         .map(({ latestDate, ...rest }) => rest);
 
@@ -166,7 +176,7 @@ export default async function HomePage({ params }: Props) {
         },
         journey: t('journey'),
         featuredExperiments: t('featuredExperiments'),
-        latestArticles: t('latestArticles'),
+        featuredArticles: t('featuredArticles'),
         readArticles: t('readArticles'),
         title: t('title'),
         viewAll: t('viewAll'),
@@ -179,7 +189,7 @@ export default async function HomePage({ params }: Props) {
                 description={t('description')}
                 experiences={userExperiences}
                 featuredExperiments={featuredExperiments}
-                topArticles={topArticles}
+                featuredArticles={featuredArticles}
                 translations={translations}
             />
         </>
