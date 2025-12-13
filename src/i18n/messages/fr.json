@@ -32,7 +32,7 @@
   "articles": {
     "title": "Articles",
     "seoDescription": "Articles techniques sur les agents IA, l'architecture logicielle, TypeScript et les bonnes pratiques d'ingénierie. Guides et tutoriels approfondis.",
-    "highlightDescription": "Ma base de connaissances personnelle. Notes sur l'ingénierie, l'architecture et ce que j'apprends en développant des logiciels.",
+    "highlightDescription": "Notes sur l'ingénierie, l'architecture et ce que j'apprends en développant des logiciels.",
     "filterAll": "Tous",
     "filterExperiment": "Expérimentation",
     "filterInsight": "Réflexion",
@@ -45,7 +45,7 @@
   "experiments": {
     "title": "Expérimentations",
     "seoDescription": "Projets open-source, applications et outils pour développeurs. Agents IA, solutions fintech, packages TypeScript et expérimentations système.",
-    "highlightDescription": "Le code derrière les concepts. Une collection d'outils et d'expérimentations que j'ai construits pour résoudre de vrais problèmes.",
+    "highlightDescription": "Une collection d'outils et d'expérimentations que j'ai construits pour résoudre de vrais problèmes.",
     "viewGitHub": "Voir GitHub",
     "applications": "Applications",
     "tooling": "Outillage",

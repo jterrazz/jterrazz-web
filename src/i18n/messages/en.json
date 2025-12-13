@@ -32,7 +32,7 @@
   "articles": {
     "title": "Articles",
     "seoDescription": "Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.",
-    "highlightDescription": "My personal knowledge base. Notes on engineering, architecture, and the things I learn while building software.",
+    "highlightDescription": "Notes on engineering, architecture, and the things I learn while building software.",
     "filterAll": "All",
     "filterExperiment": "Experiment",
     "filterInsight": "Insight",
@@ -45,7 +45,7 @@
   "experiments": {
     "title": "Experiments",
     "seoDescription": "Open-source projects, apps, and developer tools. AI agents, fintech solutions, TypeScript packages, and system-level experiments.",
-    "highlightDescription": "The code behind the concepts. A collection of tools and experiments I've built to solve real problems.",
+    "highlightDescription": "A collection of tools and experiments I've built to solve real problems.",
     "viewGitHub": "View GitHub",
     "applications": "Applications",
     "tooling": "Tooling",
