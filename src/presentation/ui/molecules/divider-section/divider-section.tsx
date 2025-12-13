@@ -1,20 +1,54 @@
 import React from 'react';
 
+import { ArrowRight } from 'lucide-react';
+
+import { Link } from '../../../../infrastructure/navigation/navigation';
+
 // Utils
 import { cn } from '../../../utils';
 
 export type DividerSectionProps = {
+    /**
+     * Semantic heading level for accessibility
+     * @default 'h2'
+     */
+    as?: 'h2' | 'h3' | 'h4' | 'span';
     className?: string;
+    /**
+     * Optional link displayed at the end of the divider
+     */
+    link?: {
+        href: string;
+        text: string;
+    };
     title: string;
 };
 
-export const DividerSection: React.FC<DividerSectionProps> = ({ className, title }) => {
+/**
+ * Section divider with label, horizontal line, and optional link
+ * @description Used to separate major content sections throughout the app
+ */
+export const DividerSection: React.FC<DividerSectionProps> = ({
+    as: Tag = 'h2',
+    className,
+    link,
+    title,
+}) => {
     return (
-        <div className={cn('flex items-center w-full gap-3', className)}>
-            <h2 className="text-[13px] font-medium tracking-wide uppercase text-zinc-500 dark:text-zinc-400 whitespace-nowrap">
+        <div className={cn('flex items-center w-full gap-4', className)}>
+            <Tag className="text-sm font-medium text-zinc-400 dark:text-zinc-500 whitespace-nowrap">
                 {title}
-            </h2>
-            <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+            </Tag>
+            <div className="h-px flex-1 bg-gradient-to-r from-zinc-200 to-transparent dark:from-zinc-800 dark:to-transparent" />
+            {link && (
+                <Link
+                    className="hidden md:flex items-center gap-1.5 text-sm font-medium text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors whitespace-nowrap"
+                    href={link.href}
+                >
+                    {link.text}
+                    <ArrowRight className="w-4 h-4" />
+                </Link>
+            )}
         </div>
     );
 };

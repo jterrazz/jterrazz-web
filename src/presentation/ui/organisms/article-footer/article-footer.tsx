@@ -17,7 +17,8 @@ import { userRepository } from '../../../../infrastructure/repositories/user.rep
 import { cn } from '../../../utils';
 
 import { BannerAi } from '../../molecules/banner-ai/banner-ai';
-import { CardArticle } from '../../molecules/card-article/card-article';
+import { CardArticleCompact } from '../../molecules/card-article/card-article-compact';
+import { CardArticleHorizontal } from '../../molecules/card-article/card-article-horizontal';
 import { DividerSection } from '../../molecules/divider-section/divider-section';
 
 type ArticleFooterProps = {
@@ -56,7 +57,7 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
                 <div className="flex flex-col gap-2 mb-10 md:mb-12">
                     <DividerSection title={`${seriesTitle} Series`} />
                     <div className="flex flex-col">
-                        {relatedArticles.map((article, index) => {
+                        {relatedArticles.map((article) => {
                             const slug = buildArticleSlug(
                                 article.publicIndex,
                                 article.metadata.title.en,
@@ -70,16 +71,9 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
                                     )}
                                     key={article.metadata.title.en}
                                 >
-                                    <CardArticle
-                                        category={article.metadata.category}
-                                        datePublished={article.metadata.datePublished}
-                                        description={article.metadata.description.en}
-                                        imageUrl={article.imageUrl}
-                                        position={index}
+                                    <CardArticleCompact
                                         slug={slug}
                                         title={article.metadata.title.en}
-                                        total={relatedArticles.length}
-                                        variant="compact"
                                     />
                                 </div>
                             );
@@ -128,7 +122,7 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
             </div>
 
             {/* Metadata & AI Disclaimer */}
-            <div className="text-[13px] md:text-[14px] text-zinc-400 dark:text-zinc-500 space-y-1">
+            <div className="mt-4 md:mt-5 text-[13px] md:text-[14px] text-zinc-400 dark:text-zinc-500 space-y-1">
                 <p>
                     Published {formatDate(datePublished)}
                     {dateModified !== datePublished && ` · Updated ${formatDate(dateModified)}`}
@@ -139,36 +133,26 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
             {/* Related Articles (non-series) */}
             {!seriesTitle && relatedArticles.length > 0 && (
                 <div className="flex flex-col gap-4 mt-12 md:mt-14">
-                    <div className="flex items-center justify-between">
-                        <h2 className="text-[16px] md:text-[18px] font-semibold text-zinc-900 dark:text-zinc-100">
-                            More articles
-                        </h2>
-                        <Link
-                            className="text-[13px] md:text-[14px] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
-                            href="/articles"
-                        >
-                            View all →
-                        </Link>
-                    </div>
-                    <div className="flex flex-col border-t border-zinc-200 dark:border-zinc-800">
-                        {relatedArticles.map((article, index) => {
+                    <DividerSection
+                        link={{ href: '/articles', text: 'View all' }}
+                        title="More articles"
+                    />
+                    <div className="flex flex-col">
+                        {relatedArticles.map((article) => {
                             const slug = buildArticleSlug(
                                 article.publicIndex,
                                 article.metadata.title.en,
                             );
 
                             return (
-                                <CardArticle
+                                <CardArticleHorizontal
                                     category={article.metadata.category}
                                     datePublished={article.metadata.datePublished}
                                     description={article.metadata.description.en}
                                     imageUrl={article.imageUrl}
                                     key={article.metadata.title.en}
-                                    position={index}
                                     slug={slug}
                                     title={article.metadata.title.en}
-                                    total={relatedArticles.length}
-                                    variant="horizontal"
                                 />
                             );
                         })}

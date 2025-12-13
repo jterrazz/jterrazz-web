@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { ImageGallery } from 'react-image-grid-gallery';
 
@@ -24,12 +24,42 @@ export type PhotographsGridTemplateProps = {
     translations: PhotographsGridTranslations;
 };
 
+function useScrollGrayscale(): number {
+    const [grayscale, setGrayscale] = useState(1);
+
+    useEffect(() => {
+        const handleScroll = (): void => {
+            const scrollY = window.scrollY;
+            const transitionStart = 50;
+            const transitionEnd = 300;
+
+            if (scrollY <= transitionStart) {
+                setGrayscale(1);
+            } else if (scrollY >= transitionEnd) {
+                setGrayscale(0);
+            } else {
+                const progress = (scrollY - transitionStart) / (transitionEnd - transitionStart);
+                setGrayscale(1 - progress);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    return grayscale;
+}
+
 export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = ({
     highlightDescription,
     highlightTitle,
     photographs,
     translations: t,
 }) => {
+    const grayscale = useScrollGrayscale();
+
     const images = photographs.map((photograph, index) => ({
         alt: photograph.metadata.description,
         id: `photograph-${photograph.index || index}`,
@@ -56,7 +86,10 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
 
             {/* Gallery Content */}
             <div className="max-w-7xl mx-auto px-4 md:px-6 pb-24">
-                <div className="grayscale hover:grayscale-0 transition-all duration-700">
+                <div
+                    className="transition-[filter] duration-150"
+                    style={{ filter: `grayscale(${grayscale})` }}
+                >
                     <ImageGallery columnCount={3} gapSize={24} imagesInfoArray={images} />
                 </div>
             </div>

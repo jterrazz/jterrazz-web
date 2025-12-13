@@ -216,7 +216,6 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
                 {
                     year: 'numeric',
                     month: 'short',
-                    day: 'numeric',
                 },
             ),
             readingTime: this.calculateReadingTime(content),
