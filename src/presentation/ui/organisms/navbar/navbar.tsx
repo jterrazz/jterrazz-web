@@ -210,8 +210,9 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                                 enableHover
                                 transition={{
                                     type: 'spring',
-                                    bounce: 0.2,
-                                    duration: 0.3,
+                                    stiffness: 400,
+                                    damping: 30,
+                                    mass: 0.8,
                                 }}
                             >
                                 {pages.map((page) => {
@@ -220,7 +221,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                                         <div className="px-1" data-id={page.href} key={page.href}>
                                             <Link
                                                 className={cn(
-                                                    'relative px-3 py-2 rounded-full text-sm font-medium transition-colors duration-200 block',
+                                                    'relative px-3 py-2 rounded-full text-sm font-medium transition-colors duration-150 block',
                                                     isSelected
                                                         ? 'text-zinc-900 dark:text-zinc-100'
                                                         : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200',
