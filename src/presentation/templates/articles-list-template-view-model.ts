@@ -149,8 +149,21 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
       }
     });
 
-    // Sort series by the date of the most recent article in each series
+    // Sort series by custom order, then by date of the most recent article
+    const seriesOrder = ["Abundant Intelligence", "Using AI", "Application Design"];
     series.sort((a, b) => {
+      const aOrder = seriesOrder.indexOf(a.seriesTitle);
+      const bOrder = seriesOrder.indexOf(b.seriesTitle);
+
+      // If both are in the custom order, use that order
+      if (aOrder !== -1 && bOrder !== -1) {
+        return aOrder - bOrder;
+      }
+      // If only one is in the custom order, it comes first
+      if (aOrder !== -1) return -1;
+      if (bOrder !== -1) return 1;
+
+      // Otherwise, sort by date
       const aLatestDate = Math.max(
         new Date(a.featuredArticle.datePublished).getTime(),
         ...a.relatedArticles.map((article) => new Date(article.datePublished).getTime()),
