@@ -7,6 +7,8 @@ import { buildArticleSlug } from "../../../../domain/utils/slugify";
 
 import { type Locale, locales } from "../../../../i18n/config";
 import { articlesRepository } from "../../../../infrastructure/repositories/articles.repository";
+import { contentLinksRepository } from "../../../../infrastructure/repositories/content-links.repository";
+import { experimentsRepository } from "../../../../infrastructure/repositories/experiments.repository";
 import {
   FeatureId,
   featuresRepository,
@@ -45,6 +47,10 @@ export default async function ArticlePage(props: ArticlePageProps) {
   const articles = articlesRepository.getAll();
   const features = [featuresRepository.getById(FeatureId.Source)];
 
+  // Get linked experiment if any
+  const experimentSlug = contentLinksRepository.getExperimentSlugForArticle(article.publicIndex);
+  const linkedExperiment = experimentSlug ? experimentsRepository.getBySlug(experimentSlug) : null;
+
   // Get content in current locale, fallback to English
   const content = article.content[locale as ArticleLanguage] ?? article.content.en ?? "";
   const title = article.metadata.title[locale as Locale] ?? article.metadata.title.en;
@@ -63,6 +69,9 @@ export default async function ArticlePage(props: ArticlePageProps) {
       description={description}
       features={features}
       imageUrl={article.imageUrl}
+      linkedExperiment={
+        linkedExperiment ? { name: linkedExperiment.name, slug: linkedExperiment.slug } : null
+      }
       title={title}
     />
   );
