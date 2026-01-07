@@ -17,7 +17,6 @@ import { userRepository } from "../../../../infrastructure/repositories/user.rep
 import { cn } from "../../../utils";
 
 import { BannerAi } from "../../molecules/banner-ai/banner-ai";
-import { CardArticleCompact } from "../../molecules/card-article/card-article-compact";
 import { CardArticleRow } from "../../molecules/card-article/card-article-row";
 import { DividerSection } from "../../molecules/divider-section/divider-section";
 
@@ -54,19 +53,24 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
     <footer className={cn("flex flex-col", className)}>
       {/* Series Articles */}
       {seriesTitle && relatedArticles.length > 0 && (
-        <div className="flex flex-col gap-2 mb-10 md:mb-12">
+        <div className="flex flex-col gap-4 mb-10 md:mb-12">
           <DividerSection title={`${seriesTitle} Series`} />
-          <div className="flex flex-col">
+          <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
             {relatedArticles.map((article) => {
               const slug = buildArticleSlug(article.publicIndex, article.metadata.title.en);
               const isCurrent = currentArticleId === slug;
 
               return (
                 <div
-                  className={cn(isCurrent && "opacity-50 pointer-events-none grayscale")}
+                  className={cn(isCurrent && "opacity-40 pointer-events-none")}
                   key={article.metadata.title.en}
                 >
-                  <CardArticleCompact slug={slug} title={article.metadata.title.en} />
+                  <CardArticleRow
+                    imageUrl={article.imageUrl}
+                    slug={slug}
+                    tagline={article.metadata.tagline.en}
+                    title={article.metadata.title.en}
+                  />
                 </div>
               );
             })}
