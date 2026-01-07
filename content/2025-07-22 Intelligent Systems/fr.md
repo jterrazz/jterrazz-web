@@ -1,147 +1,210 @@
 ![](assets/thumbnail.jpg)
 
-# Programmer des systèmes intelligents
+# Quand l'IA Devient le Produit
 
-Il y a un moment où l'IA cesse d'être votre outil pour devenir votre produit.
+Il y a un moment où l'IA cesse d'être votre assistant et commence à être votre architecture.
 
-Pour moi, c'est arrivé en développant une API d'actualités. La feature semblait simple : dédupliquer les articles entrants pour éviter que les utilisateurs voient la même info deux fois. Comparer les titres, vérifier les recoupements de mots-clés, calculer des scores de similarité.
+Pour moi, c'est arrivé en construisant une API d'agrégation de nouvelles. La fonctionnalité semblait simple : dédupliquer les articles entrants. Les utilisateurs ne devraient pas voir la même histoire deux fois. Comparer les titres, vérifier le chevauchement des mots-clés, calculer des scores de similarité. De l'ingénierie standard.
 
-Puis j'ai buté sur le vrai problème : est-ce que « La Fed relève ses taux » et « La Réserve fédérale augmente les taux d'intérêt face à l'inflation », c'est la même actu ? Et « Powell annonce un virage de politique monétaire » ?
+Puis j'ai heurté un mur.
 
-Aucune comparaison de chaînes ne résout ça. Ces titres disent la même chose avec des mots différents. Il fallait que le système *comprenne* qu'ils décrivent le même événement.
+*"La Fed augmente les taux"* est-elle la même histoire que *"La Réserve Fédérale relève les taux d'intérêt face à l'inflation"* ? Quid de *"Powell annonce un virage monétaire restrictif"* ?
 
-C'est là que l'architecture a basculé. L'IA ne m'aidait plus à construire la feature. L'IA *était* la feature.
+Les titres ne partagent presque aucun mot, et pourtant ils décrivent la même réalité sous-jacente.
 
-***
+Aucune correspondance de chaînes de caractères ne résout cela. Aucun calcul de distance d'édition. Le problème exige de la *compréhension*.
 
-## L'architecture hybride
+C'est là que l'architecture a changé. L'IA ne m'aidait plus à construire la fonctionnalité. **L'IA était la fonctionnalité.**
+
+Ce basculement—de l'IA comme outil à l'IA comme composant—exige une nouvelle façon de penser le logiciel. Les intuitions traditionnelles de l'ingénierie s'effondrent. De nouveaux modèles émergent. Cet article parle de ces modèles.
+
+---
+
+## Le Piège des Approches Pures
+
+La plupart des développeurs avec qui je parle tombent dans l'un de ces deux pièges en intégrant l'IA.
+
+**Le Piège Magique**
+Traiter l'IA comme une boîte noire qui résout tout. On y injecte des données, on obtient des réponses. Ne vous souciez pas des cas limites—le modèle trouvera. Cela fonctionne jusqu'à ce que le modèle hallucine une catégorie qui n'existe pas dans votre base de données, retourne du JSON inanalysable, ou produise avec confiance de fausses informations.
+
+**Le Piège de la Peur**
+Traiter l'IA comme trop peu fiable pour lui faire confiance. L'envelopper dans tant de couches de validation que la latence devient inutilisable. Ajouter tant de solutions de repli (fallbacks) que le chemin de l'IA ne s'exécute que rarement. Construire une complexité immense pour se couvrir contre un problème qu'une architecture réfléchie pourrait prévenir.
+
+Les deux pièges proviennent du même malentendu : traiter l'IA comme soit fiable, soit non fiable en termes absolus.
+
+La réalité est nuancée. L'IA est **fiablement bonne pour certaines choses** et **fiablement mauvaise pour d'autres**. L'architecture doit refléter ce profil.
+
+---
+
+## Le Principe Hybride
 
 ![](assets/bridge-merge.jpg)
 
-L'erreur que je vois souvent chez les développeurs, c'est de traiter l'IA comme magique ou comme dangereuse. Elle n'est ni l'un ni l'autre.
+La solution est l'**Architecture Hybride** : du code pour les contraintes, de l'IA pour le raisonnement.
 
-**Le code seul** est prévisible mais rigide. Il repère les correspondances exactes, mais rate les doublons sémantiques.
+Ce n'est pas un compromis—c'est jouer sur les forces de chaque système.
 
-**L'IA seule** est flexible mais imprévisible. Résultats incohérents, hallucinations, aucune garantie que la sortie colle à votre modèle.
+**Le Code est :**
+*   **Déterministe :** Même entrée, même sortie.
+*   **Vérifiable :** Vous pouvez prouver sa correction.
+*   **Rapide :** Nanosecondes, pas secondes.
+*   **Précis :** Règles exactes, application exacte.
 
-La réponse : l'**architecture hybride**. Le code pour les contraintes, l'IA pour le raisonnement.
+**L'IA est :**
+*   **Flexible :** Gère des cas que vous n'avez pas anticipés.
+*   **Sémantique :** Comprend le sens, pas juste la syntaxe.
+*   **Créative :** Génère du contenu, trouve des motifs.
+*   **Floue (Fuzzy) :** Prospère dans l'ambiguïté.
 
-Voici comment je répartis les rôles :
+La division du travail devient claire :
 
-**Le code gère :**
-- La récupération et la validation des données
-- L'application des schémas
-- Les règles métier (rate limiting, permissions)
-- La gestion d'état (enregistrements en base)
-- L'audit et les logs
+| Donnez au Code | Donnez à l'IA |
+|----------------|---------------|
+| Récupération de données | Compréhension sémantique |
+| Validation de schéma | Classification floue |
+| Règles métier | Génération de contenu |
+| Gestion d'état | Reconnaissance de motifs |
+| Limites de taux (Rate limiting) | Résumé |
+| Pistes d'audit | Analyse de sentiment |
 
-**L'IA gère :**
-- La compréhension sémantique
-- La classification aux frontières floues
-- La génération de contenu
-- La reconnaissance de patterns dans des données non structurées
+**Le code protège les invariants. L'IA gère l'ambiguïté.**
 
-Laissez l'IA faire ce qu'elle fait bien — gérer l'ambiguïté — pendant que le code fait ce qu'il fait bien — appliquer les règles.
+Quand vous laissez le code faire ce que le code fait de mieux et l'IA faire ce que l'IA fait de mieux, le système devient à la fois fiable et capable—plus que ce que l'un ou l'autre pourrait accomplir seul.
 
-***
+---
 
-## Le pattern sandwich
+## Le Pattern Sandwich
 
 ![](assets/layered-cake.jpg)
 
-Chaque appel IA de mon API d'actus suit la même structure : **Code → IA → Code**.
+Chaque appel IA dans mon système suit la même structure : **Code → IA → Code**.
 
-Illustration avec l'agent de déduplication.
+J'appelle cela le **Pattern Sandwich**. Le code prépare l'entrée, l'IA raisonne dessus, le code valide la sortie. La flexibilité de l'IA est contenue entièrement à l'intérieur des contraintes du code.
 
-**Couche 1 : Code (Préparation)**
-
+### Couche 1 : Préparation (Code)
 Avant que l'IA ne voie quoi que ce soit, le code s'exécute :
 
 ```typescript
-// Récupérer les rapports récents en base
 const existingReports = await this.reportRepository.findRecent({
     country: newReport.country,
     limit: 50,
 });
 
-// Formater pour le prompt
 const formattedReports = existingReports.map(r => ({
     id: r.id,
     core: r.core.value,
     background: r.background.value,
 }));
+
+const prompt = buildDeduplicationPrompt(newReport, formattedReports);
 ```
 
-L'IA n'interroge pas la base. Elle ne décide pas contre combien de rapports comparer. Le code prend ces décisions.
+Notez ce que le code contrôle :
+*   **Quelles données l'IA voit :** Il récupère depuis la base de données—l'IA ne touche jamais directement à la persistance.
+*   **Combien de données :** La limite `limit: 50` est une décision de code, pas un jugement d'IA.
+*   **Le Format :** L'IA reçoit des données structurées et aseptisées.
+*   **L'Invite (Prompt) :** Le code la construit, assurant la cohérence.
 
-**Couche 2 : IA (Raisonnement)**
+L'IA ne décide pas quoi regarder. Elle reçoit une vue curatée.
 
-L'agent reçoit les données formatées et une instruction claire :
+### Couche 2 : Raisonnement (IA)
+L'IA reçoit des données formatées et une instruction claire :
 
-> « Détermine si le rapport entrant décrit le même événement sous-jacent qu'un rapport existant. Concentre-toi sur l'événement central, pas sur les similarités de surface. »
+> "Détermine si le rapport d'actualité entrant décrit le même événement sous-jacent que n'importe quel rapport existant. Concentre-toi sur l'événement central—qui a fait quoi, quand, où—pas sur les similitudes de surface dans la formulation."
 
-L'IA raisonne sur le QUI, QUOI, OÙ, QUAND. « La Fed relève ses taux », c'est le même événement que « Powell annonce un virage politique » ? C'est ce que je ne peux pas coder en dur.
+C'est la tâche que je ne peux pas coder en dur. L'IA raisonne sur l'équivalence sémantique, considérant la réalité sous-jacente plutôt que le chevauchement des mots.
 
-**Couche 3 : Code (Validation)**
-
+### Couche 3 : Validation (Code)
 La sortie de l'IA est contrainte par un schéma :
 
 ```typescript
-static readonly SCHEMA = z.object({
-    duplicateOfReportId: z.string().nullable(),
-    reason: z.string(),
+const DeduplicationResult = z.object({
+    duplicateOfReportId: z.string().uuid().nullable(),
+    reason: z.string().max(500),
+    confidence: z.enum(['high', 'medium', 'low']),
 });
+
+const parsed = DeduplicationResult.safeParse(aiResponse);
+
+if (!parsed.success) {
+    logger.warn('AI returned invalid response', { error: parsed.error });
+    return { isDuplicate: false, reason: 'Validation failed' };
+}
 ```
 
-L'IA ne peut pas répondre « peut-être » ou « probablement un doublon ». Elle fournit un ID valide ou null. Si la validation échoue, le système considère l'article comme unique. Pas de crash.
+L'IA ne peut pas :
+*   Retourner "peut-être" ou inventer de nouveaux états.
+*   Fournir un format UUID invalide.
+*   Sauter des champs requis.
+*   Retourner du texte illimité.
 
-***
+Si la validation échoue, le système ne plante pas—il se replie gracieusement. L'article est traité comme unique, un avertissement est logué, et le pipeline continue.
 
-## Des agents réels, des contraintes réelles
+**Le sandwich assure que la flexibilité de l'IA opère strictement à l'intérieur des contraintes du code.**
 
-L'application comprend un jeu « trouvez le faux » — les utilisateurs tentent d'identifier des articles fabriqués parmi les vrais. Ils développent leur esprit critique en repérant les indices.
+---
 
-Autrement dit, je dois générer de fausses infos convaincantes. Volontairement. C'est l'agent de fabrication.
+## Un Exemple Réel : L'Agent de Fabrication
 
-Voici l'architecture de contraintes :
+La théorie est propre. Laissez-moi vous montrer un exemple plus désordonné.
+
+Mon app d'actualités inclut un jeu "repérez le faux". Les utilisateurs voient des articles—certains vrais, d'autres fabriqués—et essaient d'identifier les faux. Le but est de construire la littératie médiatique.
+
+Cela signifie que j'ai besoin d'un agent IA qui génère de fausses nouvelles convaincantes. À dessein.
+
+Voici comment le pattern sandwich gère cela :
+
+**Préparation :**
+```typescript
+const realArticle = await this.articleRepository.findRecent({ limit: 1 });
+
+const prompt = buildFabricationPrompt({
+    inspiration: realArticle,  // Référence de style, pas contenu à copier
+    targetCategory: 'technology',
+    difficulty: 'medium',
+});
+```
+Le code contrôle l'inspiration stylistique, la catégorie et le niveau de difficulté.
+
+**Raisonnement :**
+L'IA génère un article fabriqué avec un titre plausible, un corps de texte convaincant et des indices subtils.
+
+**Validation :**
+```typescript
+const FabricatedArticle = z.object({
+    headline: z.string().min(10).max(100),
+    body: z.string().min(200).max(2000),
+    category: z.enum(['technology', 'business', 'politics', 'science']),
+    tells: z.array(z.string()).min(1).max(5),
+    clarification: z.string().min(50),
+    tone: z.enum(['satirical']),  // Seul ton autorisé pour l'instant
+});
+```
+Mais la validation de schéma ne suffit pas pour ce cas d'usage. Le contenu pourrait être valide structurellement mais nuisible substantiellement. Il y a donc une couche supplémentaire :
 
 ```typescript
-static readonly SCHEMA = z.object({
-    headline: headlineSchema,      // Format de titre validé
-    body: bodySchema,              // Longueur encadrée
-    category: categorySchema,      // Enum obligatoire
-    clarification: z.string(),     // Explication post-réponse
-    tone: z.enum(['satirical']),   // Seul ton autorisé pour l'instant
-});
+// Contrôles de sécurité automatisés
+const safetyResult = await this.safetyChecker.analyze(article);
+if (safetyResult.flagged) {
+    logger.warn('Fabricated article flagged for safety review', { article, flags: safetyResult.flags });
+    return this.sendToHumanReview(article);
+}
 ```
+Certains contenus vont dans une file d'attente de revue humaine. L'architecture suppose que l'IA produira occasionnellement quelque chose de problématique et intègre la barrière.
 
-L'IA peut faire preuve de créativité sur le contenu. Elle ne peut pas inventer de catégories. Elle ne peut pas sauter la clarification. Chaque sortie doit coller à mon modèle.
+---
 
-Le prompt embarque des directives détaillées :
-
-```
-**Fabrication totale** : L'histoire doit être 100 % fictive — aucun événement réel
-**Crédibilité** : Doit tromper un lecteur lambda au premier abord
-**Sans danger** : Ne jamais risquer de nuire dans le monde réel ni cibler de groupes vulnérables
-**Valeur pédagogique** : Illustrer clairement les techniques de désinformation
-```
-
-Mais je ne *fais pas confiance* à l'IA pour respecter ces consignes. La couche de validation intercepte les violations. Une file de revue humaine traite les cas limites. L'architecture présuppose l'échec et intègre des fallbacks.
-
-***
-
-## Tester des systèmes probabilistes
+## Tester des Systèmes Probabilistes
 
 ![](assets/lab-instruments.jpg)
 
-Les systèmes IA ne sont pas déterministes. Exécutez la même entrée deux fois, vous pourriez obtenir des sorties différentes.
+Le test traditionnel suppose le déterminisme : donnée l'entrée X, attendez la sortie Y. Toujours.
 
-Ça casse les tests classiques. Impossible d'affirmer que `deduplicate("La Fed relève ses taux")` retourne toujours le même ID. L'IA peut formuler son raisonnement différemment. Le score de confiance peut varier.
+L'IA brise cela. La même entrée peut produire des sorties différentes selon les exécutions. Le format de sortie est cohérent (nous l'imposons), mais le contenu varie.
 
-Ma stratégie de test repose sur trois couches :
+Cela requiert une stratégie de test à trois couches :
 
-**1. Tests unitaires pour le code**
-
+### Couche 1 : Tests Unitaires pour le Code
 Les couches de préparation et de validation sont déterministes. Testez-les normalement.
 
 ```typescript
@@ -151,64 +214,117 @@ test('schema rejects invalid classification', () => {
 });
 ```
 
-**2. Évaluations pour l'IA**
-
-Je maintiens un jeu de données d'environ 100 cas avec des réponses connues. L'agent de classification passe dessus, je mesure la précision.
+### Couche 2 : Evals pour l'IA
+Maintenez un jeu de données de cas de test avec des réponses correctes connues. Lancez l'IA contre tous et mesurez la précision.
 
 ```
-Précision classification : 94,2 % (seuil : 90 %)
-Précision déduplication : 91,7 % (seuil : 85 %)
+Dataset: 100 paires d'articles avec statut de duplicata étiqueté par humain
+Précision de déduplication : 94.2%
+Rappel de déduplication : 91.8%
+Seuil : 90% précision, 85% rappel
 ```
 
-Si la précision passe sous le seuil après une mise à jour de modèle ou un changement de prompt, le déploiement échoue.
+Si la précision tombe sous le seuil, le déploiement échoue. Cela attrape les régressions avant qu'elles n'atteignent les utilisateurs.
 
-**3. Tests de garde-fous**
-
-Que se passe-t-il quand l'IA déraille ? Testez les fallbacks.
+### Couche 3 : Tests de Garde-fous
+Testez ce qui se passe quand l'IA se comporte mal.
 
 ```typescript
-test('falls back to unique when deduplication fails', async () => {
-    // Forcer l'IA à retourner une sortie invalide
-    mockModel.mockReturnValue({ invalid: 'response' });
+test('gracefully handles malformed AI response', async () => {
+    mockModel.mockReturnValue({ invalid: 'garbage' });
     
     const result = await pipeline.process(newReport);
     
-    // Le système doit traiter comme unique, pas planter
     expect(result.isDuplicate).toBe(false);
+    expect(result.fallbackUsed).toBe(true);
     expect(logger.warn).toHaveBeenCalled();
 });
 ```
 
-Le système doit encaisser les échecs de l'IA, pas seulement ses succès.
+Le système doit être robuste face aux échecs de l'IA, pas seulement à ses succès.
 
-***
+---
 
-## L'état d'esprit de l'orchestrateur
+## L'État d'Esprit de l'Orchestrateur
 
-Construire des systèmes intelligents impose un changement de mentalité.
+Construire des systèmes avec des composants IA exige un basculement mental.
 
-Logiciel classique : l'entrée X produit la sortie Y. Toujours.
+L'ingénierie logicielle traditionnelle consiste à écrire de la logique. Vous définissez des transformations exactes : *si ceci, alors cela*. Le code fait ce que vous lui dites.
 
-Système intelligent : l'entrée X produit la sortie Y *la plupart du temps*. Parfois, ça surprend.
+Les systèmes intelligents consistent à **orchestrer des comportements**. Vous définissez des contraintes et des objectifs. L'IA trouve comment les atteindre. Votre travail est de vous assurer qu'elle reste dans les limites.
 
-Ça change la façon de construire :
+Cela change les questions que vous posez :
 
-- **Validez tout** : Ne faites jamais confiance à la sortie brute de l'IA.
-- **Prévoyez des fallbacks** : Que se passe-t-il quand l'IA échoue ?
-- **Loguez tout** : Indispensable pour le debug.
-- **Ajoutez des portes humaines** : Certaines décisions exigent une validation.
+| Traditionnel | Intelligent |
+|--------------|-------------|
+| Que doit retourner cette fonction ? | Quelle gamme de sorties est acceptable ? |
+| Comment gérer ce cas limite ? | Quel repli utiliser quand l'IA échoue ? |
+| Ce code est-il correct ? | Cette sortie est-elle dans les contraintes ? |
+| Quelle est l'assertion de test ? | Quel est le seuil de précision ? |
 
-Votre rôle passe de l'écriture de logique à l'**orchestration d'intelligence**.
+**Principes de l'Orchestrateur :**
+1.  **Tout Valider :** Ne jamais faire confiance à la sortie de l'IA.
+2.  **Concevoir des Replis :** Chaque appel IA doit avoir un chemin de dégradation gracieuse.
+3.  **Loguer Extensivement :** Les logs sont votre seule fenêtre dans la "boîte noire".
+4.  **Ajouter des Barrières Humaines :** Certaines décisions ne devraient pas être entièrement automatisées.
+5.  **S'attendre à la Dérive :** Le comportement de l'IA change avec le temps. Surveillez continuellement.
 
-***
+---
 
-## La série en rétrospective
+## L'Architecture qui Émerge
 
-- **Niveau 1 — Assistance** : L'IA prédit → Exécuter plus vite
-- **Niveau 2 — Direction** : L'IA implémente → Guider chaque étape
-- **Niveau 3 — Collaboration** : L'IA explore → Donner le cap, itérer
-- **Niveau 4 — Intégration** : L'IA raisonne → Concevoir des systèmes hybrides
+Après avoir construit plusieurs systèmes intégrés à l'IA, une architecture cohérente a émergé :
 
-La technologie évolue vite. Mais les principes restent : frontières claires, couches de validation, dégradation gracieuse, portes humaines.
+```
+┌─────────────────────────────────────────────────┐
+│                    Requête                      │
+└─────────────────┬───────────────────────────────┘
+                  │
+┌─────────────────▼───────────────────────────────┐
+│              Préparation (Code)                 │
+│  - Récupérer données                            │
+│  - Formater pour IA                             │
+│  - Construire l'invite                          │
+└─────────────────┬───────────────────────────────┘
+                  │
+┌─────────────────▼───────────────────────────────┐
+│              Raisonnement (IA)                  │
+│  - Traiter l'entrée                             │
+│  - Générer la sortie                            │
+└─────────────────┬───────────────────────────────┘
+                  │
+┌─────────────────▼───────────────────────────────┐
+│              Validation (Code)                  │
+│  - Analyser la réponse                          │
+│  - Vérifier le schéma                           │
+│  - Imposer les contraintes                      │
+└─────────────────┬───────────────────────────────┘
+                  │
+          ┌───────┴───────┐
+          │               │
+     Valide│          Invalide
+          │               │
+┌─────────▼─────┐   ┌─────▼─────────┐
+│   Continuer   │   │     Repli     │
+│   traitement  │   │   + logging   │
+└───────────────┘   └───────────────┘
+```
 
-Construisez des systèmes qui exploitent les forces de l'IA tout en palliant ses faiblesses.
+L'IA n'est jamais autonome. Elle opère à l'intérieur de garde-fous. Elle est puissante précisément *parce que* nous contraignons là où elle peut échouer.
+
+---
+
+## Le Basculement
+
+Construire des systèmes intelligents n'est pas plus dur que le logiciel traditionnel—c'est différent.
+
+Vous écrivez moins de logique et plus de structure. Moins de *"si ceci alors cela"* et plus de *"à l'intérieur de ces limites, débrouille-toi."*
+
+La compétence n'est pas de faire marcher l'IA. C'est de savoir où la laisser marcher et où la contraindre. Le **Principe Hybride**. Le **Pattern Sandwich**. La **Stratégie de Test à Trois Couches**. L'**État d'Esprit de l'Orchestrateur**.
+
+L'IA vous donne des capacités qu'il était impossible de construire avant. Compréhension sémantique. Classification floue. Génération de contenu. La contrepartie est l'imprévisibilité.
+
+Une bonne architecture rend cette contrepartie valable. Vous obtenez les capacités. Vous contenez l'imprévisibilité. Vous construisez des systèmes qui sont à la fois intelligents et fiables.
+
+C'est le but : exploiter ce pour quoi l'IA est bonne tout en protégeant contre ce pour quoi elle est mauvaise. Laissez le code faire le travail du code. Laissez l'IA faire le travail de l'IA. Concevez les frontières avec soin.
+

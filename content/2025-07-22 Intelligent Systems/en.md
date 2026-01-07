@@ -1,147 +1,210 @@
 ![](assets/thumbnail.jpg)
 
-# Programming intelligent systems
+# When AI Becomes the Product
 
-There's a moment when AI stops being your tool and becomes your product.
+There is a moment when AI stops being your assistant and starts being your architecture.
 
-For me, it happened while building a news API. The feature seemed simple: deduplicate incoming articles so users don't see the same story twice. Compare titles, check keyword overlap, compute similarity scores.
+For me, it happened while building a news aggregation API. The feature seemed straightforward: deduplicate incoming articles. Users shouldn't see the same story twice. Compare titles, check keyword overlap, compute similarity scores. Standard engineering.
 
-Then I hit the real problem: Is "Fed raises rates" the same story as "Federal Reserve increases interest rates amid inflation concerns"? What about "Powell announces monetary policy shift"?
+Then I hit the wall.
 
-No amount of string matching solves this. The stories mean the same thing but use different words. I needed the system to *understand* that these headlines describe the same event.
+Is *"Fed raises rates"* the same story as *"Federal Reserve increases interest rates amid inflation concerns"*? What about *"Powell signals hawkish monetary stance"*?
 
-That's when the architecture changed. AI wasn't helping me build the feature anymore. AI *was* the feature.
+The headlines share almost no words, yet they describe the same underlying reality.
 
-***
+No amount of string matching solves this. No edit distance calculation. The problem requires *understanding*.
 
-## The hybrid architecture
+That was when the architecture changed. AI wasn't helping me build the feature anymore. **AI was the feature.**
+
+This shift—from AI as a tool to AI as a component—requires a different way of thinking about software. Traditional engineering intuitions break down. New patterns emerge. This article is about those patterns.
+
+---
+
+## The Trap of Pure Approaches
+
+Most developers I speak with fall into one of two traps when integrating AI.
+
+**The Magic Trap**
+Treat AI as a black box that solves everything. Pipe in data, get answers. Don't worry about edge cases—the model will figure it out. This works until the model hallucinates a category that doesn't exist in your database, returns unparseable JSON, or confidently produces false information.
+
+**The Fear Trap**
+Treat AI as too unreliable to trust. Wrap it in so many validation layers that latency becomes unusable. Add so many fallbacks that the AI path rarely executes. Build immense complexity to hedge against a problem that thoughtful architecture could prevent.
+
+Both traps stem from the same misunderstanding: treating AI as either reliable or unreliable in absolute terms.
+
+The reality is nuanced. AI is **reliably good at some things** and **unreliably bad at others**. The architecture must reflect this profile.
+
+---
+
+## The Hybrid Principle
 
 ![](assets/bridge-merge.jpg)
 
-The mistake I see developers make is treating AI as either magic or dangerous. It's neither.
+The solution is **Hybrid Architecture**: code for constraints, AI for reasoning.
 
-**Pure code** is predictable but rigid. It catches exact matches but misses semantic duplicates.
+This isn't a compromise—it is playing to each system's strengths.
 
-**Pure AI** is flexible but unpredictable. Inconsistent results, hallucinations, no guarantee the output fits your model.
+**Code is:**
+*   **Deterministic:** Same input, same output.
+*   **Verifiable:** You can prove correctness.
+*   **Fast:** Nanoseconds, not seconds.
+*   **Precise:** Exact rules, exact enforcement.
 
-The answer is **hybrid architecture**: code for constraints, AI for reasoning.
+**AI is:**
+*   **Flexible:** Handles cases you didn't anticipate.
+*   **Semantic:** Understands meaning, not just syntax.
+*   **Creative:** Generates content, finds patterns.
+*   **Fuzzy:** Thrives on ambiguity.
 
-Here's how I think about the split:
+The division of labor becomes clear:
 
-**Code handles:**
-- Data fetching and validation
-- Schema enforcement
-- Business rules (rate limits, permissions)
-- State management (database records)
-- Audit trails and logging
+| Give to Code | Give to AI |
+|--------------|------------|
+| Data fetching | Semantic understanding |
+| Schema validation | Fuzzy classification |
+| Business rules | Content generation |
+| State management | Pattern recognition |
+| Rate limiting | Summarization |
+| Audit logging | Sentiment analysis |
 
-**AI handles:**
-- Semantic understanding
-- Classification with fuzzy boundaries
-- Content generation
-- Pattern recognition in unstructured data
+**Code protects invariants. AI handles ambiguity.**
 
-Let AI do what it's good at (handling ambiguity) while code does what it's good at (enforcing rules).
+When you let code do what code does best and AI do what AI does best, the system becomes both reliable and capable—more than either could achieve alone.
 
-***
+---
 
-## The sandwich pattern
+## The Sandwich Pattern
 
 ![](assets/layered-cake.jpg)
 
-Every AI call in my news API follows the same structure: **Code → AI → Code**.
+Every AI call in my system follows the same structure: **Code → AI → Code**.
 
-Let me show you with the deduplication agent.
+I call it the **Sandwich Pattern**. Code prepares the input, AI reasons over it, code validates the output. The AI's flexibility is contained entirely within code's constraints.
 
-**Layer 1: Code (Preparation)**
-
+### Layer 1: Preparation (Code)
 Before the AI sees anything, code runs:
 
 ```typescript
-// Fetch existing reports from the database
 const existingReports = await this.reportRepository.findRecent({
     country: newReport.country,
     limit: 50,
 });
 
-// Format the data for the prompt
 const formattedReports = existingReports.map(r => ({
     id: r.id,
     core: r.core.value,
     background: r.background.value,
 }));
+
+const prompt = buildDeduplicationPrompt(newReport, formattedReports);
 ```
 
-The AI doesn't query the database. It doesn't decide how many reports to compare against. Code makes those decisions.
+Notice what code controls:
+*   **What data the AI sees:** It fetches from the database—AI never touches persistence directly.
+*   **How much data:** The `limit: 50` is a code decision, not an AI judgment call.
+*   **Format:** The AI receives structured, sanitized data.
+*   **The Prompt:** Code constructs it, ensuring consistency.
 
-**Layer 2: AI (Reasoning)**
+The AI doesn't decide what to look at. It receives a curated view.
 
-The agent receives the formatted data and a clear instruction:
+### Layer 2: Reasoning (AI)
+The AI receives formatted data and a clear instruction:
 
-> "Determine whether an incoming news report describes the same underlying event as any existing report. Focus on the core event, not surface-level similarities."
+> "Determine whether the incoming news report describes the same underlying event as any existing report. Focus on the core event—who did what, when, where—not surface-level similarities in wording."
 
-The AI reasons about WHO, WHAT, WHERE, WHEN. Is "Fed raises rates" the same event as "Powell announces policy shift"? That's what I can't hardcode.
+This is the task I cannot hardcode. The AI reasons about semantic equivalence, considering the underlying reality rather than word overlap.
 
-**Layer 3: Code (Validation)**
-
+### Layer 3: Validation (Code)
 The AI's output is constrained by a schema:
 
 ```typescript
-static readonly SCHEMA = z.object({
-    duplicateOfReportId: z.string().nullable(),
-    reason: z.string(),
+const DeduplicationResult = z.object({
+    duplicateOfReportId: z.string().uuid().nullable(),
+    reason: z.string().max(500),
+    confidence: z.enum(['high', 'medium', 'low']),
 });
+
+const parsed = DeduplicationResult.safeParse(aiResponse);
+
+if (!parsed.success) {
+    logger.warn('AI returned invalid response', { error: parsed.error });
+    return { isDuplicate: false, reason: 'Validation failed' };
+}
 ```
 
-The AI can't return "maybe" or "probably duplicate." It either provides a valid report ID or null. If validation fails, the system falls back to treating the article as unique. No crashes.
+The AI cannot:
+*   Return "maybe" or invent new states.
+*   Provide an invalid UUID format.
+*   Skip required fields.
+*   Return unbounded text.
 
-***
+If validation fails, the system doesn't crash—it falls back gracefully. The article is treated as unique, a warning is logged, and the pipeline continues.
 
-## Real agents, real constraints
+**The sandwich ensures AI's flexibility operates strictly within code's constraints.**
 
-The app includes a "spot the fake" game—users try to identify fabricated articles among real ones. They develop media literacy by finding the tells.
+---
 
-This means I need to generate convincing fake news. On purpose. That's the fabrication agent.
+## A Real Example: The Fabrication Agent
 
-Here's the constraint architecture:
+Theory is clean. Let me show you a messier example.
+
+My news app includes a "spot the fake" game. Users see articles—some real, some fabricated—and try to identify the fakes. The goal is building media literacy.
+
+This means I need an AI agent that generates convincing fake news. On purpose.
+
+Here is how the sandwich pattern handles this:
+
+**Preparation:**
+```typescript
+const realArticle = await this.articleRepository.findRecent({ limit: 1 });
+
+const prompt = buildFabricationPrompt({
+    inspiration: realArticle,  // Style reference, not content to copy
+    targetCategory: 'technology',
+    difficulty: 'medium',
+});
+```
+Code controls the stylistic inspiration, the category, and the difficulty level.
+
+**Reasoning:**
+The AI generates a fabricated article with a plausible headline, convincing body text, and subtle tells.
+
+**Validation:**
+```typescript
+const FabricatedArticle = z.object({
+    headline: z.string().min(10).max(100),
+    body: z.string().min(200).max(2000),
+    category: z.enum(['technology', 'business', 'politics', 'science']),
+    tells: z.array(z.string()).min(1).max(5),
+    clarification: z.string().min(50),
+    tone: z.enum(['satirical']),  // Only allowed tone for now
+});
+```
+But schema validation isn't enough for this use case. The content could be valid structurally but harmful substantively. So there's an additional layer:
 
 ```typescript
-static readonly SCHEMA = z.object({
-    headline: headlineSchema,      // Validated headline format
-    body: bodySchema,              // Length-constrained body
-    category: categorySchema,      // Must be a valid category enum
-    clarification: z.string(),     // Explanation for post-guess reveal
-    tone: z.enum(['satirical']),   // Only allowed tone for now
-});
+// Automated safety checks
+const safetyResult = await this.safetyChecker.analyze(article);
+if (safetyResult.flagged) {
+    logger.warn('Fabricated article flagged for safety review', { article, flags: safetyResult.flags });
+    return this.sendToHumanReview(article);
+}
 ```
+Some content goes to a human review queue. The architecture assumes AI will occasionally produce something problematic and builds in the gate.
 
-The AI can be creative with content. It cannot invent categories. It cannot skip the clarification. Every output must fit my model.
+---
 
-The prompt includes detailed guidelines:
-
-```
-**Complete Fabrication**: Story must be 100% fictional—no real events
-**Convincing Presentation**: Should fool average reader initially
-**Safe Content**: Never risk real-world harm or target vulnerable groups
-**Educational Value**: Demonstrate misinformation techniques clearly
-```
-
-But I don't *trust* the AI to follow these guidelines. The validation layer catches violations. The human review queue handles edge cases. The architecture assumes failure and builds in fallbacks.
-
-***
-
-## Testing probabilistic systems
+## Testing Probabilistic Systems
 
 ![](assets/lab-instruments.jpg)
 
-AI systems aren't deterministic. Run the same input twice, you might get different outputs.
+Traditional testing assumes determinism: given input X, expect output Y. Always.
 
-This breaks traditional testing. You can't assert that `deduplicate("Fed raises rates")` always returns the same report ID. The AI might phrase its reasoning differently. The confidence might vary.
+AI breaks this. The same input might produce different outputs across runs. The output format is consistent (we enforce that), but the content varies.
 
-My testing strategy has three layers:
+This requires a three-layer testing strategy:
 
-**1. Unit tests for code**
-
+### Layer 1: Unit Tests for Code
 The preparation and validation layers are deterministic. Test them normally.
 
 ```typescript
@@ -151,64 +214,117 @@ test('schema rejects invalid classification', () => {
 });
 ```
 
-**2. Evals for AI**
-
-I maintain a dataset of ~100 test cases with known correct answers. The classification agent runs against all of them, and I measure accuracy.
+### Layer 2: Evals for AI
+Maintain a dataset of test cases with known correct answers. Run the AI against all of them and measure accuracy.
 
 ```
-Classification accuracy: 94.2% (threshold: 90%)
-Deduplication precision: 91.7% (threshold: 85%)
+Dataset: 100 article pairs with human-labeled duplicate status
+Deduplication precision: 94.2%
+Deduplication recall: 91.8%
+Threshold: 90% precision, 85% recall
 ```
 
-If accuracy drops below threshold after a model update or prompt change, the deploy fails.
+If accuracy drops below threshold, the deploy fails. This catches regressions before they reach users.
 
-**3. Guardrail tests**
-
-What happens when the AI misbehaves? Test the fallbacks.
+### Layer 3: Guardrail Tests
+Test what happens when the AI misbehaves.
 
 ```typescript
-test('falls back to unique when deduplication fails', async () => {
-    // Force the AI to return invalid output
-    mockModel.mockReturnValue({ invalid: 'response' });
+test('gracefully handles malformed AI response', async () => {
+    mockModel.mockReturnValue({ invalid: 'garbage' });
     
     const result = await pipeline.process(newReport);
     
-    // System should treat as unique, not crash
     expect(result.isDuplicate).toBe(false);
+    expect(result.fallbackUsed).toBe(true);
     expect(logger.warn).toHaveBeenCalled();
 });
 ```
 
 The system must be robust to AI failures, not just AI successes.
 
-***
+---
 
-## The orchestrator mindset
+## The Orchestrator Mindset
 
-Building intelligent systems requires a mental shift.
+Building systems with AI components requires a mental shift.
 
-Traditional software: input X produces output Y. Always.
+Traditional software engineering is about writing logic. You define exact transformations: *if this, then that*. The code does what you tell it.
 
-Intelligent systems: input X produces output Y *most of the time*. Sometimes it surprises you.
+Intelligent systems are about **orchestrating behavior**. You define constraints and goals. The AI figures out how to achieve them. Your job is ensuring it stays within bounds.
 
-This changes how you build:
+This changes the questions you ask:
 
-- **Validate everything**: Never trust AI output.
-- **Design fallbacks**: What happens when the AI fails?
-- **Log everything**: You'll need it for debugging.
-- **Add human gates**: Some decisions need approval.
+| Traditional | Intelligent |
+|-------------|-------------|
+| What should this function return? | What range of outputs is acceptable? |
+| How do I handle this edge case? | What fallback should I use when AI fails? |
+| Is this code correct? | Is this output within constraints? |
+| What's the test assertion? | What's the accuracy threshold? |
 
-Your role shifts from writing logic to **orchestrating intelligence**.
+**Principles of the Orchestrator:**
+1.  **Validate Everything:** Never trust AI output.
+2.  **Design Fallbacks:** Every AI call should have a graceful degradation path.
+3.  **Log Extensively:** Logs are your only window into the "black box."
+4.  **Add Human Gates:** Some decisions shouldn't be fully automated.
+5.  **Expect Drift:** AI behavior changes over time. Monitor continuously.
 
-***
+---
 
-## The series in retrospect
+## The Architecture That Emerges
 
-- **Level 1 — Assistance**: AI predicts → Execute faster
-- **Level 2 — Direction**: AI implements → Guide each step
-- **Level 3 — Collaboration**: AI explores → Set direction, iterate
-- **Level 4 — Integration**: AI reasons → Design hybrid systems
+After building several AI-integrated systems, a consistent architecture has emerged:
 
-The technology moves fast. But the principles remain constant: clear boundaries, validation layers, graceful degradation, human gates.
+```
+┌─────────────────────────────────────────────────┐
+│                   Request                       │
+└─────────────────┬───────────────────────────────┘
+                  │
+┌─────────────────▼───────────────────────────────┐
+│              Preparation (Code)                 │
+│  - Fetch data                                   │
+│  - Format for AI                                │
+│  - Build prompt                                 │
+└─────────────────┬───────────────────────────────┘
+                  │
+┌─────────────────▼───────────────────────────────┐
+│              Reasoning (AI)                     │
+│  - Process input                                │
+│  - Generate output                              │
+└─────────────────┬───────────────────────────────┘
+                  │
+┌─────────────────▼───────────────────────────────┐
+│              Validation (Code)                  │
+│  - Parse response                               │
+│  - Check schema                                 │
+│  - Enforce constraints                          │
+└─────────────────┬───────────────────────────────┘
+                  │
+          ┌───────┴───────┐
+          │               │
+     Valid│          Invalid
+          │               │
+┌─────────▼─────┐   ┌─────▼─────────┐
+│   Continue    │   │   Fallback    │
+│   processing  │   │   + logging   │
+└───────────────┘   └───────────────┘
+```
 
-Build systems that use AI's strengths while compensating for its weaknesses.
+The AI is never autonomous. It operates within guardrails. It is powerful precisely *because* we constrain where it can fail.
+
+---
+
+## The Shift
+
+Building intelligent systems isn't harder than traditional software—it is different.
+
+You are writing less logic and more structure. Less *"if this then that"* and more *"within these bounds, figure it out."*
+
+The skill isn't making AI work. It is knowing where to let it work and where to constrain it. The **Hybrid Principle**. The **Sandwich Pattern**. The **Three-Layer Testing Strategy**. The **Orchestrator Mindset**.
+
+AI gives you capabilities that were impossible to build before. Semantic understanding. Fuzzy classification. Content generation. The tradeoff is unpredictability.
+
+Good architecture makes that tradeoff worthwhile. You get the capabilities. You contain the unpredictability. You build systems that are both intelligent and reliable.
+
+That is the goal: harness what AI is good at while protecting against what it is bad at. Let code do code's job. Let AI do AI's job. Design the boundaries with care.
+

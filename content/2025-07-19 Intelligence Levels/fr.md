@@ -1,150 +1,288 @@
 ![](assets/thumbnail.jpg)
 
-# Les quatre niveaux d'intégration de l'IA
+# De l'autocomplétion à l'architecture : Les quatre niveaux de maîtrise de l'IA
 
-Quand on imagine travailler avec une IA, on pense à Tony Stark et Jarvis. Un dialogue fluide avec un assistant omniscient. « Jarvis, fabrique-moi une nouvelle armure. » C'est fait.
+Il y a deux ans, j'ai écrit ma première ligne de code sous le regard d'une IA. Copilot m'a suggéré le corps entier d'une fonction avant même que je n'aie fini d'en taper la signature. J'ai accepté sans relire. Les tests sont passés. Je me sentais invincible.
 
-J'ai passé deux ans à coder avec l'IA. La réalité n'a rien à voir avec les films.
+Une semaine plus tard, j'ai passé quatre heures à déboguer ce même code. Je n'avais aucune idée de son fonctionnement car je ne l'avais pas écrit—je l'avais simplement *approuvé*.
 
-Ce que j'ai appris : **le fantasme Jarvis n'est pas faux — il est incomplet.**
+Cet échec m'a enseigné une leçon cruciale : **l'assistance par IA n'est pas binaire.** Il n'existe pas une unique "bonne façon" de l'utiliser. Il existe plutôt des niveaux d'engagement distincts, chacun exigeant des compétences, une confiance et une vigilance différentes.
 
-L'erreur de la plupart des développeurs, c'est de voir l'IA comme un outil binaire. On « utilise l'IA » ou on ne l'utilise pas. Mais la vraie question n'est pas *si* — c'est *comment* et *quand*.
+La plupart des développeurs que je rencontre traitent l'IA comme un bloc monolithique—l'embrassant totalement ou la rejetant en bloc. Cette vision binaire manque de nuance. La question n'est pas de savoir *si* l'on doit utiliser l'IA, mais *à quelle profondeur* l'intégrer dans son flux de travail pour une tâche donnée.
 
-J'en suis venu à voir l'intégration de l'IA comme un spectre à quatre niveaux :
+Après deux ans à construire des logiciels aux côtés de l'IA—à livrer des fonctionnalités, à gérer des catastrophes et finalement à intégrer l'IA au cœur même des produits—j'ai cartographié ce paysage en quatre modes distincts :
 
-- **1. Assistance** : L'IA anticipe. Vous exécutez.
-- **2. Direction** : L'IA implémente. Vous guidez chaque étape.
-- **3. Collaboration** : L'IA explore et construit. Vous donnez le cap, intervenez, itérez.
-- **4. Intégration** : L'IA fait partie du produit. Vous concevez des systèmes hybrides.
+| Niveau | Mode | Rôle de l'IA | Votre rôle |
+|-------|------|--------------|-------------|
+| **1** | **Assistance** | Prédit votre prochain mouvement | Taper moins, garder le contrôle |
+| **2** | **Direction** | Exécute vos commandes | Spécifier précisément, vérifier soigneusement |
+| **3** | **Collaboration** | Explore et implémente | Fixer le cap, intervenir, itérer |
+| **4** | **Intégration** | Devient le produit | Architecturer des systèmes hybrides |
 
-Chaque niveau déplace le goulot d'étranglement. Chacun demande des compétences et un degré de confiance différents. Se tromper de niveau, c'est soit micro-manager ce qui pourrait tourner seul, soit faire aveuglément confiance à ce qui réclamait une supervision.
+Chaque niveau déplace le goulot d'étranglement. Chaque niveau requiert de nouveaux réflexes. Se tromper de niveau pour une tâche donnée, c'est risquer de perdre du temps à micro-manager ce qui pourrait être autonome—ou de faire une confiance aveugle à ce qui exige votre expertise.
 
-Cette série cartographie ce territoire — non pas en théorie, mais par l'expérience.
+Voici la carte que j'aurais aimé avoir il y a deux ans.
 
-***
+---
 
-## Niveau 1 : L'accélérateur prédictif
+## Niveau 1 : Assistance Prédictive
 
 ![](assets/friction-dissolve.jpg)
 
-C'est par là que la plupart d'entre nous ont commencé. GitHub Copilot, ChatGPT dans un onglet. L'IA observe ce que vous faites et anticipe la suite.
+C'est le point d'entrée pour tout le monde : Copilot dans l'éditeur, ChatGPT dans un onglet du navigateur. L'IA observe votre contexte et suggère l'étape logique suivante.
 
-La première fois que Copilot m'a complété une fonction entière à partir d'un commentaire, j'ai cru découvrir un cheat code. Écrire `// validate email format` et voir vingt lignes de regex apparaître. Comme si la machine lisait dans mes pensées.
+Je me souviens de la première fois où Copilot a généré une fonction de validation complète à partir d'un simple commentaire. J'ai tapé `// vérifier si l'email est valide`, et vingt lignes de regex se sont matérialisées instantanément. C'était presque de la télépathie.
 
-**Le workflow ne change pas — c'est la friction qui disparaît.** Vous gardez le contrôle. L'IA tape à votre place. L'écart entre l'intention et le code se réduit.
+**Ce qui change :** La friction entre la pensée et le code se dissout. Vous prenez toujours toutes les décisions et possédez l'architecture, mais l'IA gère la traduction mécanique de l'intention vers la syntaxe.
 
-Mais j'y ai laissé des plumes.
+**Ce qui reste inchangé :** Le flux de travail. Vous êtes toujours au volant.
 
-**Le syndrome « Tab-Tab-Tab ».** On accepte les suggestions sans les lire. Le code a l'air bon. Les tests passent. On ship. Des semaines plus tard, en déboguant, on réalise qu'on ne comprend plus la moitié de sa codebase — parce qu'on ne l'a pas écrite, on l'a juste validée.
+### Le piège du "Tab-Tab-Tab"
 
-Et les suggestions restent génériques — l'implémentation la plus courante, pas la meilleure pour votre projet.
+La vitesse est séduisante. Lorsque les suggestions apparaissent plus vite que vous ne pouvez penser, vous commencez à les accepter par réflexe. *Tab. Tab. Tab.* Le code *semble* correct. Les tests passent. Vous livrez.
 
-Le niveau 1 est puissant, mais c'est un piège si vous confondez vitesse et qualité. Le but n'est pas de taper plus vite — c'est de libérer de la bande passante mentale pour les décisions qui comptent.
+Trois semaines plus tard, vous contemplez une fonction que vous ne reconnaissez pas. Elle vit dans votre base de code, sous votre historique de commit, et pourtant vous n'avez aucun souvenir de sa logique—parce que vous ne l'avez pas écrite. Vous l'avez approuvée en pilote automatique.
 
-***
+J'appelle cela le **Paradoxe de l'Approbation** : à mesure que la vitesse de génération de l'IA augmente, votre compréhension du code diminue, rendant ce code progressivement plus dangereux.
 
-## Niveau 2 : Le metteur en scène
+L'antidote est une friction délibérée : traitez les suggestions de l'IA comme une revue de code (code review). Si vous ne fusionneriez pas la PR d'un collègue sans la lire, n'acceptez pas non plus une suggestion d'IA sans la lire.
+
+### Quand utiliser le Niveau 1
+*   **Le Boilerplate :** Du code que vous avez écrit cent fois.
+*   **Le Rappel Syntaxique :** Quand vous savez *quoi* écrire mais avez oublié *comment*.
+*   **Les Modèles Évidents :** Des implémentations où le chemin est unique et clair.
+
+### Quand l'éviter
+*   **La Logique Nouvelle :** Du code qui nécessite une compréhension profonde.
+*   **Les Cas Limites (Edge Cases) :** Des scénarios probablement absents des données d'entraînement.
+*   **Les Chemins Critiques :** Tout ce que vous devrez déboguer sous pression plus tard.
+
+**Le changement d'état d'esprit :** La vitesse n'est pas le but ; la *bande passante mentale* l'est. Utilisez le Niveau 1 pour libérer votre attention pour les décisions qui comptent, pas pour abdiquer toute prise de décision.
+
+---
+
+## Niveau 2 : Exécution Dirigée
 
 ![](assets/blueprint-hand.jpg)
 
-Au niveau 2, vous commencez à dire aux agents exactement quoi faire.
+Si le Niveau 1 prédit ce que vous allez taper, le Niveau 2 exécute ce que vous commandez.
 
-Sélectionnez du code, Cmd+K : « Passe ça en async/await. » « Ajoute du rate limiting à 100 req/min. » « Gère le cas où user est null. » Des frappes chirurgicales. Précis, détaillé, étape par étape.
+Sélectionnez un bloc de code. Tapez `Cmd+K`. Écrivez : *"Refactorise ceci pour utiliser async/await."* La transformation se produit en quelques secondes. Chaque chaîne `.then()` se convertit en `await`. La gestion des erreurs s'ajuste. La structure change, mais le comportement reste invariant.
 
-**Diriger élimine la couche mécanique, pas la réflexion.** C'est toujours vous qui décidez de l'architecture, qui débusquez les cas limites. L'agent tape. Vous construisez.
+C'est l'**Exécution Dirigée** : vous spécifiez la transformation, l'IA l'exécute, et vous vérifiez le résultat.
 
-Au début, mes prompts étaient vagues, mes résultats médiocres. Avec le temps, j'ai appris à connaître l'agent — quand découper les tâches, quand montrer des exemples, quand poser des contraintes (« pas de lib externe »), quand itérer.
+**Ce qui change :** L'IA dépasse l'autocomplétion pour entrer dans le *raisonnement*. Elle analyse votre intention et détermine les détails de l'implémentation.
 
-La meilleure spec que j'ai trouvée ? Les tests. Écrivez un test qui décrit le comportement attendu, puis dites à l'agent : « Fais passer ce test en suivant nos conventions. » Le test ne laisse aucune place à l'interprétation. L'agent gère la mécanique. Vous validez la logique.
+**La nouvelle compétence :** La précision de la spécification. Des commandes vagues comme "améliore ceci" produisent des résultats médiocres. Des instructions précises comme "extrais la logique de validation dans une fonction séparée qui retourne un objet erreur ou null" produisent du code prêt pour la production.
 
-**Le goulot d'étranglement se déplace.** Ce n'est plus « à quelle vitesse je tape ? » mais « avec quelle clarté j'exprime mon intention ? » La clarté de pensée prend le pas sur la vitesse de frappe.
+### Trois techniques pour la précision
 
-***
+**1. Les tests comme contrats**
+Écrivez d'abord le test, puis instruisez l'IA : "Fais passer ce test."
 
-## Niveau 3 : Le collaborateur
+```typescript
+test('retries failed requests up to 3 times', async () => {
+    const mockFetch = jest.fn()
+        .mockRejectedValueOnce(new Error('timeout'))
+        .mockRejectedValueOnce(new Error('timeout'))
+        .mockResolvedValueOnce({ ok: true });
+    
+    await fetchWithRetry('/api/data', { fetch: mockFetch });
+    expect(mockFetch).toHaveBeenCalledTimes(3);
+});
+```
+Le test est sans ambiguïté. L'IA ne peut pas mal interpréter le succès.
+
+**2. Les exemples comme modèles**
+Démontrez une transformation, puis demandez le reste.
+```typescript
+// Transforme la gestion d'erreur pour suivre ce modèle :
+if (!user) {
+    throw new NotFoundError('User not found', { userId });
+}
+// Applique ce modèle au reste du fichier
+```
+
+**3. Les contraintes comme garde-fous**
+Ce que vous *excluez* est souvent plus important que ce que vous incluez.
+*   "Pas de dépendances externes."
+*   "Garde l'interface publique inchangée."
+*   "Garde ça sous les 50 lignes."
+
+### L'habitude de vérification
+L'exécution dirigée reste une exécution. L'IA est rapide, pas prudente. Les pièges courants incluent :
+*   **Les API hallucinées :** Appel de méthodes qui n'existent pas.
+*   **Les dérives subtiles de comportement :** Un refactoring qui n'est pas purement structurel.
+*   **Les cas limites manqués :** Le chemin heureux fonctionne, mais les entrées nulles font planter le système.
+
+Ma règle est simple : **si je ne peux pas expliquer ce qui a changé et pourquoi, je ne l'accepte pas.**
+
+**Le changement d'état d'esprit :** Le goulot d'étranglement se déplace de "à quelle vitesse je tape" vers "avec quelle précision je peux exprimer mon intention". La clarté de la pensée devient le facteur limitant.
+
+---
+
+## Niveau 3 : Construction Collaborative
 
 ![](assets/clockwork-night.jpg)
 
-Le niveau 2 vise des modifications précises et contenues. Le niveau 3, c'est travailler *avec* l'IA sur des problèmes plus larges — converger ensemble vers une solution.
+Le Niveau 2 fonctionne pour des frappes chirurgicales—fonctions uniques, transformations claires. Mais certaines tâches sont structurelles.
 
-> « Ajoute un export CSV au dashboard analytics. Inspire-toi de notre export PDF. »
+*"Ajoute l'export CSV au tableau de bord analytique. Suis nos modèles d'export PDF existants."*
 
-L'IA explore, propose une approche, commence à implémenter. Mais vous ne restez pas les bras croisés. Vous êtes dans la boucle — vous observez, redirigez, itérez. « C'est pas le bon pattern, regarde comment on a fait le PDF. » « OK, mais gère l'erreur différemment. » « Maintenant, les tests. »
+Ce n'est pas une commande unique. C'est une fonctionnalité multi-fichiers nécessitant exploration, décisions architecturales et itération. L'agent doit comprendre votre base de code, faire des choix et s'ajuster quand vous le redirigez.
 
-C'est une conversation qui mène à une solution, pas un prompt suivi d'une revue.
+**Ce qui change :** Vous cessez de commander des transformations spécifiques pour commencer à fixer des objectifs. Vous regardez l'IA naviguer vers eux.
 
-**Votre rôle passe de guider les étapes à façonner la direction.** Vous donnez la vision, vous observez la trajectoire, vous corrigez le cap. Vous apprenez ses tics — quand il en fait trop, quand il oublie des cas limites, quand il tape dans le mille. Un rythme s'installe : prompt, observer, ajuster, relancer.
+### La boucle collaborative
 
-Le compromis : collaborer exige davantage de confiance. On ne vérifie plus « cette ligne est-elle correcte ? » mais « est-ce la bonne approche ? » Il faut du jugement pour sentir quand l'IA s'égare.
+1.  **Fixer le cap :** "Ajoute l'authentification utilisateur avec next-auth. Suis nos modèles existants."
+2.  **Observer :** L'agent explore votre base de code, ébauche un plan et commence l'implémentation.
+3.  **Intervenir :** "Mauvaise librairie—nous utilisons `jose` pour les JWT, pas `jsonwebtoken`."
+4.  **Continuer :** L'agent ajuste sa course et reprend la construction.
+5.  **Raffiner :** "Bien. Maintenant extrais cette config dans des variables d'environnement."
+6.  **Répéter :** Itérer jusqu'à ce que la fonctionnalité soit complète.
 
-La direction pour la précision chirurgicale. La collaboration pour les fonctionnalités où je sais ce que je veux, mais où le chemin est long.
+Vous ne revoyez pas ligne par ligne ; vous revoyez la *trajectoire*. La solution se dirige-t-elle là où elle le doit ?
 
-***
+### Apprendre la nature de votre agent
+Plus vous collaborez, plus vous comprenez le profil de votre partenaire IA.
 
-## Niveau 4 : L'architecte de systèmes
+**Forces :**
+*   Imiter les modèles existants de la base de code.
+*   Changements multi-fichiers fastidieux mais bien compris.
+*   Fonctionnalités lourdes en boilerplate (CRUD, formulaires, suites de tests).
+*   Refactoring à grande échelle.
+
+**Faiblesses :**
+*   Architecture véritablement nouvelle.
+*   Exigences ambiguës (elle devine avec confiance, souvent à tort).
+*   Conventions implicites (le "savoir tribal" de votre équipe).
+*   Implications de sécurité et de performance invisibles pour le modèle.
+
+**Adaptation stratégique :**
+*   **Morcelez la nouveauté :** Ne demandez pas "un cache personnalisé". Demandez "un wrapper Map", puis "ajoute un TTL", puis "ajoute l'éviction LRU".
+*   **Rendez l'implicite explicite :** "Nous utilisons toujours des retours anticipés (early returns)." "Les erreurs doivent utiliser notre classe `AppError`."
+*   **Interrompez tôt :** Si l'agent dévie, arrêtez-le immédiatement. Ne le laissez pas construire sur des fondations bancales.
+
+### La confiance au niveau architectural
+La collaboration requiert une autre forme de confiance. Vous ne vérifiez pas chaque ligne d'un diff de 500 lignes. Vous vérifiez :
+*   Est-ce la bonne *approche* ?
+*   Cela suit-il nos *modèles* ?
+*   Qu'est-ce qui a été *manqué* ?
+
+Cela demande du jugement. Vous devez avoir la capacité de scanner un large diff et d'en saisir la forme, pas juste la syntaxe.
+
+**Le changement d'état d'esprit :** Votre rôle évolue de "l'implémenteur qui tape vite" à "l'architecte qui guide vite". La pensée reste vôtre ; la frappe devient partagée.
+
+---
+
+## Niveau 4 : Systèmes Hybrides
 
 ![](assets/woven-intelligence.jpg)
 
-Les niveaux 1 à 3 traitent l'IA comme un outil qui *vous* aide à construire. Le niveau 4 est différent. L'IA devient une brique du logiciel *lui-même*.
+Les niveaux 1 à 3 traitent l'IA comme un outil pour *construire* des logiciels. Le Niveau 4 est différent : l'IA devient un composant *du* logiciel lui-même.
 
-C'est là que ça devient intéressant. Vous n'écrivez plus seulement du code — vous bâtissez des systèmes où logique déterministe et IA imprévisible cohabitent.
+C'est là que les intuitions d'ingénierie traditionnelles se brisent.
 
-Un exemple concret : j'ai développé une API d'actualités qui ingère des articles, les traite, et les sert aux utilisateurs. Le pipeline de traitement, c'est là que vit l'IA.
+### Le moment du déclic
+Je construisais une API d'agrégation de nouvelles. L'exigence semblait simple : dédupliquer les articles entrants pour que les utilisateurs ne voient pas deux fois la même histoire.
 
-Le pipeline tourne toutes les deux heures :
-1. **Ingestion** — Récupérer les actus, filtrer par importance
-2. **Déduplication** — Comparer aux articles récents pour éviter les doublons
-3. **Classification** — Attribuer un niveau (Grand public / Niche / Hors-sujet) et des traits
-4. **Publication** — Transformer les dépêches en articles lisibles
-5. **Challenge** — Générer des questions de quiz et des variantes *fabriquées* pour un jeu « trouvez le faux »
+Mon approche initiale était déterministe : comparer les titres, vérifier le chevauchement des mots-clés, calculer des scores de similarité.
 
-Impossible de gérer la déduplication sémantique avec des if/else — « La Fed relève ses taux », c'est la même actu que « La Réserve fédérale augmente les taux d'intérêt face à l'inflation » ? La classification demande de comprendre un contexte qu'aucun moteur de règles ne capture.
+Puis j'ai heurté la réalité : *"La Fed augmente les taux"* est-elle la même histoire que *"La Réserve Fédérale relève les taux d'intérêt face à l'inflation"* ? Et *"Powell annonce un virage monétaire restrictif"* ?
 
-Mais du 100% IA, ce serait le chaos. Que se passe-t-il si elle invente une classification qui n'existe pas ? Si elle génère un quiz sans bonne réponse ?
+Aucune correspondance de chaînes de caractères ne résout cela. Les titres ne partagent aucun mot mais partagent le même sens. J'avais besoin que le système *comprenne* l'équivalence sémantique.
 
-La solution : l'**architecture hybride**. Le code gère les contraintes ; l'IA gère l'ambiguïté.
+Ce fut le tournant. L'IA ne m'aidait plus à construire la fonctionnalité. **L'IA était la fonctionnalité.**
 
-Concrètement :
+### Le modèle Hybride
+L'erreur des développeurs est de traiter l'IA comme magique ou dangereuse. Elle n'est ni l'un ni l'autre.
+*   **Le Code Pur** est prévisible mais rigide. Il capture les correspondances exactes mais manque la nuance.
+*   **L'IA Pure** est flexible mais peu fiable. Elle hallucine, varie ses sorties et ignore les modèles de données.
 
+La solution est l'**Architecture Hybride** : du code pour les contraintes, de l'IA pour le raisonnement.
+
+**Le Code gère :**
+*   La récupération et la validation des données.
+*   L'application des schémas.
+*   Les règles métier (permissions, limites de taux).
+*   La gestion d'état et les pistes d'audit.
+
+**L'IA gère :**
+*   La compréhension sémantique.
+*   La classification floue.
+*   La génération de contenu.
+*   La reconnaissance de motifs dans les données non structurées.
+
+### Le Pattern Sandwich
+Chaque appel IA dans mon système suit la même structure :
+
+**Couche 1 : Code (Préparation)**
 ```typescript
-// Le code définit les SEULES sorties valides
+const existingReports = await this.reportRepository.findRecent({
+    country: newReport.country,
+    limit: 50,
+});
+
+const formattedReports = existingReports.map(r => ({
+    id: r.id,
+    core: r.core.value,
+    background: r.background.value,
+}));
+```
+Le code décide quelles données l'IA voit et comment elles sont formatées. L'IA ne touche jamais directement à la base de données.
+
+**Couche 2 : IA (Raisonnement)**
+L'agent reçoit des données formatées et une instruction claire : *détermine si ces histoires décrivent le même événement sous-jacent.* C'est la tâche que je ne peux pas coder en dur.
+
+**Couche 3 : Code (Validation)**
+```typescript
 static readonly SCHEMA = z.object({
-    classification: z.enum(['GENERAL', 'NICHE', 'OFF_TOPIC']),
+    duplicateOfReportId: z.string().nullable(),
     reason: z.string(),
-    traits: z.object({
-        essential: z.boolean(),
-        positive: z.boolean(),
-    }),
 });
 ```
+L'IA ne peut pas répondre "peut-être" ou inventer de nouveaux champs. Elle doit fournir un ID de rapport valide ou null. Si la validation échoue, le système se replie gracieusement.
 
-L'IA peut décider si un article est grand public ou de niche. Mais elle *ne peut pas* sortir du schéma. La validation s'assure que sa réponse respecte mes contraintes.
+**Code → IA → Code.** Ce sandwich assure que la flexibilité de l'IA opère strictement à l'intérieur des contraintes de votre système.
 
-C'est un sandwich : **Code → IA → Code**
+### Tester des systèmes probabilistes
+Les systèmes d'IA sont non-déterministes. Même entrée, sortie différente. Cela brise les stratégies de test traditionnelles. Mon approche comporte trois couches :
 
-- Le code prépare le contexte (récupérer les données, formater le prompt)
-- L'IA raisonne (classifier, générer, analyser)
-- Le code valide la sortie (schéma, objets métier, persistance)
+1.  **Tests Unitaires pour le Code :** Les couches de préparation et de validation sont déterministes. Testez-les normalement.
+2.  **Evals pour l'IA :** Maintenez un jeu de données de cas de test avec des réponses correctes connues. Mesurez la précision. Si elle tombe sous un seuil, le déploiement échoue.
+3.  **Tests de Garde-fous :** Que se passe-t-il quand l'IA se comporte mal ?
 
-Le modèle mental change. Certains composants sont désormais imprévisibles. Il faut des couches de validation, des fallbacks, une dégradation gracieuse. On ne débogue plus seulement des erreurs de logique — on débogue des erreurs de *raisonnement*.
+```typescript
+test('falls back to unique when deduplication fails', async () => {
+    mockModel.mockReturnValue({ invalid: 'response' });
+    
+    const result = await pipeline.process(newReport);
+    
+    expect(result.isDuplicate).toBe(false);
+    expect(logger.warn).toHaveBeenCalled();
+});
+```
+Le système doit être robuste face aux échecs de l'IA, pas seulement à ses succès.
 
-Votre rôle évolue : de l'écriture de logique vers l'orchestration d'intelligence.
+**Le changement d'état d'esprit :** Vous n'écrivez plus de logique déterministe. Vous **orchestrez de l'intelligence**—en concevant des systèmes qui exploitent les forces de l'IA tout en compensant ses faiblesses.
 
-***
+---
 
-## La carte
+## Choisir le bon niveau
 
-Après deux ans à arpenter ce terrain, voici ma grille de lecture :
+La compétence n'est pas de maîtriser un seul niveau—c'est de reconnaître quel niveau convient à la tâche.
 
-- **Niveau 1 — Assistance** : L'IA prédit → Exécuter plus vite
-- **Niveau 2 — Direction** : L'IA implémente → Guider chaque étape
-- **Niveau 3 — Collaboration** : L'IA explore → Donner le cap, itérer
-- **Niveau 4 — Intégration** : L'IA raisonne → Concevoir des systèmes hybrides
+| Tâche | Niveau | Pourquoi |
+|-------|--------|----------|
+| Écrire une fonction familière | **1 - Assistance** | Laisser l'autocomplétion gérer la routine. |
+| Refactoriser une fonction unique | **2 - Direction** | Précision chirurgicale ; vérifier le diff. |
+| Ajouter une fonctionnalité multi-fichiers | **3 - Collaboration** | Fixer le cap, itérer ensemble. |
+| Construire une recherche sémantique | **4 - Intégration** | L'IA est la capacité, pas l'assistant. |
 
-Chaque niveau a sa place. La vraie compétence, c'est de reconnaître lequel la situation réclame.
+La majeure partie de ma journée se passe au Niveau 2—des modifications précises et dirigées. Mais les gains de productivité massifs viennent du Niveau 3, compressant des jours d'implémentation en heures d'itération guidée. Et le Niveau 4 est là où émergent des capacités entièrement nouvelles.
 
-Le fantasme Jarvis n'était pas faux — c'était un point sur un spectre. La vraie compétence, c'est de savoir quel *type* d'assistance le moment demande.
+Le fantasme de "Jarvis" n'était pas faux—il était juste incomplet. La vraie maîtrise n'est pas d'avoir un assistant omniscient qui fait tout pour vous. C'est de savoir quand laisser l'IA autocompléter, quand la commander précisément, quand collaborer comme des partenaires, et quand en faire une partie intégrante du produit lui-même.
 
-***
+Voici la carte. Maintenant, le vrai travail commence : développer les instincts pour y naviguer.
 
-*Cet article ouvre une série qui explore chaque niveau en profondeur. Prochain volet : diriger les agents — l'art de la frappe chirurgicale.*

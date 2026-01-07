@@ -1,124 +1,244 @@
 ![](./assets/thumbnail.jpg)
 
-# Directing AI agents
+# The Art of Directing AI
 
-Every edit has two parts: knowing what to change, and typing the change. The first takes seconds. The second takes minutes. What if you could skip the typing entirely?
+There is a mode of working with AI that sits between the passivity of autocomplete and the delegation of full autonomy. You select code, describe a desired state, and the AI executes the transformation. It isn't predicting your next keystroke; it is rewriting logic based on your intent.
 
-Select a function. Cmd+K. "Add error handling for network timeouts." Seconds later, try-catch blocks wrap the fetch calls, with proper retry logic and error messages. The change you conceived in your head now exists in your editor.
+I call this **Directing**. You specify the transformation, the AI performs it, and you verify the result.
 
-This is directing—point at code, describe what you want, the agent executes. No ambiguity. Just precise transformation.
+On the surface, it seems trivial. Select, describe, accept. A glorified find-and-replace.
 
-But there's a catch. I've shipped bugs by accepting code I didn't read. The art isn't just directing—it's verifying, knowing when to trust, and expressing intent precisely.
+But then I started analyzing my failures.
 
-***
+"Make this better" produced chaos. "Add error handling" introduced the wrong abstractions. "Refactor this" broke downstream dependencies. The AI was doing exactly what I asked—I just wasn't asking with enough precision.
 
-## What actually gets compressed
+Directing is a skill. Like any technical discipline, it has specific techniques, predictable failure modes, and a steep learning curve. Developers who master it compress hours of work into minutes. Those who don't simply generate bugs faster than they can fix them.
+
+This article is about the difference.
+
+---
+
+## What Directing Actually Compresses
 
 ![](assets/split-thread.jpg)
 
-"Add null checks to this function." I know exactly where and how. But typing it out—finding each reference, adding the conditions, making sure the syntax is right—takes minutes. The thinking took seconds.
+Every code change consists of two distinct acts: the **decision** and the **transcription**.
 
-"Refactor this callback to async/await." I can see the shape of the result in my head. But mechanically transforming every `.then()` chain, handling the error cases, updating the callers—that's tedious transcription.
+The **decision** is the intellectual spark. *"This function needs null checks."* *"These callbacks should be async/await."* *"This validation logic belongs in a separate module."*
 
-**Directing compresses the transcription, not the thinking.**
+The **transcription** is the mechanical labor. Locating references. typing syntax, balancing brackets, updating tests.
 
-The thinking is still yours. You decide *what* needs to change and *why*. The agent handles the typing—the tedious part.
+The decision takes seconds. The transcription takes minutes—sometimes hours.
 
-The first few times I tried it, I failed. "Make this better" produced garbage. "Add retry logic with exponential backoff, max 3 attempts, 1s base delay" produced exactly what I wanted. Precision in, precision out.
+**Directing compresses the transcription. The decision remains yours.**
 
-***
+This distinction defines the boundary of trust. You are not outsourcing your judgment; you are outsourcing your keyboard. The architecture, the edge cases, the question of *"should we even do this?"*—that remains your responsibility.
 
-## Precision through specification
+When I first started directing, I expected the AI to make good decisions. That was a fundamental error. The AI makes *fast* decisions. Whether they are good depends entirely on the precision of your specification.
+
+---
+
+## The Precision Hierarchy
 
 ![](assets/architect-table.jpg)
 
-The more precise your specification, the better the output. Three techniques:
+Vague input produces garbage. Precise input produces production-ready code. But precision isn't just about verbosity—it's about choosing the right *mechanism* of specification.
 
-**Tests as contracts.** For behavior changes, write the test first:
+I’ve identified three levels of precision, each suited to different engineering contexts.
+
+### Level 1: Constraints
+Sometimes the most critical instruction isn't what you want—it's what you *don't* want.
+
+*   "Do not add external dependencies."
+*   "Keep the public API unchanged."
+*   "No more than 50 lines."
+*   "Do not modify the database schema."
+
+Constraints are essential when you trust the AI's implementation details but need to enforce boundaries. They act as guardrails, not blueprints.
+
+**When to use:** Refactoring, optimization, or any task where multiple valid approaches exist, but you need to filter out the unacceptable ones.
+
+### Level 2: Patterns
+Don't describe the style. Show it.
 
 ```typescript
-test('retries failed requests up to 3 times', async () => {
+// Current error handling:
+if (error) {
+    console.log(error);
+    return null;
+}
+
+// Transform to this pattern:
+if (error) {
+    logger.error('Operation failed', { error, context: operationName });
+    throw new AppError('OPERATION_FAILED', { cause: error });
+}
+
+// Instruction: Apply this pattern to all error handlers in this file.
+```
+
+The AI doesn't have to guess your coding conventions. It sees them. Pattern-based prompts consistently outperform abstract descriptions.
+
+**When to use:** Style changes, standardization, or any task where you have a canonical example of the desired state.
+
+### Level 3: Contracts
+The ultimate form of precision is a specification that is machine-verifiable: a test.
+
+```typescript
+test('retries failed requests with exponential backoff', async () => {
     const mockFetch = jest.fn()
         .mockRejectedValueOnce(new Error('timeout'))
         .mockRejectedValueOnce(new Error('timeout'))
-        .mockResolvedValueOnce({ ok: true });
+        .mockResolvedValueOnce({ ok: true, data: 'success' });
     
-    await fetchWithRetry('/api/data', { fetch: mockFetch });
+    const result = await fetchWithRetry('/api/data', { 
+        fetch: mockFetch,
+        maxRetries: 3,
+        baseDelay: 100 
+    });
     
     expect(mockFetch).toHaveBeenCalledTimes(3);
+    expect(result.data).toBe('success');
 });
 ```
 
-Then: "Make this test pass." The test is the specification. No ambiguity about what success looks like.
+The instruction: *"Make this test pass."*
 
-**Examples as patterns.** For style changes, show one example:
+There is no ambiguity here. The AI cannot misinterpret success because success is defined by the test runner.
+
+**When to use:** Complex behavior changes, new functionality, or any scenario where correctness can be rigorously defined.
+
+---
+
+## The Verification Discipline
+
+Precision gets you 80% of the way there. The remaining 20% is verification.
+
+The AI is confident, not careful. It produces code that *looks* right with the same fluency that it produces code that *is* right. Your job is to tell the difference.
+
+### Common Failure Modes
+
+**Hallucinated APIs**
+The AI invents methods that don't exist or uses the wrong signatures. This is endemic with less common libraries.
 
 ```typescript
-// Before: "Convert error handling to match this pattern"
-if (!user) {
-    throw new NotFoundError('User not found', { userId });
-}
+// What the AI wrote:
+await redis.setWithExpiry(key, value, 3600);
 
-// Then the agent applies it to the rest of the file
+// What actually exists:
+await redis.set(key, value, { EX: 3600 });
 ```
 
-**Constraints as guardrails.** Sometimes what you *don't* want matters most:
-- "Don't add any external dependencies"
-- "Keep the public API unchanged"
-- "No more than 50 lines"
+**Semantic Drift**
+The refactoring changes behavior, not just structure. The code looks equivalent but handles edge cases differently.
 
-Each technique gives the agent less room to guess. Less guessing means better results.
+```typescript
+// Original:
+const result = items.find(x => x.id === id) || defaultItem;
 
-***
+// "Refactored":
+const result = items.find(x => x.id === id) ?? defaultItem;
 
-## Review every diff
+// Problem: These behave differently when find() returns a falsy item.
+```
 
-Even surgical changes require verification. The agent is fast, not infallible.
+**Pattern Violations**
+The AI solves the problem correctly but violates local conventions (e.g., using a raw `Error` instead of your custom `AppError`).
 
-Common issues I catch:
-- **Hallucinated methods.** It uses a library function that doesn't exist, or uses the wrong signature.
-- **Subtle logic errors.** The refactoring changed behavior, not just form.
-- **Pattern violations.** It solved the problem in a way that doesn't match your codebase.
-- **Missing edge cases.** The happy path works; the null case crashes.
+**Missed Edge Cases**
+The happy path works perfectly. Null inputs crash the system. Empty arrays throw exceptions. The AI optimizes for the common case.
 
-The agent is confident but not careful. It produces something that looks right but isn't. Your job is to catch the difference.
+### The Verification Checklist
+Before accepting any directed change:
 
-***
+1.  **Read the Diff:** Every line. If the change is too large to read, it's too large for direction—use collaboration instead.
+2.  **Check Boundaries:** What happens with null? Empty sets? Maximum values?
+3.  **Verify API Usage:** If the change involves library calls, confirm the methods exist.
+4.  **Run the Tests:** Obvious, yet easily skipped when the diff "looks right."
+5.  **Explain it to Yourself:** If you can't articulate what changed and why, you don't understand it well enough to ship it.
 
-## The speed trap
+---
 
-The danger of directing is that it's *fast*. A diff appears in seconds. Your brain sees familiar patterns and assumes "looks good."
+## The Speed Trap
 
-I've caught myself accepting changes without reading them. The structure seemed right. The tests passed. Ship it.
+Direction is fast. Dangerously fast.
 
-My rule: **if I can't explain what changed and why, I don't accept it.** Speed without verification is technical debt in disguise.
+A diff appears in two seconds. Your brain pattern-matches against familiar structures. *"Looks like standard error handling. Looks like the right pattern. Ship it."*
 
-***
+I have done this. I have approved changes that passed tests but introduced subtle bugs. I have shipped code that worked in dev but failed in prod because I missed an edge case the AI also missed.
 
-## The directing skill set
+The speed of AI-directed development creates a new failure mode: **Approval Fatigue**. When every change takes seconds, your review discipline erodes. You start generating bugs faster than features.
 
-What I've gotten better at:
+My rule: **The faster the change, the slower the review.**
 
-**1. Scoping.** Knowing what fits a surgical strike vs what needs collaboration. Refactoring a function? Directed. Adding a feature across multiple files? That needs iteration.
+A two-second generation deserves a two-minute review. Not because every change is risky, but because the cost of finding bugs in production far exceeds the cost of careful verification now.
 
-**2. Precision language.** Saying exactly what I mean. "Add validation" is vague. "Add zod schema validation for the email and password fields, return 400 with field-specific errors" is precise.
+---
 
-**3. Pattern recognition.** Scanning a 20-line diff and quickly spotting what's wrong—the hallucinated method, the missed edge case, the style violation.
+## Developing the Instinct
 
-**4. Iteration speed.** When the first attempt isn't right, knowing how to adjust the prompt rather than rewriting manually. "That's close, but use our AppError class instead of a raw Error."
+After a year of daily practice, I’ve developed instincts I didn't have at the start.
 
-Directing is a skill. The better you get at it, the more of your day compresses into precise, fast, verified edits.
+### Scoping
+Not every task belongs in a directed change. The skill is recognizing what fits.
 
-***
+**Good for Direction:**
+*   Single-function changes.
+*   Clear transformations with known outcomes.
+*   Refactoring within a single file.
+*   Changes where the diff is <100 lines.
 
-## When directing isn't enough
+**Bad for Direction:**
+*   Multi-file features.
+*   Ambiguous requirements.
+*   Tasks requiring exploration.
+*   Architectural decisions.
 
-Directing works for contained changes. But some tasks are bigger.
+If I catch myself writing a long, multi-step prompt, that is a signal. Direction is for surgical strikes, not military campaigns.
 
-"Add CSV export to the analytics dashboard, following our PDF export patterns." This isn't a surgical strike—it's a multi-file feature that requires exploration, decision-making, and iteration. The agent needs to explore your codebase, make choices, and adjust when you intervene.
+### Prompt Iteration
+The first prompt rarely produces the perfect result. Knowing *how* to iterate matters more than getting it right the first time.
 
-That's collaboration—working *with* the agent rather than commanding it.
+*   **Narrow, Don't Restart:** *"That's close, but use our `AppError` class"* is better than rewriting the initial prompt.
+*   **Add Constraints Incrementally:** If the output drifts, add a constraint to pin it down. *"Same thing, but keep the function under 30 lines."*
+*   **Show What's Wrong:** *"The retry logic looks correct, but the delay calculation is linear, not exponential."*
 
-***
+Each iteration teaches the AI your requirements and teaches you what you failed to specify.
 
-*Next: collaborating with AI on bigger problems—iterating toward solutions together.*
+### Pattern Recognition
+After reviewing hundreds of AI-generated diffs, I scan for specific red flags:
+*   **Unusual Imports:** Possible hallucinated dependencies.
+*   **Complex One-Liners:** High risk of semantic drift.
+*   **Missing Error Handling:** Edge cases likely ignored.
+*   **Magic Numbers:** Constants that should be configurable.
+
+Speed in review comes from knowing *where* to look, not looking faster.
+
+---
+
+## When Directing Isn't Enough
+
+Direction has limits. It works for contained changes—a single function, a clear transformation, a diff you can review line by line.
+
+But some tasks are structural. *"Add CSV export to the analytics dashboard"* isn't a directed change—it is a feature. It spans files. It requires exploration. That is a different mode entirely: not commanding transformations, but **Collaborating** toward a goal.
+
+**Signs you've outgrown direction:**
+*   The change spans multiple files.
+*   You aren't sure exactly what you want.
+*   The prompt exceeds a few sentences.
+*   You need the AI to read code before it writes code.
+
+Direction is a scalpel—precise, contained, surgical. Collaboration is a conversation—iterative, exploratory, broad. The master engineer knows which tool to reach for.
+
+---
+
+## The Compound Effect
+
+Directing well compounds over time.
+
+Every precisely specified change sharpens your ability to articulate intent. Every caught mistake refines your mental linter. Every successful refactor builds your intuition for what works.
+
+After a year of practice, I direct changes in seconds that would have taken minutes to type—and I catch problems before they ship. The combination of speed and verification isn't contradictory; it is the skill itself.
+
+The goal isn't just to accept changes faster. It is to develop the judgment that makes fast verification reliable. That judgment is the difference between an AI that accelerates you and an AI that generates technical debt. The tools are the same. The skill is yours to build.
+
