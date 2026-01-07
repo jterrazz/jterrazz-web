@@ -17,7 +17,6 @@ import { userRepository } from "../../../../infrastructure/repositories/user.rep
 // Utils
 import { cn } from "../../../utils";
 
-import { BannerAi } from "../../molecules/banner-ai/banner-ai";
 import { CardArticleRow } from "../../molecules/card-article/card-article-row";
 import { DividerSection } from "../../molecules/divider-section/divider-section";
 
@@ -115,13 +114,12 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
         </div>
       </div>
 
-      {/* Metadata & AI Disclaimer */}
-      <div className="mt-4 md:mt-5 text-[13px] md:text-[14px] text-zinc-400 dark:text-zinc-500 space-y-1">
+      {/* Metadata */}
+      <div className="mt-4 md:mt-5 text-[13px] md:text-[14px] text-zinc-400 dark:text-zinc-500">
         <p>
           Published {formatDate(datePublished)}
           {dateModified !== datePublished && ` · Updated ${formatDate(dateModified)}`}
         </p>
-        <BannerAi />
       </div>
 
       {/* Related Articles (non-series) */}
