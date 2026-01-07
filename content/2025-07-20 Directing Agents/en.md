@@ -1,6 +1,6 @@
 ![](./assets/thumbnail.jpg)
 
-# The Art of Directing AI
+# The art of directing AI
 
 There is a mode of working with AI that sits between the passivity of autocomplete and the delegation of full autonomy. You select code, describe a desired state, and the AI executes the transformation. It isn't predicting your next keystroke; it is rewriting logic based on your intent.
 
@@ -18,7 +18,7 @@ This article is about the difference.
 
 ---
 
-## What Directing Actually Compresses
+## What directing actually compresses
 
 ![](assets/split-thread.jpg)
 
@@ -38,7 +38,7 @@ When I first started directing, I expected the AI to make good decisions. That w
 
 ---
 
-## The Precision Hierarchy
+## The precision hierarchy
 
 ![](assets/architect-table.jpg)
 
@@ -46,7 +46,7 @@ Vague input produces garbage. Precise input produces production-ready code. But 
 
 I’ve identified three levels of precision, each suited to different engineering contexts.
 
-### Level 1: Constraints
+### Level 1: constraints
 Sometimes the most critical instruction isn't what you want—it's what you *don't* want.
 
 *   "Do not add external dependencies."
@@ -58,7 +58,7 @@ Constraints are essential when you trust the AI's implementation details but nee
 
 **When to use:** Refactoring, optimization, or any task where multiple valid approaches exist, but you need to filter out the unacceptable ones.
 
-### Level 2: Patterns
+### Level 2: patterns
 Don't describe the style. Show it.
 
 ```typescript
@@ -81,7 +81,7 @@ The AI doesn't have to guess your coding conventions. It sees them. Pattern-base
 
 **When to use:** Style changes, standardization, or any task where you have a canonical example of the desired state.
 
-### Level 3: Contracts
+### Level 3: contracts
 The ultimate form of precision is a specification that is machine-verifiable: a test.
 
 ```typescript
@@ -110,13 +110,13 @@ There is no ambiguity here. The AI cannot misinterpret success because success i
 
 ---
 
-## The Verification Discipline
+## The verification discipline
 
 Precision gets you 80% of the way there. The remaining 20% is verification.
 
 The AI is confident, not careful. It produces code that *looks* right with the same fluency that it produces code that *is* right. Your job is to tell the difference.
 
-### Common Failure Modes
+### Common failure modes
 
 **Hallucinated APIs**
 The AI invents methods that don't exist or uses the wrong signatures. This is endemic with less common libraries.
@@ -148,7 +148,7 @@ The AI solves the problem correctly but violates local conventions (e.g., using 
 **Missed Edge Cases**
 The happy path works perfectly. Null inputs crash the system. Empty arrays throw exceptions. The AI optimizes for the common case.
 
-### The Verification Checklist
+### The verification checklist
 Before accepting any directed change:
 
 1.  **Read the Diff:** Every line. If the change is too large to read, it's too large for direction—use collaboration instead.
@@ -159,7 +159,7 @@ Before accepting any directed change:
 
 ---
 
-## The Speed Trap
+## The speed trap
 
 Direction is fast. Dangerously fast.
 
@@ -175,7 +175,7 @@ A two-second generation deserves a two-minute review. Not because every change i
 
 ---
 
-## Developing the Instinct
+## Developing the instinct
 
 After a year of daily practice, I’ve developed instincts I didn't have at the start.
 
@@ -196,7 +196,7 @@ Not every task belongs in a directed change. The skill is recognizing what fits.
 
 If I catch myself writing a long, multi-step prompt, that is a signal. Direction is for surgical strikes, not military campaigns.
 
-### Prompt Iteration
+### Prompt iteration
 The first prompt rarely produces the perfect result. Knowing *how* to iterate matters more than getting it right the first time.
 
 *   **Narrow, Don't Restart:** *"That's close, but use our `AppError` class"* is better than rewriting the initial prompt.
@@ -205,7 +205,7 @@ The first prompt rarely produces the perfect result. Knowing *how* to iterate ma
 
 Each iteration teaches the AI your requirements and teaches you what you failed to specify.
 
-### Pattern Recognition
+### Pattern recognition
 After reviewing hundreds of AI-generated diffs, I scan for specific red flags:
 *   **Unusual Imports:** Possible hallucinated dependencies.
 *   **Complex One-Liners:** High risk of semantic drift.
@@ -216,7 +216,7 @@ Speed in review comes from knowing *where* to look, not looking faster.
 
 ---
 
-## When Directing Isn't Enough
+## When directing isn't enough
 
 Direction has limits. It works for contained changes—a single function, a clear transformation, a diff you can review line by line.
 
@@ -232,7 +232,7 @@ Direction is a scalpel—precise, contained, surgical. Collaboration is a conver
 
 ---
 
-## The Compound Effect
+## The compound effect
 
 Directing well compounds over time.
 
@@ -241,4 +241,3 @@ Every precisely specified change sharpens your ability to articulate intent. Eve
 After a year of practice, I direct changes in seconds that would have taken minutes to type—and I catch problems before they ship. The combination of speed and verification isn't contradictory; it is the skill itself.
 
 The goal isn't just to accept changes faster. It is to develop the judgment that makes fast verification reliable. That judgment is the difference between an AI that accelerates you and an AI that generates technical debt. The tools are the same. The skill is yours to build.
-

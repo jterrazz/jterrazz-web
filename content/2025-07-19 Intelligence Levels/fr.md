@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# De l'autocomplétion à l'architecture : Les quatre niveaux de maîtrise de l'IA
+# Les quatre niveaux de maîtrise de l'IA
 
 Il y a deux ans, j'ai écrit ma première ligne de code sous le regard d'une IA. Copilot m'a suggéré le corps entier d'une fonction avant même que je n'aie fini d'en taper la signature. J'ai accepté sans relire. Les tests sont passés. Je me sentais invincible.
 
@@ -285,4 +285,3 @@ La majeure partie de ma journée se passe au Niveau 2—des modifications préci
 Le fantasme de "Jarvis" n'était pas faux—il était juste incomplet. La vraie maîtrise n'est pas d'avoir un assistant omniscient qui fait tout pour vous. C'est de savoir quand laisser l'IA autocompléter, quand la commander précisément, quand collaborer comme des partenaires, et quand en faire une partie intégrante du produit lui-même.
 
 Voici la carte. Maintenant, le vrai travail commence : développer les instincts pour y naviguer.
-

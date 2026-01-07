@@ -55,7 +55,7 @@ This doesn't mean people stop working. It means motivation shifts from external 
 
 ---
 
-# **The Gym Paradox**
+# **The gym paradox**
 
 ![](assets/book-morphing.jpg)
 
@@ -81,7 +81,7 @@ Intellectual effort transforms from an obligation to an identity. From "I think 
 
 ---
 
-# **The Partnership**
+# **The partnership**
 
 ![](assets/hands-holding.jpg)
 
@@ -139,7 +139,7 @@ These are not consolation prizes we settle for because we can't compete with AI.
 
 ---
 
-# **The Shift**
+# **The shift**
 
 The transformations in this series are connected.
 

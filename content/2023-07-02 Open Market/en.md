@@ -6,7 +6,7 @@ We love the convenience of modern e-commerce. Two taps, and a package arrives th
 
 However, there is a hidden cost to this efficiency. We have largely traded the diversity of local markets for centralized platforms. In doing so, the economy has consolidated around a few massive giants. When a single algorithm determines what millions of people see and buy, the market becomes fragile.
 
-## The Problem: Commerce is Stuck in the "TV Station" Era
+## The problem: commerce is stuck in the "TV station" era
 
 To understand the issue, look at how the internet transformed media.
 - **Before:** A few major TV stations and newspapers controlled the narrative (Centralized).
@@ -20,7 +20,7 @@ Today, merchants face a binary choice:
 
 The question is: **Why can't we democratize trade the way we democratized publishing?**
 
-## The Solution: A Protocol, Not a Platform
+## The solution: a protocol, not a platform
 
 The answer lies in shifting our thinking from "platforms" to "protocols."
 
@@ -35,7 +35,7 @@ Imagine an ecosystem that functions as a **public utility for commerce**:
 
 This creates a digital town square where a global brand and a local artisan stand on equal footing, distinguished only by their reputation and product quality.
 
-## Innovation at the Edges
+## Innovation at the edges
 
 This isn't just philosophy; it's a technical opportunity.
 
@@ -46,7 +46,7 @@ By moving to a **decentralized protocol**, we unlock "innovation at the edges." 
 - **Hyper-local Logistics:** A local courier service could plug into the protocol to offer eco-friendly delivery in just one city, without needing a global partnership.
 - **Community Curation:** Instead of ads driving discovery, communities could build their own curated feeds of trusted products.
 
-## Bringing the Human Back
+## Bringing the human back
 
 The goal isn't technology for technology's sake. It's about restoring balance to the economy.
 

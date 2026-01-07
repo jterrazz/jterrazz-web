@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Cursor: The Compression of Mechanical Work
+# Cursor: the compression of mechanical work
 
 Software engineering has always had a hidden cost: the gap between having an idea and making it work.
 
@@ -12,7 +12,7 @@ What was once a three-hour slog becomes a forty-five-minute review session. But 
 
 ---
 
-## Beyond Autocomplete: The Semantic Map
+## Beyond autocomplete: the semantic map
 
 ![](assets/indexing.jpg)
 
@@ -30,11 +30,11 @@ This is reasoning, not just guessing. The context isn't just the text on your sc
 
 ---
 
-## The Workflow: Four Gears of Interaction
+## The workflow: four gears of interaction
 
 Cursor isn't a single feature; it is a system with four distinct "gears," each suited to a different kind of work.
 
-### 1. The Flow State (Tab)
+### 1. The flow state (Tab)
 
 ![](assets/single-line.jpg)
 
@@ -46,7 +46,7 @@ It generates entire functions, anticipates your next move, and understands the r
 
 It feels less like a tool and more like a partner who is always one step ahead. After a few days, it stops suggesting generic "best practices" and starts suggesting *your* code—adopting your specific style and preferences.
 
-### 2. Inline Mutation (Cmd+K)
+### 2. Inline mutation (Cmd+K)
 
 ![](assets/inline-diff.jpg)
 
@@ -60,7 +60,7 @@ A "diff" (comparison view) appears in place. You accept or reject.
 
 This turns refactoring from a chore into a rapid-fire review process. Changes that usually demand five minutes of careful editing happen in seconds of careful *verification*.
 
-### 3. Contextual Query (Chat)
+### 3. Contextual query (Chat)
 
 ![](assets/chat.jpg)
 
@@ -72,7 +72,7 @@ When you need to explore or understand, Chat provides an interface to ask questi
 
 The power lies in the reference system. You can tag specific files or folders (like `@auth` or `@database`) to give the AI exact context. It answers with facts about *your* system, not generic advice from the internet.
 
-### 4. Agentic Building
+### 4. Agentic building
 
 ![](assets/agent.jpg)
 
@@ -86,7 +86,7 @@ It is disorienting. You stop coding and start supervising. You interrupt only if
 
 ---
 
-## The Illusion of Competence
+## The illusion of competence
 
 After months of daily use, I have learned that treating AI as magic is dangerous. It has specific weaknesses you must manage.
 
@@ -110,7 +110,7 @@ The question isn't "Is the AI right?" It is "What is the cost if it's wrong?"
 
 ---
 
-## The Skill of Orchestration
+## The skill of orchestration
 
 These limitations are not blockers; they are just the rules of the game.
 
@@ -126,7 +126,7 @@ The agent is not a black box. It is a partner. The better you understand it, the
 
 ---
 
-## Intent-Driven Development
+## Intent-driven development
 
 Once you master this, the bottleneck shifts again. If the machine can execute any clear instruction, the challenge becomes *giving clear instructions*.
 
@@ -140,7 +140,7 @@ The AI handles the mechanics—the logic, the API calls, the errors. I review th
 
 ---
 
-## The New Bottleneck
+## The new bottleneck
 
 Cursor compresses mechanical work. Tasks that used to take half my day now take an hour. The question remains: what do we do with the saved time?
 

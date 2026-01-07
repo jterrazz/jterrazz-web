@@ -1,6 +1,6 @@
 ![](./assets/thumbnail.jpg)
 
-# L'Art de Diriger l'IA
+# L'art de diriger l'IA
 
 Il existe un mode de travail avec l'IA qui se situe entre la passivité de l'autocomplétion et la délégation de l'autonomie totale. Vous sélectionnez du code, décrivez un état désiré, et l'IA exécute la transformation. Il ne s'agit pas de prédire votre prochaine frappe, mais de réécrire la logique selon votre intention.
 
@@ -241,4 +241,3 @@ Chaque changement spécifié avec précision aiguise votre capacité à articule
 Après un an de pratique, je dirige des changements en quelques secondes qui m'auraient pris des minutes à taper—et j'attrape les problèmes avant qu'ils ne partent en prod. La combinaison de vitesse et de vérification n'est pas contradictoire ; c'est la compétence elle-même.
 
 Le but n'est pas juste d'accepter les changements plus vite. C'est de développer le jugement qui rend la vérification rapide fiable. Ce jugement est la différence entre une IA qui vous accélère et une IA qui génère de la dette technique. Les outils sont les mêmes. La compétence est la vôtre à construire.
-

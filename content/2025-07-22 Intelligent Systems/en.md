@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# When AI Becomes the Product
+# When AI becomes the product
 
 There is a moment when AI stops being your assistant and starts being your architecture.
 
@@ -20,7 +20,7 @@ This shift—from AI as a tool to AI as a component—requires a different way o
 
 ---
 
-## The Trap of Pure Approaches
+## The trap of pure approaches
 
 Most developers I speak with fall into one of two traps when integrating AI.
 
@@ -36,7 +36,7 @@ The reality is nuanced. AI is **reliably good at some things** and **unreliably 
 
 ---
 
-## The Hybrid Principle
+## The hybrid principle
 
 ![](assets/bridge-merge.jpg)
 
@@ -73,7 +73,7 @@ When you let code do what code does best and AI do what AI does best, the system
 
 ---
 
-## The Sandwich Pattern
+## The sandwich pattern
 
 ![](assets/layered-cake.jpg)
 
@@ -81,7 +81,7 @@ Every AI call in my system follows the same structure: **Code → AI → Code**.
 
 I call it the **Sandwich Pattern**. Code prepares the input, AI reasons over it, code validates the output. The AI's flexibility is contained entirely within code's constraints.
 
-### Layer 1: Preparation (Code)
+### Layer 1: preparation (code)
 Before the AI sees anything, code runs:
 
 ```typescript
@@ -107,14 +107,14 @@ Notice what code controls:
 
 The AI doesn't decide what to look at. It receives a curated view.
 
-### Layer 2: Reasoning (AI)
+### Layer 2: reasoning (AI)
 The AI receives formatted data and a clear instruction:
 
 > "Determine whether the incoming news report describes the same underlying event as any existing report. Focus on the core event—who did what, when, where—not surface-level similarities in wording."
 
 This is the task I cannot hardcode. The AI reasons about semantic equivalence, considering the underlying reality rather than word overlap.
 
-### Layer 3: Validation (Code)
+### Layer 3: validation (code)
 The AI's output is constrained by a schema:
 
 ```typescript
@@ -144,7 +144,7 @@ If validation fails, the system doesn't crash—it falls back gracefully. The ar
 
 ---
 
-## A Real Example: The Fabrication Agent
+## A real example: the fabrication agent
 
 Theory is clean. Let me show you a messier example.
 
@@ -194,7 +194,7 @@ Some content goes to a human review queue. The architecture assumes AI will occa
 
 ---
 
-## Testing Probabilistic Systems
+## Testing probabilistic systems
 
 ![](assets/lab-instruments.jpg)
 
@@ -204,7 +204,7 @@ AI breaks this. The same input might produce different outputs across runs. The 
 
 This requires a three-layer testing strategy:
 
-### Layer 1: Unit Tests for Code
+### Layer 1: unit tests for code
 The preparation and validation layers are deterministic. Test them normally.
 
 ```typescript
@@ -214,7 +214,7 @@ test('schema rejects invalid classification', () => {
 });
 ```
 
-### Layer 2: Evals for AI
+### Layer 2: evals for AI
 Maintain a dataset of test cases with known correct answers. Run the AI against all of them and measure accuracy.
 
 ```
@@ -226,7 +226,7 @@ Threshold: 90% precision, 85% recall
 
 If accuracy drops below threshold, the deploy fails. This catches regressions before they reach users.
 
-### Layer 3: Guardrail Tests
+### Layer 3: guardrail tests
 Test what happens when the AI misbehaves.
 
 ```typescript
@@ -245,7 +245,7 @@ The system must be robust to AI failures, not just AI successes.
 
 ---
 
-## The Orchestrator Mindset
+## The orchestrator mindset
 
 Building systems with AI components requires a mental shift.
 
@@ -271,7 +271,7 @@ This changes the questions you ask:
 
 ---
 
-## The Architecture That Emerges
+## The architecture that emerges
 
 After building several AI-integrated systems, a consistent architecture has emerged:
 
@@ -314,7 +314,7 @@ The AI is never autonomous. It operates within guardrails. It is powerful precis
 
 ---
 
-## The Shift
+## The shift
 
 Building intelligent systems isn't harder than traditional software—it is different.
 
@@ -327,4 +327,3 @@ AI gives you capabilities that were impossible to build before. Semantic underst
 Good architecture makes that tradeoff worthwhile. You get the capabilities. You contain the unpredictability. You build systems that are both intelligent and reliable.
 
 That is the goal: harness what AI is good at while protecting against what it is bad at. Let code do code's job. Let AI do AI's job. Design the boundaries with care.
-

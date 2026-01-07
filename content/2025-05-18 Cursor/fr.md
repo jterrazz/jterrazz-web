@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Cursor : La Compression du Travail Mécanique
+# Cursor : la compression du travail mécanique
 
 L'ingénierie logicielle a toujours eu un coût caché : le fossé entre avoir une idée et la faire fonctionner.
 

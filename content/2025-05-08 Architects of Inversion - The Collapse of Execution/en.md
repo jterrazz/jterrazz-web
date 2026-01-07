@@ -47,12 +47,12 @@ The middle isn't just shrinking. **It is evaporating.**
 
 As the middle collapses, value concentrates at two distinct poles.
 
-### **The Top: Pure Judgment**
+### **The top: pure judgment**
 Strategy. Vision. The ability to decide what matters when the data is ambiguous. The courage to make a call with incomplete information and own the consequences.
 
 This work cannot be delegated because it requires skin in the game. A CEO still decides the company's future. An investor still judges the validity of the opportunity. AI informs these decisions; it does not make them.
 
-### **The Bottom: Pure Humanity**
+### **The bottom: pure humanity**
 Physical presence. Emotional attunement. The ability to read a room, sense the unspoken, and care about the outcome.
 
 The nurse noticing a change in a patient's breathing. The therapist holding space for crisis. The plumber diagnosing a sound in the wall. This work cannot be delegated because it requires a body, a relationship, or both. It happens in physical reality, where context is infinite.
@@ -61,7 +61,7 @@ The nurse noticing a change in a patient's breathing. The therapist holding spac
 
 ---
 
-# **The Great Inversion**
+# **The great inversion**
 
 Here is the irony we are just beginning to understand:
 
@@ -78,7 +78,7 @@ The work we systematically undervalued—care work, trades, emotional labor—tu
 
 ---
 
-# **The Beethoven Problem**
+# **The Beethoven problem**
 
 ![](assets/castle-moat-dry.jpg)
 

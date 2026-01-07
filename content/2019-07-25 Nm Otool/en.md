@@ -22,7 +22,7 @@ There are tons of other formats out there. If you're curious, you can check out 
 
 For a deep dive into the Mach-O format, [this document is basically a treasure map](https://github.com/aidansteele/osx-abi-macho-file-format-reference?source=post_page-----7d4fef3d7507--------------------------------).
 
-### Step 1: Making sure it's a Mach-O file
+### Step 1: making sure it's a Mach-O file
 
 Every file type has a secret identity, a sequence of bytes at the very beginning called a **magic number**. It's like a file's fingerprint. For Mach-O files, there are four possibilities:
 

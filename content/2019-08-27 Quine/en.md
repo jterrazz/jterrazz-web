@@ -6,7 +6,7 @@ I've always been fascinated by a simple, almost paradoxical question: can a prog
 
 This isn't just a philosophical curiosity; it's a rigorous coding challenge known as a **Quine**.
 
-## The Challenge
+## The challenge
 
 The goal is to write a program whose sole output is an exact copy of its own source code. The rules are simple but strict:
 
@@ -16,13 +16,13 @@ The goal is to write a program whose sole output is an exact copy of its own sou
 
 It sounds like a magic trick, but it is purely logical.
 
-## The Theory: How It Works
+## The theory: how it works
 
 The core problem is an infinite regress. If you want to print the code, you need a print statement. But that print statement is *part* of the code, so you need to print the print statement. And then you need to print the code that prints the print statement.
 
 It feels like standing between two mirrors.
 
-### The Solution: Code = Data
+### The solution: code = data
 
 The trick to solving this is to separate the program into two parts:
 1.  **The Template (Data):** A string containing the *structure* of the code.
@@ -30,7 +30,7 @@ The trick to solving this is to separate the program into two parts:
 
 In C, this often looks like a `printf` statement that takes a string as a format, and then passes *that same string* as the argument to fill itself in.
 
-## A Solution in C
+## A solution in C
 
 Here is a C program that solves the challenge. It includes comments and multiple functions to prove it handles complexity.
 
@@ -56,7 +56,7 @@ int main(void)
 }
 ```
 
-### Deconstructing the Magic
+### Deconstructing the magic
 
 1.  **The String:** `get_str()` returns the entire source code as a single string, but with placeholders.
     *   `%1$c` is a placeholder for a newline (ASCII 10).
@@ -76,7 +76,7 @@ Quine (the philosopher) famously crafted this paradox:
 
 It’s a sentence that talks about itself, just like our program.
 
-## Why Does This Matter?
+## Why does this matter?
 
 Beyond being a clever party trick, quines teach a fundamental concept in computer science: **code and data are interchangeable**.
 

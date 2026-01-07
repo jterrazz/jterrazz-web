@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Quand l'IA Devient le Produit
+# Quand l'IA devient le produit
 
 Il y a un moment où l'IA cesse d'être votre assistant et commence à être votre architecture.
 
@@ -327,4 +327,3 @@ L'IA vous donne des capacités qu'il était impossible de construire avant. Comp
 Une bonne architecture rend cette contrepartie valable. Vous obtenez les capacités. Vous contenez l'imprévisibilité. Vous construisez des systèmes qui sont à la fois intelligents et fiables.
 
 C'est le but : exploiter ce pour quoi l'IA est bonne tout en protégeant contre ce pour quoi elle est mauvaise. Laissez le code faire le travail du code. Laissez l'IA faire le travail de l'IA. Concevez les frontières avec soin.
-

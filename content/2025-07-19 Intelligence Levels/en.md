@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# From Autocomplete to Architecture: The Four Levels of AI Mastery
+# The four levels of AI mastery
 
 Two years ago, I wrote my first line of code with an AI watching. Copilot suggested a complete function body before I had even finished typing the signature. I accepted it without reading. The tests passed. I felt invincible.
 
@@ -25,7 +25,7 @@ This is the map I wish I had two years ago.
 
 ---
 
-## Level 1: Predictive Assistance
+## Level 1: predictive assistance
 
 ![](assets/friction-dissolve.jpg)
 
@@ -37,7 +37,7 @@ I remember the first time Copilot generated an entire validation function from a
 
 **What stays the same:** The workflow. You are still the driver.
 
-### The "Tab-Tab-Tab" Trap
+### The "tab-tab-tab" trap
 
 Speed is seductive. When suggestions appear faster than you can think, you begin to accept them reflexively. *Tab. Tab. Tab.* The code *looks* correct. The tests pass. You ship it.
 
@@ -47,12 +47,12 @@ I call this the **Approval Paradox**: as AI generation speed increases, your und
 
 The antidote is deliberate friction: treat AI suggestions like a code review. If you wouldn't merge a colleague's PR without reading it, do not accept an AI suggestion without reading it either.
 
-### When to Use Level 1
+### When to use level 1
 *   **Boilerplate:** Code you’ve written a hundred times.
 *   **Syntax Recall:** When you know *what* to write but forget *how*.
 *   **Obvious Patterns:** Implementations where the path is singular and clear.
 
-### When to Avoid It
+### When to avoid it
 *   **Novel Logic:** Code that requires deep understanding.
 *   **Edge Cases:** Scenarios likely missing from training data.
 *   **Critical Paths:** Anything you will need to debug under pressure later.
@@ -61,7 +61,7 @@ The antidote is deliberate friction: treat AI suggestions like a code review. If
 
 ---
 
-## Level 2: Directed Execution
+## Level 2: directed execution
 
 ![](assets/blueprint-hand.jpg)
 
@@ -75,7 +75,7 @@ This is **Directed Execution**: you specify the transformation, the AI performs 
 
 **The New Skill:** Specification precision. Vague commands like "make this better" yield garbage. Precise instructions like "extract the validation logic into a separate function that returns an error object or null" yield production-ready code.
 
-### Three Techniques for Precision
+### Three techniques for precision
 
 **1. Tests as Contracts**
 Write the test first, then instruct the AI: "Make this pass."
@@ -109,7 +109,7 @@ What you *exclude* is often more important than what you include.
 *   "Keep the public interface unchanged."
 *   "Keep it under 50 lines."
 
-### The Verification Habit
+### The verification habit
 Directed execution is still execution. The AI is fast, not careful. Common pitfalls include:
 *   **Hallucinated APIs:** Calling methods that don't exist.
 *   **Subtle Behavior Drifts:** Refactoring that isn't purely structural.
@@ -121,7 +121,7 @@ My rule is simple: **if I can't explain what changed and why, I don't accept it.
 
 ---
 
-## Level 3: Collaborative Building
+## Level 3: collaborative building
 
 ![](assets/clockwork-night.jpg)
 
@@ -133,7 +133,7 @@ This isn't a single command. It is a multi-file feature requiring exploration, a
 
 **What changes:** You stop commanding specific transformations and start setting goals. You watch the AI navigate toward them.
 
-### The Collaborative Loop
+### The collaborative loop
 
 1.  **Set Direction:** "Add user authentication using next-auth. Follow our existing patterns."
 2.  **Observe:** The agent explores your codebase, drafts a plan, and begins implementation.
@@ -144,7 +144,7 @@ This isn't a single command. It is a multi-file feature requiring exploration, a
 
 You aren't reviewing line-by-line; you are reviewing *trajectory*. Is the solution heading where it needs to go?
 
-### Learning Your Agent's Nature
+### Learning your agent's nature
 The more you collaborate, the more you understand your AI partner's profile.
 
 **Strengths:**
@@ -164,7 +164,7 @@ The more you collaborate, the more you understand your AI partner's profile.
 *   **Make the Implicit Explicit:** "We always use early returns." "Errors must use our `AppError` class."
 *   **Interrupt Early:** If the agent veers off course, stop it immediately. Don't let it build on a flawed foundation.
 
-### Trust at the Architectural Level
+### Trust at the architectural level
 Collaboration requires a different breed of trust. You aren't checking every line of a 500-line diff. You are checking:
 *   Is this the right *approach*?
 *   Does it follow our *patterns*?
@@ -176,7 +176,7 @@ This requires judgment. You need the ability to scan a large diff and grasp its 
 
 ---
 
-## Level 4: Hybrid Systems
+## Level 4: hybrid systems
 
 ![](assets/woven-intelligence.jpg)
 
@@ -184,7 +184,7 @@ Levels 1-3 treat AI as a tool to *build* software. Level 4 is different: AI beco
 
 This is where traditional engineering intuitions break down.
 
-### The Moment It Clicks
+### The moment it clicks
 I was building a news aggregation API. The requirement seemed straightforward: deduplicate incoming articles so users don't see the same story twice.
 
 My first approach was deterministic: compare titles, check keyword overlap, compute similarity scores.
@@ -195,7 +195,7 @@ No amount of string matching solves this. The headlines share no words but share
 
 That was the turning point. AI wasn't helping me build the feature anymore. **AI was the feature.**
 
-### The Hybrid Pattern
+### The hybrid pattern
 The mistake developers make is treating AI as either magic or dangerous. It is neither.
 *   **Pure Code** is predictable but rigid. It catches exact matches but misses nuance.
 *   **Pure AI** is flexible but unreliable. It hallucinates, varies its output, and ignores data models.
@@ -214,7 +214,7 @@ The solution is **Hybrid Architecture**: code for constraints, AI for reasoning.
 *   Content generation.
 *   Pattern recognition in unstructured data.
 
-### The Sandwich Pattern
+### The sandwich pattern
 Every AI call in my system follows the same structure:
 
 **Layer 1: Code (Preparation)**
@@ -246,7 +246,7 @@ The AI cannot return "maybe" or invent new fields. It must provide a valid repor
 
 **Code → AI → Code.** This sandwich ensures AI's flexibility operates strictly within your system's constraints.
 
-### Testing Probabilistic Systems
+### Testing probabilistic systems
 AI systems are non-deterministic. Same input, different output. This breaks traditional testing strategies. My approach has three layers:
 
 1.  **Unit Tests for Code:** The preparation and validation layers are deterministic. Test them normally.
@@ -269,7 +269,7 @@ The system must be robust to AI failures, not just AI successes.
 
 ---
 
-## Choosing the Right Level
+## Choosing the right level
 
 The skill isn't mastering one level—it's recognizing which level fits the task.
 

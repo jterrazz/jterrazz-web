@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Collaborer avec l'IA sur des Problèmes d'Envergure
+# Collaborer avec l'IA sur des problèmes d'envergure
 
 Il y a un moment distinct où vous réalisez que vous ne codez plus. Vous regardez.
 
@@ -183,4 +183,3 @@ La combinaison est puissante. La collaboration gère les gros morceaux rapidemen
 Les décisions restent miennes. L'architecture est mon jugement. Le travail mécanique de traduire les décisions en syntaxe—c'est cela qui est partagé.
 
 Ce qui prenait des jours prend maintenant des heures. Non pas parce que l'IA pense pour moi, mais parce qu'elle tape pour moi pendant que je me concentre sur ce qui compte vraiment : **les choix qui façonnent le logiciel.**
-

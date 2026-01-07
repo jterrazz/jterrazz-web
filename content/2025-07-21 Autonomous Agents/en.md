@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Collaborating with AI on Larger Problems
+# Collaborating with AI on larger problems
 
 There is a distinct moment when you realize you aren't coding anymore. You are watching.
 
@@ -18,7 +18,7 @@ The first time it works, it is disorienting. The tenth time, it becomes the defa
 
 ---
 
-## What Makes Collaboration Different
+## What makes collaboration different
 
 Most AI-assisted coding is transactional. You ask for X, you get X. You accept or reject.
 
@@ -38,34 +38,34 @@ The thinking stays with you. But instead of translating every thought into synta
 
 ---
 
-## The Collaboration Loop
+## The collaboration loop
 
 ![](assets/lighthouse-night.jpg)
 
 Collaboration follows a rhythm. Once you recognize it, you can wield it deliberately.
 
-### 1. Set Direction
+### 1. Set direction
 Start with a clear goal and enough context for the AI to make high-quality probabilistic choices.
 
 > "Add user authentication with email/password and OAuth. Follow our existing patterns in the auth folder. Use next-auth—we already have it installed."
 
 The more context you provide upfront, the fewer corrections you'll need later. Name specific files, libraries, or patterns you want followed.
 
-### 2. Watch Actively
+### 2. Watch actively
 Do not walk away. Watch where the AI is heading.
 
 This is different from reviewing a final diff. You are observing decisions *as they are made*. Is it looking at the right files? Did it choose the correct pattern? Is it about to go down a path you will need to undo?
 
 Active watching lets you intervene *before* the AI builds on a flawed foundation.
 
-### 3. Intervene Precisely
+### 3. Intervene precisely
 When you see a deviation, be specific.
 
 > "Stop—that's the wrong library. We use `jose` for JWT handling, not `jsonwebtoken`. Check `auth/utils.ts`."
 
 Good interventions are surgical. You aren't restarting; you are course-correcting. The AI should continue with your correction applied, not reboot the entire process.
 
-### 4. Refine Progressively
+### 4. Refine progressively
 As the feature takes shape, you shift from structural guidance to polish.
 
 > "Good. Now extract the config values to environment variables."
@@ -74,7 +74,7 @@ As the feature takes shape, you shift from structural guidance to polish.
 
 Each refinement narrows the gap between the draft and production readiness.
 
-### 5. Know When You're Done
+### 5. Know when you're done
 Collaboration ends when:
 *   The feature works as intended.
 *   Tests pass.
@@ -85,25 +85,25 @@ Do not over-iterate. If it works, ship it.
 
 ---
 
-## Learning Your Partner's Limits
+## Learning your partner's limits
 
 ![](assets/scaffolding.jpg)
 
 The more you collaborate, the more you learn your AI's profile—where it excels, where it stumbles, and how to mitigate its blind spots.
 
-### Where Collaboration Shines
+### Where collaboration shines
 *   **Following Existing Patterns:** When your codebase has clear examples, the AI extrapolates effectively. *"Follow the pattern in UserService"* works because the AI can see the pattern.
 *   **Tedious Multi-File Changes:** Adding a new CRUD entity touches models, routes, controllers, tests. Tedious but mechanical. Perfect for collaboration.
 *   **Boilerplate-Heavy Features:** Form components, API endpoints, test suites—features where the shape is predictable and the details are voluminous.
 *   **Refactoring at Scale:** *"Convert all callback-based functions to async/await across fifty files."* You would never do this manually. Collaboration makes it feasible.
 
-### Where Collaboration Fails
+### Where collaboration fails
 *   **Genuinely Novel Architecture:** If you are designing something that doesn't exist in your codebase, the AI has nothing to extrapolate from. It will guess—often confidently, often wrongly.
 *   **Ambiguous Requirements:** The AI doesn't ask clarifying questions. It makes assumptions. If your goal is vague, its assumptions will diverge from your intent.
 *   **Invisible Constraints:** Performance budgets, security implications, deployment considerations—things the AI cannot see in the text files. It will generate solutions that work functionally but fail in reality.
 *   **Tribal Knowledge:** The unwritten conventions. The AI doesn't know that *"we never use that library"* or *"this service is deprecated"* or *"this pattern causes race conditions in production."*
 
-### Working Around Limitations
+### Working around limitations
 *   **Chunk Novel Work:** Don't ask for "a custom caching system." Ask for "a Map wrapper," then "add TTL," then "add LRU eviction." Each step is familiar; the combination is novel.
 *   **Make Implicit Knowledge Explicit:** State the tribal knowledge. *"We always use early returns."* *"Errors must use our `AppError` class."* *"Never import from the legacy folder."*
 *   **Provide Examples:** If you want something the AI hasn't seen, write one example manually. Then ask it to mimic that pattern.
@@ -111,13 +111,13 @@ The more you collaborate, the more you learn your AI's profile—where it excels
 
 ---
 
-## Reviewing Collaborative Work
+## Reviewing collaborative work
 
 ![](assets/lock-vault.jpg)
 
 Collaboration produces larger changes than directed edits. A single session might touch ten files and add hundreds of lines. You cannot review this the same way you review a surgical diff.
 
-### The Trust Calibration
+### The trust calibration
 Directed changes are small enough to verify line-by-line. Collaboration requires a different calibration: you are trusting more, so you must verify smarter.
 
 The questions shift from *"is this line correct?"* to:
@@ -126,7 +126,7 @@ The questions shift from *"is this line correct?"* to:
 *   **Are the key decisions correct?** The places where the AI had to choose between options.
 *   **What did it miss?** Edge cases, security, performance.
 
-### My Review Process
+### My review process
 
 1.  **High-Level Structure First:** What files changed? What is the shape of the solution? Before looking at code, understand the architecture.
 2.  **Check Decision Points:** Locate the places where the AI had to make a choice. These are the highest-risk vectors. Did it choose the right library? The right pattern?
@@ -134,14 +134,14 @@ The questions shift from *"is this line correct?"* to:
 4.  **Run the Tests:** If tests pass, you can trust implementation details more. Focus your manual review on architectural choices rather than syntax.
 5.  **Spot-Check Critical Paths:** Don't read every line, but *do* read the important ones. The business logic. The security boundaries. The places where bugs would be catastrophic.
 
-### The Tradeoff
+### The tradeoff
 You are accepting more risk in exchange for velocity. A 500-line feature in an hour instead of a day. The mitigation is tests—good coverage lets you trust the implementation and focus review on the choices tests can't verify.
 
 If your test coverage is poor, collaboration is riskier. You will need to review more carefully, eroding the time savings. **Invest in tests first.**
 
 ---
 
-## Matching Mode to Task
+## Matching mode to task
 
 Not every task deserves collaboration. Sometimes direction is better. Sometimes you must code manually.
 
@@ -168,7 +168,7 @@ Most of my day is direction—surgical strikes, precisely specified, carefully v
 
 ---
 
-## The Daily Rhythm
+## The daily rhythm
 
 After months of working this way, I have settled into a pattern.
 
@@ -183,4 +183,3 @@ The combination is powerful. Collaboration handles the big chunks fast. Directio
 The decisions remain mine. The architecture is my judgment. The mechanical work of translating decisions into syntax—that is shared.
 
 What used to take days now takes hours. Not because the AI is thinking for me, but because it is typing for me while I focus on what actually matters: **the choices that shape the software.**
-

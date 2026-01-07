@@ -117,7 +117,7 @@ The old game rewarded memorization and specialization. The new game rewards orch
 
 ---
 
-# **The Choice**
+# **The choice**
 
 This is not a prediction about the distant future. It is the reality of the market right now.
 
