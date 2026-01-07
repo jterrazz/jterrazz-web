@@ -4,8 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  IconBookFilled,
-  IconBrandGithubFilled,
+  IconBook,
+  IconBrandGithub,
   IconChevronDown,
   IconDeviceDesktop,
   IconDownload,
@@ -172,8 +172,8 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
   const closeMenu = () => setIsMenuOpen(false);
 
   const getContactIcon = (name: string) => {
-    if (name.toLowerCase().includes("github")) return <IconBrandGithubFilled size={18} />;
-    if (name.toLowerCase().includes("medium")) return <IconBookFilled size={18} />;
+    if (name.toLowerCase().includes("github")) return <IconBrandGithub size={18} />;
+    if (name.toLowerCase().includes("medium")) return <IconBook size={18} />;
     return null;
   };
 
