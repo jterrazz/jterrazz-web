@@ -76,19 +76,46 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
 
   // Filter logic:
   // 1. If part of a series, show other articles from that series
-  // 2. Otherwise, show latest published articles (excluding current one)
+  // 2. Otherwise, show latest articles (first of each series, or standalone)
   const relatedArticles = seriesName
     ? seriesArticles
-    : articles
-        .filter(
-          (article) => article.published && article.publicIndex !== currentArticle?.publicIndex,
-        )
-        .sort(
-          (a, b) =>
-            new Date(b.metadata.datePublished).getTime() -
-            new Date(a.metadata.datePublished).getTime(),
-        )
-        .slice(0, 3);
+    : (() => {
+        // Group articles by series
+        const seriesMap = new Map<string, Article[]>();
+        const standaloneArticles: Article[] = [];
+
+        for (const article of articles) {
+          if (!article.published || article.publicIndex === currentArticle?.publicIndex) continue;
+
+          if (article.metadata.series) {
+            const existing = seriesMap.get(article.metadata.series) || [];
+            existing.push(article);
+            seriesMap.set(article.metadata.series, existing);
+          } else {
+            standaloneArticles.push(article);
+          }
+        }
+
+        // Get first article of each series (sorted by publish date)
+        const seriesFirstArticles: Article[] = [];
+        for (const [, seriesArticlesList] of seriesMap) {
+          const sorted = seriesArticlesList.sort(
+            (a, b) =>
+              new Date(a.metadata.datePublished).getTime() -
+              new Date(b.metadata.datePublished).getTime(),
+          );
+          if (sorted[0]) seriesFirstArticles.push(sorted[0]);
+        }
+
+        // Combine and sort by latest date
+        return [...seriesFirstArticles, ...standaloneArticles]
+          .sort(
+            (a, b) =>
+              new Date(b.metadata.datePublished).getTime() -
+              new Date(a.metadata.datePublished).getTime(),
+          )
+          .slice(0, 3);
+      })();
 
   const jsonLd = {
     "@context": "https://schema.org",
