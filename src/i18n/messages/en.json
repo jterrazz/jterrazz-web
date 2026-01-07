@@ -34,17 +34,17 @@
     "seoDescription": "Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.",
     "highlightDescription": "Notes on what I learn while building software.",
     "filterAll": "All",
-    "filterExploration": "Explorations",
-    "filterReflection": "Reflections",
+    "filterExploration": "Experiments",
+    "filterReflection": "Reflexions",
     "otherPosts": "Recent",
     "series": "Series",
-    "viewMedium": "View Medium"
+    "viewMedium": "Medium"
   },
   "experiments": {
     "title": "Experiments",
     "seoDescription": "Open-source projects, apps, and developer tools. AI agents, fintech solutions, TypeScript packages, and system-level experiments.",
     "highlightDescription": "A collection of apps and tools I've built to solve real problems.",
-    "viewGitHub": "View GitHub",
+    "viewGitHub": "GitHub",
     "applications": "Applications",
     "hackathons": "Hackathons",
     "systems": "Systems",
@@ -82,7 +82,7 @@
     "title": "Photographs",
     "seoDescription": "Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.",
     "highlightDescription": "A simple collection of moments and places that caught my eye.",
-    "viewPexels": "View Pexels"
+    "viewPexels": "Pexels"
   },
   "common": {
     "articles": "Articles",
