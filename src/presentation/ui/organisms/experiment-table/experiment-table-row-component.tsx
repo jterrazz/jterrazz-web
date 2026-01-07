@@ -1,7 +1,7 @@
 import React from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Github } from "lucide-react";
+import { IconBrandGithubFilled, IconChevronDown, IconLockFilled } from "@tabler/icons-react";
 
 // Domain
 import { type ExperimentComponent } from "../../../../domain/experiment";
@@ -88,7 +88,7 @@ export const ExperimentTableRowComponent: React.FC<ExperimentTableRowComponentPr
             onClick={() => setIsExpanded(!isExpanded)}
             type="button"
           >
-            <ChevronDown
+            <IconChevronDown
               className={cn("w-4 h-4 transition-transform duration-300", {
                 "rotate-180": isExpanded,
               })}
@@ -150,7 +150,11 @@ export const ExperimentTableRowComponent: React.FC<ExperimentTableRowComponentPr
                   target="_blank"
                   title={experimentStatusToDescription(component.status)}
                 >
-                  {component.isPrivate ? <Lock size={16} /> : <Github size={16} />}
+                  {component.isPrivate ? (
+                    <IconLockFilled size={16} />
+                  ) : (
+                    <IconBrandGithubFilled size={16} />
+                  )}
                   {component.isPrivate ? "Private" : "View Source"}
                 </a>
               </div>

@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { FileText } from "lucide-react";
+import { IconFileTextFilled } from "@tabler/icons-react";
 import Image from "next/image";
 
 import { Link } from "../../../../infrastructure/navigation/navigation";
@@ -46,7 +46,7 @@ export const CardExperimentFeatured: React.FC<CardExperimentFeaturedProps> = ({
           <BadgeExperimentStatus status={experiment.status} />
           {hasArticle && (
             <span className="relative shrink-0 group/tooltip">
-              <FileText className="text-zinc-400 dark:text-zinc-500" size={14} />
+              <IconFileTextFilled className="text-zinc-400 dark:text-zinc-500" size={14} />
               <span className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 text-xs text-white bg-zinc-900 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity whitespace-nowrap z-10">
                 Article available
               </span>

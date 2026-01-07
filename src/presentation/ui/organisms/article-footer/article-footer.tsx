@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Github, Twitter } from "lucide-react";
+import { IconBrandGithubFilled, IconBrandTwitterFilled } from "@tabler/icons-react";
 import Image from "next/image";
 
 import { Link } from "../../../../infrastructure/navigation/navigation";
@@ -102,7 +102,7 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
             href={github.url.toString()}
             target="_blank"
           >
-            <Github size={16} />
+            <IconBrandGithubFilled size={16} />
           </Link>
           <Link
             aria-label="X (Twitter)"
@@ -110,7 +110,7 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
             href={twitter.url.toString()}
             target="_blank"
           >
-            <Twitter size={16} />
+            <IconBrandTwitterFilled size={16} />
           </Link>
         </div>
       </div>
