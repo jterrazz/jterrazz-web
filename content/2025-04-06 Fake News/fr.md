@@ -23,8 +23,6 @@ L'IA agit comme une rédaction automatisée, permettant à la plateforme de :
 
 Cette architecture permet à un petit projet de fonctionner avec le volume de contenu d'une organisation bien plus grande.
 
-![](assets/seed.jpg)
-
 ## L'architecture de la "vérité"
 
 Construire la technologie est une chose ; établir la "vérité" en est une autre. Les modèles d'IA peuvent halluciner ou hériter de biais.

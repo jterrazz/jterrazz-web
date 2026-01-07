@@ -23,8 +23,6 @@ AI acts as an automated editorial room, enabling the platform to:
 
 This architecture allows a small project to function with the content volume of a much larger organization.
 
-![](assets/seed.jpg)
-
 ## The "Truth" Architecture
 
 Building the technology is one thing; establishing "truth" is another. AI models can hallucinate or inherit biases.
