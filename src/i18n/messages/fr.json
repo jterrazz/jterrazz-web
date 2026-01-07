@@ -1,7 +1,7 @@
 {
   "home": {
     "title": "Hello, World!",
-    "description": "Construire plus intelligemment avec l'IA. Insights et expérimentations sur l'architecture, les agents et la souveraineté individuelle.",
+    "description": "Construire plus intelligemment avec l'IA. Explorations et réflexions sur l'architecture, les agents et la souveraineté individuelle.",
     "seoTitle": "Ingénieur Logiciel & Développeur IA",
     "readArticles": "Lire les articles",
     "featuredExperiments": "Expérimentations en vedette",
@@ -32,24 +32,23 @@
   "articles": {
     "title": "Articles",
     "seoDescription": "Articles techniques sur les agents IA, l'architecture logicielle, TypeScript et les bonnes pratiques d'ingénierie. Guides et tutoriels approfondis.",
-    "highlightDescription": "Notes sur l'ingénierie, l'architecture et ce que j'apprends en développant des logiciels.",
+    "highlightDescription": "Notes sur ce que j'apprends en développant des logiciels.",
     "filterAll": "Tous",
-    "filterExperiment": "Expérimentation",
-    "filterInsight": "Réflexion",
-    "latestExperiment": "Dernière expérimentation",
-    "latestInsight": "Dernière réflexion",
-    "otherPosts": "Autres articles",
+    "filterExploration": "Explorations",
+    "filterReflection": "Réflexions",
+    "otherPosts": "Récents",
     "series": "Série",
     "viewMedium": "Voir Medium"
   },
   "experiments": {
     "title": "Expérimentations",
     "seoDescription": "Projets open-source, applications et outils pour développeurs. Agents IA, solutions fintech, packages TypeScript et expérimentations système.",
-    "highlightDescription": "Une collection d'outils et d'expérimentations que j'ai construits pour résoudre de vrais problèmes.",
+    "highlightDescription": "Une collection d'applications et d'outils que j'ai construits pour résoudre de vrais problèmes.",
     "viewGitHub": "Voir GitHub",
     "applications": "Applications",
-    "tooling": "Outillage",
+    "hackathons": "Hackathons",
     "systems": "Systèmes",
+    "tools": "Outils",
     "viewProject": "Voir le projet",
     "readMore": "En savoir plus",
     "context": {

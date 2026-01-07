@@ -15,6 +15,7 @@ import { TimelineItem } from "../ui/organisms/timeline/timeline-item";
 
 interface Article {
   articleCount?: number;
+  experimentSlug?: string;
   imageUrl: string;
   slug: string;
   tagline: string;
@@ -98,7 +99,6 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                 className="first:pt-0 last:pb-0"
                 experiment={experiment}
                 key={experiment.name}
-                showIcon
               />
             ))}
           </div>
@@ -117,6 +117,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
               <CardArticleRow
                 articleCount={article.articleCount}
                 className="first:pt-0 last:pb-0"
+                experimentSlug={article.experimentSlug}
                 imageUrl={article.imageUrl}
                 key={article.title}
                 slug={article.slug}
@@ -150,8 +151,8 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
           </div>
         </section>
 
-        {/* Timeline Section */}
-        <section>
+        {/* Timeline Section - Hidden for now */}
+        {/* <section>
           <DividerSection className="mb-8" title={t.journey} />
 
           <div className="max-w-4xl mx-auto w-full">
@@ -165,7 +166,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
               ))}
             </Timeline>
           </div>
-        </section>
+        </section> */}
       </div>
     </div>
   );

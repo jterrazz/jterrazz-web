@@ -1,7 +1,7 @@
 {
   "home": {
     "title": "Hello, World!",
-    "description": "Building smarter with AI. Insights and experiments on architecture, agents, and self-sovereignty.",
+    "description": "Building smarter with AI. Explorations and reflections on architecture, agents, and self-sovereignty.",
     "seoTitle": "Software Engineer & AI Developer",
     "readArticles": "Read Articles",
     "featuredExperiments": "Featured Experiments",
@@ -32,24 +32,23 @@
   "articles": {
     "title": "Articles",
     "seoDescription": "Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.",
-    "highlightDescription": "Notes on engineering, architecture, and the things I learn while building software.",
+    "highlightDescription": "Notes on what I learn while building software.",
     "filterAll": "All",
-    "filterExperiment": "Experiment",
-    "filterInsight": "Insight",
-    "latestExperiment": "Latest Experiment",
-    "latestInsight": "Latest Insight",
-    "otherPosts": "Other Posts",
+    "filterExploration": "Explorations",
+    "filterReflection": "Reflections",
+    "otherPosts": "Recent",
     "series": "Series",
     "viewMedium": "View Medium"
   },
   "experiments": {
     "title": "Experiments",
     "seoDescription": "Open-source projects, apps, and developer tools. AI agents, fintech solutions, TypeScript packages, and system-level experiments.",
-    "highlightDescription": "A collection of tools and experiments I've built to solve real problems.",
+    "highlightDescription": "A collection of apps and tools I've built to solve real problems.",
     "viewGitHub": "View GitHub",
     "applications": "Applications",
-    "tooling": "Tooling",
+    "hackathons": "Hackathons",
     "systems": "Systems",
+    "tools": "Tools",
     "viewProject": "View project",
     "readMore": "Read more",
     "context": {

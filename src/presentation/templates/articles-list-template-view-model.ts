@@ -5,13 +5,14 @@ import { buildArticleSlug } from "../../domain/utils/slugify";
 
 // Infrastructure
 import { type Locale } from "../../i18n/config";
+import { contentLinksRepository } from "../../infrastructure/repositories/content-links.repository";
 import { userRepository } from "../../infrastructure/repositories/user.repository";
 
 export interface ArticleRowViewModel {
   category: string;
   description: string;
+  experimentSlug?: string;
   imageUrl: string;
-  isExperiment: boolean;
   slug: string;
   tagline: string;
   title: string;
@@ -33,8 +34,7 @@ export interface ArticleSeriesViewModel {
 export interface ArticlesListViewModel {
   series: ArticleSeriesViewModel[];
   standaloneArticles: ArticleRowViewModel[];
-  latestArticle: ArticleRowViewModel | null;
-  latestExperimentArticle: ArticleRowViewModel | null;
+  latestExplorationArticle: ArticleRowViewModel | null;
   button: ArticlesListButton;
   highlightDescription: string;
   highlightTitle: string;
@@ -103,28 +103,21 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
         new Date(b.metadata.datePublished).getTime() - new Date(a.metadata.datePublished).getTime(),
     );
 
-    const latestArticleRawFinal = standaloneSorted.length > 0 ? standaloneSorted[0] : null;
-
-    // Latest Experiment (Standalone Experiment category, not the one we just picked)
-    const standaloneExperiments = standaloneSorted.filter(
-      (a) =>
-        a.metadata.category === "experiment" &&
-        a.publicIndex !== latestArticleRawFinal?.publicIndex,
+    // Latest Exploration (Standalone Exploration category)
+    const standaloneExplorations = standaloneSorted.filter(
+      (a) => a.metadata.category === "exploration",
     );
-    const latestExperimentRawFinal =
-      standaloneExperiments.length > 0 ? standaloneExperiments[0] : null;
+    const latestExplorationRawFinal =
+      standaloneExplorations.length > 0 ? standaloneExplorations[0] : null;
 
-    // Final Standalone list (excluding the ones we picked)
+    // Final Standalone list (excluding the featured one)
     const finalStandaloneArticles = standaloneSorted.filter(
-      (a) =>
-        a.publicIndex !== latestArticleRawFinal?.publicIndex &&
-        a.publicIndex !== latestExperimentRawFinal?.publicIndex,
+      (a) => a.publicIndex !== latestExplorationRawFinal?.publicIndex,
     );
 
     // Map to View Models
-    const latestArticle = latestArticleRawFinal ? this.mapToViewModel(latestArticleRawFinal) : null;
-    const latestExperimentArticle = latestExperimentRawFinal
-      ? this.mapToViewModel(latestExperimentRawFinal)
+    const latestExplorationArticle = latestExplorationRawFinal
+      ? this.mapToViewModel(latestExplorationRawFinal)
       : null;
 
     // Convert series to view models
@@ -172,8 +165,7 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
     return {
       series,
       standaloneArticles: finalStandaloneArticles.map((article) => this.mapToViewModel(article)),
-      latestArticle: latestArticle ?? null,
-      latestExperimentArticle,
+      latestExplorationArticle,
       button,
       highlightDescription: this.highlightDescription,
       highlightTitle: this.highlightTitle,
@@ -204,8 +196,8 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
     return {
       category: article.metadata.category,
       description,
+      experimentSlug: contentLinksRepository.getExperimentSlugForArticle(article.publicIndex),
       imageUrl: article.imageUrl,
-      isExperiment: article.metadata.category === "experiment",
       slug: buildArticleSlug(article.publicIndex, article.metadata.title.en),
       tagline,
       title,

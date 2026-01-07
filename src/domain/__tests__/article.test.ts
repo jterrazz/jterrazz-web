@@ -115,7 +115,7 @@ describe("createArticle", () => {
     },
     imageUrl: "/image.jpg",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2024-01-01",
       datePublished: "2024-01-01",
       description: {
@@ -158,7 +158,7 @@ describe("createArticle", () => {
     expect(article.imageUrl).toBe("/image.jpg");
     expect(article.publicIndex).toBe(1);
     expect(article.published).toBe(true);
-    expect(article.metadata.category).toBe(ArticleCategory.Insight);
+    expect(article.metadata.category).toBe(ArticleCategory.Reflection);
   });
 
   it("should preserve AI and other acronyms in titles", () => {

@@ -30,6 +30,7 @@ const ArticleSeries: React.FC<{ series: ArticleSeriesViewModel; seriesLabel: str
       <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
         {allArticles.map((article) => (
           <CardArticleRow
+            experimentSlug={article.experimentSlug}
             imageUrl={article.imageUrl}
             key={article.slug}
             slug={article.slug}
@@ -44,10 +45,8 @@ const ArticleSeries: React.FC<{ series: ArticleSeriesViewModel; seriesLabel: str
 
 type ArticlesListTranslations = {
   filterAll: string;
-  filterExperiment: string;
-  filterInsight: string;
-  latestExperiment: string;
-  latestInsight: string;
+  filterExploration: string;
+  filterReflection: string;
   otherPosts: string;
   series: string;
 };
@@ -61,11 +60,11 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
   translations: t,
   viewModel,
 }) => {
-  const [filter, setFilter] = useState<"All" | "Experiment" | "Insight">("All");
+  const [filter, setFilter] = useState<"All" | "Exploration" | "Reflection">("All");
 
   const filterMap: Record<string, ArticleCategory[]> = {
-    Insight: [ArticleCategory.Insight],
-    Experiment: [ArticleCategory.Experiment],
+    Reflection: [ArticleCategory.Reflection],
+    Exploration: [ArticleCategory.Exploration],
   };
 
   // Filter Helper
@@ -82,9 +81,8 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
   const filteredStandalone = viewModel.standaloneArticles.filter(shouldShow);
 
   // Featured articles visibility
-  const showLatestInsight = viewModel.latestArticle && shouldShow(viewModel.latestArticle);
-  const showLatestExperiment =
-    viewModel.latestExperimentArticle && shouldShow(viewModel.latestExperimentArticle);
+  const showLatestExploration =
+    viewModel.latestExplorationArticle && shouldShow(viewModel.latestExplorationArticle);
 
   const allArticles = [
     ...viewModel.series.flatMap((series) => [series.featuredArticle, ...series.relatedArticles]),
@@ -140,8 +138,8 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
           <div className="flex items-center gap-2">
             {[
               { key: "All", label: t.filterAll },
-              { key: "Experiment", label: t.filterExperiment },
-              { key: "Insight", label: t.filterInsight },
+              { key: "Exploration", label: t.filterExploration },
+              { key: "Reflection", label: t.filterReflection },
             ].map(({ key, label }) => (
               <button
                 className={`
@@ -153,7 +151,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
                                     }
                                 `}
                 key={key}
-                onClick={() => setFilter(key as "All" | "Experiment" | "Insight")}
+                onClick={() => setFilter(key as "All" | "Exploration" | "Reflection")}
                 type="button"
               >
                 {label}
@@ -166,24 +164,17 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
       {/* Articles Content */}
       <div className="max-w-3xl mx-auto px-4 md:px-6 pb-24 space-y-12">
         {/* Featured Articles */}
-        {(showLatestInsight || showLatestExperiment) && (
+        {showLatestExploration && (
           <section>
             <DividerSection className="mb-6" title="Featured" />
             <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
-              {showLatestExperiment && viewModel.latestExperimentArticle && (
+              {viewModel.latestExplorationArticle && (
                 <CardArticleRow
-                  imageUrl={viewModel.latestExperimentArticle.imageUrl}
-                  slug={viewModel.latestExperimentArticle.slug}
-                  tagline={viewModel.latestExperimentArticle.tagline}
-                  title={viewModel.latestExperimentArticle.title}
-                />
-              )}
-              {showLatestInsight && viewModel.latestArticle && (
-                <CardArticleRow
-                  imageUrl={viewModel.latestArticle.imageUrl}
-                  slug={viewModel.latestArticle.slug}
-                  tagline={viewModel.latestArticle.tagline}
-                  title={viewModel.latestArticle.title}
+                  experimentSlug={viewModel.latestExplorationArticle.experimentSlug}
+                  imageUrl={viewModel.latestExplorationArticle.imageUrl}
+                  slug={viewModel.latestExplorationArticle.slug}
+                  tagline={viewModel.latestExplorationArticle.tagline}
+                  title={viewModel.latestExplorationArticle.title}
                 />
               )}
             </div>
@@ -202,6 +193,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
             <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
               {filteredStandalone.map((article) => (
                 <CardArticleRow
+                  experimentSlug={article.experimentSlug}
                   imageUrl={article.imageUrl}
                   key={article.slug}
                   slug={article.slug}

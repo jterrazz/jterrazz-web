@@ -41,7 +41,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2019-06-01 Malloc",
     metadata: {
-      category: ArticleCategory.Experiment,
+      category: ArticleCategory.Exploration,
       dateModified: "2025-06-23",
       datePublished: "2019-06-01",
       description: {
@@ -64,7 +64,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2019-06-07 Sha256",
     metadata: {
-      category: ArticleCategory.Experiment,
+      category: ArticleCategory.Exploration,
       dateModified: "2025-06-24",
       datePublished: "2019-06-07",
       description: {
@@ -87,7 +87,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2019-07-25 Nm Otool",
     metadata: {
-      category: ArticleCategory.Experiment,
+      category: ArticleCategory.Exploration,
       dateModified: "2025-06-25",
       datePublished: "2019-07-25",
       description: {
@@ -110,7 +110,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2019-08-27 Quine",
     metadata: {
-      category: ArticleCategory.Experiment,
+      category: ArticleCategory.Exploration,
       dateModified: "2025-06-26",
       datePublished: "2019-08-27",
       description: {
@@ -133,7 +133,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2019-08-28 Assembly",
     metadata: {
-      category: ArticleCategory.Experiment,
+      category: ArticleCategory.Exploration,
       dateModified: "2025-06-27",
       datePublished: "2019-08-28",
       description: {
@@ -156,7 +156,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2019-09-10 Expert System",
     metadata: {
-      category: ArticleCategory.Experiment,
+      category: ArticleCategory.Exploration,
       dateModified: "2025-06-28",
       datePublished: "2019-09-10",
       description: {
@@ -179,7 +179,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2020-11-03 Koa",
     metadata: {
-      category: ArticleCategory.Experiment,
+      category: ArticleCategory.Exploration,
       dateModified: "2025-06-29",
       datePublished: "2020-11-03",
       description: {
@@ -202,7 +202,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2023-07-02 Open Market",
     metadata: {
-      category: ArticleCategory.Experiment,
+      category: ArticleCategory.Exploration,
       dateModified: "2025-07-01",
       datePublished: "2023-07-02",
       description: {
@@ -225,7 +225,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2024-12-20 Application Design Introduction",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-02",
       datePublished: "2024-12-20",
       description: {
@@ -249,7 +249,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2024-12-21 Application Design Dependencies",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-03",
       datePublished: "2024-12-21",
       description: {
@@ -273,7 +273,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2024-12-22 Application Design Hexagonal",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-04",
       datePublished: "2024-12-22",
       description: {
@@ -297,7 +297,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2024-12-23 Application Design Clean Architecture",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-05",
       datePublished: "2024-12-23",
       description: {
@@ -321,7 +321,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2025-04-06 Fake News",
     metadata: {
-      category: ArticleCategory.Experiment,
+      category: ArticleCategory.Exploration,
       dateModified: "2025-07-06",
       datePublished: "2025-04-06",
       description: {
@@ -344,7 +344,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2025-05-06 Navigating the AI Revolution",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-07",
       datePublished: "2025-05-06",
       description: {
@@ -368,7 +368,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2025-05-07 Applied Intelligence",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-08",
       datePublished: "2025-05-07",
       description: {
@@ -392,7 +392,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2025-05-08 Architects of Inversion - The Collapse of Execution",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-09",
       datePublished: "2025-05-08",
       description: {
@@ -416,7 +416,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2025-05-09 Architects of Inversion - The World That Follows",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-10",
       datePublished: "2025-05-09",
       description: {
@@ -440,7 +440,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2025-05-18 Cursor",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-12",
       datePublished: "2025-05-18",
       description: {
@@ -463,7 +463,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2025-07-19 Intelligence Levels",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-19",
       datePublished: "2025-07-19",
       description: {
@@ -476,8 +476,8 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         fr: "De l'assistant à l'intelligence programmable",
       },
       title: {
-        en: "The four levels of AI integration",
-        fr: "Les quatre niveaux d'intégration de l'IA",
+        en: "The four levels of AI mastery",
+        fr: "Les quatre niveaux de maîtrise de l'IA",
       },
     },
     previewImage: "thumbnail.jpg",
@@ -487,7 +487,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2025-07-20 Directing Agents",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-20",
       datePublished: "2025-07-20",
       description: {
@@ -500,8 +500,8 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         fr: "Du code à l'orchestration d'agents",
       },
       title: {
-        en: "Directing AI agents",
-        fr: "Diriger les agents IA",
+        en: "The art of directing AI",
+        fr: "L'art de diriger l'IA",
       },
     },
     previewImage: "thumbnail.jpg",
@@ -511,7 +511,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2025-07-21 Autonomous Agents",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-21",
       datePublished: "2025-07-21",
       description: {
@@ -524,8 +524,8 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         fr: "Déléguer les workflows à l'IA",
       },
       title: {
-        en: "Autonomous AI agents",
-        fr: "Les agents IA autonomes",
+        en: "Collaborating with AI on larger problems",
+        fr: "Collaborer avec l'IA sur des problèmes d'envergure",
       },
     },
     previewImage: "thumbnail.jpg",
@@ -535,7 +535,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
   {
     filename: "2025-07-22 Intelligent Systems",
     metadata: {
-      category: ArticleCategory.Insight,
+      category: ArticleCategory.Reflection,
       dateModified: "2025-07-22",
       datePublished: "2025-07-22",
       description: {
@@ -548,8 +548,8 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         fr: "Allier code et raisonnement IA",
       },
       title: {
-        en: "Programming intelligent systems",
-        fr: "Programmer des systèmes intelligents",
+        en: "When AI becomes the product",
+        fr: "Quand l'IA devient le produit",
       },
     },
     previewImage: "thumbnail.jpg",

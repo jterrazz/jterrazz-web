@@ -11,6 +11,7 @@ import { UserContactType } from "../../../../domain/user";
 import { buildArticleSlug } from "../../../../domain/utils/slugify";
 
 // Infrastructure
+import { contentLinksRepository } from "../../../../infrastructure/repositories/content-links.repository";
 import { userRepository } from "../../../../infrastructure/repositories/user.repository";
 
 // Utils
@@ -59,6 +60,9 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
             {relatedArticles.map((article) => {
               const slug = buildArticleSlug(article.publicIndex, article.metadata.title.en);
               const isCurrent = currentArticleId === slug;
+              const experimentSlug = contentLinksRepository.getExperimentSlugForArticle(
+                article.publicIndex,
+              );
 
               return (
                 <div
@@ -66,6 +70,7 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
                   key={article.metadata.title.en}
                 >
                   <CardArticleRow
+                    experimentSlug={experimentSlug}
                     imageUrl={article.imageUrl}
                     slug={slug}
                     tagline={article.metadata.tagline.en}
@@ -126,9 +131,13 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
           <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
             {relatedArticles.map((article) => {
               const slug = buildArticleSlug(article.publicIndex, article.metadata.title.en);
+              const experimentSlug = contentLinksRepository.getExperimentSlugForArticle(
+                article.publicIndex,
+              );
 
               return (
                 <CardArticleRow
+                  experimentSlug={experimentSlug}
                   imageUrl={article.imageUrl}
                   key={article.metadata.title.en}
                   slug={slug}

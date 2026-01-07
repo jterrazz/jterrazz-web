@@ -4,8 +4,11 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { SITE_CONFIG } from "../../../../config/site";
 import type { ExperimentContext } from "../../../../domain/experiment";
+import { buildArticleSlug } from "../../../../domain/utils/slugify";
 
 import { locales } from "../../../../i18n/config";
+import { articlesRepository } from "../../../../infrastructure/repositories/articles.repository";
+import { contentLinksRepository } from "../../../../infrastructure/repositories/content-links.repository";
 import { experimentsRepository } from "../../../../infrastructure/repositories/experiments.repository";
 import { buildMetadata } from "../../../../infrastructure/seo/build-metadata";
 import { buildExperimentDetailJsonLd } from "../../../../infrastructure/seo/json-ld";
@@ -85,10 +88,20 @@ export default async function ExperimentDetailPage(props: Props) {
 
   const t = await getTranslations({ locale, namespace: "experiments" });
 
+  // Get linked article if exists
+  const linkedArticleIndex = contentLinksRepository.getArticleIndexForExperiment(slug);
+  const allArticles = articlesRepository.getAll();
+  const linkedArticle = linkedArticleIndex
+    ? allArticles.find((a) => a.publicIndex === linkedArticleIndex)
+    : undefined;
+  const articleUrl = linkedArticle
+    ? `/articles/${buildArticleSlug(linkedArticle.publicIndex, linkedArticle.metadata.title.en)}`
+    : null;
+
   // Convert URL instances to strings for client components
   const serializedExperiment = {
     ...experiment,
-    articleUrl: experiment.articleUrl ?? null,
+    articleUrl,
     components: experiment.components.map((component) => ({
       ...component,
       sourceUrl: component.sourceUrl.toString(),

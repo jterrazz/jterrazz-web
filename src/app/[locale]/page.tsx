@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildArticleSlug } from "../../domain/utils/slugify";
 
 import { articlesRepository } from "../../infrastructure/repositories/articles.repository";
+import { contentLinksRepository } from "../../infrastructure/repositories/content-links.repository";
 import { experimentsRepository } from "../../infrastructure/repositories/experiments.repository";
 import { userRepository } from "../../infrastructure/repositories/user.repository";
 import { buildMetadata } from "../../infrastructure/seo/build-metadata";
@@ -81,6 +82,7 @@ export default async function HomePage({ params }: Props) {
   // Build featured articles list
   const featuredArticlesWithDates: Array<{
     articleCount?: number;
+    experimentSlug?: string;
     imageUrl: string;
     latestDate: Date;
     slug: string;
@@ -116,6 +118,7 @@ export default async function HomePage({ params }: Props) {
     if (!article) continue;
 
     featuredArticlesWithDates.push({
+      experimentSlug: contentLinksRepository.getExperimentSlugForArticle(article.publicIndex),
       imageUrl: article.imageUrl ?? "",
       latestDate: new Date(article.metadata.dateModified),
       slug: buildArticleSlug(article.publicIndex, article.metadata.title.en),
@@ -134,15 +137,27 @@ export default async function HomePage({ params }: Props) {
   const featuredExperiments = featuredSlugs
     .map((slug) => experimentsRepository.getBySlug(slug))
     .filter((exp) => exp !== undefined)
-    .map((experiment) => ({
-      ...experiment,
-      articleUrl: experiment.articleUrl ?? null,
-      components: experiment.components.map((component) => ({
-        ...component,
-        sourceUrl: component.sourceUrl.toString(),
-      })),
-      url: experiment.url ? experiment.url.toString() : "",
-    }));
+    .map((experiment) => {
+      const linkedArticleIndex = contentLinksRepository.getArticleIndexForExperiment(
+        experiment.slug,
+      );
+      const linkedArticle = linkedArticleIndex
+        ? allArticles.find((a) => a.publicIndex === linkedArticleIndex)
+        : undefined;
+      const articleUrl = linkedArticle
+        ? `/articles/${buildArticleSlug(linkedArticle.publicIndex, linkedArticle.metadata.title.en)}`
+        : null;
+
+      return {
+        ...experiment,
+        articleUrl,
+        components: experiment.components.map((component) => ({
+          ...component,
+          sourceUrl: component.sourceUrl.toString(),
+        })),
+        url: experiment.url ? experiment.url.toString() : "",
+      };
+    });
 
   const jsonLd = buildPersonJsonLd({ description: t("description") });
 

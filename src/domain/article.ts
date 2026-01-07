@@ -1,6 +1,6 @@
 export enum ArticleCategory {
-  Insight = "insight",
-  Experiment = "experiment",
+  Exploration = "exploration",
+  Reflection = "reflection",
 }
 
 export type ArticleLanguage = "en" | "fr";

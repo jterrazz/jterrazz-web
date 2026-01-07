@@ -1,3 +1,4 @@
+import { FlaskConical } from "lucide-react";
 import Image from "next/image";
 
 import { Link } from "../../../../infrastructure/navigation/navigation";
@@ -7,6 +8,7 @@ import { cn } from "../../../utils";
 export interface CardArticleRowProps {
   articleCount?: number;
   className?: string;
+  experimentSlug?: string;
   imageUrl: string;
   slug: string;
   tagline: string;
@@ -20,12 +22,14 @@ export interface CardArticleRowProps {
 export const CardArticleRow: React.FC<CardArticleRowProps> = ({
   articleCount,
   className,
+  experimentSlug,
   imageUrl,
   slug,
   tagline,
   title,
 }) => {
   const isSeries = articleCount !== undefined && articleCount > 1;
+  const hasExperiment = !!experimentSlug;
 
   return (
     <Link
@@ -40,6 +44,14 @@ export const CardArticleRow: React.FC<CardArticleRowProps> = ({
           </h3>
           {isSeries && (
             <span className="shrink-0 text-xs text-zinc-400 dark:text-zinc-500">· Series</span>
+          )}
+          {hasExperiment && (
+            <span className="relative shrink-0 group/tooltip">
+              <FlaskConical className="text-zinc-400 dark:text-zinc-500" size={14} />
+              <span className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 text-xs text-white bg-zinc-900 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity whitespace-nowrap z-10">
+                Linked to {experimentSlug} experiment
+              </span>
+            </span>
           )}
         </div>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-1">{tagline}</p>

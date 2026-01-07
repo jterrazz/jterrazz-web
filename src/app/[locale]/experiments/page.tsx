@@ -1,119 +1,135 @@
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
+import { buildArticleSlug } from "../../../domain/utils/slugify";
 
 // Infrastructure
-import { experimentsRepository } from '../../../infrastructure/repositories/experiments.repository';
+import { articlesRepository } from "../../../infrastructure/repositories/articles.repository";
+import { contentLinksRepository } from "../../../infrastructure/repositories/content-links.repository";
+import { experimentsRepository } from "../../../infrastructure/repositories/experiments.repository";
 import {
-    FeatureId,
-    featuresRepository,
-} from '../../../infrastructure/repositories/features.repository';
-import { buildMetadata } from '../../../infrastructure/seo/build-metadata';
+  FeatureId,
+  featuresRepository,
+} from "../../../infrastructure/repositories/features.repository";
+import { buildMetadata } from "../../../infrastructure/seo/build-metadata";
 import {
-    buildCollectionPageJsonLd,
-    buildSoftwareApplicationJsonLd,
-} from '../../../infrastructure/seo/json-ld';
+  buildCollectionPageJsonLd,
+  buildSoftwareApplicationJsonLd,
+} from "../../../infrastructure/seo/json-ld";
 
-import { SITE_CONFIG } from '../../../config/site';
-import { ExperimentsListTemplate } from '../../../presentation/templates/experiments-list.template';
-import { JsonLdScript } from '../../../presentation/ui/atoms/json-ld-script/json-ld-script';
+import { SITE_CONFIG } from "../../../config/site";
+import { ExperimentsListTemplate } from "../../../presentation/templates/experiments-list.template";
+import { JsonLdScript } from "../../../presentation/ui/atoms/json-ld-script/json-ld-script";
 
 // Force static generation for this page
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 export const revalidate = false;
 
 type Props = {
-    params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({ params }: Props) {
-    const { locale } = await params;
-    const t = await getTranslations({ locale, namespace: 'experiments' });
-    const path = locale === 'en' ? '/experiments' : `/${locale}/experiments`;
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "experiments" });
+  const path = locale === "en" ? "/experiments" : `/${locale}/experiments`;
 
-    return buildMetadata({
-        alternateLanguages: {
-            en: '/experiments',
-            fr: '/fr/experiments',
-        },
-        description: t('seoDescription'),
-        keywords: [
-            'AI experiments',
-            'fintech tools',
-            'personal growth',
-            'habit formation',
-            'intelligent systems',
-            'Jean-Baptiste Terrazzoni',
-            'AI Agent Developer',
-            'Fintech Engineer',
-        ],
-        locale,
-        path,
-        title: t('title'),
-    });
+  return buildMetadata({
+    alternateLanguages: {
+      en: "/experiments",
+      fr: "/fr/experiments",
+    },
+    description: t("seoDescription"),
+    keywords: [
+      "AI experiments",
+      "fintech tools",
+      "personal growth",
+      "habit formation",
+      "intelligent systems",
+      "Jean-Baptiste Terrazzoni",
+      "AI Agent Developer",
+      "Fintech Engineer",
+    ],
+    locale,
+    path,
+    title: t("title"),
+  });
 }
 
 export default async function ExperimentsPage({ params }: Props) {
-    const { locale } = await params;
-    setRequestLocale(locale);
+  const { locale } = await params;
+  setRequestLocale(locale);
 
-    const t = await getTranslations({ locale, namespace: 'experiments' });
+  const t = await getTranslations({ locale, namespace: "experiments" });
 
-    const experimentsDomain = experimentsRepository.getAll();
+  const experimentsDomain = experimentsRepository.getAll();
+  const allArticles = articlesRepository.getAll();
 
-    // Convert URL and Date instances to plain serialisable values for client components
-    const experiments = experimentsDomain.map((experiment) => ({
-        ...experiment,
-        articleUrl: experiment.articleUrl ?? null,
-        components: experiment.components.map((component) => ({
-            ...component,
-            sourceUrl: component.sourceUrl.toString(),
-        })),
-        url: experiment.url ? experiment.url.toString() : '',
-    }));
+  // Convert URL and Date instances to plain serialisable values for client components
+  const experiments = experimentsDomain.map((experiment) => {
+    const linkedArticleIndex = contentLinksRepository.getArticleIndexForExperiment(experiment.slug);
+    const linkedArticle = linkedArticleIndex
+      ? allArticles.find((a) => a.publicIndex === linkedArticleIndex)
+      : undefined;
+    const articleUrl = linkedArticle
+      ? `/articles/${buildArticleSlug(linkedArticle.publicIndex, linkedArticle.metadata.title.en)}`
+      : null;
 
-    const features = [
-        featuresRepository.getById(FeatureId.Repository),
-        featuresRepository.getById(FeatureId.Capitaine),
-        featuresRepository.getById(FeatureId.Source),
-    ].map((feature) => ({
-        ...feature,
-        url: feature.url.toString(),
-    }));
-
-    const highlightTitle = t('title');
-    const highlightDescription = t('highlightDescription');
-
-    const pageUrl = `${SITE_CONFIG.baseUrl}${locale === 'en' ? '/experiments' : `/${locale}/experiments`}`;
-    const jsonLd = buildCollectionPageJsonLd({
-        description: t('seoDescription'),
-        items: experiments.map((experiment) =>
-            buildSoftwareApplicationJsonLd({
-                description: experiment.description,
-                name: experiment.name,
-                url: experiment.url,
-            }),
-        ),
-        name: 'The Lab: Projects, Tools & Proofs of Concept',
-        url: pageUrl,
-    });
-
-    // Translations for client component
-    const translations = {
-        applications: t('applications'),
-        systems: t('systems'),
-        tooling: t('tooling'),
-        viewGitHub: t('viewGitHub'),
+    return {
+      ...experiment,
+      articleUrl,
+      components: experiment.components.map((component) => ({
+        ...component,
+        sourceUrl: component.sourceUrl.toString(),
+      })),
+      url: experiment.url ? experiment.url.toString() : "",
     };
+  });
 
-    return (
-        <>
-            <JsonLdScript data={jsonLd} id="experiments-json-ld" />
-            <ExperimentsListTemplate
-                experiments={experiments}
-                features={features}
-                highlightDescription={highlightDescription}
-                highlightTitle={highlightTitle}
-                translations={translations}
-            />
-        </>
-    );
+  const features = [
+    featuresRepository.getById(FeatureId.Repository),
+    featuresRepository.getById(FeatureId.Capitaine),
+    featuresRepository.getById(FeatureId.Source),
+  ].map((feature) => ({
+    ...feature,
+    url: feature.url.toString(),
+  }));
+
+  const highlightTitle = t("title");
+  const highlightDescription = t("highlightDescription");
+
+  const pageUrl = `${SITE_CONFIG.baseUrl}${locale === "en" ? "/experiments" : `/${locale}/experiments`}`;
+  const jsonLd = buildCollectionPageJsonLd({
+    description: t("seoDescription"),
+    items: experiments.map((experiment) =>
+      buildSoftwareApplicationJsonLd({
+        description: experiment.description,
+        name: experiment.name,
+        url: experiment.url,
+      }),
+    ),
+    name: "The Lab: Projects, Tools & Proofs of Concept",
+    url: pageUrl,
+  });
+
+  // Translations for client component
+  const translations = {
+    applications: t("applications"),
+    hackathons: t("hackathons"),
+    systems: t("systems"),
+    tools: t("tools"),
+    viewGitHub: t("viewGitHub"),
+  };
+
+  return (
+    <>
+      <JsonLdScript data={jsonLd} id="experiments-json-ld" />
+      <ExperimentsListTemplate
+        experiments={experiments}
+        features={features}
+        highlightDescription={highlightDescription}
+        highlightTitle={highlightTitle}
+        translations={translations}
+      />
+    </>
+  );
 }
