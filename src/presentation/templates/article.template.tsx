@@ -125,7 +125,7 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
 
       {linkedExperiment && (
         <Link
-          className="group flex items-center gap-2 mb-4 px-3 py-2 -mx-3 rounded-lg text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
+          className="group flex items-center gap-2 mb-2 px-3 py-2 -mx-3 rounded-lg text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
           href={`/experiments/${linkedExperiment.slug}`}
         >
           <IconFlaskFilled className="text-zinc-400 dark:text-zinc-500" size={14} />
