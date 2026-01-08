@@ -115,12 +115,12 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
           </section>
         )}
 
-        {/* Systems */}
-        {systems.length > 0 && (
+        {/* Tools */}
+        {tools.length > 0 && (
           <section>
-            <DividerSection className="mb-8" title={t.systems} />
+            <DividerSection className="mb-8" title={t.tools} />
             <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
-              {systems.map((experiment) => (
+              {tools.map((experiment) => (
                 <CardExperimentFeatured
                   className="first:pt-0 last:pb-0"
                   experiment={experiment}
@@ -131,12 +131,12 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
           </section>
         )}
 
-        {/* Tools */}
-        {tools.length > 0 && (
+        {/* Systems */}
+        {systems.length > 0 && (
           <section>
-            <DividerSection className="mb-8" title={t.tools} />
+            <DividerSection className="mb-8" title={t.systems} />
             <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
-              {tools.map((experiment) => (
+              {systems.map((experiment) => (
                 <CardExperimentFeatured
                   className="first:pt-0 last:pb-0"
                   experiment={experiment}
