@@ -3,9 +3,11 @@
 import React from "react";
 
 import {
+  IconArticleFilled,
   IconBrandGithubFilled,
   IconBrandLinkedinFilled,
-  IconBrandTwitterFilled,
+  IconBrandXFilled,
+  IconCameraFilled,
   IconMailFilled,
 } from "@tabler/icons-react";
 import Image from "next/image";
@@ -52,12 +54,16 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
   const linkedin = userRepository.getContact(UserContactType.LinkedIn);
   const x = userRepository.getContact(UserContactType.X);
   const github = userRepository.getContact(UserContactType.GitHub);
+  const medium = userRepository.getContact(UserContactType.Medium);
+  const pexels = userRepository.getContact(UserContactType.Pexels);
 
   const socialLinks = [
-    { href: email.url.toString(), icon: IconMailFilled, label: "Email" },
+    { href: x.url.toString(), icon: IconBrandXFilled, label: "X" },
     { href: linkedin.url.toString(), icon: IconBrandLinkedinFilled, label: "LinkedIn" },
-    { href: x.url.toString(), icon: IconBrandTwitterFilled, label: "X" },
     { href: github.url.toString(), icon: IconBrandGithubFilled, label: "GitHub" },
+    { href: medium.url.toString(), icon: IconArticleFilled, label: "Medium" },
+    { href: pexels.url.toString(), icon: IconCameraFilled, label: "Pexels" },
+    { href: email.url.toString(), icon: IconMailFilled, label: "Email" },
   ];
 
   const footerJsonLd = {

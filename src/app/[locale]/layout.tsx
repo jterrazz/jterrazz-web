@@ -48,6 +48,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     const contacts = [
         userRepository.getContact(UserContactType.GitHub),
         userRepository.getContact(UserContactType.Medium),
+        userRepository.getContact(UserContactType.X),
     ].map((contact) => ({
         name: contact.type,
         type: contact.type,

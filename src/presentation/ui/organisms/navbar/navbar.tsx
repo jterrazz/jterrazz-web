@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   IconBook,
   IconBrandGithub,
+  IconBrandX,
   IconChevronDown,
   IconDeviceDesktop,
   IconDownload,
@@ -66,7 +67,7 @@ function LanguageSwitcher({ className, onSwitch }: { className?: string; onSwitc
   return (
     <div className={cn("relative", className)} ref={dropdownRef}>
       <button
-        className="flex items-center gap-1 text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+        className="flex items-center gap-1 text-sm font-medium text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
         onClick={() => setIsOpen(!isOpen)}
         type="button"
       >
@@ -174,6 +175,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
   const getContactIcon = (name: string) => {
     if (name.toLowerCase().includes("github")) return <IconBrandGithub size={18} />;
     if (name.toLowerCase().includes("medium")) return <IconBook size={18} />;
+    if (name.toLowerCase() === "x") return <IconBrandX size={18} />;
     return null;
   };
 
@@ -239,11 +241,8 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
 
           {/* Right Section: Actions */}
           <div className="hidden md:flex justify-end items-center gap-1 lg:gap-2">
-            <LanguageSwitcher className="px-1" />
-
-            <div className="hidden lg:block w-px h-4 bg-zinc-200 dark:bg-zinc-700 mx-1" />
-
             <div className="hidden lg:flex items-center gap-1">
+              <LanguageSwitcher className="px-2" />
               {contacts.map((contact) => (
                 <NavbarTabItem
                   className="text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100 transition-colors p-2"
