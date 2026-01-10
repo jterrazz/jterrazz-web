@@ -325,16 +325,16 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
       dateModified: "2026-01-10",
       datePublished: "2026-01-10",
       description: {
-        en: "A vision for a news dashboard that maps narratives instead of listing headlines. Using AI to visualize common ground, fault lines, and the edges where reporting dissolves into speculation.",
-        fr: "Une vision d'un tableau de bord d'actualité qui cartographie les récits au lieu de lister les gros titres. L'IA pour visualiser le socle commun, les lignes de fracture et les confins de l'information.",
+        en: "A dashboard concept for monitoring global narratives as they evolve. AI distills signal from noise, mapping where stories align, clash, and fade into speculation.",
+        fr: "Un concept de tableau de bord pour suivre l'évolution des récits mondiaux. L'IA extrait le signal du bruit, cartographiant où les histoires s'alignent, s'opposent et se perdent dans la spéculation.",
       },
       tagline: {
-        en: "Mapping narratives, not just headlines",
-        fr: "Cartographier les récits, pas les gros titres",
+        en: "Real-time intelligence for a noisy world",
+        fr: "Intelligence en temps réel pour un monde bruyant",
       },
       title: {
-        en: "Mapping the Noise",
-        fr: "Cartographier le Bruit",
+        en: "Mapping the noise",
+        fr: "Cartographier le bruit",
       },
     },
     previewImage: DEFAULT_PREVIEW_IMAGE,
