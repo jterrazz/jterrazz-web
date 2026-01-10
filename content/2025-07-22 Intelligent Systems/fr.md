@@ -173,3 +173,4 @@ L'IA vous donne des capacités qui étaient impossibles auparavant. Compréhensi
 
 Une bonne architecture rend ce compromis valable. Vous obtenez les capacités. Vous contenez l'imprévisibilité. Laissez le code faire le travail du code. Laissez l'IA faire le travail de l'IA. Concevez les frontières avec soin.
 
+

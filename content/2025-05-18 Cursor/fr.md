@@ -155,3 +155,4 @@ Ma valeur en tant qu'ingénieur était limitée par la vitesse à laquelle je po
 Cursor ne remplace pas l'ingénieur. Il supprime la barrière entre la pensée et le logiciel, assurant que la seule limite à ce que vous pouvez construire est la clarté de votre pensée.
 
 
+

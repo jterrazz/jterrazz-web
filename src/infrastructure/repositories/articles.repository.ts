@@ -319,22 +319,22 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     published: true,
   },
   {
-    filename: "2025-04-06 Fake News",
+    filename: "2026-01-10 N00",
     metadata: {
       category: ArticleCategory.Exploration,
-      dateModified: "2025-07-06",
-      datePublished: "2025-04-06",
+      dateModified: "2026-01-10",
+      datePublished: "2026-01-10",
       description: {
-        en: "Building n00, a mobile game that teaches media literacy through play. Using AI to generate quiz content that challenges players to spot bias and think critically about news.",
-        fr: "Création de n00, un jeu mobile qui enseigne la littératie médiatique par le jeu. L'IA génère du contenu quiz défiant les joueurs de repérer les biais dans l'actualité.",
+        en: "A vision for a news dashboard that maps narratives instead of listing headlines. Using AI to visualize common ground, fault lines, and the edges where reporting dissolves into speculation.",
+        fr: "Une vision d'un tableau de bord d'actualité qui cartographie les récits au lieu de lister les gros titres. L'IA pour visualiser le socle commun, les lignes de fracture et les confins de l'information.",
       },
       tagline: {
-        en: "A game to spot bias in the news",
-        fr: "Un jeu pour repérer les biais médiatiques",
+        en: "Mapping narratives, not just headlines",
+        fr: "Cartographier les récits, pas les gros titres",
       },
       title: {
-        en: "Let's playfully question everything",
-        fr: "Remettre en question, c'est jouer",
+        en: "Mapping the Noise",
+        fr: "Cartographier le Bruit",
       },
     },
     previewImage: DEFAULT_PREVIEW_IMAGE,

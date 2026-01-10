@@ -131,3 +131,4 @@ La combinaison est puissante non pas parce qu'elle est plus rapide (bien qu'elle
 
 Les décisions restent les miennes. L'architecture est mon jugement.
 
+

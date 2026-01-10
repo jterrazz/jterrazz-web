@@ -175,3 +175,4 @@ Chaque changement spécifié avec précision affûte votre capacité à articule
 
 Après un an de pratique, je dirige des changements en quelques secondes qui auraient pris des minutes à taper—et j'attrape les problèmes avant qu'ils ne partent en prod. Le but n'est pas juste d'accepter les changements plus vite. C'est de développer le jugement qui rend la vérification rapide fiable. Ce jugement est la différence entre une IA qui vous accélère et une IA qui génère de la dette technique.
 
+

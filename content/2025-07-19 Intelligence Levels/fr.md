@@ -167,3 +167,4 @@ La compétence n'est pas de maîtriser un niveau—c'est de reconnaître quel ni
 
 Le fantasme de "Jarvis" n'était pas faux—il était juste incomplet. La vraie maîtrise n'est pas d'avoir un assistant omniscient qui fait tout pour vous. C'est de savoir quand laisser l'IA autocompléter, quand la commander avec précision, quand collaborer comme partenaires, et quand en faire une partie du produit lui-même.
 
+
