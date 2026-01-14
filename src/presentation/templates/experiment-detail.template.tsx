@@ -26,7 +26,16 @@ import { cn } from "../utils";
 
 import { QRCode } from "../ui/atoms/qr-code/qr-code";
 import { BadgeExperimentStatus } from "../ui/molecules/badge-experiment-status/badge-experiment-status";
+import { CardArticleRow } from "../ui/molecules/card-article/card-article-row";
 import { DividerSection } from "../ui/molecules/divider-section/divider-section";
+
+// Related article for the Articles section
+type RelatedArticle = {
+  imageUrl: string;
+  slug: string;
+  tagline: string;
+  title: string;
+};
 
 // Serializable version of Experiment for Server → Client transfer
 type SerializableExperiment = Omit<Experiment, "components" | "url"> & {
@@ -36,6 +45,7 @@ type SerializableExperiment = Omit<Experiment, "components" | "url"> & {
       sourceUrl: string;
     }
   >;
+  relatedArticles: RelatedArticle[];
   url: string;
 };
 
@@ -49,6 +59,7 @@ type ExperimentDetailTranslations = {
   detail: {
     about: string;
     appStore: string;
+    articles: string;
     availableOn: string;
     components: string;
     downloadOnAppStore: string;
@@ -209,7 +220,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
           {/* Background Texture */}
           <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none bg-[url('/assets/texture-dots.png')] bg-repeat" />
 
-          <div className="max-w-5xl mx-auto relative z-10">
+          <div className="max-w-4xl mx-auto relative z-10">
             <div className="flex flex-col gap-8">
               {/* Title & Badges */}
               <div className="space-y-6">
@@ -257,7 +268,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
       )}
 
       <div className="px-4 md:px-6 pt-20">
-        <div className="max-w-5xl mx-auto space-y-24">
+        <div className="max-w-4xl mx-auto space-y-24">
           {/* Screenshots (Showcase) */}
           {experiment.images?.screenshots && experiment.images.screenshots.length > 0 && (
             <section className="overflow-hidden">
@@ -328,6 +339,24 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
               </div>
             </div>
           </section>
+
+          {/* Articles Section */}
+          {experiment.relatedArticles && experiment.relatedArticles.length > 0 && (
+            <section>
+              <DividerSection className="mb-6" title={t.detail.articles} />
+              <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
+                {experiment.relatedArticles.map((article) => (
+                  <CardArticleRow
+                    imageUrl={article.imageUrl}
+                    key={article.slug}
+                    slug={article.slug}
+                    tagline={article.tagline}
+                    title={article.title}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Components (If applicable) */}
           {experiment.components && experiment.components.length > 0 && (

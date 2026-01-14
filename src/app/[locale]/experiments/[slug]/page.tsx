@@ -6,7 +6,7 @@ import { SITE_CONFIG } from "../../../../config/site";
 import type { ExperimentContext } from "../../../../domain/experiment";
 import { buildArticleSlug } from "../../../../domain/utils/slugify";
 
-import { locales } from "../../../../i18n/config";
+import { type Locale, locales } from "../../../../i18n/config";
 import { articlesRepository } from "../../../../infrastructure/repositories/articles.repository";
 import { contentLinksRepository } from "../../../../infrastructure/repositories/content-links.repository";
 import { experimentsRepository } from "../../../../infrastructure/repositories/experiments.repository";
@@ -98,6 +98,21 @@ export default async function ExperimentDetailPage(props: Props) {
     ? `/articles/${buildArticleSlug(linkedArticle.publicIndex, linkedArticle.metadata.title.en)}`
     : null;
 
+  // Get related articles for the Articles section
+  const relatedArticles = linkedArticle
+    ? [
+        {
+          imageUrl: linkedArticle.imageUrl,
+          slug: buildArticleSlug(linkedArticle.publicIndex, linkedArticle.metadata.title.en),
+          tagline:
+            linkedArticle.metadata.tagline[locale as Locale] ??
+            linkedArticle.metadata.tagline.en,
+          title:
+            linkedArticle.metadata.title[locale as Locale] ?? linkedArticle.metadata.title.en,
+        },
+      ]
+    : [];
+
   // Convert URL instances to strings for client components
   const serializedExperiment = {
     ...experiment,
@@ -106,6 +121,7 @@ export default async function ExperimentDetailPage(props: Props) {
       ...component,
       sourceUrl: component.sourceUrl.toString(),
     })),
+    relatedArticles,
     url: experiment.url ? experiment.url.toString() : "",
   };
 
@@ -119,6 +135,7 @@ export default async function ExperimentDetailPage(props: Props) {
     detail: {
       about: t("detail.about"),
       appStore: t("detail.appStore"),
+      articles: t("detail.articles"),
       availableOn: t("detail.availableOn"),
       components: t("detail.components"),
       downloadOnAppStore: t("detail.downloadOnAppStore"),
