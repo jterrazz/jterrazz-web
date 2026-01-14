@@ -267,11 +267,11 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
             <AnimatePresence mode="wait">
               {shouldShowAppButton && (
                 <motion.a
-                  animate={{ opacity: 1, scale: 1, width: "auto" }}
-                  className="flex items-center justify-center lg:justify-start gap-2 h-9 w-9 lg:w-auto lg:h-auto lg:px-4 lg:py-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm ml-1"
-                  exit={{ opacity: 0, scale: 0.8, width: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex items-center justify-center lg:justify-start gap-2 h-9 w-9 lg:w-auto lg:h-auto lg:px-4 lg:py-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm ml-1 whitespace-nowrap"
+                  exit={{ opacity: 0, scale: 0.8 }}
                   href={t.appStoreLink}
-                  initial={{ opacity: 0, scale: 0.8, width: 0 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
                   rel="noreferrer"
                   target="_blank"
                   transition={{ duration: 0.2, ease: "easeInOut" }}
