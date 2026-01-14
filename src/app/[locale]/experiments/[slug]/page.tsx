@@ -119,9 +119,13 @@ export default async function ExperimentDetailPage(props: Props) {
     detail: {
       about: t("detail.about"),
       appStore: t("detail.appStore"),
+      availableOn: t("detail.availableOn"),
       components: t("detail.components"),
+      downloadOnAppStore: t("detail.downloadOnAppStore"),
+      getItOnGooglePlay: t("detail.getItOnGooglePlay"),
       privacyPolicy: t("detail.privacyPolicy"),
       readArticle: t("detail.readArticle"),
+      scanToDownload: t("detail.scanToDownload"),
       showcase: t("detail.showcase"),
       sourceCode: t("detail.sourceCode"),
       viewProject: t("detail.viewProject"),

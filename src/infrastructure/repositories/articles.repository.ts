@@ -319,7 +319,7 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
     published: true,
   },
   {
-    filename: "2026-01-10 N00",
+    filename: "2026-01-10 SigNews",
     metadata: {
       category: ArticleCategory.Exploration,
       dateModified: "2026-01-10",

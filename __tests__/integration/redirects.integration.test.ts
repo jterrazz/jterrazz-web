@@ -14,12 +14,16 @@ const CANONICAL_REDIRECTS = [
     },
     {
         source: '/go/n00',
-        // Next.js decodes URL-encoded characters in the Location header
-        destination:
-            'https://apps.apple.com/app/apple-store/id6742116038?pt=119085741&ct=Jterrazz Website&mt=8',
+        destination: '/go/signews',
         permanent: false,
     },
     { source: '/go/capitaine', destination: '/experiments/capitaine', permanent: false },
+];
+
+// Legacy experiment redirects (old slugs → new slugs)
+const LEGACY_EXPERIMENT_REDIRECTS = [
+    { source: '/experiments/n00', destination: '/experiments/signews', permanent: true },
+    { source: '/fr/experiments/n00', destination: '/fr/experiments/signews', permanent: true },
 ];
 
 // Legacy external redirects (old URLs → new canonical URLs)
@@ -79,10 +83,16 @@ const LEGACY_ARTICLE_REDIRECTS = [
 
 const ALL_REDIRECTS = [
     ...CANONICAL_REDIRECTS,
+    ...LEGACY_EXPERIMENT_REDIRECTS,
     ...LEGACY_EXTERNAL_REDIRECTS,
     ...I18N_ARTICLE_REDIRECTS,
     ...LEGACY_ARTICLE_REDIRECTS,
 ];
+
+// Smart app page URLs (must match experiments.repository.ts)
+const APP_STORE_URL = 'https://apps.apple.com/us/app/ai-news-smart-world-news/id6742116038';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.jterrazz.signews';
+const EXPERIMENT_URL = '/experiments/signews';
 
 describe('Next.js Redirects', () => {
     beforeAll(async () => {
@@ -146,6 +156,23 @@ describe('Next.js Redirects', () => {
             }
         });
 
+        describe('legacy experiment redirects', () => {
+            for (const redirect of LEGACY_EXPERIMENT_REDIRECTS) {
+                it(`${redirect.source} → ${redirect.destination}`, async () => {
+                    // Given - a legacy experiment URL
+                    const url = `${BASE_URL}${redirect.source}`;
+
+                    // When - making a request without following redirects
+                    const response = await fetch(url, { redirect: 'manual' });
+
+                    // Then - returns permanent redirect (308) to new slug
+                    expect(response.status).toBe(308);
+                    const location = response.headers.get('location');
+                    expect(location).toBe(redirect.destination);
+                });
+            }
+        });
+
         describe('legacy external redirects → canonical URLs', () => {
             for (const redirect of LEGACY_EXTERNAL_REDIRECTS) {
                 it(`${redirect.source} → ${redirect.destination}`, async () => {
@@ -195,6 +222,62 @@ describe('Next.js Redirects', () => {
                     expect(location).toBe(redirect.destination);
                 });
             }
+        });
+
+        describe('smart app page /go/signews', () => {
+            it('redirects to App Store on iOS', async () => {
+                // Given - a request from an iOS device
+                const url = `${BASE_URL}/go/signews`;
+                const iosUserAgent =
+                    'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1';
+
+                // When - making a request with iOS User-Agent
+                const response = await fetch(url, {
+                    redirect: 'manual',
+                    headers: { 'User-Agent': iosUserAgent },
+                });
+
+                // Then - returns redirect to App Store
+                expect(response.status).toBe(307);
+                const location = response.headers.get('location');
+                expect(location).toBe(APP_STORE_URL);
+            });
+
+            it('redirects to Play Store on Android', async () => {
+                // Given - a request from an Android device
+                const url = `${BASE_URL}/go/signews`;
+                const androidUserAgent =
+                    'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36';
+
+                // When - making a request with Android User-Agent
+                const response = await fetch(url, {
+                    redirect: 'manual',
+                    headers: { 'User-Agent': androidUserAgent },
+                });
+
+                // Then - returns redirect to Play Store
+                expect(response.status).toBe(307);
+                const location = response.headers.get('location');
+                expect(location).toBe(PLAY_STORE_URL);
+            });
+
+            it('redirects to experiment page on desktop', async () => {
+                // Given - a request from a desktop browser
+                const url = `${BASE_URL}/go/signews`;
+                const desktopUserAgent =
+                    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
+
+                // When - making a request with desktop User-Agent
+                const response = await fetch(url, {
+                    redirect: 'manual',
+                    headers: { 'User-Agent': desktopUserAgent },
+                });
+
+                // Then - returns redirect to experiment page
+                expect(response.status).toBe(307);
+                const location = response.headers.get('location');
+                expect(location).toBe(EXPERIMENT_URL);
+            });
         });
     });
 });

@@ -22,8 +22,9 @@ export const AppRoutes = {
  * @description Centralized external URLs to avoid broken links
  */
 export const ExternalLinks = {
-    // App store links
-    n00AppStore: '/link/applications/n00',
+    // App smart redirect links (dynamic based on experiment slug)
+    appRedirect: (slug: string) => `/go/${slug}` as const,
+    signewApp: '/go/signews',
 
     // Social links are handled via userRepository
 } as const;

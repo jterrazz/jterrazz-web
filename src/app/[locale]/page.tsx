@@ -133,7 +133,7 @@ export default async function HomePage({ params }: Props) {
     .map(({ latestDate, ...rest }) => rest);
 
   // Featured experiments - specific selection
-  const featuredSlugs = ["capitaine", "n00", "jterrazz"];
+  const featuredSlugs = ["capitaine", "signews", "jterrazz"];
   const featuredExperiments = featuredSlugs
     .map((slug) => experimentsRepository.getBySlug(slug))
     .filter((exp) => exp !== undefined)

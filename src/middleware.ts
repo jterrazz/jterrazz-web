@@ -33,8 +33,8 @@ export const config = {
     // - Next.js internals (_next)
     // - Static files (files with extensions)
     // - Specific static routes
+    // - /go/* redirect/landing pages
     matcher: [
-        '/((?!api|_next|content|.*\\.[^/]+$|favicon|assets|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest).*)',
+        '/((?!api|_next|content|go/|.*\\.[^/]+$|favicon|assets|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest).*)',
     ],
 };
-

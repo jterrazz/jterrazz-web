@@ -155,6 +155,7 @@ type NavbarTranslations = {
   appStoreLink: string;
   downloadApp: string;
   getApp: string;
+  hideAppButtonOnPaths: string[];
   homeHref: string;
   opensInNewTab: string;
 };
@@ -171,6 +172,11 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
   const pathname = usePathname();
 
   const closeMenu = () => setIsMenuOpen(false);
+
+  // Hide app button on specific paths (e.g., experiment pages with their own store links)
+  const shouldShowAppButton = !t.hideAppButtonOnPaths.some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`),
+  );
 
   const getContactIcon = (name: string) => {
     if (name.toLowerCase().includes("github")) return <IconBrandGithub size={18} />;
@@ -258,29 +264,45 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
               ))}
             </div>
 
-            <a
-              className="flex items-center justify-center lg:justify-start gap-2 h-9 w-9 lg:w-auto lg:h-auto lg:px-4 lg:py-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm ml-1"
-              href={t.appStoreLink}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <span className="hidden lg:inline">{t.getApp}</span>
-              <span className="sr-only"> {t.opensInNewTab}</span>
-              <IconDownload size={14} />
-            </a>
+            <AnimatePresence mode="wait">
+              {shouldShowAppButton && (
+                <motion.a
+                  animate={{ opacity: 1, scale: 1, width: "auto" }}
+                  className="flex items-center justify-center lg:justify-start gap-2 h-9 w-9 lg:w-auto lg:h-auto lg:px-4 lg:py-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm ml-1"
+                  exit={{ opacity: 0, scale: 0.8, width: 0 }}
+                  href={t.appStoreLink}
+                  initial={{ opacity: 0, scale: 0.8, width: 0 }}
+                  rel="noreferrer"
+                  target="_blank"
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                >
+                  <span className="hidden lg:inline">{t.getApp}</span>
+                  <span className="sr-only"> {t.opensInNewTab}</span>
+                  <IconDownload size={14} />
+                </motion.a>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Mobile Menu Toggle & Actions */}
           <div className="md:hidden flex items-center gap-1 pr-1">
-            <a
-              className="flex items-center justify-center w-9 h-9 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-sm"
-              href={t.appStoreLink}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <span className="sr-only">{t.getApp}</span>
-              <IconDownload size={16} />
-            </a>
+            <AnimatePresence mode="wait">
+              {shouldShowAppButton && (
+                <motion.a
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex items-center justify-center w-9 h-9 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm"
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  href={t.appStoreLink}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  rel="noreferrer"
+                  target="_blank"
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                >
+                  <span className="sr-only">{t.getApp}</span>
+                  <IconDownload size={16} />
+                </motion.a>
+              )}
+            </AnimatePresence>
             <button
               aria-label="Toggle menu"
               className="flex items-center justify-center w-9 h-9 rounded-full text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
@@ -359,16 +381,18 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                 <LanguageSwitcher onSwitch={closeMenu} />
               </div>
 
-              <a
-                className="flex items-center gap-2 px-5 py-3 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium w-full justify-center"
-                href={t.appStoreLink}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <span>{t.downloadApp}</span>
-                <span className="sr-only"> {t.opensInNewTab}</span>
-                <IconDownload size={16} />
-              </a>
+              {shouldShowAppButton && (
+                <a
+                  className="flex items-center gap-2 px-5 py-3 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium w-full justify-center"
+                  href={t.appStoreLink}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span>{t.downloadApp}</span>
+                  <span className="sr-only"> {t.opensInNewTab}</span>
+                  <IconDownload size={16} />
+                </a>
+              )}
             </motion.div>
           </motion.div>
         )}

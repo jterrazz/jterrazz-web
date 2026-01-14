@@ -6,6 +6,7 @@ import { UserContactType } from '../../domain/user';
 
 // Infrastructure
 import { createRouteBuilder, ExternalLinks } from '../../infrastructure/navigation/routes';
+import { experimentsRepository } from '../../infrastructure/repositories/experiments.repository';
 import { userRepository } from '../../infrastructure/repositories/user.repository';
 
 import { type Locale, locales } from '../../i18n/config';
@@ -74,10 +75,17 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         },
     ];
 
+    // Get experiments with store links to hide app button on their pages
+    const experimentsWithStoreLinks = experimentsRepository
+        .getAll()
+        .filter((exp) => exp.storeLinks?.appStore || exp.storeLinks?.playStore)
+        .flatMap((exp) => [`/experiments/${exp.slug}`, `/fr/experiments/${exp.slug}`]);
+
     const navbarTranslations = {
-        appStoreLink: ExternalLinks.n00AppStore,
+        appStoreLink: ExternalLinks.signewApp,
         downloadApp: tNavbar('downloadApp'),
         getApp: tNavbar('getApp'),
+        hideAppButtonOnPaths: experimentsWithStoreLinks,
         homeHref: routes.home(),
         opensInNewTab: tNavbar('opensInNewTab'),
     };

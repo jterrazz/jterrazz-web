@@ -11,7 +11,7 @@ const CONTENT_LINKS: ContentLink[] = [
   { articleIndex: 4, experimentSlug: "dr-quine" },
   { articleIndex: 5, experimentSlug: "libft-asm" },
   { articleIndex: 6, experimentSlug: "expert-system" },
-  { articleIndex: 13, experimentSlug: "n00" },
+  { articleIndex: 13, experimentSlug: "signews" },
 ];
 
 export const contentLinksRepository = {

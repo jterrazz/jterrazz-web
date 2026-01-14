@@ -46,8 +46,7 @@ const nextConfig = {
                 source: '/go/contact',
             },
             {
-                destination:
-                    'https://apps.apple.com/app/apple-store/id6742116038?pt=119085741&ct=Jterrazz%20Website&mt=8',
+                destination: '/go/signews',
                 permanent: false,
                 source: '/go/n00',
             },
@@ -55,6 +54,18 @@ const nextConfig = {
                 destination: '/experiments/capitaine',
                 permanent: false,
                 source: '/go/capitaine',
+            },
+
+            // Legacy experiment redirects
+            {
+                destination: '/experiments/signews',
+                permanent: true,
+                source: '/experiments/n00',
+            },
+            {
+                destination: '/fr/experiments/signews',
+                permanent: true,
+                source: '/fr/experiments/n00',
             },
 
             // Legacy external redirects (keep old URLs working)

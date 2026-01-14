@@ -75,7 +75,11 @@
       "year": "Year",
       "components": "Components",
       "viewSource": "View Source",
-      "privacyPolicy": "Privacy Policy"
+      "privacyPolicy": "Privacy Policy",
+      "availableOn": "Available on",
+      "downloadOnAppStore": "Download on the",
+      "getItOnGooglePlay": "Get it on",
+      "scanToDownload": "Scan to download"
     }
   },
   "photographs": {

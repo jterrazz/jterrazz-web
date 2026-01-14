@@ -75,7 +75,11 @@
       "year": "Année",
       "components": "Composants",
       "viewSource": "Voir le code",
-      "privacyPolicy": "Politique de confidentialité"
+      "privacyPolicy": "Politique de confidentialité",
+      "availableOn": "Disponible sur",
+      "downloadOnAppStore": "Télécharger sur l'",
+      "getItOnGooglePlay": "Télécharger sur",
+      "scanToDownload": "Scanner pour télécharger"
     }
   },
   "photographs": {

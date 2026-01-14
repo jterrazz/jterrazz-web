@@ -2,11 +2,15 @@
 
 import React from "react";
 
+import Image from "next/image";
 import {
   IconArrowRight,
   IconArrowUpRight,
+  IconBrandApple,
   IconBrandGithubFilled,
+  IconBrandGooglePlay,
   IconDownload,
+  IconLock,
   IconWorld,
 } from "@tabler/icons-react";
 
@@ -20,6 +24,7 @@ import {
 // Utils
 import { cn } from "../utils";
 
+import { QRCode } from "../ui/atoms/qr-code/qr-code";
 import { BadgeExperimentStatus } from "../ui/molecules/badge-experiment-status/badge-experiment-status";
 import { DividerSection } from "../ui/molecules/divider-section/divider-section";
 
@@ -44,9 +49,13 @@ type ExperimentDetailTranslations = {
   detail: {
     about: string;
     appStore: string;
+    availableOn: string;
     components: string;
+    downloadOnAppStore: string;
+    getItOnGooglePlay: string;
     privacyPolicy: string;
     readArticle: string;
+    scanToDownload: string;
     showcase: string;
     sourceCode: string;
     viewProject: string;
@@ -85,6 +94,9 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
   experiment,
   translations: t,
 }) => {
+  // Check if this is an app with store links (mobile app landing)
+  const isAppWithStoreLinks = experiment.storeLinks?.appStore || experiment.storeLinks?.playStore;
+
   // Helper to render store buttons
   const renderStoreButton = (
     href: string,
@@ -108,64 +120,141 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
     </a>
   );
 
+  // Helper to render app store badge buttons
+  const renderAppStoreBadge = (
+    href: string,
+    icon: React.ReactNode,
+    topText: string,
+    bottomText: string,
+  ) => (
+    <a
+      className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-xl font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors min-w-[180px]"
+      href={href}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      {icon}
+      <div className="text-left">
+        <div className="text-xs opacity-80">{topText}</div>
+        <div className="text-sm font-semibold">{bottomText}</div>
+      </div>
+    </a>
+  );
+
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 pb-32">
-      {/* Hero Section */}
-      <div className="relative pt-32 pb-20 px-4 md:px-6 border-b border-zinc-100 dark:border-zinc-900 overflow-hidden">
-        {/* Background Texture */}
-        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none bg-[url('/assets/texture-dots.png')] bg-repeat" />
+      {/* App Landing Hero - for mobile apps with store links */}
+      {isAppWithStoreLinks ? (
+        <div className="relative pt-12 md:pt-16 pb-24 md:pb-32 px-4 md:px-6 border-b border-zinc-100 dark:border-zinc-900 overflow-hidden">
 
-        <div className="max-w-5xl mx-auto relative z-10">
-          <div className="flex flex-col gap-8">
-            {/* Title & Badges */}
-            <div className="space-y-6">
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+          <div className="max-w-2xl mx-auto relative z-10">
+            <div className="flex flex-col items-center text-center">
+              {/* App Icon with glow effect */}
+              {experiment.iconUrl && (
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-gradient-to-b from-zinc-200/50 to-transparent dark:from-zinc-700/30 rounded-[48px] blur-2xl" />
+                  <Image
+                    alt={`${experiment.name} App Icon`}
+                    className="relative rounded-[28px] shadow-2xl shadow-zinc-900/10 dark:shadow-black/30 ring-1 ring-zinc-200/80 dark:ring-zinc-700/50"
+                    height={120}
+                    src={experiment.iconUrl}
+                    width={120}
+                  />
+                </div>
+              )}
+
+              {/* App Name */}
+              <h1 className="mt-10 text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
                 {experiment.name}
               </h1>
 
-              <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-3xl font-light">
+              {/* Tagline */}
+              <p className="mt-5 text-lg text-zinc-500 dark:text-zinc-400 max-w-md leading-relaxed">
                 {experiment.description}
               </p>
-            </div>
 
-            {/* Actions */}
-            <div className="flex flex-wrap gap-4 pt-4">
-              {experiment.articleUrl &&
-                renderStoreButton(
-                  experiment.articleUrl,
-                  t.detail.readArticle,
-                  <IconArrowRight size={18} />,
-                )}
-              {experiment.storeLinks?.web &&
-                renderStoreButton(
-                  experiment.storeLinks.web,
-                  t.detail.visitWebsite,
-                  <IconWorld size={18} />,
-                )}
-              {experiment.storeLinks?.appStore &&
-                renderStoreButton(
-                  experiment.storeLinks.appStore,
-                  t.detail.appStore,
-                  <IconDownload size={18} />,
-                )}
-              {experiment.url &&
-                !experiment.storeLinks?.web &&
-                renderStoreButton(
-                  experiment.url.toString(),
-                  t.detail.viewProject,
-                  <IconArrowUpRight size={18} />,
-                )}
-              {experiment.url?.toString().includes("github") &&
-                renderStoreButton(
-                  experiment.url.toString(),
-                  t.detail.sourceCode,
-                  <IconBrandGithubFilled size={18} />,
-                  "secondary",
-                )}
+              {/* QR Code - Desktop only */}
+              <div className="hidden md:flex flex-col items-center mt-8">
+                <div className="p-3 bg-white rounded-xl shadow-lg shadow-zinc-900/5 dark:shadow-black/20 ring-1 ring-zinc-100 dark:ring-zinc-800">
+                  <QRCode size={150} url={`https://jterrazz.com/go/${experiment.slug}`} />
+                </div>
+                <p className="mt-4 text-xs text-zinc-400 dark:text-zinc-500 tracking-wide">
+                  {t.detail.scanToDownload}
+                </p>
+              </div>
+
+              {/* Store Buttons */}
+              <div className="mt-10 flex flex-col sm:flex-row gap-3">
+                {experiment.storeLinks?.appStore &&
+                  renderAppStoreBadge(
+                    experiment.storeLinks.appStore,
+                    <IconBrandApple size={26} />,
+                    "Download on the",
+                    "App Store",
+                  )}
+                {experiment.storeLinks?.playStore &&
+                  renderAppStoreBadge(
+                    experiment.storeLinks.playStore,
+                    <IconBrandGooglePlay size={26} />,
+                    "Get it on",
+                    "Google Play",
+                  )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        /* Standard Hero Section - for non-app experiments */
+        <div className="relative pt-32 pb-20 px-4 md:px-6 border-b border-zinc-100 dark:border-zinc-900 overflow-hidden">
+          {/* Background Texture */}
+          <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none bg-[url('/assets/texture-dots.png')] bg-repeat" />
+
+          <div className="max-w-5xl mx-auto relative z-10">
+            <div className="flex flex-col gap-8">
+              {/* Title & Badges */}
+              <div className="space-y-6">
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+                  {experiment.name}
+                </h1>
+
+                <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-3xl font-light">
+                  {experiment.description}
+                </p>
+              </div>
+
+              {/* Actions */}
+              <div className="flex flex-wrap gap-4 pt-4">
+                {experiment.articleUrl &&
+                  renderStoreButton(
+                    experiment.articleUrl,
+                    t.detail.readArticle,
+                    <IconArrowRight size={18} />,
+                  )}
+                {experiment.storeLinks?.web &&
+                  renderStoreButton(
+                    experiment.storeLinks.web,
+                    t.detail.visitWebsite,
+                    <IconWorld size={18} />,
+                  )}
+                {experiment.url &&
+                  !experiment.storeLinks?.web &&
+                  renderStoreButton(
+                    experiment.url.toString(),
+                    t.detail.viewProject,
+                    <IconArrowUpRight size={18} />,
+                  )}
+                {experiment.url?.toString().includes("github") &&
+                  renderStoreButton(
+                    experiment.url.toString(),
+                    t.detail.sourceCode,
+                    <IconBrandGithubFilled size={18} />,
+                    "secondary",
+                  )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="px-4 md:px-6 pt-20">
         <div className="max-w-5xl mx-auto space-y-24">
@@ -279,15 +368,28 @@ const ExperimentComponentCard: React.FC<{
             {component.name}
           </h4>
           <BadgeExperimentStatus status={component.status} />
+          {component.isPrivate && (
+            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium text-zinc-400 dark:text-zinc-500 bg-zinc-100 dark:bg-zinc-800">
+              <IconLock size={10} />
+              Private
+            </span>
+          )}
         </div>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-1">
           {component.description}
         </p>
       </div>
-      <IconBrandGithubFilled
-        className="shrink-0 text-zinc-300 dark:text-zinc-600 group-hover:text-zinc-500 dark:group-hover:text-zinc-400 transition-colors"
-        size={16}
-      />
+      {component.isPrivate ? (
+        <IconLock
+          className="shrink-0 text-zinc-300 dark:text-zinc-600 group-hover:text-zinc-500 dark:group-hover:text-zinc-400 transition-colors"
+          size={16}
+        />
+      ) : (
+        <IconBrandGithubFilled
+          className="shrink-0 text-zinc-300 dark:text-zinc-600 group-hover:text-zinc-500 dark:group-hover:text-zinc-400 transition-colors"
+          size={16}
+        />
+      )}
     </a>
   );
 };

@@ -31,9 +31,9 @@ const featuredApps = [
     name: "Jterrazz",
   },
   {
-    href: "https://apps.apple.com/us/app/ai-news-smart-world-news/id6742116038",
-    iconUrl: "/assets/icons/appicon-n00.png",
-    name: "n00",
+    href: "/go/signew",
+    iconUrl: "/assets/icons/appicon-signews.png",
+    name: "SigNews",
   },
 ];
 
