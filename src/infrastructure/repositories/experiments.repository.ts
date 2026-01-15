@@ -30,7 +30,7 @@ const experiments: Experiment[] = [
     tagline: "Your personal growth companion.",
     iconUrl: "/assets/icons/appicon-capitaine.png",
     longDescription:
-      "Capitaine helps you build lasting habits through daily check-ins and progress insights. Track your goals, visualize streaks, and understand your patterns over time—a personal copilot for continuous improvement.",
+      "Capitaine helps you build lasting habits through daily check-ins and progress insights. Track your goals, visualize streaks, and understand your patterns over time, a personal copilot for continuous improvement.",
     name: "Capitaine",
     slug: "capitaine",
     status: ExperimentStatus.Building,
@@ -72,7 +72,7 @@ const experiments: Experiment[] = [
     hasPrivacyPolicy: true,
     iconUrl: "/assets/icons/appicon-signews.png",
     longDescription:
-      "Stop scrolling through noise. SigNews is your personal intelligence bureau—AI agents work around the clock to scan global signals and deliver what actually matters. Watch events unfold on a live map. Test your knowledge with quizzes. This isn't just reading the news. It's training your mind to see the world clearly.",
+      "Stop scrolling through noise. SigNews is your personal intelligence bureau, AI agents work around the clock to scan global signals and deliver what actually matters. Watch events unfold on a live map. Test your knowledge with quizzes. This isn't just reading the news. It's training your mind to see the world clearly.",
     name: "SigNews",
     slug: "signews",
     status: ExperimentStatus.Active,
@@ -102,7 +102,7 @@ const experiments: Experiment[] = [
     tagline: "Where ideas take shape.",
     iconUrl: "/assets/icons/appicon-jterrazz.png",
     longDescription:
-      "A place to share what I build and learn. Browse experiments, read articles, and explore photographs—all in one personal space.",
+      "A place to share what I build and learn. Browse experiments, read articles, and explore photographs, all in one personal space.",
     name: "Jterrazz",
     slug: "jterrazz",
     status: ExperimentStatus.Active,
@@ -155,7 +155,7 @@ const experiments: Experiment[] = [
     description: "A collection of typescript packages for building my node.js applications.",
     tagline: "Shared configs and utilities.",
     longDescription:
-      "A collection of reusable packages to keep my projects consistent. Shared linting rules, test setups, logging, and HTTP utilities—everything needed to bootstrap new apps without reinventing the wheel.",
+      "A collection of reusable packages to keep my projects consistent. Shared linting rules, test setups, logging, and HTTP utilities, everything needed to bootstrap new apps without reinventing the wheel.",
     name: "Typescript",
     slug: "typescript-packages",
     status: ExperimentStatus.Active,
@@ -197,7 +197,7 @@ const experiments: Experiment[] = [
     description: "Blockchain-based crowdfunding platform using CVT tokens.",
     tagline: "Decentralized fundraising.",
     longDescription:
-      "A transparent crowdfunding platform where every transaction is on-chain. Backers can track exactly where funds go, and creators get paid automatically when milestones are met—no middlemen, full accountability.",
+      "A transparent crowdfunding platform where every transaction is on-chain. Backers can track exactly where funds go, and creators get paid automatically when milestones are met, no middlemen, full accountability.",
     name: "CVT Crowdfunding",
     slug: "cvt-crowdfunding",
     status: ExperimentStatus.Completed,
@@ -218,7 +218,7 @@ const experiments: Experiment[] = [
     description: "Infrastructure as Code for my personal cloud environment.",
     tagline: "Automated cloud provisioning.",
     longDescription:
-      "One-command deployment for my entire cloud setup. Servers, databases, networking, and security configurations—all versioned and reproducible. Spin up or tear down environments in minutes.",
+      "One-command deployment for my entire cloud setup. Servers, databases, networking, and security configurations, all versioned and reproducible. Spin up or tear down environments in minutes.",
     name: "Infrastructure",
     slug: "infrastructure",
     status: ExperimentStatus.Active,
@@ -239,7 +239,7 @@ const experiments: Experiment[] = [
     description: "Experimental framework for building autonomous AI agents.",
     tagline: "Autonomous AI workflows.",
     longDescription:
-      "A playground for autonomous AI workflows. Agents that can browse the web, write code, manage files, and chain actions together—experimenting with how far LLMs can go when given tools and memory.",
+      "A playground for autonomous AI workflows. Agents that can browse the web, write code, manage files, and chain actions together, experimenting with how far LLMs can go when given tools and memory.",
     name: "AI Agents",
     slug: "ai-agents",
     status: ExperimentStatus.Active,
@@ -263,7 +263,7 @@ const experiments: Experiment[] = [
       "Backward chaining rule based system in Python. RPN, Tree resolver, Tree representation, logic rule system, prompt.",
     tagline: "Propositional logic inference.",
     longDescription:
-      "Feed it rules and facts, ask it questions. This expert system reasons backward from goals to find what's true—handling complex logical relationships to deduce answers automatically.",
+      "Feed it rules and facts, ask it questions. This expert system reasons backward from goals to find what's true, handling complex logical relationships to deduce answers automatically.",
     name: "Expert System",
     slug: "expert-system",
     status: ExperimentStatus.Completed,
@@ -285,7 +285,7 @@ const experiments: Experiment[] = [
       "Advanced binary security experiment - Exploits and reverse engineering - x86 and x86-64 binaries.",
     tagline: "Advanced binary exploitation.",
     longDescription:
-      "The final security gauntlet—14 levels of increasingly protected binaries to crack. Bypass modern protections, exploit race conditions, and chain vulnerabilities to escalate privileges on each level.",
+      "The final security gauntlet, 14 levels of increasingly protected binaries to crack. Bypass modern protections, exploit race conditions, and chain vulnerabilities to escalate privileges on each level.",
     name: "Override",
     slug: "override",
     status: ExperimentStatus.Completed,
@@ -307,7 +307,7 @@ const experiments: Experiment[] = [
       "Intermediate cybersecurity experiment, and an introduction to binary analysis - X86 binaries.",
     tagline: "Binary analysis fundamentals.",
     longDescription:
-      "Exploit your way through 14 vulnerable programs. Each level hides a password protected by a different flaw—buffer overflows, format strings, heap corruption. Find the weakness, craft the exploit, level up.",
+      "Exploit your way through 14 vulnerable programs. Each level hides a password protected by a different flaw, buffer overflows, format strings, heap corruption. Find the weakness, craft the exploit, level up.",
     name: "Rainfall",
     slug: "rainfall",
     status: ExperimentStatus.Completed,
@@ -350,7 +350,7 @@ const experiments: Experiment[] = [
       "Virtual machine simulating basic processors operations, with basic notions of Assembly. Written in C.",
     tagline: "VM and assembly arena.",
     longDescription:
-      "Write tiny warrior programs in assembly and watch them battle for memory. Champions compete in a shared arena—overwriting each other, replicating, and fighting to be the last one standing.",
+      "Write tiny warrior programs in assembly and watch them battle for memory. Champions compete in a shared arena, overwriting each other, replicating, and fighting to be the last one standing.",
     name: "Corewar",
     slug: "corewar",
     status: ExperimentStatus.Completed,
@@ -372,7 +372,7 @@ const experiments: Experiment[] = [
       "Nm and otool implementation in C. Parse Mach-o files, supports fat binaries, archives and corrupted binaries.",
     tagline: "Mach-O binary parser.",
     longDescription:
-      "Peek inside macOS binaries. List symbols, inspect segments, and understand what's packed inside executables—handling universal binaries, archives, and edge cases along the way.",
+      "Peek inside macOS binaries. List symbols, inspect segments, and understand what's packed inside executables, handling universal binaries, archives, and edge cases along the way.",
     name: "NM Otool",
     slug: "nm-otool",
     status: ExperimentStatus.Completed,
@@ -394,7 +394,7 @@ const experiments: Experiment[] = [
       "OpenSSL implementation in C. Supports md5, sha1, sha256, sha224, sha512 and sha384 algorithms.",
     tagline: "Cryptographic hashing from scratch.",
     longDescription:
-      "Hash anything with MD5, SHA-256, and the full SHA-2 family. Feed it files or strings, get cryptographic fingerprints—built from scratch to understand how hashing really works.",
+      "Hash anything with MD5, SHA-256, and the full SHA-2 family. Feed it files or strings, get cryptographic fingerprints, built from scratch to understand how hashing really works.",
     name: "MD5 & SHA256",
     slug: "md5-sha256",
     status: ExperimentStatus.Completed,
@@ -415,7 +415,7 @@ const experiments: Experiment[] = [
     description: "C implementation of the malloc library using mmap.",
     tagline: "Dynamic memory allocator.",
     longDescription:
-      "A memory allocator that manages heap space directly. Allocate, free, and reallocate memory efficiently—handling fragmentation, thread safety, and performance without relying on the standard library.",
+      "A memory allocator that manages heap space directly. Allocate, free, and reallocate memory efficiently, handling fragmentation, thread safety, and performance without relying on the standard library.",
     name: "Malloc",
     slug: "malloc",
     status: ExperimentStatus.Completed,
@@ -437,7 +437,7 @@ const experiments: Experiment[] = [
       "This experiment addresses auto-replication issues, and confronts you the Kleene's recursion theorem.",
     tagline: "Self-replicating programs.",
     longDescription:
-      "Programs that print themselves. Write code that outputs its own source—no cheating, no reading files. An exercise in self-reference and the strange loops at the heart of computation.",
+      "Programs that print themselves. Write code that outputs its own source, no cheating, no reading files. An exercise in self-reference and the strange loops at the heart of computation.",
     name: "Dr Quine",
     slug: "dr-quine",
     status: ExperimentStatus.Completed,
@@ -458,7 +458,7 @@ const experiments: Experiment[] = [
     description: "Algorithmic C experiment for the 42 Paris School",
     tagline: "Tetrimino packing solver.",
     longDescription:
-      "Pack Tetris pieces into the smallest possible square. Given any set of tetriminos, find the tightest arrangement—a puzzle solver that brute-forces its way to the optimal fit.",
+      "Pack Tetris pieces into the smallest possible square. Given any set of tetriminos, find the tightest arrangement, a puzzle solver that brute-forces its way to the optimal fit.",
     name: "Fillit",
     slug: "fillit",
     status: ExperimentStatus.Completed,
@@ -479,7 +479,7 @@ const experiments: Experiment[] = [
     description: "Custom printf implementation in C.",
     tagline: "Variadic string formatting.",
     longDescription:
-      "A printf that handles all the formatting you'd expect—integers, strings, pointers, hex, with full support for width, precision, and padding. Drop-in replacement for the standard version.",
+      "A printf that handles all the formatting you'd expect, integers, strings, pointers, hex, with full support for width, precision, and padding. Drop-in replacement for the standard version.",
     name: "Ft Printf",
     slug: "ft-printf",
     status: ExperimentStatus.Completed,
@@ -500,7 +500,7 @@ const experiments: Experiment[] = [
     description: "Read lines from a file descriptor.",
     tagline: "Buffered file reading.",
     longDescription:
-      "Read files line by line, no matter the buffer size. A simple function that handles the messy details of file I/O—buffering, partial reads, and memory—so you don't have to.",
+      "Read files line by line, no matter the buffer size. A simple function that handles the messy details of file I/O, buffering, partial reads, and memory, so you don't have to.",
     name: "Get Next Line",
     slug: "get-next-line",
     status: ExperimentStatus.Completed,
@@ -521,7 +521,7 @@ const experiments: Experiment[] = [
     description: "Handle a virtual anthill efficiently.",
     tagline: "Graph max-flow algorithm.",
     longDescription:
-      "Move ants through a maze as fast as possible. Given rooms and tunnels, find the optimal paths to get everyone from start to finish in the fewest turns—a traffic optimization puzzle.",
+      "Move ants through a maze as fast as possible. Given rooms and tunnels, find the optimal paths to get everyone from start to finish in the fewest turns, a traffic optimization puzzle.",
     name: "Lem In",
     slug: "lem-in",
     status: ExperimentStatus.Completed,
@@ -542,7 +542,7 @@ const experiments: Experiment[] = [
     description: "Basic functions implemented in Assembly using the x86 Intel syntax.",
     tagline: "x86 Assembly libc.",
     longDescription:
-      "Standard string functions rewritten at the lowest level. strlen, strcpy, strcmp—all in raw assembly, talking directly to the CPU and kernel.",
+      "Standard string functions rewritten at the lowest level. strlen, strcpy, strcmp, all in raw assembly, talking directly to the CPU and kernel.",
     name: "Libft ASM",
     slug: "libft-asm",
     status: ExperimentStatus.Completed,
@@ -563,7 +563,7 @@ const experiments: Experiment[] = [
     description: "The basic libc library used in all the 42 school experiments.",
     tagline: "C standard library.",
     longDescription:
-      "A personal C library used across all projects. String manipulation, memory utilities, linked lists—the building blocks for everything else.",
+      "A personal C library used across all projects. String manipulation, memory utilities, linked lists, the building blocks for everything else.",
     name: "Libft",
     slug: "libft",
     status: ExperimentStatus.Completed,
@@ -585,7 +585,7 @@ const experiments: Experiment[] = [
       "Sorts data on a stack, with a limited set of instructions and limited number of moves. In C.",
     tagline: "Stack-based sorting.",
     longDescription:
-      "Sort a stack with the fewest moves possible. Only swaps, rotates, and pushes allowed—find the most efficient sequence to get everything in order.",
+      "Sort a stack with the fewest moves possible. Only swaps, rotates, and pushes allowed, find the most efficient sequence to get everything in order.",
     name: "Push Swap",
     slug: "push-swap",
     status: ExperimentStatus.Completed,
@@ -606,7 +606,7 @@ const experiments: Experiment[] = [
     description: "My 42 paris school entry test.",
     tagline: "C programming fundamentals.",
     longDescription:
-      "A refresher on C fundamentals. Pointers, loops, types, and compilation—exercises to sharpen the basics before diving deeper.",
+      "A refresher on C fundamentals. Pointers, loops, types, and compilation, exercises to sharpen the basics before diving deeper.",
     name: "Piscine Reloaded",
     slug: "piscine-reloaded",
     status: ExperimentStatus.Completed,

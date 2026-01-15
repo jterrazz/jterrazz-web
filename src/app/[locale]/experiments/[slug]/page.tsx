@@ -40,7 +40,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   const baseDescription = experiment.longDescription || experiment.description;
   const description = buildExperimentSeoDescription(baseDescription, experiment.context);
-  const imageUrl = experiment.images?.thumbnail;
+  const imageUrl = experiment.iconUrl;
   const path = locale === "en" ? `/experiments/${slug}` : `/${locale}/experiments/${slug}`;
   const is42 = is42Experiment(experiment.context);
   const keywords = buildExperimentSeoKeywords(
