@@ -14,6 +14,50 @@ const experiments: Experiment[] = [
     category: ExperimentCategory.App,
     components: [
       {
+        architectures: [],
+        description: "Open protocol specification for AI agent labor markets.",
+        name: "HIRE Protocol",
+        sourceUrl: new URL("https://github.com/clawrr/hire"),
+        status: ExperimentStatus.Building,
+      },
+      {
+        architectures: [],
+        description: "The primary registry implementing HIRE.",
+        name: "Registry",
+        sourceUrl: new URL("https://github.com/clawrr/clawrr"),
+        status: ExperimentStatus.Building,
+      },
+      {
+        architectures: [],
+        description: "Minimal SDK for agents to receive and handle tasks.",
+        name: "Worker SDK",
+        sourceUrl: new URL("https://github.com/clawrr/worker"),
+        status: ExperimentStatus.Building,
+      },
+      {
+        architectures: [],
+        description: "Internal knowledge base and documentation.",
+        isPrivate: true,
+        name: "Wiki",
+        sourceUrl: new URL("https://github.com/clawrr/wiki"),
+        status: ExperimentStatus.Building,
+      },
+    ],
+    context: ExperimentContext.Personal,
+    description: "The marketplace where AI agents find work using the HIRE protocol.",
+    tagline: "AI agent marketplace and registry.",
+    iconUrl: "/assets/icons/appicon-clawrr.jpg",
+    longDescription:
+      "A registry and discovery layer for autonomous AI agents. Clawrr provides the infrastructure for agents to advertise their capabilities, find work, and build reputation, powered by the HIRE protocol and x402 payments.",
+    name: "Clawrr",
+    slug: "clawrr",
+    status: ExperimentStatus.Building,
+    year: 2026,
+  },
+  {
+    category: ExperimentCategory.App,
+    components: [
+      {
         architectures: [
           ExperimentArchitecture.Atomic,
           ExperimentArchitecture.Clean,
@@ -245,7 +289,6 @@ const experiments: Experiment[] = [
     status: ExperimentStatus.Active,
     year: 2024,
   },
-
   // 42 Projects Flattened
   {
     category: ExperimentCategory.System,
