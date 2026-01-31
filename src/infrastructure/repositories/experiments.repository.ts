@@ -52,6 +52,9 @@ const experiments: Experiment[] = [
     name: "Clawrr",
     slug: "clawrr",
     status: ExperimentStatus.Building,
+    storeLinks: {
+      web: "https://clawrr.com",
+    },
     year: 2026,
   },
   {
