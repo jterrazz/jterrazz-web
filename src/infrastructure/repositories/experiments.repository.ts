@@ -125,7 +125,7 @@ const experiments: Experiment[] = [
     status: ExperimentStatus.Active,
     storeLinks: {
       appStore: "https://apps.apple.com/us/app/ai-news-smart-world-news/id6742116038",
-      playStore: "https://play.google.com/store/apps/details?id=com.jterrazz.signews",
+      playStore: "https://play.google.com/store/apps/details?id=com.jterrazz.news",
     },
     year: 2025,
   },
