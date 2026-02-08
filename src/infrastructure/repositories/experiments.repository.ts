@@ -15,6 +15,46 @@ const experiments: Experiment[] = [
     components: [
       {
         architectures: [],
+        description: "Core AI knowledge engine with content processing pipeline.",
+        name: "Core",
+        sourceUrl: new URL(`${REPOSITORY_BASE_URL}clawssify`),
+        status: ExperimentStatus.Building,
+      },
+      {
+        architectures: [],
+        description: "Landing page and product website.",
+        name: "Web Landing",
+        sourceUrl: new URL(`${REPOSITORY_BASE_URL}clawssify-web-landing`),
+        status: ExperimentStatus.Building,
+      },
+      {
+        architectures: [],
+        description: "Internal knowledge base and documentation.",
+        isPrivate: true,
+        name: "Wiki",
+        sourceUrl: new URL(`${REPOSITORY_BASE_URL}clawssify-wiki`),
+        status: ExperimentStatus.Building,
+      },
+    ],
+    context: ExperimentContext.Personal,
+    description:
+      "AI-powered knowledge management that turns shared links and notes into a structured, searchable wiki.",
+    tagline: "Claw. Classify. Clarify.",
+    longDescription:
+      "Stop losing track of what you read. Share URLs, tweets, or notes, and Clawssify reads each source, weaves it into topic-organized wiki pages with footnotes, and delivers a daily digest of what changed. Open source, self-hosted, and markdown-based.",
+    name: "Clawssify",
+    slug: "clawssify",
+    status: ExperimentStatus.Building,
+    storeLinks: {
+      web: "https://clawssify.com",
+    },
+    year: 2026,
+  },
+  {
+    category: ExperimentCategory.App,
+    components: [
+      {
+        architectures: [],
         description: "Open protocol specification for AI agent labor markets.",
         name: "HIRE Protocol",
         sourceUrl: new URL("https://github.com/clawrr/hire"),
