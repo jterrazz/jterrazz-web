@@ -91,7 +91,7 @@ const ALL_REDIRECTS = [
 
 // Smart app page URLs (must match experiments.repository.ts)
 const APP_STORE_URL = 'https://apps.apple.com/us/app/ai-news-smart-world-news/id6742116038';
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.jterrazz.signews';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.jterrazz.news';
 const EXPERIMENT_URL = '/experiments/signews';
 
 describe('Next.js Redirects', () => {

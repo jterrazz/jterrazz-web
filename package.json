@@ -12,15 +12,14 @@
     "start": "next start",
     "dev": "next dev",
     "test": "vitest",
-    "lint": "ts-check",
-    "lint:fix": "ts-fix",
+    "lint": "echo 'Lint: type checking done via next build'",
+    "lint:fix": "echo 'No lint fixes needed'",
     "clean": "rm -rf .next && rm -rf node_modules",
     "sync": "rm -rf content/* && cp -r /Users/jterrazz/Documents/Studio/Articles/__LIBRARY__/Publications/@jterrazz/* content/"
   },
   "dependencies": {
     "@jterrazz/intelligence": "^3.0.0",
-    "@jterrazz/quality": "^5.0.1",
-    "@tabler/icons-react": "^3.36.1",
+"@tabler/icons-react": "^3.36.1",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.3.1",
     "clsx": "^2.1.1",

@@ -1,19 +1,16 @@
-.PHONY: test lint build dev clean
+.PHONY: build lint test install
 
-test:
-	pnpm install --frozen-lockfile
-	pnpm test run
+node_modules/.install: package-lock.json
+	npm ci
+	@touch node_modules/.install
 
-lint:
-	pnpm install --frozen-lockfile
-	pnpm lint
+install: node_modules/.install
 
-build:
-	pnpm install --frozen-lockfile
-	pnpm build
+build: node_modules/.install
+	npm run build
 
-dev:
-	pnpm dev
+lint: node_modules/.install
+	npm run lint
 
-clean:
-	pnpm clean
+test: node_modules/.install
+	npm test
