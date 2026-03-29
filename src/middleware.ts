@@ -27,4 +27,6 @@ export default createMiddleware({
   locales,
 });
 
-// Matcher removed — Next.js 16 treats `export const config` in middleware as invalid segment configuration.
+export const config = {
+  matcher: ["/((?!_next|api|content|assets|favicon|icon|apple-icon|robots\\.txt|sitemap\\.xml|site\\.webmanifest|.*\\..*).*)"],
+};
