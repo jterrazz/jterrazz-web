@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     },
   ],
   manifest: "/site.webmanifest",
-  keywords: SITE_CONFIG.author.skills,
+  keywords: [...SITE_CONFIG.author.skills],
   metadataBase: new URL(SITE_CONFIG.baseUrl),
   openGraph: {
     description: SITE_CONFIG.description,
