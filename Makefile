@@ -7,7 +7,7 @@ node_modules/.install: package-lock.json
 install: node_modules/.install
 
 build: node_modules/.install
-	@echo "TODO: Fix Next.js 16 segment config compatibility issue"
+	npm run build
 
 lint: node_modules/.install
 	npm run lint

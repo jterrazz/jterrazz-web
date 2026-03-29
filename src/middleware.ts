@@ -27,14 +27,4 @@ export default createMiddleware({
   locales,
 });
 
-export const config = {
-  // Match all pathnames except:
-  // - API routes
-  // - Next.js internals (_next)
-  // - Static files (files with extensions)
-  // - Specific static routes
-  // - /go/* redirect/landing pages
-  matcher: [
-    String.raw`/((?!api|_next|content|go/|.*\.[^/]+$|favicon|assets|robots\.txt|sitemap\.xml|manifest\.webmanifest).*)`,
-  ],
-};
+// Matcher removed — Next.js 16 treats `export const config` in middleware as invalid segment configuration.

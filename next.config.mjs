@@ -151,8 +151,6 @@ const nextConfig = {
     ];
   },
   typescript: {
-    // TODO: Fix Next.js 16 segment configuration compatibility
-    ignoreBuildErrors: true,
     tsconfigPath: "tsconfig.json",
   },
 };
