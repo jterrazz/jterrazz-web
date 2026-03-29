@@ -1,11 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { IconBookFilled } from "@tabler/icons-react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 import { Link } from "../../../../infrastructure/navigation/navigation";
-
 import { cn } from "../../../utils";
 
 export interface CardArticleProps {
@@ -31,7 +30,7 @@ export const CardArticle: React.FC<CardArticleProps> = ({
   slug,
   title,
 }) => {
-  const isSeries = !!seriesName;
+  const isSeries = Boolean(seriesName);
 
   return (
     <Link className={cn("block group h-full", className)} href={`/articles/${slug}`}>

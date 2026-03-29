@@ -1,5 +1,5 @@
 {
-  "extends": "@jterrazz/typescript/tsconfig/next.json",
+  "extends": "@jterrazz/typescript/presets/tsconfig/next.json",
   "compilerOptions": {
     "moduleResolution": "bundler"
   },

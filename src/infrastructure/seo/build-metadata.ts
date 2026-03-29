@@ -37,6 +37,14 @@ export interface BuildMetadataOptions {
   type?: "article" | "website";
 }
 
+// Resolve image URL - support both paths and full URLs
+const resolveImageUrl = (imagePath: string): string => {
+  if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
+    return imagePath;
+  }
+  return imagePath;
+};
+
 /**
  * Builds Next.js Metadata object with consistent SEO structure
  * @description Eliminates duplication of description, title, and URL across metadata fields
@@ -60,14 +68,6 @@ export function buildMetadata(options: BuildMetadataOptions): Metadata {
 
   const url = `${SITE_CONFIG.baseUrl}${path}`;
   const fullTitle = buildSeoTitle(title, is42Related);
-
-  // Resolve image URL - support both paths and full URLs
-  const resolveImageUrl = (imagePath: string): string => {
-    if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
-      return imagePath;
-    }
-    return imagePath;
-  };
 
   const ogImage = image
     ? {

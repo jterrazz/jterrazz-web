@@ -1,22 +1,18 @@
 "use client";
 
-import React from "react";
-
 import { IconFileTextFilled } from "@tabler/icons-react";
 import Image from "next/image";
-
-import { Link } from "../../../../infrastructure/navigation/navigation";
+import React from "react";
 
 // Domain
 import { type Experiment, type ExperimentStatus } from "../../../../domain/experiment";
-
+import { Link } from "../../../../infrastructure/navigation/navigation";
 // Utils
 import { cn } from "../../../utils";
-
 import { BadgeExperimentStatus } from "../badge-experiment-status/badge-experiment-status";
 
 type ExperimentCardData = Pick<Experiment, "name" | "slug" | "tagline"> & {
-  articleUrl?: string | null;
+  articleUrl?: null | string;
   iconUrl?: string;
   status: ExperimentStatus;
 };
@@ -30,8 +26,8 @@ export const CardExperimentFeatured: React.FC<CardExperimentFeaturedProps> = ({
   className,
   experiment,
 }) => {
-  const hasArticle = !!experiment.articleUrl;
-  const hasIcon = !!experiment.iconUrl;
+  const hasArticle = Boolean(experiment.articleUrl);
+  const hasIcon = Boolean(experiment.iconUrl);
 
   return (
     <Link

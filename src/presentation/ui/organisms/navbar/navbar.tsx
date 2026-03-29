@@ -1,8 +1,5 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-
-import { AnimatePresence, motion } from "framer-motion";
 import {
   IconBook,
   IconBrandGithub,
@@ -13,19 +10,18 @@ import {
   IconMenu2,
   IconX,
 } from "@tabler/icons-react";
+import { AnimatePresence, motion } from "framer-motion";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
-
-// Infrastructure
-import { Link } from "../../../../infrastructure/navigation/navigation";
-
-// Utils
-import { cn } from "../../../utils";
+import React, { useEffect, useRef, useState } from "react";
 
 import { defaultLocale, type Locale, locales } from "../../../../i18n/config";
+// Infrastructure
+import { Link } from "../../../../infrastructure/navigation/navigation";
 import { useLocale } from "../../../context/locale-context";
+// Utils
+import { cn } from "../../../utils";
 import { SelectionIndicator } from "../../atoms/selection-indicator/selection-indicator";
-
 import { type NavbarPage } from "./navbar-page";
 
 /**
@@ -167,6 +163,19 @@ type NavbarProps = {
   translations: NavbarTranslations;
 };
 
+const getContactIcon = (name: string) => {
+  if (name.toLowerCase().includes("github")) {
+    return <IconBrandGithub size={18} />;
+  }
+  if (name.toLowerCase().includes("medium")) {
+    return <IconBook size={18} />;
+  }
+  if (name.toLowerCase() === "x") {
+    return <IconBrandX size={18} />;
+  }
+  return null;
+};
+
 export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, translations: t }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -177,13 +186,6 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
   const shouldShowAppButton = !t.hideAppButtonOnPaths.some(
     (path) => pathname === path || pathname.startsWith(`${path}/`),
   );
-
-  const getContactIcon = (name: string) => {
-    if (name.toLowerCase().includes("github")) return <IconBrandGithub size={18} />;
-    if (name.toLowerCase().includes("medium")) return <IconBook size={18} />;
-    if (name.toLowerCase() === "x") return <IconBrandX size={18} />;
-    return null;
-  };
 
   const activePage = [...pages]
     .sort((a, b) => b.href.length - a.href.length)

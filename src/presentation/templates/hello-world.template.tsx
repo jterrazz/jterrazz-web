@@ -5,13 +5,10 @@ import React from "react";
 // Domain
 import { type Experiment } from "../../domain/experiment";
 import { type UserExperience } from "../../domain/user";
-
 import { CardArticleRow } from "../ui/molecules/card-article/card-article-row";
 import { CardExperimentFeatured } from "../ui/molecules/card-experiment-featured/card-experiment-featured";
 import { DividerSection } from "../ui/molecules/divider-section/divider-section";
 import { SectionHero } from "../ui/molecules/section-hero/section-hero";
-import { Timeline } from "../ui/organisms/timeline/timeline";
-import { TimelineItem } from "../ui/organisms/timeline/timeline-item";
 
 interface Article {
   articleCount?: number;
@@ -65,7 +62,7 @@ const FocusItem = ({ description, title }: { description: string; title: string 
 
 export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
   description,
-  experiences,
+  experiences: _experiences,
   featuredArticles,
   featuredExperiments,
   translations: t,

@@ -1,15 +1,12 @@
-import React from "react";
-
 import { IconFlaskFilled } from "@tabler/icons-react";
 import Script from "next/script";
-
-import { Link } from "../../infrastructure/navigation/navigation";
+import React from "react";
 
 // Domain
 import { type Article, type ArticleLanguage } from "../../domain/article";
 import { type Feature } from "../../domain/feature";
 import { buildArticleSlug } from "../../domain/utils/slugify";
-
+import { Link } from "../../infrastructure/navigation/navigation";
 import { TableOfContents } from "../ui/molecules/table-of-contents/table-of-contents";
 import { ArticleFooter } from "../ui/organisms/article-footer/article-footer";
 import { Container } from "../ui/organisms/container/container";
@@ -26,7 +23,7 @@ type ArticleTemplateProps = {
   description: string;
   features: Feature[];
   imageUrl?: string;
-  linkedExperiment?: { name: string; slug: string } | null;
+  linkedExperiment?: null | { name: string; slug: string };
   title: string;
 };
 
@@ -85,7 +82,9 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
         const standaloneArticles: Article[] = [];
 
         for (const article of articles) {
-          if (!article.published || article.publicIndex === currentArticle?.publicIndex) continue;
+          if (!article.published || article.publicIndex === currentArticle?.publicIndex) {
+            continue;
+          }
 
           if (article.metadata.series) {
             const existing = seriesMap.get(article.metadata.series) || [];
@@ -104,7 +103,9 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
               new Date(a.metadata.datePublished).getTime() -
               new Date(b.metadata.datePublished).getTime(),
           );
-          if (sorted[0]) seriesFirstArticles.push(sorted[0]);
+          if (sorted[0]) {
+            seriesFirstArticles.push(sorted[0]);
+          }
         }
 
         // Combine and sort by latest date

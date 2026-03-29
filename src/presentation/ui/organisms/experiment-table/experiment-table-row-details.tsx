@@ -1,15 +1,11 @@
-import React from "react";
-
 import { IconChevronRight, IconStack2Filled } from "@tabler/icons-react";
+import React from "react";
 
 // Domain
 import { type ExperimentComponent } from "../../../../domain/experiment";
-
 // Utils
 import { cn } from "../../../utils";
-
 import { Badge, BadgeColor, DotPulseSize } from "../../atoms/badge/badge";
-
 import { experimentStatusToDescription } from "./experiment-table-row-component-view-model";
 
 export type ExperimentTableRowDetailsProps = {

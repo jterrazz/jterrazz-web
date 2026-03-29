@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
 // Utils
-import { cn } from '../../../utils';
+import { cn } from "../../../utils";
 
 export type RowProps = {
-    children: React.ReactNode;
-    className?: string;
+  children: React.ReactNode;
+  className?: string;
 };
 
 export const Row: React.FC<RowProps> = ({ children, className }) => {
-    const generatedClassName = cn('flex flex-row space-x-12', className);
+  const generatedClassName = cn("flex flex-row space-x-12", className);
 
-    return <ul className={generatedClassName}>{children}</ul>;
+  return <ul className={generatedClassName}>{children}</ul>;
 };

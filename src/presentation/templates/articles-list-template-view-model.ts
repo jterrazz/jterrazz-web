@@ -2,7 +2,6 @@
 import { type Article, type ArticleLanguage } from "../../domain/article";
 import { UserContactType } from "../../domain/user";
 import { buildArticleSlug } from "../../domain/utils/slugify";
-
 // Infrastructure
 import { type Locale } from "../../i18n/config";
 import { contentLinksRepository } from "../../infrastructure/repositories/content-links.repository";
@@ -143,7 +142,7 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
         });
       } else {
         // This should ideally not happen given our data, but if it does,
-        // single items go back to standalone (if we hadn't already filtered them)
+        // Single items go back to standalone (if we hadn't already filtered them)
         // For now, let's just map them to series to avoid losing them, or ignore if strict.
         // Given the logic, let's assume series are valid.
       }
@@ -160,8 +159,12 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
         return aOrder - bOrder;
       }
       // If only one is in the custom order, it comes first
-      if (aOrder !== -1) return -1;
-      if (bOrder !== -1) return 1;
+      if (aOrder !== -1) {
+        return -1;
+      }
+      if (bOrder !== -1) {
+        return 1;
+      }
 
       // Otherwise, sort by date
       const aLatestDate = Math.max(

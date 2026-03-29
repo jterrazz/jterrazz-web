@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { notFound, redirect } from "next/navigation";
 
 import { type ArticleLanguage } from "../../../../domain/article";
 import { buildArticleSlug } from "../../../../domain/utils/slugify";
-
 import { type Locale, locales } from "../../../../i18n/config";
 import { articlesRepository } from "../../../../infrastructure/repositories/articles.repository";
 import { contentLinksRepository } from "../../../../infrastructure/repositories/content-links.repository";
@@ -15,7 +14,6 @@ import {
 } from "../../../../infrastructure/repositories/features.repository";
 import { buildMetadata } from "../../../../infrastructure/seo/build-metadata";
 import { is42RelatedArticle } from "../../../../infrastructure/seo/seo-utils";
-
 import { ArticleTemplate } from "../../../../presentation/templates/article.template";
 
 export const dynamicParams = true;

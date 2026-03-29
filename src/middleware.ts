@@ -1,9 +1,9 @@
-import createMiddleware from 'next-intl/middleware';
+import createMiddleware from "next-intl/middleware";
 
-import { defaultLocale, locales } from './i18n/config';
+import { defaultLocale, locales } from "./i18n/config";
 
 /**
- * i18n routing middleware
+ * I18n routing middleware
  * @description Handles locale detection and URL prefixing
  *
  * URL behavior:
@@ -14,27 +14,27 @@ import { defaultLocale, locales } from './i18n/config';
  * - `/en/articles` → Redirects to `/articles`
  */
 export default createMiddleware({
-    // Default locale served without prefix
-    defaultLocale,
+  // Default locale served without prefix
+  defaultLocale,
 
-    // Don't use cookie for locale detection (cleaner URLs)
-    localeDetection: false,
+  // Don't use cookie for locale detection (cleaner URLs)
+  localeDetection: false,
 
-    // Only add prefix for non-default locales
-    localePrefix: 'as-needed',
+  // Only add prefix for non-default locales
+  localePrefix: "as-needed",
 
-    // Supported locales
-    locales,
+  // Supported locales
+  locales,
 });
 
 export const config = {
-    // Match all pathnames except:
-    // - API routes
-    // - Next.js internals (_next)
-    // - Static files (files with extensions)
-    // - Specific static routes
-    // - /go/* redirect/landing pages
-    matcher: [
-        '/((?!api|_next|content|go/|.*\\.[^/]+$|favicon|assets|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest).*)',
-    ],
+  // Match all pathnames except:
+  // - API routes
+  // - Next.js internals (_next)
+  // - Static files (files with extensions)
+  // - Specific static routes
+  // - /go/* redirect/landing pages
+  matcher: [
+    String.raw`/((?!api|_next|content|go/|.*\.[^/]+$|favicon|assets|robots\.txt|sitemap\.xml|manifest\.webmanifest).*)`,
+  ],
 };

@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 import {
   IconArticleFilled,
   IconBrandGithubFilled,
@@ -12,16 +10,14 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import Script from "next/script";
+import React from "react";
 
 // Domain
 import { UserContactType } from "../../../../domain/user";
-
 // Infrastructure
 import { userRepository } from "../../../../infrastructure/repositories/user.repository";
-
 // Utils
 import { cn } from "../../../utils";
-
 import { ToggleTheme } from "../../molecules/toggle-theme/toggle-theme";
 
 const featuredApps = [

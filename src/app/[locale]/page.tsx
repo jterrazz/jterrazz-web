@@ -1,15 +1,13 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { buildArticleSlug } from "../../domain/utils/slugify";
-
+import type { Locale } from "../../i18n/config";
 import { articlesRepository } from "../../infrastructure/repositories/articles.repository";
 import { contentLinksRepository } from "../../infrastructure/repositories/content-links.repository";
 import { experimentsRepository } from "../../infrastructure/repositories/experiments.repository";
 import { userRepository } from "../../infrastructure/repositories/user.repository";
 import { buildMetadata } from "../../infrastructure/seo/build-metadata";
 import { buildPersonJsonLd } from "../../infrastructure/seo/json-ld";
-
-import type { Locale } from "../../i18n/config";
 import { HelloWorldTemplate } from "../../presentation/templates/hello-world.template";
 import { JsonLdScript } from "../../presentation/ui/atoms/json-ld-script/json-ld-script";
 
@@ -93,7 +91,9 @@ export default async function HomePage({ params }: Props) {
   // Add featured series
   for (const seriesName of featuredSeriesNames) {
     const articles = seriesMap.get(seriesName);
-    if (!articles || articles.length === 0) continue;
+    if (!articles || articles.length === 0) {
+      continue;
+    }
 
     const sortedByDateAsc = articles.sort(
       (a, b) =>
@@ -115,7 +115,9 @@ export default async function HomePage({ params }: Props) {
   // Add featured standalone articles
   for (const index of featuredStandaloneIndexes) {
     const article = standaloneArticles.find((a) => a.publicIndex === index);
-    if (!article) continue;
+    if (!article) {
+      continue;
+    }
 
     featuredArticlesWithDates.push({
       experimentSlug: contentLinksRepository.getExperimentSlugForArticle(article.publicIndex),
@@ -130,7 +132,7 @@ export default async function HomePage({ params }: Props) {
   // Sort by latest date (newest first) and remove the date field
   const featuredArticles = featuredArticlesWithDates
     .sort((a, b) => b.latestDate.getTime() - a.latestDate.getTime())
-    .map(({ latestDate, ...rest }) => rest);
+    .map(({ latestDate: _latestDate, ...rest }) => rest);
 
   // Featured experiments - specific selection
   const featuredSlugs = ["clawrr", "signews", "jterrazz"];
@@ -196,8 +198,8 @@ export default async function HomePage({ params }: Props) {
       <HelloWorldTemplate
         description={t("description")}
         experiences={userExperiences}
-        featuredExperiments={featuredExperiments}
         featuredArticles={featuredArticles}
+        featuredExperiments={featuredExperiments}
         translations={translations}
       />
     </>

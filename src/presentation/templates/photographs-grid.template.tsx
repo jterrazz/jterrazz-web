@@ -1,16 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
 import { ImageGallery } from "react-image-grid-gallery";
 
 // Domain
 import { type Photograph } from "../../domain/photograph";
 import { UserContactType } from "../../domain/user";
-
 // Infrastructure
 import { userRepository } from "../../infrastructure/repositories/user.repository";
-
 import { SectionHero } from "../ui/molecules/section-hero/section-hero";
 
 type PhotographsGridTranslations = {
@@ -44,9 +41,7 @@ function useScrollGrayscale(): boolean {
   return isGrayscale;
 }
 
-export const PhotographsGridTemplate: React.FC<
-  PhotographsGridTemplateProps
-> = ({
+export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = ({
   highlightDescription,
   highlightTitle,
   photographs,
@@ -70,11 +65,7 @@ export const PhotographsGridTemplate: React.FC<
       {/* Hero Section */}
       <div className="w-full border-b border-zinc-100 dark:border-zinc-900 mb-12">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
-          <SectionHero
-            button={button}
-            description={highlightDescription}
-            title={highlightTitle}
-          />
+          <SectionHero button={button} description={highlightDescription} title={highlightTitle} />
         </div>
       </div>
 

@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
 // Utils
-import { cn } from '../../../utils';
+import { cn } from "../../../utils";
 
 type ExperimentTableProps = {
-    children: React.ReactNode;
-    className?: string;
+  children: React.ReactNode;
+  className?: string;
 };
 
 export const ExperimentTable: React.FC<ExperimentTableProps> = ({ children, className }) => {
-    const generatedClassName = cn('flex flex-col select-none', className);
+  const generatedClassName = cn("flex flex-col select-none", className);
 
-    return <ul className={generatedClassName}>{children}</ul>;
+  return <ul className={generatedClassName}>{children}</ul>;
 };

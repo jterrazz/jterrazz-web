@@ -1,16 +1,13 @@
 "use client";
 
-import { useState } from "react";
-
 import Script from "next/script";
+import { useState } from "react";
 
 // Domain
 import { ArticleCategory } from "../../domain/article";
-
 import { CardArticleRow } from "../ui/molecules/card-article/card-article-row";
 import { DividerSection } from "../ui/molecules/divider-section/divider-section";
 import { SectionHero } from "../ui/molecules/section-hero/section-hero";
-
 import {
   type ArticleRowViewModel,
   type ArticleSeriesViewModel,
@@ -69,7 +66,9 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
 
   // Filter Helper
   const shouldShow = (article: ArticleRowViewModel): boolean => {
-    if (filter === "All") return true;
+    if (filter === "All") {
+      return true;
+    }
     const allowedCategories = filterMap[filter];
     return allowedCategories
       ? allowedCategories.includes(article.category as ArticleCategory)

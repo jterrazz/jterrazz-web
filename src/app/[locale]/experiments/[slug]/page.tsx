@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
 
 import { SITE_CONFIG } from "../../../../config/site";
-import type { ExperimentContext } from "../../../../domain/experiment";
 import { buildArticleSlug } from "../../../../domain/utils/slugify";
-
 import { type Locale, locales } from "../../../../i18n/config";
 import { articlesRepository } from "../../../../infrastructure/repositories/articles.repository";
 import { contentLinksRepository } from "../../../../infrastructure/repositories/content-links.repository";
@@ -17,7 +15,6 @@ import {
   buildExperimentSeoKeywords,
   is42Experiment,
 } from "../../../../infrastructure/seo/seo-utils";
-
 import { ExperimentDetailTemplate } from "../../../../presentation/templates/experiment-detail.template";
 import { JsonLdScript } from "../../../../presentation/ui/atoms/json-ld-script/json-ld-script";
 
@@ -105,10 +102,8 @@ export default async function ExperimentDetailPage(props: Props) {
           imageUrl: linkedArticle.imageUrl,
           slug: buildArticleSlug(linkedArticle.publicIndex, linkedArticle.metadata.title.en),
           tagline:
-            linkedArticle.metadata.tagline[locale as Locale] ??
-            linkedArticle.metadata.tagline.en,
-          title:
-            linkedArticle.metadata.title[locale as Locale] ?? linkedArticle.metadata.title.en,
+            linkedArticle.metadata.tagline[locale as Locale] ?? linkedArticle.metadata.tagline.en,
+          title: linkedArticle.metadata.title[locale as Locale] ?? linkedArticle.metadata.title.en,
         },
       ]
     : [];

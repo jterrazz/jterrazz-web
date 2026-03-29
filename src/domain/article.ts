@@ -6,9 +6,7 @@ export enum ArticleCategory {
 export type ArticleLanguage = "en" | "fr";
 
 export interface Article {
-  content: {
-    [key in ArticleLanguage]?: string;
-  };
+  content: Partial<Record<ArticleLanguage, string>>;
   imageUrl: string;
   metadata: {
     category: ArticleCategory;
@@ -25,7 +23,7 @@ export interface Article {
 
 // Raw input for article creation (before domain sanitization)
 export type RawArticleInput = {
-  content: { [key in ArticleLanguage]?: string };
+  content: Partial<Record<ArticleLanguage, string>>;
   imageUrl: string;
   metadata: {
     category: ArticleCategory;
@@ -43,21 +41,27 @@ export type RawArticleInput = {
 // Private sanitization helpers
 
 function sanitizeEmDashes(text: string): string {
-  if (!text) return text;
+  if (!text) {
+    return text;
+  }
   // Replace various dash characters (em dash, en dash, horizontal bar, figure dash) with commas
   // Covers: U+2014 (—), U+2013 (–), U+2015 (―), U+2012 (‒)
   return text.replace(/\s*[—–―‒]\s*/g, ", ");
 }
 
 function capitalizeFirst(title: string): string {
-  if (!title) return title;
+  if (!title) {
+    return title;
+  }
 
   const segments = title.split(":");
 
   return segments
     .map((segment, index) => {
       const trimmed = segment.trim();
-      if (!trimmed) return segment;
+      if (!trimmed) {
+        return segment;
+      }
 
       const leadingSpace = index > 0 && segment.startsWith(" ") ? " " : "";
       // Only capitalize first letter, preserve rest as-is (keeps "AI", proper nouns, etc.)
@@ -69,12 +73,16 @@ function capitalizeFirst(title: string): string {
 }
 
 function sanitizeTitle(title: string): string {
-  if (!title) return title;
+  if (!title) {
+    return title;
+  }
   return sanitizeEmDashes(capitalizeFirst(title));
 }
 
 function sanitizeMarkdownHeadings(content: string): string {
-  if (!content) return content;
+  if (!content) {
+    return content;
+  }
   // Match markdown headings: # at start of line, followed by space and title text
   return content.replace(/^(#{1,6})\s+(.+)$/gm, (_match, hashes, title) => {
     return `${hashes} ${capitalizeFirst(title)}`;
@@ -82,7 +90,9 @@ function sanitizeMarkdownHeadings(content: string): string {
 }
 
 function sanitizeContent(content: string): string {
-  if (!content) return content;
+  if (!content) {
+    return content;
+  }
   const withSanitizedHeadings = sanitizeMarkdownHeadings(content);
   return sanitizeEmDashes(withSanitizedHeadings);
 }

@@ -1,14 +1,12 @@
 "use client";
 
-import React from "react";
-
 import { IconDeviceDesktop, IconMoonFilled, IconSunFilled } from "@tabler/icons-react";
-
-// Utils
-import { cn } from "../../../utils";
+import React from "react";
 
 import { useTheme } from "../../../hooks/use-theme";
 import type { Theme } from "../../../theme/theme";
+// Utils
+import { cn } from "../../../utils";
 
 interface ToggleThemeProps {
   className?: string;

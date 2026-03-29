@@ -9,7 +9,6 @@ import {
   createArticle,
   type RawArticleInput,
 } from "../../domain/article";
-
 import { getContentUrl } from "../content-url";
 
 // Configuration structure for each article before being transformed into the Article domain model.
@@ -566,7 +565,7 @@ const processMarkdownContent = (content: string, filename: string): string => {
 };
 
 // Clean AI-generated artifacts from text (before domain sanitization)
-// collapseSpaces: false preserves indentation in code blocks
+// CollapseSpaces: false preserves indentation in code blocks
 const cleanAiText = (text: string): string => parseText(text, { collapseSpaces: false });
 
 const readMarkdownFileSync = (
@@ -642,7 +641,9 @@ export const articlesRepository = {
     ),
   getByIndex: (index: string, language: ArticleLanguage = "en"): Article | undefined => {
     const article = articles.find((a) => String(a.publicIndex) === index);
-    if (!article || !article.content[language]) return undefined;
+    if (!article || !article.content[language]) {
+      return undefined;
+    }
     return article;
   },
 };

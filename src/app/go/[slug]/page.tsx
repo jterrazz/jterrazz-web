@@ -3,7 +3,7 @@ import { notFound, redirect } from "next/navigation";
 
 import { experimentsRepository } from "../../../infrastructure/repositories/experiments.repository";
 
-function detectPlatform(userAgent: string): "ios" | "android" | "desktop" {
+function detectPlatform(userAgent: string): "android" | "desktop" | "ios" {
   const ua = userAgent.toLowerCase();
 
   if (/iphone|ipad|ipod/.test(ua)) {

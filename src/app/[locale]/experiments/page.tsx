@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
+import { SITE_CONFIG } from "../../../config/site";
 import { buildArticleSlug } from "../../../domain/utils/slugify";
-
 // Infrastructure
 import { articlesRepository } from "../../../infrastructure/repositories/articles.repository";
 import { contentLinksRepository } from "../../../infrastructure/repositories/content-links.repository";
@@ -15,8 +15,6 @@ import {
   buildCollectionPageJsonLd,
   buildSoftwareApplicationJsonLd,
 } from "../../../infrastructure/seo/json-ld";
-
-import { SITE_CONFIG } from "../../../config/site";
 import { ExperimentsListTemplate } from "../../../presentation/templates/experiments-list.template";
 import { JsonLdScript } from "../../../presentation/ui/atoms/json-ld-script/json-ld-script";
 

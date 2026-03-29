@@ -2,7 +2,6 @@ import { IconFlaskFilled } from "@tabler/icons-react";
 import Image from "next/image";
 
 import { Link } from "../../../../infrastructure/navigation/navigation";
-
 import { cn } from "../../../utils";
 
 export interface CardArticleRowProps {
@@ -29,7 +28,7 @@ export const CardArticleRow: React.FC<CardArticleRowProps> = ({
   title,
 }) => {
   const isSeries = articleCount !== undefined && articleCount > 1;
-  const hasExperiment = !!experimentSlug;
+  const hasExperiment = Boolean(experimentSlug);
 
   return (
     <Link

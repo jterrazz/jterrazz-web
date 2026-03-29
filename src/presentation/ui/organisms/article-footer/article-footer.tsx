@@ -1,22 +1,17 @@
-import React from "react";
-
 import { IconBrandGithubFilled, IconBrandTwitterFilled } from "@tabler/icons-react";
 import Image from "next/image";
-
-import { Link } from "../../../../infrastructure/navigation/navigation";
+import React from "react";
 
 // Domain
 import { type Article } from "../../../../domain/article";
 import { UserContactType } from "../../../../domain/user";
 import { buildArticleSlug } from "../../../../domain/utils/slugify";
-
+import { Link } from "../../../../infrastructure/navigation/navigation";
 // Infrastructure
 import { contentLinksRepository } from "../../../../infrastructure/repositories/content-links.repository";
 import { userRepository } from "../../../../infrastructure/repositories/user.repository";
-
 // Utils
 import { cn } from "../../../utils";
-
 import { CardArticleRow } from "../../molecules/card-article/card-article-row";
 import { DividerSection } from "../../molecules/divider-section/divider-section";
 
@@ -27,6 +22,14 @@ type ArticleFooterProps = {
   datePublished: string;
   relatedArticles: Article[];
   seriesTitle?: string;
+};
+
+const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 };
 
 export const ArticleFooter: React.FC<ArticleFooterProps> = ({
@@ -40,14 +43,6 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
   const profile = userRepository.getProfile();
   const github = userRepository.getContact(UserContactType.GitHub);
   const twitter = userRepository.getContact(UserContactType.X);
-
-  const formatDate = (date: string) => {
-    return new Date(date).toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
 
   return (
     <footer className={cn("flex flex-col", className)}>

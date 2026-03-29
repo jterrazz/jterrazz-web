@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
 import QRCodeStyling from "qr-code-styling";
+import React, { useEffect, useRef } from "react";
 
 type QRCodeProps = {
   url: string;
@@ -11,7 +11,7 @@ type QRCodeProps = {
 
 export const QRCode: React.FC<QRCodeProps> = ({ url, size = 140, className }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const qrCodeRef = useRef<QRCodeStyling | null>(null);
+  const qrCodeRef = useRef<null | QRCodeStyling>(null);
 
   // Render at 2x resolution for crisp display on retina screens
   const renderSize = size * 2;
@@ -24,7 +24,7 @@ export const QRCode: React.FC<QRCodeProps> = ({ url, size = 140, className }) =>
         data: url,
         type: "svg", // SVG for crisp rendering at any size
         dotsOptions: {
-          color: "#18181b", // zinc-900
+          color: "#18181b", // Zinc-900
           type: "rounded",
         },
         cornersSquareOptions: {

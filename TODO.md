@@ -3,6 +3,7 @@
 Cryptographically prove article publication dates and authorship using **EAS (Ethereum Attestation Service) on Base L2**.
 
 Each attestation proves:
+
 - **What** — keccak256 hash of the article content
 - **When** — immutable block timestamp
 - **Who** — your Ethereum wallet signature
@@ -21,14 +22,15 @@ Register once on Base. Schema definition:
 bytes32 contentHash, string title, uint256 articleIndex, string url
 ```
 
-| Field | Purpose |
-|---|---|
-| `contentHash` | `keccak256("en:{en.md}\n---\nfr:{fr.md}")` — raw files, `\r\n` normalized to `\n` |
-| `title` | English article title (human-readable on explorer) |
-| `articleIndex` | `publicIndex` from article config (stable cross-reference) |
-| `url` | Canonical article URL, e.g. `https://jterrazz.com/articles/1-master-memory-...` |
+| Field          | Purpose                                                                           |
+| -------------- | --------------------------------------------------------------------------------- |
+| `contentHash`  | `keccak256("en:{en.md}\n---\nfr:{fr.md}")` — raw files, `\r\n` normalized to `\n` |
+| `title`        | English article title (human-readable on explorer)                                |
+| `articleIndex` | `publicIndex` from article config (stable cross-reference)                        |
+| `url`          | Canonical article URL, e.g. `https://jterrazz.com/articles/1-master-memory-...`   |
 
 Contracts on Base:
+
 - EAS: `0x4200000000000000000000000000000000000021`
 - SchemaRegistry: `0x4200000000000000000000000000000000000020`
 - Explorer: https://base.easscan.org
@@ -44,6 +46,7 @@ npm install -D @ethereum-attestation-service/eas-sdk ethers tsx
 ### 2. Environment setup
 
 Create `.env` (never commit):
+
 ```
 EAS_PRIVATE_KEY=0x...
 BASE_RPC_URL=https://mainnet.base.org
@@ -67,6 +70,7 @@ One-time script that registers the schema on Base EAS and outputs the schema UID
 ### 5. Create `scripts/timestamp-articles.ts`
 
 Main CLI script that for each published article:
+
 1. Reads raw `en.md` + `fr.md` from `/content/{filename}/`
 2. Computes `keccak256` of the concatenated content
 3. Creates an EAS attestation (non-revocable, no expiration)
@@ -77,16 +81,19 @@ Should support `--dry-run` to preview without transacting. Skips articles that a
 ### 6. Code changes
 
 **Domain** — Add `attestationUid?: string` to:
+
 - `Article` interface in `src/domain/article.ts`
 - `RawArticleInput` type
 - `createArticle()` factory passthrough
 
 **Infrastructure** — In `src/infrastructure/repositories/articles.repository.ts`:
+
 - Add `attestationUid?: string` to `ArticleConfig` type
 - Thread it through `loadArticles()` into `createArticle()`
 - After running the script, paste each UID into the corresponding article config entry
 
 **Config** — Add to `src/config/site.ts`:
+
 ```typescript
 ethereum: {
     walletAddress: '0x...', // your signing wallet
@@ -95,17 +102,21 @@ ethereum: {
 ```
 
 **Presentation** — Thread `attestationUid` through:
+
 - `src/app/[locale]/articles/[slugId]/page.tsx` → pass to template
 - `src/presentation/templates/article.template.tsx` → pass to footer
 - `src/presentation/ui/organisms/article-footer/article-footer.tsx` → render badge
 
 Badge renders between the author section and the publication date:
+
 ```tsx
-{attestationUid && (
+{
+  attestationUid && (
     <a href={`https://base.easscan.org/attestation/view/${attestationUid}`}>
-        <IconShieldCheckFilled /> Signed on-chain · 0xabc1...ef23
+      <IconShieldCheckFilled /> Signed on-chain · 0xabc1...ef23
     </a>
-)}
+  );
+}
 ```
 
 ### 7. Run it

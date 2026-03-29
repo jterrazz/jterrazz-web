@@ -1,17 +1,13 @@
-import React from "react";
-
-import { AnimatePresence, motion } from "framer-motion";
 import { IconBrandGithubFilled, IconChevronDown, IconLockFilled } from "@tabler/icons-react";
+import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
 
 // Domain
 import { type ExperimentComponent } from "../../../../domain/experiment";
-
 // Utils
 import { cn } from "../../../utils";
-
 import { Badge, BadgeColor, DotPulseSize } from "../../atoms/badge/badge";
 import { PulseDot } from "../../atoms/pulse-dot/pulse-dot";
-
 import {
   experimentComponentStatusToPulseDotColor,
   experimentStatusToDescription,
@@ -49,7 +45,7 @@ export const ExperimentTableRowComponent: React.FC<ExperimentTableRowComponentPr
             setIsExpanded(!isExpanded);
           }
         }}
-        // biome-ignore lint/a11y/useSemanticElements: Using div for complex card layout
+        // Biome-ignore lint/a11y/useSemanticElements: Using div for complex card layout
         role="button"
         tabIndex={0}
       >

@@ -1,8 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
-
-import { AnimatePresence, motion } from "framer-motion";
 import {
   IconArrowUpRight,
   IconBriefcaseFilled,
@@ -11,12 +8,12 @@ import {
   IconPlus,
   IconSchool,
 } from "@tabler/icons-react";
-
-import { Link } from "../../../../infrastructure/navigation/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useState } from "react";
 
 // Domain
 import { type UserExperience } from "../../../../domain/user";
-
+import { Link } from "../../../../infrastructure/navigation/navigation";
 // Utils
 import { cn } from "../../../utils";
 

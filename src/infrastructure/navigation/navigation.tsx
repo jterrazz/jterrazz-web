@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
+import NextLink from "next/link";
+import React from "react";
 
-import NextLink from 'next/link';
-
-import { useLocale } from '../../presentation/context/locale-context';
+import { useLocale } from "../../presentation/context/locale-context";
 
 type LinkProps = React.ComponentProps<typeof NextLink>;
 
@@ -13,12 +12,12 @@ type LinkProps = React.ComponentProps<typeof NextLink>;
  * @description Automatically prefixes internal links with the current locale
  */
 export function Link({ href, ...props }: LinkProps) {
-    const { localePath } = useLocale();
+  const { localePath } = useLocale();
 
-    // Only process internal string links
-    if (typeof href === 'string' && href.startsWith('/')) {
-        href = localePath(href);
-    }
+  // Only process internal string links
+  if (typeof href === "string" && href.startsWith("/")) {
+    href = localePath(href);
+  }
 
-    return <NextLink href={href} {...props} />;
+  return <NextLink href={href} {...props} />;
 }

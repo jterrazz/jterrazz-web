@@ -1,9 +1,7 @@
+import { IconArrowRight } from "@tabler/icons-react";
 import React from "react";
 
-import { IconArrowRight } from "@tabler/icons-react";
-
 import { Link } from "../../../../infrastructure/navigation/navigation";
-
 // Utils
 import { cn } from "../../../utils";
 

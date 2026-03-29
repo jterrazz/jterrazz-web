@@ -1,0 +1,10 @@
+{
+  "extends": ["node_modules/@jterrazz/codestyle/presets/oxlint/base.json"],
+  "ignorePatterns": ["content/**", ".next/**"],
+  "rules": {
+    "import/exports-last": "off",
+    "unicorn/prefer-global-this": "off",
+    "typescript/parameter-properties": "off",
+    "oxc/no-map-spread": "off"
+  }
+}

@@ -1,18 +1,16 @@
 "use client";
 
-import React from "react";
-
-import Image from "next/image";
 import {
   IconArrowRight,
   IconArrowUpRight,
   IconBrandApple,
   IconBrandGithubFilled,
   IconBrandGooglePlay,
-  IconDownload,
   IconLock,
   IconWorld,
 } from "@tabler/icons-react";
+import Image from "next/image";
+import React from "react";
 
 // Domain
 import {
@@ -20,14 +18,12 @@ import {
   type ExperimentComponent,
   ExperimentContext,
 } from "../../domain/experiment";
-
-// Utils
-import { cn } from "../utils";
-
 import { QRCode } from "../ui/atoms/qr-code/qr-code";
 import { BadgeExperimentStatus } from "../ui/molecules/badge-experiment-status/badge-experiment-status";
 import { CardArticleRow } from "../ui/molecules/card-article/card-article-row";
 import { DividerSection } from "../ui/molecules/divider-section/divider-section";
+// Utils
+import { cn } from "../utils";
 
 // Related article for the Articles section
 type RelatedArticle = {
@@ -88,18 +84,44 @@ function getContextLabel(
   translations: ExperimentDetailTranslations["context"],
 ): string {
   switch (context) {
-    case ExperimentContext.Personal:
+    case ExperimentContext.Personal: {
       return translations.personal;
-    case ExperimentContext.School42:
+    }
+    case ExperimentContext.School42: {
       return translations.school42;
-    case ExperimentContext.Professional:
+    }
+    case ExperimentContext.Professional: {
       return translations.professional;
-    case ExperimentContext.Hackathon:
+    }
+    case ExperimentContext.Hackathon: {
       return translations.hackathon;
-    default:
+    }
+    default: {
       return context;
+    }
   }
 }
+
+// Helper to render app store badge buttons
+const renderAppStoreBadge = (
+  href: string,
+  icon: React.ReactNode,
+  topText: string,
+  bottomText: string,
+) => (
+  <a
+    className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-xl font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors min-w-[180px]"
+    href={href}
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    {icon}
+    <div className="text-left">
+      <div className="text-xs opacity-80">{topText}</div>
+      <div className="text-sm font-semibold">{bottomText}</div>
+    </div>
+  </a>
+);
 
 export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> = ({
   experiment,
@@ -131,33 +153,11 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
     </a>
   );
 
-  // Helper to render app store badge buttons
-  const renderAppStoreBadge = (
-    href: string,
-    icon: React.ReactNode,
-    topText: string,
-    bottomText: string,
-  ) => (
-    <a
-      className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-xl font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors min-w-[180px]"
-      href={href}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      {icon}
-      <div className="text-left">
-        <div className="text-xs opacity-80">{topText}</div>
-        <div className="text-sm font-semibold">{bottomText}</div>
-      </div>
-    </a>
-  );
-
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 pb-32">
       {/* App Landing Hero - for mobile apps with store links */}
       {isAppWithStoreLinks ? (
         <div className="relative pt-12 md:pt-16 pb-24 md:pb-32 px-4 md:px-6 border-b border-zinc-100 dark:border-zinc-900 overflow-hidden">
-
           <div className="max-w-2xl mx-auto relative z-10">
             <div className="flex flex-col items-center text-center">
               {/* App Icon with glow effect */}

@@ -1,22 +1,19 @@
 "use client";
 
-import React from "react";
-
 import Script from "next/script";
+import React from "react";
 
 // Domain
 import { type Experiment, ExperimentCategory } from "../../domain/experiment";
 import { type Feature } from "../../domain/feature";
 import { UserContactType } from "../../domain/user";
-
-type SerializableFeature = Omit<Feature, "url"> & { url: string };
-
 // Infrastructure
 import { userRepository } from "../../infrastructure/repositories/user.repository";
-
 import { CardExperimentFeatured } from "../ui/molecules/card-experiment-featured/card-experiment-featured";
 import { DividerSection } from "../ui/molecules/divider-section/divider-section";
 import { SectionHero } from "../ui/molecules/section-hero/section-hero";
+
+type SerializableFeature = Omit<Feature, "url"> & { url: string };
 
 type ExperimentsListTranslations = {
   applications: string;

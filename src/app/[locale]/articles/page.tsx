@@ -1,15 +1,13 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import { buildArticleSlug } from "../../../domain/utils/slugify";
-
 import { SITE_CONFIG } from "../../../config/site";
+import { buildArticleSlug } from "../../../domain/utils/slugify";
 import { articlesRepository } from "../../../infrastructure/repositories/articles.repository";
 import { buildMetadata } from "../../../infrastructure/seo/build-metadata";
 import {
   buildBlogPostingJsonLd,
   buildCollectionPageJsonLd,
 } from "../../../infrastructure/seo/json-ld";
-
 import { ArticlesListViewModelImpl } from "../../../presentation/templates/articles-list-template-view-model";
 import { ArticlesListTemplate } from "../../../presentation/templates/articles-list.template";
 import { JsonLdScript } from "../../../presentation/ui/atoms/json-ld-script/json-ld-script";
