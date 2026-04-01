@@ -1,0 +1,5 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "ignoreDependencies": ["@jterrazz/codestyle", "@jterrazz/test", "@jterrazz/typescript"],
+  "ignoreBinaries": ["oxlint", "oxfmt"]
+}
