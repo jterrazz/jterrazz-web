@@ -281,9 +281,11 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                     className="snap-center shrink-0 relative rounded-2xl overflow-hidden shadow-xl shadow-zinc-200/50 dark:shadow-zinc-900/50 border border-zinc-200 dark:border-zinc-800 w-[280px] md:w-[320px] aspect-[9/19]"
                     key={screenshot}
                   >
-                    <img
+                    <Image
                       alt={`${experiment.name} screenshot`}
                       className="absolute inset-0 w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 768px) 280px, 320px"
                       src={screenshot}
                     />
                   </div>

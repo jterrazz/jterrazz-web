@@ -67,7 +67,7 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
 
   return (
     <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
-      <Script id="experiments-list-json-ld" strategy="beforeInteractive" type="application/ld+json">
+      <Script id="experiments-list-json-ld" strategy="afterInteractive" type="application/ld+json">
         {JSON.stringify(jsonLd)}
       </Script>
 

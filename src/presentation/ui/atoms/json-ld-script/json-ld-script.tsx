@@ -16,7 +16,7 @@ export interface JsonLdScriptProps {
  */
 export function JsonLdScript({ data, id }: JsonLdScriptProps) {
   return (
-    <Script id={id} strategy="beforeInteractive" type="application/ld+json">
+    <Script id={id} strategy="afterInteractive" type="application/ld+json">
       {JSON.stringify(data)}
     </Script>
   );

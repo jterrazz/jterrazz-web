@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext } from "react";
+import React, { createContext, useCallback, useContext, useMemo } from "react";
 
 import { defaultLocale, type Locale } from "../../i18n/config";
 
@@ -29,18 +29,23 @@ type LocaleProviderProps = {
  * @description Wrap client components that need locale-aware links
  */
 export function LocaleProvider({ children, locale }: LocaleProviderProps) {
-  const localePath = (path: string): string => {
-    if (locale === defaultLocale) {
-      return path;
-    }
-    // Don't double-prefix
-    if (path.startsWith(`/${locale}`)) {
-      return path;
-    }
-    return `/${locale}${path}`;
-  };
+  const localePath = useCallback(
+    (path: string): string => {
+      if (locale === defaultLocale) {
+        return path;
+      }
+      // Don't double-prefix
+      if (path.startsWith(`/${locale}`)) {
+        return path;
+      }
+      return `/${locale}${path}`;
+    },
+    [locale],
+  );
 
-  return <LocaleContext.Provider value={{ locale, localePath }}>{children}</LocaleContext.Provider>;
+  const value = useMemo(() => ({ locale, localePath }), [locale, localePath]);
+
+  return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 }
 
 /**

@@ -66,14 +66,14 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
               const { style: lineStyle, ...lineProps } = getLineProps({ line });
               return (
                 <div
-                  // Biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
+                  // oxlint-disable-next-line no-array-index-key -- Code tokens don't have stable IDs
                   key={i}
                   {...lineProps}
                   style={{ ...lineStyle, whiteSpace: "pre" }}
                 >
                   {line.map((token, tokenIndex) => (
                     <span
-                      // Biome-ignore lint/suspicious/noArrayIndexKey: Code tokens don't have stable IDs
+                      // oxlint-disable-next-line no-array-index-key -- Code tokens don't have stable IDs
                       key={tokenIndex}
                       {...getTokenProps({ token })}
                     />

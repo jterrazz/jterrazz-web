@@ -116,7 +116,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
 
   return (
     <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
-      <Script id="articles-list-json-ld" strategy="beforeInteractive" type="application/ld+json">
+      <Script id="articles-list-json-ld" strategy="afterInteractive" type="application/ld+json">
         {JSON.stringify(articlesListJsonLd)}
       </Script>
 

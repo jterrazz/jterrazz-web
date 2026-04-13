@@ -99,7 +99,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
         className,
       )}
     >
-      <Script id="footer-json-ld" strategy="beforeInteractive" type="application/ld+json">
+      <Script id="footer-json-ld" strategy="afterInteractive" type="application/ld+json">
         {JSON.stringify(footerJsonLd)}
       </Script>
 
