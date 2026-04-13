@@ -1,7 +1,7 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext } from 'react';
 
 type TimelineContextType = {
-  activeIndex: number;
+    activeIndex: number;
 };
 
 export const TimelineContext = createContext<TimelineContextType>({ activeIndex: 0 });

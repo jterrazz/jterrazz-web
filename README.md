@@ -26,15 +26,15 @@ Personal portfolio: experiments, photography, and articles.
 
 1. Clone the repository:
 
-   ```
-   git clone https://github.com/jterrazz/jterrazz-web.git
-   cd jterrazz-web
-   ```
+    ```
+    git clone https://github.com/jterrazz/jterrazz-web.git
+    cd jterrazz-web
+    ```
 
 2. Install dependencies:
-   ```
-   npm install
-   ```
+    ```
+    npm install
+    ```
 
 ### Development
 

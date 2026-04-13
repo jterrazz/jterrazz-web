@@ -1,20 +1,20 @@
-import { defaultLocale } from "../../i18n/config";
+import { defaultLocale } from '../../i18n/config';
 
 /**
  * Application route definitions
  * @description Centralized, type-safe route configuration for the entire app
  */
 export const AppRoutes = {
-  // Main pages
-  home: "/",
-  articles: "/articles",
-  experiments: "/experiments",
-  photographs: "/photographs",
+    // Main pages
+    home: '/',
+    articles: '/articles',
+    experiments: '/experiments',
+    photographs: '/photographs',
 
-  // Dynamic routes
-  article: (slugId: string) => `/articles/${slugId}` as const,
-  experiment: (slug: string) => `/experiments/${slug}` as const,
-  experimentPrivacy: (slug: string) => `/experiments/${slug}/privacy` as const,
+    // Dynamic routes
+    article: (slugId: string) => `/articles/${slugId}` as const,
+    experiment: (slug: string) => `/experiments/${slug}` as const,
+    experimentPrivacy: (slug: string) => `/experiments/${slug}/privacy` as const,
 } as const;
 
 /**
@@ -22,11 +22,11 @@ export const AppRoutes = {
  * @description Centralized external URLs to avoid broken links
  */
 export const ExternalLinks = {
-  // App smart redirect links (dynamic based on experiment slug)
-  appRedirect: (slug: string) => `/go/${slug}` as const,
-  signewApp: "/go/signews",
+    // App smart redirect links (dynamic based on experiment slug)
+    appRedirect: (slug: string) => `/go/${slug}` as const,
+    signewApp: '/go/signews',
 
-  // Social links are handled via userRepository
+    // Social links are handled via userRepository
 } as const;
 
 /**
@@ -36,10 +36,10 @@ export const ExternalLinks = {
  * @returns Locale-prefixed path (no prefix for default locale)
  */
 export function buildLocalePath(path: string, locale: string): string {
-  if (locale === defaultLocale) {
-    return path;
-  }
-  return `/${locale}${path}`;
+    if (locale === defaultLocale) {
+        return path;
+    }
+    return `/${locale}${path}`;
 }
 
 /**
@@ -47,20 +47,20 @@ export function buildLocalePath(path: string, locale: string): string {
  * @description Use this to build all internal navigation URLs
  */
 export function createRouteBuilder(locale: string) {
-  const prefix = locale === defaultLocale ? "" : `/${locale}`;
+    const prefix = locale === defaultLocale ? '' : `/${locale}`;
 
-  return {
-    // Static routes
-    home: () => `${prefix}/`,
-    articles: () => `${prefix}/articles`,
-    experiments: () => `${prefix}/experiments`,
-    photographs: () => `${prefix}/photographs`,
+    return {
+        // Static routes
+        home: () => `${prefix}/`,
+        articles: () => `${prefix}/articles`,
+        experiments: () => `${prefix}/experiments`,
+        photographs: () => `${prefix}/photographs`,
 
-    // Dynamic routes
-    article: (slugId: string) => `${prefix}/articles/${slugId}`,
-    experiment: (slug: string) => `${prefix}/experiments/${slug}`,
-    experimentPrivacy: (slug: string) => `${prefix}/experiments/${slug}/privacy`,
-  } as const;
+        // Dynamic routes
+        article: (slugId: string) => `${prefix}/articles/${slugId}`,
+        experiment: (slug: string) => `${prefix}/experiments/${slug}`,
+        experimentPrivacy: (slug: string) => `${prefix}/experiments/${slug}/privacy`,
+    } as const;
 }
 
 /**

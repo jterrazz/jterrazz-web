@@ -4,26 +4,32 @@
  */
 
 export const SITE_CONFIG = {
-  author: {
-    alumniOf: "42 Paris",
-    jobTitle: "Software Engineer",
-    name: "Jean-Baptiste Terrazzoni",
-    skills: ["AI Engineering", "AI Agents", "Clean Architecture", "TypeScript", "Decentralization"],
-    url: "https://jterrazz.com",
-  },
-  baseUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://jterrazz.com",
-  description:
-    "Building smarter with AI. Insights and experiments on architecture, agents, and self-sovereignty.",
-  defaultImage: {
-    alt: "Jean-Baptiste Terrazzoni - Software Engineer & AI Developer",
-    height: 630,
-    path: "/assets/icons/appicon-jterrazz.png",
-    width: 1200,
-  },
-  social: {
-    github: "https://github.com/jterrazz",
-    medium: "https://medium.com/@jterrazz",
-    pexels: "https://www.pexels.com/@jterrazz",
-    twitter: "@j_terrazz",
-  },
+    author: {
+        alumniOf: '42 Paris',
+        jobTitle: 'Software Engineer',
+        name: 'Jean-Baptiste Terrazzoni',
+        skills: [
+            'AI Engineering',
+            'AI Agents',
+            'Clean Architecture',
+            'TypeScript',
+            'Decentralization',
+        ],
+        url: 'https://jterrazz.com',
+    },
+    baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
+    description:
+        'Building smarter with AI. Insights and experiments on architecture, agents, and self-sovereignty.',
+    defaultImage: {
+        alt: 'Jean-Baptiste Terrazzoni - Software Engineer & AI Developer',
+        height: 630,
+        path: '/assets/icons/appicon-jterrazz.png',
+        width: 1200,
+    },
+    social: {
+        github: 'https://github.com/jterrazz',
+        medium: 'https://medium.com/@jterrazz',
+        pexels: 'https://www.pexels.com/@jterrazz',
+        twitter: '@j_terrazz',
+    },
 } as const;

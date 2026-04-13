@@ -1,5 +1,5 @@
-import { SITE_CONFIG } from "../../config/site";
-import { ExperimentContext } from "../../domain/experiment";
+import { SITE_CONFIG } from '../../config/site';
+import { ExperimentContext } from '../../domain/experiment';
 
 /**
  * SEO utility functions for building optimized metadata
@@ -12,10 +12,10 @@ import { ExperimentContext } from "../../domain/experiment";
  * Format: "{Title} | Jean-Baptiste Terrazzoni" for other content
  */
 export function buildSeoTitle(title: string, is42Related: boolean): string {
-  if (is42Related) {
-    return `${title} | 42 | ${SITE_CONFIG.author.name}`;
-  }
-  return `${title} | ${SITE_CONFIG.author.name}`;
+    if (is42Related) {
+        return `${title} | 42 | ${SITE_CONFIG.author.name}`;
+    }
+    return `${title} | ${SITE_CONFIG.author.name}`;
 }
 
 /**
@@ -23,13 +23,13 @@ export function buildSeoTitle(title: string, is42Related: boolean): string {
  * Prepends "42 Paris school project: " for School42 context
  */
 export function buildExperimentSeoDescription(
-  description: string,
-  context: ExperimentContext,
+    description: string,
+    context: ExperimentContext,
 ): string {
-  if (context === ExperimentContext.School42) {
-    return `42 Paris school project: ${description}`;
-  }
-  return description;
+    if (context === ExperimentContext.School42) {
+        return `42 Paris school project: ${description}`;
+    }
+    return description;
 }
 
 /**
@@ -37,27 +37,27 @@ export function buildExperimentSeoDescription(
  * Includes 42-specific keywords for School42 context
  */
 export function buildExperimentSeoKeywords(
-  experimentName: string,
-  experimentDescription: string,
-  context: ExperimentContext,
+    experimentName: string,
+    experimentDescription: string,
+    context: ExperimentContext,
 ): string[] {
-  const baseKeywords = [experimentName.toLowerCase()];
+    const baseKeywords = [experimentName.toLowerCase()];
 
-  // Extract key technical terms from description (simple extraction)
-  const technicalTerms = extractTechnicalTerms(experimentDescription);
-  baseKeywords.push(...technicalTerms);
+    // Extract key technical terms from description (simple extraction)
+    const technicalTerms = extractTechnicalTerms(experimentDescription);
+    baseKeywords.push(...technicalTerms);
 
-  if (context === ExperimentContext.School42) {
-    return [
-      `42 ${experimentName.toLowerCase()}`,
-      "42 paris",
-      "42 school project",
-      "42 project",
-      ...baseKeywords,
-    ];
-  }
+    if (context === ExperimentContext.School42) {
+        return [
+            `42 ${experimentName.toLowerCase()}`,
+            '42 paris',
+            '42 school project',
+            '42 project',
+            ...baseKeywords,
+        ];
+    }
 
-  return baseKeywords;
+    return baseKeywords;
 }
 
 /**
@@ -66,34 +66,34 @@ export function buildExperimentSeoKeywords(
  * Uses word boundary matching to avoid false positives
  */
 function extractTechnicalTerms(description: string): string[] {
-  const terms: string[] = [];
-  const lowerDesc = description.toLowerCase();
+    const terms: string[] = [];
+    const lowerDesc = description.toLowerCase();
 
-  // Common programming languages and tools with word boundary patterns
-  const languages: Array<{ name: string; pattern: RegExp }> = [
-    { name: "python", pattern: /\bpython\b/ },
-    { name: "c", pattern: /\bc\b/ },
-    { name: "assembly", pattern: /\bassembly\b/ },
-    { name: "typescript", pattern: /\btypescript\b/ },
-    { name: "javascript", pattern: /\bjavascript\b/ },
-    { name: "rust", pattern: /\brust\b/ },
-    { name: "go", pattern: /\bgo\b/ },
-  ];
+    // Common programming languages and tools with word boundary patterns
+    const languages: Array<{ name: string; pattern: RegExp }> = [
+        { name: 'python', pattern: /\bpython\b/ },
+        { name: 'c', pattern: /\bc\b/ },
+        { name: 'assembly', pattern: /\bassembly\b/ },
+        { name: 'typescript', pattern: /\btypescript\b/ },
+        { name: 'javascript', pattern: /\bjavascript\b/ },
+        { name: 'rust', pattern: /\brust\b/ },
+        { name: 'go', pattern: /\bgo\b/ },
+    ];
 
-  for (const { name, pattern } of languages) {
-    if (pattern.test(lowerDesc)) {
-      terms.push(name);
+    for (const { name, pattern } of languages) {
+        if (pattern.test(lowerDesc)) {
+            terms.push(name);
+        }
     }
-  }
 
-  return terms;
+    return terms;
 }
 
 /**
  * Checks if an experiment is from 42 Paris school
  */
 export function is42Experiment(context: ExperimentContext): boolean {
-  return context === ExperimentContext.School42;
+    return context === ExperimentContext.School42;
 }
 
 /**
@@ -101,17 +101,17 @@ export function is42Experiment(context: ExperimentContext): boolean {
  * These articles document 42 project implementations
  */
 export const ARTICLES_42_RELATED_INDICES: number[] = [
-  1, // Malloc
-  2, // SHA256
-  3, // NM Otool
-  4, // Quine
-  5, // Assembly
-  6, // Expert System
+    1, // Malloc
+    2, // SHA256
+    3, // NM Otool
+    4, // Quine
+    5, // Assembly
+    6, // Expert System
 ];
 
 /**
  * Checks if an article is related to 42 projects by its index
  */
 export function is42RelatedArticle(publicIndex: number): boolean {
-  return ARTICLES_42_RELATED_INDICES.includes(publicIndex);
+    return ARTICLES_42_RELATED_INDICES.includes(publicIndex);
 }

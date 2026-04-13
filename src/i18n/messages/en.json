@@ -1,117 +1,117 @@
 {
-  "home": {
-    "title": "Hello, World!",
-    "description": "Building smarter with AI. Explorations and reflections on architecture, agents, and self-sovereignty.",
-    "seoTitle": "Software Engineer & AI Developer",
-    "readArticles": "Read Articles",
-    "featuredExperiments": "Featured Experiments",
-    "featuredArticles": "Featured Articles",
-    "viewAll": "View all",
-    "focus": "Focus",
-    "journey": "Journey",
-    "seriesDescription": "{count}-part series exploring {name}.",
-    "focusAreas": {
-      "aiEngineering": {
-        "title": "AI Engineering",
-        "description": "Multiplying deep engineering expertise with AI to build ambitious, boundary-pushing projects."
-      },
-      "aiAgents": {
-        "title": "AI Agents",
-        "description": "Building autonomous workflows that can plan, execute, and improve themselves."
-      },
-      "architecture": {
-        "title": "Architecture",
-        "description": "Crafting scalable, maintainable software using architectures adapted to each project."
-      },
-      "decentralization": {
-        "title": "Self-sovereignty",
-        "description": "Advocating for self-sovereignty and privacy through decentralized technologies."
-      }
-    }
-  },
-  "articles": {
-    "title": "Articles",
-    "seoDescription": "Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.",
-    "highlightDescription": "Notes on what I learn while building software.",
-    "filterAll": "All",
-    "filterExploration": "Experiments",
-    "filterReflection": "Reflexions",
-    "otherPosts": "Recent",
-    "series": "Series",
-    "viewMedium": "Medium"
-  },
-  "experiments": {
-    "title": "Experiments",
-    "seoDescription": "Open-source projects, apps, and developer tools. AI agents, fintech solutions, TypeScript packages, and system-level experiments.",
-    "highlightDescription": "A collection of apps and tools I've built to solve real problems.",
-    "viewGitHub": "GitHub",
-    "applications": "Applications",
-    "hackathons": "Hackathons",
-    "systems": "Systems",
-    "tools": "Tools",
-    "viewProject": "View project",
-    "readMore": "Read more",
-    "context": {
-      "personal": "Personal Project",
-      "school42": "42 Paris School",
-      "professional": "Professional Work",
-      "hackathon": "Hackathon"
+    "home": {
+        "title": "Hello, World!",
+        "description": "Building smarter with AI. Explorations and reflections on architecture, agents, and self-sovereignty.",
+        "seoTitle": "Software Engineer & AI Developer",
+        "readArticles": "Read Articles",
+        "featuredExperiments": "Featured Experiments",
+        "featuredArticles": "Featured Articles",
+        "viewAll": "View all",
+        "focus": "Focus",
+        "journey": "Journey",
+        "seriesDescription": "{count}-part series exploring {name}.",
+        "focusAreas": {
+            "aiEngineering": {
+                "title": "AI Engineering",
+                "description": "Multiplying deep engineering expertise with AI to build ambitious, boundary-pushing projects."
+            },
+            "aiAgents": {
+                "title": "AI Agents",
+                "description": "Building autonomous workflows that can plan, execute, and improve themselves."
+            },
+            "architecture": {
+                "title": "Architecture",
+                "description": "Crafting scalable, maintainable software using architectures adapted to each project."
+            },
+            "decentralization": {
+                "title": "Self-sovereignty",
+                "description": "Advocating for self-sovereignty and privacy through decentralized technologies."
+            }
+        }
     },
-    "status": {
-      "active": "Active",
-      "archived": "Archived",
-      "building": "Building",
-      "completed": "Completed",
-      "concept": "Concept"
+    "articles": {
+        "title": "Articles",
+        "seoDescription": "Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.",
+        "highlightDescription": "Notes on what I learn while building software.",
+        "filterAll": "All",
+        "filterExploration": "Experiments",
+        "filterReflection": "Reflexions",
+        "otherPosts": "Recent",
+        "series": "Series",
+        "viewMedium": "Medium"
     },
-    "detail": {
-      "readArticle": "Read Article",
-      "visitWebsite": "Visit Website",
-      "appStore": "App Store",
-      "viewProject": "View Project",
-      "sourceCode": "Source Code",
-      "showcase": "Showcase",
-      "about": "About",
-      "articles": "Articles",
-      "year": "Year",
-      "components": "Components",
-      "viewSource": "View Source",
-      "privacyPolicy": "Privacy Policy",
-      "availableOn": "Available on",
-      "downloadOnAppStore": "Download on the",
-      "getItOnGooglePlay": "Get it on",
-      "scanToDownload": "Scan to download"
+    "experiments": {
+        "title": "Experiments",
+        "seoDescription": "Open-source projects, apps, and developer tools. AI agents, fintech solutions, TypeScript packages, and system-level experiments.",
+        "highlightDescription": "A collection of apps and tools I've built to solve real problems.",
+        "viewGitHub": "GitHub",
+        "applications": "Applications",
+        "hackathons": "Hackathons",
+        "systems": "Systems",
+        "tools": "Tools",
+        "viewProject": "View project",
+        "readMore": "Read more",
+        "context": {
+            "personal": "Personal Project",
+            "school42": "42 Paris School",
+            "professional": "Professional Work",
+            "hackathon": "Hackathon"
+        },
+        "status": {
+            "active": "Active",
+            "archived": "Archived",
+            "building": "Building",
+            "completed": "Completed",
+            "concept": "Concept"
+        },
+        "detail": {
+            "readArticle": "Read Article",
+            "visitWebsite": "Visit Website",
+            "appStore": "App Store",
+            "viewProject": "View Project",
+            "sourceCode": "Source Code",
+            "showcase": "Showcase",
+            "about": "About",
+            "articles": "Articles",
+            "year": "Year",
+            "components": "Components",
+            "viewSource": "View Source",
+            "privacyPolicy": "Privacy Policy",
+            "availableOn": "Available on",
+            "downloadOnAppStore": "Download on the",
+            "getItOnGooglePlay": "Get it on",
+            "scanToDownload": "Scan to download"
+        }
+    },
+    "photographs": {
+        "title": "Photographs",
+        "seoDescription": "Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.",
+        "highlightDescription": "A simple collection of moments and places that caught my eye.",
+        "viewPexels": "Pexels"
+    },
+    "common": {
+        "articles": "Articles",
+        "experiments": "Experiments",
+        "photographs": "Photographs"
+    },
+    "navbar": {
+        "hello": "Hello",
+        "experiments": "Experiments",
+        "articles": "Articles",
+        "photographs": "Photographs",
+        "getApp": "Get App",
+        "downloadApp": "Download App",
+        "opensInNewTab": "(opens in a new tab)"
+    },
+    "footer": {
+        "tagline": "Building, learning, and sharing.",
+        "description": "Exploring the frontiers of AI, architecture, and decentralization.",
+        "connect": "Connect",
+        "featuredWork": "Featured Work",
+        "status": "Status",
+        "allRightsReserved": "All rights reserved.",
+        "opensInNewTab": "(opens in a new tab)",
+        "me": "Me",
+        "application": "Application"
     }
-  },
-  "photographs": {
-    "title": "Photographs",
-    "seoDescription": "Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.",
-    "highlightDescription": "A simple collection of moments and places that caught my eye.",
-    "viewPexels": "Pexels"
-  },
-  "common": {
-    "articles": "Articles",
-    "experiments": "Experiments",
-    "photographs": "Photographs"
-  },
-  "navbar": {
-    "hello": "Hello",
-    "experiments": "Experiments",
-    "articles": "Articles",
-    "photographs": "Photographs",
-    "getApp": "Get App",
-    "downloadApp": "Download App",
-    "opensInNewTab": "(opens in a new tab)"
-  },
-  "footer": {
-    "tagline": "Building, learning, and sharing.",
-    "description": "Exploring the frontiers of AI, architecture, and decentralization.",
-    "connect": "Connect",
-    "featuredWork": "Featured Work",
-    "status": "Status",
-    "allRightsReserved": "All rights reserved.",
-    "opensInNewTab": "(opens in a new tab)",
-    "me": "Me",
-    "application": "Application"
-  }
 }

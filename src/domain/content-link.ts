@@ -3,6 +3,6 @@
  * This is the domain type for content relationships.
  */
 export type ContentLink = {
-  articleIndex: number;
-  experimentSlug: string;
+    articleIndex: number;
+    experimentSlug: string;
 };

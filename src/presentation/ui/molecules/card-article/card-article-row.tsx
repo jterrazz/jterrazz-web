@@ -1,17 +1,17 @@
-import { IconFlaskFilled } from "@tabler/icons-react";
-import Image from "next/image";
+import { IconFlaskFilled } from '@tabler/icons-react';
+import Image from 'next/image';
 
-import { Link } from "../../../../infrastructure/navigation/navigation";
-import { cn } from "../../../utils";
+import { Link } from '../../../../infrastructure/navigation/navigation';
+import { cn } from '../../../utils';
 
 export interface CardArticleRowProps {
-  articleCount?: number;
-  className?: string;
-  experimentSlug?: string;
-  imageUrl: string;
-  slug: string;
-  tagline: string;
-  title: string;
+    articleCount?: number;
+    className?: string;
+    experimentSlug?: string;
+    imageUrl: string;
+    slug: string;
+    tagline: string;
+    title: string;
 }
 
 /**
@@ -19,46 +19,51 @@ export interface CardArticleRowProps {
  * @description Used for article lists in articles page and "More articles" section
  */
 export const CardArticleRow: React.FC<CardArticleRowProps> = ({
-  articleCount,
-  className,
-  experimentSlug,
-  imageUrl,
-  slug,
-  tagline,
-  title,
+    articleCount,
+    className,
+    experimentSlug,
+    imageUrl,
+    slug,
+    tagline,
+    title,
 }) => {
-  const isSeries = articleCount !== undefined && articleCount > 1;
-  const hasExperiment = Boolean(experimentSlug);
+    const isSeries = articleCount !== undefined && articleCount > 1;
+    const hasExperiment = Boolean(experimentSlug);
 
-  return (
-    <Link
-      className={cn("group flex items-center gap-4 py-3", className)}
-      href={`/articles/${slug}`}
-    >
-      {/* Content */}
-      <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-2 mb-1">
-          <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 group-hover:underline underline-offset-4 line-clamp-1">
-            {title}
-          </h3>
-          {isSeries && (
-            <span className="shrink-0 text-xs text-zinc-400 dark:text-zinc-500">· Series</span>
-          )}
-          {hasExperiment && (
-            <span className="relative shrink-0 group/tooltip">
-              <IconFlaskFilled className="text-zinc-400 dark:text-zinc-500" size={14} />
-              <span className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 text-xs text-white bg-zinc-900 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity whitespace-nowrap z-10">
-                Linked to {experimentSlug} experiment
-              </span>
-            </span>
-          )}
-        </div>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-1">{tagline}</p>
-      </div>
-      {/* Thumbnail */}
-      <div className="relative w-24 aspect-[16/10] shrink-0 overflow-hidden bg-zinc-100 dark:bg-zinc-900 rounded-lg">
-        <Image alt={title} className="object-cover" fill sizes="96px" src={imageUrl} />
-      </div>
-    </Link>
-  );
+    return (
+        <Link
+            className={cn('group flex items-center gap-4 py-3', className)}
+            href={`/articles/${slug}`}
+        >
+            {/* Content */}
+            <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2 mb-1">
+                    <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 group-hover:underline underline-offset-4 line-clamp-1">
+                        {title}
+                    </h3>
+                    {isSeries && (
+                        <span className="shrink-0 text-xs text-zinc-400 dark:text-zinc-500">
+                            · Series
+                        </span>
+                    )}
+                    {hasExperiment && (
+                        <span className="relative shrink-0 group/tooltip">
+                            <IconFlaskFilled
+                                className="text-zinc-400 dark:text-zinc-500"
+                                size={14}
+                            />
+                            <span className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 text-xs text-white bg-zinc-900 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity whitespace-nowrap z-10">
+                                Linked to {experimentSlug} experiment
+                            </span>
+                        </span>
+                    )}
+                </div>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-1">{tagline}</p>
+            </div>
+            {/* Thumbnail */}
+            <div className="relative w-24 aspect-[16/10] shrink-0 overflow-hidden bg-zinc-100 dark:bg-zinc-900 rounded-lg">
+                <Image alt={title} className="object-cover" fill sizes="96px" src={imageUrl} />
+            </div>
+        </Link>
+    );
 };

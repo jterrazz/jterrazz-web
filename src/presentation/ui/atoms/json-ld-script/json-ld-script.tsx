@@ -1,13 +1,13 @@
-import Script from "next/script";
+import Script from 'next/script';
 
 /**
  * Props for the JsonLdScript component
  */
 export interface JsonLdScriptProps {
-  /** JSON-LD structured data object */
-  data: Record<string, unknown>;
-  /** Unique identifier for the script tag */
-  id: string;
+    /** JSON-LD structured data object */
+    data: Record<string, unknown>;
+    /** Unique identifier for the script tag */
+    id: string;
 }
 
 /**
@@ -15,9 +15,9 @@ export interface JsonLdScriptProps {
  * @description Encapsulates the Next.js Script component pattern for JSON-LD SEO data
  */
 export function JsonLdScript({ data, id }: JsonLdScriptProps) {
-  return (
-    <Script id={id} strategy="afterInteractive" type="application/ld+json">
-      {JSON.stringify(data)}
-    </Script>
-  );
+    return (
+        <Script id={id} strategy="afterInteractive" type="application/ld+json">
+            {JSON.stringify(data)}
+        </Script>
+    );
 }

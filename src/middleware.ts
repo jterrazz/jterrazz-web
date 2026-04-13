@@ -1,6 +1,6 @@
-import createMiddleware from "next-intl/middleware";
+import createMiddleware from 'next-intl/middleware';
 
-import { defaultLocale, locales } from "./i18n/config";
+import { defaultLocale, locales } from './i18n/config';
 
 /**
  * I18n routing middleware
@@ -14,16 +14,15 @@ import { defaultLocale, locales } from "./i18n/config";
  * - `/en/articles` → Redirects to `/articles`
  */
 export default createMiddleware({
-  // Default locale served without prefix
-  defaultLocale,
+    // Default locale served without prefix
+    defaultLocale,
 
-  // Don't use cookie for locale detection (cleaner URLs)
-  localeDetection: false,
+    // Don't use cookie for locale detection (cleaner URLs)
+    localeDetection: false,
 
-  // Only add prefix for non-default locales
-  localePrefix: "as-needed",
+    // Only add prefix for non-default locales
+    localePrefix: 'as-needed',
 
-  // Supported locales
-  locales,
+    // Supported locales
+    locales,
 });
-

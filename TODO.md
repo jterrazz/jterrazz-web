@@ -58,8 +58,8 @@ Add `.env` and `.env.local` to `.gitignore`.
 
 ```json
 {
-  "eas:register-schema": "tsx scripts/register-schema.ts",
-  "eas:timestamp": "tsx scripts/timestamp-articles.ts"
+    "eas:register-schema": "tsx scripts/register-schema.ts",
+    "eas:timestamp": "tsx scripts/timestamp-articles.ts"
 }
 ```
 
@@ -111,11 +111,11 @@ Badge renders between the author section and the publication date:
 
 ```tsx
 {
-  attestationUid && (
-    <a href={`https://base.easscan.org/attestation/view/${attestationUid}`}>
-      <IconShieldCheckFilled /> Signed on-chain · 0xabc1...ef23
-    </a>
-  );
+    attestationUid && (
+        <a href={`https://base.easscan.org/attestation/view/${attestationUid}`}>
+            <IconShieldCheckFilled /> Signed on-chain · 0xabc1...ef23
+        </a>
+    );
 }
 ```
 

@@ -1,13 +1,13 @@
 name: Validate
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
 
 jobs:
-  validate:
-    uses: jterrazz/jterrazz-workflows/.github/workflows/validate.yaml@main
-    with:
-      node-version: "24"
+    validate:
+        uses: jterrazz/jterrazz-workflows/.github/workflows/validate.yaml@main
+        with:
+            node-version: '24'

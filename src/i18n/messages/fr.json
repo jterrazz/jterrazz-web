@@ -1,117 +1,117 @@
 {
-  "home": {
-    "title": "Hello, World!",
-    "description": "Construire plus intelligemment avec l'IA. Explorations et réflexions sur l'architecture, les agents et la souveraineté individuelle.",
-    "seoTitle": "Ingénieur Logiciel & Développeur IA",
-    "readArticles": "Lire les articles",
-    "featuredExperiments": "Expérimentations en vedette",
-    "featuredArticles": "Articles en vedette",
-    "viewAll": "Voir tout",
-    "focus": "Domaines",
-    "journey": "Parcours",
-    "seriesDescription": "Série en {count} parties explorant {name}.",
-    "focusAreas": {
-      "aiEngineering": {
-        "title": "Ingénierie IA",
-        "description": "Multiplier une expertise technique approfondie avec l'IA pour construire des projets ambitieux et innovants."
-      },
-      "aiAgents": {
-        "title": "Agents IA",
-        "description": "Créer des workflows autonomes capables de planifier, exécuter et s'améliorer eux-mêmes."
-      },
-      "architecture": {
-        "title": "Architecture",
-        "description": "Concevoir des logiciels scalables et maintenables avec des architectures adaptées à chaque projet."
-      },
-      "decentralization": {
-        "title": "Souveraineté",
-        "description": "Promouvoir la souveraineté individuelle et la vie privée grâce aux technologies décentralisées."
-      }
-    }
-  },
-  "articles": {
-    "title": "Articles",
-    "seoDescription": "Articles techniques sur les agents IA, l'architecture logicielle, TypeScript et les bonnes pratiques d'ingénierie. Guides et tutoriels approfondis.",
-    "highlightDescription": "Notes sur ce que j'apprends en développant des logiciels.",
-    "filterAll": "Tous",
-    "filterExploration": "Expérimentations",
-    "filterReflection": "Réflexions",
-    "otherPosts": "Récents",
-    "series": "Série",
-    "viewMedium": "Medium"
-  },
-  "experiments": {
-    "title": "Expérimentations",
-    "seoDescription": "Projets open-source, applications et outils pour développeurs. Agents IA, solutions fintech, packages TypeScript et expérimentations système.",
-    "highlightDescription": "Une collection d'applications et d'outils que j'ai construits pour résoudre de vrais problèmes.",
-    "viewGitHub": "GitHub",
-    "applications": "Applications",
-    "hackathons": "Hackathons",
-    "systems": "Systèmes",
-    "tools": "Outils",
-    "viewProject": "Voir le projet",
-    "readMore": "En savoir plus",
-    "context": {
-      "personal": "Projet personnel",
-      "school42": "École 42 Paris",
-      "professional": "Travail professionnel",
-      "hackathon": "Hackathon"
+    "home": {
+        "title": "Hello, World!",
+        "description": "Construire plus intelligemment avec l'IA. Explorations et réflexions sur l'architecture, les agents et la souveraineté individuelle.",
+        "seoTitle": "Ingénieur Logiciel & Développeur IA",
+        "readArticles": "Lire les articles",
+        "featuredExperiments": "Expérimentations en vedette",
+        "featuredArticles": "Articles en vedette",
+        "viewAll": "Voir tout",
+        "focus": "Domaines",
+        "journey": "Parcours",
+        "seriesDescription": "Série en {count} parties explorant {name}.",
+        "focusAreas": {
+            "aiEngineering": {
+                "title": "Ingénierie IA",
+                "description": "Multiplier une expertise technique approfondie avec l'IA pour construire des projets ambitieux et innovants."
+            },
+            "aiAgents": {
+                "title": "Agents IA",
+                "description": "Créer des workflows autonomes capables de planifier, exécuter et s'améliorer eux-mêmes."
+            },
+            "architecture": {
+                "title": "Architecture",
+                "description": "Concevoir des logiciels scalables et maintenables avec des architectures adaptées à chaque projet."
+            },
+            "decentralization": {
+                "title": "Souveraineté",
+                "description": "Promouvoir la souveraineté individuelle et la vie privée grâce aux technologies décentralisées."
+            }
+        }
     },
-    "status": {
-      "active": "Actif",
-      "archived": "Archivé",
-      "building": "En cours",
-      "completed": "Terminé",
-      "concept": "Concept"
+    "articles": {
+        "title": "Articles",
+        "seoDescription": "Articles techniques sur les agents IA, l'architecture logicielle, TypeScript et les bonnes pratiques d'ingénierie. Guides et tutoriels approfondis.",
+        "highlightDescription": "Notes sur ce que j'apprends en développant des logiciels.",
+        "filterAll": "Tous",
+        "filterExploration": "Expérimentations",
+        "filterReflection": "Réflexions",
+        "otherPosts": "Récents",
+        "series": "Série",
+        "viewMedium": "Medium"
     },
-    "detail": {
-      "readArticle": "Lire l'article",
-      "visitWebsite": "Visiter le site",
-      "appStore": "App Store",
-      "viewProject": "Voir le projet",
-      "sourceCode": "Code source",
-      "showcase": "Aperçu",
-      "about": "À propos",
-      "articles": "Articles",
-      "year": "Année",
-      "components": "Composants",
-      "viewSource": "Voir le code",
-      "privacyPolicy": "Politique de confidentialité",
-      "availableOn": "Disponible sur",
-      "downloadOnAppStore": "Télécharger sur l'",
-      "getItOnGooglePlay": "Télécharger sur",
-      "scanToDownload": "Scanner pour télécharger"
+    "experiments": {
+        "title": "Expérimentations",
+        "seoDescription": "Projets open-source, applications et outils pour développeurs. Agents IA, solutions fintech, packages TypeScript et expérimentations système.",
+        "highlightDescription": "Une collection d'applications et d'outils que j'ai construits pour résoudre de vrais problèmes.",
+        "viewGitHub": "GitHub",
+        "applications": "Applications",
+        "hackathons": "Hackathons",
+        "systems": "Systèmes",
+        "tools": "Outils",
+        "viewProject": "Voir le projet",
+        "readMore": "En savoir plus",
+        "context": {
+            "personal": "Projet personnel",
+            "school42": "École 42 Paris",
+            "professional": "Travail professionnel",
+            "hackathon": "Hackathon"
+        },
+        "status": {
+            "active": "Actif",
+            "archived": "Archivé",
+            "building": "En cours",
+            "completed": "Terminé",
+            "concept": "Concept"
+        },
+        "detail": {
+            "readArticle": "Lire l'article",
+            "visitWebsite": "Visiter le site",
+            "appStore": "App Store",
+            "viewProject": "Voir le projet",
+            "sourceCode": "Code source",
+            "showcase": "Aperçu",
+            "about": "À propos",
+            "articles": "Articles",
+            "year": "Année",
+            "components": "Composants",
+            "viewSource": "Voir le code",
+            "privacyPolicy": "Politique de confidentialité",
+            "availableOn": "Disponible sur",
+            "downloadOnAppStore": "Télécharger sur l'",
+            "getItOnGooglePlay": "Télécharger sur",
+            "scanToDownload": "Scanner pour télécharger"
+        }
+    },
+    "photographs": {
+        "title": "Photographies",
+        "seoDescription": "Portfolio photographique présentant des moments de voyage, de rue et du quotidien. Un journal visuel capturant des scènes authentiques du monde entier.",
+        "highlightDescription": "Une simple collection de moments et de lieux qui ont attiré mon regard.",
+        "viewPexels": "Pexels"
+    },
+    "common": {
+        "articles": "Articles",
+        "experiments": "Expérimentations",
+        "photographs": "Photographies"
+    },
+    "navbar": {
+        "hello": "Accueil",
+        "experiments": "Expérimentations",
+        "articles": "Articles",
+        "photographs": "Photographies",
+        "getApp": "Télécharger",
+        "downloadApp": "Télécharger l'app",
+        "opensInNewTab": "(ouvre un nouvel onglet)"
+    },
+    "footer": {
+        "tagline": "Construire, apprendre et partager.",
+        "description": "Explorer les frontières de l'IA, de l'architecture et de la décentralisation.",
+        "connect": "Contact",
+        "featuredWork": "Projets phares",
+        "status": "Statut",
+        "allRightsReserved": "Tous droits réservés.",
+        "opensInNewTab": "(ouvre un nouvel onglet)",
+        "me": "Moi",
+        "application": "Application"
     }
-  },
-  "photographs": {
-    "title": "Photographies",
-    "seoDescription": "Portfolio photographique présentant des moments de voyage, de rue et du quotidien. Un journal visuel capturant des scènes authentiques du monde entier.",
-    "highlightDescription": "Une simple collection de moments et de lieux qui ont attiré mon regard.",
-    "viewPexels": "Pexels"
-  },
-  "common": {
-    "articles": "Articles",
-    "experiments": "Expérimentations",
-    "photographs": "Photographies"
-  },
-  "navbar": {
-    "hello": "Accueil",
-    "experiments": "Expérimentations",
-    "articles": "Articles",
-    "photographs": "Photographies",
-    "getApp": "Télécharger",
-    "downloadApp": "Télécharger l'app",
-    "opensInNewTab": "(ouvre un nouvel onglet)"
-  },
-  "footer": {
-    "tagline": "Construire, apprendre et partager.",
-    "description": "Explorer les frontières de l'IA, de l'architecture et de la décentralisation.",
-    "connect": "Contact",
-    "featuredWork": "Projets phares",
-    "status": "Statut",
-    "allRightsReserved": "Tous droits réservés.",
-    "opensInNewTab": "(ouvre un nouvel onglet)",
-    "me": "Moi",
-    "application": "Application"
-  }
 }
