@@ -27,6 +27,3 @@ export default createMiddleware({
   locales,
 });
 
-export const config = {
-  matcher: [String.raw`/((?!_next|api|content|assets|favicon|icon|apple-icon|robots\.txt|sitemap\.xml|site\.webmanifest|.*\..*).*)`],
-};
