@@ -33,7 +33,7 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
-    "@jterrazz/codestyle": "^3.0.0",
+    "@jterrazz/codestyle": "^3.2.0",
     "@jterrazz/test": "^5.0.0",
     "@jterrazz/typescript": "^5.2.0",
     "@tailwindcss/postcss": "^4.1.17",

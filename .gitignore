@@ -24,3 +24,4 @@ next-env.d.ts
 # Generated
 src/generated/
 public/content/
+.vercel

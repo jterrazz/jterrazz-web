@@ -1,5 +1,5 @@
-import { defineConfig } from 'oxlint';
 import { oxlint } from '@jterrazz/codestyle';
+import { defineConfig } from 'oxlint';
 
 export default defineConfig({
     extends: [oxlint.next],

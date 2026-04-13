@@ -28,5 +28,5 @@ export default createMiddleware({
 });
 
 export const config = {
-  matcher: ["/((?!_next|api|content|assets|favicon|icon|apple-icon|robots\\.txt|sitemap\\.xml|site\\.webmanifest|.*\\..*).*)"],
+  matcher: [String.raw`/((?!_next|api|content|assets|favicon|icon|apple-icon|robots\.txt|sitemap\.xml|site\.webmanifest|.*\..*).*)`],
 };
