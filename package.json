@@ -22,7 +22,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.25",
     "next": "^16.0.7",
-    "next-intl": "^4.5.8",
+    "next-intl": "^4.9.1",
     "prism-react-renderer": "^2.4.1",
     "qr-code-styling": "^1.9.2",
     "react": "^19.2.1",

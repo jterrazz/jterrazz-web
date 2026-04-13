@@ -12,7 +12,6 @@ import { JsonLdScript } from "../../../presentation/ui/atoms/json-ld-script/json
 
 // Force static generation for this page
 export const dynamic = "force-static";
-export const revalidate = false;
 
 type Props = {
   params: Promise<{ locale: string }>;
