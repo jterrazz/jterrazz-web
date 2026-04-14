@@ -1,28 +1,23 @@
 import createMiddleware from 'next-intl/middleware';
+import { type NextRequest, NextResponse } from 'next/server';
 
 import { defaultLocale, locales } from './i18n/config';
 
-/**
- * I18n routing middleware
- * @description Handles locale detection and URL prefixing
- *
- * URL behavior:
- * - `/` → English (default, no prefix)
- * - `/articles` → English
- * - `/fr` → French
- * - `/fr/articles` → French
- * - `/en/articles` → Redirects to `/articles`
- */
-export default createMiddleware({
-    // Default locale served without prefix
+const intlMiddleware = createMiddleware({
     defaultLocale,
-
-    // Don't use cookie for locale detection (cleaner URLs)
     localeDetection: false,
-
-    // Only add prefix for non-default locales
     localePrefix: 'as-needed',
-
-    // Supported locales
     locales,
 });
+
+// Paths that must bypass i18n routing — otherwise next-intl rewrites them
+// under `/en/...` and static assets 404. Next.js 16's proxy/middleware no
+// longer accepts `export const config = { matcher }`, so we filter here.
+const BYPASS = /^\/(?:_next|api|content|assets|favicon|icon|apple-icon|robots\.txt|sitemap\.xml|site\.webmanifest)|\.[^/]+$/;
+
+export default function middleware(request: NextRequest) {
+    if (BYPASS.test(request.nextUrl.pathname)) {
+        return NextResponse.next();
+    }
+    return intlMiddleware(request);
+}
