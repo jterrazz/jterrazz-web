@@ -2,6 +2,7 @@ import { IconFlaskFilled } from '@tabler/icons-react';
 import Image from 'next/image';
 
 import { Link } from '../../../../infrastructure/navigation/navigation';
+import { Heading, Lead, Tag } from '../../design-system';
 import { cn } from '../../../utils';
 
 export interface CardArticleRowProps {
@@ -14,10 +15,6 @@ export interface CardArticleRowProps {
     title: string;
 }
 
-/**
- * Clean horizontal article row with thumbnail on the right
- * @description Used for article lists in articles page and "More articles" section
- */
 export const CardArticleRow: React.FC<CardArticleRowProps> = ({
     articleCount,
     className,
@@ -35,17 +32,15 @@ export const CardArticleRow: React.FC<CardArticleRowProps> = ({
             className={cn('group flex items-center gap-4 py-3', className)}
             href={`/articles/${slug}`}
         >
-            {/* Content */}
-            <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2 mb-1">
-                    <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 group-hover:underline underline-offset-4 line-clamp-1">
+            <div className="min-w-0 flex-1 transition-transform duration-200 group-hover:translate-x-1">
+                <div className="flex items-center gap-2 mb-0.5">
+                    <Heading
+                        as="h3"
+                        className="line-clamp-1 transition-colors group-hover:text-zinc-500 dark:group-hover:text-zinc-400"
+                        size="title"
+                    >
                         {title}
-                    </h3>
-                    {isSeries && (
-                        <span className="shrink-0 text-xs text-zinc-400 dark:text-zinc-500">
-                            · Series
-                        </span>
-                    )}
+                    </Heading>
                     {hasExperiment && (
                         <span className="relative shrink-0 group/tooltip">
                             <IconFlaskFilled
@@ -58,11 +53,19 @@ export const CardArticleRow: React.FC<CardArticleRowProps> = ({
                         </span>
                     )}
                 </div>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-1">{tagline}</p>
+                <Lead className="line-clamp-1" size="sm">
+                    {tagline}
+                </Lead>
             </div>
-            {/* Thumbnail */}
-            <div className="relative w-24 aspect-[16/10] shrink-0 overflow-hidden bg-zinc-100 dark:bg-zinc-900 rounded-lg">
-                <Image alt={title} className="object-cover" fill sizes="96px" src={imageUrl} />
+            {isSeries && <Tag className="shrink-0">Series</Tag>}
+            <div className="relative w-24 aspect-[16/10] shrink-0 overflow-hidden bg-zinc-100 dark:bg-zinc-900 shadow-[0_0_6px_rgba(0,0,0,0.04)]">
+                <Image
+                    alt={title}
+                    className="object-cover transition-transform duration-200 group-hover:scale-105"
+                    fill
+                    sizes="96px"
+                    src={imageUrl}
+                />
             </div>
         </Link>
     );

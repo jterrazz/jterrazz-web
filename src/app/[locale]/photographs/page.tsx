@@ -67,6 +67,7 @@ export default async function PhotographsPage({ params }: Props) {
 
     // Translations for client component
     const translations = {
+        kicker: t('kicker'),
         viewPexels: t('viewPexels'),
     };
 

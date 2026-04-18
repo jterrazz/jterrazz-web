@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props) {
             en: '/',
             fr: '/fr',
         },
-        description: t('description'),
+        description: t('seoDescription'),
         keywords: [
             'Jean-Baptiste Terrazzoni',
             'AI Agent Developer',
@@ -136,7 +136,7 @@ export default async function HomePage({ params }: Props) {
         .map(({ latestDate: _latestDate, ...rest }) => rest);
 
     // Featured experiments - specific selection
-    const featuredSlugs = ['clawrr', 'signews', 'jterrazz'];
+    const featuredSlugs = ['spwn', 'signews', 'jterrazz'];
     const featuredExperiments = featuredSlugs
         .map((slug) => experimentsRepository.getBySlug(slug))
         .filter((exp) => exp !== undefined)
@@ -188,8 +188,10 @@ export default async function HomePage({ params }: Props) {
         journey: t('journey'),
         featuredExperiments: t('featuredExperiments'),
         featuredArticles: t('featuredArticles'),
+        kicker: t('kicker'),
         readArticles: t('readArticles'),
         title: t('title'),
+        titleAccent: t('titleAccent'),
         viewAll: t('viewAll'),
     };
 

@@ -1,7 +1,10 @@
 {
     "home": {
-        "title": "Hello, World!",
-        "description": "Construire plus intelligemment avec l'IA. Explorations et réflexions sur l'architecture, les agents et la souveraineté individuelle.",
+        "title": "Ingénierie de la",
+        "titleAccent": "vie artificielle.",
+        "description": "Notes sur les systèmes autonomes, les comportements émergents, et les architectures qui les rendent possibles.",
+        "seoDescription": "Ingénierie de la vie artificielle. Notes sur les systèmes autonomes, les comportements émergents, et les architectures qui les rendent possibles.",
+        "kicker": "Site personnel",
         "seoTitle": "Ingénieur Logiciel & Développeur IA",
         "readArticles": "Lire les articles",
         "featuredExperiments": "Expérimentations en vedette",
@@ -31,6 +34,7 @@
     },
     "articles": {
         "title": "Articles",
+        "kicker": "Écriture",
         "seoDescription": "Articles techniques sur les agents IA, l'architecture logicielle, TypeScript et les bonnes pratiques d'ingénierie. Guides et tutoriels approfondis.",
         "highlightDescription": "Notes sur ce que j'apprends en développant des logiciels.",
         "filterAll": "Tous",
@@ -42,13 +46,14 @@
     },
     "experiments": {
         "title": "Expérimentations",
+        "kicker": "Construction",
         "seoDescription": "Projets open-source, applications et outils pour développeurs. Agents IA, solutions fintech, packages TypeScript et expérimentations système.",
         "highlightDescription": "Une collection d'applications et d'outils que j'ai construits pour résoudre de vrais problèmes.",
         "viewGitHub": "GitHub",
         "applications": "Applications",
         "hackathons": "Hackathons",
         "systems": "Systèmes",
-        "tools": "Outils",
+        "foundation": "Fondation",
         "viewProject": "Voir le projet",
         "readMore": "En savoir plus",
         "context": {
@@ -85,6 +90,7 @@
     },
     "photographs": {
         "title": "Photographies",
+        "kicker": "Photographie",
         "seoDescription": "Portfolio photographique présentant des moments de voyage, de rue et du quotidien. Un journal visuel capturant des scènes authentiques du monde entier.",
         "highlightDescription": "Une simple collection de moments et de lieux qui ont attiré mon regard.",
         "viewPexels": "Pexels"
@@ -108,7 +114,6 @@
         "description": "Explorer les frontières de l'IA, de l'architecture et de la décentralisation.",
         "connect": "Contact",
         "featuredWork": "Projets phares",
-        "status": "Statut",
         "allRightsReserved": "Tous droits réservés.",
         "opensInNewTab": "(ouvre un nouvel onglet)",
         "me": "Moi",

@@ -11,9 +11,9 @@ export enum ExperimentArchitecture {
 
 export enum ExperimentCategory {
     App = 'Application',
+    Foundation = 'Foundation',
     Hackathon = 'Hackathon',
     System = 'System/Algorithm',
-    Tool = 'Tool',
 }
 
 export enum ExperimentContext {

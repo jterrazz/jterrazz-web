@@ -113,9 +113,10 @@ export default async function ExperimentsPage({ params }: Props) {
     // Translations for client component
     const translations = {
         applications: t('applications'),
+        foundation: t('foundation'),
         hackathons: t('hackathons'),
+        kicker: t('kicker'),
         systems: t('systems'),
-        tools: t('tools'),
         viewGitHub: t('viewGitHub'),
     };
 

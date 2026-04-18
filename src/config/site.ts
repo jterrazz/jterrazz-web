@@ -19,7 +19,7 @@ export const SITE_CONFIG = {
     },
     baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
     description:
-        'Building smarter with AI. Insights and experiments on architecture, agents, and self-sovereignty.',
+        'Engineering artificial life. Notes on autonomous systems, emergent behaviors, and the architectures that make them possible.',
     defaultImage: {
         alt: 'Jean-Baptiste Terrazzoni - Software Engineer & AI Developer',
         height: 630,

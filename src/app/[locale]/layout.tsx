@@ -91,7 +91,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     const footerTranslations = {
         allRightsReserved: tFooter('allRightsReserved'),
         opensInNewTab: tFooter('opensInNewTab'),
-        status: tFooter('status'),
         tagline: tFooter('tagline'),
     };
 

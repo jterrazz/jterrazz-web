@@ -15,14 +15,14 @@ const experiments: Experiment[] = [
         components: [
             {
                 architectures: [],
-                description: 'Monorepo — core engine & services.',
-                name: 'Monorepo',
+                description: 'Go CLI, Architect daemon, and Observatory dashboard.',
+                name: 'Core',
                 sourceUrl: new URL(`${REPOSITORY_BASE_URL}spwn`),
                 status: ExperimentStatus.Building,
             },
             {
                 architectures: [],
-                description: 'Architecture & design docs.',
+                description: 'Vision, philosophy, and epoch design docs.',
                 isPrivate: true,
                 name: 'Blueprint',
                 sourceUrl: new URL(`${REPOSITORY_BASE_URL}spwn-blueprint`),
@@ -30,18 +30,27 @@ const experiments: Experiment[] = [
             },
             {
                 architectures: [],
-                description: 'Web client.',
+                description: 'Landing site, manifesto, and CLI reference.',
                 isPrivate: true,
                 name: 'Web',
                 sourceUrl: new URL(`${REPOSITORY_BASE_URL}spwn-web`),
                 status: ExperimentStatus.Building,
             },
+            {
+                architectures: [],
+                description: 'Promo and demo video assets (Remotion).',
+                isPrivate: true,
+                name: 'Motion',
+                sourceUrl: new URL(`${REPOSITORY_BASE_URL}spwn-motion`),
+                status: ExperimentStatus.Building,
+            },
         ],
         context: ExperimentContext.Personal,
-        description: 'Spawning universes for AI. Simulation theory, for real.',
-        tagline: 'Creating realities where agents can think, act, and evolve.',
+        description: 'Compose and run AI agents as code — reproducible, persistent, autonomous.',
+        tagline: 'Agents as code. Docker for minds.',
+        iconUrl: '/assets/icons/appicon-spwn.png',
         longDescription:
-            'An AI simulation engine that spawns virtual universes where autonomous agents can think, act, and evolve. Exploring the boundaries of emergent behavior in controlled environments.',
+            'A local-first framework where AI agents are declared in YAML, run in isolated Docker containers, and persist their memory as markdown in your repo. Agents discover tools, install packages, and pipe commands together — real autonomy, not wrapped APIs. If Terraform is infrastructure as code, Spwn is agents as code.',
         name: 'Spwn',
         slug: 'spwn',
         status: ExperimentStatus.Building,
@@ -289,7 +298,7 @@ const experiments: Experiment[] = [
         year: 2024,
     },
     {
-        category: ExperimentCategory.Tool,
+        category: ExperimentCategory.Foundation,
         components: [
             {
                 architectures: [],
@@ -388,7 +397,7 @@ const experiments: Experiment[] = [
         year: 2019,
     },
     {
-        category: ExperimentCategory.Tool,
+        category: ExperimentCategory.Foundation,
         components: [
             {
                 architectures: [],
@@ -409,7 +418,7 @@ const experiments: Experiment[] = [
         year: 2024,
     },
     {
-        category: ExperimentCategory.Tool,
+        category: ExperimentCategory.Foundation,
         components: [
             {
                 architectures: [],

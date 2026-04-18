@@ -7,6 +7,7 @@ import React from 'react';
 // Domain
 import { type Experiment, type ExperimentStatus } from '../../../../domain/experiment';
 import { Link } from '../../../../infrastructure/navigation/navigation';
+import { Heading, Lead } from '../../design-system';
 // Utils
 import { cn } from '../../../utils';
 import { BadgeExperimentStatus } from '../badge-experiment-status/badge-experiment-status';
@@ -34,12 +35,15 @@ export const CardExperimentFeatured: React.FC<CardExperimentFeaturedProps> = ({
             className={cn('group flex items-center gap-4 py-3', className)}
             href={`/experiments/${experiment.slug}`}
         >
-            <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2 mb-1">
-                    <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 group-hover:underline underline-offset-4">
+            <div className="min-w-0 flex-1 transition-transform duration-200 group-hover:translate-x-1">
+                <div className="flex items-center gap-2 mb-0.5">
+                    <Heading
+                        as="h3"
+                        className="transition-colors group-hover:text-zinc-500 dark:group-hover:text-zinc-400"
+                        size="title"
+                    >
                         {experiment.name}
-                    </h3>
-                    <BadgeExperimentStatus status={experiment.status} />
+                    </Heading>
                     {hasArticle && (
                         <span className="relative shrink-0 group/tooltip">
                             <IconFileTextFilled
@@ -52,14 +56,15 @@ export const CardExperimentFeatured: React.FC<CardExperimentFeaturedProps> = ({
                         </span>
                     )}
                 </div>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-1">
+                <Lead className="line-clamp-1" size="sm">
                     {experiment.tagline}
-                </p>
+                </Lead>
             </div>
+            <BadgeExperimentStatus className="shrink-0" status={experiment.status} />
             {hasIcon && (
                 <Image
                     alt={experiment.name}
-                    className="rounded-xl ring-1 ring-zinc-200 dark:ring-zinc-700 shrink-0"
+                    className="rounded-lg shadow-[0_0_6px_rgba(0,0,0,0.04)] shrink-0"
                     height={40}
                     src={experiment.iconUrl!}
                     width={40}

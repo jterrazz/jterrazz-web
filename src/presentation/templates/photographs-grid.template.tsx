@@ -11,6 +11,7 @@ import { userRepository } from '../../infrastructure/repositories/user.repositor
 import { SectionHero } from '../ui/molecules/section-hero/section-hero';
 
 type PhotographsGridTranslations = {
+    kicker: string;
     viewPexels: string;
 };
 
@@ -68,6 +69,7 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
                     <SectionHero
                         button={button}
                         description={highlightDescription}
+                        kicker={t.kicker}
                         title={highlightTitle}
                     />
                 </div>

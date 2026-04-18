@@ -1,7 +1,10 @@
 {
     "home": {
-        "title": "Hello, World!",
-        "description": "Building smarter with AI. Explorations and reflections on architecture, agents, and self-sovereignty.",
+        "title": "Engineering artificial",
+        "titleAccent": "life.",
+        "description": "Notes on autonomous systems, emergent behaviors, and the architectures that make them possible.",
+        "seoDescription": "Engineering artificial life. Notes on autonomous systems, emergent behaviors, and the architectures that make them possible.",
+        "kicker": "Personal site",
         "seoTitle": "Software Engineer & AI Developer",
         "readArticles": "Read Articles",
         "featuredExperiments": "Featured Experiments",
@@ -31,6 +34,7 @@
     },
     "articles": {
         "title": "Articles",
+        "kicker": "Writing",
         "seoDescription": "Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.",
         "highlightDescription": "Notes on what I learn while building software.",
         "filterAll": "All",
@@ -42,13 +46,14 @@
     },
     "experiments": {
         "title": "Experiments",
+        "kicker": "Building",
         "seoDescription": "Open-source projects, apps, and developer tools. AI agents, fintech solutions, TypeScript packages, and system-level experiments.",
         "highlightDescription": "A collection of apps and tools I've built to solve real problems.",
         "viewGitHub": "GitHub",
         "applications": "Applications",
         "hackathons": "Hackathons",
         "systems": "Systems",
-        "tools": "Tools",
+        "foundation": "Foundation",
         "viewProject": "View project",
         "readMore": "Read more",
         "context": {
@@ -85,6 +90,7 @@
     },
     "photographs": {
         "title": "Photographs",
+        "kicker": "Photography",
         "seoDescription": "Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.",
         "highlightDescription": "A simple collection of moments and places that caught my eye.",
         "viewPexels": "Pexels"
@@ -108,7 +114,6 @@
         "description": "Exploring the frontiers of AI, architecture, and decentralization.",
         "connect": "Connect",
         "featuredWork": "Featured Work",
-        "status": "Status",
         "allRightsReserved": "All rights reserved.",
         "opensInNewTab": "(opens in a new tab)",
         "me": "Me",
