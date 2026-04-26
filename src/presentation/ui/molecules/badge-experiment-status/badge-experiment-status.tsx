@@ -10,8 +10,8 @@ export type BadgeExperimentStatusProps = {
 };
 
 // Thin wrapper around the universal Tag that maps experiment statuses to
-// a label. Only renders for "live" statuses — Completed/Archived stay
-// silent to keep old entries quiet.
+// A label. Only renders for "live" statuses — Completed/Archived stay
+// Silent to keep old entries quiet.
 const STATUS_LABELS: Partial<Record<ExperimentStatus, string>> = {
     [ExperimentStatus.Active]: 'Active',
     [ExperimentStatus.Building]: 'Building',
@@ -23,6 +23,8 @@ export const BadgeExperimentStatus: React.FC<BadgeExperimentStatusProps> = ({
     status,
 }) => {
     const label = STATUS_LABELS[status];
-    if (!label) return null;
+    if (!label) {
+        return null;
+    }
     return <Tag className={className}>{label}</Tag>;
 };

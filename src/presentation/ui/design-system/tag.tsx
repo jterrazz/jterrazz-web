@@ -6,8 +6,7 @@ import { cn } from '../../utils';
 // Sits next to titles or inline metadata. Three variants for hierarchy.
 const VARIANT_STYLES = {
     ghost: 'text-zinc-500 dark:text-zinc-400',
-    outline:
-        'ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 text-zinc-600 dark:text-zinc-400',
+    outline: 'ring-1 ring-inset ring-zinc-200 dark:ring-zinc-800 text-zinc-600 dark:text-zinc-400',
     solid: 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300',
 } as const;
 

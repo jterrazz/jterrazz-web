@@ -3,7 +3,7 @@ import React from 'react';
 import { cn } from '../../utils';
 
 // Vertical rhythm wrapper. Three sizes let hero/section/inline content
-// share a consistent cadence without ad-hoc `py-*` everywhere.
+// Share a consistent cadence without ad-hoc `py-*` everywhere.
 const TONE_STYLES = {
     default: '',
     muted: 'bg-zinc-50 dark:bg-zinc-900/40',
@@ -16,7 +16,7 @@ const SPACING_STYLES = {
 } as const;
 
 type SectionProps = {
-    as?: 'section' | 'div' | 'header' | 'footer';
+    as?: 'div' | 'footer' | 'header' | 'section';
     children: React.ReactNode;
     className?: string;
     spacing?: keyof typeof SPACING_STYLES;

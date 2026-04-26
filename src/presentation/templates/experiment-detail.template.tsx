@@ -15,6 +15,7 @@ import {
     type ExperimentComponent,
     ExperimentContext,
 } from '../../domain/experiment';
+import { QRCode } from '../ui/atoms/qr-code/qr-code';
 import {
     ArrowLink,
     Container,
@@ -26,7 +27,6 @@ import {
     Section,
     Tag,
 } from '../ui/design-system';
-import { QRCode } from '../ui/atoms/qr-code/qr-code';
 import { BadgeExperimentStatus } from '../ui/molecules/badge-experiment-status/badge-experiment-status';
 import { CardArticleRow } from '../ui/molecules/card-article/card-article-row';
 import { DividerSection } from '../ui/molecules/divider-section/divider-section';
@@ -86,16 +86,21 @@ function getContextLabel(
     translations: ExperimentDetailTranslations['context'],
 ): string {
     switch (context) {
-        case ExperimentContext.Personal:
+        case ExperimentContext.Personal: {
             return translations.personal;
-        case ExperimentContext.School42:
+        }
+        case ExperimentContext.School42: {
             return translations.school42;
-        case ExperimentContext.Professional:
+        }
+        case ExperimentContext.Professional: {
             return translations.professional;
-        case ExperimentContext.Hackathon:
+        }
+        case ExperimentContext.Hackathon: {
             return translations.hackathon;
-        default:
+        }
+        default: {
             return context;
+        }
     }
 }
 
@@ -132,8 +137,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
     experiment,
     translations: t,
 }) => {
-    const isAppWithStoreLinks =
-        experiment.storeLinks?.appStore || experiment.storeLinks?.playStore;
+    const isAppWithStoreLinks = experiment.storeLinks?.appStore || experiment.storeLinks?.playStore;
     const contextLabel = getContextLabel(experiment.context, t.context);
 
     const heroActions: { href: string; label: string }[] = [];
@@ -234,28 +238,27 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
 
             <Container>
                 <div className="space-y-12 pb-12 md:pb-16">
-                    {experiment.images?.screenshots &&
-                        experiment.images.screenshots.length > 0 && (
-                            <section>
-                                <DividerSection className="mb-4" title={t.detail.showcase} />
-                                <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden -mx-4 px-4">
-                                    {experiment.images.screenshots.map((screenshot) => (
-                                        <div
-                                            className="snap-center shrink-0 relative rounded-2xl overflow-hidden shadow-[0_0_12px_rgba(0,0,0,0.05)] w-[260px] md:w-[300px] aspect-[9/19]"
-                                            key={screenshot}
-                                        >
-                                            <Image
-                                                alt={`${experiment.name} screenshot`}
-                                                className="absolute inset-0 w-full h-full object-cover"
-                                                fill
-                                                sizes="(max-width: 768px) 260px, 300px"
-                                                src={screenshot}
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                            </section>
-                        )}
+                    {experiment.images?.screenshots && experiment.images.screenshots.length > 0 && (
+                        <section>
+                            <DividerSection className="mb-4" title={t.detail.showcase} />
+                            <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden -mx-4 px-4">
+                                {experiment.images.screenshots.map((screenshot) => (
+                                    <div
+                                        className="snap-center shrink-0 relative rounded-2xl overflow-hidden shadow-[0_0_12px_rgba(0,0,0,0.05)] w-[260px] md:w-[300px] aspect-[9/19]"
+                                        key={screenshot}
+                                    >
+                                        <Image
+                                            alt={`${experiment.name} screenshot`}
+                                            className="absolute inset-0 w-full h-full object-cover"
+                                            fill
+                                            sizes="(max-width: 768px) 260px, 300px"
+                                            src={screenshot}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    )}
 
                     <section>
                         <DividerSection className="mb-6" title={t.detail.about} />

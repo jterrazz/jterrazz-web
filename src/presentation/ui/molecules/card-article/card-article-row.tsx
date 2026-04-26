@@ -2,8 +2,8 @@ import { IconFlaskFilled } from '@tabler/icons-react';
 import Image from 'next/image';
 
 import { Link } from '../../../../infrastructure/navigation/navigation';
-import { Heading, Lead, Tag } from '../../design-system';
 import { cn } from '../../../utils';
+import { Heading, Lead, Tag } from '../../design-system';
 
 export interface CardArticleRowProps {
     articleCount?: number;

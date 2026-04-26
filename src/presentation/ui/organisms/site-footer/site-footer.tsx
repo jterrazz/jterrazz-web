@@ -16,10 +16,10 @@ import React from 'react';
 import { UserContactType } from '../../../../domain/user';
 // Infrastructure
 import { userRepository } from '../../../../infrastructure/repositories/user.repository';
-// DS
-import { Container, Heading, Lead, Meta } from '../../design-system';
 // Utils
 import { cn } from '../../../utils';
+// DS
+import { Container, Heading, Lead, Meta } from '../../design-system';
 import { ToggleTheme } from '../../molecules/toggle-theme/toggle-theme';
 
 const featuredApps = [
@@ -162,7 +162,9 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
 
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
-                        <Meta>© {new Date().getFullYear()} {t.allRightsReserved}</Meta>
+                        <Meta>
+                            © {new Date().getFullYear()} {t.allRightsReserved}
+                        </Meta>
                         <Meta className="hidden sm:inline">·</Meta>
                         <Meta className="hidden sm:inline">
                             Icons by{' '}

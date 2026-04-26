@@ -1,6 +1,6 @@
 // Signal design system — shared primitives for the jterrazz-web UI.
 // New components should compose these instead of raw Tailwind utilities;
-// see `section-hero.tsx` for the reference integration.
+// See `section-hero.tsx` for the reference integration.
 
 export { ArrowLink } from './arrow-link';
 export { Container } from './container';

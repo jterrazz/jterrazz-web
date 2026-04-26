@@ -69,7 +69,9 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
     };
 
     const shouldShow = (article: ArticleRowViewModel): boolean => {
-        if (filter === 'All') return true;
+        if (filter === 'All') {
+            return true;
+        }
         const allowed = filterMap[filter];
         return allowed ? allowed.includes(article.category as ArticleCategory) : true;
     };

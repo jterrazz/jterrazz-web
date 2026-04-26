@@ -7,9 +7,9 @@ import React from 'react';
 // Domain
 import { type Experiment, type ExperimentStatus } from '../../../../domain/experiment';
 import { Link } from '../../../../infrastructure/navigation/navigation';
-import { Heading, Lead } from '../../design-system';
 // Utils
 import { cn } from '../../../utils';
+import { Heading, Lead } from '../../design-system';
 import { BadgeExperimentStatus } from '../badge-experiment-status/badge-experiment-status';
 
 type ExperimentCardData = Pick<Experiment, 'name' | 'slug' | 'tagline'> & {

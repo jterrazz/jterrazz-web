@@ -5,13 +5,13 @@ import { Link } from '../../../infrastructure/navigation/navigation';
 import { cn } from '../../utils';
 
 // Inline link with an arrow that slides on hover. Replaces pill-style CTAs
-// for a lighter, editorial feel. `variant="mono"` matches the kicker/section
-// vocabulary and is intended for ancillary links next to mono labels.
+// For a lighter, editorial feel. `variant="mono"` matches the kicker/section
+// Vocabulary and is intended for ancillary links next to mono labels.
 type ArrowLinkProps = {
     children: React.ReactNode;
     className?: string;
     href: string;
-    tone?: 'primary' | 'muted' | 'subtle';
+    tone?: 'muted' | 'primary' | 'subtle';
     variant?: 'default' | 'mono';
 };
 
@@ -52,7 +52,10 @@ export const ArrowLink: React.FC<ArrowLinkProps> = ({
         >
             {children}
             <IconArrowRight
-                className={cn('transition-transform group-hover:translate-x-0.5', ICON_SIZE[variant])}
+                className={cn(
+                    'transition-transform group-hover:translate-x-0.5',
+                    ICON_SIZE[variant],
+                )}
             />
         </Link>
     );

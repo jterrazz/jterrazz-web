@@ -34,7 +34,7 @@ export const SectionHero: React.FC<SectionHeroProps> = ({
     titleAccent,
 }) => (
     <Section className={className} spacing="hero">
-        <DottedGrid origin="top-left" intensity="medium" />
+        <DottedGrid intensity="medium" origin="top-left" />
 
         {kicker && <Kicker className="mb-6">{kicker}</Kicker>}
 

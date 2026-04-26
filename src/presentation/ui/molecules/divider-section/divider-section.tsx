@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ArrowLink } from '../../design-system';
 import { cn } from '../../../utils';
+import { ArrowLink } from '../../design-system';
 
 export type DividerSectionProps = {
     as?: 'h2' | 'h3' | 'h4' | 'span';

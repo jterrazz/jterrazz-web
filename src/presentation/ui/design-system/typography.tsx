@@ -17,7 +17,7 @@ export const Kicker: React.FC<KickerProps> = ({ children, className, rule = true
             className,
         )}
     >
-        {rule && <span className="h-px w-8 bg-zinc-300 dark:bg-zinc-700" aria-hidden />}
+        {rule && <span aria-hidden className="h-px w-8 bg-zinc-300 dark:bg-zinc-700" />}
         <span>{children}</span>
     </div>
 );
@@ -60,22 +60,17 @@ export const Accent: React.FC<AccentProps> = ({ children, className }) => (
     </span>
 );
 
-export const Heading: React.FC<HeadingProps> = ({
-    as,
-    children,
-    className,
-    size = 'display',
-}) => {
+export const Heading: React.FC<HeadingProps> = ({ as, children, className, size = 'display' }) => {
     const Tag = as ?? DEFAULT_TAG[size];
     return <Tag className={cn(HEADING_STYLES[size], className)}>{children}</Tag>;
 };
 
 // Body paragraph meant to sit below a Heading. Wider than a caption,
-// narrower than a full article. Use for hero subtitles and section intros.
+// Narrower than a full article. Use for hero subtitles and section intros.
 type LeadProps = {
     children: React.ReactNode;
     className?: string;
-    size?: 'sm' | 'md' | 'lg';
+    size?: 'lg' | 'md' | 'sm';
 };
 
 const LEAD_STYLES: Record<NonNullable<LeadProps['size']>, string> = {

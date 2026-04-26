@@ -3,12 +3,12 @@ import React from 'react';
 import { cn } from '../../utils';
 
 // Decorative dotted-grid backdrop, masked with a radial fade so it
-// disappears at the edges. Sits behind hero content. Purely aesthetic —
-// always `aria-hidden`.
+// Disappears at the edges. Sits behind hero content. Purely aesthetic —
+// Always `aria-hidden`.
 type DottedGridProps = {
     className?: string;
     intensity?: 'low' | 'medium';
-    origin?: 'top-left' | 'center' | 'top-right';
+    origin?: 'center' | 'top-left' | 'top-right';
 };
 
 const ORIGIN_MASKS: Record<NonNullable<DottedGridProps['origin']>, string> = {

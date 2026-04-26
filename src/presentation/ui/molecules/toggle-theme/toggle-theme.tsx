@@ -13,8 +13,8 @@ interface ToggleThemeProps {
 }
 
 // Active-button styles rely on `theme` (from localStorage), which is unknown
-// on the server. Defer the active state until after mount so server and
-// client render the same neutral HTML and the user can switch cleanly.
+// On the server. Defer the active state until after mount so server and
+// Client render the same neutral HTML and the user can switch cleanly.
 export const ToggleTheme: React.FC<ToggleThemeProps> = ({ className }) => {
     const { setTheme, theme } = useTheme();
     const [mounted, setMounted] = React.useState(false);
