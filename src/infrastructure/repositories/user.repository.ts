@@ -7,7 +7,7 @@ import {
 } from '../../domain/user';
 
 const profile: UserProfile = {
-    headline: 'AI Engineering • Architecture • Decentralization',
+    headline: 'Architecting the agent stack',
     location: 'Paris, France',
     name: 'Jean-Baptiste Terrazzoni',
     pictureUrl: '/assets/icons/appicon-jterrazz.png',
@@ -63,6 +63,18 @@ const contacts: Record<UserContactType, UserContact> = {
 
 const PARIS = 'Paris, France';
 const experiences: UserExperience[] = [
+    {
+        description:
+            'Building Spwn — the operating system for autonomous agent worlds. Agents orchestration as code: compose tools, skills, and identity into versioned artifacts. Open source, MIT.',
+        experimentUrl: '/experiments/spwn',
+        location: 'Remote',
+        organization: 'Spwn',
+        organizationUrl: 'https://spwn.sh',
+        timeframe: '2026 - Present',
+        title: 'Founder & Architect',
+        type: 'Job',
+        year: '2026',
+    },
     {
         description:
             'Released my first mobile app, "AI News", to the App Store. A playful tool to challenge critical thinking by spotting AI-generated headlines.',

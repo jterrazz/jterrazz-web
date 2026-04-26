@@ -1,11 +1,11 @@
 {
     "home": {
-        "title": "Ingénierie de la",
-        "titleAccent": "vie artificielle.",
-        "description": "Notes sur les systèmes autonomes, les comportements émergents, et les architectures qui les rendent possibles.",
-        "seoDescription": "Ingénierie de la vie artificielle. Notes sur les systèmes autonomes, les comportements émergents, et les architectures qui les rendent possibles.",
+        "title": "Architecturer la stack",
+        "titleAccent": "d'agents.",
+        "description": "Capitaliser les abstractions, plus vite que l'org chart. Notes sur les systèmes autonomes et la prochaine vague d'architecture logicielle.",
+        "seoDescription": "Architecturer la stack d'agents. Capitaliser les abstractions, plus vite que l'org chart. Notes sur les systèmes autonomes et l'architecture logicielle.",
         "kicker": "Site personnel",
-        "seoTitle": "Ingénieur Logiciel & Développeur IA",
+        "seoTitle": "Founder & Architect — Stack d'agents",
         "readArticles": "Lire les articles",
         "featuredExperiments": "Expérimentations en vedette",
         "featuredArticles": "Articles en vedette",
@@ -15,12 +15,12 @@
         "seriesDescription": "Série en {count} parties explorant {name}.",
         "focusAreas": {
             "aiEngineering": {
-                "title": "Ingénierie IA",
-                "description": "Multiplier une expertise technique approfondie avec l'IA pour construire des projets ambitieux et innovants."
+                "title": "Stack d'agents",
+                "description": "Concevoir la verticale complète — runtime, orchestration, composition — pour des mondes d'IA autonomes."
             },
             "aiAgents": {
-                "title": "Agents IA",
-                "description": "Créer des workflows autonomes capables de planifier, exécuter et s'améliorer eux-mêmes."
+                "title": "Agents Orchestration as Code",
+                "description": "Composable, reproductible, versionné. Spawner des agents déclaratifs qui capitalisent la connaissance en mondes autonomes."
             },
             "architecture": {
                 "title": "Architecture",
@@ -110,8 +110,8 @@
         "opensInNewTab": "(ouvre un nouvel onglet)"
     },
     "footer": {
-        "tagline": "Construire, apprendre et partager.",
-        "description": "Explorer les frontières de l'IA, de l'architecture et de la décentralisation.",
+        "tagline": "Architecturer, livrer, capitaliser.",
+        "description": "Construire des systèmes d'IA autonomes, une abstraction à la fois.",
         "connect": "Contact",
         "featuredWork": "Projets phares",
         "allRightsReserved": "Tous droits réservés.",

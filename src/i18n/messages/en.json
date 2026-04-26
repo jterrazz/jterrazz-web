@@ -1,11 +1,11 @@
 {
     "home": {
-        "title": "Engineering artificial",
-        "titleAccent": "life.",
-        "description": "Notes on autonomous systems, emergent behaviors, and the architectures that make them possible.",
-        "seoDescription": "Engineering artificial life. Notes on autonomous systems, emergent behaviors, and the architectures that make them possible.",
+        "title": "Architecting the agent",
+        "titleAccent": "stack.",
+        "description": "Compounding abstractions, faster than the org chart. Notes on autonomous systems and the next wave of software architecture.",
+        "seoDescription": "Architecting the agent stack. Compounding abstractions, faster than the org chart. Notes on autonomous systems and software architecture.",
         "kicker": "Personal site",
-        "seoTitle": "Software Engineer & AI Developer",
+        "seoTitle": "Founder & Architect — Agent Stack",
         "readArticles": "Read Articles",
         "featuredExperiments": "Featured Experiments",
         "featuredArticles": "Featured Articles",
@@ -15,12 +15,12 @@
         "seriesDescription": "{count}-part series exploring {name}.",
         "focusAreas": {
             "aiEngineering": {
-                "title": "AI Engineering",
-                "description": "Multiplying deep engineering expertise with AI to build ambitious, boundary-pushing projects."
+                "title": "Agent Stack",
+                "description": "Designing the full vertical — runtime, orchestration, composition — for autonomous AI worlds."
             },
             "aiAgents": {
-                "title": "AI Agents",
-                "description": "Building autonomous workflows that can plan, execute, and improve themselves."
+                "title": "Agents Orchestration as Code",
+                "description": "Composable, reproducible, version-controlled. Spawning declarative agents that compound knowledge into autonomous worlds."
             },
             "architecture": {
                 "title": "Architecture",
@@ -110,8 +110,8 @@
         "opensInNewTab": "(opens in a new tab)"
     },
     "footer": {
-        "tagline": "Building, learning, and sharing.",
-        "description": "Exploring the frontiers of AI, architecture, and decentralization.",
+        "tagline": "Architecting, shipping, compounding.",
+        "description": "Building autonomous AI systems, one abstraction at a time.",
         "connect": "Connect",
         "featuredWork": "Featured Work",
         "allRightsReserved": "All rights reserved.",
