@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1746489600",
+    "revision": 1,
+    "slug": "14-your-moat-is-melting"
+  },
+  "schemaVersion": 1,
+  "signature": "0xa9fac77af5256b2f64a792792cc96b157b167c14982c0e0401ef6139c9182e420d20f6d0f2c8c8bdb34fc5496ebd9f2746ef24357fefded47c5adf382254e95e1c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0xcb5df12171f43a24624439f1ccd2bee9daa1c5f5f2897329951e39b6a5e201a3",
+    "locale": "en",
+    "title": "Your moat is melting"
+  }
+}

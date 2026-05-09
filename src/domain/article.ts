@@ -5,7 +5,24 @@ export enum ArticleCategory {
 
 export type ArticleLanguage = 'en' | 'fr';
 
+export type ArticleAttestation = {
+    /** Frozen schema version this attestation was signed against. */
+    schemaVersion: number;
+    /** Hex address of the signer wallet. */
+    signerAddress: `0x${string}`;
+    /** Reverse-resolved ENS name, when known at build time. */
+    signerEns?: string;
+    /** Author-claimed publication date (from EIP-712 claims.publishedAt). */
+    attestedAt: string;
+    /** Bitcoin block timestamp if the .ots proof has been upgraded. */
+    bitcoinTimestamp?: string;
+    /** SHA-256 digest of the canonicalized article body. */
+    contentDigest: `0x${string}`;
+};
+
 export interface Article {
+    /** Single attestation, signed against the English source bytes. Shown on all locales. */
+    attestation?: ArticleAttestation;
     content: Partial<Record<ArticleLanguage, string>>;
     imageUrl: string;
     metadata: {
@@ -23,6 +40,7 @@ export interface Article {
 
 // Raw input for article creation (before domain sanitization)
 export type RawArticleInput = {
+    attestation?: ArticleAttestation;
     content: Partial<Record<ArticleLanguage, string>>;
     imageUrl: string;
     metadata: {
@@ -123,6 +141,7 @@ function sanitizeTranslatedTitle(
  */
 export function createArticle(raw: RawArticleInput): Article {
     return {
+        attestation: raw.attestation,
         content: {
             en: raw.content.en ? sanitizeContent(raw.content.en) : undefined,
             fr: raw.content.fr ? sanitizeContent(raw.content.fr) : undefined,

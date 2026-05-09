@@ -209,6 +209,8 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
             <MarkdownRenderer content={contentInMarkdown} />
 
             <ArticleFooter
+                articleUrl={currentArticle?.attestation ? `/articles/${articleId}` : undefined}
+                attestation={currentArticle?.attestation}
                 className="mt-12 md:mt-16"
                 currentArticleId={articleId}
                 dateModified={dateModified}

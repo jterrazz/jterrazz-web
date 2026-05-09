@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1753056000",
+    "revision": 1,
+    "slug": "22-collaborating-with-ai-on-larger-problems"
+  },
+  "schemaVersion": 1,
+  "signature": "0xbe76f63bada0f6f129c8211d0e784f98d0714ba1bb9d26b9dcce6334017947e9058e54b6f4ac78d5a9c3c2be5d56c1cccc36617f714e4824a068361a7653546b1c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x12aa6d6f013eced88eea801d1667a9f25c657cba067a6959477c0b88f8fc9076",
+    "locale": "en",
+    "title": "Collaborating with AI on larger problems"
+  }
+}

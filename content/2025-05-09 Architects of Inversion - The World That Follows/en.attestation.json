@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1746748800",
+    "revision": 1,
+    "slug": "17-what-remains-when-machines-handle-everything"
+  },
+  "schemaVersion": 1,
+  "signature": "0x91c133b1e264eb273e494fa795df9d04719eadb1e287fe5bdacb672b302d39711812fa0c2fcf008702330cf7a835329d8b59eac8ddaf702b3b7525204d0237d71c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x1de094888da907d6224bde5fdee5dd2825acb1163642f66314fe47c8c8a74e96",
+    "locale": "en",
+    "title": "What remains when machines handle everything?"
+  }
+}

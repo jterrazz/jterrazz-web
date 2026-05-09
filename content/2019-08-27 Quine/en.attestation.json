@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1566864000",
+    "revision": 1,
+    "slug": "4-building-a-program-that-writes-itself-a-quine"
+  },
+  "schemaVersion": 1,
+  "signature": "0x1a65fccb3c8b7c2e801d2dddf8ff85aaea378aca06ab6b18232d0c72404d93b66bb9106aa6fd6a73415500755633a8f8e872b83c49aedc6650744f348e0ffc161c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x66617414ec76980110d5e59ee1940a87ac93db522ec16ae8b0ccb584c9156f49",
+    "locale": "en",
+    "title": "Building a program that writes itself (a quine)"
+  }
+}

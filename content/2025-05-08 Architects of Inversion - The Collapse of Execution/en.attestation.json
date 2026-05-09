@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1746662400",
+    "revision": 1,
+    "slug": "16-the-collapse-of-the-middle"
+  },
+  "schemaVersion": 1,
+  "signature": "0x3f1339ae122cac5a41032974724f430f63a6e87f37532e70b5bde1c6c702e9ef3f318e24db535a0ef9a135bd1480a0f979a070c2ce06f7d14304c5e50e5656be1b",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x7ae5959affd2824bd11406b70f7060b2bd69128c974faa80fb541666b08b58b2",
+    "locale": "en",
+    "title": "The collapse of the middle"
+  }
+}

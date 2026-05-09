@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1746576000",
+    "revision": 1,
+    "slug": "15-how-to-actually-use-ai"
+  },
+  "schemaVersion": 1,
+  "signature": "0x5ea9e3a2505527da6cda961da646f10997211c8e91fb759ad4b5dd166503e07f1de03ba955263afbec163491dd46d1602a4d56bf73f16d458bbd30effea67fe81c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x08241b8f99eeed6fd3a9af1f9d2a4b13b533afc98cbc51b9ac28951c6dc542c5",
+    "locale": "en",
+    "title": "How to actually use AI"
+  }
+}

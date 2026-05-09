@@ -1,0 +1,139 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`canonicalize golden — v1 frozen outputs > '01-empty' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 1,
+  "digest": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+  "utf8": "
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '02-plain-ascii' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 16,
+  "digest": "d2d62011d0490067d3250f2b34e65c9397cabe2bd6dc5081129e3e7408c9e8c2",
+  "utf8": "# Hello
+
+World.
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '03-emoji-4byte-utf8' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 15,
+  "digest": "31227ed69a461d23100388477c69f6e75053652309f908d30b6f92d6f207a2c3",
+  "utf8": "Hello 🦊 fox
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '04-combining-diacritics-decomposed' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 6,
+  "digest": "7b49b9e063bd91a4f9252b413261f5557b9c570aa61516989499f64a62dbcdd6",
+  "utf8": "café
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '05-combining-diacritics-precomposed' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 6,
+  "digest": "7b49b9e063bd91a4f9252b413261f5557b9c570aa61516989499f64a62dbcdd6",
+  "utf8": "café
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '06-crlf-line-endings' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 6,
+  "digest": "880553fca8fcea94e325ee2cfb48e5a985cc797f39a14cc6d3cedecfeb2ae4d2",
+  "utf8": "a
+b
+c
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '07-cr-only-line-endings' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 6,
+  "digest": "880553fca8fcea94e325ee2cfb48e5a985cc797f39a14cc6d3cedecfeb2ae4d2",
+  "utf8": "a
+b
+c
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '08-bom-prefix' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 6,
+  "digest": "5891b5b522d5df086d0ff0b110fbd9d21bb4fc7163af34d08286a2e846f6be03",
+  "utf8": "hello
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '09-code-block-indentation' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 27,
+  "digest": "19b8fcd87f85cd9f6f7652de9481d33bf27f40eed6d992ce8b74e017d2428d72",
+  "utf8": "\`\`\`
+    indented
+	code
+\`\`\`
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '10-soft-line-break-preserved' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 14,
+  "digest": "70ef4365baa7d476e259830f318e49fdd027cd9d04a6649a2636b9e3441b53ee",
+  "utf8": "line1  
+line2
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '11-trailing-whitespace-no-newline' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 4,
+  "digest": "edeaaff3f1774ad2888673770c6d64097e391bc362d7d6fb34982ddf0efd18cb",
+  "utf8": "abc
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '12-multiple-trailing-newlines' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 4,
+  "digest": "edeaaff3f1774ad2888673770c6d64097e391bc362d7d6fb34982ddf0efd18cb",
+  "utf8": "abc
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '13-cjk-text' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 27,
+  "digest": "511e633e025ac63b6f9e24aa299413013388f998c85789bf766f4a5ab0df8399",
+  "utf8": "日本語
+中文
+한국어
+",
+}
+`;
+
+exports[`canonicalize golden — v1 frozen outputs > '14-rtl-hebrew' → frozen bytes + digest 1`] = `
+{
+  "byteLength": 22,
+  "digest": "6869b9e1299a52e793ca4578f7886c07ef9934c4d40b66ca8e54dddcab4e2fbc",
+  "utf8": "מימין לשמאל
+",
+}
+`;

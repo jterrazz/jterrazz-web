@@ -20,6 +20,10 @@ const nextConfig = {
                 hostname: 'miro.medium.com',
                 protocol: 'https',
             },
+            {
+                hostname: 'avatars.githubusercontent.com',
+                protocol: 'https',
+            },
         ],
     },
     async redirects() {

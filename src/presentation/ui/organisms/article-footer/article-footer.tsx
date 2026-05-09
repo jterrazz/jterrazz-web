@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 
 // Domain
-import { type Article } from '../../../../domain/article';
+import { type Article, type ArticleAttestation } from '../../../../domain/article';
 import { UserContactType } from '../../../../domain/user';
 import { buildArticleSlug } from '../../../../domain/utils/slugify';
 import { Link } from '../../../../infrastructure/navigation/navigation';
@@ -12,10 +12,13 @@ import { contentLinksRepository } from '../../../../infrastructure/repositories/
 import { userRepository } from '../../../../infrastructure/repositories/user.repository';
 // Utils
 import { cn } from '../../../utils';
+import { AttestationBadge } from '../../molecules/attestation-badge/attestation-badge';
 import { CardArticleRow } from '../../molecules/card-article/card-article-row';
 import { DividerSection } from '../../molecules/divider-section/divider-section';
 
 type ArticleFooterProps = {
+    articleUrl?: string;
+    attestation?: ArticleAttestation;
     className?: string;
     currentArticleId?: string;
     dateModified: string;
@@ -33,6 +36,8 @@ const formatDate = (date: string) => {
 };
 
 export const ArticleFooter: React.FC<ArticleFooterProps> = ({
+    articleUrl,
+    attestation,
     className,
     currentArticleId,
     dateModified,
@@ -85,7 +90,7 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
             <div className="border-t border-zinc-200 dark:border-zinc-800 mb-6 md:mb-8" />
 
             {/* Author */}
-            <div className="flex items-center gap-3 mb-4 md:mb-5">
+            <div className="flex items-start gap-3 mb-4 md:mb-5">
                 <div className="relative w-9 h-9 shrink-0 rounded-full overflow-hidden bg-zinc-100 dark:bg-zinc-800">
                     <Image
                         alt={profile.name}
@@ -94,13 +99,28 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
                         src={profile.pictureUrl}
                     />
                 </div>
-                <span className="text-[14px] text-zinc-600 dark:text-zinc-400">
-                    Written by{' '}
-                    <span className="text-zinc-900 dark:text-zinc-100 font-medium">
-                        {profile.name}
+                <div className="flex-1 min-w-0 flex flex-col">
+                    <span className="text-[14px] text-zinc-600 dark:text-zinc-400">
+                        Written by{' '}
+                        <span className="text-zinc-900 dark:text-zinc-100 font-medium">
+                            {profile.name}
+                        </span>
                     </span>
-                </span>
-                <div className="flex items-center gap-2 ml-auto">
+                    {attestation && articleUrl && (
+                        <AttestationBadge
+                            articleUrl={articleUrl}
+                            attestedAt={new Date(attestation.attestedAt)}
+                            bitcoinTimestamp={
+                                attestation.bitcoinTimestamp
+                                    ? new Date(attestation.bitcoinTimestamp)
+                                    : undefined
+                            }
+                            className="mt-0.5"
+                            signerAddress={attestation.signerAddress}
+                        />
+                    )}
+                </div>
+                <div className="flex items-center gap-2 self-center">
                     <Link
                         aria-label="GitHub"
                         className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"

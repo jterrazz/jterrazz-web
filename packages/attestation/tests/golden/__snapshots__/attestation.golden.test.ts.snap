@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`attestation golden — frozen signature with Hardhat test wallet > produces a known-stable signature 1`] = `
+{
+  "contentDigest": "0x0c756fb254e676df5d0c429a6d7120a86ab9dfff689c6ad913fd53811b9dd1fe",
+  "schemaVersion": 1,
+  "signature": "0x8af1b32a9152bb527f0ae55f75aca7f84f88dd0fe60309eb669a1bfca9877b8b57fe3b6a04a06d9b94ab79c0dbd5a4d01d3a4680a33509d2d0c32d383e8db7b91b",
+  "signerAddress": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+}
+`;
+
+exports[`attestation golden — frozen signature with Hardhat test wallet > serializes deterministically to JSON 1`] = `
+"{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1715212800",
+    "revision": 1,
+    "slug": "architects-of-inversion"
+  },
+  "schemaVersion": 1,
+  "signature": "0x8af1b32a9152bb527f0ae55f75aca7f84f88dd0fe60309eb669a1bfca9877b8b57fe3b6a04a06d9b94ab79c0dbd5a4d01d3a4680a33509d2d0c32d383e8db7b91b",
+  "signerAddress": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+  "subject": {
+    "contentDigest": "0x0c756fb254e676df5d0c429a6d7120a86ab9dfff689c6ad913fd53811b9dd1fe",
+    "locale": "en",
+    "title": "Architects of Inversion"
+  }
+}
+"
+`;

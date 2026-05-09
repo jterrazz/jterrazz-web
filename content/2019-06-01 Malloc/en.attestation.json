@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1559347200",
+    "revision": 1,
+    "slug": "1-master-memory-management-i-built-my-own-malloc-and-you-should-too"
+  },
+  "schemaVersion": 1,
+  "signature": "0x46d2ba430398068489b565650168ebce39f22a08360a647fa30219d7bebe695b74016f4a2e42c63d84173b33ab9a7657ad239bbaa40c1540ddd52f5de095cca71c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x7af777327abd8a88eef4c75cbc7cde1bb61f0218ed4426a9eb41de1fec7b16eb",
+    "locale": "en",
+    "title": "Master memory management, I built my own malloc, and you should too"
+  }
+}

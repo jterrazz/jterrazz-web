@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1568073600",
+    "revision": 1,
+    "slug": "6-my-journey-into-expert-systems-with-python"
+  },
+  "schemaVersion": 1,
+  "signature": "0x05353500f8ba51d2262188c05e6ed51ec5b763a39c25c98e0e7e26fbaec5dbcc024952b7698d70ead6238d6b3a9ba317711be4fea2d0a2829ee4d443e52ea3b01c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x07c3b712efbeeb8fa0dcffe60a036ff6ae6868a0e58b982f7a182f27e9c70620",
+    "locale": "en",
+    "title": "My journey into expert systems with Python"
+  }
+}

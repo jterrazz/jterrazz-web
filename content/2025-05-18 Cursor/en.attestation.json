@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1747526400",
+    "revision": 1,
+    "slug": "19-cursor-the-compression-of-mechanical-work"
+  },
+  "schemaVersion": 1,
+  "signature": "0x4c9e32fd567d98c5085481c5114c4d345e2940b9da0712d8fff2f925b2a8f96254b8eee3dc585d325dbe5d0c044bdb50e33ba290fbec5c0afa71697a9c396bbe1b",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x43f89d963f8b4154f71e990cc0a06e7368b1825747b96957e1b54c54ab987e10",
+    "locale": "en",
+    "title": "Cursor: The compression of mechanical work"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1752969600",
+    "revision": 1,
+    "slug": "21-the-art-of-directing-ai"
+  },
+  "schemaVersion": 1,
+  "signature": "0x46b364d6ac60cf694c577a2f22b0985d0cc45e1aaaa678b137e852b92602e31d0aa702b103c69cacc814eda180059db4b2440d2aa3b6d3413e18d25515e77aa11b",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x5d5322198528022a92e9307baa978edb437a6713dd7d2c53f46708e11257ac62",
+    "locale": "en",
+    "title": "The art of directing AI"
+  }
+}

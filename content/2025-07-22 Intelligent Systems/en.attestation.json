@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1753142400",
+    "revision": 1,
+    "slug": "23-when-ai-becomes-the-product"
+  },
+  "schemaVersion": 1,
+  "signature": "0x0d370e2419a16c82cd3296476421cc3b693ab2b326bf991c460b5991f1d9d9e836f9228b29981e16167b05c2dd5caf4be065c9b0d7ed8d14c6f3166a37ff6d8c1b",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x9cc3a99cffa7520cbc14a4e255731e04401c3ae6defc90cbff5cfb582d9593fa",
+    "locale": "en",
+    "title": "When AI becomes the product"
+  }
+}

@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EIP-712 schema v1 — frozen contract > hashTypedData on a known message produces a stable digest 1`] = `"0x393cbd82cafae3f3ff7b9ba4e9eb38b89e43e8c1ab428046d4ccb2cabf2c43b0"`;
+
+exports[`EIP-712 schema v1 — frozen contract > types are exactly the frozen v1 shape 1`] = `
+{
+  "ArticleClaims": [
+    {
+      "name": "slug",
+      "type": "string",
+    },
+    {
+      "name": "publishedAt",
+      "type": "uint64",
+    },
+    {
+      "name": "revision",
+      "type": "uint16",
+    },
+    {
+      "name": "priorAttestation",
+      "type": "bytes32",
+    },
+  ],
+  "ArticleSubject": [
+    {
+      "name": "title",
+      "type": "string",
+    },
+    {
+      "name": "contentDigest",
+      "type": "bytes32",
+    },
+    {
+      "name": "locale",
+      "type": "string",
+    },
+  ],
+  "Attestation": [
+    {
+      "name": "schemaVersion",
+      "type": "uint16",
+    },
+    {
+      "name": "subject",
+      "type": "ArticleSubject",
+    },
+    {
+      "name": "claims",
+      "type": "ArticleClaims",
+    },
+  ],
+}
+`;

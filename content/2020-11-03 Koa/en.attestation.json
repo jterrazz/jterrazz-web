@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1604361600",
+    "revision": 1,
+    "slug": "7-building-my-go-to-web-server-with-typescript-and-koa"
+  },
+  "schemaVersion": 1,
+  "signature": "0xba0367c10db1c61192abea5dd61bfd1a92df4620143fe8432c8b42a246ee850f4941050fa2ad86b7173040489410569f21195f1214c1affa1505cdcc96aec3831c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x503d3c5df93e9e5123cdd98bfdaee578eb4dba1f65c10bc794876a3aa8f2e38d",
+    "locale": "en",
+    "title": "Building my go-to web server with TypeScript and Koa"
+  }
+}

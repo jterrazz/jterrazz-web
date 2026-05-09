@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1752883200",
+    "revision": 1,
+    "slug": "20-the-four-levels-of-ai-mastery"
+  },
+  "schemaVersion": 1,
+  "signature": "0x29cab1ab3a92dbc0a7ca4d0d85b772b0b3fb7e483cb6472a5565e8ed4555e9f61450e8b1afeaf296bf94754fb048789261ce92fcca05dad068e1008d3b353d351c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x6fb760d59a075dc038da6c33ab968dcf9341cfea1810256bd97f8a1d2e505cd3",
+    "locale": "en",
+    "title": "The four levels of AI mastery"
+  }
+}

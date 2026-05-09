@@ -25,3 +25,4 @@ next-env.d.ts
 src/generated/
 public/content/
 .vercel
+.claude/

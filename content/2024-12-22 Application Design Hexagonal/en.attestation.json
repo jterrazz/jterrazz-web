@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1734825600",
+    "revision": 1,
+    "slug": "11-separating-business-from-technology"
+  },
+  "schemaVersion": 1,
+  "signature": "0x6b6bfd897ce663a0c250fbb9cbedaf3508eeb7168843b59a6ab0d3565f9357020de33bbaa5c34a0d5d6bccc2b0f1382b4cf6b749116b53113cb6dfa0c2e7feb21b",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x7c6627562a8a55015e3c2f9e4cb0a82b3dd7cf53e72b5faf29f69a8a7540e960",
+    "locale": "en",
+    "title": "Separating business from technology"
+  }
+}

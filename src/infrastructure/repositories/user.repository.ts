@@ -10,7 +10,7 @@ const profile: UserProfile = {
     headline: 'Architecting the agent stack',
     location: 'Paris, France',
     name: 'Jean-Baptiste Terrazzoni',
-    pictureUrl: '/assets/icons/appicon-jterrazz.png',
+    pictureUrl: 'https://avatars.githubusercontent.com/u/18480834',
 };
 
 const contacts: Record<UserContactType, UserContact> = {

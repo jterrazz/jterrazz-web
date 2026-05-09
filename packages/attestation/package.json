@@ -1,0 +1,61 @@
+{
+    "name": "@jterrazz/attestation",
+    "version": "0.0.1",
+    "description": "Cryptographic attestation for articles — EIP-712 signature anchored to Bitcoin via OpenTimestamps.",
+    "license": "MIT",
+    "author": "Jean-Baptiste Terrazzoni <contact@jterrazz.com>",
+    "bin": {
+        "attestation": "bin/attestation"
+    },
+    "files": [
+        "dist",
+        "bin"
+    ],
+    "type": "module",
+    "exports": {
+        ".": {
+            "require": "./dist/index.cjs",
+            "import": "./dist/index.js"
+        },
+        "./browser": {
+            "require": "./dist/browser.cjs",
+            "import": "./dist/browser.js"
+        },
+        "./node": {
+            "require": "./dist/node.cjs",
+            "import": "./dist/node.js"
+        },
+        "./cli": {
+            "require": "./dist/cli.cjs",
+            "import": "./dist/cli.js"
+        }
+    },
+    "scripts": {
+        "build": "tsdown --config tsdown.config.ts",
+        "lint": "codestyle check",
+        "lint:fix": "codestyle fix",
+        "test": "vitest --run",
+        "test:network": "ATTEST_E2E_NETWORK=1 vitest --run --project e2e-network"
+    },
+    "dependencies": {
+        "@noble/hashes": "^2.2.0",
+        "javascript-opentimestamps": "^0.4.5",
+        "open": "^11.0.0",
+        "viem": "^2.48.11"
+    },
+    "devDependencies": {
+        "@jterrazz/codestyle": "^3.2.0",
+        "@jterrazz/test": "^5.3.2",
+        "@jterrazz/typescript": "^5.2.0",
+        "@types/node": "^24.10.1",
+        "tsdown": "^0.21.8",
+        "vitest": "^4.0.0"
+    },
+    "knip": {
+        "ignoreBinaries": [
+            "tsdown",
+            "codestyle",
+            "vitest"
+        ]
+    }
+}

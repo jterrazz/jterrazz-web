@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1564012800",
+    "revision": 1,
+    "slug": "3-decoding-the-magic-my-journey-building-nm-and-otool"
+  },
+  "schemaVersion": 1,
+  "signature": "0xa3496e7782d620815ee3decc49e66ddf2419fe9f28f1200f96c8421996685370518a31b06c692132a6aa5ef6b87a11fe63ba1809bd6aa7d4754727d1fd496d2f1c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x6819ebc3369db296920a01be1523aa159d01bcece147e0cece93c83ab3c032cf",
+    "locale": "en",
+    "title": "Decoding the magic, my journey building nm and otool"
+  }
+}

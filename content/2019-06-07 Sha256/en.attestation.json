@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1559865600",
+    "revision": 1,
+    "slug": "2-hashing-in-c-a-deep-dive-into-sha-256-and-md5"
+  },
+  "schemaVersion": 1,
+  "signature": "0x5b6d2c85f2c15d5891d3b880ad788b32db0cd430226c113a16acb0501a2d91fa615334d0ae9a20e795a607cbc161a3498558c99323a35edc5f322a1085e2964a1c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x036ce4cfad64267af4b431483a38801021978b9d0e1f11aaec4dda1ff9bf15b7",
+    "locale": "en",
+    "title": "Hashing in C, a deep dive into SHA-256 and MD5"
+  }
+}

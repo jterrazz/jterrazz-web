@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1566950400",
+    "revision": 1,
+    "slug": "5-lets-dive-into-assembly-and-build-our-first-functions-intel-x86-64"
+  },
+  "schemaVersion": 1,
+  "signature": "0x6a2b3afbed042742ccff834e8e761a72f2389eec12d63d484bc7fc084f6ce9d672fb87df81c87f2895985709c54c08b8b9856b0b6ec82f40121c33b21125e52d1c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x479f7497cf30977f54109608508b0161f5142f1ef4bab79ea6f89e34f0250cf1",
+    "locale": "en",
+    "title": "Let's dive into assembly and build our first functions (Intel x86-64)"
+  }
+}

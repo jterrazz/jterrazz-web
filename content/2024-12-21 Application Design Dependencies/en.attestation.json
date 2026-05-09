@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1734739200",
+    "revision": 1,
+    "slug": "10-mastering-the-flow-of-dependencies"
+  },
+  "schemaVersion": 1,
+  "signature": "0xabb0be141fb6de0150e1a6e3396cac9a2d11f695f840db709960ef7ca20a63970aaa922012a99c51345bfb1836db00e525868a2f13de2ac236301646b65bac091c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x55c230a7b91f46dbee72c76c60372d0d5c9928e03fd191bad22b436a692c4ae8",
+    "locale": "en",
+    "title": "Mastering the flow of dependencies"
+  }
+}

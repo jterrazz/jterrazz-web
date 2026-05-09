@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1734912000",
+    "revision": 1,
+    "slug": "12-a-journey-into-clean-architecture"
+  },
+  "schemaVersion": 1,
+  "signature": "0x32f34ac804d5945d887826d9a49e05816629ada2169d88db945b1344af56d5851eb90e438c8991c7c5f1832f5e8a8ecafdcb640cb3b0aa1d71ebf9d9f705c9b31b",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x8fc862f519e73a8a7fb3d77de808e268edce0f82a388aad36a843de9048c206c",
+    "locale": "en",
+    "title": "A journey into clean architecture"
+  }
+}

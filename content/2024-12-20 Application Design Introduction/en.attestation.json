@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1734652800",
+    "revision": 1,
+    "slug": "9-building-software-that-lasts"
+  },
+  "schemaVersion": 1,
+  "signature": "0x5bd7d02074bc41d0cc81f56308a94c1f4698023d8e05a8df565c545a10a20a4321ae1eac4d17cebc22d922f6f7d9d9ba61244fdf8db4fa500c0ed2ce49a29a351b",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x2a60cc8d1a6e4a9563b4fe74f661cb3536891ffb8f5061017c6792cb0efec638",
+    "locale": "en",
+    "title": "Building software that lasts"
+  }
+}

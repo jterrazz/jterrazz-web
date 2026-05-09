@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1688256000",
+    "revision": 1,
+    "slug": "8-what-if-we-got-online-shopping-wrong"
+  },
+  "schemaVersion": 1,
+  "signature": "0xd4f9cab5e5d3cdb795005b8e204e57bd462a2abf1d72fef98ca0fa3cb713ae0c07a751aab471d5f2ee0be0fe5f4351aa4d81173be9aca1a442dd095ba0eded421c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x3b01c1707efa6abd8f07763c0f780f920a91b361a95c68f8a794c9910fc346c3",
+    "locale": "en",
+    "title": "What if we got online shopping wrong?"
+  }
+}

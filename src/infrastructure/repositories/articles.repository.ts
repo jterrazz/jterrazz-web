@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 // Domain
 import {
     type Article,
+    type ArticleAttestation,
     ArticleCategory,
     type ArticleLanguage,
     createArticle,
@@ -581,6 +582,34 @@ const readMarkdownFileSync = (
     }
 };
 
+const readAttestationFileSync = (
+    articlesDirectory: string,
+    filename: string,
+): ArticleAttestation | undefined => {
+    try {
+        const raw = readFileSync(`${articlesDirectory}/${filename}/en.attestation.json`, 'utf8');
+        const parsed = JSON.parse(raw) as {
+            schemaVersion: number;
+            subject: { contentDigest: `0x${string}` };
+            claims: { publishedAt: string };
+            signature: `0x${string}`;
+            signerAddress: `0x${string}`;
+            signerEns?: string;
+            bitcoinTimestamp?: string;
+        };
+        return {
+            attestedAt: new Date(Number(parsed.claims.publishedAt) * 1000).toISOString(),
+            bitcoinTimestamp: parsed.bitcoinTimestamp,
+            contentDigest: parsed.subject.contentDigest,
+            schemaVersion: parsed.schemaVersion,
+            signerAddress: parsed.signerAddress,
+            signerEns: parsed.signerEns,
+        };
+    } catch {
+        return undefined;
+    }
+};
+
 // Load all articles synchronously at module initialization
 const loadArticles = (): Article[] => {
     const articlesDirectory = `${process.cwd()}/content`;
@@ -594,8 +623,14 @@ const loadArticles = (): Article[] => {
             throw new Error(`No content found for article ${filename}`);
         }
 
+        // Optionally read the English attestation (graceful when missing).
+        // We only sign the English source; the badge and verify page show this
+        // Single attestation on every locale of the article.
+        const attestation = readAttestationFileSync(articlesDirectory, filename);
+
         // Build raw input (with AI text cleaning, before domain sanitization)
         const rawInput: RawArticleInput = {
+            attestation,
             content: {
                 en: enContent ? cleanAiText(enContent) : undefined,
                 fr: frContent ? cleanAiText(frContent) : undefined,
@@ -633,6 +668,11 @@ const loadArticles = (): Article[] => {
 // Singleton: articles loaded once at startup
 const articles = loadArticles();
 
+// Index → folder name (used by attestation asset routes that need to read raw files)
+const filenameByIndex = new Map<number, string>(
+    ARTICLES_CONFIG.map((c) => [c.publicIndex, c.filename]),
+);
+
 export const articlesRepository = {
     getAll: (): Article[] =>
         [...articles].sort(
@@ -647,4 +687,6 @@ export const articlesRepository = {
         }
         return article;
     },
+    /** Returns the on-disk folder name for an article index, or undefined. */
+    getFilenameByIndex: (index: number): string | undefined => filenameByIndex.get(index),
 };

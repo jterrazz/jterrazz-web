@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1768003200",
+    "revision": 1,
+    "slug": "13-mapping-the-noise"
+  },
+  "schemaVersion": 1,
+  "signature": "0xabcbad4441c243b67256857d5511931b4cd762f60e15cf039a7a6934c81d03ce67c9234943489c2964723186ff40d018b223c3cf505ae872c68fc61246f345b91b",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0x99f303fc4305077c404714ffe50056597de3430ec77bb45846c7fb4c981133dc",
+    "locale": "en",
+    "title": "Mapping the noise"
+  }
+}
