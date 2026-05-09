@@ -32,6 +32,7 @@
     },
     "scripts": {
         "build": "tsdown --config tsdown.config.ts",
+        "prepare": "tsdown --config tsdown.config.ts",
         "lint": "codestyle check",
         "lint:fix": "codestyle fix",
         "test": "vitest --run",
