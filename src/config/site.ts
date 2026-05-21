@@ -6,7 +6,7 @@
 export const SITE_CONFIG = {
     author: {
         alumniOf: '42 Paris',
-        jobTitle: 'Founder & Architect',
+        jobTitle: 'Founder & Software Engineer',
         name: 'Jean-Baptiste Terrazzoni',
         skills: [
             'AI Agents',

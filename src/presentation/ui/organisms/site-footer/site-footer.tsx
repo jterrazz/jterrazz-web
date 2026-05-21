@@ -73,7 +73,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
         description:
             'Building autonomous systems, products from scratch, and sovereign software. Notes on AI, autonomy, and the systems beneath.',
         email: email.url.toString(),
-        jobTitle: 'Founder & Architect',
+        jobTitle: 'Founder & Software Engineer',
         knowsAbout: [
             'AI Agents',
             'Agent Orchestration',

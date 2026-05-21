@@ -71,7 +71,7 @@ const experiences: UserExperience[] = [
         organization: 'Spwn',
         organizationUrl: 'https://spwn.sh',
         timeframe: '2026 - Present',
-        title: 'Founder & Architect',
+        title: 'Founder & Software Engineer',
         type: 'Job',
         year: '2026',
     },
