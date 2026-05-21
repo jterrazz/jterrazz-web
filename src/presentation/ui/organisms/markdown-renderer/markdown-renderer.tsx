@@ -91,9 +91,10 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
 };
 
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, content }) => {
-    // Medium-inspired typography: 17px mobile, 20px desktop, comfortable line height
+    // Medium-style typography: 18px mobile, 21px desktop, 1.58 line height (matches
+    // Medium's reading column), Charter/serif body inside a ~680px narrow container.
     const baseClassName =
-        'font-serif text-[17px] md:text-[20px] leading-[1.6] md:leading-[1.7] text-zinc-700 dark:text-zinc-300 antialiased';
+        'font-serif text-[18px] md:text-[21px] leading-[1.58] text-zinc-700 dark:text-zinc-300 antialiased';
     const generatedClassName = cn(baseClassName, className);
 
     return (
@@ -108,7 +109,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                     ),
                     blockquote: ({ ...props }) => (
                         <blockquote
-                            className="pl-5 md:pl-7 border-l-[3px] border-zinc-300 dark:border-zinc-600 italic text-[16px] md:text-[19px] text-zinc-600 dark:text-zinc-400 my-7 md:my-9 leading-[1.6]"
+                            className="pl-5 md:pl-7 border-l-[3px] border-zinc-300 dark:border-zinc-600 italic text-[17px] md:text-[20px] text-zinc-600 dark:text-zinc-400 my-7 md:my-9 leading-[1.58]"
                             {...props}
                         />
                     ),

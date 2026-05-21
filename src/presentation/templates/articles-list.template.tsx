@@ -76,10 +76,20 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
         return allowed ? allowed.includes(article.category as ArticleCategory) : true;
     };
 
-    const filteredSeries = viewModel.series.filter((s) => shouldShow(s.featuredArticle));
-    const filteredStandalone = viewModel.standaloneArticles.filter(shouldShow);
     const showLatestExploration =
         viewModel.latestExplorationArticle && shouldShow(viewModel.latestExplorationArticle);
+
+    // Filter each timeline section in place, then drop standalone groups
+    // that become empty after filtering.
+    const filteredTimeline = viewModel.timeline
+        .map((section) => {
+            if (section.kind === 'series') {
+                return shouldShow(section.series.featuredArticle) ? section : null;
+            }
+            const articles = section.articles.filter(shouldShow);
+            return articles.length > 0 ? { kind: 'standalones' as const, articles } : null;
+        })
+        .filter((s): s is NonNullable<typeof s> => s !== null);
 
     const allArticles = [
         ...viewModel.series.flatMap((series) => [
@@ -182,31 +192,52 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
                         </section>
                     )}
 
-                    {filteredSeries.map((series) => (
-                        <ArticleSeries
-                            key={series.seriesTitle}
-                            series={series}
-                            seriesLabel={t.series}
-                        />
-                    ))}
-
-                    {filteredStandalone.length > 0 && (
-                        <section>
-                            <DividerSection className="mb-4" title={t.otherPosts} />
-                            <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
-                                {filteredStandalone.map((article) => (
-                                    <CardArticleRow
-                                        experimentSlug={article.experimentSlug}
-                                        imageUrl={article.imageUrl}
-                                        key={article.slug}
-                                        slug={article.slug}
-                                        tagline={article.tagline}
-                                        title={article.title}
-                                    />
-                                ))}
-                            </div>
-                        </section>
-                    )}
+                    {(() => {
+                        // Only the trailing standalone group carries the
+                        // "Other posts" label. Earlier standalone groups get
+                        // a plain unlabeled gradient rule so the page is still
+                        // visually segmented without repeating the heading.
+                        const lastStandaloneIdx = filteredTimeline.reduce(
+                            (acc, section, idx) =>
+                                section.kind === 'standalones' ? idx : acc,
+                            -1,
+                        );
+                        return filteredTimeline.map((section, idx) =>
+                            section.kind === 'series' ? (
+                                <ArticleSeries
+                                    key={`series-${section.series.seriesTitle}`}
+                                    series={section.series}
+                                    seriesLabel={t.series}
+                                />
+                            ) : (
+                                <section key={`standalones-${idx}`}>
+                                    {idx === lastStandaloneIdx ? (
+                                        <DividerSection
+                                            className="mb-4"
+                                            title={t.otherPosts}
+                                        />
+                                    ) : (
+                                        <div
+                                            aria-hidden="true"
+                                            className="h-px w-full bg-gradient-to-r from-zinc-200 to-transparent dark:from-zinc-800 dark:to-transparent mb-4"
+                                        />
+                                    )}
+                                    <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
+                                        {section.articles.map((article) => (
+                                            <CardArticleRow
+                                                experimentSlug={article.experimentSlug}
+                                                imageUrl={article.imageUrl}
+                                                key={article.slug}
+                                                slug={article.slug}
+                                                tagline={article.tagline}
+                                                title={article.title}
+                                            />
+                                        ))}
+                                    </div>
+                                </section>
+                            ),
+                        );
+                    })()}
                 </div>
             </Container>
         </div>

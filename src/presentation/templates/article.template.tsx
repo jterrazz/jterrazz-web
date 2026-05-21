@@ -146,7 +146,7 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     };
 
     return (
-        <Container className="mt-6 md:mt-10 relative">
+        <Container className="mt-2 md:mt-4 relative" width="narrow">
             <Script id="json-ld" strategy="afterInteractive" type="application/ld+json">
                 {JSON.stringify(jsonLd)}
             </Script>

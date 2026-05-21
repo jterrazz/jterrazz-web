@@ -10,6 +10,7 @@ import {
     createArticle,
     type RawArticleInput,
 } from '../../domain/article';
+import { toSentenceCase } from '../../domain/utils/to-sentence-case';
 import { getContentUrl } from '../content-url';
 
 // Configuration structure for each article before being transformed into the Article domain model.
@@ -556,6 +557,29 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
         publicIndex: 23,
         published: true,
     },
+    {
+        filename: '2026-05-22 Your Next AI Skill Is Worldbuilding',
+        metadata: {
+            category: ArticleCategory.Reflection,
+            dateModified: '2026-05-22',
+            datePublished: '2026-05-22',
+            description: {
+                en: 'Stop asking which model. Start asking what world. A practical guide to building working worlds around AI: identity, tools, skills, knowledge, context, and feedback.',
+                fr: "Cessez de demander quel modèle. Demandez quel monde. Guide pratique pour construire des mondes fonctionnels autour de l'IA : identité, outils, compétences, connaissances, contexte, retour.",
+            },
+            tagline: {
+                en: 'Build the world around the model',
+                fr: 'Construire le monde autour du modèle',
+            },
+            title: {
+                en: 'Your next AI skill is worldbuilding',
+                fr: 'Votre prochaine compétence en IA : construire des mondes',
+            },
+        },
+        previewImage: 'thumbnail.jpg',
+        publicIndex: 24,
+        published: true,
+    },
 ];
 
 // Helper function to transform relative asset paths in markdown to versioned URLs
@@ -568,6 +592,12 @@ const processMarkdownContent = (content: string, filename: string): string => {
 // Clean AI-generated artifacts from text (before domain sanitization)
 // CollapseSpaces: false preserves indentation in code blocks
 const cleanAiText = (text: string): string => parseText(text, { collapseSpaces: false });
+
+// Same cleanup plus sentence-case normalization. Used for metadata fields
+// (title, tagline, description) where Title-Case overuse is the most common
+// AI tic. The body content is left untouched because toSentenceCase is
+// conservative and would no-op on prose anyway.
+const cleanAiHeadline = (text: string): string => toSentenceCase(cleanAiText(text));
 
 const readMarkdownFileSync = (
     articlesDirectory: string,
@@ -643,17 +673,17 @@ const loadArticles = (): Article[] => {
                 dateModified: articleConfig.metadata.dateModified,
                 datePublished: articleConfig.metadata.datePublished,
                 description: {
-                    en: cleanAiText(articleConfig.metadata.description.en),
-                    fr: cleanAiText(articleConfig.metadata.description.fr),
+                    en: cleanAiHeadline(articleConfig.metadata.description.en),
+                    fr: cleanAiHeadline(articleConfig.metadata.description.fr),
                 },
                 series: articleConfig.metadata.series,
                 tagline: {
-                    en: cleanAiText(articleConfig.metadata.tagline.en),
-                    fr: cleanAiText(articleConfig.metadata.tagline.fr),
+                    en: cleanAiHeadline(articleConfig.metadata.tagline.en),
+                    fr: cleanAiHeadline(articleConfig.metadata.tagline.fr),
                 },
                 title: {
-                    en: cleanAiText(articleConfig.metadata.title.en),
-                    fr: cleanAiText(articleConfig.metadata.title.fr),
+                    en: cleanAiHeadline(articleConfig.metadata.title.en),
+                    fr: cleanAiHeadline(articleConfig.metadata.title.fr),
                 },
             },
             publicIndex: articleConfig.publicIndex,

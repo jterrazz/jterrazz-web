@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Your Next AI Skill Is Worldbuilding
+# Your next AI skill is worldbuilding
 
 Last month, four people told me they were "using agents."
 

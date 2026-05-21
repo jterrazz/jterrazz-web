@@ -30,9 +30,14 @@ export interface ArticleSeriesViewModel {
     relatedArticles: ArticleRowViewModel[];
 }
 
+export type ArticlesListTimelineSection =
+    | { kind: 'series'; series: ArticleSeriesViewModel }
+    | { kind: 'standalones'; articles: ArticleRowViewModel[] };
+
 export interface ArticlesListViewModel {
     series: ArticleSeriesViewModel[];
     standaloneArticles: ArticleRowViewModel[];
+    timeline: ArticlesListTimelineSection[];
     latestExplorationArticle: ArticleRowViewModel | null;
     button: ArticlesListButton;
     highlightDescription: string;
@@ -179,11 +184,73 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
             return bLatestDate - aLatestDate;
         });
 
+        // Build a chronologically-interleaved timeline of series blocks and
+        // standalone-article groups. Series order in this timeline is purely
+        // by date (the explicit seriesOrder above still governs the legacy
+        // `series` array used elsewhere). Consecutive standalones collapse
+        // into one section so the layout doesn't fragment.
+        type DatedItem =
+            | { kind: 'series'; date: number; data: { seriesTitle: string; articles: Article[] } }
+            | { kind: 'standalone'; date: number; data: Article };
+
+        const datedItems: DatedItem[] = [];
+        seriesMap.forEach((articlesInSeries, seriesTitle) => {
+            if (articlesInSeries.length <= 1) {
+                return;
+            }
+            const sorted = [...articlesInSeries].sort(
+                (a, b) =>
+                    new Date(a.metadata.datePublished).getTime() -
+                    new Date(b.metadata.datePublished).getTime(),
+            );
+            const latestDate = Math.max(
+                ...articlesInSeries.map((a) =>
+                    new Date(a.metadata.datePublished).getTime(),
+                ),
+            );
+            datedItems.push({
+                kind: 'series',
+                date: latestDate,
+                data: { seriesTitle, articles: sorted },
+            });
+        });
+        for (const article of finalStandaloneArticles) {
+            datedItems.push({
+                kind: 'standalone',
+                date: new Date(article.metadata.datePublished).getTime(),
+                data: article,
+            });
+        }
+        datedItems.sort((a, b) => b.date - a.date);
+
+        const timeline: ArticlesListTimelineSection[] = [];
+        for (const item of datedItems) {
+            if (item.kind === 'standalone') {
+                const last = timeline.at(-1);
+                const articleVm = this.mapToViewModel(item.data);
+                if (last && last.kind === 'standalones') {
+                    last.articles.push(articleVm);
+                } else {
+                    timeline.push({ kind: 'standalones', articles: [articleVm] });
+                }
+            } else {
+                const featuredArticle = this.mapToViewModel(item.data.articles[0]);
+                const relatedArticles = item.data.articles
+                    .slice(1)
+                    .map((a) => this.mapToViewModel(a));
+                timeline.push({
+                    kind: 'series',
+                    series: { featuredArticle, relatedArticles, seriesTitle: item.data.seriesTitle },
+                });
+            }
+        }
+
         return {
             series,
             standaloneArticles: finalStandaloneArticles.map((article) =>
                 this.mapToViewModel(article),
             ),
+            timeline,
             latestExplorationArticle,
             button,
             highlightDescription: this.highlightDescription,
