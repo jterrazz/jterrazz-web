@@ -156,8 +156,10 @@ export function toSentenceCase(text: string, options: ToSentenceCaseOptions = {}
     const threshold = options.titleCaseThreshold ?? 0.6;
     const minWords = options.minWords ?? 3;
 
-    // Split, keeping separators as tokens. With a capture group every other
-    // entry is a word; runs in between are non-word separators (spaces, punct).
+    /*
+     * Split, keeping separators as tokens. With a capture group every other
+     * entry is a word; runs in between are non-word separators (spaces, punct).
+     */
     const tokens = text.split(WORD_PATTERN);
     const wordTokens = tokens.filter((t) => WORD_PATTERN.test(t) && /[A-Za-z]/.test(t));
 
@@ -171,11 +173,13 @@ export function toSentenceCase(text: string, options: ToSentenceCaseOptions = {}
         return text;
     }
 
-    // If most words match the generic acronym shape, the input is probably
-    // shouting (ALL CAPS) rather than Title-Cased with embedded acronyms. In
-    // that case we ignore the generic acronym pattern and rely solely on the
-    // explicit `preservedTerms` list, so "YOUR" gets lowercased while "AI"
-    // (present in the list) is kept.
+    /*
+     * If most words match the generic acronym shape, the input is probably
+     * shouting (ALL CAPS) rather than Title-Cased with embedded acronyms. In
+     * that case we ignore the generic acronym pattern and rely solely on the
+     * explicit `preservedTerms` list, so "YOUR" gets lowercased while "AI"
+     * (present in the list) is kept.
+     */
     const acronymPatternCount = wordTokens.filter((t) => ACRONYM_PATTERN.test(t)).length;
     const looksLikeShouting = acronymPatternCount / wordTokens.length >= 0.5;
 

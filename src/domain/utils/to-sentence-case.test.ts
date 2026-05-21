@@ -157,13 +157,15 @@ describe('toSentenceCase', () => {
     });
 
     describe('punctuation and contractions', () => {
-        test("keeps contractions intact", () => {
+        test('keeps contractions intact', () => {
             expect(toSentenceCase("It's A Beautiful Day")).toBe("It's a beautiful day");
         });
 
         test('handles colon-separated title segments', () => {
-            // "Cursor: The Compression Of Mechanical Work" — the second clause
-            // is Title Case; normalize it but preserve Cursor.
+            /*
+             * "Cursor: The Compression Of Mechanical Work" — the second clause
+             * is Title Case; normalize it but preserve Cursor.
+             */
             expect(toSentenceCase('Cursor: The Compression Of Mechanical Work')).toBe(
                 'Cursor: the compression of mechanical work',
             );
@@ -171,9 +173,7 @@ describe('toSentenceCase', () => {
 
         test('handles hyphenated compound words by splitting on the hyphen', () => {
             // "AI-Powered World" -> "AI-powered world"
-            expect(toSentenceCase('An AI-Powered World Awaits')).toBe(
-                'An AI-powered world awaits',
-            );
+            expect(toSentenceCase('An AI-Powered World Awaits')).toBe('An AI-powered world awaits');
         });
     });
 
@@ -187,8 +187,10 @@ describe('toSentenceCase', () => {
         });
 
         test('replacePreserved drops the default explicit list but the generic acronym pattern still preserves short ALL-CAPS tokens', () => {
-            // "AI" survives via the generic acronym pattern even with the
-            // explicit list cleared; only `preservedTerms` is replaced.
+            /*
+             * "AI" survives via the generic acronym pattern even with the
+             * explicit list cleared; only `preservedTerms` is replaced.
+             */
             expect(
                 toSentenceCase('Your Next AI Skill Is Worldbuilding', {
                     preservedTerms: [],
@@ -216,9 +218,9 @@ describe('toSentenceCase', () => {
 
         test('higher minWords skips short titles', () => {
             // 4 words, would normally trigger
-            expect(
-                toSentenceCase('Hello World And You', { minWords: 5 }),
-            ).toBe('Hello World And You');
+            expect(toSentenceCase('Hello World And You', { minWords: 5 })).toBe(
+                'Hello World And You',
+            );
         });
     });
 

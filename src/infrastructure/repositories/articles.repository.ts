@@ -593,10 +593,12 @@ const processMarkdownContent = (content: string, filename: string): string => {
 // CollapseSpaces: false preserves indentation in code blocks
 const cleanAiText = (text: string): string => parseText(text, { collapseSpaces: false });
 
-// Same cleanup plus sentence-case normalization. Used for metadata fields
-// (title, tagline, description) where Title-Case overuse is the most common
-// AI tic. The body content is left untouched because toSentenceCase is
-// conservative and would no-op on prose anyway.
+/*
+ * Same cleanup plus sentence-case normalization. Used for metadata fields
+ * (title, tagline, description) where Title-Case overuse is the most common
+ * AI tic. The body content is left untouched because toSentenceCase is
+ * conservative and would no-op on prose anyway.
+ */
 const cleanAiHeadline = (text: string): string => toSentenceCase(cleanAiText(text));
 
 const readMarkdownFileSync = (

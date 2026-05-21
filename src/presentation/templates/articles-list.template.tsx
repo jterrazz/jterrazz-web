@@ -79,8 +79,10 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
     const showLatestExploration =
         viewModel.latestExplorationArticle && shouldShow(viewModel.latestExplorationArticle);
 
-    // Filter each timeline section in place, then drop standalone groups
-    // that become empty after filtering.
+    /*
+     * Filter each timeline section in place, then drop standalone groups
+     * that become empty after filtering.
+     */
     const filteredTimeline = viewModel.timeline
         .map((section) => {
             if (section.kind === 'series') {
@@ -193,13 +195,14 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
                     )}
 
                     {(() => {
-                        // Only the trailing standalone group carries the
-                        // "Other posts" label. Earlier standalone groups get
-                        // a plain unlabeled gradient rule so the page is still
-                        // visually segmented without repeating the heading.
+                        /*
+                         * Only the trailing standalone group carries the
+                         * "Other posts" label. Earlier standalone groups get
+                         * a plain unlabeled gradient rule so the page is still
+                         * visually segmented without repeating the heading.
+                         */
                         const lastStandaloneIdx = filteredTimeline.reduce(
-                            (acc, section, idx) =>
-                                section.kind === 'standalones' ? idx : acc,
+                            (acc, section, idx) => (section.kind === 'standalones' ? idx : acc),
                             -1,
                         );
                         return filteredTimeline.map((section, idx) =>
@@ -210,12 +213,9 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
                                     seriesLabel={t.series}
                                 />
                             ) : (
-                                <section key={`standalones-${idx}`}>
+                                <section key={`standalones-${section.articles[0].slug}`}>
                                     {idx === lastStandaloneIdx ? (
-                                        <DividerSection
-                                            className="mb-4"
-                                            title={t.otherPosts}
-                                        />
+                                        <DividerSection className="mb-4" title={t.otherPosts} />
                                     ) : (
                                         <div
                                             aria-hidden="true"

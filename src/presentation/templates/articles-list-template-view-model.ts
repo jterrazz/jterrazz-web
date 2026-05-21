@@ -184,11 +184,13 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
             return bLatestDate - aLatestDate;
         });
 
-        // Build a chronologically-interleaved timeline of series blocks and
-        // standalone-article groups. Series order in this timeline is purely
-        // by date (the explicit seriesOrder above still governs the legacy
-        // `series` array used elsewhere). Consecutive standalones collapse
-        // into one section so the layout doesn't fragment.
+        /*
+         * Build a chronologically-interleaved timeline of series blocks and
+         * standalone-article groups. Series order in this timeline is purely
+         * by date (the explicit seriesOrder above still governs the legacy
+         * `series` array used elsewhere). Consecutive standalones collapse
+         * into one section so the layout doesn't fragment.
+         */
         type DatedItem =
             | { kind: 'series'; date: number; data: { seriesTitle: string; articles: Article[] } }
             | { kind: 'standalone'; date: number; data: Article };
@@ -204,9 +206,7 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
                     new Date(b.metadata.datePublished).getTime(),
             );
             const latestDate = Math.max(
-                ...articlesInSeries.map((a) =>
-                    new Date(a.metadata.datePublished).getTime(),
-                ),
+                ...articlesInSeries.map((a) => new Date(a.metadata.datePublished).getTime()),
             );
             datedItems.push({
                 kind: 'series',
@@ -240,7 +240,11 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
                     .map((a) => this.mapToViewModel(a));
                 timeline.push({
                     kind: 'series',
-                    series: { featuredArticle, relatedArticles, seriesTitle: item.data.seriesTitle },
+                    series: {
+                        featuredArticle,
+                        relatedArticles,
+                        seriesTitle: item.data.seriesTitle,
+                    },
                 });
             }
         }
