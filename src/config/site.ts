@@ -20,9 +20,9 @@ export const SITE_CONFIG = {
     },
     baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
     description:
-        'Architecting the agent stack. Compounding abstractions, faster than the org chart. Notes on autonomous systems and the next wave of software architecture.',
+        'Building autonomous systems, products from scratch, and sovereign software. Notes on AI, autonomy, and the systems beneath.',
     defaultImage: {
-        alt: 'Jean-Baptiste Terrazzoni - Architecting the agent stack',
+        alt: 'Jean-Baptiste Terrazzoni - Building the agent stack',
         height: 630,
         path: '/assets/icons/appicon-jterrazz.png',
         width: 1200,

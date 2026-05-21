@@ -71,7 +71,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
             name: '42 Paris',
         },
         description:
-            'Founder & Architect of Spwn — the operating system for autonomous agent worlds. Architecting the agent stack, compounding abstractions, shipping autonomous systems.',
+            'Building autonomous systems, products from scratch, and sovereign software. Notes on AI, autonomy, and the systems beneath.',
         email: email.url.toString(),
         jobTitle: 'Founder & Architect',
         knowsAbout: [

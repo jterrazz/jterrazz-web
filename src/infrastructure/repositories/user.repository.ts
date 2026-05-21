@@ -7,7 +7,7 @@ import {
 } from '../../domain/user';
 
 const profile: UserProfile = {
-    headline: 'Architecting the agent stack',
+    headline: 'Building the agent stack',
     location: 'Paris, France',
     name: 'Jean-Baptiste Terrazzoni',
     pictureUrl: 'https://avatars.githubusercontent.com/u/18480834',

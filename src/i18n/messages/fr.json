@@ -1,11 +1,11 @@
 {
     "home": {
-        "title": "Architecturer la stack",
+        "title": "Construire la stack",
         "titleAccent": "d'agents.",
-        "description": "Capitaliser les abstractions, plus vite que l'org chart. Notes sur les systèmes autonomes et la prochaine vague d'architecture logicielle.",
-        "seoDescription": "Architecturer la stack d'agents. Capitaliser les abstractions, plus vite que l'org chart. Notes sur les systèmes autonomes et l'architecture logicielle.",
+        "description": "Construire des systèmes autonomes, des produits from scratch, et des logiciels souverains. Notes sur l'IA, l'autonomie, et les systèmes sous-jacents.",
+        "seoDescription": "Construire des systèmes autonomes, des produits from scratch, et des logiciels souverains. Notes sur l'IA, l'autonomie, et les systèmes sous-jacents.",
         "kicker": "Site personnel",
-        "seoTitle": "Founder & Architect — Stack d'agents",
+        "seoTitle": "Founder — Stack d'agents",
         "readArticles": "Lire les articles",
         "featuredExperiments": "Expérimentations en vedette",
         "featuredArticles": "Articles en vedette",
@@ -110,7 +110,7 @@
         "opensInNewTab": "(ouvre un nouvel onglet)"
     },
     "footer": {
-        "tagline": "Architecturer, livrer, capitaliser.",
+        "tagline": "Construire, livrer, capitaliser.",
         "description": "Construire des systèmes d'IA autonomes, une abstraction à la fois.",
         "connect": "Contact",
         "featuredWork": "Projets phares",

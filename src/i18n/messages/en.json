@@ -1,11 +1,11 @@
 {
     "home": {
-        "title": "Architecting the agent",
+        "title": "Building the agent",
         "titleAccent": "stack.",
-        "description": "Compounding abstractions, faster than the org chart. Notes on autonomous systems and the next wave of software architecture.",
-        "seoDescription": "Architecting the agent stack. Compounding abstractions, faster than the org chart. Notes on autonomous systems and software architecture.",
+        "description": "Building autonomous systems, products from scratch, and sovereign software. Notes on AI, autonomy, and the systems beneath.",
+        "seoDescription": "Building autonomous systems, products from scratch, and sovereign software. Notes on AI, autonomy, and the systems beneath.",
         "kicker": "Personal site",
-        "seoTitle": "Founder & Architect — Agent Stack",
+        "seoTitle": "Founder — Agent Stack",
         "readArticles": "Read Articles",
         "featuredExperiments": "Featured Experiments",
         "featuredArticles": "Featured Articles",
@@ -110,7 +110,7 @@
         "opensInNewTab": "(opens in a new tab)"
     },
     "footer": {
-        "tagline": "Architecting, shipping, compounding.",
+        "tagline": "Building, shipping, compounding.",
         "description": "Building autonomous AI systems, one abstraction at a time.",
         "connect": "Connect",
         "featuredWork": "Featured Work",
