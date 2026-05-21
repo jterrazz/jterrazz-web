@@ -235,6 +235,20 @@ describe('Next.js Redirects', () => {
         });
 
         describe('smart app page /go/signews', () => {
+            test('bypasses i18n middleware (no locale rewrite)', async () => {
+                // Regression: prior to bypass, next-intl rewrote /go/signews →
+                // /en/go/signews and returned 404 because the [slug] route lives
+                // outside src/app/[locale]. The presence of an `hreflang` Link
+                // header is a tell-tale sign the i18n middleware processed the path.
+                const url = `${BASE_URL}/go/signews`;
+
+                const response = await fetch(url, { redirect: 'manual' });
+
+                expect(response.status).not.toBe(404);
+                const linkHeader = response.headers.get('link') || '';
+                expect(linkHeader).not.toContain('hreflang');
+            });
+
             test('redirects to App Store on iOS', async () => {
                 // Given — a request from an iOS device
                 const url = `${BASE_URL}/go/signews`;

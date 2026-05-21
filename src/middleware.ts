@@ -13,8 +13,10 @@ const intlMiddleware = createMiddleware({
 // Paths that must bypass i18n routing — otherwise next-intl rewrites them
 // Under `/en/...` and static assets 404. Next.js 16's proxy/middleware no
 // Longer accepts `export const config = { matcher }`, so we filter here.
+// `/go/*` is locale-agnostic (smart app redirects live at src/app/go/, not
+// Under src/app/[locale]/), so it must bypass too.
 const BYPASS =
-    /^\/(?:_next|api|content|assets|favicon|icon|apple-icon|robots\.txt|sitemap\.xml|site\.webmanifest)|\.[^/]+$/;
+    /^\/(?:_next|api|content|assets|favicon|icon|apple-icon|go|robots\.txt|sitemap\.xml|site\.webmanifest)|\.[^/]+$/;
 
 export default function middleware(request: NextRequest) {
     if (BYPASS.test(request.nextUrl.pathname)) {
