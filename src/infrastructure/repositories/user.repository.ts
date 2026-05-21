@@ -46,8 +46,8 @@ const contacts: Record<UserContactType, UserContact> = {
     },
     [UserContactType.Twitter]: {
         type: UserContactType.Twitter,
-        url: new URL('https://twitter.com/j_terrazz'),
-        value: '@j_terrazz',
+        url: new URL('https://twitter.com/jterrazzx'),
+        value: '@jterrazzx',
     },
     [UserContactType.Website]: {
         type: UserContactType.Website,
@@ -56,8 +56,8 @@ const contacts: Record<UserContactType, UserContact> = {
     },
     [UserContactType.X]: {
         type: UserContactType.X,
-        url: new URL('https://x.com/jterrazz'),
-        value: '@jterrazz',
+        url: new URL('https://x.com/jterrazzx'),
+        value: '@jterrazzx',
     },
 };
 

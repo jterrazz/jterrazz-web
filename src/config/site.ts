@@ -31,6 +31,6 @@ export const SITE_CONFIG = {
         github: 'https://github.com/jterrazz',
         medium: 'https://medium.com/@jterrazz',
         pexels: 'https://www.pexels.com/@jterrazz',
-        twitter: '@j_terrazz',
+        twitter: '@jterrazzx',
     },
 } as const;
