@@ -1,4 +1,3 @@
-import { IconFlaskFilled } from '@tabler/icons-react';
 import Script from 'next/script';
 import React from 'react';
 
@@ -10,7 +9,6 @@ import {
     stripArticleMasthead,
 } from '../../domain/utils/article-content';
 import { buildArticleSlug } from '../../domain/utils/slugify';
-import { Link } from '../../infrastructure/navigation/navigation';
 import { ArticleByline } from '../ui/molecules/article-byline/article-byline';
 import { TableOfContents } from '../ui/molecules/table-of-contents/table-of-contents';
 import { ArticleFooter } from '../ui/organisms/article-footer/article-footer';
@@ -164,26 +162,11 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                 {JSON.stringify(jsonLd)}
             </Script>
 
-            {linkedExperiment && (
-                <Link
-                    className="group flex items-center gap-2 mb-2 px-3 py-2 -mx-3 rounded-lg text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
-                    href={`/experiments/${linkedExperiment.slug}`}
-                >
-                    <IconFlaskFilled className="text-zinc-400 dark:text-zinc-500" size={14} />
-                    <span>
-                        Part of the{' '}
-                        <span className="text-zinc-900 dark:text-zinc-100 font-medium group-hover:underline underline-offset-2">
-                            {linkedExperiment.name}
-                        </span>{' '}
-                        experiment
-                    </span>
-                </Link>
-            )}
-
             <ArticleHeader
                 category={currentArticle?.metadata.category}
                 className="mb-10 md:mb-14"
                 description={description}
+                experiment={linkedExperiment}
                 imageUrl={imageUrl}
                 locale={currentLanguage}
                 nextHref={
@@ -202,7 +185,7 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                 title={title}
             />
 
-            <div className="md:grid md:grid-cols-[15rem_minmax(0,1fr)] md:gap-x-20 lg:gap-x-32">
+            <div className="md:mx-auto md:grid md:max-w-[70rem] md:grid-cols-[15rem_minmax(0,1fr)] md:gap-x-20 lg:gap-x-32">
                 <aside className="mb-10 md:mb-0">
                     <ArticleByline
                         className="mb-8 md:mb-10"
@@ -217,7 +200,7 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                     />
                 </aside>
 
-                <MarkdownRenderer className="max-w-3xl" content={body} />
+                <MarkdownRenderer content={body} />
             </div>
 
             <ArticleFooter

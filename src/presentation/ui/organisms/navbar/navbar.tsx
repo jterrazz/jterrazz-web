@@ -63,7 +63,7 @@ function LanguageSwitcher({ className, onSwitch }: { className?: string; onSwitc
     return (
         <div className={cn('relative', className)} ref={dropdownRef}>
             <button
-                className="flex items-center gap-1 text-sm font-medium text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                className="flex items-center gap-1 text-sm font-medium text-black dark:text-white transition-colors"
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
             >
@@ -85,7 +85,7 @@ function LanguageSwitcher({ className, onSwitch }: { className?: string; onSwitc
                     >
                         {otherLocales.map((l) => (
                             <NextLink
-                                className="block px-3 py-1.5 text-xs text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                                className="block px-3 py-1.5 text-xs text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                                 href={buildLocaleUrl(pathname, locale, l)}
                                 hrefLang={l}
                                 key={l}
@@ -166,6 +166,58 @@ type NavbarProps = {
     translations: NavbarTranslations;
 };
 
+/*
+ * Displacement map for the liquid-glass refraction: red encodes horizontal
+ * displacement, green vertical. A linear ramp on each axis is neutral (128) in
+ * the centre and bends pixels outward toward the rim — a convex glass lens.
+ * Consumed by the #nav-glass SVG filter via feDisplacementMap.
+ */
+const GLASS_MAP =
+    "<svg xmlns='http://www.w3.org/2000/svg' width='240' height='72'>" +
+    '<defs>' +
+    "<linearGradient id='gx' x1='0' y1='0' x2='1' y2='0'>" +
+    "<stop offset='0' stop-color='rgb(0,0,0)'/><stop offset='1' stop-color='rgb(255,0,0)'/>" +
+    '</linearGradient>' +
+    "<linearGradient id='gy' x1='0' y1='0' x2='0' y2='1'>" +
+    "<stop offset='0' stop-color='rgb(0,0,0)'/><stop offset='1' stop-color='rgb(0,255,0)'/>" +
+    '</linearGradient>' +
+    '</defs>' +
+    "<rect width='100%' height='100%' fill='rgb(0,0,0)'/>" +
+    "<rect width='100%' height='100%' fill='url(#gx)'/>" +
+    "<rect width='100%' height='100%' fill='url(#gy)' style='mix-blend-mode:screen'/>" +
+    '</svg>';
+const GLASS_MAP_URI = `data:image/svg+xml,${encodeURIComponent(GLASS_MAP)}`;
+
+const GlassFilter = () => (
+    <svg aria-hidden className="absolute h-0 w-0" focusable="false">
+        <filter
+            colorInterpolationFilters="sRGB"
+            height="100%"
+            id="nav-glass"
+            width="100%"
+            x="0"
+            y="0"
+        >
+            <feImage
+                height="100%"
+                href={GLASS_MAP_URI}
+                preserveAspectRatio="none"
+                result="map"
+                width="100%"
+                x="0"
+                y="0"
+            />
+            <feDisplacementMap
+                in="SourceGraphic"
+                in2="map"
+                scale="28"
+                xChannelSelector="R"
+                yChannelSelector="G"
+            />
+        </filter>
+    </svg>
+);
+
 const getContactIcon = (name: string) => {
     if (name.toLowerCase().includes('github')) {
         return <IconBrandGithub size={18} />;
@@ -198,6 +250,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
 
     return (
         <>
+            <GlassFilter />
             <nav
                 className={cn(
                     'w-full flex justify-center p-4 md:pt-6 pointer-events-none',
@@ -206,18 +259,26 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
             >
                 <div
                     className={cn(
-                        'pointer-events-auto relative',
+                        'pointer-events-auto relative isolate',
                         'flex items-center justify-between w-full',
                         'md:w-auto md:min-w-[720px] lg:min-w-[840px]',
-                        'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl',
-                        'border border-zinc-200 dark:border-zinc-800 shadow-sm',
+                        'glass bg-white/40 dark:bg-zinc-900/35',
+                        'border border-black/[0.04] dark:border-white/10',
                         'rounded-full p-1.5 transition-all duration-300',
+                        'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_0_2px_0_rgba(0,0,0,0.04),0_0_24px_-8px_rgba(0,0,0,0.13)]',
+                        'dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_0_12px_-2px_rgba(0,0,0,0.5)]',
                     )}
                 >
+                    {/* Specular sheen — sits above the refracted backdrop, below content */}
+                    <span
+                        aria-hidden
+                        className="pointer-events-none absolute inset-0 z-0 rounded-full bg-gradient-to-b from-white/45 via-white/5 to-transparent dark:from-white/10 dark:via-transparent"
+                    />
+
                     {/* Left Section: Navigation */}
-                    <div className="flex items-center gap-2 lg:gap-6 pl-2">
+                    <div className="relative z-10 flex items-center gap-2 lg:gap-6 pl-2">
                         {/* Mobile Title */}
-                        <span className="md:hidden text-sm font-semibold text-zinc-900 dark:text-zinc-100 ml-1">
+                        <span className="md:hidden text-sm font-semibold text-black dark:text-white ml-1">
                             {mobileTitle}
                         </span>
 
@@ -239,10 +300,8 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                                         <div className="px-1" data-id={page.href} key={page.href}>
                                             <Link
                                                 className={cn(
-                                                    'relative px-3 py-2 rounded-full text-sm font-medium transition-colors duration-150 block',
-                                                    isSelected
-                                                        ? 'text-zinc-900 dark:text-zinc-100'
-                                                        : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200',
+                                                    'relative px-3 py-2 rounded-full text-sm font-medium transition-colors duration-150 block text-black dark:text-white',
+                                                    isSelected ? 'font-semibold' : 'font-medium',
                                                 )}
                                                 href={page.href}
                                             >
@@ -256,12 +315,12 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                     </div>
 
                     {/* Right Section: Actions */}
-                    <div className="hidden md:flex justify-end items-center gap-1 lg:gap-2">
+                    <div className="relative z-10 hidden md:flex justify-end items-center gap-1 lg:gap-2">
                         <div className="hidden lg:flex items-center gap-1">
                             <LanguageSwitcher className="px-2" />
                             {contacts.map((contact) => (
                                 <NavbarTabItem
-                                    className="text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100 transition-colors p-2"
+                                    className="text-black dark:text-white transition-colors p-2"
                                     href={contact.url}
                                     key={contact.name}
                                     newTab
@@ -278,7 +337,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                             {shouldShowAppButton && (
                                 <motion.a
                                     animate={{ opacity: 1, scale: 1 }}
-                                    className="flex items-center justify-center lg:justify-start gap-2 h-9 w-9 lg:w-auto lg:h-auto lg:px-4 lg:py-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm ml-1 whitespace-nowrap"
+                                    className="flex items-center justify-center lg:justify-start gap-2 h-9 w-9 lg:w-auto lg:h-auto lg:px-4 lg:py-2 rounded-full bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm ml-1 whitespace-nowrap"
                                     exit={{ opacity: 0, scale: 0.8 }}
                                     href={t.appStoreLink}
                                     initial={{ opacity: 0, scale: 0.8 }}
@@ -295,12 +354,12 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                     </div>
 
                     {/* Mobile Menu Toggle & Actions */}
-                    <div className="md:hidden flex items-center gap-1 pr-1">
+                    <div className="relative z-10 md:hidden flex items-center gap-1 pr-1">
                         <AnimatePresence mode="wait">
                             {shouldShowAppButton && (
                                 <motion.a
                                     animate={{ opacity: 1, scale: 1 }}
-                                    className="flex items-center justify-center w-9 h-9 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm"
+                                    className="flex items-center justify-center w-9 h-9 rounded-full bg-black dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm"
                                     exit={{ opacity: 0, scale: 0.8 }}
                                     href={t.appStoreLink}
                                     initial={{ opacity: 0, scale: 0.8 }}
@@ -315,7 +374,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                         </AnimatePresence>
                         <button
                             aria-label="Toggle menu"
-                            className="flex items-center justify-center w-9 h-9 rounded-full text-zinc-900 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                            className="flex items-center justify-center w-9 h-9 rounded-full text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             type="button"
                         >
@@ -338,7 +397,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                         {/* Close Button */}
                         <button
                             aria-label="Close menu"
-                            className="absolute top-6 right-6 p-2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                            className="absolute top-6 right-6 p-2 text-black dark:text-white transition-colors"
                             onClick={closeMenu}
                             type="button"
                         >
@@ -354,12 +413,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                                     transition={{ delay: index * 0.05 + 0.1 }}
                                 >
                                     <Link
-                                        className={cn(
-                                            'text-2xl font-semibold tracking-tight block',
-                                            pathname === page.href
-                                                ? 'text-zinc-900 dark:text-zinc-100'
-                                                : 'text-zinc-500 dark:text-zinc-500',
-                                        )}
+                                        className="text-2xl font-semibold tracking-tight block text-black dark:text-white"
                                         href={page.href}
                                         onClick={closeMenu}
                                     >
@@ -378,7 +432,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                             <div className="flex items-center gap-6">
                                 {contacts.map((contact) => (
                                     <a
-                                        className="text-zinc-400 dark:text-zinc-500"
+                                        className="text-black dark:text-white"
                                         href={contact.url}
                                         key={contact.name}
                                         rel="noopener noreferrer"
@@ -395,7 +449,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
 
                             {shouldShowAppButton && (
                                 <a
-                                    className="flex items-center gap-2 px-5 py-3 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium w-full justify-center"
+                                    className="flex items-center gap-2 px-5 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black text-sm font-medium w-full justify-center"
                                     href={t.appStoreLink}
                                     rel="noreferrer"
                                     target="_blank"

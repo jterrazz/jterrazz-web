@@ -1,3 +1,4 @@
+import { IconFlaskFilled } from '@tabler/icons-react';
 import Image from 'next/image';
 import React from 'react';
 
@@ -10,6 +11,7 @@ type ArticleHeaderProps = {
     category?: string;
     className?: string;
     description?: string;
+    experiment?: null | { name: string; slug: string };
     imageUrl?: string;
     locale: Locale;
     nextHref?: null | string;
@@ -29,6 +31,7 @@ export const ArticleHeader: React.FC<ArticleHeaderProps> = ({
     category,
     className,
     description,
+    experiment,
     imageUrl,
     locale,
     nextHref,
@@ -96,6 +99,22 @@ export const ArticleHeader: React.FC<ArticleHeaderProps> = ({
                 <Lead className="max-w-3xl" size="lg">
                     {description}
                 </Lead>
+            )}
+
+            {experiment && (
+                <Link
+                    className="group mt-5 inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+                    href={`/experiments/${experiment.slug}`}
+                >
+                    <IconFlaskFilled className="text-zinc-400 dark:text-zinc-500" size={14} />
+                    <span>
+                        Part of the{' '}
+                        <span className="font-medium text-zinc-900 underline-offset-2 group-hover:underline dark:text-zinc-100">
+                            {experiment.name}
+                        </span>{' '}
+                        experiment
+                    </span>
+                </Link>
             )}
 
             {/* Hero image — edge-to-edge on mobile, contained on desktop */}
