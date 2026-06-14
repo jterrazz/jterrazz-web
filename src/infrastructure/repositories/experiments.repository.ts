@@ -410,7 +410,8 @@ const experiments: Experiment[] = [
         context: ExperimentContext.Personal,
         description:
             'A self-hosted WireGuard VPN running on a TP-Link pocket router flashed with OpenWrt.',
-        tagline: 'A TP-Link pocket router flashed with OpenWrt, turned into a self-hosted WireGuard VPN.',
+        tagline:
+            'A TP-Link pocket router flashed with OpenWrt, turned into a self-hosted WireGuard VPN.',
         longDescription:
             'A TP-Link TL-WR802N pocket router — the size of a matchbox — flashed with OpenWrt and turned into a WireGuard VPN server. Sitting behind the home gateway with dynamic DNS, it gives secure, encrypted access back to my home network from anywhere.',
         name: 'VPN',
