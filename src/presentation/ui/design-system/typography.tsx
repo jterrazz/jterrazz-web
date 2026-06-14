@@ -2,6 +2,13 @@ import React from 'react';
 
 import { cn } from '../../utils';
 
+/*
+ * Single source of truth for body line-height. Shared by the Lead component
+ * (descriptions, standfirsts, card copy) and the article MarkdownRenderer so
+ * every "body" text in the app reads with the same rhythm.
+ */
+export const BODY_LEADING = 'leading-[1.5] md:leading-[1.55]';
+
 // Small mono uppercase label with an optional leading rule. Pairs above a
 // Heading to label a page/section without competing with it visually.
 type KickerProps = {
@@ -74,9 +81,9 @@ type LeadProps = {
 };
 
 const LEAD_STYLES: Record<NonNullable<LeadProps['size']>, string> = {
-    lg: 'text-base md:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed text-pretty max-w-2xl',
-    md: 'text-sm md:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed text-pretty max-w-2xl',
-    sm: 'text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed text-pretty',
+    lg: `text-base md:text-lg text-zinc-600 dark:text-zinc-400 ${BODY_LEADING} text-pretty max-w-2xl`,
+    md: `text-sm md:text-base text-zinc-600 dark:text-zinc-400 ${BODY_LEADING} text-pretty max-w-2xl`,
+    sm: `text-sm text-zinc-500 dark:text-zinc-400 ${BODY_LEADING} text-pretty`,
 };
 
 export const Lead: React.FC<LeadProps> = ({ children, className, size = 'lg' }) => (

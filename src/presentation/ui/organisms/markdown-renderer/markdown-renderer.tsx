@@ -10,6 +10,7 @@ import { slugify } from '../../../../domain/utils/slugify';
 import { useTheme } from '../../../hooks/use-theme';
 // Utils
 import { cn } from '../../../utils';
+import { BODY_LEADING } from '../../design-system';
 
 // Helper to extract text content from React children
 const getTextContent = (children: React.ReactNode): string => {
@@ -52,7 +53,7 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
     const codeTheme = resolvedTheme === 'dark' ? themes.oneDark : themes.oneLight;
 
     return (
-        <div className="my-7 md:my-9 -mx-4 md:mx-0 md:rounded-xl overflow-hidden bg-[#fafafa] dark:bg-[#141414]">
+        <div className="my-6 md:my-8 -mx-4 md:mx-0 md:rounded-xl overflow-hidden bg-[#fafafa] dark:bg-[#141414]">
             <Highlight code={code} language={language} theme={codeTheme}>
                 {({ getLineProps, getTokenProps, style, tokens }) => (
                     <pre
@@ -92,8 +93,7 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
 
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, content }) => {
     // Editorial sans-serif body: generous measure and leading for long-form reading.
-    const baseClassName =
-        'font-sans text-[17px] md:text-[18px] leading-[1.6] md:leading-[1.65] text-zinc-800 dark:text-zinc-300 antialiased';
+    const baseClassName = `font-sans text-[17px] md:text-[18px] ${BODY_LEADING} text-zinc-800 dark:text-zinc-300 antialiased`;
     const generatedClassName = cn(baseClassName, className);
 
     return (
@@ -108,7 +108,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                     ),
                     blockquote: ({ ...props }) => (
                         <blockquote
-                            className="my-8 md:my-11 border-l-2 border-zinc-900 dark:border-zinc-100 pl-5 md:pl-8 text-[20px] md:text-[24px] font-medium tracking-[-0.01em] leading-[1.45] text-zinc-900 dark:text-zinc-100"
+                            className="my-7 md:my-9 border-l-2 border-zinc-900 dark:border-zinc-100 pl-5 md:pl-8 text-[20px] md:text-[24px] font-medium tracking-[-0.01em] leading-[1.45] text-zinc-900 dark:text-zinc-100"
                             {...props}
                         />
                     ),
@@ -139,7 +139,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                         const id = slugify(getTextContent(children));
                         return (
                             <h2
-                                className="text-[24px] md:text-[28px] lg:text-[30px] font-display font-semibold tracking-[-0.02em] leading-[1.2] mb-4 md:mb-5 mt-12 md:mt-16 first:mt-0 text-zinc-900 dark:text-zinc-100"
+                                className="text-[24px] md:text-[28px] lg:text-[30px] font-display font-semibold tracking-[-0.02em] leading-[1.2] mb-3 md:mb-3.5 mt-10 md:mt-13 first:mt-0 text-zinc-900 dark:text-zinc-100"
                                 id={id}
                                 {...props}
                             >
@@ -151,7 +151,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                         const id = slugify(getTextContent(children));
                         return (
                             <h3
-                                className="text-[20px] md:text-[22px] font-display font-semibold tracking-[-0.015em] leading-[1.3] mb-3 md:mb-4 mt-10 md:mt-12 first:mt-0 text-zinc-900 dark:text-zinc-100"
+                                className="text-[20px] md:text-[22px] font-display font-semibold tracking-[-0.015em] leading-[1.3] mb-2.5 md:mb-3 mt-9 md:mt-11 first:mt-0 text-zinc-900 dark:text-zinc-100"
                                 id={id}
                                 {...props}
                             >
@@ -163,7 +163,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                         const id = slugify(getTextContent(children));
                         return (
                             <h4
-                                className="text-[17px] md:text-[18px] font-display font-semibold tracking-[-0.01em] leading-[1.4] mb-2 md:mb-3 mt-8 md:mt-10 text-zinc-900 dark:text-zinc-100"
+                                className="text-[17px] md:text-[18px] font-display font-semibold tracking-[-0.01em] leading-[1.4] mb-2 mt-7 md:mt-9 text-zinc-900 dark:text-zinc-100"
                                 id={id}
                                 {...props}
                             >
@@ -175,7 +175,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                         const id = slugify(getTextContent(children));
                         return (
                             <h5
-                                className="text-[16px] md:text-[17px] font-display font-semibold leading-[1.4] mb-2 md:mb-3 mt-6 md:mt-9 text-zinc-900 dark:text-zinc-100"
+                                className="text-[16px] md:text-[17px] font-display font-semibold leading-[1.4] mb-1.5 mt-6 md:mt-8 text-zinc-900 dark:text-zinc-100"
                                 id={id}
                                 {...props}
                             >
@@ -185,14 +185,14 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                     },
                     hr: ({ ...props }) => (
                         <hr
-                            className="my-9 md:my-12 border-none text-center before:content-['⁕⁕⁕'] before:text-zinc-300 dark:before:text-zinc-600 before:tracking-[0.4em] before:text-[13px]"
+                            className="my-8 md:my-10 border-none text-center before:content-['⁕⁕⁕'] before:text-zinc-300 dark:before:text-zinc-600 before:tracking-[0.4em] before:text-[13px]"
                             {...props}
                         />
                     ),
                     img: ({ alt, height, src, width, ...props }) => {
                         const altText = (alt as string) || '';
                         return (
-                            <span className="block my-7 md:my-10 -mx-4 md:mx-0">
+                            <span className="block my-6 md:my-9 -mx-4 md:mx-0">
                                 <span className="block overflow-hidden bg-zinc-100 dark:bg-zinc-900">
                                     <Image
                                         alt={altText}
@@ -217,11 +217,11 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                     li: ({ ...props }) => <li className="pl-0.5" {...props} />,
                     ol: ({ ...props }) => (
                         <ol
-                            className="list-decimal mb-5 md:mb-6 pl-6 md:pl-7 space-y-1 md:space-y-2"
+                            className="list-decimal mb-3.5 md:mb-4 pl-6 md:pl-7 space-y-1 md:space-y-1.5"
                             {...props}
                         />
                     ),
-                    p: ({ ...props }) => <p className="mb-5 md:mb-6 last:mb-0" {...props} />,
+                    p: ({ ...props }) => <p className="mb-3.5 md:mb-4 last:mb-0" {...props} />,
                     strong: ({ ...props }) => (
                         <strong
                             className="font-semibold text-zinc-900 dark:text-zinc-100"
@@ -230,7 +230,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                     ),
                     ul: ({ ...props }) => (
                         <ul
-                            className="list-disc mb-5 md:mb-6 pl-6 md:pl-7 space-y-1 md:space-y-2 marker:text-zinc-400 dark:marker:text-zinc-500"
+                            className="list-disc mb-3.5 md:mb-4 pl-6 md:pl-7 space-y-1 md:space-y-1.5 marker:text-zinc-400 dark:marker:text-zinc-500"
                             {...props}
                         />
                     ),

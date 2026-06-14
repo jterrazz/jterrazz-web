@@ -201,18 +201,18 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                 </aside>
 
                 <MarkdownRenderer content={body} />
-            </div>
 
-            <ArticleFooter
-                articleUrl={currentArticle?.attestation ? `/articles/${articleId}` : undefined}
-                attestation={currentArticle?.attestation}
-                className="mt-12 md:mt-16"
-                currentArticleId={articleId}
-                dateModified={dateModified}
-                datePublished={datePublished}
-                relatedArticles={relatedArticles}
-                seriesTitle={seriesName}
-            />
+                <ArticleFooter
+                    articleUrl={currentArticle?.attestation ? `/articles/${articleId}` : undefined}
+                    attestation={currentArticle?.attestation}
+                    className="mt-12 md:mt-16 md:col-start-2"
+                    currentArticleId={articleId}
+                    dateModified={dateModified}
+                    datePublished={datePublished}
+                    relatedArticles={relatedArticles}
+                    seriesTitle={seriesName}
+                />
+            </div>
         </Container>
     );
 };
