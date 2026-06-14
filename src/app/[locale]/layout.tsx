@@ -99,7 +99,9 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             <div className="sticky top-0 z-[50] pointer-events-none">
                 <Navbar contacts={contacts} pages={pages} translations={navbarTranslations} />
             </div>
-            <main className="flex-1 flex flex-col overflow-x-hidden w-full">{children}</main>
+            {/* Clip (not hidden) for horizontal bleed: avoids creating a scroll
+                container, which would otherwise break position: sticky inside. */}
+            <main className="flex-1 flex flex-col overflow-x-clip w-full">{children}</main>
             <SiteFooter translations={footerTranslations} />
         </LocaleProvider>
     );

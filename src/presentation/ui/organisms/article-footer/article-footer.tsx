@@ -140,13 +140,12 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
                 </div>
             </div>
 
-            {/* Metadata */}
-            <div className="mt-4 md:mt-5 text-[13px] md:text-[14px] text-zinc-400 dark:text-zinc-500">
-                <p>
-                    Published {formatDate(datePublished)}
-                    {dateModified !== datePublished && ` · Updated ${formatDate(dateModified)}`}
-                </p>
-            </div>
+            {/* Metadata — published date now lives in the masthead byline */}
+            {dateModified !== datePublished && (
+                <div className="mt-4 md:mt-5 text-[13px] md:text-[14px] text-zinc-400 dark:text-zinc-500">
+                    <p>Updated {formatDate(dateModified)}</p>
+                </div>
+            )}
 
             {/* Related Articles (non-series) */}
             {!seriesTitle && relatedArticles.length > 0 && (

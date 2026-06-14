@@ -40,7 +40,7 @@ export const ExperimentTableRow: React.FC<ExperimentTableRowProps> = ({
                                 )}
                             </div>
 
-                            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+                            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                                 {experiment.name}
                             </h2>
 

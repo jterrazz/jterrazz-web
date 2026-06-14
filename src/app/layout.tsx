@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { getLocale } from 'next-intl/server';
+import localFont from 'next/font/local';
 import React from 'react';
 
 import { SITE_CONFIG } from '../config/site';
@@ -9,6 +10,41 @@ import { ThemeProvider } from '../presentation/theme/theme-provider';
 import { cn } from '../presentation/utils';
 
 import './globals.css';
+
+/*
+ * Self-hosted, free (SIL Open Font License) typefaces standing in for the
+ * reference design's proprietary fonts: Hanken Grotesk for body/UI text and
+ * Geist for display headings. Loaded locally to avoid the build-time network
+ * fetch that next/font/google requires.
+ */
+const hankenGrotesk = localFont({
+    display: 'swap',
+    src: [
+        {
+            path: '../../public/fonts/HankenGrotesk-Variable.woff2',
+            style: 'normal',
+            weight: '100 900',
+        },
+        {
+            path: '../../public/fonts/HankenGrotesk-Italic-Variable.woff2',
+            style: 'italic',
+            weight: '100 900',
+        },
+    ],
+    variable: '--font-hanken',
+});
+
+const geist = localFont({
+    display: 'swap',
+    src: [
+        {
+            path: '../../public/fonts/Geist-Variable.woff2',
+            style: 'normal',
+            weight: '100 900',
+        },
+    ],
+    variable: '--font-geist',
+});
 
 export const metadata: Metadata = {
     authors: [{ name: SITE_CONFIG.author.name, url: SITE_CONFIG.author.url }],
@@ -86,8 +122,9 @@ export default async function RootLayout({
     const locale = await getLocale();
 
     const generatedClassName = cn(
+        hankenGrotesk.variable,
+        geist.variable,
         'min-h-screen flex flex-col text-zinc-900 dark:text-zinc-100 font-sans antialiased',
-        // Inter.className, // Commented out due to network restrictions
     );
 
     // Inline script to prevent flash of wrong theme

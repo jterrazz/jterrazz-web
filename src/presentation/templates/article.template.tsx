@@ -5,10 +5,16 @@ import React from 'react';
 // Domain
 import { type Article, type ArticleLanguage } from '../../domain/article';
 import { type Feature } from '../../domain/feature';
+import {
+    calculateReadingTimeMinutes,
+    stripArticleMasthead,
+} from '../../domain/utils/article-content';
 import { buildArticleSlug } from '../../domain/utils/slugify';
 import { Link } from '../../infrastructure/navigation/navigation';
+import { ArticleByline } from '../ui/molecules/article-byline/article-byline';
 import { TableOfContents } from '../ui/molecules/table-of-contents/table-of-contents';
 import { ArticleFooter } from '../ui/organisms/article-footer/article-footer';
+import { ArticleHeader } from '../ui/organisms/article-header/article-header';
 import { Container } from '../ui/organisms/container/container';
 import { MarkdownRenderer } from '../ui/organisms/markdown-renderer/markdown-renderer';
 
@@ -120,6 +126,13 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                   .slice(0, 3);
           })();
 
+    /*
+     * The masthead owns the title + hero image, so strip them from the body to
+     * avoid rendering them twice. Reading time is computed from the full source.
+     */
+    const { body } = stripArticleMasthead(contentInMarkdown);
+    const readingTimeMinutes = calculateReadingTimeMinutes(contentInMarkdown);
+
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
@@ -146,12 +159,10 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     };
 
     return (
-        <Container className="mt-2 md:mt-4 relative">
+        <Container className="mt-10 md:mt-20 relative" size="wide">
             <Script id="json-ld" strategy="afterInteractive" type="application/ld+json">
                 {JSON.stringify(jsonLd)}
             </Script>
-
-            <TableOfContents contentInMarkdown={contentInMarkdown} />
 
             {linkedExperiment && (
                 <Link
@@ -169,44 +180,45 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                 </Link>
             )}
 
-            <div className="flex flex-col gap-1.5 mb-6 text-sm text-zinc-500 dark:text-zinc-400">
-                {seriesName && seriesPosition > 0 && (
-                    <div className="flex items-center justify-between">
-                        <span>
-                            Part {seriesPosition} of {seriesTotal} in{' '}
-                            <span className="text-zinc-900 dark:text-zinc-100">{seriesName}</span>
-                        </span>
-                        <div className="flex items-center gap-3">
-                            {prevArticle ? (
-                                <Link
-                                    className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-                                    href={`/articles/${buildArticleSlug(prevArticle.publicIndex, prevArticle.metadata.title.en)}`}
-                                >
-                                    ← Prev
-                                </Link>
-                            ) : (
-                                <span className="text-zinc-300 dark:text-zinc-600 cursor-not-allowed">
-                                    ← Prev
-                                </span>
-                            )}
-                            {nextArticle ? (
-                                <Link
-                                    className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-                                    href={`/articles/${buildArticleSlug(nextArticle.publicIndex, nextArticle.metadata.title.en)}`}
-                                >
-                                    Next →
-                                </Link>
-                            ) : (
-                                <span className="text-zinc-300 dark:text-zinc-600 cursor-not-allowed">
-                                    Next →
-                                </span>
-                            )}
-                        </div>
-                    </div>
-                )}
-            </div>
+            <ArticleHeader
+                category={currentArticle?.metadata.category}
+                className="mb-10 md:mb-14"
+                description={description}
+                imageUrl={imageUrl}
+                locale={currentLanguage}
+                nextHref={
+                    nextArticle
+                        ? `/articles/${buildArticleSlug(nextArticle.publicIndex, nextArticle.metadata.title.en)}`
+                        : null
+                }
+                prevHref={
+                    prevArticle
+                        ? `/articles/${buildArticleSlug(prevArticle.publicIndex, prevArticle.metadata.title.en)}`
+                        : null
+                }
+                seriesName={seriesName}
+                seriesPosition={seriesName && seriesPosition > 0 ? seriesPosition : undefined}
+                seriesTotal={seriesName ? seriesTotal : undefined}
+                title={title}
+            />
 
-            <MarkdownRenderer content={contentInMarkdown} />
+            <div className="md:grid md:grid-cols-[15rem_minmax(0,1fr)] md:gap-x-20 lg:gap-x-32">
+                <aside className="mb-10 md:mb-0">
+                    <ArticleByline
+                        className="mb-8 md:mb-10"
+                        datePublished={datePublished}
+                        locale={currentLanguage}
+                        readingTimeMinutes={readingTimeMinutes}
+                    />
+                    <TableOfContents
+                        className="hidden md:block md:sticky md:top-28"
+                        contentInMarkdown={body}
+                        variant="sidebar"
+                    />
+                </aside>
+
+                <MarkdownRenderer className="max-w-3xl" content={body} />
+            </div>
 
             <ArticleFooter
                 articleUrl={currentArticle?.attestation ? `/articles/${articleId}` : undefined}

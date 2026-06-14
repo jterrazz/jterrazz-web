@@ -91,9 +91,9 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
 };
 
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, content }) => {
-    // Medium-inspired typography: a hair smaller than the original 17/20 for breathing room.
+    // Editorial sans-serif body: generous measure and leading for long-form reading.
     const baseClassName =
-        'font-serif text-[16.7px] md:text-[19.7px] leading-[1.6] md:leading-[1.7] text-zinc-700 dark:text-zinc-300 antialiased';
+        'font-sans text-[17px] md:text-[18px] leading-[1.6] md:leading-[1.65] text-zinc-800 dark:text-zinc-300 antialiased';
     const generatedClassName = cn(baseClassName, className);
 
     return (
@@ -108,7 +108,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                     ),
                     blockquote: ({ ...props }) => (
                         <blockquote
-                            className="pl-5 md:pl-7 border-l-[3px] border-zinc-300 dark:border-zinc-600 italic text-[15.7px] md:text-[18.7px] text-zinc-600 dark:text-zinc-400 my-7 md:my-9 leading-[1.6]"
+                            className="my-8 md:my-11 border-l-2 border-zinc-900 dark:border-zinc-100 pl-5 md:pl-8 text-[20px] md:text-[24px] font-medium tracking-[-0.01em] leading-[1.45] text-zinc-900 dark:text-zinc-100"
                             {...props}
                         />
                     ),
@@ -136,24 +136,10 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                     },
                     em: ({ ...props }) => <em className="italic" {...props} />,
                     h1: ({ children, ...props }) => {
-                        const text = getTextContent(children);
-                        const id = slugify(text);
-                        return (
-                            <h1
-                                className="text-[26px] md:text-[32px] lg:text-[36px] font-sans font-bold tracking-[-0.02em] leading-[1.2] mb-5 md:mb-6 mt-0 text-zinc-900 dark:text-zinc-50"
-                                id={id}
-                                {...props}
-                            >
-                                {children}
-                            </h1>
-                        );
-                    },
-                    h2: ({ children, ...props }) => {
-                        const text = getTextContent(children);
-                        const id = slugify(text);
+                        const id = slugify(getTextContent(children));
                         return (
                             <h2
-                                className="text-[21px] md:text-[24px] lg:text-[26px] font-sans font-bold tracking-[-0.015em] leading-[1.25] mb-4 md:mb-5 mt-10 md:mt-14 first:mt-0 text-zinc-900 dark:text-zinc-50"
+                                className="text-[24px] md:text-[28px] lg:text-[30px] font-display font-semibold tracking-[-0.02em] leading-[1.2] mb-4 md:mb-5 mt-12 md:mt-16 first:mt-0 text-zinc-900 dark:text-zinc-100"
                                 id={id}
                                 {...props}
                             >
@@ -161,12 +147,11 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                             </h2>
                         );
                     },
-                    h3: ({ children, ...props }) => {
-                        const text = getTextContent(children);
-                        const id = slugify(text);
+                    h2: ({ children, ...props }) => {
+                        const id = slugify(getTextContent(children));
                         return (
                             <h3
-                                className="text-[18px] md:text-[20px] lg:text-[22px] font-sans font-semibold tracking-[-0.01em] leading-[1.3] mb-3 md:mb-4 mt-8 md:mt-11 text-zinc-900 dark:text-zinc-50"
+                                className="text-[20px] md:text-[22px] font-display font-semibold tracking-[-0.015em] leading-[1.3] mb-3 md:mb-4 mt-10 md:mt-12 first:mt-0 text-zinc-900 dark:text-zinc-100"
                                 id={id}
                                 {...props}
                             >
@@ -174,17 +159,28 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                             </h3>
                         );
                     },
-                    h4: ({ children, ...props }) => {
-                        const text = getTextContent(children);
-                        const id = slugify(text);
+                    h3: ({ children, ...props }) => {
+                        const id = slugify(getTextContent(children));
                         return (
                             <h4
-                                className="text-[16px] md:text-[17px] font-sans font-semibold leading-[1.4] mb-2 md:mb-3 mt-6 md:mt-9 text-zinc-900 dark:text-zinc-50"
+                                className="text-[17px] md:text-[18px] font-display font-semibold tracking-[-0.01em] leading-[1.4] mb-2 md:mb-3 mt-8 md:mt-10 text-zinc-900 dark:text-zinc-100"
                                 id={id}
                                 {...props}
                             >
                                 {children}
                             </h4>
+                        );
+                    },
+                    h4: ({ children, ...props }) => {
+                        const id = slugify(getTextContent(children));
+                        return (
+                            <h5
+                                className="text-[16px] md:text-[17px] font-display font-semibold leading-[1.4] mb-2 md:mb-3 mt-6 md:mt-9 text-zinc-900 dark:text-zinc-100"
+                                id={id}
+                                {...props}
+                            >
+                                {children}
+                            </h5>
                         );
                     },
                     hr: ({ ...props }) => (
@@ -197,13 +193,13 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                         const altText = (alt as string) || '';
                         return (
                             <span className="block my-7 md:my-10 -mx-4 md:mx-0">
-                                <span className="block md:rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900">
+                                <span className="block overflow-hidden bg-zinc-100 dark:bg-zinc-900">
                                     <Image
                                         alt={altText}
                                         className="w-full h-auto"
                                         height={typeof height === 'number' ? height : 0}
                                         loading="lazy"
-                                        sizes="(max-width: 768px) 100vw, 800px"
+                                        sizes="(max-width: 768px) 100vw, 760px"
                                         src={src as string}
                                         style={{ height: 'auto', width: '100%' }}
                                         width={typeof width === 'number' ? width : 0}
@@ -228,7 +224,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ className, c
                     p: ({ ...props }) => <p className="mb-5 md:mb-6 last:mb-0" {...props} />,
                     strong: ({ ...props }) => (
                         <strong
-                            className="font-semibold text-zinc-800 dark:text-zinc-100"
+                            className="font-semibold text-zinc-900 dark:text-zinc-100"
                             {...props}
                         />
                     ),

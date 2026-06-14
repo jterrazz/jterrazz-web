@@ -1,6 +1,7 @@
 // Domain
 import { type Article, type ArticleLanguage } from '../../domain/article';
 import { UserContactType } from '../../domain/user';
+import { calculateReadingTimeMinutes } from '../../domain/utils/article-content';
 import { buildArticleSlug } from '../../domain/utils/slugify';
 // Infrastructure
 import { type Locale } from '../../i18n/config';
@@ -263,10 +264,7 @@ export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewMode
     }
 
     private calculateReadingTime(content: string): string {
-        const wordsPerMinute = 225; // Standard average reading speed
-        const words = content.trim().split(/\s+/).length;
-        const minutes = Math.ceil(words / wordsPerMinute);
-        return `${Math.max(minutes, 1)} min read`;
+        return `${calculateReadingTimeMinutes(content)} min read`;
     }
 
     private mapToViewModel(article: Article): ArticleRowViewModel {

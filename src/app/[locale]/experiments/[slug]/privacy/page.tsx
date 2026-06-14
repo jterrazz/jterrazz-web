@@ -52,7 +52,7 @@ export default async function ExperimentPrivacyPage(props: Props) {
                 <div className="max-w-5xl mx-auto relative z-10">
                     <div className="flex flex-col gap-8">
                         <div className="space-y-6">
-                            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+                            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                                 {experiment.name}
                             </h1>
 

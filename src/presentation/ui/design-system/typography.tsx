@@ -28,10 +28,10 @@ type HeadingSize = 'display' | 'heading' | 'title';
 
 const HEADING_STYLES: Record<HeadingSize, string> = {
     display:
-        'text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-zinc-900 dark:text-zinc-50 text-balance',
+        'font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 text-balance',
     heading:
-        'text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-50 text-balance',
-    title: 'text-sm font-medium tracking-tight text-zinc-900 dark:text-zinc-50',
+        'font-display text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 text-balance',
+    title: 'font-display text-sm font-medium tracking-tight text-zinc-900 dark:text-zinc-100',
 };
 
 const DEFAULT_TAG: Record<HeadingSize, 'h1' | 'h2' | 'h3'> = {
