@@ -111,9 +111,10 @@ const experiments: Experiment[] = [
             },
             {
                 architectures: [],
-                description: 'Landing page and product website.',
-                name: 'Web Landing',
-                sourceUrl: new URL(`${REPOSITORY_BASE_URL}clawssify-web-landing`),
+                description: 'Web client.',
+                isPrivate: true,
+                name: 'Web',
+                sourceUrl: new URL(`${REPOSITORY_BASE_URL}clawssify-web`),
                 status: ExperimentStatus.Building,
             },
             {
@@ -438,6 +439,74 @@ const experiments: Experiment[] = [
         slug: 'forge',
         status: ExperimentStatus.Active,
         year: 2024,
+    },
+    {
+        category: ExperimentCategory.Foundation,
+        components: [
+            {
+                architectures: [],
+                description: 'Language server for Hoverfly simulations.',
+                name: 'Language Server',
+                sourceUrl: new URL(`${REPOSITORY_BASE_URL}hoverfly-lsp`),
+                status: ExperimentStatus.Active,
+            },
+        ],
+        context: ExperimentContext.Personal,
+        description:
+            'A language server that brings autocomplete, validation, and navigation to Hoverfly API simulation files.',
+        tagline: 'Editor intelligence for Hoverfly simulations.',
+        longDescription:
+            'Hoverfly simulation files are JSON, and hand-editing them is error-prone. This LSP adds schema-aware autocompletion, inline validation, and go-to-definition in any editor that speaks the Language Server Protocol. Published to npm and validated across three editors.',
+        name: 'Hoverfly LSP',
+        slug: 'hoverfly-lsp',
+        status: ExperimentStatus.Active,
+        year: 2026,
+    },
+    {
+        category: ExperimentCategory.Foundation,
+        components: [
+            {
+                architectures: [ExperimentArchitecture.Atomic],
+                description: 'Shared design tokens and native components.',
+                isPrivate: true,
+                name: 'Design System',
+                sourceUrl: new URL(`${REPOSITORY_BASE_URL}jterrazz-design`),
+                status: ExperimentStatus.Building,
+            },
+        ],
+        context: ExperimentContext.Personal,
+        description:
+            'A cross-product design system — shared tokens and platform-native components used across my apps.',
+        tagline: 'One design language across every product.',
+        longDescription:
+            'A single source of truth for how my products look and feel. Shared design tokens and platform-native components — not write-once-run-everywhere, but one consistent design language adapted per platform, with NativeWind on mobile and a hybrid npm + shadcn registry distribution.',
+        name: 'Design System',
+        slug: 'design-system',
+        status: ExperimentStatus.Building,
+        year: 2026,
+    },
+    {
+        category: ExperimentCategory.Foundation,
+        components: [
+            {
+                architectures: [],
+                description: 'WireGuard server config on OpenWrt.',
+                isPrivate: true,
+                name: 'VPN',
+                sourceUrl: new URL(`${REPOSITORY_BASE_URL}jterrazz-vpn`),
+                status: ExperimentStatus.Active,
+            },
+        ],
+        context: ExperimentContext.Personal,
+        description:
+            'A self-hosted WireGuard VPN running on a TP-Link pocket router flashed with OpenWrt.',
+        tagline: 'A TP-Link pocket router flashed with OpenWrt, turned into a self-hosted WireGuard VPN.',
+        longDescription:
+            'A TP-Link TL-WR802N pocket router — the size of a matchbox — flashed with OpenWrt and turned into a WireGuard VPN server. Sitting behind the home gateway with dynamic DNS, it gives secure, encrypted access back to my home network from anywhere.',
+        name: 'VPN',
+        slug: 'vpn',
+        status: ExperimentStatus.Active,
+        year: 2026,
     },
     // 42 Projects Flattened
     {
