@@ -1,4 +1,4 @@
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { getLocale } from 'next-intl/server';
@@ -47,6 +47,14 @@ const geist = localFont({
 });
 
 export const metadata: Metadata = {
+    alternates: {
+        types: {
+            'application/rss+xml': [
+                { title: `${SITE_CONFIG.author.name} — Articles`, url: '/feed.xml' },
+            ],
+        },
+    },
+    applicationName: 'jterrazz.com',
     authors: [{ name: SITE_CONFIG.author.name, url: SITE_CONFIG.author.url }],
     creator: SITE_CONFIG.author.name,
     description: SITE_CONFIG.description,

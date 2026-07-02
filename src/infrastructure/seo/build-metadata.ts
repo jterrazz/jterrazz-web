@@ -9,6 +9,14 @@ import { buildSeoTitle } from './seo-utils';
 export interface BuildMetadataOptions {
     /** Alternate language versions for the page */
     alternateLanguages?: Record<string, string>;
+    /** Article-specific OpenGraph fields (only used when type is 'article') */
+    article?: {
+        authors?: string[];
+        modifiedTime?: string;
+        publishedTime?: string;
+        section?: string;
+        tags?: string[];
+    };
     /** Page description - used for meta description and social sharing */
     description: string;
     /** Optional image for social sharing - defaults to site default */
@@ -37,6 +45,14 @@ export interface BuildMetadataOptions {
     type?: 'article' | 'website';
 }
 
+// Map short locales to OpenGraph territory format
+const OG_LOCALES: Record<string, string> = {
+    en: 'en_US',
+    fr: 'fr_FR',
+};
+
+const toOgLocale = (locale: string): string => OG_LOCALES[locale] ?? locale;
+
 // Resolve image URL - support both paths and full URLs
 const resolveImageUrl = (imagePath: string): string => {
     if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
@@ -54,6 +70,7 @@ const resolveImageUrl = (imagePath: string): string => {
 export function buildMetadata(options: BuildMetadataOptions): Metadata {
     const {
         alternateLanguages,
+        article,
         description,
         image,
         includeTwitterAttribution = false,
@@ -68,6 +85,12 @@ export function buildMetadata(options: BuildMetadataOptions): Metadata {
 
     const url = `${SITE_CONFIG.baseUrl}${path}`;
     const fullTitle = buildSeoTitle(title, is42Related);
+
+    // Hreflang best practice: always declare x-default (English is the fallback)
+    const languages =
+        alternateLanguages && alternateLanguages['en'] && !alternateLanguages['x-default']
+            ? { ...alternateLanguages, 'x-default': alternateLanguages['en'] }
+            : alternateLanguages;
 
     const ogImage = image
         ? {
@@ -86,20 +109,36 @@ export function buildMetadata(options: BuildMetadataOptions): Metadata {
     return {
         alternates: {
             canonical: url,
-            languages: alternateLanguages,
+            languages,
+            // Re-declared here because a page-level `alternates` object fully
+            // Replaces the root layout's — without this the RSS link vanishes.
+            types: {
+                'application/rss+xml': [
+                    { title: `${SITE_CONFIG.author.name} — Articles`, url: '/feed.xml' },
+                ],
+            },
         },
         description,
         keywords,
         metadataBase: new URL(SITE_CONFIG.baseUrl),
         openGraph: {
-            alternateLocale: localeAlternates,
+            alternateLocale: localeAlternates?.map(toOgLocale),
             description,
             images: [ogImage],
-            locale,
+            locale: locale ? toOgLocale(locale) : undefined,
             siteName: SITE_CONFIG.author.name,
             title: fullTitle,
             type,
             url,
+            ...(type === 'article' && article
+                ? {
+                      authors: article.authors,
+                      modifiedTime: article.modifiedTime,
+                      publishedTime: article.publishedTime,
+                      section: article.section,
+                      tags: article.tags,
+                  }
+                : {}),
         },
         title,
         twitter: {

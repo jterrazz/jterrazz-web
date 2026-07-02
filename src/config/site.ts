@@ -32,5 +32,6 @@ export const SITE_CONFIG = {
         medium: 'https://medium.com/@jterrazz',
         pexels: 'https://www.pexels.com/@jterrazz',
         twitter: '@jterrazzx',
+        x: 'https://x.com/jterrazzx',
     },
 } as const;

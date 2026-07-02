@@ -45,12 +45,81 @@ export function buildPersonJsonLd(options: PersonJsonLdOptions) {
         jobTitle: SITE_CONFIG.author.jobTitle,
         knowsAbout: SITE_CONFIG.author.skills,
         name: SITE_CONFIG.author.name,
-        sameAs: [SITE_CONFIG.social.github, SITE_CONFIG.social.medium, SITE_CONFIG.social.pexels],
+        sameAs: [
+            SITE_CONFIG.social.github,
+            SITE_CONFIG.social.medium,
+            SITE_CONFIG.social.pexels,
+            SITE_CONFIG.social.x,
+        ],
         url: SITE_CONFIG.baseUrl,
         worksFor: {
             '@type': 'Organization',
             name: 'Self-Employed',
         },
+    };
+}
+
+// ============================================================================
+// Breadcrumbs
+// ============================================================================
+
+export interface BreadcrumbJsonLdOptions {
+    /** Ordered trail from root to current page */
+    items: Array<{ name: string; url: string }>;
+}
+
+export function buildBreadcrumbJsonLd(options: BreadcrumbJsonLdOptions) {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: options.items.map((item, index) => ({
+            '@type': 'ListItem',
+            item: item.url,
+            name: item.name,
+            position: index + 1,
+        })),
+    };
+}
+
+// ============================================================================
+// Article Detail Page (full BlogPosting)
+// ============================================================================
+
+export interface ArticleJsonLdOptions {
+    dateModified: string;
+    datePublished: string;
+    description: string;
+    headline: string;
+    /** Absolute URL of the article cover image */
+    imageUrl?: string;
+    inLanguage: string | string[];
+    /** Reading time in minutes, mapped to ISO-8601 timeRequired */
+    readingTimeMinutes?: number;
+    /** Canonical absolute URL of the article */
+    url: string;
+    wordCount?: number;
+}
+
+export function buildArticleJsonLd(options: ArticleJsonLdOptions) {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        author: buildAuthorJsonLd(),
+        dateModified: options.dateModified,
+        datePublished: options.datePublished,
+        description: options.description,
+        headline: options.headline,
+        ...(options.imageUrl && { image: [options.imageUrl] }),
+        inLanguage: options.inLanguage,
+        isAccessibleForFree: true,
+        mainEntityOfPage: {
+            '@id': options.url,
+            '@type': 'WebPage',
+        },
+        publisher: buildAuthorJsonLd(),
+        ...(options.readingTimeMinutes && { timeRequired: `PT${options.readingTimeMinutes}M` }),
+        url: options.url,
+        ...(options.wordCount && { wordCount: options.wordCount }),
     };
 }
 

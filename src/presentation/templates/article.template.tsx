@@ -1,4 +1,3 @@
-import Script from 'next/script';
 import React from 'react';
 
 // Domain
@@ -19,7 +18,6 @@ import { MarkdownRenderer } from '../ui/organisms/markdown-renderer/markdown-ren
 type ArticleTemplateProps = {
     articleId: string;
     articles: Article[];
-    availableLanguages: ArticleLanguage[];
     contentInMarkdown: string;
     currentLanguage: ArticleLanguage;
     dateModified: string;
@@ -35,7 +33,6 @@ type ArticleTemplateProps = {
 export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     articleId,
     articles,
-    availableLanguages,
     contentInMarkdown,
     currentLanguage,
     dateModified,
@@ -131,37 +128,8 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     const { body } = stripArticleMasthead(contentInMarkdown);
     const readingTimeMinutes = calculateReadingTimeMinutes(contentInMarkdown);
 
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        author: {
-            '@type': 'Person',
-            name: 'Jean-Baptiste Terrazzoni',
-            url: 'https://jterrazz.com',
-        },
-        dateModified: new Date(dateModified).toISOString(),
-        datePublished: new Date(datePublished).toISOString(),
-        description: description,
-        headline: title,
-        image: imageUrl
-            ? [`${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}${imageUrl}`]
-            : [],
-        inLanguage: currentLanguage,
-        mainEntityOfPage: {
-            '@type': 'WebPage',
-            '@id': `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles/${articleId}`,
-        },
-        ...(availableLanguages.length > 1 && {
-            inLanguage: availableLanguages,
-        }),
-    };
-
     return (
         <Container className="mt-10 md:mt-20 relative" size="wide">
-            <Script id="json-ld" strategy="afterInteractive" type="application/ld+json">
-                {JSON.stringify(jsonLd)}
-            </Script>
-
             <ArticleHeader
                 category={currentArticle?.metadata.category}
                 className="mb-10 md:mb-14"

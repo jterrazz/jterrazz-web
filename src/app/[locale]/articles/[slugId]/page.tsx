@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound, redirect } from 'next/navigation';
 
+import { SITE_CONFIG } from '../../../../config/site';
 import { type ArticleLanguage } from '../../../../domain/article';
+import { calculateReadingTimeMinutes } from '../../../../domain/utils/article-content';
 import { buildArticleSlug } from '../../../../domain/utils/slugify';
 import { type Locale, locales } from '../../../../i18n/config';
 import { articlesRepository } from '../../../../infrastructure/repositories/articles.repository';
@@ -13,8 +15,10 @@ import {
     featuresRepository,
 } from '../../../../infrastructure/repositories/features.repository';
 import { buildMetadata } from '../../../../infrastructure/seo/build-metadata';
+import { buildArticleJsonLd, buildBreadcrumbJsonLd } from '../../../../infrastructure/seo/json-ld';
 import { is42RelatedArticle } from '../../../../infrastructure/seo/seo-utils';
 import { ArticleTemplate } from '../../../../presentation/templates/article.template';
+import { JsonLdScript } from '../../../../presentation/ui/atoms/json-ld-script/json-ld-script';
 
 export const dynamicParams = true;
 
@@ -57,25 +61,53 @@ export default async function ArticlePage(props: ArticlePageProps) {
     const description =
         article.metadata.description[locale as Locale] ?? article.metadata.description.en;
 
+    // Structured data — rendered server-side so crawlers see it without JavaScript
+    const tNavbar = await getTranslations({ locale, namespace: 'navbar' });
+    const localePrefix = locale === 'en' ? '' : `/${locale}`;
+    const articleUrl = `${SITE_CONFIG.baseUrl}${localePrefix}/articles/${canonicalSlug}`;
+
+    const articleJsonLd = buildArticleJsonLd({
+        dateModified: new Date(article.metadata.dateModified).toISOString(),
+        datePublished: new Date(article.metadata.datePublished).toISOString(),
+        description,
+        headline: title,
+        imageUrl: article.imageUrl ? `${SITE_CONFIG.baseUrl}${article.imageUrl}` : undefined,
+        inLanguage: Object.keys(article.content),
+        readingTimeMinutes: calculateReadingTimeMinutes(content),
+        url: articleUrl,
+        wordCount: content.split(/\s+/u).filter(Boolean).length,
+    });
+
+    const breadcrumbJsonLd = buildBreadcrumbJsonLd({
+        items: [
+            { name: SITE_CONFIG.author.name, url: `${SITE_CONFIG.baseUrl}${localePrefix || '/'}` },
+            { name: tNavbar('articles'), url: `${SITE_CONFIG.baseUrl}${localePrefix}/articles` },
+            { name: title, url: articleUrl },
+        ],
+    });
+
     return (
-        <ArticleTemplate
-            articleId={slugId}
-            articles={articles}
-            availableLanguages={Object.keys(article.content) as ArticleLanguage[]}
-            contentInMarkdown={content}
-            currentLanguage={locale as ArticleLanguage}
-            dateModified={article.metadata.dateModified}
-            datePublished={article.metadata.datePublished}
-            description={description}
-            features={features}
-            imageUrl={article.imageUrl}
-            linkedExperiment={
-                linkedExperiment
-                    ? { name: linkedExperiment.name, slug: linkedExperiment.slug }
-                    : null
-            }
-            title={title}
-        />
+        <>
+            <JsonLdScript data={articleJsonLd} id="article-json-ld" />
+            <JsonLdScript data={breadcrumbJsonLd} id="article-breadcrumb-json-ld" />
+            <ArticleTemplate
+                articleId={slugId}
+                articles={articles}
+                contentInMarkdown={content}
+                currentLanguage={locale as ArticleLanguage}
+                dateModified={article.metadata.dateModified}
+                datePublished={article.metadata.datePublished}
+                description={description}
+                features={features}
+                imageUrl={article.imageUrl}
+                linkedExperiment={
+                    linkedExperiment
+                        ? { name: linkedExperiment.name, slug: linkedExperiment.slug }
+                        : null
+                }
+                title={title}
+            />
+        </>
     );
 }
 
@@ -105,8 +137,19 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
     const path = locale === 'en' ? `/articles/${slugId}` : `/${locale}/articles/${slugId}`;
     const is42 = is42RelatedArticle(article.publicIndex);
 
+    const tags = [article.metadata.category, article.metadata.series].filter((tag): tag is string =>
+        Boolean(tag),
+    );
+
     return buildMetadata({
         alternateLanguages,
+        article: {
+            authors: [SITE_CONFIG.author.url],
+            modifiedTime: new Date(article.metadata.dateModified).toISOString(),
+            publishedTime: new Date(article.metadata.datePublished).toISOString(),
+            section: article.metadata.series,
+            tags,
+        },
         description,
         image: article.imageUrl ? { alt: title, path: article.imageUrl } : undefined,
         includeTwitterAttribution: true,

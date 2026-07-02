@@ -133,6 +133,9 @@ export default async function VerifyArticlePage(props: VerifyPageProps) {
 export function generateMetadata(): Metadata {
     return {
         description: 'Cryptographic proof of authorship and date for this article.',
+        // Utility page: thin, near-duplicate content across articles — keep out
+        // Of the index so crawl budget goes to the articles themselves.
+        robots: { follow: true, index: false },
         title: 'Verify · jterrazz.com',
     };
 }

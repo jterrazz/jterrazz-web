@@ -1,14 +1,15 @@
 import { type MetadataRoute } from 'next';
 
-export default function robots(): MetadataRoute.Robots {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com';
+import { SITE_CONFIG } from '../config/site';
 
+export default function robots(): MetadataRoute.Robots {
     return {
         rules: {
             allow: '/',
-            disallow: ['/api/', '/_next/'],
+            // /go/* are device-detecting redirect endpoints — no content to index.
+            disallow: ['/api/', '/_next/', '/go/'],
             userAgent: '*',
         },
-        sitemap: `${baseUrl}/sitemap.xml`,
+        sitemap: `${SITE_CONFIG.baseUrl}/sitemap.xml`,
     };
 }

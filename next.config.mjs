@@ -6,8 +6,11 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 const nextConfig = {
     // Optimize for static generation while maintaining SSR capabilities
     experimental: {
-        optimizePackageImports: ['@vercel/analytics', '@vercel/speed-insights', 'posthog-js'],
+        optimizePackageImports: ['@vercel/analytics', '@vercel/speed-insights'],
+        // Persist Turbopack compile artifacts across dev restarts
+        turbopackFileSystemCacheForDev: true,
     },
+    poweredByHeader: false,
     turbopack: {},
     images: {
         localPatterns: [
@@ -15,6 +18,9 @@ const nextConfig = {
                 pathname: '/**',
             },
         ],
+        // Content images are content-hashed (?v=<hash>), so optimized variants
+        // Can be cached long-term — fewer Vercel image transformations.
+        minimumCacheTTL: 2_678_400, // 31 days
         remotePatterns: [
             {
                 hostname: 'miro.medium.com',
@@ -25,6 +31,30 @@ const nextConfig = {
                 protocol: 'https',
             },
         ],
+    },
+    async headers() {
+        return [
+            {
+                // Static brand assets change rarely; let browsers and the CDN
+                // Hold them instead of re-hitting the origin.
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800',
+                    },
+                ],
+                source: '/assets/:path*',
+            },
+            {
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800',
+                    },
+                ],
+                source: '/favicon/:path*',
+            },
+        ];
     },
     async redirects() {
         return [

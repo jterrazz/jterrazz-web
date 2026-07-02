@@ -1,5 +1,3 @@
-import Script from 'next/script';
-
 /**
  * Props for the JsonLdScript component
  */
@@ -12,12 +10,18 @@ export interface JsonLdScriptProps {
 
 /**
  * Renders JSON-LD structured data as a script tag
- * @description Encapsulates the Next.js Script component pattern for JSON-LD SEO data
+ * @description Emits a plain script tag so structured data is present in the
+ * server-rendered HTML — crawlers must not need JavaScript to read it.
+ * `<` is escaped to prevent breaking out of the script context.
  */
 export function JsonLdScript({ data, id }: JsonLdScriptProps) {
     return (
-        <Script id={id} strategy="afterInteractive" type="application/ld+json">
-            {JSON.stringify(data)}
-        </Script>
+        <script
+            dangerouslySetInnerHTML={{
+                __html: JSON.stringify(data).replaceAll('<', String.raw`\u003c`),
+            }}
+            id={id}
+            type="application/ld+json"
+        />
     );
 }
