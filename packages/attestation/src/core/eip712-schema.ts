@@ -1,7 +1,5 @@
 import { type TypedData, type TypedDataDomain } from 'viem';
 
-import { SCHEMA_VERSION } from '../version.js';
-
 /**
  * EIP-712 typed-data schema for attestation v1 — FROZEN.
  *
@@ -65,4 +63,4 @@ export type AttestationMessage = {
     claims: ArticleClaims;
 };
 
-export const currentSchemaVersion = SCHEMA_VERSION;
+export { SCHEMA_VERSION as currentSchemaVersion } from '../version.js';

@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'vitest';
 
-import { __test__, ArticleCategory, createArticle, type RawArticleInput } from './article';
+import { ArticleCategory, articleInternals, createArticle, type RawArticleInput } from './article';
 
-const { capitalizeFirst, sanitizeEmDashes, sanitizeTitle, sanitizeContent } = __test__;
+const { capitalizeFirst, sanitizeEmDashes, sanitizeTitle, sanitizeContent } = articleInternals;
 
 describe('capitalizeFirst', () => {
     test('should capitalize first letter and preserve rest', () => {

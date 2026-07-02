@@ -7,9 +7,9 @@ import {
 } from '../../presentation/theme/theme';
 
 export interface ThemeRepository {
-    getStoredTheme(): Theme;
-    getSystemTheme(): ResolvedTheme;
-    setStoredTheme(theme: Theme): void;
+    getStoredTheme: () => Theme;
+    getSystemTheme: () => ResolvedTheme;
+    setStoredTheme: (theme: Theme) => void;
 }
 
 export class ThemeLocalStorageRepository implements ThemeRepository {

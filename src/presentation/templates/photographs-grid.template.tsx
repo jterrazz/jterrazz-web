@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { ImageGallery } from 'react-image-grid-gallery';
 
+import 'react-image-grid-gallery/style.css';
+
 // Domain
 import { type Photograph } from '../../domain/photograph';
 import { UserContactType } from '../../domain/user';
@@ -80,7 +82,7 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
                 <div
                     className={`transition-[filter] duration-700 ease-out ${isGrayscale ? 'grayscale' : 'grayscale-0'}`}
                 >
-                    <ImageGallery columnCount={3} gapSize={24} imagesInfoArray={images} />
+                    <ImageGallery columnCount={3} gapSize={24} imagesData={images} />
                 </div>
             </div>
         </div>

@@ -42,15 +42,15 @@
         "@noble/hashes": "^2.2.0",
         "javascript-opentimestamps": "^0.4.5",
         "open": "^11.0.0",
-        "viem": "^2.48.11"
+        "viem": "^2.54.1"
     },
     "devDependencies": {
-        "@jterrazz/codestyle": "^3.2.0",
-        "@jterrazz/test": "^5.3.2",
-        "@jterrazz/typescript": "^5.2.0",
-        "@types/node": "^24.10.1",
-        "tsdown": "^0.21.8",
-        "vitest": "^4.0.0"
+        "@jterrazz/codestyle": "^3.4.0",
+        "@jterrazz/test": "^8.0.0",
+        "@jterrazz/typescript": "^5.3.0",
+        "@types/node": "^24.13.2",
+        "tsdown": "^0.22.3",
+        "vitest": "^4.1.9"
     },
     "knip": {
         "ignoreBinaries": [

@@ -1,5 +1,3 @@
-import { CANONICAL_VERSION } from '../version.js';
-
 /**
  * Canonicalize an article body for attestation v1.
  *
@@ -37,7 +35,7 @@ export function canonicalize(input: string): Uint8Array {
  * Version of the canonicalization algorithm that produced bytes.
  * Embedded into every attestation so future verifiers can dispatch correctly.
  */
-export const canonicalVersion = CANONICAL_VERSION;
+export { CANONICAL_VERSION as canonicalVersion } from '../version.js';
 
 export class InvalidContentError extends Error {
     override name = 'InvalidContentError';

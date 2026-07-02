@@ -65,7 +65,7 @@ const getInitialResolvedTheme = (): ResolvedTheme => {
 };
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-    const [theme, setThemeState] = useState<Theme>(getInitialTheme);
+    const [themeState, setThemeState] = useState<Theme>(getInitialTheme);
     const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>(getInitialResolvedTheme);
 
     const repository = useMemo(() => new ThemeLocalStorageRepository(), []);
@@ -93,7 +93,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
         const handleSystemChange = (): void => {
-            if (theme === 'system') {
+            if (themeState === 'system') {
                 const resolved = getSystemTheme();
                 setResolvedTheme(resolved);
                 applyThemeToDOM(resolved);
@@ -102,15 +102,15 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
         mediaQuery.addEventListener('change', handleSystemChange);
         return () => mediaQuery.removeEventListener('change', handleSystemChange);
-    }, [theme]);
+    }, [themeState]);
 
     const value = useMemo(
         () => ({
             resolvedTheme,
             setTheme,
-            theme,
+            theme: themeState,
         }),
-        [theme, resolvedTheme, setTheme],
+        [themeState, resolvedTheme, setTheme],
     );
 
     return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

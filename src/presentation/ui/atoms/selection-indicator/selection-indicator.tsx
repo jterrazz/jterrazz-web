@@ -1,5 +1,5 @@
 'use client';
-import { AnimatePresence, motion, type Transition } from 'framer-motion';
+import { AnimatePresence, motion, type Transition } from 'motion/react';
 import React, {
     Children,
     cloneElement,

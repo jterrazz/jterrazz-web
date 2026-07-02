@@ -2,13 +2,16 @@ import OpenTimestamps from 'javascript-opentimestamps';
 
 const { DetachedTimestampFile, Ops } = OpenTimestamps as {
     DetachedTimestampFile: {
-        deserialize(bytes: Buffer | Uint8Array): unknown;
-        fromHash(op: unknown, hash: Buffer): unknown;
+        deserialize: (bytes: Buffer | Uint8Array) => unknown;
+        fromHash: (op: unknown, hash: Buffer) => unknown;
     };
     Ops: { OpSHA256: unknown };
-    stamp(detached: unknown): Promise<void>;
-    upgrade(detached: unknown): Promise<boolean>;
-    verify(detached: unknown, original: unknown): Promise<Record<string, { timestamp: number }>>;
+    stamp: (detached: unknown) => Promise<void>;
+    upgrade: (detached: unknown) => Promise<boolean>;
+    verify: (
+        detached: unknown,
+        original: unknown,
+    ) => Promise<Record<string, { timestamp: number }>>;
 };
 
 /**
@@ -26,9 +29,10 @@ export async function stampDigest(digest: Uint8Array): Promise<Uint8Array> {
         new (Ops.OpSHA256 as new () => unknown)(),
         Buffer.from(digest),
     );
-    await (OpenTimestamps as unknown as { stamp(d: unknown): Promise<void> }).stamp(detached);
+    await (OpenTimestamps as unknown as { stamp: (d: unknown) => Promise<void> }).stamp(detached);
 
-    const serialize = (detached as { serializeToBytes(): Buffer | Uint8Array }).serializeToBytes;
+    const serialize = (detached as { serializeToBytes: () => Buffer | Uint8Array })
+        .serializeToBytes;
     const bytes = serialize.call(detached);
     return new Uint8Array(bytes as Buffer);
 }
@@ -44,10 +48,11 @@ export async function upgradeProof(
 ): Promise<{ bytes: Uint8Array; upgraded: boolean }> {
     const detached = DetachedTimestampFile.deserialize(Buffer.from(otsBytes));
     const upgraded = await (
-        OpenTimestamps as unknown as { upgrade(d: unknown): Promise<boolean> }
+        OpenTimestamps as unknown as { upgrade: (d: unknown) => Promise<boolean> }
     ).upgrade(detached);
 
-    const serialize = (detached as { serializeToBytes(): Buffer | Uint8Array }).serializeToBytes;
+    const serialize = (detached as { serializeToBytes: () => Buffer | Uint8Array })
+        .serializeToBytes;
     const bytes = serialize.call(detached);
     return { bytes: new Uint8Array(bytes as Buffer), upgraded };
 }

@@ -7,10 +7,10 @@
  */
 
 // Matches a leading markdown image, e.g. `![alt](assets/thumbnail.jpg)`.
-const LEADING_IMAGE = /^\s*!\[[^\]]*\]\(([^)]*)\)\s*/;
+const LEADING_IMAGE = /^\s*!\[[^\]]*\]\((?<src>[^)]*)\)\s*/;
 
 // Matches a leading level-1 heading line, e.g. `# Title`.
-const LEADING_H1 = /^\s*#\s+(.+?)\s*(?:\n|$)/;
+const LEADING_H1 = /^\s*#\s+(?<title>.+?)\s*(?:\n|$)/;
 
 type StrippedHero = {
     /** Image source found at the top of the content, if any (fallback hero). */

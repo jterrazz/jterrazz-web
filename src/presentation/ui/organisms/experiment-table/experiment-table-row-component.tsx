@@ -1,5 +1,5 @@
 import { IconBrandGithubFilled, IconChevronDown, IconLockFilled } from '@tabler/icons-react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import React from 'react';
 
 // Domain

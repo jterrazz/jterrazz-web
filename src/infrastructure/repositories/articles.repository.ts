@@ -584,9 +584,12 @@ const ARTICLES_CONFIG: ArticleConfig[] = [
 
 // Helper function to transform relative asset paths in markdown to versioned URLs
 const processMarkdownContent = (content: string, filename: string): string => {
-    return content.replace(/!\[([^\]]*)\]\((?:\.\/)?assets\/([^)]+)\)/g, (_match, altText, p1) => {
-        return `![${altText}](${getContentUrl(`${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)}`)})`;
-    });
+    return content.replace(
+        /!\[(?<altText>[^\]]*)\]\((?:\.\/)?assets\/(?<assetPath>[^)]+)\)/g,
+        (_match, altText, p1) => {
+            return `![${altText}](${getContentUrl(`${encodeURIComponent(filename)}/assets/${encodeURIComponent(p1)}`)})`;
+        },
+    );
 };
 
 // Clean AI-generated artifacts from text (before domain sanitization)

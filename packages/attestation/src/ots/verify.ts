@@ -2,11 +2,14 @@ import OpenTimestamps from 'javascript-opentimestamps';
 
 const { DetachedTimestampFile, Ops } = OpenTimestamps as {
     DetachedTimestampFile: {
-        deserialize(bytes: Buffer | Uint8Array): unknown;
-        fromHash(op: unknown, hash: Buffer): unknown;
+        deserialize: (bytes: Buffer | Uint8Array) => unknown;
+        fromHash: (op: unknown, hash: Buffer) => unknown;
     };
     Ops: { OpSHA256: unknown };
-    verify(detached: unknown, original: unknown): Promise<Record<string, { timestamp: number }>>;
+    verify: (
+        detached: unknown,
+        original: unknown,
+    ) => Promise<Record<string, { timestamp: number }>>;
 };
 
 export type OtsVerifyOk = {
@@ -58,10 +61,10 @@ export async function verifyOts(
     try {
         attestations = await (
             OpenTimestamps as unknown as {
-                verify(
+                verify: (
                     detached: unknown,
                     original: unknown,
-                ): Promise<Record<string, { timestamp: number }>>;
+                ) => Promise<Record<string, { timestamp: number }>>;
             }
         ).verify(detached, original);
     } catch (error) {

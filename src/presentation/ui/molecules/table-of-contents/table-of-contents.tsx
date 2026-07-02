@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import React, { useEffect, useState } from 'react';
 
 // Domain
@@ -36,17 +36,17 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     useEffect(() => {
         // Parse headings from markdown
         // Matches # Title, ## Title or ### Title
-        const matches = [...contentInMarkdown.matchAll(/^(#{1,3})\s+(.+)$/gm)];
+        const matches = [...contentInMarkdown.matchAll(/^(?<hashes>#{1,3})\s+(?<title>.+)$/gm)];
         const parsedHeadings = matches.map((match) => {
             const rawTitle = match[2].trim();
             // Remove markdown syntax (bold, italic, code, links)
             const cleanTitle = rawTitle
-                .replace(/\*\*(.*?)\*\*/g, '$1')
-                .replace(/__(.*?)__/g, '$1')
-                .replace(/\*(.*?)\*/g, '$1')
-                .replace(/_(.*?)_/g, '$1')
-                .replace(/`([^`]+)`/g, '$1')
-                .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+                .replace(/\*\*(?<text>.*?)\*\*/g, '$1')
+                .replace(/__(?<text>.*?)__/g, '$1')
+                .replace(/\*(?<text>.*?)\*/g, '$1')
+                .replace(/_(?<text>.*?)_/g, '$1')
+                .replace(/`(?<text>[^`]+)`/g, '$1')
+                .replace(/\[(?<text>[^\]]+)\]\([^)]+\)/g, '$1');
 
             return {
                 id: slugify(cleanTitle),

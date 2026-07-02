@@ -10,7 +10,7 @@ import {
     IconMenu2,
     IconX,
 } from '@tabler/icons-react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';

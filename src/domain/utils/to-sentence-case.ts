@@ -137,7 +137,7 @@ export interface ToSentenceCaseOptions {
     minWords?: number;
 }
 
-const WORD_PATTERN = /([A-Za-z0-9']+)/;
+const WORD_PATTERN = /(?<word>[A-Za-z0-9']+)/;
 const ACRONYM_PATTERN = /^[A-Z0-9]{2,6}$/;
 const HAS_LOWER_THEN_UPPER = /[a-z][A-Z]/;
 const SENTENCE_END_PATTERN = /[.!?]/;

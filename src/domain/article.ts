@@ -102,7 +102,7 @@ function sanitizeMarkdownHeadings(content: string): string {
         return content;
     }
     // Match markdown headings: # at start of line, followed by space and title text
-    return content.replace(/^(#{1,6})\s+(.+)$/gm, (_match, hashes, title) => {
+    return content.replace(/^(?<hashes>#{1,6})\s+(?<title>.+)$/gm, (_match, hashes, title) => {
         return `${hashes} ${capitalizeFirst(title)}`;
     });
 }
@@ -162,7 +162,7 @@ export function createArticle(raw: RawArticleInput): Article {
 }
 
 // Exported for testing only
-export const __test__ = {
+export const articleInternals = {
     capitalizeFirst,
     sanitizeContent,
     sanitizeEmDashes,
