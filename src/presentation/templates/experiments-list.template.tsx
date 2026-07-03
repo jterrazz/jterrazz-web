@@ -1,6 +1,5 @@
 'use client';
 
-import Script from 'next/script';
 import React from 'react';
 
 // Domain
@@ -53,14 +52,6 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
         text: t.viewGitHub,
     };
 
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'CollectionPage',
-        description: highlightDescription,
-        name: highlightTitle,
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/experiments`,
-    };
-
     const groups: { items: readonly SerializableExperiment[]; title: string }[] = [
         {
             items: experiments.filter((p) => p.category === ExperimentCategory.App),
@@ -82,15 +73,7 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
 
     return (
         <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
-            <Script
-                id="experiments-list-json-ld"
-                strategy="afterInteractive"
-                type="application/ld+json"
-            >
-                {JSON.stringify(jsonLd)}
-            </Script>
-
-            <Container>
+            <Container width="shell">
                 <SectionHero
                     button={button}
                     description={highlightDescription}
@@ -98,10 +81,12 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                 />
             </Container>
 
-            <Container>
-                <div className="space-y-12 pb-12 md:pb-16">
+            <Container width="shell">
+                {/* Groups flow as a two-column masonry on wide screens; each
+                    group stays whole (break-inside-avoid). */}
+                <div className="pb-12 md:pb-16 lg:columns-2 lg:gap-12">
                     {groups.map((group) => (
-                        <section key={group.title}>
+                        <section className="mb-12 break-inside-avoid" key={group.title}>
                             <DividerSection className="mb-4" title={group.title} />
                             <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                                 {group.items.map((experiment) => (

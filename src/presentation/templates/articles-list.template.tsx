@@ -5,6 +5,7 @@ import { useState } from 'react';
 // Domain
 import { ArticleCategory } from '../../domain/article';
 import { Container } from '../ui/design-system';
+import { CardArticleFeatured } from '../ui/molecules/card-article/card-article-featured';
 import { CardArticleRow } from '../ui/molecules/card-article/card-article-row';
 import { DividerSection } from '../ui/molecules/divider-section/divider-section';
 import { SectionHero } from '../ui/molecules/section-hero/section-hero';
@@ -22,7 +23,7 @@ const ArticleSeries: React.FC<{ series: ArticleSeriesViewModel; seriesLabel: str
     const allArticles = [series.featuredArticle, ...series.relatedArticles];
 
     return (
-        <section>
+        <section className="mb-12 break-inside-avoid">
             <DividerSection className="mb-4" title={`${series.seriesTitle} ${seriesLabel}`} />
             <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                 {allArticles.map((article) => (
@@ -99,7 +100,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
 
     return (
         <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
-            <Container>
+            <Container width="shell">
                 <SectionHero
                     button={viewModel.button}
                     description={viewModel.highlightDescription}
@@ -107,7 +108,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
                 />
             </Container>
 
-            <Container>
+            <Container width="shell">
                 <div className="mb-8 flex items-center gap-1">
                     {filters.map(({ key, label }) => {
                         const isActive = filter === key;
@@ -130,25 +131,24 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
                 </div>
             </Container>
 
-            <Container>
-                <div className="space-y-12 pb-12 md:pb-16">
-                    {showLatestExploration && viewModel.latestExplorationArticle && (
-                        <section>
-                            <DividerSection className="mb-4" title="Featured" />
-                            <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
-                                <CardArticleRow
-                                    experimentSlug={
-                                        viewModel.latestExplorationArticle.experimentSlug
-                                    }
-                                    imageUrl={viewModel.latestExplorationArticle.imageUrl}
-                                    slug={viewModel.latestExplorationArticle.slug}
-                                    tagline={viewModel.latestExplorationArticle.tagline}
-                                    title={viewModel.latestExplorationArticle.title}
-                                />
-                            </div>
-                        </section>
-                    )}
+            {showLatestExploration && viewModel.latestExplorationArticle && (
+                <Container width="shell">
+                    <section className="mb-12">
+                        <DividerSection className="mb-6" title="Featured" />
+                        <CardArticleFeatured
+                            imageUrl={viewModel.latestExplorationArticle.imageUrl}
+                            slug={viewModel.latestExplorationArticle.slug}
+                            tagline={viewModel.latestExplorationArticle.tagline}
+                            title={viewModel.latestExplorationArticle.title}
+                        />
+                    </section>
+                </Container>
+            )}
 
+            <Container width="shell">
+                {/* Timeline sections flow as a two-column masonry on wide
+                    screens; each section stays whole (break-inside-avoid). */}
+                <div className="pb-12 md:pb-16 lg:columns-2 lg:gap-12">
                     {(() => {
                         /*
                          * Only the trailing standalone group carries the
@@ -168,7 +168,10 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
                                     seriesLabel={t.series}
                                 />
                             ) : (
-                                <section key={`standalones-${section.articles[0].slug}`}>
+                                <section
+                                    className="mb-12 break-inside-avoid"
+                                    key={`standalones-${section.articles[0].slug}`}
+                                >
                                     {idx === lastStandaloneIdx ? (
                                         <DividerSection className="mb-4" title={t.otherPosts} />
                                     ) : (

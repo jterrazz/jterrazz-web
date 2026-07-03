@@ -26,27 +26,22 @@
     backdrop-filter: blur(4px);
 }
 
-/* Liquid glass — base is a blurred frosted surface (works everywhere). Where
-   the browser supports SVG filters in backdrop-filter (Chromium), we add the
-   #nav-glass feDisplacementMap so the backdrop is actually refracted at the
-   rim. Safari/Firefox keep the blur-only fallback. */
-.glass {
-    -webkit-backdrop-filter: blur(14px) saturate(165%);
-    backdrop-filter: blur(14px) saturate(165%);
-}
-/* Only Chromium can actually render an SVG filter inside backdrop-filter. Safari
-   reports support for the url() syntax but renders it transparent, so we gate
-   the displacement behind a Chromium-only feature (the Houdini paint() API).
-   Safari/Firefox keep the blur-only frosted fallback above. */
-@supports (background: paint(id)) and (backdrop-filter: url(#nav-glass)) {
-    .glass {
-        backdrop-filter: saturate(170%) blur(5px) url(#nav-glass);
-    }
-}
-
 @layer utilities {
     .text-balance {
         text-wrap: balance;
+    }
+}
+
+/* Adaptive shell — the navbar/footer (`Container width="shell"`) follow the
+   widest container the current page renders. Wide containers self-declare via
+   `data-shell="wide"`; add a new rule here to support future widths. Pure CSS,
+   so the frame is correct in the server-rendered HTML (no hydration shift). */
+@layer base {
+    :root {
+        --shell-width: 72rem; /* 6xl — default site frame */
+    }
+    body:has([data-shell='wide']) {
+        --shell-width: 80rem; /* 7xl — galleries, article mastheads */
     }
 }
 

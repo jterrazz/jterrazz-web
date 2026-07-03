@@ -2,12 +2,10 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
 // Domain
-import { UserContactType } from '../../domain/user';
 import { type Locale, locales } from '../../i18n/config';
 // Infrastructure
 import { createRouteBuilder, ExternalLinks } from '../../infrastructure/navigation/routes';
 import { experimentsRepository } from '../../infrastructure/repositories/experiments.repository';
-import { userRepository } from '../../infrastructure/repositories/user.repository';
 import { LocaleProvider } from '../../presentation/context/locale-context';
 import { Navbar } from '../../presentation/ui/organisms/navbar/navbar';
 import { SiteFooter } from '../../presentation/ui/organisms/site-footer/site-footer';
@@ -42,17 +40,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     const tNavbar = await getTranslations({ locale, namespace: 'navbar' });
     const tFooter = await getTranslations({ locale, namespace: 'footer' });
     const routes = createRouteBuilder(locale);
-
-    // Convert `URL` instances to plain strings to safely pass to the client navigation bar.
-    const contacts = [
-        userRepository.getContact(UserContactType.GitHub),
-        userRepository.getContact(UserContactType.Medium),
-    ].map((contact) => ({
-        name: contact.type,
-        type: contact.type,
-        url: contact.url.toString(),
-        value: contact.value,
-    }));
 
     const pages = [
         {
@@ -96,11 +83,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
     return (
         <LocaleProvider locale={locale as Locale}>
-            <div className="sticky top-0 z-[50] pointer-events-none">
-                <Navbar contacts={contacts} pages={pages} translations={navbarTranslations} />
-            </div>
-            {/* Clip (not hidden) for horizontal bleed: avoids creating a scroll
-                container, which would otherwise break position: sticky inside. */}
+            <Navbar pages={pages} translations={navbarTranslations} />
             <main className="flex-1 flex flex-col overflow-x-clip w-full">{children}</main>
             <SiteFooter translations={footerTranslations} />
         </LocaleProvider>

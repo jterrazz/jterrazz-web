@@ -66,7 +66,7 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
     return (
         <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
             {/* Hero Section */}
-            <Container>
+            <Container width="shell">
                 <SectionHero
                     button={button}
                     description={highlightDescription}
@@ -75,13 +75,13 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
             </Container>
 
             {/* Gallery Content */}
-            <div className="max-w-7xl mx-auto px-4 md:px-6 pb-24">
+            <Container className="pb-24" width="wide">
                 <div
                     className={`transition-[filter] duration-700 ease-out ${isGrayscale ? 'grayscale' : 'grayscale-0'}`}
                 >
                     <ImageGallery columnCount={3} gapSize={24} imagesData={images} />
                 </div>
-            </div>
+            </Container>
         </div>
     );
 };

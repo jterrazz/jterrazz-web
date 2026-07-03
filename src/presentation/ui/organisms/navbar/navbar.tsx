@@ -1,15 +1,6 @@
 'use client';
 
-import {
-    IconBook,
-    IconBrandGithub,
-    IconBrandX,
-    IconChevronDown,
-    IconDeviceDesktop,
-    IconDownload,
-    IconMenu2,
-    IconX,
-} from '@tabler/icons-react';
+import { IconChevronDown, IconDownload, IconMenu2, IconX } from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'motion/react';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -21,7 +12,7 @@ import { Link } from '../../../../infrastructure/navigation/navigation';
 import { useLocale } from '../../../context/locale-context';
 // Utils
 import { cn } from '../../../utils';
-import { SelectionIndicator } from '../../atoms/selection-indicator/selection-indicator';
+import { Container } from '../../design-system';
 import { type NavbarPage } from './navbar-page';
 
 /**
@@ -104,52 +95,6 @@ function LanguageSwitcher({ className, onSwitch }: { className?: string; onSwitc
     );
 }
 
-export type NavbarTabItemProps = {
-    children: React.ReactNode;
-    className?: string;
-    href: string;
-    newTab?: boolean;
-    onClick?: () => void;
-    title?: string;
-};
-
-const NavbarTabItem: React.FC<NavbarTabItemProps> = ({
-    children,
-    className = '',
-    href,
-    newTab = false,
-    onClick,
-    title,
-}) => {
-    const content = <span className="flex items-center gap-2">{children}</span>;
-
-    if (newTab) {
-        return (
-            <a
-                className={className}
-                href={href}
-                onClick={onClick}
-                rel="noopener noreferrer"
-                target="_blank"
-                title={title}
-            >
-                {content}
-            </a>
-        );
-    }
-
-    return (
-        <Link className={className} href={href} onClick={onClick} title={title}>
-            {content}
-        </Link>
-    );
-};
-
-type SerializableContact = {
-    name: string;
-    url: string;
-};
-
 type NavbarTranslations = {
     appStoreLink: string;
     downloadApp: string;
@@ -161,77 +106,11 @@ type NavbarTranslations = {
 
 type NavbarProps = {
     className?: string;
-    contacts: SerializableContact[];
     pages: NavbarPage[];
     translations: NavbarTranslations;
 };
 
-/*
- * Displacement map for the liquid-glass refraction: red encodes horizontal
- * displacement, green vertical. A linear ramp on each axis is neutral (128) in
- * the centre and bends pixels outward toward the rim — a convex glass lens.
- * Consumed by the #nav-glass SVG filter via feDisplacementMap.
- */
-const GLASS_MAP =
-    "<svg xmlns='http://www.w3.org/2000/svg' width='240' height='72'>" +
-    '<defs>' +
-    "<linearGradient id='gx' x1='0' y1='0' x2='1' y2='0'>" +
-    "<stop offset='0' stop-color='rgb(0,0,0)'/><stop offset='1' stop-color='rgb(255,0,0)'/>" +
-    '</linearGradient>' +
-    "<linearGradient id='gy' x1='0' y1='0' x2='0' y2='1'>" +
-    "<stop offset='0' stop-color='rgb(0,0,0)'/><stop offset='1' stop-color='rgb(0,255,0)'/>" +
-    '</linearGradient>' +
-    '</defs>' +
-    "<rect width='100%' height='100%' fill='rgb(0,0,0)'/>" +
-    "<rect width='100%' height='100%' fill='url(#gx)'/>" +
-    "<rect width='100%' height='100%' fill='url(#gy)' style='mix-blend-mode:screen'/>" +
-    '</svg>';
-const GLASS_MAP_URI = `data:image/svg+xml,${encodeURIComponent(GLASS_MAP)}`;
-
-const GlassFilter = () => (
-    <svg aria-hidden className="absolute h-0 w-0" focusable="false">
-        <filter
-            colorInterpolationFilters="sRGB"
-            height="100%"
-            id="nav-glass"
-            width="100%"
-            x="0"
-            y="0"
-        >
-            <feImage
-                height="100%"
-                href={GLASS_MAP_URI}
-                preserveAspectRatio="none"
-                result="map"
-                width="100%"
-                x="0"
-                y="0"
-            />
-            <feDisplacementMap
-                in="SourceGraphic"
-                in2="map"
-                scale="28"
-                xChannelSelector="R"
-                yChannelSelector="G"
-            />
-        </filter>
-    </svg>
-);
-
-const getContactIcon = (name: string) => {
-    if (name.toLowerCase().includes('github')) {
-        return <IconBrandGithub size={18} />;
-    }
-    if (name.toLowerCase().includes('medium')) {
-        return <IconBook size={18} />;
-    }
-    if (name.toLowerCase() === 'x') {
-        return <IconBrandX size={18} />;
-    }
-    return null;
-};
-
-export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, translations: t }) => {
+export const Navbar: React.FC<NavbarProps> = ({ className, pages, translations: t }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
 
@@ -242,149 +121,94 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
         (path) => pathname === path || pathname.startsWith(`${path}/`),
     );
 
-    const activePage = [...pages]
-        .sort((a, b) => b.href.length - a.href.length)
-        .find((page) => pathname === page.href || pathname.startsWith(page.href));
-
-    const mobileTitle = activePage?.name || 'Jterrazz';
-
     return (
         <>
-            <GlassFilter />
-            <nav
+            <header
                 className={cn(
-                    'w-full flex justify-center p-4 md:pt-6 pointer-events-none',
+                    'w-full border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950',
                     className,
                 )}
             >
-                <div
-                    className={cn(
-                        'pointer-events-auto relative isolate',
-                        'flex items-center justify-between w-full',
-                        'md:w-auto md:min-w-[720px] lg:min-w-[840px]',
-                        'glass bg-white/40 dark:bg-zinc-900/35',
-                        'border border-black/[0.04] dark:border-white/10',
-                        'rounded-full p-1.5 transition-all duration-300',
-                        'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_0_2px_0_rgba(0,0,0,0.04),0_0_24px_-8px_rgba(0,0,0,0.13)]',
-                        'dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12),0_0_12px_-2px_rgba(0,0,0,0.5)]',
-                    )}
-                >
-                    {/* Specular sheen — sits above the refracted backdrop, below content */}
-                    <span
-                        aria-hidden
-                        className="pointer-events-none absolute inset-0 z-0 rounded-full bg-gradient-to-b from-white/45 via-white/5 to-transparent dark:from-white/10 dark:via-transparent"
-                    />
+                <Container width="shell">
+                    <nav className="flex h-16 items-center justify-between gap-4">
+                        {/* Desktop navigation — flush left */}
+                        <div className="hidden md:flex items-center -ml-3.5">
+                            {pages.map((page) => {
+                                const isSelected = pathname === page.href;
+                                return (
+                                    <Link
+                                        className={cn(
+                                            'flex h-9 items-center rounded-full px-3.5 text-sm font-medium transition-colors duration-150',
+                                            isSelected
+                                                ? 'text-zinc-950 dark:text-white'
+                                                : 'text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white',
+                                        )}
+                                        href={page.href}
+                                        key={page.href}
+                                    >
+                                        {page.name}
+                                    </Link>
+                                );
+                            })}
+                        </div>
 
-                    {/* Left Section: Navigation */}
-                    <div className="relative z-10 flex items-center">
-                        {/* Mobile Title */}
-                        <span className="md:hidden pl-3 text-sm font-semibold text-black dark:text-white">
-                            {mobileTitle}
-                        </span>
+                        {/* Desktop actions */}
+                        <div className="hidden md:flex items-center justify-end gap-1">
+                            <div className="hidden lg:flex items-center gap-1">
+                                <LanguageSwitcher />
+                            </div>
 
-                        {/* Desktop Navigation */}
-                        <div className="hidden md:block">
-                            <SelectionIndicator
-                                className="rounded-full bg-zinc-100 dark:bg-zinc-800"
-                                enableHover
-                                transition={{
-                                    type: 'spring',
-                                    stiffness: 400,
-                                    damping: 30,
-                                    mass: 0.8,
-                                }}
+                            <AnimatePresence initial={false} mode="wait">
+                                {shouldShowAppButton && (
+                                    <motion.a
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="flex h-9 w-9 items-center justify-center gap-2 lg:w-auto lg:px-4 rounded-full bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm whitespace-nowrap"
+                                        exit={{ opacity: 0, scale: 0.8 }}
+                                        href={t.appStoreLink}
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        rel="noreferrer"
+                                        target="_blank"
+                                        transition={{ duration: 0.2, ease: 'easeInOut' }}
+                                    >
+                                        <span className="hidden lg:inline">{t.getApp}</span>
+                                        <span className="sr-only"> {t.opensInNewTab}</span>
+                                        <IconDownload size={16} />
+                                    </motion.a>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+                        {/* Mobile actions */}
+                        <div className="md:hidden flex items-center gap-1">
+                            <AnimatePresence initial={false} mode="wait">
+                                {shouldShowAppButton && (
+                                    <motion.a
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="flex items-center justify-center w-9 h-9 rounded-full bg-black dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm"
+                                        exit={{ opacity: 0, scale: 0.8 }}
+                                        href={t.appStoreLink}
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        rel="noreferrer"
+                                        target="_blank"
+                                        transition={{ duration: 0.2, ease: 'easeInOut' }}
+                                    >
+                                        <span className="sr-only">{t.getApp}</span>
+                                        <IconDownload size={18} />
+                                    </motion.a>
+                                )}
+                            </AnimatePresence>
+                            <button
+                                aria-label="Toggle menu"
+                                className="flex items-center justify-center w-9 h-9 rounded-full text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                type="button"
                             >
-                                {pages.map((page) => {
-                                    const isSelected = pathname === page.href;
-                                    return (
-                                        <div data-id={page.href} key={page.href}>
-                                            <Link
-                                                className={cn(
-                                                    'relative flex h-9 items-center rounded-full px-3.5 text-sm font-medium transition-colors duration-150',
-                                                    isSelected
-                                                        ? 'text-zinc-950 dark:text-white'
-                                                        : 'text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white',
-                                                )}
-                                                href={page.href}
-                                            >
-                                                {page.name}
-                                            </Link>
-                                        </div>
-                                    );
-                                })}
-                            </SelectionIndicator>
+                                {isMenuOpen ? <IconX size={18} /> : <IconMenu2 size={18} />}
+                            </button>
                         </div>
-                    </div>
-
-                    {/* Right Section: Actions */}
-                    <div className="relative z-10 hidden md:flex justify-end items-center gap-1">
-                        <div className="hidden lg:flex items-center gap-1">
-                            <LanguageSwitcher />
-                            {contacts.map((contact) => (
-                                <NavbarTabItem
-                                    className="flex h-9 w-9 items-center justify-center rounded-full text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors"
-                                    href={contact.url}
-                                    key={contact.name}
-                                    newTab
-                                    title={contact.name}
-                                >
-                                    {getContactIcon(contact.name) || (
-                                        <span className="text-sm font-medium">{contact.name}</span>
-                                    )}
-                                </NavbarTabItem>
-                            ))}
-                        </div>
-
-                        <AnimatePresence initial={false} mode="wait">
-                            {shouldShowAppButton && (
-                                <motion.a
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="flex h-9 w-9 items-center justify-center gap-2 lg:w-auto lg:px-4 rounded-full bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm whitespace-nowrap"
-                                    exit={{ opacity: 0, scale: 0.8 }}
-                                    href={t.appStoreLink}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    rel="noreferrer"
-                                    target="_blank"
-                                    transition={{ duration: 0.2, ease: 'easeInOut' }}
-                                >
-                                    <span className="hidden lg:inline">{t.getApp}</span>
-                                    <span className="sr-only"> {t.opensInNewTab}</span>
-                                    <IconDownload size={16} />
-                                </motion.a>
-                            )}
-                        </AnimatePresence>
-                    </div>
-
-                    {/* Mobile Menu Toggle & Actions */}
-                    <div className="relative z-10 md:hidden flex items-center gap-1 pr-1">
-                        <AnimatePresence initial={false} mode="wait">
-                            {shouldShowAppButton && (
-                                <motion.a
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="flex items-center justify-center w-9 h-9 rounded-full bg-black dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm"
-                                    exit={{ opacity: 0, scale: 0.8 }}
-                                    href={t.appStoreLink}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    rel="noreferrer"
-                                    target="_blank"
-                                    transition={{ duration: 0.2, ease: 'easeInOut' }}
-                                >
-                                    <span className="sr-only">{t.getApp}</span>
-                                    <IconDownload size={18} />
-                                </motion.a>
-                            )}
-                        </AnimatePresence>
-                        <button
-                            aria-label="Toggle menu"
-                            className="flex items-center justify-center w-9 h-9 rounded-full text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            type="button"
-                        >
-                            {isMenuOpen ? <IconX size={18} /> : <IconMenu2 size={18} />}
-                        </button>
-                    </div>
-                </div>
-            </nav>
+                    </nav>
+                </Container>
+            </header>
 
             {/* Mobile Menu Overlay */}
             <AnimatePresence>
@@ -431,23 +255,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                             initial={{ opacity: 0 }}
                             transition={{ delay: 0.3 }}
                         >
-                            <div className="flex items-center gap-6">
-                                {contacts.map((contact) => (
-                                    <a
-                                        className="text-black dark:text-white"
-                                        href={contact.url}
-                                        key={contact.name}
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                        {getContactIcon(contact.name) || (
-                                            <IconDeviceDesktop size={20} />
-                                        )}
-                                    </a>
-                                ))}
-                                <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-700" />
-                                <LanguageSwitcher onSwitch={closeMenu} />
-                            </div>
+                            <LanguageSwitcher onSwitch={closeMenu} />
 
                             {shouldShowAppButton && (
                                 <a
