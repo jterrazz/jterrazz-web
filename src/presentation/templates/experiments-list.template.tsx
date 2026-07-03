@@ -20,7 +20,6 @@ type ExperimentsListTranslations = {
     applications: string;
     foundation: string;
     hackathons: string;
-    kicker: string;
     systems: string;
     viewGitHub: string;
 };
@@ -95,7 +94,6 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                 <SectionHero
                     button={button}
                     description={highlightDescription}
-                    kicker={t.kicker}
                     title={highlightTitle}
                 />
             </Container>

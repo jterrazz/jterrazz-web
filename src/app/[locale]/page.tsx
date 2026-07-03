@@ -188,7 +188,6 @@ export default async function HomePage({ params }: Props) {
         journey: t('journey'),
         featuredExperiments: t('featuredExperiments'),
         featuredArticles: t('featuredArticles'),
-        kicker: t('kicker'),
         readArticles: t('readArticles'),
         title: t('title'),
         titleAccent: t('titleAccent'),

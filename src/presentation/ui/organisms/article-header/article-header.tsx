@@ -8,7 +8,6 @@ import { cn } from '../../../utils';
 import { Heading, Kicker, Lead } from '../../design-system';
 
 type ArticleHeaderProps = {
-    category?: string;
     className?: string;
     description?: string;
     experiment?: null | { name: string; slug: string };
@@ -28,7 +27,6 @@ const PART_LABEL: Record<Locale, (position: number, total: number) => string> = 
 };
 
 export const ArticleHeader: React.FC<ArticleHeaderProps> = ({
-    category,
     className,
     description,
     experiment,
@@ -42,7 +40,6 @@ export const ArticleHeader: React.FC<ArticleHeaderProps> = ({
     title,
 }) => {
     const eyebrowParts = [
-        category,
         seriesName &&
             (seriesPosition && seriesTotal
                 ? `${seriesName} · ${PART_LABEL[locale](seriesPosition, seriesTotal)}`

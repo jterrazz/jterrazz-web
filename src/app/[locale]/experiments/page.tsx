@@ -115,7 +115,6 @@ export default async function ExperimentsPage({ params }: Props) {
         applications: t('applications'),
         foundation: t('foundation'),
         hackathons: t('hackathons'),
-        kicker: t('kicker'),
         systems: t('systems'),
         viewGitHub: t('viewGitHub'),
     };

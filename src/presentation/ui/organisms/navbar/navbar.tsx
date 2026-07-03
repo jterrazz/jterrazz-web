@@ -63,14 +63,14 @@ function LanguageSwitcher({ className, onSwitch }: { className?: string; onSwitc
     return (
         <div className={cn('relative', className)} ref={dropdownRef}>
             <button
-                className="flex items-center gap-1 text-sm font-medium text-black dark:text-white transition-colors"
+                className="flex h-9 items-center gap-1 rounded-full px-3 text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors"
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
             >
                 {locale.toUpperCase()}
                 <IconChevronDown
                     className={cn('transition-transform', isOpen && 'rotate-180')}
-                    size={12}
+                    size={14}
                 />
             </button>
 
@@ -78,14 +78,14 @@ function LanguageSwitcher({ className, onSwitch }: { className?: string; onSwitc
                 {isOpen && (
                     <motion.div
                         animate={{ opacity: 1, y: 0 }}
-                        className="absolute top-full right-0 mt-2 py-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-lg min-w-[80px] z-50"
+                        className="absolute top-full right-0 mt-2 p-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-lg min-w-20 z-50"
                         exit={{ opacity: 0, y: -4 }}
                         initial={{ opacity: 0, y: -4 }}
                         transition={{ duration: 0.15 }}
                     >
                         {otherLocales.map((l) => (
                             <NextLink
-                                className="block px-3 py-1.5 text-xs text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                                className="block rounded-lg px-3 py-1.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-950 dark:hover:text-white transition-colors"
                                 href={buildLocaleUrl(pathname, locale, l)}
                                 hrefLang={l}
                                 key={l}
@@ -276,9 +276,9 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                     />
 
                     {/* Left Section: Navigation */}
-                    <div className="relative z-10 flex items-center gap-2 lg:gap-6 pl-2">
+                    <div className="relative z-10 flex items-center">
                         {/* Mobile Title */}
-                        <span className="md:hidden text-sm font-semibold text-black dark:text-white ml-1">
+                        <span className="md:hidden pl-3 text-sm font-semibold text-black dark:text-white">
                             {mobileTitle}
                         </span>
 
@@ -297,11 +297,13 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                                 {pages.map((page) => {
                                     const isSelected = pathname === page.href;
                                     return (
-                                        <div className="px-1" data-id={page.href} key={page.href}>
+                                        <div data-id={page.href} key={page.href}>
                                             <Link
                                                 className={cn(
-                                                    'relative px-3 py-2 rounded-full text-sm font-medium transition-colors duration-150 block text-black dark:text-white',
-                                                    isSelected ? 'font-semibold' : 'font-medium',
+                                                    'relative flex h-9 items-center rounded-full px-3.5 text-sm font-medium transition-colors duration-150',
+                                                    isSelected
+                                                        ? 'text-zinc-950 dark:text-white'
+                                                        : 'text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white',
                                                 )}
                                                 href={page.href}
                                             >
@@ -315,29 +317,29 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                     </div>
 
                     {/* Right Section: Actions */}
-                    <div className="relative z-10 hidden md:flex justify-end items-center gap-1 lg:gap-2">
+                    <div className="relative z-10 hidden md:flex justify-end items-center gap-1">
                         <div className="hidden lg:flex items-center gap-1">
-                            <LanguageSwitcher className="px-2" />
+                            <LanguageSwitcher />
                             {contacts.map((contact) => (
                                 <NavbarTabItem
-                                    className="text-black dark:text-white transition-colors p-2"
+                                    className="flex h-9 w-9 items-center justify-center rounded-full text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white transition-colors"
                                     href={contact.url}
                                     key={contact.name}
                                     newTab
                                     title={contact.name}
                                 >
                                     {getContactIcon(contact.name) || (
-                                        <span className="text-xs font-medium">{contact.name}</span>
+                                        <span className="text-sm font-medium">{contact.name}</span>
                                     )}
                                 </NavbarTabItem>
                             ))}
                         </div>
 
-                        <AnimatePresence mode="wait">
+                        <AnimatePresence initial={false} mode="wait">
                             {shouldShowAppButton && (
                                 <motion.a
                                     animate={{ opacity: 1, scale: 1 }}
-                                    className="flex items-center justify-center lg:justify-start gap-2 h-9 w-9 lg:w-auto lg:h-auto lg:px-4 lg:py-2 rounded-full bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm ml-1 whitespace-nowrap"
+                                    className="flex h-9 w-9 items-center justify-center gap-2 lg:w-auto lg:px-4 rounded-full bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm whitespace-nowrap"
                                     exit={{ opacity: 0, scale: 0.8 }}
                                     href={t.appStoreLink}
                                     initial={{ opacity: 0, scale: 0.8 }}
@@ -347,7 +349,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                                 >
                                     <span className="hidden lg:inline">{t.getApp}</span>
                                     <span className="sr-only"> {t.opensInNewTab}</span>
-                                    <IconDownload size={14} />
+                                    <IconDownload size={16} />
                                 </motion.a>
                             )}
                         </AnimatePresence>
@@ -355,7 +357,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
 
                     {/* Mobile Menu Toggle & Actions */}
                     <div className="relative z-10 md:hidden flex items-center gap-1 pr-1">
-                        <AnimatePresence mode="wait">
+                        <AnimatePresence initial={false} mode="wait">
                             {shouldShowAppButton && (
                                 <motion.a
                                     animate={{ opacity: 1, scale: 1 }}
@@ -368,7 +370,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                                     transition={{ duration: 0.2, ease: 'easeInOut' }}
                                 >
                                     <span className="sr-only">{t.getApp}</span>
-                                    <IconDownload size={16} />
+                                    <IconDownload size={18} />
                                 </motion.a>
                             )}
                         </AnimatePresence>
@@ -378,7 +380,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             type="button"
                         >
-                            {isMenuOpen ? <IconX size={20} /> : <IconMenu2 size={20} />}
+                            {isMenuOpen ? <IconX size={18} /> : <IconMenu2 size={18} />}
                         </button>
                     </div>
                 </div>
@@ -401,7 +403,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className, contacts, pages, tran
                             onClick={closeMenu}
                             type="button"
                         >
-                            <IconX size={28} />
+                            <IconX size={24} />
                         </button>
 
                         <div className="flex flex-col gap-6 mt-8">

@@ -8,11 +8,11 @@ import {
     stripArticleMasthead,
 } from '../../domain/utils/article-content';
 import { buildArticleSlug } from '../../domain/utils/slugify';
+import { Container } from '../ui/design-system';
 import { ArticleByline } from '../ui/molecules/article-byline/article-byline';
 import { TableOfContents } from '../ui/molecules/table-of-contents/table-of-contents';
 import { ArticleFooter } from '../ui/organisms/article-footer/article-footer';
 import { ArticleHeader } from '../ui/organisms/article-header/article-header';
-import { Container } from '../ui/organisms/container/container';
 import { MarkdownRenderer } from '../ui/organisms/markdown-renderer/markdown-renderer';
 
 type ArticleTemplateProps = {
@@ -129,9 +129,8 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     const readingTimeMinutes = calculateReadingTimeMinutes(contentInMarkdown);
 
     return (
-        <Container className="mt-10 md:mt-20 relative" size="wide">
+        <Container className="mt-10 md:mt-20 pb-16 md:pb-24 relative" width="wide">
             <ArticleHeader
-                category={currentArticle?.metadata.category}
                 className="mb-10 md:mb-14"
                 description={description}
                 experiment={linkedExperiment}

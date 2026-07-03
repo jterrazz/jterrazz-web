@@ -10,10 +10,10 @@ import { type Photograph } from '../../domain/photograph';
 import { UserContactType } from '../../domain/user';
 // Infrastructure
 import { userRepository } from '../../infrastructure/repositories/user.repository';
+import { Container } from '../ui/design-system';
 import { SectionHero } from '../ui/molecules/section-hero/section-hero';
 
 type PhotographsGridTranslations = {
-    kicker: string;
     viewPexels: string;
 };
 
@@ -66,16 +66,13 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
     return (
         <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
             {/* Hero Section */}
-            <div className="w-full border-b border-zinc-100 dark:border-zinc-900 mb-12">
-                <div className="max-w-7xl mx-auto px-4 md:px-6">
-                    <SectionHero
-                        button={button}
-                        description={highlightDescription}
-                        kicker={t.kicker}
-                        title={highlightTitle}
-                    />
-                </div>
-            </div>
+            <Container>
+                <SectionHero
+                    button={button}
+                    description={highlightDescription}
+                    title={highlightTitle}
+                />
+            </Container>
 
             {/* Gallery Content */}
             <div className="max-w-7xl mx-auto px-4 md:px-6 pb-24">

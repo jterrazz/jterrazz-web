@@ -5,6 +5,13 @@
 
 /* Self-hosted fonts (see app/layout.tsx): Hanken Grotesk for text (font-sans),
    Geist for display headings (font-display). */
+/* Type scale extension: micro labels (badges, mono chips). Pairs with the
+   default Tailwind scale so every size/line-height sits on the 4px grid. */
+@theme {
+    --text-2xs: 0.625rem;
+    --text-2xs--line-height: 0.875rem;
+}
+
 @theme inline {
     --font-sans:
         var(--font-hanken), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica,

@@ -21,7 +21,6 @@ import {
     Container,
     DottedGrid,
     Heading,
-    Kicker,
     Lead,
     Meta,
     Section,
@@ -127,7 +126,7 @@ const AppStoreBadge: React.FC<{
     >
         {icon}
         <div className="text-left">
-            <div className="text-[10px] opacity-80 leading-none mb-0.5">{topText}</div>
+            <div className="text-2xs opacity-80 leading-none mb-0.5">{topText}</div>
             <div className="text-sm font-semibold leading-none">{bottomText}</div>
         </div>
     </a>
@@ -170,7 +169,6 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                                     width={96}
                                 />
                             )}
-                            <Kicker className="mb-6">{contextLabel}</Kicker>
                             <Heading className="mb-6" size="display">
                                 {experiment.name}
                             </Heading>
@@ -213,7 +211,6 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                 <Container>
                     <Section spacing="hero">
                         <DottedGrid intensity="medium" origin="top-left" />
-                        <Kicker className="mb-6">{contextLabel}</Kicker>
                         <Heading className="mb-6" size="display">
                             {experiment.name}
                         </Heading>
@@ -221,12 +218,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                         {heroActions.length > 0 && (
                             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                                 {heroActions.map((action) => (
-                                    <ArrowLink
-                                        href={action.href}
-                                        key={action.href}
-                                        tone="subtle"
-                                        variant="mono"
-                                    >
+                                    <ArrowLink href={action.href} key={action.href} tone="subtle">
                                         {action.label}
                                     </ArrowLink>
                                 ))}
@@ -275,7 +267,6 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                                         className="mt-4"
                                         href={`/experiments/${experiment.slug}/privacy`}
                                         tone="subtle"
-                                        variant="mono"
                                     >
                                         {t.detail.privacyPolicy}
                                     </ArrowLink>

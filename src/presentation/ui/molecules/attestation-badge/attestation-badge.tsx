@@ -162,7 +162,7 @@ export const AttestationBadge: React.FC<AttestationBadgeProps> = ({
             href={verifyHref}
             title={status}
         >
-            <span className="text-[13px] font-medium leading-snug text-zinc-600 dark:text-zinc-400">
+            <span className="text-sm font-medium leading-snug text-zinc-600 dark:text-zinc-400">
                 Signed by{' '}
                 <span className={cn(!ensName && 'font-mono', 'text-zinc-700 dark:text-zinc-300')}>
                     {signer}

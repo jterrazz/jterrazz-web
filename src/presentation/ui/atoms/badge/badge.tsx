@@ -46,7 +46,7 @@ const textColorMap: Record<BadgeColor, string> = {
 };
 
 const sizeMap: Record<DotPulseSize, string> = {
-    [DotPulseSize.Small]: 'text-[10px] gap-1.5',
+    [DotPulseSize.Small]: 'text-2xs gap-1.5',
     [DotPulseSize.Medium]: 'text-xs gap-2',
 };
 

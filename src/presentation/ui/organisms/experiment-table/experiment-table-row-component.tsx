@@ -68,14 +68,14 @@ export const ExperimentTableRowComponent: React.FC<ExperimentTableRowComponentPr
                     <div className="flex items-center gap-1.5">
                         {visibleTags.map((tag) => (
                             <span
-                                className="inline-block px-2 py-0.5 text-[10px] font-medium text-zinc-500 bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-400 rounded-full"
+                                className="inline-block px-2 py-0.5 text-2xs font-medium text-zinc-500 bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-400 rounded-full"
                                 key={tag}
                             >
                                 {tag}
                             </span>
                         ))}
                         {hiddenTagsCount > 0 && (
-                            <span className="text-[10px] text-zinc-400 font-medium ml-1">
+                            <span className="text-2xs text-zinc-400 font-medium ml-1">
                                 +{hiddenTagsCount}
                             </span>
                         )}

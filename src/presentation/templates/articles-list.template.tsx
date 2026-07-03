@@ -1,6 +1,5 @@
 'use client';
 
-import Script from 'next/script';
 import { useState } from 'react';
 
 // Domain
@@ -47,7 +46,6 @@ type ArticlesListTranslations = {
     filterAll: string;
     filterExploration: string;
     filterReflection: string;
-    kicker: string;
     otherPosts: string;
     series: string;
 };
@@ -93,40 +91,6 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
         })
         .filter((s): s is NonNullable<typeof s> => s !== null);
 
-    const allArticles = [
-        ...viewModel.series.flatMap((series) => [
-            series.featuredArticle,
-            ...series.relatedArticles,
-        ]),
-        ...viewModel.standaloneArticles,
-    ];
-
-    const articlesListJsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'CollectionPage',
-        author: {
-            '@type': 'Person',
-            jobTitle: 'AI Agent Developer, Fintech Engineer',
-            name: 'Jean-Baptiste Terrazzoni',
-            url: 'https://jterrazz.com',
-        },
-        description:
-            'A collection of articles on AI, fintech, coding, and personal growth by Jean-Baptiste Terrazzoni - AI Agent Developer and Fintech Engineer.',
-        hasPart: allArticles.map((article) => ({
-            '@type': 'BlogPosting',
-            about: article.category,
-            author: {
-                '@type': 'Person',
-                name: 'Jean-Baptiste Terrazzoni',
-                url: 'https://jterrazz.com',
-            },
-            name: article.title,
-            url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles/${article.slug}`,
-        })),
-        name: 'Articles by Jean-Baptiste Terrazzoni',
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com'}/articles`,
-    };
-
     const filters: { key: FilterKey; label: string }[] = [
         { key: 'All', label: t.filterAll },
         { key: 'Exploration', label: t.filterExploration },
@@ -135,19 +99,10 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
 
     return (
         <div className="w-full min-h-screen bg-white dark:bg-zinc-950">
-            <Script
-                id="articles-list-json-ld"
-                strategy="afterInteractive"
-                type="application/ld+json"
-            >
-                {JSON.stringify(articlesListJsonLd)}
-            </Script>
-
             <Container>
                 <SectionHero
                     button={viewModel.button}
                     description={viewModel.highlightDescription}
-                    kicker={t.kicker}
                     title={viewModel.highlightTitle}
                 />
             </Container>
@@ -159,9 +114,9 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
                         return (
                             <button
                                 className={cn(
-                                    'font-mono text-xs uppercase tracking-widest px-3 py-1.5 rounded-full transition-colors',
+                                    'text-sm font-medium px-3.5 py-1.5 rounded-full transition-colors',
                                     isActive
-                                        ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100'
+                                        ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
                                         : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100',
                                 )}
                                 key={key}

@@ -43,7 +43,7 @@ export const ArticleByline: React.FC<ArticleBylineProps> = ({
                 />
             </div>
             <div className="flex min-w-0 flex-col">
-                <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+                <span className="font-mono text-2xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
                     {WRITTEN_BY[locale]}
                 </span>
                 <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">

@@ -41,7 +41,6 @@ type HelloWorldTranslations = {
         decentralization: { description: string; title: string };
     };
     journey: string;
-    kicker: string;
     readArticles: string;
     title: string;
     titleAccent: string;
@@ -83,7 +82,6 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                 <SectionHero
                     button={button}
                     description={description}
-                    kicker={t.kicker}
                     title={t.title}
                     titleAccent={t.titleAccent}
                 />

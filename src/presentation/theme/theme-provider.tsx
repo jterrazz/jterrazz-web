@@ -70,6 +70,12 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
     const repository = useMemo(() => new ThemeLocalStorageRepository(), []);
 
+    // React 19 treats <html> as a host singleton and can clobber the class the
+    // No-flash inline script set before hydration. Re-assert it after mount.
+    useEffect(() => {
+        applyThemeToDOM(resolveThemeValue(getInitialTheme()));
+    }, []);
+
     // Set theme function - updates state, localStorage, and DOM
     const setTheme = useCallback(
         (newTheme: Theme) => {

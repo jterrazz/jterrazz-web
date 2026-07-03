@@ -5,8 +5,8 @@ import { cn } from '../../utils';
 // Uniform horizontal container. Three widths cover the real variants
 // Found in the app: reading width, default page width, and gallery width.
 const WIDTH_STYLES = {
-    default: 'max-w-3xl',
-    narrow: 'max-w-2xl',
+    default: 'max-w-180', // 45rem — between 2xl and 3xl, the editorial column
+    narrow: 'max-w-xl',
     wide: 'max-w-7xl',
 } as const;
 

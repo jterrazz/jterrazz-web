@@ -20,7 +20,7 @@ export const CardArticleCompact: React.FC<CardArticleCompactProps> = ({
         <Link className={cn('block group', className)} href={`/articles/${slug}`}>
             <article className="flex items-center gap-4 py-3 border-b border-zinc-100 dark:border-zinc-800/50 last:border-0">
                 <div className="flex-1 min-w-0">
-                    <h3 className="text-[15px] font-medium text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors truncate">
+                    <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors truncate">
                         {title}
                     </h3>
                 </div>

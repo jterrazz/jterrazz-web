@@ -88,7 +88,6 @@ export default async function ArticlesPage({ params }: Props) {
         filterAll: t('filterAll'),
         filterExploration: t('filterExploration'),
         filterReflection: t('filterReflection'),
-        kicker: t('kicker'),
         otherPosts: t('otherPosts'),
         series: t('series'),
     };

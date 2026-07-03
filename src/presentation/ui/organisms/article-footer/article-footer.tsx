@@ -100,7 +100,7 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
                     />
                 </div>
                 <div className="flex-1 min-w-0 flex flex-col">
-                    <span className="text-[14px] text-zinc-600 dark:text-zinc-400">
+                    <span className="text-sm text-zinc-600 dark:text-zinc-400">
                         Written by{' '}
                         <span className="text-zinc-900 dark:text-zinc-100 font-medium">
                             {profile.name}
@@ -142,7 +142,7 @@ export const ArticleFooter: React.FC<ArticleFooterProps> = ({
 
             {/* Metadata — published date now lives in the masthead byline */}
             {dateModified !== datePublished && (
-                <div className="mt-4 md:mt-5 text-[13px] md:text-[14px] text-zinc-400 dark:text-zinc-500">
+                <div className="mt-4 md:mt-5 text-sm text-zinc-400 dark:text-zinc-500">
                     <p>Updated {formatDate(dateModified)}</p>
                 </div>
             )}

@@ -4,7 +4,6 @@
         "titleAccent": "stack.",
         "description": "Building autonomous systems, products from scratch, and sovereign software. Notes on AI, autonomy, and the systems beneath.",
         "seoDescription": "Building autonomous systems, products from scratch, and sovereign software. Notes on AI, autonomy, and the systems beneath.",
-        "kicker": "Personal site",
         "seoTitle": "Founder & Software Engineer — Agent Stack",
         "readArticles": "Read Articles",
         "featuredExperiments": "Featured Experiments",
@@ -34,19 +33,17 @@
     },
     "articles": {
         "title": "Articles",
-        "kicker": "Writing",
         "seoDescription": "Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.",
         "highlightDescription": "Notes on what I learn while building software.",
         "filterAll": "All",
         "filterExploration": "Experiments",
-        "filterReflection": "Reflexions",
+        "filterReflection": "Reflections",
         "otherPosts": "Recent",
         "series": "Series",
         "viewMedium": "Medium"
     },
     "experiments": {
         "title": "Experiments",
-        "kicker": "Building",
         "seoDescription": "Open-source projects, apps, and developer tools. AI agents, fintech solutions, TypeScript packages, and system-level experiments.",
         "highlightDescription": "A collection of apps and tools I've built to solve real problems.",
         "viewGitHub": "GitHub",
@@ -90,7 +87,6 @@
     },
     "photographs": {
         "title": "Photographs",
-        "kicker": "Photography",
         "seoDescription": "Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.",
         "highlightDescription": "A simple collection of moments and places that caught my eye.",
         "viewPexels": "Pexels"
@@ -101,7 +97,7 @@
         "photographs": "Photographs"
     },
     "navbar": {
-        "hello": "Hello",
+        "hello": "Home",
         "experiments": "Experiments",
         "articles": "Articles",
         "photographs": "Photographs",

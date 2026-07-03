@@ -8,8 +8,8 @@ import { buildArticleSlug } from '../../../../../domain/utils/slugify';
 import { type Locale, locales } from '../../../../../i18n/config';
 import { Link } from '../../../../../infrastructure/navigation/navigation';
 import { articlesRepository } from '../../../../../infrastructure/repositories/articles.repository';
+import { Container } from '../../../../../presentation/ui/design-system';
 import { ProofCard } from '../../../../../presentation/ui/molecules/proof-card/proof-card';
-import { Container } from '../../../../../presentation/ui/organisms/container/container';
 
 type VerifyPageProps = {
     params: Promise<{ locale: string; slugId: string }>;
@@ -28,7 +28,7 @@ export default async function VerifyArticlePage(props: VerifyPageProps) {
     const attestation = article.attestation;
     if (!attestation) {
         return (
-            <Container className="py-12 max-w-3xl">
+            <Container className="py-12">
                 <h1 className="text-2xl font-bold mb-4">No attestation available</h1>
                 <p className="text-zinc-600 dark:text-zinc-400">
                     This article hasn&apos;t been cryptographically signed (yet).
@@ -47,7 +47,7 @@ export default async function VerifyArticlePage(props: VerifyPageProps) {
     const articleTitle = article.metadata.title.en;
 
     return (
-        <Container className="py-12 max-w-3xl">
+        <Container className="py-12">
             <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2">
                 <Link
                     className="hover:text-zinc-900 dark:hover:text-zinc-100"

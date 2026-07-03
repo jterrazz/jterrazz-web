@@ -7,4 +7,4 @@ export { Container } from './container';
 export { DottedGrid } from './dotted-grid';
 export { Section } from './section';
 export { Tag } from './tag';
-export { Accent, BODY_LEADING, Heading, Kicker, Lead, Meta } from './typography';
+export { Accent, Heading, Kicker, Lead, Meta } from './typography';

@@ -238,7 +238,7 @@ const ClaimSummary = ({ state }: { state: AuthorshipState | DateState }) => {
         return null;
     }
     return (
-        <span className={`text-[10px] font-medium uppercase tracking-widest ${tone}`}>{label}</span>
+        <span className={`text-2xs font-medium uppercase tracking-widest ${tone}`}>{label}</span>
     );
 };
 
