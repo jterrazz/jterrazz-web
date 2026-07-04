@@ -57,6 +57,17 @@ const nextConfig: NextConfig = {
         ],
     },
     poweredByHeader: false,
+    // Serve the OpenPanel tracking script first-party: openpanel.dev is on
+    // Adblock lists (EasyPrivacy), so loading it from our own origin keeps
+    // Analytics working for visitors with content blockers.
+    async rewrites() {
+        return [
+            {
+                destination: 'https://openpanel.dev/op1.js',
+                source: '/op1.js',
+            },
+        ];
+    },
     // Single source of truth: src/config/redirects.ts (also exercised by the
     // E2E suite — add rules there, never here).
     async redirects() {

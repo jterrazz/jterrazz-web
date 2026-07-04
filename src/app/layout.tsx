@@ -158,6 +158,7 @@ export default async function RootLayout({
                     <OpenPanelComponent
                         apiUrl={SITE_CONFIG.analytics.apiUrl}
                         clientId={SITE_CONFIG.analytics.clientId}
+                        scriptUrl="/op1.js"
                         trackOutgoingLinks
                         trackScreenViews
                     />
