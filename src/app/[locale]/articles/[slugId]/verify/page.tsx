@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-import { type ArticleLanguage } from '../../../../../domain/article';
 import { buildArticleSlug } from '../../../../../domain/utils/slugify';
 import { type Locale, locales } from '../../../../../i18n/config';
 import { Link } from '../../../../../infrastructure/navigation/navigation';
@@ -20,7 +19,7 @@ export default async function VerifyArticlePage(props: VerifyPageProps) {
     setRequestLocale(locale);
 
     const id = slugId.split('-')[0];
-    const article = articlesRepository.getByIndex(id, locale as ArticleLanguage);
+    const article = articlesRepository.getByIndex(id);
     if (!article) {
         return notFound();
     }

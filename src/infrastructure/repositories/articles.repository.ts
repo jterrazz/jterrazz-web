@@ -715,13 +715,8 @@ export const articlesRepository = {
                 new Date(b.metadata.dateModified).getTime() -
                 new Date(a.metadata.dateModified).getTime(),
         ),
-    getByIndex: (index: string, language: ArticleLanguage = 'en'): Article | undefined => {
-        const article = articles.find((a) => String(a.publicIndex) === index);
-        if (!article || !article.content[language]) {
-            return undefined;
-        }
-        return article;
-    },
+    getByIndex: (index: string): Article | undefined =>
+        articles.find((a) => String(a.publicIndex) === index),
     /** Returns the on-disk folder name for an article index, or undefined. */
     getFilenameByIndex: (index: number): string | undefined => filenameByIndex.get(index),
 };

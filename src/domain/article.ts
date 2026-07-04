@@ -142,9 +142,11 @@ function sanitizeTranslatedTitle(
 export function createArticle(raw: RawArticleInput): Article {
     return {
         attestation: raw.attestation,
+        // Only include languages that actually have content — consumers rely
+        // On Object.keys() to know which locales exist (sitemap, hreflang…).
         content: {
-            en: raw.content.en ? sanitizeContent(raw.content.en) : undefined,
-            fr: raw.content.fr ? sanitizeContent(raw.content.fr) : undefined,
+            ...(raw.content.en && { en: sanitizeContent(raw.content.en) }),
+            ...(raw.content.fr && { fr: sanitizeContent(raw.content.fr) }),
         },
         imageUrl: raw.imageUrl,
         metadata: {

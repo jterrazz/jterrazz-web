@@ -32,7 +32,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
     setRequestLocale(locale);
 
     const id = slugId.split('-')[0];
-    const article = articlesRepository.getByIndex(id, locale as ArticleLanguage);
+    const article = articlesRepository.getByIndex(id);
 
     if (!article) {
         return notFound();
@@ -116,7 +116,7 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
     const { locale, slugId } = params;
     const id = slugId.split('-')[0];
 
-    const article = articlesRepository.getByIndex(id, locale as ArticleLanguage);
+    const article = articlesRepository.getByIndex(id);
 
     if (!article) {
         return { title: 'Article Not Found' };
@@ -134,7 +134,13 @@ export async function generateMetadata(props: ArticlePageProps): Promise<Metadat
     const title = article.metadata.title[locale as Locale] ?? article.metadata.title.en;
     const description =
         article.metadata.description[locale as Locale] ?? article.metadata.description.en;
-    const path = locale === 'en' ? `/articles/${slugId}` : `/${locale}/articles/${slugId}`;
+    // Locales without a translation serve the EN content as fallback — their
+    // Canonical points at the EN URL so search engines consolidate them.
+    const hasLocaleContent = Boolean(article.content[locale as ArticleLanguage]);
+    const path =
+        locale === 'en' || !hasLocaleContent
+            ? `/articles/${slugId}`
+            : `/${locale}/articles/${slugId}`;
     const is42 = is42RelatedArticle(article.publicIndex);
 
     const tags = [article.metadata.category, article.metadata.series].filter((tag): tag is string =>
