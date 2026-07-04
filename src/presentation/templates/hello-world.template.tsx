@@ -1,15 +1,17 @@
 'use client';
 
+import Image from 'next/image';
 import React from 'react';
 
 // Domain
 import { type Experiment } from '../../domain/experiment';
 import { type UserExperience } from '../../domain/user';
+import { Link } from '../../infrastructure/navigation/navigation';
 import { ArrowLink, Container, Heading, Lead, Meta } from '../ui/design-system';
-import { CardArticleRow } from '../ui/molecules/card-article/card-article-row';
-import { CardExperimentFeatured } from '../ui/molecules/card-experiment-featured/card-experiment-featured';
+import { BadgeExperimentStatus } from '../ui/molecules/badge-experiment-status/badge-experiment-status';
 import { DividerSection } from '../ui/molecules/divider-section/divider-section';
 import { SectionHero } from '../ui/molecules/section-hero/section-hero';
+import { FeaturedArticlesShowcase } from '../ui/organisms/featured-articles-showcase/featured-articles-showcase';
 
 interface Article {
     articleCount?: number;
@@ -102,42 +104,55 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
             </Container>
 
             <Container width="shell">
-                {/* Featured pair — side by side once the shell is wide enough */}
-                <div className="grid gap-12 pb-12 lg:grid-cols-2 lg:items-start">
+                <div className="flex flex-col gap-14 pb-12">
                     <section>
-                        <DividerSection className="mb-4" title={t.featuredExperiments} />
-                        <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
-                            {featuredExperiments.map((experiment) => (
-                                <CardExperimentFeatured
-                                    experiment={experiment}
-                                    key={experiment.name}
-                                />
-                            ))}
-                        </div>
+                        <DividerSection className="mb-6" title={t.featuredArticles} />
+                        <FeaturedArticlesShowcase articles={featuredArticles.slice(0, 4)} />
                         <div className="mt-5 flex justify-end">
-                            <ArrowLink href="/experiments" tone="subtle">
+                            <ArrowLink href="/articles" tone="subtle">
                                 {t.viewAll}
                             </ArrowLink>
                         </div>
                     </section>
 
                     <section>
-                        <DividerSection className="mb-4" title={t.featuredArticles} />
+                        <DividerSection className="mb-4" title={t.featuredExperiments} />
                         <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
-                            {featuredArticles.slice(0, 4).map((article) => (
-                                <CardArticleRow
-                                    articleCount={article.articleCount}
-                                    experimentSlug={article.experimentSlug}
-                                    imageUrl={article.imageUrl}
-                                    key={article.title}
-                                    slug={article.slug}
-                                    tagline={article.tagline}
-                                    title={article.title}
-                                />
+                            {featuredExperiments.map((experiment, index) => (
+                                <Link
+                                    className="group flex items-center gap-5 py-4"
+                                    href={`/experiments/${experiment.slug}`}
+                                    key={experiment.name}
+                                >
+                                    <Meta className="w-6 shrink-0">
+                                        {String(index + 1).padStart(2, '0')}
+                                    </Meta>
+                                    {experiment.iconUrl && (
+                                        <Image
+                                            alt={experiment.name}
+                                            className="shrink-0 rounded-xl shadow-[0_0_6px_rgba(0,0,0,0.04)]"
+                                            height={44}
+                                            src={experiment.iconUrl}
+                                            width={44}
+                                        />
+                                    )}
+                                    <div className="min-w-0 flex-1 transition-transform duration-200 group-hover:translate-x-1">
+                                        <Heading as="h3" className="mb-0.5" size="title">
+                                            {experiment.name}
+                                        </Heading>
+                                        <Lead className="line-clamp-1" size="sm">
+                                            {experiment.tagline}
+                                        </Lead>
+                                    </div>
+                                    <BadgeExperimentStatus
+                                        className="shrink-0"
+                                        status={experiment.status}
+                                    />
+                                </Link>
                             ))}
                         </div>
                         <div className="mt-5 flex justify-end">
-                            <ArrowLink href="/articles" tone="subtle">
+                            <ArrowLink href="/experiments" tone="subtle">
                                 {t.viewAll}
                             </ArrowLink>
                         </div>

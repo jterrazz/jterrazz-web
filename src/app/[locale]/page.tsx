@@ -60,7 +60,7 @@ export default async function HomePage({ params }: Props) {
 
     // Featured articles - specific selection of series and standalone articles
     const featuredSeriesNames = ['Using AI', 'Abundant Intelligence', 'Application Design'];
-    const featuredStandaloneIndexes = [13]; // "Let's playfully question everything"
+    const featuredStandaloneIndexes = [24]; // Latest AI article — showcase spotlight
 
     // Group articles by series
     const seriesMap = new Map<string, typeof allArticles>();
@@ -130,9 +130,17 @@ export default async function HomePage({ params }: Props) {
         });
     }
 
-    // Sort by latest date (newest first) and remove the date field
+    // Sort by latest date (newest first), keep the standalone spotlight in
+    // Front (it drives the showcase cover), and remove the date field
     const featuredArticles = featuredArticlesWithDates
-        .sort((a, b) => b.latestDate.getTime() - a.latestDate.getTime())
+        .sort((a, b) => {
+            const aSpotlight = a.articleCount === undefined ? 0 : 1;
+            const bSpotlight = b.articleCount === undefined ? 0 : 1;
+            if (aSpotlight !== bSpotlight) {
+                return aSpotlight - bSpotlight;
+            }
+            return b.latestDate.getTime() - a.latestDate.getTime();
+        })
         .map(({ latestDate: _latestDate, ...rest }) => rest);
 
     // Featured experiments - specific selection
