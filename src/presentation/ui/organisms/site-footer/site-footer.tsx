@@ -108,7 +108,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
                         </div>
 
                         <div className="flex gap-12 sm:gap-16">
-                            <div className="flex flex-col gap-3">
+                            <div className="flex flex-col gap-3 shell-reading:hidden">
                                 <span className={headingClass}>Explore</span>
                                 {EXPLORE_LINKS.map(({ href, label }) => (
                                     <Link className={linkClass} href={href} key={href}>

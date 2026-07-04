@@ -81,12 +81,10 @@ export const ExperimentsListTemplate: React.FC<ExperimentsListTemplateProps> = (
                 />
             </Container>
 
-            <Container width="shell">
-                {/* Groups flow as a two-column masonry on wide screens; each
-                    group stays whole (break-inside-avoid). */}
-                <div className="pb-12 md:pb-16 lg:columns-2 lg:gap-12">
+            <Container>
+                <div className="space-y-12 pb-12 md:pb-16">
                     {groups.map((group) => (
-                        <section className="mb-12 break-inside-avoid" key={group.title}>
+                        <section key={group.title}>
                             <DividerSection className="mb-4" title={group.title} />
                             <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                                 {group.items.map((experiment) => (

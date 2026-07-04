@@ -3,6 +3,10 @@
 /* Configure dark mode to use class selector instead of media query */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Active when the page runs on the narrow reading shell (see --shell-width) —
+   lets shell components slim down, e.g. the footer hides secondary columns. */
+@custom-variant shell-reading (&:where(body:has([data-shell='reading']) *));
+
 /* Self-hosted fonts (see app/layout.tsx): Hanken Grotesk for text (font-sans),
    Geist for display headings (font-display). */
 /* Type scale extension: micro labels (badges, mono chips). Pairs with the
@@ -39,6 +43,9 @@
 @layer base {
     :root {
         --shell-width: 72rem; /* 6xl — default site frame */
+    }
+    body:has([data-shell='reading']) {
+        --shell-width: 45rem; /* editorial column — single-list pages */
     }
     body:has([data-shell='wide']) {
         --shell-width: 80rem; /* 7xl — galleries, article mastheads */

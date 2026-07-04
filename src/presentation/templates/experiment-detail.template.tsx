@@ -156,7 +156,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
     return (
         <div className="min-h-screen bg-white dark:bg-zinc-950">
             {isAppWithStoreLinks ? (
-                <Container>
+                <Container width="shell">
                     <Section spacing="hero">
                         <DottedGrid intensity="medium" origin="center" />
                         <div className="flex flex-col items-center text-center">
@@ -208,7 +208,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                     </Section>
                 </Container>
             ) : (
-                <Container>
+                <Container width="shell">
                     <Section spacing="hero">
                         <DottedGrid intensity="medium" origin="top-left" />
                         <Heading className="mb-6" size="display">
@@ -228,7 +228,7 @@ export const ExperimentDetailTemplate: React.FC<ExperimentDetailTemplateProps> =
                 </Container>
             )}
 
-            <Container>
+            <Container width="shell">
                 <div className="space-y-12 pb-12 md:pb-16">
                     {experiment.images?.screenshots && experiment.images.screenshots.length > 0 && (
                         <section>

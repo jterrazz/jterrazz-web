@@ -20,12 +20,18 @@ type ContainerProps = {
     width?: keyof typeof WIDTH_STYLES;
 };
 
+// Pages advertise their content width so the shell (navbar/footer) can match
+// It via CSS alone — see `body:has([data-shell])` in globals.css. Wide wins
+// Over reading when a page renders both.
+const SHELL_HINTS: Partial<Record<keyof typeof WIDTH_STYLES, string>> = {
+    default: 'reading',
+    wide: 'wide',
+};
+
 export const Container: React.FC<ContainerProps> = ({ children, className, width = 'default' }) => (
     <div
         className={cn('mx-auto w-full px-4 md:px-6', WIDTH_STYLES[width], className)}
-        // Wide pages advertise their width so the shell (navbar/footer) can
-        // Match it via CSS alone — see `body:has([data-shell])` in globals.css.
-        data-shell={width === 'wide' ? 'wide' : undefined}
+        data-shell={SHELL_HINTS[width]}
     >
         {children}
     </div>
