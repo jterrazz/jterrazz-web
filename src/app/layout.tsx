@@ -1,3 +1,4 @@
+import { OpenPanelComponent } from '@openpanel/nextjs';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
@@ -153,6 +154,14 @@ export default async function RootLayout({
             </head>
             <body className={generatedClassName}>
                 <ThemeProvider>{children}</ThemeProvider>
+                {SITE_CONFIG.analytics.clientId && (
+                    <OpenPanelComponent
+                        apiUrl={SITE_CONFIG.analytics.apiUrl}
+                        clientId={SITE_CONFIG.analytics.clientId}
+                        trackOutgoingLinks
+                        trackScreenViews
+                    />
+                )}
                 <Analytics />
                 <SpeedInsights />
             </body>

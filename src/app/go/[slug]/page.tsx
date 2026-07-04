@@ -1,6 +1,8 @@
 import { headers } from 'next/headers';
 import { notFound, redirect } from 'next/navigation';
+import { after } from 'next/server';
 
+import { analyticsForRequest } from '../../../infrastructure/analytics/analytics';
 import { experimentsRepository } from '../../../infrastructure/repositories/experiments.repository';
 
 function detectPlatform(userAgent: string): 'android' | 'desktop' | 'ios' {
@@ -37,6 +39,12 @@ export default async function AppRedirectPage({ params }: Props) {
     const headersList = await headers();
     const userAgent = headersList.get('user-agent') || '';
     const platform = detectPlatform(userAgent);
+
+    // Redirects happen before any client-side script can run, so this event
+    // Is only observable server-side. The request scope forwards the
+    // Visitor's IP and user-agent for geo/device attribution.
+    const analytics = await analyticsForRequest();
+    after(() => analytics.track('app_link_opened', { properties: { platform, slug } }));
 
     // Auto-redirect based on platform
     if (platform === 'ios' && experiment.storeLinks?.appStore) {

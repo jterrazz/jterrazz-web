@@ -16,8 +16,10 @@
         "sync": "rm -rf content/* && cp -r /Users/jterrazz/Documents/Studio/Articles/__LIBRARY__/Publications/@jterrazz/* content/"
     },
     "dependencies": {
+        "@jterrazz/analytics": "^1.0.0",
         "@jterrazz/attestation": "file:packages/attestation",
         "@jterrazz/intelligence": "^4.0.4",
+        "@openpanel/nextjs": "^1.5.1",
         "@radix-ui/react-accordion": "^1.2.15",
         "@tabler/icons-react": "^3.44.0",
         "@vercel/analytics": "^2.0.1",

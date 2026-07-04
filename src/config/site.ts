@@ -4,6 +4,10 @@
  */
 
 export const SITE_CONFIG = {
+    analytics: {
+        apiUrl: process.env.NEXT_PUBLIC_OPENPANEL_API_URL || 'https://analytics.jterrazz.com/api',
+        clientId: process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID,
+    },
     author: {
         alumniOf: '42 Paris',
         jobTitle: 'Founder & Software Engineer',
