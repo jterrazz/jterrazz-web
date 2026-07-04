@@ -42,7 +42,7 @@ const EXPLORE_LINKS = [
 // First-party apps — external / smart-redirect links.
 const APP_LINKS = [
     { href: 'https://jterrazz.com', label: 'Jterrazz' },
-    { href: '/go/signew', label: 'SigNews' },
+    { href: '/go/signews', label: 'SigNews' },
 ];
 
 export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations: t }) => {
