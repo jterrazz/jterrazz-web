@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Let's dive into assembly and build our first functions (Intel x86-64)
+# x86-64 assembly basics: writing your first functions
 
 I've always been obsessed with what happens deep inside a computer. You hear people call C a "low-level" language, but honestly, it's still a cushy layer of abstraction. It hides the raw, powerful instructions your processor is actually running.
 

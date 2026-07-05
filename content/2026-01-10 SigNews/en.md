@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Mapping the Noise
+# SigNews: mapping global news narratives with AI
 
 A single event happens. Within minutes, it shatters.
 

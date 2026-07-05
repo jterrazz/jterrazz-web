@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# A journey into clean architecture
+# Clean architecture in practice: entities, use cases, and layers
 
 ## Getting to the heart of what matters
 

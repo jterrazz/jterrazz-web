@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Cursor : la compression du travail mécanique
+# Cursor IDE en pratique : mode agent et développement piloté par l'intention
 
 L'ingénierie logicielle a toujours eu un coût caché : le fossé entre avoir une idée et la faire fonctionner.
 

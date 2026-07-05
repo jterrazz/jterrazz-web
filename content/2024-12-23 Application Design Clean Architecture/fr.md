@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Clean Architecture
+# La Clean Architecture en pratique : entités, cas d'usage et couches
 
 ## L'idée centrale
 

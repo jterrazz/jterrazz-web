@@ -1,6 +1,6 @@
 ![](./assets/thumbnail.jpg)
 
-# The art of directing AI
+# Directing AI agents: from writing code to orchestrating it
 
 There is a mode of working with AI that sits between the passivity of autocomplete and the delegation of full autonomy. You select code, describe a desired state, and the AI executes the transformation. It isn't predicting your next keystroke; it is rewriting logic based on your intent.
 

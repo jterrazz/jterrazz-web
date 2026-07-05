@@ -113,7 +113,7 @@ export const metadata: Metadata = {
     },
     title: {
         default: `${SITE_CONFIG.author.name} | ${SITE_CONFIG.author.jobTitle}`,
-        template: `%s | ${SITE_CONFIG.author.name}`,
+        template: `%s | ${SITE_CONFIG.brand}`,
     },
     twitter: {
         card: 'summary_large_image',

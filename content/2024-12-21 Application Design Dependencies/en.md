@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Let's talk about dependencies
+# The dependency rule: structuring code for independence
 
 ## How your code is connected
 

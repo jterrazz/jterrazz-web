@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { notFound, redirect } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 
 import { SITE_CONFIG } from '../../../../config/site';
 import { type ArticleLanguage } from '../../../../domain/article';
@@ -38,12 +38,13 @@ export default async function ArticlePage(props: ArticlePageProps) {
         return notFound();
     }
 
-    // Compute canonical slug and redirect if needed
+    // Compute canonical slug and redirect if needed. Permanent (308) so search
+    // Engines transfer indexing to the canonical URL after a title change.
     const canonicalSlug = buildArticleSlug(article.publicIndex, article.metadata.title.en);
     if (slugId !== canonicalSlug) {
         const redirectPath =
             locale === 'en' ? `/articles/${canonicalSlug}` : `/${locale}/articles/${canonicalSlug}`;
-        return redirect(redirectPath);
+        return permanentRedirect(redirectPath);
     }
 
     const articles = articlesRepository.getAll();

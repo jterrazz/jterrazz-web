@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **Your moat is melting**
+# **Your moat is melting: what AI does to knowledge work**
 
 _You grew up in a world where doing the tasks was the job. That world is disappearing faster than you realize._
 

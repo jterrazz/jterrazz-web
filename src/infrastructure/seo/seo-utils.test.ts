@@ -16,7 +16,7 @@ describe('buildSeoTitle', () => {
         const result = buildSeoTitle('Expert System', true);
 
         // Then — the title includes the 42 suffix
-        expect(result).toBe('Expert System | 42 | Jean-Baptiste Terrazzoni');
+        expect(result).toBe('Expert System | 42 | Jterrazz');
     });
 
     test('should use standard suffix for non-42 content', () => {
@@ -24,7 +24,7 @@ describe('buildSeoTitle', () => {
         const result = buildSeoTitle('Capitaine', false);
 
         // Then — the title uses the standard suffix
-        expect(result).toBe('Capitaine | Jean-Baptiste Terrazzoni');
+        expect(result).toBe('Capitaine | Jterrazz');
     });
 
     test('should handle empty title', () => {
@@ -32,7 +32,7 @@ describe('buildSeoTitle', () => {
         const result = buildSeoTitle('', true);
 
         // Then — the suffix is still appended
-        expect(result).toBe(' | 42 | Jean-Baptiste Terrazzoni');
+        expect(result).toBe(' | 42 | Jterrazz');
     });
 
     test('should handle title with special characters', () => {
@@ -40,7 +40,7 @@ describe('buildSeoTitle', () => {
         const result = buildSeoTitle('MD5 & SHA256', true);
 
         // Then — special characters are preserved
-        expect(result).toBe('MD5 & SHA256 | 42 | Jean-Baptiste Terrazzoni');
+        expect(result).toBe('MD5 & SHA256 | 42 | Jterrazz');
     });
 });
 

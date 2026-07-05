@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Séparer le métier de la technologie
+# Architecture hexagonale : séparer le métier de la technologie
 
 ## Comment structurer un projet
 

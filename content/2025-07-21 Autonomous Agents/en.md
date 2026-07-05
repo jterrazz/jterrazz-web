@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Collaborating with AI on larger problems
+# Autonomous AI agents: when to delegate entire workflows
 
 There is a distinct moment when you realize you aren't coding anymore. You are watching.
 

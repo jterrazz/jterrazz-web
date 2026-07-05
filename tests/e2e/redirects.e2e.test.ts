@@ -1,6 +1,8 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 
 import { GO_APP_LINKS, REDIRECTS } from '../../src/config/redirects';
+import { buildArticleSlug } from '../../src/domain/utils/slugify';
+import { articlesRepository } from '../../src/infrastructure/repositories/articles.repository';
 import { BASE_URL, startTestServer, stopTestServer } from '../setup/integration-server';
 
 /**
@@ -28,12 +30,12 @@ async function fetchRedirect(path: string, userAgent?: string) {
 // Path-pattern rules (:param) need a concrete example to be exercised.
 const PATTERN_EXAMPLES: Record<string, { destination: string; source: string }> = {
     '/articles/:slugId/en': {
-        destination: '/articles/13-mapping-the-noise',
-        source: '/articles/13-mapping-the-noise/en',
+        destination: '/articles/13-signews-mapping-global-news-narratives-with-ai',
+        source: '/articles/13-signews-mapping-global-news-narratives-with-ai/en',
     },
     '/articles/:slugId/fr': {
-        destination: '/fr/articles/13-mapping-the-noise',
-        source: '/articles/13-mapping-the-noise/fr',
+        destination: '/fr/articles/13-signews-mapping-global-news-narratives-with-ai',
+        source: '/articles/13-signews-mapping-global-news-narratives-with-ai/fr',
     },
 };
 
@@ -69,6 +71,59 @@ describe('redirect registry', () => {
         for (const source of patternSources) {
             expect(PATTERN_EXAMPLES[source], `missing example for ${source}`).toBeDefined();
         }
+    });
+});
+
+/**
+ * Article slugs that were live before the 2026-07 SEO retitle. They are
+ * indexed and shared — each must permanently (308) redirect to whatever the
+ * current canonical slug is. Never remove entries; append on future retitles.
+ */
+const LEGACY_ARTICLE_SLUGS = [
+    '1-master-memory-management-i-built-my-own-malloc-and-you-should-too',
+    '2-hashing-in-c-a-deep-dive-into-sha-256-and-md5',
+    '3-decoding-the-magic-my-journey-building-nm-and-otool',
+    '5-lets-dive-into-assembly-and-build-our-first-functions-intel-x86-64',
+    '6-my-journey-into-expert-systems-with-python',
+    '7-building-my-go-to-web-server-with-typescript-and-koa',
+    '9-building-software-that-lasts',
+    '10-mastering-the-flow-of-dependencies',
+    '11-separating-business-from-technology',
+    '12-a-journey-into-clean-architecture',
+    '13-mapping-the-noise',
+    '14-your-moat-is-melting',
+    '16-the-collapse-of-the-middle',
+    '19-cursor-the-compression-of-mechanical-work',
+    '21-the-art-of-directing-ai',
+    '22-collaborating-with-ai-on-larger-problems',
+    '23-when-ai-becomes-the-product',
+];
+
+describe('legacy article slugs (pre-retitle)', () => {
+    for (const legacySlug of LEGACY_ARTICLE_SLUGS) {
+        test(`/articles/${legacySlug} → current canonical (308)`, async () => {
+            const index = legacySlug.split('-')[0];
+            const article = articlesRepository.getByIndex(index);
+            if (!article) {
+                throw new Error(`no article for legacy slug ${legacySlug}`);
+            }
+            const canonical = buildArticleSlug(article.publicIndex, article.metadata.title.en);
+            // Guard against a retitle reverting to the legacy title, which
+            // Would turn this into a self-redirect instead of a real guard.
+            expect(canonical).not.toBe(legacySlug);
+
+            const { location, status } = await fetchRedirect(`/articles/${legacySlug}`);
+            expect(status).toBe(308);
+            expect(location.replace(BASE_URL, '')).toBe(`/articles/${canonical}`);
+        });
+    }
+
+    test('fr locale keeps its prefix through the canonical redirect', async () => {
+        const { location, status } = await fetchRedirect('/fr/articles/13-mapping-the-noise');
+        expect(status).toBe(308);
+        expect(location.replace(BASE_URL, '')).toBe(
+            '/fr/articles/13-signews-mapping-global-news-narratives-with-ai',
+        );
     });
 });
 

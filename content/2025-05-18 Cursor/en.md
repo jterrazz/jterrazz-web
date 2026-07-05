@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Cursor: the compression of mechanical work
+# Cursor IDE in practice: agent mode and intent-driven coding
 
 Software engineering has always had a hidden cost: the gap between having an idea and making it work.
 

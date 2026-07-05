@@ -23,6 +23,8 @@ export const SITE_CONFIG = {
         url: 'https://jterrazz.com',
     },
     baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
+    // Short brand for <title> suffixes — the full name eats ~27 of the ~60 chars Google displays
+    brand: 'Jterrazz',
     description:
         'Building autonomous systems, products from scratch, and sovereign software. Notes on AI, autonomy, and the systems beneath.',
     defaultImage: {

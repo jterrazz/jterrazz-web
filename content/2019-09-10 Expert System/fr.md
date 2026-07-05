@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Construire un système expert en Python
+# Construire un système expert en Python (chaînage arrière)
 
 Comment raisonne-t-on ? Comment suit-on une piste logique pour assembler un puzzle ? On peut apprendre aux ordinateurs à faire quelque chose de très similaire. C'est le principe des **systèmes experts**.
 

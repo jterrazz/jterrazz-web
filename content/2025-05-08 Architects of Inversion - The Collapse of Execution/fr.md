@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **L'effondrement du centre**
+# **L'effondrement du centre : où va la valeur quand l'IA exécute**
 
 _Quand l'exécution ne coûte plus rien, le confort du milieu disparaît._
 

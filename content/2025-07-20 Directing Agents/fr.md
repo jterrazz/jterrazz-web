@@ -1,6 +1,6 @@
 ![](./assets/thumbnail.jpg)
 
-# L'art de diriger l'IA
+# Diriger les agents IA : de l'écriture du code à l'orchestration
 
 Il existe un mode de travail avec l'IA qui se situe entre la passivité de l'autocomplétion et la délégation de l'autonomie totale. Vous sélectionnez du code, décrivez un état souhaité, et l'IA exécute la transformation. Elle ne prédit pas votre prochaine frappe ; elle réécrit la logique en se basant sur votre intention.
 

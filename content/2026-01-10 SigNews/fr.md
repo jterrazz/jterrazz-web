@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Cartographier le Bruit
+# SigNews : cartographier les récits mondiaux avec l'IA
 
 Un événement survient. En quelques minutes, il éclate.
 

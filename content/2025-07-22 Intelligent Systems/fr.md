@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Quand l'IA devient le produit
+# Quand l'IA devient le produit : concevoir des systèmes natifs IA
 
 Il y a un moment où l'IA cesse d'être votre assistant pour devenir votre architecture.
 

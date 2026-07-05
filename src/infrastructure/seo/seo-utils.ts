@@ -8,14 +8,14 @@ import { ExperimentContext } from '../../domain/experiment';
 
 /**
  * Builds a SEO-optimized title with optional 42 suffix
- * Format: "{Title} | 42 | Jean-Baptiste Terrazzoni" for 42 projects
- * Format: "{Title} | Jean-Baptiste Terrazzoni" for other content
+ * Format: "{Title} | 42 | Jterrazz" for 42 projects
+ * Format: "{Title} | Jterrazz" for other content
  */
 export function buildSeoTitle(title: string, is42Related: boolean): string {
     if (is42Related) {
-        return `${title} | 42 | ${SITE_CONFIG.author.name}`;
+        return `${title} | 42 | ${SITE_CONFIG.brand}`;
     }
-    return `${title} | ${SITE_CONFIG.author.name}`;
+    return `${title} | ${SITE_CONFIG.brand}`;
 }
 
 /**
