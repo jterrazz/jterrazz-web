@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Hexagonal architecture: separating business from technology
+# Separating business from technology
 
 ## Structuring your code
 

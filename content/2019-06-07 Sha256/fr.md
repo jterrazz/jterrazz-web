@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# SHA-256 et MD5 en C : implémenter des fonctions de hachage de zéro
+# Hachage en C : au cœur de SHA-256 et MD5
 
 Qu'est-ce qui protège vraiment votre vie numérique ? Vos transactions bancaires, vos mots de passe... Derrière tout ça, il y a des héros discrets : les fonctions de hachage cryptographique. Aujourd'hui, on va décortiquer deux poids lourds du domaine : MD5 et SHA-256. Et pas juste en théorie — on va coder tout ça en C.
 

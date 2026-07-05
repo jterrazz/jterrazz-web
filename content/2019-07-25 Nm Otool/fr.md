@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Reconstruire `nm` et `otool` : parser les binaires Mach-O en C
+# Recréer `nm` et `otool` : anatomie d'un binaire
 
 Comment votre ordinateur *comprend-il vraiment* un fichier exécutable ? Jusqu'au dernier octet. Cette question m'a poussé à réimplémenter `nm` et `otool` from scratch, en C. Un sacré voyage qui m'a donné une compréhension bien plus profonde des binaires et du fonctionnement bas niveau d'Unix.
 

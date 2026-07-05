@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Maintainable software: building applications that last
+# Building software that lasts
 
 ## About software architecture
 

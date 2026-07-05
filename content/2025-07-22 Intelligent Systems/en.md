@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# When AI becomes the product: designing AI-native systems
+# When AI becomes the product
 
 There is a moment when AI stops being your assistant and starts being your architecture.
 

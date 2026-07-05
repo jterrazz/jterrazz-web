@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Coder son propre malloc en C : un allocateur mémoire de zéro
+# J'ai codé mon propre malloc : voyage au cœur de la gestion mémoire
 
 Comment votre ordinateur fait-il pour jongler avec des milliards d'octets chaque seconde ? 🤹‍♂️ Cette question m'a toujours intrigué. Alors j'ai décidé d'aller voir ce qui se passe sous le capot, en m'attaquant à l'un des piliers de l'informatique : **l'allocation dynamique de mémoire**.
 

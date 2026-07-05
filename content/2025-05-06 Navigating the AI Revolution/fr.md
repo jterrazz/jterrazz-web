@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **Votre forteresse s'effondre : ce que l'IA fait au travail du savoir**
+# **Votre forteresse s'effondre**
 
 _Vous avez grandi dans un monde où l'exécution était le travail. Ce monde disparaît plus vite que vous ne le réalisez._
 

@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Créer un serveur web avec TypeScript et Koa
+# Serveur web de référence avec TypeScript et Koa
 
 L'envie de construire from scratch, sans les boîtes noires des gros frameworks. Un serveur HTTP épuré, avec deux outils que j'adore : TypeScript et Koa. C'est parti ! 🚀
 

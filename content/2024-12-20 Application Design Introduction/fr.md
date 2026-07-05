@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Logiciel maintenable : bâtir des applications qui durent
+# Construire des logiciels qui durent
 
 ## L'architecture, ce n'est pas un diagramme
 

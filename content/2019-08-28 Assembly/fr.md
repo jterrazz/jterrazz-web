@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Les bases de l'assembleur x86-64 : écrire ses premières fonctions
+# Assembleur x86-64 : vos premières fonctions
 
 Ce qui se passe vraiment au cœur d'un ordinateur m'a toujours fasciné. On dit que le C est "bas niveau", mais c'est encore une abstraction confortable. Il cache les instructions brutes que votre processeur exécute.
 

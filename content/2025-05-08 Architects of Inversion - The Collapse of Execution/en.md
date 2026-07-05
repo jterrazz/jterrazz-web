@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# **The collapse of the middle: where value goes when AI executes**
+# **The collapse of the middle**
 
 _When execution becomes cheap, the comfortable middle disappears._
 

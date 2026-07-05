@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# La règle des dépendances : structurer le code pour l'indépendance
+# Les dépendances
 
 ## Les fils invisibles de votre code
 

@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Building a web server with TypeScript and Koa
+# Building my go-to web server with TypeScript and Koa
 
 Ever get that itch to build something from the ground up? That was me. I wanted to create my own web server, something solid and powerful, without the black boxes of bigger frameworks. This is how I did it, and how you can, too. We're going to build an HTTP server, a lean request-handling engine, using two of my favorite tools: TypeScript and Koa. Let's get into it. 🚀
 

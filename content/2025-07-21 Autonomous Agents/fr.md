@@ -1,6 +1,6 @@
 ![](assets/thumbnail.jpg)
 
-# Agents IA autonomes : quand déléguer des workflows entiers
+# Collaborer avec l'IA sur des problèmes plus vastes
 
 Il y a un moment distinct où vous réalisez que vous ne codez plus. Vous regardez.
 
