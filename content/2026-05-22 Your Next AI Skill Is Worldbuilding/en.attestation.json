@@ -1,0 +1,16 @@
+{
+  "claims": {
+    "priorAttestation": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "publishedAt": "1779408000",
+    "revision": 1,
+    "slug": "24-your-next-ai-skill-is-worldbuilding"
+  },
+  "schemaVersion": 1,
+  "signature": "0x5c1654986eee3ca60b49c9bb60307929f8edfd42cbe95a675a8c7bb0b3c337742a3d151d29f77d6be3c680c0a8f6cb37763cd2faa0bd71352fa690c0dc5589a61c",
+  "signerAddress": "0x75117fE22ce373ec31d0Fe07638Afc25a525023b",
+  "subject": {
+    "contentDigest": "0xe7acfee3a89d2629cbca8d95f55de4e4b0dcba5e1c8910af331bbdcfefead8e0",
+    "locale": "en",
+    "title": "Your next AI skill is worldbuilding"
+  }
+}
