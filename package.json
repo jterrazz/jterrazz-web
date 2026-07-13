@@ -42,9 +42,8 @@
         "zod": "^4.4.3"
     },
     "devDependencies": {
-        "@jterrazz/codestyle": "^3.4.0",
         "@jterrazz/test": "^8.0.0",
-        "@jterrazz/typescript": "^5.3.0",
+        "@jterrazz/typescript": "^6.0.0",
         "@tailwindcss/postcss": "^4.3.2",
         "@types/node": "^24.13.2",
         "@types/react": "^19.2.17",
