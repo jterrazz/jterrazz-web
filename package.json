@@ -20,13 +20,12 @@
     "dependencies": {
         "@jterrazz/analytics": "^1.0.0",
         "@jterrazz/attestation": "file:packages/attestation",
-        "@jterrazz/intelligence": "^4.0.4",
+        "@jterrazz/intelligence": "^4.2.0",
         "@openpanel/nextjs": "^1.5.1",
         "@radix-ui/react-accordion": "^1.2.15",
         "@tabler/icons-react": "^3.44.0",
         "@vercel/analytics": "^2.0.1",
         "@vercel/speed-insights": "^2.0.0",
-        "ai": "^6.0.218",
         "clsx": "^2.1.1",
         "lucide-react": "^1.23.0",
         "motion": "^12.42.2",
@@ -38,11 +37,9 @@
         "react-dom": "^19.2.7",
         "react-image-grid-gallery": "^4.0.1",
         "react-markdown": "^10.1.0",
-        "tailwind-merge": "^3.6.0",
-        "zod": "^4.4.3"
+        "tailwind-merge": "^3.6.0"
     },
     "devDependencies": {
-        "@jterrazz/test": "^8.0.0",
         "@jterrazz/typescript": "^6.0.0",
         "@tailwindcss/postcss": "^4.3.2",
         "@types/node": "^24.13.2",
