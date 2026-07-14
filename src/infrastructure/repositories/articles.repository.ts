@@ -1,4 +1,4 @@
-import { parseText } from '@jterrazz/intelligence';
+import { parseText } from '@jterrazz/intelligence/text';
 import { readFileSync } from 'node:fs';
 
 // Domain
