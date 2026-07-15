@@ -54,7 +54,6 @@
     "knip": {
         "ignoreBinaries": [
             "tsdown",
-            "codestyle",
             "vitest"
         ]
     }
