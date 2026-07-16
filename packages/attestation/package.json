@@ -46,7 +46,7 @@
     },
     "devDependencies": {
         "@jterrazz/test": "^8.0.0",
-        "@jterrazz/typescript": "^6.0.1",
+        "@jterrazz/typescript": "^6.0.4",
         "@types/node": "^24.13.2",
         "tsdown": "^0.22.3",
         "vitest": "^4.1.9"
