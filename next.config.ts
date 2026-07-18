@@ -57,6 +57,10 @@ const nextConfig: NextConfig = {
         ],
     },
     poweredByHeader: false,
+    // @jterrazz/intelligence lazy-loads hunspell dictionaries from disk
+    // (require.resolve + readFileSync) — bundling it turns module paths into
+    // Numeric ids and breaks the build, so it must stay a native require.
+    serverExternalPackages: ['@jterrazz/intelligence'],
     // Serve the OpenPanel tracking script first-party: openpanel.dev is on
     // Adblock lists (EasyPrivacy), so loading it from our own origin keeps
     // Analytics working for visitors with content blockers.

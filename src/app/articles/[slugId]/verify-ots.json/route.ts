@@ -60,7 +60,7 @@ export async function GET(_req: Request, ctx: RouteContext) {
 
     // Lazy import — keeps the OTS lib (Node-only deps) out of the static bundle.
     const { verifyOts } = await import('@jterrazz/attestation/node');
-    const result = await verifyOts(digest, new Uint8Array(otsBuffer));
+    const result = await verifyWithTimeout(verifyOts, digest, new Uint8Array(otsBuffer));
 
     if (result.ok) {
         // Bitcoin attestation is immutable once it lands — long browser TTL,
@@ -86,6 +86,32 @@ export async function GET(_req: Request, ctx: RouteContext) {
             },
         },
     );
+}
+
+// OTS upgrade rounds call public calendars; when one is down the library can
+// Hang well past Next's 60s static-generation budget and fail the whole
+// Build. Bound it: past the deadline we answer "pending" with a short TTL and
+// Let the ISR revalidation pick the real status up later.
+const VERIFY_TIMEOUT_MS = 20_000;
+
+async function verifyWithTimeout(
+    verifyOts: (digest: Uint8Array, ots: Uint8Array) => Promise<unknown>,
+    digest: Uint8Array,
+    ots: Uint8Array,
+): Promise<{ bitcoinBlockTime: Date; ok: true } | { ok: false; reason: string }> {
+    let timer: NodeJS.Timeout | undefined;
+    try {
+        return (await Promise.race([
+            verifyOts(digest, ots),
+            new Promise((resolve) => {
+                timer = setTimeout(() => {
+                    resolve({ ok: false, reason: 'verification timed out' });
+                }, VERIFY_TIMEOUT_MS);
+            }),
+        ])) as { bitcoinBlockTime: Date; ok: true } | { ok: false; reason: string };
+    } finally {
+        clearTimeout(timer);
+    }
 }
 
 function hexToBytes(hex: `0x${string}`): Uint8Array {
