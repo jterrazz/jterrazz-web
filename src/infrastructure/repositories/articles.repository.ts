@@ -1,4 +1,4 @@
-import { parseText } from '@jterrazz/intelligence/text';
+import { cleanAiText as cleanAiTextBase, toSentenceCase } from '@jterrazz/intelligence/formatting';
 import { readFileSync } from 'node:fs';
 
 // Domain
@@ -10,7 +10,6 @@ import {
     createArticle,
     type RawArticleInput,
 } from '../../domain/article';
-import { toSentenceCase } from '../../domain/utils/to-sentence-case';
 import { getContentUrl } from '../content-url';
 
 // Configuration structure for each article before being transformed into the Article domain model.
@@ -594,7 +593,7 @@ const processMarkdownContent = (content: string, filename: string): string => {
 
 // Clean AI-generated artifacts from text (before domain sanitization)
 // CollapseSpaces: false preserves indentation in code blocks
-const cleanAiText = (text: string): string => parseText(text, { collapseSpaces: false });
+const cleanAiText = (text: string): string => cleanAiTextBase(text, { collapseSpaces: false });
 
 /*
  * Same cleanup plus sentence-case normalization. Used for metadata fields

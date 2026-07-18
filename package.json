@@ -20,7 +20,7 @@
     "dependencies": {
         "@jterrazz/analytics": "^1.0.0",
         "@jterrazz/attestation": "file:packages/attestation",
-        "@jterrazz/intelligence": "^5.0.0",
+        "@jterrazz/intelligence": "^6.0.0",
         "@openpanel/nextjs": "^1.5.1",
         "@radix-ui/react-accordion": "^1.2.15",
         "@tabler/icons-react": "^3.44.0",
