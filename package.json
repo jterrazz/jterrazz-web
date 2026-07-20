@@ -8,14 +8,15 @@
         "build": "next build",
         "start": "next start",
         "dev": "next dev",
-        "test": "vitest --run",
+        "test": "vitest --run --project unit",
         "test:unit": "vitest --run --project unit",
         "test:e2e": "next build && vitest --run --project e2e",
         "lint": "oxlint && oxfmt --check",
         "lint:fix": "oxlint --fix && oxfmt",
         "clean": "rm -rf .next && rm -rf node_modules",
         "sign:all": "tsx scripts/sign-all.ts",
-        "sync": "rm -rf content/* && cp -r /Users/jterrazz/Documents/Studio/Articles/__LIBRARY__/Publications/@jterrazz/* content/"
+        "sync": "rm -rf content/* && cp -r /Users/jterrazz/Documents/Studio/Articles/__LIBRARY__/Publications/@jterrazz/* content/",
+        "test:website": "next build && vitest --run --project website"
     },
     "dependencies": {
         "@jterrazz/analytics": "^1.0.0",
@@ -41,7 +42,7 @@
         "tailwind-merge": "^3.6.0"
     },
     "devDependencies": {
-        "@jterrazz/test": "file:../package-test",
+        "@jterrazz/test": "^9.2.0",
         "@jterrazz/typescript": "^6.1.0",
         "@tailwindcss/postcss": "^4.3.2",
         "@types/node": "^24.13.2",

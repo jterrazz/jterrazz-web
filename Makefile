@@ -13,4 +13,4 @@ lint: node_modules/.install
 	npm run lint
 
 test: node_modules/.install
-	npx vitest --run --exclude="**/integration/**"
+	npm test
