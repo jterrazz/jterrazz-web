@@ -11,3 +11,4 @@ jobs:
         uses: jterrazz/jterrazz-actions/.github/workflows/validate.yaml@main
         with:
             node-version: '24'
+            browsers: true
