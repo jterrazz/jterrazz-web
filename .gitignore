@@ -26,3 +26,4 @@ src/generated/
 public/content/
 .vercel
 .claude/
+.env*

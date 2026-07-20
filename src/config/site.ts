@@ -10,6 +10,8 @@ export const SITE_CONFIG = {
     },
     author: {
         alumniOf: '42 Paris',
+        email: 'jterrazzoni@gmail.com',
+        image: '/assets/icons/appicon-jterrazz.png',
         jobTitle: 'Founder & Software Engineer',
         name: 'Jean-Baptiste Terrazzoni',
         skills: [
@@ -30,11 +32,12 @@ export const SITE_CONFIG = {
     defaultImage: {
         alt: 'Jean-Baptiste Terrazzoni - Building the agent stack',
         height: 630,
-        path: '/assets/icons/appicon-jterrazz.png',
+        path: '/assets/og-default.png',
         width: 1200,
     },
     social: {
         github: 'https://github.com/jterrazz',
+        linkedin: 'https://www.linkedin.com/in/jterrazz',
         medium: 'https://medium.com/@jterrazz',
         pexels: 'https://www.pexels.com/@jterrazz',
         twitter: '@jterrazzx',

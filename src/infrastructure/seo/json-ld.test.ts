@@ -1,6 +1,11 @@
 import { describe, expect, test } from 'vitest';
 
-import { buildExperimentDetailJsonLd } from './json-ld';
+import {
+    buildExperimentDetailJsonLd,
+    buildSiteIdentityJsonLd,
+    PERSON_ID,
+    WEBSITE_ID,
+} from './json-ld';
 
 describe('buildExperimentDetailJsonLd', () => {
     test('should build basic JSON-LD for non-42 project', () => {
@@ -23,6 +28,7 @@ describe('buildExperimentDetailJsonLd', () => {
         expect(result.dateCreated).toBe('2026-01-01');
         expect(result.codeRepository).toBe('https://github.com/jterrazz/capitaine-mobile');
         expect(result.author).toEqual({
+            '@id': PERSON_ID,
             '@type': 'Person',
             name: 'Jean-Baptiste Terrazzoni',
             url: 'https://jterrazz.com',
@@ -99,5 +105,38 @@ describe('buildExperimentDetailJsonLd', () => {
 
         // Then — dateCreated is formatted as YYYY-01-01
         expect(result.dateCreated).toBe('2017-01-01');
+    });
+});
+
+describe('buildSiteIdentityJsonLd', () => {
+    test('should build a @graph with WebSite and Person sharing stable ids', () => {
+        // Given — the site-wide identity graph
+        const result = buildSiteIdentityJsonLd();
+
+        // Then — WebSite and Person are present and linked by @id
+        expect(result['@context']).toBe('https://schema.org');
+        const [website, person] = result['@graph'];
+        expect(website['@id']).toBe(WEBSITE_ID);
+        expect(website['@type']).toBe('WebSite');
+        expect(website.publisher).toEqual({ '@id': PERSON_ID });
+        expect(person['@id']).toBe(PERSON_ID);
+        expect(person['@type']).toBe('Person');
+        expect(person.name).toBe('Jean-Baptiste Terrazzoni');
+    });
+
+    test('should expose the full social identity on the Person', () => {
+        // Given — the canonical Person entity
+        const [, person] = buildSiteIdentityJsonLd()['@graph'];
+
+        // Then — sameAs covers every public profile and email is declared
+        expect(person.sameAs).toEqual(
+            expect.arrayContaining([
+                'https://github.com/jterrazz',
+                'https://www.linkedin.com/in/jterrazz',
+                'https://medium.com/@jterrazz',
+                'https://x.com/jterrazzx',
+            ]),
+        );
+        expect(person.email).toBe('mailto:jterrazzoni@gmail.com');
     });
 });

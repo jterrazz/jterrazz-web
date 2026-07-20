@@ -17,7 +17,6 @@ import { Link } from '../../../../infrastructure/navigation/navigation';
 import { userRepository } from '../../../../infrastructure/repositories/user.repository';
 // Utils
 import { cn } from '../../../utils';
-import { JsonLdScript } from '../../atoms/json-ld-script/json-ld-script';
 import { Container } from '../../design-system';
 import { ToggleTheme } from '../../molecules/toggle-theme/toggle-theme';
 
@@ -61,19 +60,6 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
         { href: email.url.toString(), icon: IconMailFilled, label: 'Email' },
     ];
 
-    const footerJsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'Person',
-        alumniOf: { '@type': 'Organization', name: '42 Paris' },
-        description:
-            'Building autonomous systems, products from scratch, and sovereign software. Notes on AI, autonomy, and the systems beneath.',
-        email: email.url.toString(),
-        jobTitle: 'Founder & Software Engineer',
-        name: 'Jean-Baptiste Terrazzoni',
-        sameAs: [github.url.toString(), linkedin.url.toString(), x.url.toString()],
-        url: 'https://jterrazz.com',
-    };
-
     const headingClass = 'font-display text-sm font-semibold text-zinc-950 dark:text-zinc-100';
     const linkClass =
         'text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white';
@@ -85,8 +71,6 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
                 className,
             )}
         >
-            <JsonLdScript data={footerJsonLd} id="footer-json-ld" />
-
             <Container width="shell">
                 <div className="flex flex-col gap-10 pt-12 pb-8 md:pt-16 md:pb-10">
                     {/* Top: brand + link columns */}

@@ -10,10 +10,19 @@ import { SITE_CONFIG } from '../../config/site';
 // ============================================================================
 
 /**
- * Schema.org Person object for the site author
+ * Stable entity ids — the same Person/WebSite must resolve to one node across
+ * every page so engines consolidate the entity instead of seeing variants.
+ */
+export const PERSON_ID = `${SITE_CONFIG.baseUrl}/#person`;
+export const WEBSITE_ID = `${SITE_CONFIG.baseUrl}/#website`;
+
+/**
+ * Schema.org Person reference for authored content — resolves to the
+ * canonical Person entity via @id.
  */
 export function buildAuthorJsonLd() {
     return {
+        '@id': PERSON_ID,
         '@type': 'Person' as const,
         name: SITE_CONFIG.author.name,
         url: SITE_CONFIG.author.url,
@@ -21,32 +30,35 @@ export function buildAuthorJsonLd() {
 }
 
 /**
- * Full Person schema for homepage/about pages
+ * The canonical Person entity — one definition, referenced everywhere by @id
  */
 export interface PersonJsonLdOptions {
-    description: string;
+    description?: string;
 }
 
-export function buildPersonJsonLd(options: PersonJsonLdOptions) {
+export function buildPersonJsonLd(options: PersonJsonLdOptions = {}) {
+    const description = options.description ?? SITE_CONFIG.description;
     return {
-        '@context': 'https://schema.org',
+        '@id': PERSON_ID,
         '@type': 'Person',
         alumniOf: {
             '@type': 'Organization',
             name: SITE_CONFIG.author.alumniOf,
         },
-        description: options.description,
+        description,
+        email: `mailto:${SITE_CONFIG.author.email}`,
         hasOccupation: {
             '@type': 'Occupation',
-            description: options.description,
+            description,
             name: SITE_CONFIG.author.jobTitle,
         },
-        image: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.defaultImage.path}`,
+        image: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.author.image}`,
         jobTitle: SITE_CONFIG.author.jobTitle,
         knowsAbout: SITE_CONFIG.author.skills,
         name: SITE_CONFIG.author.name,
         sameAs: [
             SITE_CONFIG.social.github,
+            SITE_CONFIG.social.linkedin,
             SITE_CONFIG.social.medium,
             SITE_CONFIG.social.pexels,
             SITE_CONFIG.social.x,
@@ -56,6 +68,32 @@ export function buildPersonJsonLd(options: PersonJsonLdOptions) {
             '@type': 'Organization',
             name: 'Self-Employed',
         },
+    };
+}
+
+/**
+ * The WebSite entity, published by the canonical Person
+ */
+export function buildWebSiteJsonLd() {
+    return {
+        '@id': WEBSITE_ID,
+        '@type': 'WebSite',
+        description: SITE_CONFIG.description,
+        inLanguage: ['en', 'fr'],
+        name: SITE_CONFIG.author.name,
+        publisher: { '@id': PERSON_ID },
+        url: SITE_CONFIG.baseUrl,
+    };
+}
+
+/**
+ * Site-wide identity graph (WebSite + Person), rendered once in the root
+ * layout so every page carries the same canonical entities.
+ */
+export function buildSiteIdentityJsonLd(options: PersonJsonLdOptions = {}) {
+    return {
+        '@context': 'https://schema.org',
+        '@graph': [buildWebSiteJsonLd(), buildPersonJsonLd(options)],
     };
 }
 
@@ -210,6 +248,9 @@ export function buildImageObjectJsonLd(options: ImageObjectJsonLdOptions) {
         '@type': 'ImageObject',
         author: buildAuthorJsonLd(),
         contentUrl: options.contentUrl,
+        copyrightNotice: `© ${SITE_CONFIG.author.name}`,
+        creator: buildAuthorJsonLd(),
+        creditText: SITE_CONFIG.author.name,
         description: options.description,
         name: options.description,
         thumbnailUrl: options.contentUrl,

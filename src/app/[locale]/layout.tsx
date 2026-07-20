@@ -6,7 +6,9 @@ import { type Locale, locales } from '../../i18n/config';
 // Infrastructure
 import { createRouteBuilder, ExternalLinks } from '../../infrastructure/navigation/routes';
 import { experimentsRepository } from '../../infrastructure/repositories/experiments.repository';
+import { buildSiteIdentityJsonLd } from '../../infrastructure/seo/json-ld';
 import { LocaleProvider } from '../../presentation/context/locale-context';
+import { JsonLdScript } from '../../presentation/ui/atoms/json-ld-script/json-ld-script';
 import { Navbar } from '../../presentation/ui/organisms/navbar/navbar';
 import { SiteFooter } from '../../presentation/ui/organisms/site-footer/site-footer';
 
@@ -83,6 +85,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
     return (
         <LocaleProvider locale={locale as Locale}>
+            <JsonLdScript data={buildSiteIdentityJsonLd()} id="site-identity-json-ld" />
             <Navbar pages={pages} translations={navbarTranslations} />
             <main className="flex-1 flex flex-col overflow-x-clip w-full">{children}</main>
             <SiteFooter translations={footerTranslations} />

@@ -7,9 +7,7 @@ import { contentLinksRepository } from '../../infrastructure/repositories/conten
 import { experimentsRepository } from '../../infrastructure/repositories/experiments.repository';
 import { userRepository } from '../../infrastructure/repositories/user.repository';
 import { buildMetadata } from '../../infrastructure/seo/build-metadata';
-import { buildPersonJsonLd } from '../../infrastructure/seo/json-ld';
 import { HelloWorldTemplate } from '../../presentation/templates/hello-world.template';
-import { JsonLdScript } from '../../presentation/ui/atoms/json-ld-script/json-ld-script';
 
 // Force static generation for this page
 export const dynamic = 'force-static';
@@ -170,8 +168,6 @@ export default async function HomePage({ params }: Props) {
             };
         });
 
-    const jsonLd = buildPersonJsonLd({ description: t('description') });
-
     // Translations for client component
     const translations = {
         focus: t('focus'),
@@ -204,7 +200,6 @@ export default async function HomePage({ params }: Props) {
 
     return (
         <>
-            <JsonLdScript data={jsonLd} id="homepage-json-ld" />
             <HelloWorldTemplate
                 description={t('description')}
                 experiences={userExperiences}

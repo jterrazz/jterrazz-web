@@ -29,7 +29,10 @@ function buildAlternates(
     for (const locale of availableLocales) {
         languages[locale] = buildLocalizedUrl(baseUrl, path, locale);
     }
-    languages['x-default'] = buildLocalizedUrl(baseUrl, path, 'en');
+    // X-default must resolve to a real page — only declare it when EN exists.
+    if (availableLocales.includes('en')) {
+        languages['x-default'] = buildLocalizedUrl(baseUrl, path, 'en');
+    }
     return { languages };
 }
 
