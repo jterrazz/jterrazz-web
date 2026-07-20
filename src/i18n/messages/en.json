@@ -2,9 +2,9 @@
     "home": {
         "title": "Human",
         "titleAccent": "in the loop.",
-        "description": "Problem solver, mostly with code. I build small apps and tools — sometimes with an AI in the loop — and keep notes along the way.",
-        "seoDescription": "Problem solver, mostly with code. I build small apps and tools — sometimes with an AI in the loop — and keep notes along the way.",
-        "seoTitle": "Jean-Baptiste Terrazzoni — Problem solver",
+        "description": "Problem solver, mostly with code. I build small apps and tools, sometimes with an AI in the loop, and keep notes along the way.",
+        "seoDescription": "Problem solver, mostly with code. I build small apps and tools, sometimes with an AI in the loop, and keep notes along the way.",
+        "seoTitle": "Jean-Baptiste Terrazzoni, problem solver",
         "readArticles": "Read Articles",
         "featuredExperiments": "Featured Experiments",
         "featuredArticles": "Featured Articles",
@@ -33,7 +33,7 @@
     },
     "articles": {
         "title": "Articles",
-        "seoDescription": "Notes on what I build, what I learn, and where it's all heading — with the occasional robot doing my chores.",
+        "seoDescription": "Notes on what I build, what I learn, and where it's all heading. The occasional robot does my chores.",
         "highlightDescription": "Notes on what I learn while building software.",
         "filterAll": "All",
         "filterExploration": "Experiments",
@@ -44,8 +44,8 @@
     },
     "experiments": {
         "title": "Experiments",
-        "seoDescription": "Apps, tools, and experiments — some shipped, some gloriously unfinished.",
-        "highlightDescription": "Things I've built along the way — shipped, half-shipped, or lovingly abandoned.",
+        "seoDescription": "Apps, tools and experiments. Some shipped, some gloriously unfinished.",
+        "highlightDescription": "Things I've built along the way. Shipped, half-shipped, or lovingly abandoned.",
         "viewGitHub": "GitHub",
         "applications": "Applications",
         "hackathons": "Hackathons",
@@ -107,7 +107,7 @@
     },
     "footer": {
         "tagline": "Building, shipping, learning.",
-        "description": "Apps, tools, and notes — built in the open.",
+        "description": "Apps, tools and notes, built in the open.",
         "connect": "Connect",
         "featuredWork": "Featured Work",
         "allRightsReserved": "All rights reserved.",

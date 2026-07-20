@@ -36,7 +36,7 @@ export const site = defineSite({
 
     sharing: {
         card: {
-            caption: 'Jean-Baptiste Terrazzoni — Problem solver',
+            caption: 'Jean-Baptiste Terrazzoni, problem solver',
             height: 630,
             image: '/assets/og-default.png',
             width: 1200,
@@ -46,7 +46,7 @@ export const site = defineSite({
     voice: {
         brand: 'Jterrazz',
         description:
-            'Problem solver, mostly with code. I build small apps and tools — sometimes with an AI in the loop — and keep notes along the way.',
+            'Problem solver, mostly with code. I build small apps and tools, sometimes with an AI in the loop, and keep notes along the way.',
         titlePattern: '%s | Jterrazz',
     },
 });

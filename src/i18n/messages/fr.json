@@ -2,9 +2,9 @@
     "home": {
         "title": "Humain",
         "titleAccent": "dans la boucle.",
-        "description": "Je résous des problèmes, surtout avec du code. Des petites apps, des outils — parfois avec une IA dans la boucle — et des notes en chemin.",
-        "seoDescription": "Je résous des problèmes, surtout avec du code. Des petites apps, des outils — parfois avec une IA dans la boucle — et des notes en chemin.",
-        "seoTitle": "Jean-Baptiste Terrazzoni — Problem solver",
+        "description": "Je résous des problèmes, surtout avec du code. Des petites apps, des outils, parfois une IA dans la boucle, et des notes en chemin.",
+        "seoDescription": "Je résous des problèmes, surtout avec du code. Des petites apps, des outils, parfois une IA dans la boucle, et des notes en chemin.",
+        "seoTitle": "Jean-Baptiste Terrazzoni, problem solver",
         "readArticles": "Lire les articles",
         "featuredExperiments": "Expérimentations en vedette",
         "featuredArticles": "Articles en vedette",
@@ -33,7 +33,7 @@
     },
     "articles": {
         "title": "Articles",
-        "seoDescription": "Des notes sur ce que je construis, ce que j'apprends, et où tout ça nous mène — avec parfois un robot pour faire mes corvées.",
+        "seoDescription": "Des notes sur ce que je construis, ce que j'apprends, et où tout ça nous mène. Avec parfois un robot pour faire mes corvées.",
         "highlightDescription": "Notes sur ce que j'apprends en développant des logiciels.",
         "filterAll": "Tous",
         "filterExploration": "Expérimentations",
@@ -44,8 +44,8 @@
     },
     "experiments": {
         "title": "Expérimentations",
-        "seoDescription": "Des apps, des outils et des expérimentations — certaines livrées, d'autres glorieusement inachevées.",
-        "highlightDescription": "Des choses construites en chemin — livrées, à moitié livrées, ou abandonnées avec amour.",
+        "seoDescription": "Des apps, des outils et des expérimentations. Certaines livrées, d'autres glorieusement inachevées.",
+        "highlightDescription": "Des choses construites en chemin. Livrées, à moitié livrées, ou abandonnées avec amour.",
         "viewGitHub": "GitHub",
         "applications": "Applications",
         "hackathons": "Hackathons",
@@ -107,7 +107,7 @@
     },
     "footer": {
         "tagline": "Construire, livrer, apprendre.",
-        "description": "Des apps, des outils, des notes — construits en public.",
+        "description": "Des apps, des outils, des notes, construits en public.",
         "connect": "Contact",
         "featuredWork": "Projets phares",
         "allRightsReserved": "Tous droits réservés.",
