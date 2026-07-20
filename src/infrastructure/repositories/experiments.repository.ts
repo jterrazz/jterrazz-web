@@ -50,7 +50,7 @@ const experiments: Experiment[] = [
         tagline: 'Agents orchestration as code. Docker for intelligence.',
         iconUrl: '/assets/icons/appicon-spwn.png',
         longDescription:
-            'Spwn turns AI agents into versioned, composable, reproducible artifacts. Stack tools, skills, and identity into an agent. Declare a world. Spawn it. Commit it to git. Ship it. If Terraform is infrastructure as code, Spwn is agents orchestration as code — the same discipline, now for the minds that work on your repo. One `spwn build`, one portable artifact. Docker for intelligence.',
+            'Spwn turns AI agents into versioned, composable, reproducible artifacts. Stack tools, skills, and identity into an agent. Declare a world. Spawn it. Commit it to git. Ship it. If Terraform is infrastructure as code, Spwn is agents orchestration as code. The same discipline, now for the minds that work on your repo. One `spwn build`, one portable artifact. Docker for intelligence.',
         name: 'Spwn',
         slug: 'spwn',
         status: ExperimentStatus.Building,
@@ -87,7 +87,7 @@ const experiments: Experiment[] = [
             },
         ],
         context: ExperimentContext.Personal,
-        description: 'Pack your photo library tight — deduplicate, organize, compress.',
+        description: 'Pack your photo library tight: deduplicate, organize, compress.',
         tagline: 'Your photo library, optimized.',
         longDescription:
             'A Rust-powered tool that cleans up your photo library. Finds duplicates, organizes by date and metadata, and compresses without visible quality loss. Native macOS app for a seamless experience.',
@@ -386,10 +386,10 @@ const experiments: Experiment[] = [
         ],
         context: ExperimentContext.Personal,
         description:
-            'A cross-product design system — shared tokens and platform-native components used across my apps.',
+            'A cross-product design system: shared tokens and platform-native components used across my apps.',
         tagline: 'One design language across every product.',
         longDescription:
-            'A single source of truth for how my products look and feel. Shared design tokens and platform-native components — not write-once-run-everywhere, but one consistent design language adapted per platform, with NativeWind on mobile and a hybrid npm + shadcn registry distribution.',
+            'A single source of truth for how my products look and feel. Shared design tokens and platform-native components. Not write-once-run-everywhere, but one consistent design language adapted per platform, with NativeWind on mobile and a hybrid npm + shadcn registry distribution.',
         name: 'Design System',
         slug: 'design-system',
         status: ExperimentStatus.Building,
@@ -413,7 +413,7 @@ const experiments: Experiment[] = [
         tagline:
             'A TP-Link pocket router flashed with OpenWrt, turned into a self-hosted WireGuard VPN.',
         longDescription:
-            'A TP-Link TL-WR802N pocket router — the size of a matchbox — flashed with OpenWrt and turned into a WireGuard VPN server. Sitting behind the home gateway with dynamic DNS, it gives secure, encrypted access back to my home network from anywhere.',
+            'A TP-Link TL-WR802N pocket router, the size of a matchbox, flashed with OpenWrt and turned into a WireGuard VPN server. Sitting behind the home gateway with dynamic DNS, it gives secure, encrypted access back to my home network from anywhere.',
         name: 'VPN',
         slug: 'vpn',
         status: ExperimentStatus.Active,

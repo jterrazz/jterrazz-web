@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     alternates: {
         types: {
             'application/rss+xml': [
-                { title: `${SITE_CONFIG.author.name} — Articles`, url: '/feed.xml' },
+                { title: `Articles by ${SITE_CONFIG.author.name}`, url: '/feed.xml' },
             ],
         },
     },

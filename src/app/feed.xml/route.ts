@@ -45,7 +45,7 @@ export function GET(): Response {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>${escapeXml(`${SITE_CONFIG.author.name} — Articles`)}</title>
+        <title>${escapeXml(`Articles by ${SITE_CONFIG.author.name}`)}</title>
         <link>${escapeXml(`${baseUrl}/articles`)}</link>
         <description>${escapeXml(SITE_CONFIG.description)}</description>
         <language>en</language>

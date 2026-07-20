@@ -114,7 +114,7 @@ export function buildMetadata(options: BuildMetadataOptions): Metadata {
             // Replaces the root layout's — without this the RSS link vanishes.
             types: {
                 'application/rss+xml': [
-                    { title: `${SITE_CONFIG.author.name} — Articles`, url: '/feed.xml' },
+                    { title: `Articles by ${SITE_CONFIG.author.name}`, url: '/feed.xml' },
                 ],
             },
         },

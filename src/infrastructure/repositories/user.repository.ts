@@ -65,7 +65,7 @@ const PARIS = 'Paris, France';
 const experiences: UserExperience[] = [
     {
         description:
-            "Building Spwn — describe your agents' world in a file, spawn it anywhere. Open source, MIT.",
+            "Building Spwn: describe your agents' world in a file, spawn it anywhere. Open source, MIT.",
         experimentUrl: '/experiments/spwn',
         location: 'Remote',
         organization: 'Spwn',
