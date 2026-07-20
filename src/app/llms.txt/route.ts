@@ -36,7 +36,7 @@ export function GET(): Response {
         '',
         `> ${SITE_CONFIG.description}`,
         '',
-        `${SITE_CONFIG.author.name} (${SITE_CONFIG.author.jobTitle}) writes about AI agents, software architecture, and self-sovereign software. Articles are available in English and French (French under /fr/).`,
+        `${SITE_CONFIG.author.name} (problem solver, mostly with code) builds small apps and tools, and writes notes on software, AI agents, and owning your own stack. Articles are available in English and French (French under /fr/).`,
         '',
         '## Articles',
         '',

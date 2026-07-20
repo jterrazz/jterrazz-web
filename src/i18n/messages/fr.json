@@ -1,10 +1,10 @@
 {
     "home": {
-        "title": "Construire la stack",
-        "titleAccent": "d'agents.",
-        "description": "Construire des systèmes autonomes, des produits from scratch, et des logiciels souverains. Notes sur l'IA, l'autonomie, et les systèmes sous-jacents.",
-        "seoDescription": "Construire des systèmes autonomes, des produits from scratch, et des logiciels souverains. Notes sur l'IA, l'autonomie, et les systèmes sous-jacents.",
-        "seoTitle": "Jean-Baptiste Terrazzoni — Founder & Software Engineer",
+        "title": "Humain",
+        "titleAccent": "dans la boucle.",
+        "description": "Je résous des problèmes, surtout avec du code. Des petites apps, des outils — parfois avec une IA dans la boucle — et des notes en chemin.",
+        "seoDescription": "Je résous des problèmes, surtout avec du code. Des petites apps, des outils — parfois avec une IA dans la boucle — et des notes en chemin.",
+        "seoTitle": "Jean-Baptiste Terrazzoni — Problem solver",
         "readArticles": "Lire les articles",
         "featuredExperiments": "Expérimentations en vedette",
         "featuredArticles": "Articles en vedette",
@@ -14,26 +14,26 @@
         "seriesDescription": "Série en {count} parties explorant {name}.",
         "focusAreas": {
             "aiEngineering": {
-                "title": "Stack d'agents",
-                "description": "Concevoir la verticale complète — runtime, orchestration, composition — pour des mondes d'IA autonomes."
+                "title": "Agents & co.",
+                "description": "Des petits outils et runtimes pour agents IA. J'automatise les parties ennuyeuses, puis je supervise les robots."
             },
             "aiAgents": {
-                "title": "Agents Orchestration as Code",
-                "description": "Composable, reproductible, versionné. Spawner des agents déclaratifs qui capitalisent la connaissance en mondes autonomes."
+                "title": "Tout est code",
+                "description": "Composable, versionné, reproductible. Si ça ne se reconstruit pas depuis un fichier, ça n'existe pas."
             },
             "architecture": {
                 "title": "Architecture",
-                "description": "Concevoir des logiciels scalables et maintenables avec des architectures adaptées à chaque projet."
+                "description": "Des logiciels qui survivent aux cycles de hype. Ennuyeux, exprès."
             },
             "decentralization": {
-                "title": "Souveraineté",
-                "description": "Promouvoir la souveraineté individuelle et la vie privée grâce aux technologies décentralisées."
+                "title": "Tes clés, tes données",
+                "description": "Auto-hébergement, open source, et des outils qui ne téléphonent pas à la maison."
             }
         }
     },
     "articles": {
         "title": "Articles",
-        "seoDescription": "Articles techniques sur les agents IA, l'architecture logicielle, TypeScript et les bonnes pratiques d'ingénierie. Guides et tutoriels approfondis.",
+        "seoDescription": "Des notes sur ce que je construis, ce que j'apprends, et où tout ça nous mène — avec parfois un robot pour faire mes corvées.",
         "highlightDescription": "Notes sur ce que j'apprends en développant des logiciels.",
         "filterAll": "Tous",
         "filterExploration": "Expérimentations",
@@ -44,8 +44,8 @@
     },
     "experiments": {
         "title": "Expérimentations",
-        "seoDescription": "Projets open-source, applications et outils pour développeurs. Agents IA, solutions fintech, packages TypeScript et expérimentations système.",
-        "highlightDescription": "Une collection d'applications et d'outils que j'ai construits pour résoudre de vrais problèmes.",
+        "seoDescription": "Des apps, des outils et des expérimentations — certaines livrées, d'autres glorieusement inachevées.",
+        "highlightDescription": "Des choses construites en chemin — livrées, à moitié livrées, ou abandonnées avec amour.",
         "viewGitHub": "GitHub",
         "applications": "Applications",
         "hackathons": "Hackathons",
@@ -107,7 +107,7 @@
     },
     "footer": {
         "tagline": "Construire, livrer, apprendre.",
-        "description": "Construire des systèmes d'IA autonomes, une abstraction à la fois.",
+        "description": "Des apps, des outils, des notes — construits en public.",
         "connect": "Contact",
         "featuredWork": "Projets phares",
         "allRightsReserved": "Tous droits réservés.",

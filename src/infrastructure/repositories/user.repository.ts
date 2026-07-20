@@ -65,13 +65,13 @@ const PARIS = 'Paris, France';
 const experiences: UserExperience[] = [
     {
         description:
-            'Building Spwn — the operating system for autonomous agent worlds. Agents orchestration as code: compose tools, skills, and identity into versioned artifacts. Open source, MIT.',
+            "Building Spwn — describe your agents' world in a file, spawn it anywhere. Open source, MIT.",
         experimentUrl: '/experiments/spwn',
         location: 'Remote',
         organization: 'Spwn',
         organizationUrl: 'https://spwn.sh',
         timeframe: '2026 - Present',
-        title: 'Founder & Software Engineer',
+        title: 'Side quest',
         type: 'Job',
         year: '2026',
     },

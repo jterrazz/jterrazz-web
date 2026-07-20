@@ -64,10 +64,6 @@ export function buildPersonJsonLd(options: PersonJsonLdOptions = {}) {
             SITE_CONFIG.social.x,
         ],
         url: SITE_CONFIG.baseUrl,
-        worksFor: {
-            '@type': 'Organization',
-            name: 'Self-Employed',
-        },
     };
 }
 

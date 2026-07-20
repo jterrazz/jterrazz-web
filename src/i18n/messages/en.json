@@ -1,10 +1,10 @@
 {
     "home": {
-        "title": "Building the agent",
-        "titleAccent": "stack.",
-        "description": "Building autonomous systems, products from scratch, and sovereign software. Notes on AI, autonomy, and the systems beneath.",
-        "seoDescription": "Building autonomous systems, products from scratch, and sovereign software. Notes on AI, autonomy, and the systems beneath.",
-        "seoTitle": "Jean-Baptiste Terrazzoni — Founder & Software Engineer",
+        "title": "Human",
+        "titleAccent": "in the loop.",
+        "description": "Problem solver, mostly with code. I build small apps and tools — sometimes with an AI in the loop — and keep notes along the way.",
+        "seoDescription": "Problem solver, mostly with code. I build small apps and tools — sometimes with an AI in the loop — and keep notes along the way.",
+        "seoTitle": "Jean-Baptiste Terrazzoni — Problem solver",
         "readArticles": "Read Articles",
         "featuredExperiments": "Featured Experiments",
         "featuredArticles": "Featured Articles",
@@ -14,26 +14,26 @@
         "seriesDescription": "{count}-part series exploring {name}.",
         "focusAreas": {
             "aiEngineering": {
-                "title": "Agent Stack",
-                "description": "Designing the full vertical — runtime, orchestration, composition — for autonomous AI worlds."
+                "title": "Agents & co.",
+                "description": "Small tools and runtimes for AI agents. I automate the boring parts, then supervise the robots."
             },
             "aiAgents": {
-                "title": "Agents Orchestration as Code",
-                "description": "Composable, reproducible, version-controlled. Spawning declarative agents that compound knowledge into autonomous worlds."
+                "title": "Everything as code",
+                "description": "Composable, versioned, reproducible. If it can't be rebuilt from a file, it doesn't exist."
             },
             "architecture": {
                 "title": "Architecture",
-                "description": "Crafting scalable, maintainable software using architectures adapted to each project."
+                "description": "Software that outlives the hype cycle. Boring on purpose."
             },
             "decentralization": {
-                "title": "Self-sovereignty",
-                "description": "Advocating for self-sovereignty and privacy through decentralized technologies."
+                "title": "Own your stuff",
+                "description": "Self-hosting, open source, and tools that don't phone home."
             }
         }
     },
     "articles": {
         "title": "Articles",
-        "seoDescription": "Technical articles on AI agents, clean architecture, TypeScript, and software engineering best practices. In-depth guides and tutorials.",
+        "seoDescription": "Notes on what I build, what I learn, and where it's all heading — with the occasional robot doing my chores.",
         "highlightDescription": "Notes on what I learn while building software.",
         "filterAll": "All",
         "filterExploration": "Experiments",
@@ -44,8 +44,8 @@
     },
     "experiments": {
         "title": "Experiments",
-        "seoDescription": "Open-source projects, apps, and developer tools. AI agents, fintech solutions, TypeScript packages, and system-level experiments.",
-        "highlightDescription": "A collection of apps and tools I've built to solve real problems.",
+        "seoDescription": "Apps, tools, and experiments — some shipped, some gloriously unfinished.",
+        "highlightDescription": "Things I've built along the way — shipped, half-shipped, or lovingly abandoned.",
         "viewGitHub": "GitHub",
         "applications": "Applications",
         "hackathons": "Hackathons",
@@ -107,7 +107,7 @@
     },
     "footer": {
         "tagline": "Building, shipping, learning.",
-        "description": "Building autonomous AI systems, one abstraction at a time.",
+        "description": "Apps, tools, and notes — built in the open.",
         "connect": "Connect",
         "featuredWork": "Featured Work",
         "allRightsReserved": "All rights reserved.",
