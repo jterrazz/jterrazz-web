@@ -1,9 +1,9 @@
-import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
-import { GO_APP_LINKS, REDIRECTS } from '../../src/config/redirects';
-import { buildArticleSlug } from '../../src/domain/utils/slugify';
-import { articlesRepository } from '../../src/infrastructure/repositories/articles.repository';
-import { BASE_URL, startTestServer, stopTestServer } from '../setup/integration-server';
+import { GO_APP_LINKS, REDIRECTS } from '../../../src/config/redirects';
+import { buildArticleSlug } from '../../../src/domain/utils/slugify';
+import { articlesRepository } from '../../../src/infrastructure/repositories/articles.repository';
+import { website } from '../website.specification';
 
 /**
  * Every redirect promise in the registry is exercised against the real
@@ -19,13 +19,9 @@ const USER_AGENTS = {
     ios: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
 };
 
-async function fetchRedirect(path: string, userAgent?: string) {
-    const response = await fetch(`${BASE_URL}${path}`, {
-        headers: userAgent ? { 'user-agent': userAgent } : {},
-        redirect: 'manual',
-    });
-    return { location: response.headers.get('location') ?? '', status: response.status };
-}
+/** Relative form of a location header (Next serves relative or absolute). */
+const relative = (location: string | undefined): string =>
+    (location ?? '').replace(/^https?:\/\/[^/]+/, '');
 
 // Path-pattern rules (:param) need a concrete example to be exercised.
 const PATTERN_EXAMPLES: Record<string, { destination: string; source: string }> = {
@@ -39,14 +35,6 @@ const PATTERN_EXAMPLES: Record<string, { destination: string; source: string }> 
     },
 };
 
-beforeAll(async () => {
-    await startTestServer();
-}, 60_000);
-
-afterAll(async () => {
-    await stopTestServer();
-});
-
 describe('redirect registry', () => {
     for (const rule of REDIRECTS) {
         const example = PATTERN_EXAMPLES[rule.source];
@@ -54,20 +42,24 @@ describe('redirect registry', () => {
         const destination = example?.destination ?? rule.destination;
 
         test(`[${rule.kind}] ${source} → ${destination}`, async () => {
-            const { location, status } = await fetchRedirect(source);
+            // Given - the registered source path
+            const result = await website.fetch(source);
 
-            expect(status).toBe(rule.permanent ? 308 : 307);
-            // Next serves relative or absolute locations depending on target
+            // Then - the promised status and destination
+            expect(result.status).toBe(rule.permanent ? 308 : 307);
             if (destination.startsWith('http')) {
-                expect(location).toBe(destination);
+                expect(result.location).toBe(destination);
             } else {
-                expect(location.replace(BASE_URL, '')).toBe(destination);
+                expect(relative(result.location)).toBe(destination);
             }
         });
     }
 
     test('every pattern rule has a concrete example', () => {
+        // Given - the pattern rules of the registry
         const patternSources = REDIRECTS.filter((r) => r.source.includes(':')).map((r) => r.source);
+
+        // Then - each one is exercised above
         for (const source of patternSources) {
             expect(PATTERN_EXAMPLES[source], `missing example for ${source}`).toBeDefined();
         }
@@ -102,6 +94,7 @@ const LEGACY_ARTICLE_SLUGS = [
 describe('legacy article slugs (pre-retitle)', () => {
     for (const legacySlug of LEGACY_ARTICLE_SLUGS) {
         test(`/articles/${legacySlug} → current canonical (308)`, async () => {
+            // Given - the article the legacy slug pointed at
             const index = legacySlug.split('-')[0];
             const article = articlesRepository.getByIndex(index);
             if (!article) {
@@ -112,16 +105,20 @@ describe('legacy article slugs (pre-retitle)', () => {
             // Would turn this into a self-redirect instead of a real guard.
             expect(canonical).not.toBe(legacySlug);
 
-            const { location, status } = await fetchRedirect(`/articles/${legacySlug}`);
-            expect(status).toBe(308);
-            expect(location.replace(BASE_URL, '')).toBe(`/articles/${canonical}`);
+            // Then - a permanent redirect to the current canonical slug
+            const result = await website.fetch(`/articles/${legacySlug}`);
+            expect(result.status).toBe(308);
+            expect(relative(result.location)).toBe(`/articles/${canonical}`);
         });
     }
 
     test('fr locale keeps its prefix through the canonical redirect', async () => {
-        const { location, status } = await fetchRedirect('/fr/articles/13-mapping-the-noise');
-        expect(status).toBe(308);
-        expect(location.replace(BASE_URL, '')).toBe(
+        // Given - a legacy slug under the french prefix
+        const result = await website.fetch('/fr/articles/13-mapping-the-noise');
+
+        // Then - the redirect keeps the locale
+        expect(result.status).toBe(308);
+        expect(relative(result.location)).toBe(
             '/fr/articles/13-signews-mapping-global-news-narratives-with-ai',
         );
     });
@@ -130,32 +127,44 @@ describe('legacy article slugs (pre-retitle)', () => {
 describe('smart app links (/go/*)', () => {
     for (const link of GO_APP_LINKS) {
         test(`/go/${link.slug} routes iOS to the App Store`, async () => {
-            const { location, status } = await fetchRedirect(`/go/${link.slug}`, USER_AGENTS.ios);
-            expect([307, 308]).toContain(status);
-            expect(location).toContain(link.ios);
+            // Given - an iOS visitor
+            const result = await website
+                .headers({ 'user-agent': USER_AGENTS.ios })
+                .fetch(`/go/${link.slug}`);
+
+            // Then - the App Store target
+            expect([307, 308]).toContain(result.status);
+            expect(result.location).toContain(link.ios);
         });
 
         test(`/go/${link.slug} routes Android to the Play Store`, async () => {
-            const { location, status } = await fetchRedirect(
-                `/go/${link.slug}`,
-                USER_AGENTS.android,
-            );
-            expect([307, 308]).toContain(status);
-            expect(location).toContain(link.android);
+            // Given - an Android visitor
+            const result = await website
+                .headers({ 'user-agent': USER_AGENTS.android })
+                .fetch(`/go/${link.slug}`);
+
+            // Then - the Play Store target
+            expect([307, 308]).toContain(result.status);
+            expect(result.location).toContain(link.android);
         });
 
         test(`/go/${link.slug} routes desktop to the experiment page`, async () => {
-            const { location, status } = await fetchRedirect(
-                `/go/${link.slug}`,
-                USER_AGENTS.desktop,
-            );
-            expect([307, 308]).toContain(status);
-            expect(location.replace(BASE_URL, '')).toBe(link.desktop);
+            // Given - a desktop visitor
+            const result = await website
+                .headers({ 'user-agent': USER_AGENTS.desktop })
+                .fetch(`/go/${link.slug}`);
+
+            // Then - the on-site experiment page
+            expect([307, 308]).toContain(result.status);
+            expect(relative(result.location)).toBe(link.desktop);
         });
     }
 
     test('unknown /go/ slugs are a 404, not a broken redirect', async () => {
-        const response = await fetch(`${BASE_URL}/go/does-not-exist`, { redirect: 'manual' });
-        expect(response.status).toBe(404);
+        // Given - a slug outside the registry
+        const result = await website.fetch('/go/does-not-exist');
+
+        // Then - a real 404
+        expect(result.status).toBe(404);
     });
 });

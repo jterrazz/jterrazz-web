@@ -17,17 +17,7 @@ export default defineConfig({
                     fileParallelism: false,
                     include: ['specs/website/**/*.test.ts'],
                     name: 'website',
-                    testTimeout: 30_000,
-                },
-            },
-            {
-                test: {
-                    // E2E files boot the production server on a shared port —
-                    // Run them sequentially, against a fresh `next build`.
-                    fileParallelism: false,
-                    include: ['tests/e2e/**/*.e2e.test.ts'],
-                    name: 'e2e',
-                    testTimeout: 30_000,
+                    testTimeout: 60_000,
                 },
             },
         ],
