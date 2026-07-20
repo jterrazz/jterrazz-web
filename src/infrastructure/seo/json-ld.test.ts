@@ -137,6 +137,6 @@ describe('buildSiteIdentityJsonLd', () => {
                 'https://x.com/jterrazzx',
             ]),
         );
-        expect(person.email).toBe('mailto:jterrazzoni@gmail.com');
+        expect(person.email).toBe('mailto:contact@jterrazz.com');
     });
 });

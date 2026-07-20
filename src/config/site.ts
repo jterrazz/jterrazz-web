@@ -10,8 +10,8 @@ export const SITE_CONFIG = {
     },
     author: {
         alumniOf: '42 Paris',
-        email: 'jterrazzoni@gmail.com',
-        image: '/assets/icons/appicon-jterrazz.png',
+        email: 'contact@jterrazz.com',
+        image: '/assets/portrait.png',
         jobTitle: 'Software Engineer',
         name: 'Jean-Baptiste Terrazzoni',
         skills: ['TypeScript', 'Software Architecture', 'Developer Tools', 'Open Source', 'AI'],

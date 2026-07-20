@@ -16,8 +16,8 @@ const profile: UserProfile = {
 const contacts: Record<UserContactType, UserContact> = {
     [UserContactType.Email]: {
         type: UserContactType.Email,
-        url: new URL('mailto:jterrazzoni@gmail.com'),
-        value: 'jterrazzoni@gmail.com',
+        url: new URL('mailto:contact@jterrazz.com'),
+        value: 'contact@jterrazz.com',
     },
     [UserContactType.GitHub]: {
         type: UserContactType.GitHub,
