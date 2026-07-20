@@ -1,0 +1,14 @@
+{
+    "name": "@jterrazz/reach",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Define a site's reach once — identity, pages, discovery — and project it into every surface: metadata, JSON-LD, sitemap, robots, llms.txt, feed. With a conformance suite that keeps the projections honest.",
+    "license": "MIT",
+    "author": "Jean-Baptiste Terrazzoni <contact@jterrazz.com>",
+    "type": "module",
+    "exports": {
+        ".": "./src/core/index.ts",
+        "./next": "./src/next/index.ts",
+        "./testing": "./src/testing/index.ts"
+    }
+}

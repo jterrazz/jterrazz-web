@@ -1,11 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import {
-    buildExperimentDetailJsonLd,
-    buildSiteIdentityJsonLd,
-    PERSON_ID,
-    WEBSITE_ID,
-} from './json-ld';
+import { buildExperimentDetailJsonLd, buildSiteIdentityJsonLd, PERSON_ID } from './json-ld';
 
 describe('buildExperimentDetailJsonLd', () => {
     test('should build basic JSON-LD for non-42 project', () => {
@@ -116,7 +111,7 @@ describe('buildSiteIdentityJsonLd', () => {
         // Then — WebSite and Person are present and linked by @id
         expect(result['@context']).toBe('https://schema.org');
         const [website, person] = result['@graph'];
-        expect(website['@id']).toBe(WEBSITE_ID);
+        expect(website['@id']).toBe('https://jterrazz.com/#website');
         expect(website['@type']).toBe('WebSite');
         expect(website.publisher).toEqual({ '@id': PERSON_ID });
         expect(person['@id']).toBe(PERSON_ID);

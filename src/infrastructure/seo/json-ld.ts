@@ -1,96 +1,46 @@
+import {
+    personId,
+    projectAuthorRef,
+    projectIdentityGraph,
+    projectPerson,
+    projectWebSite,
+} from '@jterrazz/reach';
+
+import { site } from '../../../reach.config';
 import { SITE_CONFIG } from '../../config/site';
 
 /**
  * JSON-LD structured data builders for SEO
- * @description Provides type-safe builders for Schema.org structured data
+ * @description The identity graph is projected by @jterrazz/reach from
+ * reach.config.ts; the content builders below (articles, experiments,
+ * photographs) stay app-specific and reference the canonical Person by @id.
  */
 
 // ============================================================================
-// Shared Types & Builders
+// Identity (projected from reach.config.ts)
 // ============================================================================
 
-/**
- * Stable entity ids — the same Person/WebSite must resolve to one node across
- * every page so engines consolidate the entity instead of seeing variants.
- */
-export const PERSON_ID = `${SITE_CONFIG.baseUrl}/#person`;
-export const WEBSITE_ID = `${SITE_CONFIG.baseUrl}/#website`;
+export const PERSON_ID = personId(site);
 
-/**
- * Schema.org Person reference for authored content — resolves to the
- * canonical Person entity via @id.
- */
+/** Schema.org Person reference for authored content — resolves via @id. */
 export function buildAuthorJsonLd() {
-    return {
-        '@id': PERSON_ID,
-        '@type': 'Person' as const,
-        name: SITE_CONFIG.author.name,
-        url: SITE_CONFIG.author.url,
-    };
+    return projectAuthorRef(site);
 }
 
-/**
- * The canonical Person entity — one definition, referenced everywhere by @id
- */
-export interface PersonJsonLdOptions {
-    description?: string;
+export function buildPersonJsonLd() {
+    return projectPerson(site);
 }
 
-export function buildPersonJsonLd(options: PersonJsonLdOptions = {}) {
-    const description = options.description ?? SITE_CONFIG.description;
-    return {
-        '@id': PERSON_ID,
-        '@type': 'Person',
-        alumniOf: {
-            '@type': 'Organization',
-            name: SITE_CONFIG.author.alumniOf,
-        },
-        description,
-        email: `mailto:${SITE_CONFIG.author.email}`,
-        hasOccupation: {
-            '@type': 'Occupation',
-            description,
-            name: SITE_CONFIG.author.jobTitle,
-        },
-        image: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.author.image}`,
-        jobTitle: SITE_CONFIG.author.jobTitle,
-        knowsAbout: SITE_CONFIG.author.skills,
-        name: SITE_CONFIG.author.name,
-        sameAs: [
-            SITE_CONFIG.social.github,
-            SITE_CONFIG.social.linkedin,
-            SITE_CONFIG.social.medium,
-            SITE_CONFIG.social.pexels,
-            SITE_CONFIG.social.x,
-        ],
-        url: SITE_CONFIG.baseUrl,
-    };
-}
-
-/**
- * The WebSite entity, published by the canonical Person
- */
 export function buildWebSiteJsonLd() {
-    return {
-        '@id': WEBSITE_ID,
-        '@type': 'WebSite',
-        description: SITE_CONFIG.description,
-        inLanguage: ['en', 'fr'],
-        name: SITE_CONFIG.author.name,
-        publisher: { '@id': PERSON_ID },
-        url: SITE_CONFIG.baseUrl,
-    };
+    return projectWebSite(site);
 }
 
 /**
  * Site-wide identity graph (WebSite + Person), rendered once in the root
  * layout so every page carries the same canonical entities.
  */
-export function buildSiteIdentityJsonLd(options: PersonJsonLdOptions = {}) {
-    return {
-        '@context': 'https://schema.org',
-        '@graph': [buildWebSiteJsonLd(), buildPersonJsonLd(options)],
-    };
+export function buildSiteIdentityJsonLd() {
+    return projectIdentityGraph(site);
 }
 
 // ============================================================================
