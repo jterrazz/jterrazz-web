@@ -26,5 +26,5 @@
         "**/*.tsx",
         ".next/dev/types/**/*.ts"
     ],
-    "exclude": ["node_modules", "*.config.ts", "packages", "packages/reach/src/testing", "specs"]
+    "exclude": ["node_modules", "*.config.ts", "packages", "specs"]
 }

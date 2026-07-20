@@ -6,8 +6,6 @@ import { REDIRECTS } from './src/config/redirects';
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const nextConfig: NextConfig = {
-    // @jterrazz/reach is a local source-only package (file: dep) — transpile it.
-    transpilePackages: ['@jterrazz/reach'],
     // Optimize for static generation while maintaining SSR capabilities
     experimental: {
         optimizePackageImports: ['@vercel/analytics', '@vercel/speed-insights'],
