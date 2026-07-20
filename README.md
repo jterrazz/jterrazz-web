@@ -51,17 +51,19 @@ Visit `http://localhost:3000` to view the site.
 - `npm run build`: Build the production application
 - `npm run start`: Start the production server
 - `npm run dev`: Start the development server
-- `npm run test`: Run tests
+- `npm run test`: Run every suite — unit tests and the website specs (rendered-site conformance, journeys, redirects) via `specification.website()`
 - `npm run lint`: Run linting checks (type, code, and style)
 - `npm run clean`: Clean build artifacts and node_modules
 
 ## 🧪 Testing
 
-Run tests using:
+Run everything with:
 
 ```sh
 npm run test
 ```
+
+Unit tests live as siblings in `src/`; the website suite lives in `specs/website/` — it rebuilds the production bundle when stale, boots `next start`, and drives a real browser (`@jterrazz/test` + `@jterrazz/reach` conformance). Local one-time setup: `npx playwright install chromium` (or `j install` → playwright-browsers).
 
 ## 📐 Code Quality
 
@@ -71,12 +73,13 @@ Maintain code quality with:
 npm run lint
 ```
 
-This runs TypeScript type checking, ESLint, and Prettier.
+This runs TypeScript type checking, oxlint, and oxfmt.
 
 ## 🏗 Project Structure
 
-- `src/`: Source code
-- `__tests__/`: Test files
+- `src/`: Source code (unit tests as siblings)
+- `specs/website/`: Website specs — conformance, journeys, crawl, redirects
+- `reach.config.ts`: The site's reach — identity, discovery, channels (projected by `@jterrazz/reach`)
 - `public/`: Static assets
 
 ## 📚 Dive into My Articles
