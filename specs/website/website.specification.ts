@@ -1,8 +1,7 @@
+import { specification } from '@jterrazz/test';
 import { execSync } from 'node:child_process';
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
-
-import { specification } from '@jterrazz/test';
 import { afterAll } from 'vitest';
 
 const REPO_ROOT = resolve(import.meta.dirname, '../..');
