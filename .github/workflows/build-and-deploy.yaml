@@ -1,0 +1,27 @@
+name: Build and Deploy
+
+on:
+    push:
+        branches: [main]
+        tags: ['v*']
+    workflow_dispatch:
+
+concurrency:
+    group: deploy-${{ github.ref }}
+    cancel-in-progress: false
+
+jobs:
+    validate:
+        uses: jterrazz/jterrazz-actions/.github/workflows/validate.yaml@main
+        with:
+            node-version: '24'
+
+    build-and-deploy:
+        needs: validate
+        uses: jterrazz/jterrazz-actions/.github/workflows/release-docker.yaml@main
+        with:
+            image-name: jterrazz-web
+            node-version: '24'
+        secrets:
+            INFISICAL_CLIENT_ID: ${{ secrets.INFISICAL_CLIENT_ID }}
+            INFISICAL_CLIENT_SECRET: ${{ secrets.INFISICAL_CLIENT_SECRET }}

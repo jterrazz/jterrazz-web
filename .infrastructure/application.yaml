@@ -1,0 +1,31 @@
+apiVersion: jterrazz.com/v1
+kind: Application
+
+metadata:
+    name: jterrazz-web
+
+spec:
+    port: 3000
+
+    resources:
+        cpu: 50m
+        memory: 128Mi
+        memoryLimit: 256Mi
+
+    health:
+        path: /
+
+environments:
+    prod:
+        tag: main
+        replicas: 1
+        ingress:
+            - host: www.jterrazz.com
+              public: true
+            - host: jterrazz.com
+              public: true
+              redirectTo: https://www.jterrazz.com
+            - host: blog.jterrazz.com
+              public: true
+              redirectTo: https://www.jterrazz.com/articles
+              preservePath: false

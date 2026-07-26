@@ -6,6 +6,8 @@ import { REDIRECTS } from './src/config/redirects';
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const nextConfig: NextConfig = {
+    // Required by the container image, which copies .next/standalone.
+    output: 'standalone',
     // Optimize for static generation while maintaining SSR capabilities
     experimental: {
         optimizePackageImports: ['@vercel/analytics', '@vercel/speed-insights'],
