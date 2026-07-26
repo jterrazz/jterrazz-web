@@ -6,7 +6,11 @@ import { defineSite, person } from '@jterrazz/reach';
  * verified by the conformance suite in specs/website/.
  */
 export const site = defineSite({
-    address: process.env.NEXT_PUBLIC_BASE_URL || 'https://jterrazz.com',
+    // Canonical host is www: the apex 301s to it at the ingress. This address is
+    // Projected into every surface (canonical tags, sitemap, feed, identity
+    // Graph), so naming the redirecting host here would make all of them
+    // Redirects. Keep in sync with SITE_CONFIG.baseUrl in src/config/site.ts.
+    address: process.env.NEXT_PUBLIC_BASE_URL || 'https://www.jterrazz.com',
 
     channels: { feed: true, llms: true },
 

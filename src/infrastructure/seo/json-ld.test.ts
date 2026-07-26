@@ -26,7 +26,7 @@ describe('buildExperimentDetailJsonLd', () => {
             '@id': PERSON_ID,
             '@type': 'Person',
             name: 'Jean-Baptiste Terrazzoni',
-            url: 'https://jterrazz.com',
+            url: 'https://www.jterrazz.com',
         });
         expect(result).not.toHaveProperty('provider');
         expect(result).not.toHaveProperty('educationalLevel');
@@ -111,7 +111,7 @@ describe('buildSiteIdentityJsonLd', () => {
         // Then — WebSite and Person are present and linked by @id
         expect(result['@context']).toBe('https://schema.org');
         const [website, person] = result['@graph'];
-        expect(website['@id']).toBe('https://jterrazz.com/#website');
+        expect(website['@id']).toBe('https://www.jterrazz.com/#website');
         expect(website['@type']).toBe('WebSite');
         expect(website.publisher).toEqual({ '@id': PERSON_ID });
         expect(person['@id']).toBe(PERSON_ID);
