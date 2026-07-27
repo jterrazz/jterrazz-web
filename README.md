@@ -91,12 +91,12 @@ Hey there, app enthusiasts! 👋 Ready to dive into the world of game-changing a
 **Jean-Baptiste Terrazzoni**
 
 - Website: [jterrazz.com](https://jterrazz.com)
-- Email: jterrazzoni@gmail.com
+- Email: contact@jterrazz.com
 - GitHub: [@jterrazz](https://github.com/jterrazz)
 - Medium: [@jterrazz](https://medium.com/@jterrazz)
 - Devpost: [@jterrazz](https://devpost.com/jterrazz)
 - LinkedIn: [@jterrazz](https://www.linkedin.com/in/jterrazz/)
-- X: [@j_terrazz](https://x.com/j_terrazz)
+- X: [@jterrazzx](https://x.com/jterrazzx)
 - Pexels: [@jterrazz](https://www.pexels.com/@jterrazz)
 
 ## 🤝 Contributing
