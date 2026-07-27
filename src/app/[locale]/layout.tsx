@@ -70,10 +70,12 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
     const navbarTranslations = {
         appStoreLink: ExternalLinks.signewApp,
+        brand: 'Jterrazz',
         downloadApp: tNavbar('downloadApp'),
         getApp: tNavbar('getApp'),
         hideAppButtonOnPaths: experimentsWithStoreLinks,
         homeHref: routes.home(),
+        homeLabel: tNavbar('hello'),
         opensInNewTab: tNavbar('opensInNewTab'),
     };
 

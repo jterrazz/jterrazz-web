@@ -35,6 +35,7 @@
         "title": "Articles",
         "seoDescription": "Notes on what I build, what I learn, and where it's all heading. The occasional robot does my chores.",
         "highlightDescription": "Notes on what I learn while building software.",
+        "featured": "Featured",
         "filterAll": "All",
         "filterExploration": "Experiments",
         "filterReflection": "Reflections",

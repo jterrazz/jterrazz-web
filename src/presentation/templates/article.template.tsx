@@ -15,6 +15,11 @@ import { ArticleFooter } from '../ui/organisms/article-footer/article-footer';
 import { ArticleHeader } from '../ui/organisms/article-header/article-header';
 import { MarkdownRenderer } from '../ui/organisms/markdown-renderer/markdown-renderer';
 
+const ON_THIS_PAGE_LABEL: Record<ArticleLanguage, string> = {
+    en: 'On this page',
+    fr: 'Sur cette page',
+};
+
 type ArticleTemplateProps = {
     articleId: string;
     articles: Article[];
@@ -155,14 +160,23 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
             <div className="md:mx-auto md:grid md:max-w-[70rem] md:grid-cols-[15rem_minmax(0,1fr)] md:gap-x-20 lg:gap-x-32">
                 <aside className="mb-10 md:mb-0">
                     <ArticleByline
-                        className="mb-8 md:mb-10"
+                        className="mb-6 md:mb-10"
                         datePublished={datePublished}
                         locale={currentLanguage}
                         readingTimeMinutes={readingTimeMinutes}
                     />
+                    {/* The sticky rail has no room on a phone, so the same
+                        outline ships as a closed disclosure above the body. */}
+                    <TableOfContents
+                        className="md:hidden"
+                        contentInMarkdown={body}
+                        label={ON_THIS_PAGE_LABEL[currentLanguage]}
+                        variant="collapsible"
+                    />
                     <TableOfContents
                         className="hidden md:block md:sticky md:top-28"
                         contentInMarkdown={body}
+                        label={ON_THIS_PAGE_LABEL[currentLanguage]}
                         variant="sidebar"
                     />
                 </aside>

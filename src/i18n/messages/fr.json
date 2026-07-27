@@ -35,6 +35,7 @@
         "title": "Articles",
         "seoDescription": "Des notes sur ce que je construis, ce que j'apprends, et où tout ça nous mène. Avec parfois un robot pour faire mes corvées.",
         "highlightDescription": "Notes sur ce que j'apprends en développant des logiciels.",
+        "featured": "À la une",
         "filterAll": "Tous",
         "filterExploration": "Expérimentations",
         "filterReflection": "Réflexions",

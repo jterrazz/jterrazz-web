@@ -2,6 +2,7 @@
 
 import { IconChevronDown, IconDownload, IconMenu2, IconX } from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'motion/react';
+import Image from 'next/image';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
@@ -97,10 +98,12 @@ function LanguageSwitcher({ className, onSwitch }: { className?: string; onSwitc
 
 type NavbarTranslations = {
     appStoreLink: string;
+    brand: string;
     downloadApp: string;
     getApp: string;
     hideAppButtonOnPaths: string[];
     homeHref: string;
+    homeLabel: string;
     opensInNewTab: string;
 };
 
@@ -178,13 +181,32 @@ export const Navbar: React.FC<NavbarProps> = ({ className, pages, translations: 
                             </AnimatePresence>
                         </div>
 
+                        {/* Mobile brand — the only tap-to-home affordance on a
+                            phone, and it keeps the bar from reading as empty. */}
+                        <Link
+                            aria-label={t.homeLabel}
+                            className="md:hidden flex items-center gap-2.5"
+                            href={t.homeHref}
+                        >
+                            <Image
+                                alt=""
+                                className="rounded-lg"
+                                height={28}
+                                src="/assets/icons/appicon-jterrazz.png"
+                                width={28}
+                            />
+                            <span className="font-display text-base font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+                                {t.brand}
+                            </span>
+                        </Link>
+
                         {/* Mobile actions */}
                         <div className="md:hidden flex items-center gap-1">
                             <AnimatePresence initial={false} mode="wait">
                                 {shouldShowAppButton && (
                                     <motion.a
                                         animate={{ opacity: 1, scale: 1 }}
-                                        className="flex items-center justify-center w-9 h-9 rounded-full bg-black dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm"
+                                        className="flex items-center justify-center w-10 h-10 rounded-full bg-black dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm"
                                         exit={{ opacity: 0, scale: 0.8 }}
                                         href={t.appStoreLink}
                                         initial={{ opacity: 0, scale: 0.8 }}
@@ -199,11 +221,11 @@ export const Navbar: React.FC<NavbarProps> = ({ className, pages, translations: 
                             </AnimatePresence>
                             <button
                                 aria-label="Toggle menu"
-                                className="flex items-center justify-center w-9 h-9 rounded-full text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                                className="flex items-center justify-center w-10 h-10 -mr-1 rounded-full text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 type="button"
                             >
-                                {isMenuOpen ? <IconX size={18} /> : <IconMenu2 size={18} />}
+                                {isMenuOpen ? <IconX size={20} /> : <IconMenu2 size={20} />}
                             </button>
                         </div>
                     </nav>

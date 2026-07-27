@@ -50,26 +50,31 @@ export const CardExperimentFeatured: React.FC<CardExperimentFeaturedProps> = ({
                                 className="text-zinc-400 dark:text-zinc-500"
                                 size={14}
                             />
-                            <span className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 text-xs text-white bg-zinc-900 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity whitespace-nowrap z-10">
+                            {/* Hover-only, so it never fires on touch. */}
+                            <span className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 hidden px-2 py-1 text-xs text-white bg-zinc-900 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity whitespace-nowrap z-10 md:block">
                                 Article available
                             </span>
                         </span>
                     )}
                 </div>
-                <Lead className="line-clamp-1" size="sm">
+                <Lead className="line-clamp-2 md:line-clamp-1" size="sm">
                     {experiment.tagline}
                 </Lead>
             </div>
             <BadgeExperimentStatus className="shrink-0" status={experiment.status} />
-            {hasIcon && (
-                <Image
-                    alt={experiment.name}
-                    className="rounded-lg shadow-[0_0_6px_rgba(0,0,0,0.04)] shrink-0"
-                    height={40}
-                    src={experiment.iconUrl!}
-                    width={40}
-                />
-            )}
+            {/* The slot is always reserved: dropping it for icon-less rows let
+                their status badge slide to the edge and broke the badge column. */}
+            <div className="w-10 shrink-0">
+                {hasIcon && (
+                    <Image
+                        alt={experiment.name}
+                        className="rounded-lg shadow-[0_0_6px_rgba(0,0,0,0.04)]"
+                        height={40}
+                        src={experiment.iconUrl!}
+                        width={40}
+                    />
+                )}
+            </div>
         </Link>
     );
 };

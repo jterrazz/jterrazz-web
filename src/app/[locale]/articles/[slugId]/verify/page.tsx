@@ -91,17 +91,20 @@ export default async function VerifyArticlePage(props: VerifyPageProps) {
             <section className="mb-10">
                 <h2 className="text-xl font-semibold mb-3">How it works</h2>
                 <div className="space-y-3 text-zinc-700 dark:text-zinc-300">
+                    {/* Bodies are string expressions, not JSX text: a text node
+                        that both follows an element and contains an entity loses
+                        its leading space, so the label ran into the sentence. */}
                     <p>
-                        <strong>Signature.</strong> The article&apos;s canonicalized bytes are
-                        hashed with SHA-256, and the hash is signed by an Ethereum wallet using
-                        EIP-712 typed data. The signer&apos;s address is recoverable from the
-                        signature; tampering with one byte invalidates it.
+                        <strong>Signature.</strong>
+                        {
+                            " The article's canonicalized bytes are hashed with SHA-256, and the hash is signed by an Ethereum wallet using EIP-712 typed data. The signer's address is recoverable from the signature; tampering with one byte invalidates it."
+                        }
                     </p>
                     <p>
-                        <strong>Timestamp.</strong> The same hash is anchored into a Bitcoin block
-                        via OpenTimestamps. Once a block is mined, the timestamp becomes part of
-                        Bitcoin&apos;s consensus history, provably no later than the block&apos;s
-                        mining time.
+                        <strong>Timestamp.</strong>
+                        {
+                            " The same hash is anchored into a Bitcoin block via OpenTimestamps. Once a block is mined, the timestamp becomes part of Bitcoin's consensus history, provably no later than the block's mining time."
+                        }
                     </p>
                     <p>
                         <strong>Trust-free verification.</strong> Anyone can verify both properties

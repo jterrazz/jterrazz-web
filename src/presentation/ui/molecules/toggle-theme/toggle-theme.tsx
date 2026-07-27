@@ -42,7 +42,8 @@ export const ToggleTheme: React.FC<ToggleThemeProps> = ({ className }) => {
                     <button
                         aria-label={`Switch to ${option.label} theme`}
                         className={cn(
-                            'p-2 rounded-full transition-all duration-200',
+                            // Comfortable thumb target on touch; unchanged on desktop.
+                            'flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 md:h-8 md:w-8',
                             isActive
                                 ? 'bg-white dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100 shadow-sm'
                                 : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200',

@@ -44,6 +44,7 @@ const ArticleSeries: React.FC<{ series: ArticleSeriesViewModel; seriesLabel: str
 type FilterKey = 'All' | 'Exploration' | 'Reflection';
 
 type ArticlesListTranslations = {
+    featured: string;
     filterAll: string;
     filterExploration: string;
     filterReflection: string;
@@ -109,13 +110,15 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
             </Container>
 
             <Container width="shell">
-                <div className="mb-8 flex items-center gap-1">
+                {/* Scrolls rather than wraps or clips — French labels already
+                    reach the edge of a 320px screen. */}
+                <div className="mb-8 -mx-4 flex items-center gap-1 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:overflow-x-visible md:px-0">
                     {filters.map(({ key, label }) => {
                         const isActive = filter === key;
                         return (
                             <button
                                 className={cn(
-                                    'text-sm font-medium px-3.5 py-1.5 rounded-full transition-colors',
+                                    'shrink-0 text-sm font-medium px-3.5 py-2 rounded-full transition-colors md:py-1.5',
                                     isActive
                                         ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
                                         : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100',
@@ -134,7 +137,7 @@ export const ArticlesListTemplate: React.FC<ArticlesListTemplateProps> = ({
             {showLatestExploration && viewModel.latestExplorationArticle && (
                 <Container width="shell">
                     <section className="mb-12">
-                        <DividerSection className="mb-6" title="Featured" />
+                        <DividerSection className="mb-6" title={t.featured} />
                         <CardArticleFeatured
                             imageUrl={viewModel.latestExplorationArticle.imageUrl}
                             slug={viewModel.latestExplorationArticle.slug}

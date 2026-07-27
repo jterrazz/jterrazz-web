@@ -52,7 +52,10 @@ const CodeBlock = ({ children, language }: { children: string; language: string 
     const codeTheme = resolvedTheme === 'dark' ? themes.oneDark : themes.oneLight;
 
     return (
-        <div className="my-6 md:my-8 -mx-4 md:mx-0 md:rounded-xl overflow-hidden bg-zinc-50 dark:bg-zinc-900/60">
+        // Edge-to-edge on mobile, except inside a list — there the bleed only
+        // Escapes on the right (the list's own indent holds the left), which
+        // Reads as a broken block rather than a deliberate one.
+        <div className="my-6 md:my-8 -mx-4 md:mx-0 md:rounded-xl [li_&]:mx-0 [li_&]:rounded-xl overflow-hidden bg-zinc-50 dark:bg-zinc-900/60">
             <Highlight code={code} language={language} theme={codeTheme}>
                 {({ getLineProps, getTokenProps, style, tokens }) => (
                     <pre
@@ -112,7 +115,9 @@ const markdownComponents: Components = {
         if (isInline) {
             return (
                 <code
-                    className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-[0.875em] font-mono text-zinc-800 dark:text-zinc-200"
+                    // `break-words` keeps long unbroken tokens (paths, package
+                    // Names) inside the column on a phone.
+                    className="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-[0.875em] font-mono text-zinc-800 dark:text-zinc-200 break-words"
                     {...props}
                 >
                     {children}
@@ -181,7 +186,7 @@ const markdownComponents: Components = {
     img: ({ alt, height, src, width, ...props }) => {
         const altText = (alt as string) || '';
         return (
-            <span className="block my-6 md:my-8 -mx-4 md:mx-0">
+            <span className="block my-6 md:my-8 -mx-4 md:mx-0 [li_&]:mx-0">
                 <span className="block overflow-hidden bg-zinc-100 dark:bg-zinc-900">
                     <Image
                         alt={altText}

@@ -61,8 +61,10 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
     ];
 
     const headingClass = 'font-display text-sm font-semibold text-zinc-950 dark:text-zinc-100';
+    // `py-1` on mobile turns 20px text rows into ~28px targets; the column gap
+    // Below adds the rest of the separation a thumb needs.
     const linkClass =
-        'text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white';
+        'py-1 md:py-0 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white';
 
     return (
         <footer
@@ -91,8 +93,8 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
                             <p className="text-sm text-zinc-600 dark:text-zinc-400">{t.tagline}</p>
                         </div>
 
-                        <div className="flex gap-12 sm:gap-16">
-                            <div className="flex flex-col gap-3 shell-reading:hidden">
+                        <div className="flex justify-between gap-6 sm:justify-start sm:gap-16">
+                            <div className="flex flex-col gap-2 md:gap-3 shell-reading:hidden">
                                 <span className={headingClass}>Explore</span>
                                 {EXPLORE_LINKS.map(({ href, label }) => (
                                     <Link className={linkClass} href={href} key={href}>
@@ -101,7 +103,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
                                 ))}
                             </div>
 
-                            <div className="flex flex-col gap-3">
+                            <div className="flex flex-col gap-2 md:gap-3">
                                 <span className={headingClass}>Apps</span>
                                 {APP_LINKS.map(({ href, label }) => (
                                     <a
@@ -116,7 +118,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ className, translations:
                                 ))}
                             </div>
 
-                            <div className="flex flex-col gap-3">
+                            <div className="flex flex-col gap-2 md:gap-3">
                                 <span className={headingClass}>Connect</span>
                                 {connectLinks.map(({ href, icon: Icon, label }) => (
                                     <a

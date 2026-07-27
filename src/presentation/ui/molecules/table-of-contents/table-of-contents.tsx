@@ -1,5 +1,6 @@
 'use client';
 
+import { IconChevronDown } from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'motion/react';
 import React, { useEffect, useState } from 'react';
 
@@ -17,16 +18,21 @@ type Heading = {
 type TableOfContentsProps = {
     className?: string;
     contentInMarkdown: string;
+    /** Label for the `collapsible` summary row. */
+    label?: string;
     /**
      * `floating` (default) renders the legacy fixed panel that fades in on scroll.
      * `sidebar` renders an always-visible block meant to live inside a sticky rail.
+     * `collapsible` renders a closed-by-default disclosure — the sticky rail has
+     * nowhere to live on a phone, so the outline sits inline above the body.
      */
-    variant?: 'floating' | 'sidebar';
+    variant?: 'collapsible' | 'floating' | 'sidebar';
 };
 
 export const TableOfContents: React.FC<TableOfContentsProps> = ({
     className,
     contentInMarkdown,
+    label = 'On this page',
     variant = 'floating',
 }) => {
     const [headings, setHeadings] = useState<Heading[]>([]);
@@ -111,11 +117,8 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     // Calculate minimum level to normalize indentation
     const minLevel = Math.min(...headings.map((h) => h.level));
 
-    const listMarkup = (
+    const linksMarkup = (
         <>
-            <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-6 pl-4">
-                On this page
-            </h4>
             <div className="relative">
                 {/* Continuous vertical line */}
                 <div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
@@ -280,6 +283,36 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
             </div>
         </>
     );
+
+    const listMarkup = (
+        <>
+            <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-6 pl-4">
+                {label}
+            </h4>
+            {linksMarkup}
+        </>
+    );
+
+    if (variant === 'collapsible') {
+        return (
+            <details
+                className={cn(
+                    'group rounded-xl border border-zinc-200 dark:border-zinc-800',
+                    className,
+                )}
+            >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 [&::-webkit-details-marker]:hidden">
+                    {label}
+                    <IconChevronDown
+                        aria-hidden
+                        className="shrink-0 transition-transform duration-200 group-open:rotate-180"
+                        size={16}
+                    />
+                </summary>
+                <nav className="px-4 pb-3 text-sm">{linksMarkup}</nav>
+            </details>
+        );
+    }
 
     if (variant === 'sidebar') {
         return (

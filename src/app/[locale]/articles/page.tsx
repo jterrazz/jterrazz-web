@@ -85,6 +85,7 @@ export default async function ArticlesPage({ params }: Props) {
 
     // Translations for client component
     const translations = {
+        featured: t('featured'),
         filterAll: t('filterAll'),
         filterExploration: t('filterExploration'),
         filterReflection: t('filterReflection'),

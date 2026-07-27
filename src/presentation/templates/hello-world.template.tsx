@@ -120,27 +120,31 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                         <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
                             {featuredExperiments.map((experiment, index) => (
                                 <Link
-                                    className="group flex items-center gap-5 py-4"
+                                    className="group flex items-center gap-3 py-4 md:gap-5"
                                     href={`/experiments/${experiment.slug}`}
                                     key={experiment.name}
                                 >
                                     <Meta className="w-6 shrink-0">
                                         {String(index + 1).padStart(2, '0')}
                                     </Meta>
-                                    {experiment.iconUrl && (
-                                        <Image
-                                            alt={experiment.name}
-                                            className="shrink-0 rounded-xl shadow-[0_0_6px_rgba(0,0,0,0.04)]"
-                                            height={44}
-                                            src={experiment.iconUrl}
-                                            width={44}
-                                        />
-                                    )}
+                                    {/* Slot reserved so icon-less rows keep the
+                                        name column aligned with the others. */}
+                                    <div className="w-11 shrink-0">
+                                        {experiment.iconUrl && (
+                                            <Image
+                                                alt={experiment.name}
+                                                className="rounded-xl shadow-[0_0_6px_rgba(0,0,0,0.04)]"
+                                                height={44}
+                                                src={experiment.iconUrl}
+                                                width={44}
+                                            />
+                                        )}
+                                    </div>
                                     <div className="min-w-0 flex-1 transition-transform duration-200 group-hover:translate-x-1">
                                         <Heading as="h3" className="mb-0.5" size="title">
                                             {experiment.name}
                                         </Heading>
-                                        <Lead className="line-clamp-1" size="sm">
+                                        <Lead className="line-clamp-2 md:line-clamp-1" size="sm">
                                             {experiment.tagline}
                                         </Lead>
                                     </div>
