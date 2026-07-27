@@ -314,7 +314,7 @@ const experiments: Experiment[] = [
                 architectures: [],
                 description: 'Infrastructure as Code for personal projects.',
                 name: 'Infra',
-                sourceUrl: new URL(`${REPOSITORY_BASE_URL}jterrazz-infra`),
+                sourceUrl: new URL(`${REPOSITORY_BASE_URL}jterrazz-infrastructure`),
                 status: ExperimentStatus.Active,
             },
         ],
