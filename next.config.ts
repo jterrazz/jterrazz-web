@@ -39,6 +39,9 @@ const nextConfig: NextConfig = {
         ];
     },
     images: {
+        // AVIF first, WebP for anything that cannot take it. Costs a slower
+        // First encode per variant, paid once and then cached for the TTL below.
+        formats: ['image/avif', 'image/webp'],
         localPatterns: [
             {
                 pathname: '/**',
