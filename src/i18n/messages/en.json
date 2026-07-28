@@ -90,7 +90,10 @@
         "title": "Photographs",
         "seoDescription": "Photography portfolio featuring travel, street, and everyday moments. A visual journal capturing authentic scenes from around the world.",
         "highlightDescription": "A simple collection of moments and places that caught my eye.",
-        "viewPexels": "Pexels"
+        "viewPexels": "Pexels",
+        "closePhotograph": "Close",
+        "nextPhotograph": "Next photograph",
+        "previousPhotograph": "Previous photograph"
     },
     "common": {
         "articles": "Articles",

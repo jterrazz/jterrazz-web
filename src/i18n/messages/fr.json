@@ -90,7 +90,10 @@
         "title": "Photographies",
         "seoDescription": "Portfolio photographique présentant des moments de voyage, de rue et du quotidien. Un journal visuel capturant des scènes authentiques du monde entier.",
         "highlightDescription": "Une simple collection de moments et de lieux qui ont attiré mon regard.",
-        "viewPexels": "Pexels"
+        "viewPexels": "Pexels",
+        "closePhotograph": "Fermer",
+        "nextPhotograph": "Photographie suivante",
+        "previousPhotograph": "Photographie précédente"
     },
     "common": {
         "articles": "Articles",

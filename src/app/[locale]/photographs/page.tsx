@@ -67,6 +67,9 @@ export default async function PhotographsPage({ params }: Props) {
 
     // Translations for client component
     const translations = {
+        closePhotograph: t('closePhotograph'),
+        nextPhotograph: t('nextPhotograph'),
+        previousPhotograph: t('previousPhotograph'),
         viewPexels: t('viewPexels'),
     };
 

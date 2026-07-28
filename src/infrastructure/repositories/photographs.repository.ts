@@ -5,6 +5,7 @@ const photographs: Photograph[] = [
     {
         contentUrl:
             'https://images.pexels.com/photos/19094327/pexels-photo-19094327/free-photo-of-moon-in-night-sky-over-alley-in-rome-italy.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 1200,
         index: 0,
         metadata: {
             description: 'Moon in night sky over alley in Rome, Italy',
@@ -12,10 +13,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/moon-in-night-sky-over-alley-in-rome-italy-19094327/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/19846475/pexels-photo-19846475/free-photo-of-back-view-of-a-woman-and-girl-walking-in-a-park.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 1200,
         index: 1,
         metadata: {
             description: 'Back view walking in a park',
@@ -23,10 +26,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/back-view-of-a-woman-and-girl-walking-in-a-park-19846475/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/19108889/pexels-photo-19108889/free-photo-of-ornamented-cathedral-interior.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 1200,
         index: 2,
         metadata: {
             description: 'Ornamented cathedral interior',
@@ -34,10 +39,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/ornamented-cathedral-interior-19108889/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/19094424/pexels-photo-19094424/free-photo-of-moon-and-classical-columns-illuminated-at-night.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 1200,
         index: 3,
         metadata: {
             description: 'Moon and classical columns illuminated at night',
@@ -45,10 +52,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/moon-and-classical-columns-illuminated-at-night-19094424/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/13712672/pexels-photo-13712672.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 1200,
         index: 4,
         metadata: {
             description: 'Aerial view of city buildings',
@@ -56,10 +65,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/aerial-view-of-city-buildings-13712672/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/13617320/pexels-photo-13617320.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 533,
         index: 5,
         metadata: {
             description: 'City of Florence',
@@ -67,10 +78,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/city-of-florence-13617320/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/13915404/pexels-photo-13915404.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 533,
         index: 6,
         metadata: {
             description: 'Paris at night',
@@ -78,10 +91,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/paris-at-night-13915404/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/17649860/pexels-photo-17649860/free-photo-of-interior-of-the-gallery-of-great-battles-in-the-palace-of-versailles-france.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 533,
         index: 7,
         metadata: {
             description:
@@ -90,10 +105,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/interior-of-the-gallery-of-great-battles-in-the-palace-of-versailles-france-17649860/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/18937019/pexels-photo-18937019/free-photo-of-waves-on-a-shore.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 1200,
         index: 8,
         metadata: {
             description: 'Waves on a shore',
@@ -101,10 +118,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/waves-on-a-shore-18937019/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/17504999/pexels-photo-17504999/free-photo-of-boats-on-sea-shore-in-town.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 1200,
         index: 9,
         metadata: {
             description: 'Boats on sea shore in town',
@@ -112,10 +131,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/boats-on-sea-shore-in-town-17504999/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/13617322/pexels-photo-13617322.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 1200,
         index: 10,
         metadata: {
             description: 'Sunset walking',
@@ -123,10 +144,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/sunset-walking-13617322/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/13897947/pexels-photo-13897947.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 1200,
         index: 11,
         metadata: {
             description: 'Louvre',
@@ -134,10 +157,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/louvre-13897947/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/13657047/pexels-photo-13657047.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 1200,
         index: 12,
         metadata: {
             description: 'Paris grande roue',
@@ -145,10 +170,12 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/paris-grande-roue-13657047/',
             },
         },
+        width: 800,
     },
     {
         contentUrl:
             'https://images.pexels.com/photos/13616781/pexels-photo-13616781.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load',
+        height: 1200,
         index: 13,
         metadata: {
             description: 'Florence market',
@@ -156,6 +183,7 @@ const photographs: Photograph[] = [
                 pexels: 'https://www.pexels.com/photo/florence-market-13616781/',
             },
         },
+        width: 800,
     },
 ];
 

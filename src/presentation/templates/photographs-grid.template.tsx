@@ -1,9 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { ImageGallery } from 'react-image-grid-gallery';
-
-import 'react-image-grid-gallery/style.css';
 
 // Domain
 import { type Photograph } from '../../domain/photograph';
@@ -12,8 +9,12 @@ import { UserContactType } from '../../domain/user';
 import { userRepository } from '../../infrastructure/repositories/user.repository';
 import { Container } from '../ui/design-system';
 import { SectionHero } from '../ui/molecules/section-hero/section-hero';
+import { PhotographGallery } from '../ui/organisms/photograph-gallery/photograph-gallery';
 
 type PhotographsGridTranslations = {
+    closePhotograph: string;
+    nextPhotograph: string;
+    previousPhotograph: string;
     viewPexels: string;
 };
 
@@ -52,12 +53,6 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
 }) => {
     const isGrayscale = useScrollGrayscale();
 
-    const images = photographs.map((photograph, index) => ({
-        alt: photograph.metadata.description,
-        id: `photograph-${photograph.index || index}`,
-        src: photograph.contentUrl,
-        title: photograph.metadata.description,
-    }));
     const button = {
         href: userRepository.getContact(UserContactType.Pexels).url.toString(),
         text: t.viewPexels,
@@ -79,7 +74,12 @@ export const PhotographsGridTemplate: React.FC<PhotographsGridTemplateProps> = (
                 <div
                     className={`transition-[filter] duration-700 ease-out ${isGrayscale ? 'grayscale' : 'grayscale-0'}`}
                 >
-                    <ImageGallery columnCount={3} gapSize={24} imagesData={images} />
+                    <PhotographGallery
+                        closeLabel={t.closePhotograph}
+                        nextLabel={t.nextPhotograph}
+                        photographs={photographs}
+                        previousLabel={t.previousPhotograph}
+                    />
                 </div>
             </Container>
         </div>

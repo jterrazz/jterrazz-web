@@ -36,7 +36,6 @@
         "qr-code-styling": "^1.9.2",
         "react": "^19.2.7",
         "react-dom": "^19.2.7",
-        "react-image-grid-gallery": "^4.0.1",
         "react-markdown": "^10.1.0",
         "tailwind-merge": "^3.6.0"
     },
