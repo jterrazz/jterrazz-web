@@ -7,10 +7,19 @@ metadata:
 spec:
     port: 3000
 
+    # 512Mi is also the chart's threshold for injecting
+    # NODE_OPTIONS=--max-old-space-size, so below it V8 gets no heap cap at all.
     resources:
         cpu: 50m
-        memory: 128Mi
-        memoryLimit: 256Mi
+        memory: 512Mi
+        memoryLimit: 1Gi
+
+    env:
+        # libvips sizes its thread pool from the cores it can SEE (10 here), not
+        # from the 50m CPU request, and every thread holds decoded tiles — which
+        # is how next/image optimising a remote article image OOMKilled this pod
+        # roughly every 8-11h. sharp reads this at init: 10 threads -> 1.
+        VIPS_CONCURRENCY: '1'
 
     health:
         path: /
