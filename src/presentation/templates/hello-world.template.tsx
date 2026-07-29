@@ -192,7 +192,7 @@ export const HelloWorldTemplate: React.FC<HelloWorldTemplateProps> = ({
                     <section>
                         <DividerSection className="mb-4" title={t.journey} />
                         <div className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
-                            {experiences.slice(0, 6).map((experience) => (
+                            {experiences.slice(0, 8).map((experience) => (
                                 <JourneyItem
                                     experience={experience}
                                     key={`${experience.year}-${experience.organization}`}
