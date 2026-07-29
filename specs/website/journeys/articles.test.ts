@@ -1,4 +1,4 @@
-import { content, link } from '@jterrazz/test';
+import { content, link, navigation, within } from '@jterrazz/test';
 import { expect, test } from 'vitest';
 
 import { website } from '../website.specification';
@@ -7,7 +7,9 @@ test('reaches an article from the homepage', async () => {
     // Given - a visitor landing on the homepage
     const result = await website.visit('/', async (visitor) => {
         // When - they browse to the articles section
-        await visitor.click(link('Articles'));
+        // "Articles" also names the hero CTA and the footer column, so the
+        // Nav is what makes this designate one link rather than three.
+        await visitor.click(within(navigation(), link('Articles')));
         await visitor.see(content('Notes on what I learn'));
     });
 
