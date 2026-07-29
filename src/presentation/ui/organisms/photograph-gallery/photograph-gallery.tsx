@@ -92,7 +92,10 @@ export const PhotographGallery: React.FC<PhotographGalleryProps> = ({
                 {photographs.map((photograph, index) => (
                     <button
                         aria-label={photograph.metadata.description}
-                        className="group mb-6 block w-full break-inside-avoid cursor-pointer"
+                        /* Inline-block, not block: Safari carries a block tile's
+                           trailing margin over a column break, pushing the next
+                           column's first photo down by the gap. */
+                        className="group mb-6 inline-block w-full align-top break-inside-avoid cursor-pointer"
                         key={photograph.contentUrl}
                         onClick={() => open(index)}
                         type="button"
