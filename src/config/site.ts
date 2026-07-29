@@ -30,7 +30,7 @@ export const SITE_CONFIG = {
     // Short brand for <title> suffixes — the full name eats ~27 of the ~60 chars Google displays
     brand: 'Jterrazz',
     description:
-        'Problem solver, mostly with code. I build small apps and tools, sometimes with an AI in the loop, and keep notes along the way.',
+        'Problem solver, mostly with code. I build small apps, put AI in the loop, and write about what I learn.',
     defaultImage: {
         alt: 'Jean-Baptiste Terrazzoni, problem solver',
         height: 630,
