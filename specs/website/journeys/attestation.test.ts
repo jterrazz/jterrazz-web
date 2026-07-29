@@ -1,0 +1,58 @@
+import { button, content, link, main, within } from '@jterrazz/test';
+import { expect, test } from 'vitest';
+
+import { website } from '../website.specification';
+import { attestedArticle, pathOf } from './subjects';
+
+/**
+ * The site claims its articles are cryptographically signed and anchored to
+ * Bitcoin. That claim is verified in the reader's own browser — EIP-712
+ * recovery against /proof.json, then the OpenTimestamps proof.
+ *
+ * This is the one journey where a silent failure makes the site actively
+ * dishonest: if verification degrades to Failed, the page still answers 200
+ * and still says "Signed by". So the assertion is the resolved verdict, and
+ * `see()` doing the waiting is the whole point — a claim stuck on its spinner
+ * fails here rather than shipping.
+ */
+
+/** Both claims live behind a disclosure; only the first is open on arrival. */
+const verifyPath = (): string => `${pathOf(attestedArticle())}/verify`;
+
+test('resolves the authorship claim to verified in the browser', async () => {
+    // Given - a reader opening the proof page of an attested article
+    const result = await website.visit(verifyPath(), async (visitor) => {
+        // When - the browser finishes recovering the signature
+        await visitor.see(within(button('Proof of authorship'), content('Verified')));
+    });
+
+    // Then - the claim held, and the recovery is stated as local to the reader
+    expect(result.status).toBe(200);
+    expect(result.content).toContain('Verified locally in your browser');
+});
+
+test('resolves the date claim against its bitcoin anchor', async () => {
+    // Given - a reader on the proof page
+    const result = await website.visit(verifyPath(), async (visitor) => {
+        // When - they expand the date claim and it settles
+        await visitor.see(within(button('Proof of date'), content('Verified')));
+        await visitor.click(button('Proof of date'));
+        await visitor.see(content('Anchored in Bitcoin'));
+    });
+
+    // Then - the anchor is stated as a fact the reader can re-check
+    expect(result.content).toContain('Anchored in Bitcoin');
+});
+
+test('reaches the proof from the badge under the article', async () => {
+    // Given - a reader who finished an attested article
+    const article = attestedArticle();
+    const result = await website.visit(pathOf(article), async (visitor) => {
+        // When - they follow the signature badge in the byline
+        await visitor.click(within(main(), link('Verify attestation')));
+        await visitor.see(content('Verify this article'));
+    });
+
+    // Then - the proof page for that same article
+    expect(result.url).toContain(`${pathOf(article)}/verify`);
+});
