@@ -44,5 +44,4 @@ Analytics: server-side OpenPanel via `@jterrazz/analytics`; the tracking plan is
 ## Conventions
 
 - `typescript fix` before committing; `npm run lint` is `typescript check` (types + oxlint + oxfmt + knip + spec conventions).
-- Three oxlint rules are off locally (`import/exports-last`, `oxc/no-map-spread`, `unicorn/prefer-global-this`) — they fight Next/React idiom, not this repo; candidates for the shared `next` preset in `package-typescript`.
 - tsconfig extends the shared preset with three deliberate deltas the preset is behind on (ES2022, bundler resolution, react-jsx).

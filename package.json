@@ -42,7 +42,7 @@
     },
     "devDependencies": {
         "@jterrazz/test": "^10.0.0",
-        "@jterrazz/typescript": "^7.0.0",
+        "@jterrazz/typescript": "^7.1.0",
         "@tailwindcss/postcss": "^4.3.3",
         "@types/node": "^24.13.3",
         "@types/react": "^19.2.18",
