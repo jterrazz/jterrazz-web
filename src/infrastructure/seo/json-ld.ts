@@ -222,7 +222,27 @@ export interface ExperimentDetailJsonLdOptions {
     year: number;
 }
 
-export function buildExperimentDetailJsonLd(options: ExperimentDetailJsonLdOptions) {
+/**
+ * The shape both branches share. The 42-only fields are declared optional
+ * rather than left to inference: an inferred union makes every consumer
+ * narrow before reading a field that is simply absent half the time.
+ */
+export type ExperimentDetailJsonLd = {
+    '@context': string;
+    '@type': string | string[];
+    author: ReturnType<typeof buildAuthorJsonLd>;
+    codeRepository?: string;
+    dateCreated: string;
+    description: string;
+    educationalLevel?: string;
+    name: string;
+    provider?: { '@type': string; name: string; url: string };
+    url: string;
+};
+
+export function buildExperimentDetailJsonLd(
+    options: ExperimentDetailJsonLdOptions,
+): ExperimentDetailJsonLd {
     const base = {
         '@context': 'https://schema.org',
         '@type': options.is42Project

@@ -21,23 +21,21 @@ type TableOfContentsProps = {
     /** Label for the `collapsible` summary row. */
     label?: string;
     /**
-     * `floating` (default) renders the legacy fixed panel that fades in on scroll.
      * `sidebar` renders an always-visible block meant to live inside a sticky rail.
      * `collapsible` renders a closed-by-default disclosure — the sticky rail has
      * nowhere to live on a phone, so the outline sits inline above the body.
      */
-    variant?: 'collapsible' | 'floating' | 'sidebar';
+    variant: 'collapsible' | 'sidebar';
 };
 
 export const TableOfContents: React.FC<TableOfContentsProps> = ({
     className,
     contentInMarkdown,
     label = 'On this page',
-    variant = 'floating',
+    variant,
 }) => {
     const [headings, setHeadings] = useState<Heading[]>([]);
     const [activeId, setActiveId] = useState<string>('');
-    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         // Parse headings from markdown
@@ -69,14 +67,6 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
         }
 
         const handleScroll = () => {
-            const scrollY = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const docHeight = document.documentElement.scrollHeight;
-
-            // Show TOC after scrolling down a bit, hide if near bottom
-            const isNearBottom = docHeight - scrollY - windowHeight < 400;
-            setIsVisible(scrollY > 200 && !isNearBottom);
-
             // Find active heading
             const headingElements = headings.map((h) => document.getElementById(h.id));
 
@@ -314,31 +304,9 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
         );
     }
 
-    if (variant === 'sidebar') {
-        return (
-            <nav className={cn('max-h-[calc(100vh-9rem)] overflow-y-auto pr-2 text-sm', className)}>
-                {listMarkup}
-            </nav>
-        );
-    }
-
     return (
-        <AnimatePresence>
-            {isVisible && (
-                <motion.nav
-                    animate={{ opacity: 0.6, x: 0 }}
-                    className={cn(
-                        'hidden 2xl:block fixed left-[max(2rem,calc(50%-720px))] top-32 w-64 max-h-[calc(100vh-12rem)] overflow-y-auto p-4',
-                        className,
-                    )}
-                    exit={{ opacity: 0, x: -20 }}
-                    initial={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4, ease: 'easeOut' }}
-                    whileHover={{ opacity: 1, x: 0 }}
-                >
-                    {listMarkup}
-                </motion.nav>
-            )}
-        </AnimatePresence>
+        <nav className={cn('max-h-[calc(100vh-9rem)] overflow-y-auto pr-2 text-sm', className)}>
+            {listMarkup}
+        </nav>
     );
 };

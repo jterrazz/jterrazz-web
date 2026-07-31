@@ -2,6 +2,20 @@ import { describe, expect, test } from 'vitest';
 
 import { buildExperimentDetailJsonLd, buildSiteIdentityJsonLd, PERSON_ID } from './json-ld';
 
+/**
+ * Pick one entity out of an identity graph by its `@type`. The graph is typed
+ * as a union of its member shapes, so reading a field that only one member
+ * carries needs a narrowing step — and keying on the discriminant is what a
+ * consumer of schema.org would do anyway.
+ */
+function entityOfType(graph: readonly unknown[], type: string): Record<string, unknown> {
+    const entity = graph.find((node) => (node as Record<string, unknown>)['@type'] === type) as
+        | Record<string, unknown>
+        | undefined;
+    expect(entity, `no ${type} entity in the identity graph`).toBeDefined();
+    return entity!;
+}
+
 describe('buildExperimentDetailJsonLd', () => {
     test('should build basic JSON-LD for non-42 project', () => {
         // Given - a non-42 project with a code repository
@@ -110,7 +124,11 @@ describe('buildSiteIdentityJsonLd', () => {
 
         // Then - WebSite and Person are present and linked by @id
         expect(result['@context']).toBe('https://schema.org');
-        const [website, person] = result['@graph'];
+        // Found by @type rather than by position: the graph's order is the
+        // Package's business, and a positional read would silently assert
+        // Against the wrong entity if it ever changed.
+        const website = entityOfType(result['@graph'], 'WebSite');
+        const person = entityOfType(result['@graph'], 'Person');
         expect(website['@id']).toBe('https://www.jterrazz.com/#website');
         expect(website['@type']).toBe('WebSite');
         expect(website.publisher).toEqual({ '@id': PERSON_ID });
@@ -121,7 +139,7 @@ describe('buildSiteIdentityJsonLd', () => {
 
     test('should expose the full social identity on the Person', () => {
         // Given - the canonical Person entity
-        const [, person] = buildSiteIdentityJsonLd()['@graph'];
+        const person = entityOfType(buildSiteIdentityJsonLd()['@graph'], 'Person');
 
         // Then - sameAs covers every public profile and email is declared
         expect(person.sameAs).toEqual(

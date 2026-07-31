@@ -56,7 +56,7 @@ test('opens an article found through a filter', async () => {
 
     // Then - the browse ends on that article
     expect(result.url).toContain(pathOf(article));
-    expect(result.status).toBe(200);
+    expect(result.content).toContain(article.metadata.title.en);
 });
 
 test('reaches the list from the site navigation', async () => {

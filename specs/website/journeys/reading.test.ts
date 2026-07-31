@@ -44,5 +44,5 @@ test('leaves an article through the reading it suggests next', async () => {
 
     // Then - they land on that article, not back where they started
     expect(result.url).toContain(pathOf(sibling));
-    expect(result.status).toBe(200);
+    expect(result.content).toContain(sibling.metadata.title.en);
 });

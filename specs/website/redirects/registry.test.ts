@@ -168,6 +168,6 @@ describe('smart app links (/go/*)', () => {
         // A visitor somewhere arbitrary, which a status-only check would miss
         expect(result.status).toBe(404);
         expect(result.location).toBeUndefined();
-        expect(result.body).toContain('could not be found');
+        expect(result.body).toContain('This page does not exist');
     });
 });

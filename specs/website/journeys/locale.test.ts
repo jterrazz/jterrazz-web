@@ -26,7 +26,7 @@ test('keeps the reader on the same article when switching to french', async () =
 
     // Then - the same article, in french, under the french prefix
     expect(result.url).toContain(`/fr${pathOf(article)}`);
-    expect(result.status).toBe(200);
+    expect(result.content).toContain(article.metadata.description.fr);
 });
 
 test('carries the reader back out of french to the same article', async () => {

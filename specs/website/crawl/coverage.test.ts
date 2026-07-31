@@ -79,5 +79,5 @@ test('unknown pages 404', async () => {
     // Then - a real 404, and a page that says so rather than a soft-404 shell
     // Serving borrowed content under an error status
     expect(result.status).toBe(404);
-    expect(result.body).toContain('could not be found');
+    expect(result.body).toContain('This page does not exist');
 });

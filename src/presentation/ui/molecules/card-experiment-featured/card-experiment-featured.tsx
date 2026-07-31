@@ -9,6 +9,7 @@ import { type Experiment, type ExperimentStatus } from '../../../../domain/exper
 import { Link } from '../../../../infrastructure/navigation/navigation';
 // Utils
 import { cn } from '../../../utils';
+import { IconHint } from '../../atoms/icon-hint/icon-hint';
 import { Heading, Lead } from '../../design-system';
 import { BadgeExperimentStatus } from '../badge-experiment-status/badge-experiment-status';
 
@@ -45,16 +46,10 @@ export const CardExperimentFeatured: React.FC<CardExperimentFeaturedProps> = ({
                         {experiment.name}
                     </Heading>
                     {hasArticle && (
-                        <span className="relative shrink-0 group/tooltip">
-                            <IconFileTextFilled
-                                className="text-zinc-400 dark:text-zinc-500"
-                                size={14}
-                            />
-                            {/* Hover-only, so it never fires on touch. */}
-                            <span className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 hidden px-2 py-1 text-xs text-white bg-zinc-900 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity whitespace-nowrap z-10 md:block">
-                                Article available
-                            </span>
-                        </span>
+                        <IconHint
+                            icon={<IconFileTextFilled size={14} />}
+                            label="Article available"
+                        />
                     )}
                 </div>
                 <Lead className="line-clamp-2 md:line-clamp-1" size="sm">

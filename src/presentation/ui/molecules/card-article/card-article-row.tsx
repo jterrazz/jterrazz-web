@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import { Link } from '../../../../infrastructure/navigation/navigation';
 import { cn } from '../../../utils';
+import { IconHint } from '../../atoms/icon-hint/icon-hint';
 import { Heading, Lead, Tag } from '../../design-system';
 
 export interface CardArticleRowProps {
@@ -44,17 +45,10 @@ export const CardArticleRow: React.FC<CardArticleRowProps> = ({
                         {title}
                     </Heading>
                     {hasExperiment && (
-                        <span className="relative shrink-0 group/tooltip">
-                            <IconFlaskFilled
-                                className="text-zinc-400 dark:text-zinc-500"
-                                size={14}
-                            />
-                            {/* Hover-only, so it is inert on touch — and it is
-                                wider than a phone, so it stays out of the DOM. */}
-                            <span className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 hidden px-2 py-1 text-xs text-white bg-zinc-900 rounded opacity-0 group-hover/tooltip:opacity-100 transition-opacity whitespace-nowrap z-10 md:block">
-                                Linked to {experimentSlug} experiment
-                            </span>
-                        </span>
+                        <IconHint
+                            icon={<IconFlaskFilled size={14} />}
+                            label={`Linked to ${experimentSlug} experiment`}
+                        />
                     )}
                 </div>
                 <Lead className="line-clamp-2 md:line-clamp-1" size="sm">

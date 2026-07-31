@@ -3,17 +3,13 @@ import React from 'react';
 // Domain
 import { type Article, type ArticleLanguage } from '../../domain/article';
 import { type Feature } from '../../domain/feature';
-import {
-    calculateReadingTimeMinutes,
-    stripArticleMasthead,
-} from '../../domain/utils/article-content';
-import { buildArticleSlug } from '../../domain/utils/slugify';
 import { Container } from '../ui/design-system';
 import { ArticleByline } from '../ui/molecules/article-byline/article-byline';
 import { TableOfContents } from '../ui/molecules/table-of-contents/table-of-contents';
 import { ArticleFooter } from '../ui/organisms/article-footer/article-footer';
 import { ArticleHeader } from '../ui/organisms/article-header/article-header';
 import { MarkdownRenderer } from '../ui/organisms/markdown-renderer/markdown-renderer';
+import { buildArticleTemplateViewModel } from './article-template-view-model';
 
 const ON_THIS_PAGE_LABEL: Record<ArticleLanguage, string> = {
     en: 'On this page',
@@ -34,7 +30,6 @@ type ArticleTemplateProps = {
     title: string;
 };
 
-// TODO Move to viewmodel
 export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     articleId,
     articles,
@@ -47,91 +42,7 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
     linkedExperiment,
     title,
 }) => {
-    // Find the current article to get its series info
-    const currentArticle = articles.find((a) => {
-        const slug = buildArticleSlug(a.publicIndex, a.metadata.title.en);
-        return slug === articleId || a.publicIndex.toString() === articleId.split('-')[0];
-    });
-    const seriesName = currentArticle?.metadata.series;
-
-    // Get series articles sorted by publish date
-    const seriesArticles = seriesName
-        ? articles
-              .filter((a) => a.metadata.series === seriesName)
-              .sort(
-                  (a, b) =>
-                      new Date(a.metadata.datePublished).getTime() -
-                      new Date(b.metadata.datePublished).getTime(),
-              )
-        : [];
-
-    // Calculate current position in series
-    const currentSeriesIndex = seriesArticles.findIndex(
-        (a) => buildArticleSlug(a.publicIndex, a.metadata.title.en) === articleId,
-    );
-    const seriesPosition = currentSeriesIndex + 1;
-    const seriesTotal = seriesArticles.length;
-
-    // Get prev/next articles in series
-    const prevArticle = currentSeriesIndex > 0 ? seriesArticles[currentSeriesIndex - 1] : null;
-    const nextArticle =
-        currentSeriesIndex < seriesArticles.length - 1
-            ? seriesArticles[currentSeriesIndex + 1]
-            : null;
-
-    // Filter logic:
-    // 1. If part of a series, show other articles from that series
-    // 2. Otherwise, show latest articles (first of each series, or standalone)
-    const relatedArticles = seriesName
-        ? seriesArticles
-        : (() => {
-              // Group articles by series
-              const seriesMap = new Map<string, Article[]>();
-              const standaloneArticles: Article[] = [];
-
-              for (const article of articles) {
-                  if (!article.published || article.publicIndex === currentArticle?.publicIndex) {
-                      continue;
-                  }
-
-                  if (article.metadata.series) {
-                      const existing = seriesMap.get(article.metadata.series) || [];
-                      existing.push(article);
-                      seriesMap.set(article.metadata.series, existing);
-                  } else {
-                      standaloneArticles.push(article);
-                  }
-              }
-
-              // Get first article of each series (sorted by publish date)
-              const seriesFirstArticles: Article[] = [];
-              for (const [, seriesArticlesList] of seriesMap) {
-                  const sorted = seriesArticlesList.sort(
-                      (a, b) =>
-                          new Date(a.metadata.datePublished).getTime() -
-                          new Date(b.metadata.datePublished).getTime(),
-                  );
-                  if (sorted[0]) {
-                      seriesFirstArticles.push(sorted[0]);
-                  }
-              }
-
-              // Combine and sort by latest date
-              return [...seriesFirstArticles, ...standaloneArticles]
-                  .sort(
-                      (a, b) =>
-                          new Date(b.metadata.datePublished).getTime() -
-                          new Date(a.metadata.datePublished).getTime(),
-                  )
-                  .slice(0, 3);
-          })();
-
-    /*
-     * The masthead owns the title + hero image, so strip them from the body to
-     * avoid rendering them twice. Reading time is computed from the full source.
-     */
-    const { body } = stripArticleMasthead(contentInMarkdown);
-    const readingTimeMinutes = calculateReadingTimeMinutes(contentInMarkdown);
+    const viewModel = buildArticleTemplateViewModel({ articleId, articles, contentInMarkdown });
 
     return (
         <Container className="mt-10 md:mt-20 pb-16 md:pb-24 relative" width="wide">
@@ -141,19 +52,11 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                 experiment={linkedExperiment}
                 imageUrl={imageUrl}
                 locale={currentLanguage}
-                nextHref={
-                    nextArticle
-                        ? `/articles/${buildArticleSlug(nextArticle.publicIndex, nextArticle.metadata.title.en)}`
-                        : null
-                }
-                prevHref={
-                    prevArticle
-                        ? `/articles/${buildArticleSlug(prevArticle.publicIndex, prevArticle.metadata.title.en)}`
-                        : null
-                }
-                seriesName={seriesName}
-                seriesPosition={seriesName && seriesPosition > 0 ? seriesPosition : undefined}
-                seriesTotal={seriesName ? seriesTotal : undefined}
+                nextHref={viewModel.nextHref}
+                prevHref={viewModel.prevHref}
+                seriesName={viewModel.seriesName}
+                seriesPosition={viewModel.seriesPosition}
+                seriesTotal={viewModel.seriesTotal}
                 title={title}
             />
 
@@ -163,35 +66,35 @@ export const ArticleTemplate: React.FC<ArticleTemplateProps> = ({
                         className="mb-6 md:mb-10"
                         datePublished={datePublished}
                         locale={currentLanguage}
-                        readingTimeMinutes={readingTimeMinutes}
+                        readingTimeMinutes={viewModel.readingTimeMinutes}
                     />
                     {/* The sticky rail has no room on a phone, so the same
                         outline ships as a closed disclosure above the body. */}
                     <TableOfContents
                         className="md:hidden"
-                        contentInMarkdown={body}
+                        contentInMarkdown={viewModel.body}
                         label={ON_THIS_PAGE_LABEL[currentLanguage]}
                         variant="collapsible"
                     />
                     <TableOfContents
                         className="hidden md:block md:sticky md:top-28"
-                        contentInMarkdown={body}
+                        contentInMarkdown={viewModel.body}
                         label={ON_THIS_PAGE_LABEL[currentLanguage]}
                         variant="sidebar"
                     />
                 </aside>
 
-                <MarkdownRenderer content={body} />
+                <MarkdownRenderer content={viewModel.body} />
 
                 <ArticleFooter
-                    articleUrl={currentArticle?.attestation ? `/articles/${articleId}` : undefined}
-                    attestation={currentArticle?.attestation}
+                    articleUrl={viewModel.attestation ? `/articles/${articleId}` : undefined}
+                    attestation={viewModel.attestation}
                     className="mt-12 md:mt-16 md:col-start-2"
                     currentArticleId={articleId}
                     dateModified={dateModified}
                     datePublished={datePublished}
-                    relatedArticles={relatedArticles}
-                    seriesTitle={seriesName}
+                    relatedArticles={viewModel.relatedArticles}
+                    seriesTitle={viewModel.seriesName}
                 />
             </div>
         </Container>
