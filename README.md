@@ -1,108 +1,33 @@
 # Jterrazz Web
 
-Personal portfolio: experiments, photography, and articles.
+My corner of the internet — [jterrazz.com](https://www.jterrazz.com). Articles on software and AI, the experiments behind them, and a photography gallery. Every article is cryptographically signed and anchored to Bitcoin.
 
-![Node.js Version](https://img.shields.io/badge/node-22.x.x-brightgreen)
-![Next.js Version](https://img.shields.io/badge/next.js-16-blue)
-![React Version](https://img.shields.io/badge/react-19-blue)
+![Node.js](https://img.shields.io/badge/node-24.x-brightgreen)
+![Next.js](https://img.shields.io/badge/next.js-16-blue)
+![React](https://img.shields.io/badge/react-19-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-## 🌟 Features
-
-- **Projects Showcase**: Highlight development projects with links to live sites and GitHub repositories.
-- **Photography Gallery**: Display a collection of photographs with a lightbox gallery for immersive viewing.
-- **Articles**: Blog posts on web development, photography, and various other topics.
-- **Responsive Design**: Fully responsive layout using Tailwind CSS for optimal viewing on all devices.
-- **Performance Optimized**: Utilizes Next.js 14 App Router for efficient rendering and routing.
-- **Analytics**: Integrated with Vercel Analytics and Speed Insights for performance monitoring.
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Node.js 22.x.x
-
-### Installation
-
-1. Clone the repository:
-
-    ```
-    git clone https://github.com/jterrazz/jterrazz-web.git
-    cd jterrazz-web
-    ```
-
-2. Install dependencies:
-    ```
-    npm install
-    ```
-
-### Development
-
-Run the development server:
+## Quick start
 
 ```sh
-npm run dev
+git clone https://github.com/jterrazz/jterrazz-web.git && cd jterrazz-web
+npm install
+npm run dev            # http://localhost:3000
 ```
 
-Visit `http://localhost:3000` to view the site.
+| Command        | Does                                                                                                          |
+| -------------- | ------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`  | Development server                                                                                            |
+| `npm test`     | Everything — unit tests + the rendered site driven in a real browser (`npx playwright install chromium` once) |
+| `npm run lint` | `typescript check`: types, lint, format, unused code, spec conventions                                        |
+| `npm run sync` | Refresh `assets/` from the notes library                                                                      |
 
-## 🛠 Scripts
+## How it works
 
-- `npm run build`: Build the production application
-- `npm run start`: Start the production server
-- `npm run dev`: Start the development server
-- `npm run test`: Run every suite — unit tests and the website specs (rendered-site conformance, journeys, redirects) via `specification.website()`
-- `npm run lint`: Run linting checks (type, code, and style)
-- `npm run clean`: Clean build artifacts and node_modules
+The knowledge lives in [`docs/`](docs/) — architecture, the content pipeline, attestation, SEO projections, the testing doctrine, operations. Start with [`docs/01-architecture.md`](docs/01-architecture.md).
 
-## 🧪 Testing
+Built on the `@jterrazz` stack: [`@jterrazz/typescript`](https://github.com/jterrazz/package-typescript), [`@jterrazz/test`](https://github.com/jterrazz/package-test), [`@jterrazz/reach`](https://github.com/jterrazz/package-reach), [`@jterrazz/attestation`](https://github.com/jterrazz/package-attestation).
 
-Run everything with:
+## License
 
-```sh
-npm run test
-```
-
-Unit tests live as siblings in `src/`; the website suite lives in `specs/website/` — it rebuilds the production bundle when stale, boots `next start`, and drives a real browser (`@jterrazz/test` + `@jterrazz/reach` conformance). Local one-time setup: `npx playwright install chromium` (or `j install` → playwright-browsers).
-
-## 📐 Code Quality
-
-Maintain code quality with:
-
-```sh
-npm run lint
-```
-
-This runs TypeScript type checking, oxlint, and oxfmt.
-
-## 🏗 Project Structure
-
-- `src/`: Source code (unit tests as siblings)
-- `specs/website/`: Website specs — conformance, journeys, crawl, redirects
-- `reach.config.ts`: The site's reach — identity, discovery, channels (projected by `@jterrazz/reach`)
-- `public/`: Static assets
-
-## 📚 Dive into My Articles
-
-Hey there, app enthusiasts! 👋 Ready to dive into the world of game-changing apps? At [jterrazz.com](https://jterrazz.com), I'm all about crafting useful applications and sharing the journey! Discover coding insights, self-improvement hacks, and sneak peeks of my latest projects (psst... my next app is all about leveling up in life! 🚀). Come along for the ride - you might just find the spark for your next big idea! 💡💻
-
-## 👤 Author
-
-**Jean-Baptiste Terrazzoni**
-
-- Website: [jterrazz.com](https://jterrazz.com)
-- Email: contact@jterrazz.com
-- GitHub: [@jterrazz](https://github.com/jterrazz)
-- Medium: [@jterrazz](https://medium.com/@jterrazz)
-- Devpost: [@jterrazz](https://devpost.com/jterrazz)
-- LinkedIn: [@jterrazz](https://www.linkedin.com/in/jterrazz/)
-- X: [@jterrazzx](https://x.com/jterrazzx)
-- Pexels: [@jterrazz](https://www.pexels.com/@jterrazz)
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/jterrazz/jterrazz-web/issues).
-
-## 🌟 Show your support
-
-Give a ⭐️ if you like this project!
+MIT — see [LICENSE](LICENSE).
