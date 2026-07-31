@@ -68,7 +68,7 @@ export async function GET(_req: Request, ctx: RouteContext) {
 
 function hasFile(filename: string, name: string): boolean {
     try {
-        readFileSync(`${process.cwd()}/content/${filename}/${name}`);
+        readFileSync(`${process.cwd()}/assets/${filename}/${name}`);
         return true;
     } catch {
         return false;

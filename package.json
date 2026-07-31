@@ -15,7 +15,7 @@
         "lint:fix": "oxlint --fix && oxfmt",
         "clean": "rm -rf .next && rm -rf node_modules",
         "sign:all": "tsx scripts/sign-all.ts",
-        "sync": "rm -rf content/* && cp -r /Users/jterrazz/Documents/Studio/Articles/__LIBRARY__/Publications/@jterrazz/* content/"
+        "sync": "./scripts/sync-assets.sh"
     },
     "dependencies": {
         "@jterrazz/analytics": "^1.0.0",

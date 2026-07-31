@@ -8,7 +8,7 @@ import { defineConfig } from 'oxlint';
 // @jterrazz/typescript exposes presets, not the combinator its docs assume.
 export default defineConfig({
     extends: [oxlint.next],
-    ignorePatterns: ['content/**'],
+    ignorePatterns: ['assets/**'],
     jsPlugins: testing.jsPlugins,
     overrides: testing.overrides,
     rules: {

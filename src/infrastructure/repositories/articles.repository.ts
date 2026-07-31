@@ -646,7 +646,7 @@ const readAttestationFileSync = (
 
 // Load all articles synchronously at module initialization
 const loadArticles = (): Article[] => {
-    const articlesDirectory = `${process.cwd()}/content`;
+    const articlesDirectory = `${process.cwd()}/assets`;
 
     return ARTICLES_CONFIG.map(({ filename, previewImage, ...articleConfig }) => {
         // Read markdown content for each language

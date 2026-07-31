@@ -57,7 +57,7 @@ export async function GET(_req: Request, ctx: RouteContext) {
 
     let bytes: Buffer;
     try {
-        bytes = readFileSync(`${process.cwd()}/content/${filename}/${file}`);
+        bytes = readFileSync(`${process.cwd()}/assets/${filename}/${file}`);
     } catch {
         return NextResponse.json({ error: 'Asset not found' }, { status: 404 });
     }

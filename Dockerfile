@@ -14,7 +14,7 @@ WORKDIR /app
 
 # The app chart pins runAsUser/runAsGroup/fsGroup to 1000. node:24-alpine already
 # ships `node` as uid 1000 / gid 1000, so run as that rather than inventing a user.
-# `content/` is not copied explicitly: Next's file tracing pulls the whole directory
+# `assets/` is not copied explicitly: Next's file tracing pulls the whole directory
 # into .next/standalone (src/app/content/[...path]/route.ts reads it from
 # process.cwd() at request time), so the standalone copy above already carries it.
 COPY --from=builder --chown=node:node /app/.next/standalone ./

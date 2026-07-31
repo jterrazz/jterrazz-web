@@ -11,7 +11,7 @@ const MIME_TYPES: Record<string, string> = {
     '.webp': 'image/webp',
 };
 
-const CONTENT_DIR = join(process.cwd(), 'content');
+const CONTENT_DIR = join(process.cwd(), 'assets');
 
 // Cache for 1 year - URL changes on new deployments via ?v= param
 const CACHE_CONTROL = 'public, max-age=31536000, s-maxage=31536000, immutable';

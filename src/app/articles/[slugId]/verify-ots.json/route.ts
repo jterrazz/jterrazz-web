@@ -47,10 +47,10 @@ export async function GET(_req: Request, ctx: RouteContext) {
     let otsBuffer: Buffer;
     try {
         attestationRaw = readFileSync(
-            `${process.cwd()}/content/${filename}/en.attestation.json`,
+            `${process.cwd()}/assets/${filename}/en.attestation.json`,
             'utf8',
         );
-        otsBuffer = readFileSync(`${process.cwd()}/content/${filename}/en.ots`);
+        otsBuffer = readFileSync(`${process.cwd()}/assets/${filename}/en.ots`);
     } catch {
         return NextResponse.json({ error: 'Proof files missing' }, { status: 404 });
     }
