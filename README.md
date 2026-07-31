@@ -24,7 +24,7 @@ npm run dev            # http://localhost:3000
 
 ## How it works
 
-The knowledge lives in [`docs/`](docs/) — architecture, the content pipeline, attestation, SEO projections, the testing doctrine, operations. Start with [`docs/01-architecture.md`](docs/01-architecture.md).
+The repo brief — architecture, the content pipeline, attestation, the testing doctrine — lives in [`AGENTS.md`](AGENTS.md).
 
 Built on the `@jterrazz` stack: [`@jterrazz/typescript`](https://github.com/jterrazz/package-typescript), [`@jterrazz/test`](https://github.com/jterrazz/package-test), [`@jterrazz/reach`](https://github.com/jterrazz/package-reach), [`@jterrazz/attestation`](https://github.com/jterrazz/package-attestation).
 

@@ -8,9 +8,13 @@ export default defineConfig(
     compose(next, testing, {
         ignorePatterns: ['assets/**'],
         rules: {
+            // Both are candidates for the shared `next` preset rather than
+            // Local exceptions — see the note in AGENTS.md. exports-last fights
+            // The component idiom (metadata + default export interleaved with
+            // Types); prefer-global-this asks browser-only client components
+            // To say globalThis where they mean window.
             'import/exports-last': 'off',
             'oxc/no-map-spread': 'off',
-            'typescript/parameter-properties': 'off',
             'unicorn/prefer-global-this': 'off',
         },
     }),

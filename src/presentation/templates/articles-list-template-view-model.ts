@@ -45,258 +45,188 @@ export interface ArticlesListViewModel {
     highlightTitle: string;
 }
 
-export interface ViewModel<T> {
-    getViewModel: () => T;
+const DATE_LOCALES: Record<Locale, string> = {
+    en: 'en-US',
+    fr: 'fr-FR',
+};
+
+/** The series pinned to the top of the legacy `series` array, in this order. */
+const SERIES_ORDER = ['Abundant Intelligence', 'Using AI', 'Application Design'];
+
+const byPublishedAscending = (a: Article, b: Article): number =>
+    new Date(a.metadata.datePublished).getTime() - new Date(b.metadata.datePublished).getTime();
+
+const byPublishedDescending = (a: Article, b: Article): number => -byPublishedAscending(a, b);
+
+const latestDateOf = (s: ArticleSeriesViewModel): number =>
+    Math.max(
+        new Date(s.featuredArticle.datePublished).getTime(),
+        ...s.relatedArticles.map((article) => new Date(article.datePublished).getTime()),
+    );
+
+function mapArticle(article: Article, locale: Locale): ArticleRowViewModel {
+    const lang = locale as ArticleLanguage;
+    const content = article.content[lang] || article.content.en || '';
+    return {
+        category: article.metadata.category,
+        description: article.metadata.description[locale] ?? article.metadata.description.en,
+        experimentSlug: contentLinksRepository.getExperimentSlugForArticle(article.publicIndex),
+        imageUrl: article.imageUrl,
+        slug: buildArticleSlug(article.publicIndex, article.metadata.title.en),
+        tagline: article.metadata.tagline[locale] ?? article.metadata.tagline.en,
+        title: article.metadata.title[locale] ?? article.metadata.title.en,
+        datePublished: new Date(article.metadata.datePublished).toLocaleDateString(
+            DATE_LOCALES[locale],
+            { year: 'numeric', month: 'short' },
+        ),
+        readingTime: `${calculateReadingTimeMinutes(content)} min read`,
+    };
 }
 
-export class ArticlesListViewModelImpl implements ViewModel<ArticlesListViewModel> {
-    constructor(
-        private readonly articles: Article[],
-        private readonly highlightTitle: string,
-        private readonly highlightDescription: string,
-        private readonly locale: Locale = 'en',
-        private readonly viewMediumText: string = 'View Medium',
-    ) {}
+/**
+ * Everything the articles list renders that is derived rather than given —
+ * the series grouping, the interleaved timeline, the featured exploration.
+ * A plain builder, like its sibling `article-template-view-model`.
+ *
+ * Series own their articles: the featured exploration only ever comes from
+ * the standalones, so a series never loses its opening part to the spotlight.
+ */
+export function buildArticlesListViewModel(options: {
+    articles: Article[];
+    highlightTitle: string;
+    highlightDescription: string;
+    locale?: Locale;
+    viewMediumText?: string;
+}): ArticlesListViewModel {
+    const {
+        articles,
+        highlightDescription,
+        highlightTitle,
+        locale = 'en',
+        viewMediumText = 'View Medium',
+    } = options;
 
-    getViewModel(): ArticlesListViewModel {
-        const button = {
-            href: userRepository.getContact(UserContactType.Medium).url.toString(),
-            text: this.viewMediumText,
-        };
+    const toViewModel = (article: Article) => mapArticle(article, locale);
 
-        const publishedArticles = this.articles
-            .filter((article) => article.published)
-            .sort(
-                (a, b) =>
-                    new Date(b.metadata.datePublished).getTime() -
-                    new Date(a.metadata.datePublished).getTime(),
-            );
+    const button = {
+        href: userRepository.getContact(UserContactType.Medium).url.toString(),
+        text: viewMediumText,
+    };
 
-        // Helper to check if an article is one of the "Latest" features
-        // Note: These variables are used in logic but we need to define them before use or restructure.
-        // Actually, we refactored the logic below to avoid circular dependency on these vars.
-        // We can remove this helper block as it is no longer used in the new flow.
+    const publishedArticles = articles
+        .filter((article) => article.published)
+        .sort(byPublishedDescending);
 
-        // Group articles by series (Using the "Series takes priority" logic)
-        // We only exclude an article from Series if it is NOT in a series.
-        // If it IS in a series, it stays in the series, and we pick another one for "Latest" if needed.
-        // HOWEVER, the requirement is: "latest article must not be one in the serie or application"
-        // AND "serie thing takes the priority"
-
-        // Correct Logic:
-        // 1. Separate Series vs Standalone
-        // 2. "Latest" must come from Standalone only.
-
-        const seriesMap = new Map<string, Article[]>();
-        const potentialStandaloneArticles: Article[] = [];
-
-        for (const article of publishedArticles) {
-            const seriesName = article.metadata.series;
-            if (seriesName) {
-                if (!seriesMap.has(seriesName)) {
-                    seriesMap.set(seriesName, []);
-                }
-                seriesMap.get(seriesName)?.push(article);
-            } else {
-                potentialStandaloneArticles.push(article);
-            }
+    // Split series from standalones; the spotlight picks from standalones only.
+    const seriesMap = new Map<string, Article[]>();
+    const potentialStandaloneArticles: Article[] = [];
+    for (const article of publishedArticles) {
+        const seriesName = article.metadata.series;
+        if (seriesName) {
+            seriesMap.set(seriesName, [...(seriesMap.get(seriesName) ?? []), article]);
+        } else {
+            potentialStandaloneArticles.push(article);
         }
+    }
 
-        // Now pick Latest from Standalone
-        const standaloneSorted = potentialStandaloneArticles.sort(
-            (a, b) =>
-                new Date(b.metadata.datePublished).getTime() -
-                new Date(a.metadata.datePublished).getTime(),
-        );
+    const standaloneSorted = potentialStandaloneArticles.sort(byPublishedDescending);
+    const latestExplorationRaw =
+        standaloneSorted.find((a) => a.metadata.category === 'exploration') ?? null;
+    const finalStandaloneArticles = standaloneSorted.filter(
+        (a) => a.publicIndex !== latestExplorationRaw?.publicIndex,
+    );
+    const latestExplorationArticle = latestExplorationRaw
+        ? toViewModel(latestExplorationRaw)
+        : null;
 
-        // Latest Exploration (Standalone Exploration category)
-        const standaloneExplorations = standaloneSorted.filter(
-            (a) => a.metadata.category === 'exploration',
-        );
-        const latestExplorationRawFinal =
-            standaloneExplorations.length > 0 ? standaloneExplorations[0] : null;
-
-        // Final Standalone list (excluding the featured one)
-        const finalStandaloneArticles = standaloneSorted.filter(
-            (a) => a.publicIndex !== latestExplorationRawFinal?.publicIndex,
-        );
-
-        // Map to View Models
-        const latestExplorationArticle = latestExplorationRawFinal
-            ? this.mapToViewModel(latestExplorationRawFinal)
-            : null;
-
-        // Convert series to view models
-        const series: ArticleSeriesViewModel[] = [];
-        seriesMap.forEach((articles, seriesTitle) => {
-            if (articles.length > 1) {
-                // Only create series for multiple articles
-                const sortedSeriesArticles = articles.sort(
-                    (a, b) =>
-                        new Date(a.metadata.datePublished).getTime() -
-                        new Date(b.metadata.datePublished).getTime(),
-                );
-
-                const featuredArticle = this.mapToViewModel(sortedSeriesArticles[0]);
-                const relatedArticles = sortedSeriesArticles
-                    .slice(1)
-                    .map((article) => this.mapToViewModel(article));
-
-                series.push({
-                    seriesTitle,
-                    featuredArticle,
-                    relatedArticles,
-                });
-            } else {
-                // This should ideally not happen given our data, but if it does,
-                // Single items go back to standalone (if we hadn't already filtered them)
-                // For now, let's just map them to series to avoid losing them, or ignore if strict.
-                // Given the logic, let's assume series are valid.
-            }
+    // The legacy `series` array — pinned order first, then most recent activity.
+    const series: ArticleSeriesViewModel[] = [];
+    seriesMap.forEach((articlesInSeries, seriesTitle) => {
+        if (articlesInSeries.length <= 1) {
+            return;
+        }
+        const sorted = [...articlesInSeries].sort(byPublishedAscending);
+        series.push({
+            seriesTitle,
+            featuredArticle: toViewModel(sorted[0]),
+            relatedArticles: sorted.slice(1).map(toViewModel),
         });
+    });
+    series.sort((a, b) => {
+        const aOrder = SERIES_ORDER.indexOf(a.seriesTitle);
+        const bOrder = SERIES_ORDER.indexOf(b.seriesTitle);
+        if (aOrder !== -1 && bOrder !== -1) {
+            return aOrder - bOrder;
+        }
+        if (aOrder !== -1) {
+            return -1;
+        }
+        if (bOrder !== -1) {
+            return 1;
+        }
+        return latestDateOf(b) - latestDateOf(a);
+    });
 
-        // Sort series by custom order, then by date of the most recent article
-        const seriesOrder = ['Abundant Intelligence', 'Using AI', 'Application Design'];
-        series.sort((a, b) => {
-            const aOrder = seriesOrder.indexOf(a.seriesTitle);
-            const bOrder = seriesOrder.indexOf(b.seriesTitle);
+    /*
+     * The timeline interleaves series blocks and standalone groups purely by
+     * date (SERIES_ORDER only governs the legacy array above). Consecutive
+     * standalones collapse into one section so the layout doesn't fragment.
+     */
+    type DatedItem =
+        | { kind: 'series'; date: number; data: { seriesTitle: string; articles: Article[] } }
+        | { kind: 'standalone'; date: number; data: Article };
 
-            // If both are in the custom order, use that order
-            if (aOrder !== -1 && bOrder !== -1) {
-                return aOrder - bOrder;
-            }
-            // If only one is in the custom order, it comes first
-            if (aOrder !== -1) {
-                return -1;
-            }
-            if (bOrder !== -1) {
-                return 1;
-            }
-
-            // Otherwise, sort by date
-            const aLatestDate = Math.max(
-                new Date(a.featuredArticle.datePublished).getTime(),
-                ...a.relatedArticles.map((article) => new Date(article.datePublished).getTime()),
-            );
-            const bLatestDate = Math.max(
-                new Date(b.featuredArticle.datePublished).getTime(),
-                ...b.relatedArticles.map((article) => new Date(article.datePublished).getTime()),
-            );
-            return bLatestDate - aLatestDate;
-        });
-
-        /*
-         * Build a chronologically-interleaved timeline of series blocks and
-         * standalone-article groups. Series order in this timeline is purely
-         * by date (the explicit seriesOrder above still governs the legacy
-         * `series` array used elsewhere). Consecutive standalones collapse
-         * into one section so the layout doesn't fragment.
-         */
-        type DatedItem =
-            | { kind: 'series'; date: number; data: { seriesTitle: string; articles: Article[] } }
-            | { kind: 'standalone'; date: number; data: Article };
-
-        const datedItems: DatedItem[] = [];
-        seriesMap.forEach((articlesInSeries, seriesTitle) => {
-            if (articlesInSeries.length <= 1) {
-                return;
-            }
-            const sorted = [...articlesInSeries].sort(
-                (a, b) =>
-                    new Date(a.metadata.datePublished).getTime() -
-                    new Date(b.metadata.datePublished).getTime(),
-            );
-            const latestDate = Math.max(
+    const datedItems: DatedItem[] = [];
+    seriesMap.forEach((articlesInSeries, seriesTitle) => {
+        if (articlesInSeries.length <= 1) {
+            return;
+        }
+        datedItems.push({
+            kind: 'series',
+            date: Math.max(
                 ...articlesInSeries.map((a) => new Date(a.metadata.datePublished).getTime()),
-            );
-            datedItems.push({
-                kind: 'series',
-                date: latestDate,
-                data: { seriesTitle, articles: sorted },
-            });
+            ),
+            data: { seriesTitle, articles: [...articlesInSeries].sort(byPublishedAscending) },
         });
-        for (const article of finalStandaloneArticles) {
-            datedItems.push({
-                kind: 'standalone',
-                date: new Date(article.metadata.datePublished).getTime(),
-                data: article,
+    });
+    for (const article of finalStandaloneArticles) {
+        datedItems.push({
+            kind: 'standalone',
+            date: new Date(article.metadata.datePublished).getTime(),
+            data: article,
+        });
+    }
+    datedItems.sort((a, b) => b.date - a.date);
+
+    const timeline: ArticlesListTimelineSection[] = [];
+    for (const item of datedItems) {
+        if (item.kind === 'standalone') {
+            const last = timeline.at(-1);
+            const articleVm = toViewModel(item.data);
+            if (last && last.kind === 'standalones') {
+                last.articles.push(articleVm);
+            } else {
+                timeline.push({ kind: 'standalones', articles: [articleVm] });
+            }
+        } else {
+            timeline.push({
+                kind: 'series',
+                series: {
+                    featuredArticle: toViewModel(item.data.articles[0]),
+                    relatedArticles: item.data.articles.slice(1).map(toViewModel),
+                    seriesTitle: item.data.seriesTitle,
+                },
             });
         }
-        datedItems.sort((a, b) => b.date - a.date);
-
-        const timeline: ArticlesListTimelineSection[] = [];
-        for (const item of datedItems) {
-            if (item.kind === 'standalone') {
-                const last = timeline.at(-1);
-                const articleVm = this.mapToViewModel(item.data);
-                if (last && last.kind === 'standalones') {
-                    last.articles.push(articleVm);
-                } else {
-                    timeline.push({ kind: 'standalones', articles: [articleVm] });
-                }
-            } else {
-                const featuredArticle = this.mapToViewModel(item.data.articles[0]);
-                const relatedArticles = item.data.articles
-                    .slice(1)
-                    .map((a) => this.mapToViewModel(a));
-                timeline.push({
-                    kind: 'series',
-                    series: {
-                        featuredArticle,
-                        relatedArticles,
-                        seriesTitle: item.data.seriesTitle,
-                    },
-                });
-            }
-        }
-
-        return {
-            series,
-            standaloneArticles: finalStandaloneArticles.map((article) =>
-                this.mapToViewModel(article),
-            ),
-            timeline,
-            latestExplorationArticle,
-            button,
-            highlightDescription: this.highlightDescription,
-            highlightTitle: this.highlightTitle,
-        };
     }
 
-    private calculateReadingTime(content: string): string {
-        return `${calculateReadingTimeMinutes(content)} min read`;
-    }
-
-    private mapToViewModel(article: Article): ArticleRowViewModel {
-        const lang = this.locale as ArticleLanguage;
-        const content = article.content[lang] || article.content.en || '';
-        const title = article.metadata.title[this.locale] ?? article.metadata.title.en;
-        const description =
-            article.metadata.description[this.locale] ?? article.metadata.description.en;
-        const tagline = article.metadata.tagline[this.locale] ?? article.metadata.tagline.en;
-
-        // Date locale mapping
-        const dateLocaleMap: Record<Locale, string> = {
-            en: 'en-US',
-            fr: 'fr-FR',
-        };
-
-        return {
-            category: article.metadata.category,
-            description,
-            experimentSlug: contentLinksRepository.getExperimentSlugForArticle(article.publicIndex),
-            imageUrl: article.imageUrl,
-            slug: buildArticleSlug(article.publicIndex, article.metadata.title.en),
-            tagline,
-            title,
-            datePublished: new Date(article.metadata.datePublished).toLocaleDateString(
-                dateLocaleMap[this.locale],
-                {
-                    year: 'numeric',
-                    month: 'short',
-                },
-            ),
-            readingTime: this.calculateReadingTime(content),
-        };
-    }
+    return {
+        series,
+        standaloneArticles: finalStandaloneArticles.map(toViewModel),
+        timeline,
+        latestExplorationArticle,
+        button,
+        highlightDescription,
+        highlightTitle,
+    };
 }

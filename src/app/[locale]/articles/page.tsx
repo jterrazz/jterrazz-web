@@ -8,7 +8,7 @@ import {
     buildBlogPostingJsonLd,
     buildCollectionPageJsonLd,
 } from '../../../infrastructure/seo/json-ld';
-import { ArticlesListViewModelImpl } from '../../../presentation/templates/articles-list-template-view-model';
+import { buildArticlesListViewModel } from '../../../presentation/templates/articles-list-template-view-model';
 import { ArticlesListTemplate } from '../../../presentation/templates/articles-list.template';
 import { JsonLdScript } from '../../../presentation/ui/atoms/json-ld-script/json-ld-script';
 
@@ -56,13 +56,13 @@ export default async function ArticlesPage({ params }: Props) {
     const highlightTitle = t('title');
     const highlightDescription = t('highlightDescription');
 
-    const viewModel = new ArticlesListViewModelImpl(
+    const viewModel = buildArticlesListViewModel({
         articles,
-        highlightTitle,
         highlightDescription,
-        locale as 'en' | 'fr',
-        t('viewMedium'),
-    );
+        highlightTitle,
+        locale: locale as 'en' | 'fr',
+        viewMediumText: t('viewMedium'),
+    });
 
     const pageUrl = `${SITE_CONFIG.baseUrl}${locale === 'en' ? '/articles' : `/${locale}/articles`}`;
     const jsonLd = buildCollectionPageJsonLd({
@@ -96,10 +96,7 @@ export default async function ArticlesPage({ params }: Props) {
     return (
         <>
             <JsonLdScript data={jsonLd} id="articles-json-ld" />
-            <ArticlesListTemplate
-                translations={translations}
-                viewModel={viewModel.getViewModel()}
-            />
+            <ArticlesListTemplate translations={translations} viewModel={viewModel} />
         </>
     );
 }
