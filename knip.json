@@ -1,0 +1,9 @@
+{
+    "$schema": "https://unpkg.com/knip@6/schema.json",
+    "entry": ["scripts/*.ts"],
+    "ignoreBinaries": ["oxlint", "oxfmt"],
+    "ignoreDependencies": ["@jterrazz/test", "@jterrazz/typescript"],
+    "ignoreExportsUsedInFile": true,
+    "ignore": ["oxfmt.config.ts", "oxlint.config.ts"],
+    "exclude": ["enumMembers"]
+}

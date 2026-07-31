@@ -1,10 +1,4 @@
-import {
-    personId,
-    projectAuthorRef,
-    projectIdentityGraph,
-    projectPerson,
-    projectWebSite,
-} from '@jterrazz/reach';
+import { personId, projectAuthorRef, projectIdentityGraph } from '@jterrazz/reach';
 
 import { site } from '../../../reach.config';
 import { SITE_CONFIG } from '../../config/site';
@@ -25,14 +19,6 @@ export const PERSON_ID = personId(site);
 /** Schema.org Person reference for authored content — resolves via @id. */
 export function buildAuthorJsonLd() {
     return projectAuthorRef(site);
-}
-
-export function buildPersonJsonLd() {
-    return projectPerson(site);
-}
-
-export function buildWebSiteJsonLd() {
-    return projectWebSite(site);
 }
 
 /**

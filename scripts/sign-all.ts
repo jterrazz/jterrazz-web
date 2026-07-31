@@ -127,7 +127,7 @@ for (const { article, filename, rawContent } of work) {
 }
 
 console.log(
-    '\nDone. Run `attestation upgrade content/*/en.ots` in ~24h to attach Bitcoin attestations.',
+    '\nDone. Run `attestation upgrade assets/*/en.ots` in ~24h to attach Bitcoin attestations.',
 );
 
 function hexToBytes(hex: `0x${string}`): Uint8Array {
