@@ -164,7 +164,10 @@ describe('smart app links (/go/*)', () => {
         // Given - a slug outside the registry
         const result = await website.fetch('/go/does-not-exist');
 
-        // Then - a real 404
+        // Then - a real 404 with no location: an unknown slug must never send
+        // A visitor somewhere arbitrary, which a status-only check would miss
         expect(result.status).toBe(404);
+        expect(result.location).toBeUndefined();
+        expect(result.body).toContain('could not be found');
     });
 });

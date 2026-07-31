@@ -4,7 +4,7 @@ import { buildExperimentDetailJsonLd, buildSiteIdentityJsonLd, PERSON_ID } from 
 
 describe('buildExperimentDetailJsonLd', () => {
     test('should build basic JSON-LD for non-42 project', () => {
-        // Given — a non-42 project with a code repository
+        // Given - a non-42 project with a code repository
         const result = buildExperimentDetailJsonLd({
             codeRepository: 'https://github.com/jterrazz/capitaine-mobile',
             description: 'A day to day copilot for your life.',
@@ -14,7 +14,7 @@ describe('buildExperimentDetailJsonLd', () => {
             year: 2026,
         });
 
-        // Then — standard JSON-LD fields are populated without 42-specific properties
+        // Then - standard JSON-LD fields are populated without 42-specific properties
         expect(result['@context']).toBe('https://schema.org');
         expect(result['@type']).toBe('SoftwareSourceCode');
         expect(result.name).toBe('Capitaine');
@@ -33,7 +33,7 @@ describe('buildExperimentDetailJsonLd', () => {
     });
 
     test('should build JSON-LD with LearningResource type for 42 project', () => {
-        // Given — a 42 school project
+        // Given - a 42 school project
         const result = buildExperimentDetailJsonLd({
             codeRepository: 'https://github.com/jterrazz/42-expert-system',
             description: 'Backward chaining rule based system in Python.',
@@ -43,7 +43,7 @@ describe('buildExperimentDetailJsonLd', () => {
             year: 2019,
         });
 
-        // Then — JSON-LD includes LearningResource type and 42-specific properties
+        // Then - JSON-LD includes LearningResource type and 42-specific properties
         expect(result['@context']).toBe('https://schema.org');
         expect(result['@type']).toEqual(['SoftwareSourceCode', 'LearningResource']);
         expect(result.name).toBe('Expert System');
@@ -58,7 +58,7 @@ describe('buildExperimentDetailJsonLd', () => {
     });
 
     test('should handle missing codeRepository', () => {
-        // Given — a project without a code repository
+        // Given - a project without a code repository
         const result = buildExperimentDetailJsonLd({
             codeRepository: undefined,
             description: 'Some project.',
@@ -68,12 +68,12 @@ describe('buildExperimentDetailJsonLd', () => {
             year: 2024,
         });
 
-        // Then — codeRepository is undefined in the result
+        // Then - codeRepository is undefined in the result
         expect(result.codeRepository).toBeUndefined();
     });
 
     test('should include author information', () => {
-        // Given — any project
+        // Given - any project
         const result = buildExperimentDetailJsonLd({
             description: 'Test project.',
             is42Project: false,
@@ -82,14 +82,14 @@ describe('buildExperimentDetailJsonLd', () => {
             year: 2024,
         });
 
-        // Then — author information is present
+        // Then - author information is present
         expect(result.author).toBeDefined();
         expect(result.author['@type']).toBe('Person');
         expect(result.author.name).toBe('Jean-Baptiste Terrazzoni');
     });
 
     test('should format year correctly in dateCreated', () => {
-        // Given — a project with a specific year
+        // Given - a project with a specific year
         const result = buildExperimentDetailJsonLd({
             description: 'Test.',
             is42Project: false,
@@ -98,17 +98,17 @@ describe('buildExperimentDetailJsonLd', () => {
             year: 2017,
         });
 
-        // Then — dateCreated is formatted as YYYY-01-01
+        // Then - dateCreated is formatted as YYYY-01-01
         expect(result.dateCreated).toBe('2017-01-01');
     });
 });
 
 describe('buildSiteIdentityJsonLd', () => {
     test('should build a @graph with WebSite and Person sharing stable ids', () => {
-        // Given — the site-wide identity graph
+        // Given - the site-wide identity graph
         const result = buildSiteIdentityJsonLd();
 
-        // Then — WebSite and Person are present and linked by @id
+        // Then - WebSite and Person are present and linked by @id
         expect(result['@context']).toBe('https://schema.org');
         const [website, person] = result['@graph'];
         expect(website['@id']).toBe('https://www.jterrazz.com/#website');
@@ -120,10 +120,10 @@ describe('buildSiteIdentityJsonLd', () => {
     });
 
     test('should expose the full social identity on the Person', () => {
-        // Given — the canonical Person entity
+        // Given - the canonical Person entity
         const [, person] = buildSiteIdentityJsonLd()['@graph'];
 
-        // Then — sameAs covers every public profile and email is declared
+        // Then - sameAs covers every public profile and email is declared
         expect(person.sameAs).toEqual(
             expect.arrayContaining([
                 'https://github.com/jterrazz',

@@ -76,6 +76,8 @@ test('unknown pages 404', async () => {
     // Given - a path that does not exist
     const result = await website.fetch('/this-page-does-not-exist');
 
-    // Then - a real 404
+    // Then - a real 404, and a page that says so rather than a soft-404 shell
+    // Serving borrowed content under an error status
     expect(result.status).toBe(404);
+    expect(result.body).toContain('could not be found');
 });
