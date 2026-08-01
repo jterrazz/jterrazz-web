@@ -1,0 +1,35 @@
+### block hash for height 956940 — where one calendar anchored the proof
+
+GET /block-height/956940
+
+HTTP/1.1 200 OK
+content-type: text/plain
+
+00000000000000000000ca49f36a9eb58052dd451b1a3aca9336a7f26af65865
+
+### block hash for height 956944 — where the other two calendars anchored it
+
+GET /block-height/956944
+
+HTTP/1.1 200 OK
+content-type: text/plain
+
+000000000000000000012bfc9b48c3142db3196339cd1dce20d816dbb6530ce3
+
+### block header 956940, frozen verbatim from blockstream.info — the Merkle path must verify against it
+
+GET /block/00000000000000000000ca49f36a9eb58052dd451b1a3aca9336a7f26af65865
+
+HTTP/1.1 200 OK
+content-type: application/json
+
+{"id":"00000000000000000000ca49f36a9eb58052dd451b1a3aca9336a7f26af65865","height":956940,"version":537280512,"timestamp":1783357148,"tx_count":3743,"size":1536873,"weight":3992775,"merkle_root":"cd2028450b0827740ec0de8b9b2d940ed6bc39c75ce7e285100aa350973ce706","previousblockhash":"000000000000000000020a0251e5402892883be151f6e83768b2370af406456e","mediantime":1783354007,"nonce":2159972521,"bits":386013762,"difficulty":133869853540305.39}
+
+### block header 956944, frozen verbatim from blockstream.info
+
+GET /block/000000000000000000012bfc9b48c3142db3196339cd1dce20d816dbb6530ce3
+
+HTTP/1.1 200 OK
+content-type: application/json
+
+{"id":"000000000000000000012bfc9b48c3142db3196339cd1dce20d816dbb6530ce3","height":956944,"version":617242624,"timestamp":1783359050,"tx_count":4256,"size":1583119,"weight":3992578,"merkle_root":"59eb29b203052cee7cac5b97f43f1276872aee7458d682185ee4f370eb98d963","previousblockhash":"00000000000000000001420f1a6714c5a5276bc5fca5c685de282506764df34f","mediantime":1783356980,"nonce":3666918148,"bits":386013762,"difficulty":133869853540305.39}

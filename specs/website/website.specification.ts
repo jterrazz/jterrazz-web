@@ -36,6 +36,10 @@ if (!existsSync(BUILD_MARKER) || statSync(BUILD_MARKER).mtimeMs < newestSource) 
 }
 
 export const { cleanup, website } = await specification.website({
+    // The one external data dependency: OTS verification's Bitcoin block
+    // Source. The stub's URL reaches verify-ots.json through OTS_EXPLORER_URL;
+    // Chains declare the frozen block data via .intercept('<name>.http').
+    backend: { env: 'OTS_EXPLORER_URL', port: 4821 },
     server: { command: 'npm run start', ready: '/', timeout: 60_000 },
 });
 afterAll(cleanup);

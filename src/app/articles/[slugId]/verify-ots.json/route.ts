@@ -60,7 +60,14 @@ export async function GET(_req: Request, ctx: RouteContext) {
 
     // Lazy import — keeps the OTS lib (Node-only deps) out of the static bundle.
     const { verifyOts } = await import('@jterrazz/attestation/node');
-    const result = await verifyWithTimeout(verifyOts, digest, new Uint8Array(otsBuffer));
+    // An explicit explorer (specs point this at a stub) replaces the default
+    // Public block source; unset in production, behavior is unchanged.
+    const explorerUrl = process.env.OTS_EXPLORER_URL;
+    const result = await verifyWithTimeout(
+        (d, o) => verifyOts(d, o, explorerUrl ? { explorerUrl } : undefined),
+        digest,
+        new Uint8Array(otsBuffer),
+    );
 
     if (result.ok) {
         // Bitcoin attestation is immutable once it lands — long browser TTL,

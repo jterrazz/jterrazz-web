@@ -32,19 +32,29 @@ test('resolves the authorship claim to verified in the browser', async () => {
 });
 
 test('explains the date claim whatever the anchor says', async () => {
-    // Given - a reader on the proof page
-    const result = await website.visit(verifyPath(), async (visitor) => {
-        // When - they expand the date claim
-        await visitor.click(button('Proof of date'));
-        await visitor.see(content('Proof of date'));
-    });
+    // Given - a reader on the proof page, with the Bitcoin block source under
+    // Contract: the stub backend (OTS_EXPLORER_URL) serves frozen real Esplora
+    // Data the proof's Merkle path verifies against, so any runtime resolution
+    // Of verify-ots.json is pinned to declared exchanges instead of the network
+    const result = await website
+        .intercept('anchored-block.http')
+        .visit(verifyPath(), async (visitor) => {
+            // When - they expand the date claim
+            await visitor.click(button('Proof of date'));
+            await visitor.see(content('Proof of date'));
+        });
 
     // Then - the section explains where the date stands, in every state it can
-    // Be in. The verdict itself is NOT asserted on purpose: resolving it runs
-    // Through verify-ots.json, which queries a public Bitcoin block source, so
-    // Pinning "Anchored" would make deploys depend on a third party being up —
-    // Which is exactly how this spec broke CI once. What the site owes a reader
-    // Is an explanation; whether the anchor has landed is Bitcoin's business.
+    // Be in. The verdict itself is still NOT asserted: verify-ots.json is ISR-
+    // Prerendered (`revalidate = 3600`), so the answer a visit receives comes
+    // From the `next build` snapshot — computed with the REAL calendars and
+    // Block source, no stub env in the build child — verified empirically: the
+    // Spec's outcome did not change when the intercept data was corrupted, and
+    // The snapshot body in .next carried the verdict. Pinning "Anchored" would
+    // Therefore still make the spec depend on third parties being up at build
+    // Time. The stub earns its keep on the other side of the boundary: when
+    // The snapshot ages out and ISR revalidates at runtime, the block lookup
+    // Resolves against the declared exchanges above, not the open network.
     const dateSection = result.content.text.split('Proof of date')[1] ?? '';
     expect(dateSection).toMatch(/Bitcoin|OpenTimestamps/);
 });

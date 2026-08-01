@@ -20,7 +20,7 @@
     },
     "dependencies": {
         "@jterrazz/analytics": "^1.0.0",
-        "@jterrazz/attestation": "^0.1.0",
+        "@jterrazz/attestation": "^0.2.0",
         "@jterrazz/intelligence": "^6.0.0",
         "@jterrazz/reach": "^0.1.0",
         "@openpanel/nextjs": "^1.5.1",
@@ -41,7 +41,7 @@
         "tailwind-merge": "^3.6.0"
     },
     "devDependencies": {
-        "@jterrazz/test": "^10.0.0",
+        "@jterrazz/test": "^10.1.0",
         "@jterrazz/typescript": "^7.1.1",
         "@tailwindcss/postcss": "^4.3.3",
         "@types/node": "^24.13.3",
