@@ -23,6 +23,10 @@ Hexagonal: `app/` (routes only) → `presentation/` (templates + view-models + U
 
 `npm run sign:all` signs (EIP-712, browser wallet) and queues OpenTimestamps stamps; `npm run sign:upgrade` attaches Bitcoin block timestamps ~24h later. Reader-side verification: footer badge (live recovery in-browser), `/articles/<slug>/verify`, `proof.json`, `verify-ots.json` (server-side OTS check, 1h revalidate).
 
+## Manifest
+
+The manifest declares, the projections derive, the audit verifies. `manifest.config.ts` (`@jterrazz/manifest`) declares the site once — canonical host, identity, locales, channels — and projects every machine-facing surface: metadata, identity JSON-LD, `sitemap.xml`, `robots.txt`, `llms.txt`, the feed. Never hand-author what it projects; change the declaration. `specs/website/manifest/` runs `audit.website(website, site)` against the rendered site.
+
 ## Testing
 
 Two vitest projects: `unit` (siblings in `src/`) and `website` (`specs/website/` — rebuilds `.next` when stale, boots `next start`, drives a real chromium). One-time: `npx playwright install chromium`.
