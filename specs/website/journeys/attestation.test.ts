@@ -2,6 +2,7 @@ import { button, content, link, main, within } from '@jterrazz/test';
 import { expect, test } from 'vitest';
 
 import { website } from '../website.specification';
+import explorer from './contracts/explorer.contracts';
 import { attestedArticle, pathOf } from './subjects';
 
 /**
@@ -36,13 +37,11 @@ test('explains the date claim whatever the anchor says', async () => {
     // Contract: the stub backend (OTS_EXPLORER_URL) serves frozen real Esplora
     // Data the proof's Merkle path verifies against, so any runtime resolution
     // Of verify-ots.json is pinned to declared exchanges instead of the network
-    const result = await website
-        .intercept('anchored-block.http')
-        .visit(verifyPath(), async (visitor) => {
-            // When - they expand the date claim
-            await visitor.click(button('Proof of date'));
-            await visitor.see(content('Proof of date'));
-        });
+    const result = await website.intercept(explorer).visit(verifyPath(), async (visitor) => {
+        // When - they expand the date claim
+        await visitor.click(button('Proof of date'));
+        await visitor.see(content('Proof of date'));
+    });
 
     // Then - the section explains where the date stands, in every state it can
     // Be in. The verdict itself is still NOT asserted: verify-ots.json is ISR-
