@@ -1,7 +1,4 @@
 import { oxfmt } from '@jterrazz/typescript';
 import { defineConfig } from 'oxfmt';
 
-export default defineConfig({
-    ...oxfmt,
-    ignorePatterns: ['assets/**', '.next/**'],
-});
+export default defineConfig(oxfmt);
