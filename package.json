@@ -41,7 +41,7 @@
         "tailwind-merge": "^3.6.0"
     },
     "devDependencies": {
-        "@jterrazz/test": "file:../package-test",
+        "@jterrazz/test": "^11.0.0",
         "@jterrazz/typescript": "^8.0.0",
         "@tailwindcss/postcss": "^4.3.3",
         "@types/node": "^24.13.3",
