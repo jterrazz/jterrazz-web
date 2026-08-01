@@ -1,4 +1,4 @@
-import { defineSite, person } from '@jterrazz/reach';
+import { defineSite, person } from '@jterrazz/manifest';
 
 /**
  * The site's reach — declared once, projected into every surface

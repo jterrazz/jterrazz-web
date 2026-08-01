@@ -1,6 +1,6 @@
-import { createLlms } from '@jterrazz/reach/next';
+import { createLlms } from '@jterrazz/manifest/next';
 
-import { site } from '../../../reach.config';
+import { site } from '../../../manifest.config';
 import { articlesProvider, experimentsProvider } from '../../infrastructure/seo/providers';
 
 // The index is fully derivable from the repositories at build time.

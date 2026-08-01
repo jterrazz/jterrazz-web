@@ -27,7 +27,7 @@ function newestMtime(path: string): number {
 // Specification rebuilding its Go binary: rebuild only when a source is
 // Newer than the build marker, so `npm test` is hermetic without paying
 // A build when one is fresh (CI builds first — this is always a no-op there).
-const sources = ['src', 'assets', 'public', 'reach.config.ts', 'next.config.ts', 'package.json']
+const sources = ['src', 'assets', 'public', 'manifest.config.ts', 'next.config.ts', 'package.json']
     .map((path) => resolve(REPO_ROOT, path))
     .filter((path) => existsSync(path));
 const newestSource = Math.max(...sources.map((path) => newestMtime(path)));

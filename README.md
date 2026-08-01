@@ -26,7 +26,7 @@ npm run dev            # http://localhost:3000
 
 The repo brief — architecture, the content pipeline, attestation, the testing doctrine — lives in [`AGENTS.md`](AGENTS.md).
 
-Built on the `@jterrazz` stack: [`@jterrazz/typescript`](https://github.com/jterrazz/package-typescript), [`@jterrazz/test`](https://github.com/jterrazz/package-test), [`@jterrazz/reach`](https://github.com/jterrazz/package-reach), [`@jterrazz/attestation`](https://github.com/jterrazz/package-attestation).
+Built on the `@jterrazz` stack: [`@jterrazz/typescript`](https://github.com/jterrazz/package-typescript), [`@jterrazz/test`](https://github.com/jterrazz/package-test), [`@jterrazz/manifest`](https://github.com/jterrazz/package-manifest), [`@jterrazz/attestation`](https://github.com/jterrazz/package-attestation).
 
 ## License
 

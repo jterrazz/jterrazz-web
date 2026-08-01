@@ -1,17 +1,17 @@
-import { personId, projectAuthorRef, projectIdentityGraph } from '@jterrazz/reach';
+import { personId, projectAuthorRef, projectIdentityGraph } from '@jterrazz/manifest';
 
-import { site } from '../../../reach.config';
+import { site } from '../../../manifest.config';
 import { SITE_CONFIG } from '../../config/site';
 
 /**
  * JSON-LD structured data builders for SEO
- * @description The identity graph is projected by @jterrazz/reach from
- * reach.config.ts; the content builders below (articles, experiments,
+ * @description The identity graph is projected by @jterrazz/manifest from
+ * manifest.config.ts; the content builders below (articles, experiments,
  * photographs) stay app-specific and reference the canonical Person by @id.
  */
 
 // ============================================================================
-// Identity (projected from reach.config.ts)
+// Identity (projected from manifest.config.ts)
 // ============================================================================
 
 export const PERSON_ID = personId(site);

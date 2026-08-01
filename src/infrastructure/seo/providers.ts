@@ -1,6 +1,6 @@
-import { page, type PageProvider } from '@jterrazz/reach';
+import { page, type PageProvider } from '@jterrazz/manifest';
 
-import { site } from '../../../reach.config';
+import { site } from '../../../manifest.config';
 import { buildArticleSlug } from '../../domain/utils/slugify';
 import { locales } from '../../i18n/config';
 import { articlesRepository } from '../repositories/articles.repository';
@@ -9,7 +9,7 @@ import { experimentsRepository } from '../repositories/experiments.repository';
 /**
  * The page providers — the app's content sources enumerated as page
  * declarations. This is the only bridge between the repositories and the
- * reach projections; the package never reads content itself.
+ * manifest projections; the package never reads content itself.
  */
 
 export const mainPagesProvider: PageProvider = () => [

@@ -1,6 +1,6 @@
-import { createSitemap } from '@jterrazz/reach/next';
+import { createSitemap } from '@jterrazz/manifest/next';
 
-import { site } from '../../reach.config';
+import { site } from '../../manifest.config';
 import {
     articlesProvider,
     experimentsProvider,

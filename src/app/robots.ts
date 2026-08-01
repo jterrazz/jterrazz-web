@@ -1,5 +1,5 @@
-import { createRobots } from '@jterrazz/reach/next';
+import { createRobots } from '@jterrazz/manifest/next';
 
-import { site } from '../../reach.config';
+import { site } from '../../manifest.config';
 
 export default createRobots(site);
