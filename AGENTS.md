@@ -48,4 +48,4 @@ Analytics: server-side OpenPanel via `@jterrazz/analytics`; the tracking plan is
 ## Conventions
 
 - `typescript fix` before committing; `npm run lint` is `typescript check` (types + oxlint + oxfmt + knip + spec conventions).
-- tsconfig extends the shared preset with three deliberate deltas the preset is behind on (ES2022, bundler resolution, react-jsx).
+- tsconfig is one line — `{ "extends": "@jterrazz/typescript/tsconfig/next" }`. The preset owns everything, strict included; a local compilerOption is a smell.
